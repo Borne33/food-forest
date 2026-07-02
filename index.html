@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Native Food Forest Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{
+    --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
+    --line:#c9c2ab; --dot:#c2bba2; --sage:#6f8a5f; --sage-d:#42603a;
+    --blue:#3b82f6; --green:#46a34a; --ygreen:#9bbf3a; --yellow:#e0b932; --orange:#e8923c; --red:#dd4b3e;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',ui-monospace,monospace}
+  a{color:var(--sage-d)}
+  button{font-family:inherit;cursor:pointer}
+  /* ---------- chrome ---------- */
+  .topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+  .brand{display:flex;flex-direction:column;line-height:1.05}
+  .brand .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+  .brand h1{margin:2px 0 0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+  .ham i{display:block;width:18px;height:2px;background:var(--ink)}
+  .menu{position:fixed;inset:0;z-index:50;display:none}
+  .menu.open{display:block}
+  .menu .scrim{position:absolute;inset:0;background:rgba(20,18,10,.32)}
+  .menu .panel{position:absolute;top:0;right:0;height:100%;width:min(320px,86vw);background:var(--paper);
+    border-left:1.5px solid var(--ink);padding:18px;display:flex;flex-direction:column;gap:4px;box-shadow:-20px 0 50px -30px #000}
+  .menu .panel .ttl{font-family:'Space Mono';font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:6px 4px 10px}
+  .menu .panel button{text-align:left;border:0;background:transparent;font-family:'Spectral';font-size:18px;font-weight:600;
+    padding:12px 12px;border-radius:4px;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+  .menu .panel button:hover{background:var(--paper2)}
+  .menu .panel button.active{background:var(--ink);color:var(--paper)}
+  .menu .panel button .num{font-family:'Space Mono';font-size:11px;opacity:.6}
+  .menu .close{margin-top:auto;border:1.5px solid var(--ink);border-radius:3px;background:transparent;padding:10px;font-family:'Space Mono';font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .wrap{max-width:1020px;margin:0 auto;padding:22px 18px 90px}
+  .pagehead{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+  .pagehead .eye{font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .pagehead h2{margin:6px 0 4px;font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .pagehead p{margin:0;color:var(--ink2);max-width:680px}
+  /* ---------- controls ---------- */
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:8px}
+  .fld{display:flex;flex-direction:column;gap:4px}
+  .fld label{font-family:'Space Mono';font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .fld input,.fld select{font-family:'Spectral';font-size:15px;background:#fbf9f2;border:1.5px solid var(--line);border-radius:4px;padding:8px 10px;color:var(--ink)}
+  .fld input:focus,.fld select:focus{outline:2px solid var(--sage);outline-offset:1px;border-color:var(--sage)}
+  .search{min-width:230px;flex:1 1 230px}
+  .dirbtn{border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;height:39px;width:42px;font-family:'Space Mono';font-size:16px}
+  .toggles{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px}
+  .chip{font-family:'Space Mono';font-size:11px;letter-spacing:.04em;border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:6px 12px;color:var(--ink2)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .count{font-family:'Space Mono';font-size:12px;color:var(--faint);margin:12px 2px 6px}
+  /* ---------- plant card (Herbarium) ---------- */
+  .card{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;box-shadow:0 1px 0 #fff inset, 0 10px 24px -22px #000;margin-bottom:14px;overflow:hidden}
+  .card .head{display:grid;grid-template-columns:1fr auto;gap:14px;padding:15px 18px 12px;border-bottom:1.5px solid var(--ink);cursor:pointer}
+  .card .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .card h3{margin:5px 0 1px;font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .card .sci{font-style:italic;color:var(--ink2);font-size:15px}
+  .card .ov{text-align:center;align-self:start}
+  .card .ov b{display:block;font-family:'Space Mono';font-size:28px;line-height:1;padding:9px 12px;border-radius:3px;min-width:62px}
+  .card .ov small{font-family:'Space Mono';font-size:9px;letter-spacing:.14em;color:var(--faint);display:block;margin-top:4px}
+  .pills{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 2px}
+  .pill{font-family:'Space Mono';font-size:10px;letter-spacing:.04em;border-radius:99px;padding:3px 9px;border:1px solid}
+  .pill.nat{color:#2f6d2a;background:#e7f3e2;border-color:#bcdcb4}
+  .pill.life{color:#5a4a1f;background:#f3ecd5;border-color:#ddcfa3}
+  .pill.type{color:#3a4660;background:#e6eaf3;border-color:#c2cce0}
+  .pill.nf{color:#1f5e5a;background:#dcefec;border-color:#aad6cf}
+  .pill.pol{color:#7a4a86;background:#efe4f2;border-color:#d6bedd}
+  .pill.dec{color:#8a5a1f;background:#f6e8d2;border-color:#e2c79c}
+  .pill.inv{color:#9a2c22;background:#f6dcd7;border-color:#e3b1a8}
+  /* category score boxes (editorial style) */
+  .scores{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px}
+  .cardact{padding:0 18px 14px}
+  .sbox{flex:1 1 92px;min-width:92px;border:1px solid var(--line);border-radius:4px;padding:7px 9px;background:#fbf9f2}
+  .sbox .lab{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.2}
+  .sbox .row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:5px}
+  .sbox .v{font-family:'Space Mono';font-size:19px;font-weight:700;padding:0 7px;border-radius:3px}
+  .sbox .tier{font-family:'Space Mono';font-size:8px;line-height:1.15;color:var(--faint);text-align:right;text-transform:lowercase}
+  /* expanded */
+  .exp{border-top:1px dashed var(--dot);padding:14px 18px 18px;background:#f5f1e6}
+  .exp .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 22px}
+  .exp dt{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+  .exp dd{margin:0 0 11px;font-size:15px}
+  .exp .risk{color:#9a2c22}
+  .exp .srcs{margin-top:6px}
+  .exp .srcs a{display:inline-block;font-family:'Space Mono';font-size:12px;margin:3px 10px 3px 0;color:var(--sage-d)}
+  .addbtn{font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:4px;padding:9px 14px;margin-top:6px}
+  .addbtn.in{background:var(--sage-d);color:var(--paper);border-color:var(--sage-d)}
+  /* state bar */
+  .statebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--paper2);border:1px solid var(--line);border-radius:5px;padding:10px 14px;margin-bottom:16px}
+  .statebar .lbl{font-family:'Space Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .statebar select{font-family:'Spectral';font-size:15px;background:#fbf9f2;border:1.5px solid var(--line);border-radius:4px;padding:6px 8px}
+  .statebar .note{font-size:13px;color:var(--ink2);font-style:italic}
+  /* stats / plan */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:18px}
+  .stat{border:1px solid var(--line);background:#f7f4ea;border-radius:4px;padding:12px 14px}
+  .stat b{display:block;font-family:'Space Mono';font-size:26px}
+  .stat span{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .insight{border-left:3px solid var(--sage);background:#f0f3e9;padding:10px 14px;border-radius:0 4px 4px 0;margin-bottom:9px;font-size:15px}
+  .insight b{font-weight:600}
+  .sugg{border:1px dashed var(--dot);border-radius:4px;padding:10px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#faf7ef}
+  .sugg .why{font-size:13px;color:var(--ink2);font-style:italic}
+  .empty{border:1px dashed var(--line);border-radius:5px;padding:30px;text-align:center;color:var(--ink2)}
+  /* guide */
+  .gcat{border:1px solid var(--line);background:#f7f4ea;border-radius:5px;margin-bottom:16px;overflow:hidden}
+  .gcat h3{margin:0;padding:13px 16px;border-bottom:1.5px solid var(--ink);font-size:19px;font-weight:800;display:flex;justify-content:space-between;align-items:baseline}
+  .gcat h3 .w{font-family:'Space Mono';font-size:12px;color:var(--faint)}
+  .gcat .scale{padding:6px 16px 14px}
+  .gcat .lvl{display:grid;grid-template-columns:54px 1fr;gap:12px;padding:7px 0;border-bottom:1px dotted var(--dot);align-items:start}
+  .gcat .lvl:last-child{border:0}
+  .gcat .lvl .b{font-family:'Space Mono';font-weight:700;text-align:center;padding:3px 0;border-radius:3px;font-size:14px}
+  .gcat .lvl p{margin:0;font-size:14.5px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 2px}
+  .legend span{font-family:'Space Mono';font-size:11px;padding:4px 10px;border-radius:99px}
+  /* table */
+  .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:5px;background:#fbf9f2}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;vertical-align:top}
+  th{font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);position:sticky;top:0;background:var(--paper2)}
+  td.sci{font-style:italic}
+  .exportrow{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .exportrow button{border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:4px;padding:10px 16px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .exportrow button.alt{background:transparent;color:var(--ink)}
+  .footnote{font-size:13px;color:var(--faint);font-style:italic;margin-top:14px}
+  /* auth screen */
+  .authwrap{max-width:420px;margin:0 auto;padding:60px 18px 40px}
+  .authcard{background:#f7f4ea;border:1px solid var(--line);border-radius:4px;box-shadow:0 10px 30px -24px #000;padding:26px 24px}
+  .authcard .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+  .authcard h2{margin:6px 0 4px;font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .authcard p.sub{margin:0 0 18px;color:var(--ink2);font-size:15px}
+  .authcard .fld{margin-bottom:12px}
+  .authcard .fld input{width:100%}
+  .authbtn{width:100%;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:4px;padding:11px;font-family:'Space Mono';font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+  .authbtn:disabled{opacity:.5}
+  .authtoggle{background:transparent;border:0;color:var(--sage-d);font-family:'Spectral';font-size:14px;text-decoration:underline;padding:6px 0;margin-top:12px}
+  .authmsg{font-size:13.5px;border-radius:4px;padding:9px 11px;margin-top:12px}
+  .authmsg.err{background:#f6dcd7;color:#9a2c22;border:1px solid #e3b1a8}
+  .authmsg.ok{background:#e7f3e2;color:#2f6d2a;border:1px solid #bcdcb4}
+  .userbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 4px 6px;padding:8px 0;border-top:1px dashed var(--dot)}
+  .userbar .em{font-family:'Space Mono';font-size:11px;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .userbar button{border:1.5px solid var(--line);background:transparent;border-radius:3px;font-family:'Space Mono';font-size:11px;padding:6px 10px;color:var(--ink)}
+  @media(max-width:560px){
+    .card .ov b{font-size:23px;min-width:52px}
+    .sbox{flex:1 1 28%;min-width:0}
+    .wrap{padding:18px 12px 80px}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const {useState,useMemo,useEffect} = React;
+
+/* =====================================================================
+   ▼▼▼  CONFIG — PASTE YOUR TWO SUPABASE VALUES HERE  ▼▼▼
+   Find them in your project: Settings ▸ API
+     • Project URL           -> SUPABASE_URL
+     • Project API key (anon / publishable) -> SUPABASE_ANON_KEY
+   ===================================================================== */
+const SUPABASE_URL      = "https://sysrtpvnkpfuieznfkzb.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_KFuVBUO-ID97Wbem0VBapA_XnYqZjGs";
+/* ▲▲▲  nothing else below needs editing  ▲▲▲ */
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Map a DB row (snake_case + jsonb) into the shape the UI already expects.
+function rowToPlant(r){
+  return {
+    id:r.id, common:r.common, sci:r.sci, family:r.family, type:r.type, life:r.life,
+    edibleParts:r.edible_parts, otherUses:r.other_uses, prep:r.prep, harvest:r.harvest,
+    sun:r.sun, soil:r.soil, risks:r.risks, buy:r.buy,
+    nativeStates:r.native_states||[], nativeRegions:r.native_regions||[], nativeToUS:r.native_to_us,
+    invasiveStates:r.invasive_states||[], invasiveEverywhere:r.invasive_everywhere, decPriority:r.dec_priority,
+    nf:r.nf, pol:r.pol, s:r.scores, sources:r.sources||[],
+  };
+}
+
+/* =====================================================================
+   DATA PROVIDER  —  the ONLY section that talks to the backend.
+   getPlants() reads public reference data; the plan methods read/write
+   the current user's rows in user_plans (protected by RLS). Auth is by
+   email + password; user_plans.user_id defaults to auth.uid() on insert.
+   ===================================================================== */
+const auth = {
+  getSession(){ return sb.auth.getSession(); },
+  onChange(cb){ return sb.auth.onAuthStateChange((_e,session)=>cb(session?.user||null)); },
+  signIn(email,password){ return sb.auth.signInWithPassword({ email, password }); },
+  signUp(email,password){ return sb.auth.signUp({ email, password }); },
+  resetPassword(email){ return sb.auth.resetPasswordForEmail(email); },
+  signOut(){ return sb.auth.signOut(); },
+};
+const dataProvider = {
+  async getPlants(){
+    const { data, error } = await sb.from('plants').select('*').order('id');
+    if(error) throw error;
+    return data.map(rowToPlant);
+  },
+  async loadPlan(){
+    const { data, error } = await sb.from('user_plans').select('plant_id');
+    if(error) throw error;
+    return data.map(r=>r.plant_id);
+  },
+  async addPlant(plantId){
+    // user_id is filled automatically by the column default auth.uid()
+    const { error } = await sb.from('user_plans').insert({ plant_id:plantId });
+    if(error) throw error;
+  },
+  async removePlant(plantId){
+    const { error } = await sb.from('user_plans').delete().eq('plant_id', plantId);
+    if(error) throw error;
+  },
+};
+
+/* ---------- US region grouping for the Nativity rule ---------- */
+const REGION = {
+  Eastern:["ME","NH","VT","MA","RI","CT","NY","NJ","PA","DE","MD","DC","VA","WV","NC","SC","GA","FL","AL","MS","TN","KY","OH","IN","IL","MI","WI","MN","IA","MO","AR","LA"],
+  Central:["ND","SD","NE","KS","OK","TX"],
+  Western:["MT","WY","CO","NM","ID","UT","AZ","NV","WA","OR","CA","AK","HI"],
+};
+const STATES = [...REGION.Eastern,...REGION.Central,...REGION.Western].sort();
+const STATE_NAMES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"Washington DC",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
+function regionGroupOf(st){
+  for(const g in REGION){ if(REGION[g].includes(st)) return g; }
+  return "Other";
+}
+
+/* ---------- Scoring engine ---------- */
+const TIER = {P:"peer-reviewed",E:"ethnobotanical",A:"anecdotal",N:"no evidence"};
+const WEIGHTS = {nativity:4, raw:1.5, cooked:1.5, life:1, eco:1, fiber:0.7, med:0.3};
+
+function nativity(p, st){
+  if(p.invasiveEverywhere || (p.invasiveStates||[]).includes(st)) return {v:-5,label:"Invasive here"};
+  if((p.nativeStates||[]).includes(st)) return {v:10,label:"Native to "+st};
+  if((p.nativeRegions||[]).includes(regionGroupOf(st))) return {v:8,label:"Native to region"};
+  if(p.nativeToUS) return {v:5,label:"Native to US"};
+  return {v:0,label:"Not native"};
+}
+function overall(p, st){
+  const nat = nativity(p,st).v;
+  const s=p.s;
+  const total = nat*WEIGHTS.nativity + s.raw[0]*WEIGHTS.raw + s.cooked[0]*WEIGHTS.cooked
+    + s.life[0]*WEIGHTS.life + s.eco[0]*WEIGHTS.eco + s.fiber[0]*WEIGHTS.fiber + s.med[0]*WEIGHTS.med;
+  return Math.round(total*10)/10;
+}
+function bandColor(score){ // 0-100 scale
+  if(score>=90) return "var(--blue)";
+  if(score>=80) return "var(--green)";
+  if(score>=70) return "var(--ygreen)";
+  if(score>=55) return "var(--yellow)";
+  if(score>=30) return "var(--orange)";
+  return "var(--red)";
+}
+function bandText(score){ return (score>=70 && score<80)||(score>=55&&score<70) ? "#2b2a22" : "#fff"; }
+function catColor(v){ return bandColor(v*10); }
+function catText(v){ return bandText(v*10); }
+
+/* Plant data now comes from Supabase via dataProvider.getPlants(); see CONFIG above. */
+
+/* category metadata for guide + table */
+const CATS = [
+  {key:"nativity", label:"Nativity", weight:4, abbr:"NAT"},
+  {key:"raw", label:"Edible Raw", weight:1.5, abbr:"RAW"},
+  {key:"cooked", label:"Edible Cooked", weight:1.5, abbr:"COOK"},
+  {key:"life", label:"Lifecycle", weight:1, abbr:"LIFE"},
+  {key:"eco", label:"Ecology", weight:1, abbr:"ECO"},
+  {key:"fiber", label:"Fiber / Material", weight:0.7, abbr:"FIBER"},
+  {key:"med", label:"Medicinal", weight:0.3, abbr:"MED"},
+];
+
+/* =====================================================================
+   UI COMPONENTS
+   ===================================================================== */
+function ScoreBox({label,val,tier}){
+  return (
+    <div className="sbox">
+      <div className="lab">{label}</div>
+      <div className="row">
+        <span className="v" style={{background:catColor(val), color:catText(val)}}>{val}</span>
+        {tier && <span className="tier">{TIER[tier]}</span>}
+      </div>
+    </div>
+  );
+}
+
+function PlantCard({p, state, inPlan, toggle}){
+  const [open,setOpen]=useState(false);
+  const nat = nativity(p,state);
+  const ov = overall(p,state);
+  return (
+    <div className="card">
+      <div className="head" onClick={()=>setOpen(o=>!o)}>
+        <div>
+          <div className="acc">{p.family} · {p.type}</div>
+          <h3>{p.common}</h3>
+          <div className="sci">{p.sci}</div>
+          <div className="pills">
+            <span className={"pill "+(nat.v<0?"inv":"nat")}>{nat.label}</span>
+            <span className="pill life">{p.life}</span>
+            {p.nf && <span className="pill nf">N-fixer</span>}
+            {p.pol && <span className="pill pol">Pollinator</span>}
+            {p.decPriority && <span className="pill dec">NY priority</span>}
+            {inPlan && <span className="pill type">★ In plan</span>}
+          </div>
+        </div>
+        <div className="ov">
+          <b style={{background:bandColor(ov),color:bandText(ov)}}>{ov}</b>
+          <small>Overall {open?"▴":"▾"}</small>
+        </div>
+      </div>
+
+      <div className="scores">
+        <ScoreBox label="Nativity" val={nat.v} />
+        <ScoreBox label="Edible Raw" val={p.s.raw[0]} tier={p.s.raw[1]} />
+        <ScoreBox label="Edible Cooked" val={p.s.cooked[0]} tier={p.s.cooked[1]} />
+        <ScoreBox label="Lifecycle" val={p.s.life[0]} tier={p.s.life[1]} />
+        <ScoreBox label="Ecology" val={p.s.eco[0]} tier={p.s.eco[1]} />
+        <ScoreBox label="Fiber" val={p.s.fiber[0]} tier={p.s.fiber[1]} />
+        <ScoreBox label="Medicinal" val={p.s.med[0]} tier={p.s.med[1]} />
+      </div>
+
+      <div className="cardact">
+        <button className={"addbtn"+(inPlan?" in":"")} onClick={(e)=>{e.stopPropagation();toggle(p.id);}}>
+          {inPlan?"★ In your plan — remove":"+ Add to my plan"}
+        </button>
+      </div>
+
+      {open && (
+        <div className="exp">
+          <div className="grid">
+            <div><dt>Edible parts</dt><dd>{p.edibleParts}</dd></div>
+            <div><dt>How to prepare</dt><dd>{p.prep}</dd></div>
+            <div><dt>Other uses</dt><dd>{p.otherUses}</dd></div>
+            <div><dt>Harvest time</dt><dd>{p.harvest}</dd></div>
+            <div><dt>Sun</dt><dd>{p.sun}</dd></div>
+            <div><dt>Soil</dt><dd>{p.soil}</dd></div>
+            <div><dt>Risks</dt><dd className="risk">{p.risks}</dd></div>
+            <div><dt>Where to buy</dt><dd>{p.buy}</dd></div>
+          </div>
+          <div className="srcs">
+            <dt>Supporting sources</dt>
+            {p.sources.map((s,i)=><a key={i} href={s[1]} target="_blank" rel="noreferrer">↗ {s[0]}</a>)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ---------- Database page ---------- */
+function Database({plants, state, setState, plan, toggle}){
+  const [q,setQ]=useState("");
+  const [sortKey,setSortKey]=useState("overall");
+  const [dir,setDir]=useState(-1); // -1 desc, 1 asc
+  const [types,setTypes]=useState([]); // active type filters
+  const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false});
+
+  const allTypes=[...new Set(plants.map(p=>p.type))];
+  const toggleType=t=>setTypes(ts=>ts.includes(t)?ts.filter(x=>x!==t):[...ts,t]);
+  const toggleFlag=f=>setFlags(s=>({...s,[f]:!s[f]}));
+
+  const view=useMemo(()=>{
+    let arr=plants.filter(p=>{
+      if(q){const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(q.toLowerCase())) return false;}
+      if(types.length && !types.includes(p.type)) return false;
+      if(flags.nf && !p.nf) return false;
+      if(flags.pol && !p.pol) return false;
+      if(flags.raw && p.s.raw[0]<5) return false;
+      if(flags.cooked && p.s.cooked[0]<5) return false;
+      if(flags.plan && !plan.includes(p.id)) return false;
+      return true;
+    });
+    const val=p=>{
+      if(sortKey==="overall") return overall(p,state);
+      if(sortKey==="nativity") return nativity(p,state).v;
+      if(sortKey==="name") return p.common.toLowerCase();
+      return p.s[sortKey][0];
+    };
+    arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
+    return arr;
+  },[plants,q,types,flags,sortKey,dir,state,plan]);
+
+  return (
+    <div>
+      <div className="pagehead">
+        <div className="eye">Database · {plants.length} plants</div>
+        <h2>Browse native plants</h2>
+        <p>Scores update to your state. Tap any card to expand details and sources, and add plants to your plan.</p>
+      </div>
+
+      <div className="statebar">
+        <span className="lbl">My state</span>
+        <select value={state} onChange={e=>setState(e.target.value)}>
+          {STATES.map(s=><option key={s} value={s}>{STATE_NAMES[s]} ({s})</option>)}
+        </select>
+        <span className="note">Nativity is recalculated for {STATE_NAMES[state]} (10 in-state · 8 in-region · 5 in-US · 0 non-native · −5 invasive).</span>
+      </div>
+
+      <div className="controls">
+        <div className="fld search"><label>Search name (common or scientific)</label>
+          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="e.g. hazelnut or Corylus" /></div>
+        <div className="fld"><label>Sort by</label>
+          <select value={sortKey} onChange={e=>setSortKey(e.target.value)}>
+            <option value="overall">Overall score</option>
+            <option value="nativity">Nativity</option>
+            <option value="raw">Edible Raw</option>
+            <option value="cooked">Edible Cooked</option>
+            <option value="life">Lifecycle</option>
+            <option value="eco">Ecology</option>
+            <option value="fiber">Fiber / Material</option>
+            <option value="med">Medicinal</option>
+            <option value="name">Name (A–Z)</option>
+          </select></div>
+        <button className="dirbtn" title="Toggle direction" onClick={()=>setDir(d=>-d)}>{dir===-1?"↓":"↑"}</button>
+      </div>
+
+      <div className="toggles">
+        {allTypes.map(t=><button key={t} className={"chip"+(types.includes(t)?" on":"")} onClick={()=>toggleType(t)}>{t}</button>)}
+        <span style={{width:1,background:"var(--line)",margin:"0 3px"}}></span>
+        <button className={"chip"+(flags.nf?" on":"")} onClick={()=>toggleFlag("nf")}>N-fixer</button>
+        <button className={"chip"+(flags.pol?" on":"")} onClick={()=>toggleFlag("pol")}>Pollinator</button>
+        <button className={"chip"+(flags.raw?" on":"")} onClick={()=>toggleFlag("raw")}>Good raw</button>
+        <button className={"chip"+(flags.cooked?" on":"")} onClick={()=>toggleFlag("cooked")}>Good cooked</button>
+        <button className={"chip"+(flags.plan?" on":"")} onClick={()=>toggleFlag("plan")}>In my plan</button>
+      </div>
+
+      <div className="count">{view.length} shown</div>
+      {view.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />)}
+      {view.length===0 && <div className="empty">No plants match those filters. Clear a filter or search to see more.</div>}
+    </div>
+  );
+}
+
+/* ---------- My Plan page ---------- */
+function MyPlan({plants, state, plan, toggle, go}){
+  const chosen=plants.filter(p=>plan.includes(p.id));
+  if(chosen.length===0){
+    return (
+      <div>
+        <div className="pagehead"><div className="eye">My Plan</div><h2>Your food forest</h2>
+          <p>You haven't added any plants yet.</p></div>
+        <div className="empty">Browse the database and tap <b>+ Add to my plan</b> on any plant.<br/><br/>
+          <button className="addbtn" onClick={()=>go("db")}>Go to the database</button></div>
+      </div>
+    );
+  }
+  const avg=Math.round(chosen.reduce((a,p)=>a+overall(p,state),0)/chosen.length*10)/10;
+  const nfix=chosen.filter(p=>p.nf);
+  const polls=chosen.filter(p=>p.pol);
+  const heavy=chosen.filter(p=>["Tree"].includes(p.type) && (p.s.raw[0]>=7||p.s.cooked[0]>=7)); // fruit/nut feeders
+  const groundcovers=chosen.filter(p=>p.type==="Herb"||p.type==="Fern");
+  const invasive=chosen.filter(p=>nativity(p,state).v<0);
+
+  // symbiosis insights
+  const insights=[];
+  if(nfix.length && heavy.length)
+    insights.push(<div className="insight" key="nf"><b>Nitrogen pairing.</b> Your {nfix.map(p=>p.common).join(", ")} fix nitrogen — site them near hungry fruit/nut trees like {heavy.map(p=>p.common).join(", ")} to feed them naturally.</div>);
+  if(polls.length>=2)
+    insights.push(<div className="insight" key="pol"><b>Pollinator support.</b> {polls.length} pollinator plants in your plan will boost fruit set across the whole guild; stagger their bloom for season-long coverage.</div>);
+  if(groundcovers.length)
+    insights.push(<div className="insight" key="gc"><b>Living ground layer.</b> {groundcovers.map(p=>p.common).join(", ")} can carpet the soil to suppress weeds and hold moisture under your taller plants.</div>);
+  if(invasive.length)
+    insights.push(<div className="insight" key="inv" style={{borderColor:"var(--red)",background:"#f6e3df"}}><b>Heads up.</b> {invasive.map(p=>p.common).join(", ")} scored as invasive in {STATE_NAMES[state]} — consider removing it from your plan.</div>);
+  if(!nfix.length)
+    insights.push(<div className="insight" key="nonf"><b>No nitrogen source yet.</b> Adding a nitrogen-fixer would help feed the rest of your plan with less fertilizer.</div>);
+
+  // suggestions: top-scoring plants not in plan, prioritizing missing functions
+  const notIn=plants.filter(p=>!plan.includes(p.id) && nativity(p,state).v>=0);
+  const ranked=[...notIn].sort((a,b)=>overall(b,state)-overall(a,state));
+  const suggestions=[];
+  const pushSugg=(p,why)=>{ if(p && !suggestions.find(s=>s.p.id===p.id)) suggestions.push({p,why}); };
+  if(!nfix.length) pushSugg(ranked.find(p=>p.nf),"adds nitrogen fixing");
+  if(!polls.length) pushSugg(ranked.find(p=>p.pol),"adds pollinator support");
+  if(!groundcovers.length) pushSugg(ranked.find(p=>p.type==="Herb"||p.type==="Fern"),"adds a ground layer");
+  for(const p of ranked){ if(suggestions.length>=4) break; pushSugg(p,"high overall score for "+state); }
+
+  return (
+    <div>
+      <div className="pagehead"><div className="eye">My Plan · {chosen.length} plants</div>
+        <h2>Your food forest</h2>
+        <p>In-memory for this local build — your plan resets on refresh. Persistence arrives with the Supabase backend.</p></div>
+
+      <div className="stats">
+        <div className="stat"><b>{chosen.length}</b><span>Plants</span></div>
+        <div className="stat"><b style={{color:bandColor(avg)}}>{avg}</b><span>Avg score</span></div>
+        <div className="stat"><b>{nfix.length}</b><span>N-fixers</span></div>
+        <div className="stat"><b>{polls.length}</b><span>Pollinator</span></div>
+        <div className="stat"><b>{new Set(chosen.map(p=>p.type)).size}</b><span>Layers/types</span></div>
+      </div>
+
+      <div className="pagehead" style={{border:0,margin:"4px 0 8px",padding:0}}><div className="eye">Symbiosis insights</div></div>
+      {insights}
+
+      <div className="pagehead" style={{border:0,margin:"18px 0 8px",padding:0}}><div className="eye">Suggested additions</div></div>
+      {suggestions.map(({p,why})=>(
+        <div className="sugg" key={p.id}>
+          <div><b>{p.common}</b> <span style={{fontStyle:"italic",color:"var(--ink2)"}}>{p.sci}</span><div className="why">{why} · scores {overall(p,state)}</div></div>
+          <button className="addbtn" onClick={()=>toggle(p.id)}>+ Add</button>
+        </div>
+      ))}
+
+      <div className="pagehead" style={{border:0,margin:"18px 0 8px",padding:0}}><div className="eye">Plants in your plan</div></div>
+      {chosen.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={true} toggle={toggle} />)}
+    </div>
+  );
+}
+
+/* ---------- Scoring Guide page ---------- */
+const GUIDE = {
+  nativity:[
+    [10,"Native to your selected state — best fit for local ecology."],
+    [8,"Native to your broader region (e.g. Eastern US) but not recorded in your state."],
+    [5,"Native somewhere in the US, outside your region."],
+    [0,"Introduced/non-native, but not classed as invasive."],
+    [-5,"Invasive or prohibited in your area — actively harmful; avoid planting."],
+  ],
+  raw:[
+    [10,"Excellent raw with strong evidence of safety & quality (e.g. blueberries)."],
+    [7,"Good raw, well documented, minor caveats."],
+    [4,"Edible raw but marginal, astringent, or limited evidence."],
+    [1,"Technically raw-edible but poor/unsafe without cooking."],
+    [0,"Toxic raw — must be cooked, or not eaten raw at all."],
+  ],
+  cooked:[
+    [10,"Excellent cooked staple, strong evidence (e.g. hazelnuts)."],
+    [7,"Reliable cooked food, well documented."],
+    [4,"Edible cooked but minor/secondary use or thin evidence."],
+    [1,"Rarely used cooked; weak evidence."],
+    [0,"No meaningful cooked food use."],
+  ],
+  life:[
+    [10,"Long-lived woody perennial — anchors a permanent food forest."],
+    [8,"Hardy herbaceous/clumping perennial returning yearly."],
+    [5,"Short-lived perennial or reliable self-seeder."],
+    [2,"Biennial."],
+    [0,"Annual — must be replanted each year (least permanence)."],
+  ],
+  eco:[
+    [10,"Keystone ecological value — e.g. monarch host plus broad pollinator/wildlife support."],
+    [8,"Strong pollinator and wildlife value, or nitrogen-fixing soil builder."],
+    [5,"Moderate wildlife/pollinator value."],
+    [2,"Limited ecological function."],
+    [0,"Little to no ecological benefit (or net negative)."],
+  ],
+  fiber:[
+    [10,"Premium material use with strong evidence (e.g. rot-resistant timber)."],
+    [7,"Solid documented material/craft use (wood, dye, cordage)."],
+    [4,"Minor or historical material use."],
+    [1,"Negligible material value."],
+    [0,"No material use."],
+  ],
+  med:[
+    [10,"Well-supported medicinal use with peer-reviewed evidence."],
+    [7,"Traditional medicinal use with some clinical/scientific backing."],
+    [4,"Folk/ethnobotanical use, limited evidence."],
+    [1,"Anecdotal claims only."],
+    [0,"No documented medicinal use."],
+  ],
+};
+function ScoringGuide(){
+  const lvlColor=v=>({background:catColor(v),color:catText(v)});
+  return (
+    <div>
+      <div className="pagehead"><div className="eye">Scoring Guide</div><h2>How each score is assigned</h2>
+        <p>Every category is rated 0–10. Within a category, the <b>quality of supporting evidence</b> nudges the grade —
+          a claimed use with no scientific backing scores lower than the same use confirmed by research. The overall
+          score is the raw weighted sum of all categories.</p></div>
+
+      <div className="gcat">
+        <h3>Overall score &amp; color bands<span className="w">raw weighted sum</span></h3>
+        <div className="scale">
+          <p style={{margin:"4px 0 10px",fontSize:15}}>Overall = Nativity×4 + Edible&nbsp;Raw×1.5 + Edible&nbsp;Cooked×1.5 + Lifecycle×1 + Ecology×1 + Fiber×0.7 + Medicinal×0.3. Range ≈ −20 to 100.</p>
+          <div className="legend">
+            <span style={{background:"var(--blue)",color:"#fff"}}>Blue 90–110</span>
+            <span style={{background:"var(--green)",color:"#fff"}}>Green 80–89</span>
+            <span style={{background:"var(--ygreen)"}}>Yellow-green 70–79</span>
+            <span style={{background:"var(--yellow)"}}>Yellow 55–69</span>
+            <span style={{background:"var(--orange)",color:"#fff"}}>Orange 30–54</span>
+            <span style={{background:"var(--red)",color:"#fff"}}>Red ≤29</span>
+          </div>
+          <p style={{margin:"14px 0 6px",fontSize:15}}>Each category score also carries an <b>evidence tier</b> shown beside it — how well-supported the rating is. Stronger evidence justifies a higher, more confident score:</p>
+          <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--green)",color:"#fff"}}>Peer-reviewed</span><p>Backed by scientific studies or clinical research.</p></div>
+          <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--ygreen)"}}>Ethnobotanical</span><p>Documented traditional or historical use by Indigenous peoples and foragers.</p></div>
+          <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--yellow)"}}>Anecdotal</span><p>Informal reports or scattered claims without systematic documentation.</p></div>
+          <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--orange)",color:"#fff"}}>No evidence</span><p>No meaningful support for the claimed use in this category.</p></div>
+        </div>
+      </div>
+
+      {CATS.map(c=>(
+        <div className="gcat" key={c.key}>
+          <h3>{c.label}<span className="w">weight ×{c.weight}</span></h3>
+          <div className="scale">
+            {GUIDE[c.key].map(([v,desc])=>(
+              <div className="lvl" key={v}>
+                <span className="b" style={lvlColor(v)}>{v}</span>
+                <p>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ---------- Raw Data page ---------- */
+function flat(p, state){
+  const nat=nativity(p,state);
+  return {
+    "Common Name":p.common, "Scientific Name":p.sci, "Family":p.family, "Type":p.type, "Lifecycle":p.life,
+    "Overall":overall(p,state),
+    "Nativity":nat.v, "Nativity Status":nat.label,
+    "Edible Raw":p.s.raw[0], "Raw Evidence":TIER[p.s.raw[1]],
+    "Edible Cooked":p.s.cooked[0], "Cooked Evidence":TIER[p.s.cooked[1]],
+    "Lifecycle Score":p.s.life[0], "Ecology":p.s.eco[0], "Ecology Evidence":TIER[p.s.eco[1]],
+    "Fiber/Material":p.s.fiber[0], "Medicinal":p.s.med[0], "Medicinal Evidence":TIER[p.s.med[1]],
+    "Nitrogen Fixer":p.nf?"Yes":"No", "Pollinator":p.pol?"Yes":"No",
+    "Edible Parts":p.edibleParts, "Other Uses":p.otherUses, "Preparation":p.prep,
+    "Harvest Time":p.harvest, "Sun":p.sun, "Soil":p.soil, "Health Risks":p.risks, "Where to Buy":p.buy,
+    "Sources":p.sources.map(s=>s[1]).join(" | "),
+  };
+}
+function download(filename, text, mime){
+  const blob=new Blob([text],{type:mime});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=url; a.download=filename; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),500);
+}
+function esc(v){ v=String(v==null?"":v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
+function RawData({plants, state}){
+  const rows=plants.map(p=>flat(p,state));
+  const cols=Object.keys(rows[0]);
+  const exportCSV=()=>{
+    const csv=[cols.join(",")].concat(rows.map(r=>cols.map(c=>esc(r[c])).join(","))).join("\n");
+    download(`native-food-forest_${state}.csv`, csv, "text/csv;charset=utf-8;");
+  };
+  const exportXLS=()=>{
+    // Excel-readable HTML table (.xls) — opens natively in Excel, no library needed
+    const th=cols.map(c=>`<th>${c}</th>`).join("");
+    const trs=rows.map(r=>"<tr>"+cols.map(c=>`<td>${String(r[c]).replace(/&/g,"&amp;").replace(/</g,"&lt;")}</td>`).join("")+"</tr>").join("");
+    const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"></head><body><table border="1"><thead><tr>${th}</tr></thead><tbody>${trs}</tbody></table></body></html>`;
+    download(`native-food-forest_${state}.xls`, html, "application/vnd.ms-excel");
+  };
+  return (
+    <div>
+      <div className="pagehead"><div className="eye">Raw Data · {plants.length} rows</div><h2>Spreadsheet view</h2>
+        <p>Every field and score behind the app, for {STATE_NAMES[state]}. Export to use in Excel, Sheets, or your own analysis.</p></div>
+      <div className="exportrow">
+        <button onClick={exportCSV}>⬇ Export CSV</button>
+        <button className="alt" onClick={exportXLS}>⬇ Export Excel (.xls)</button>
+      </div>
+      <div className="tablewrap">
+        <table>
+          <thead><tr>{cols.map(c=><th key={c}>{c}</th>)}</tr></thead>
+          <tbody>
+            {rows.map((r,i)=><tr key={i}>{cols.map(c=>
+              <td key={c} className={c==="Scientific Name"?"sci":""}
+                  style={c==="Overall"?{fontFamily:"Space Mono",fontWeight:700,color:bandColor(r[c])}:null}>
+                {c==="Sources"?<span className="mono" style={{fontSize:11}}>{r[c].split(" | ").length} links</span>:String(r[c])}
+              </td>)}</tr>)}
+          </tbody>
+        </table>
+      </div>
+      <p className="footnote">Tip: the .xls export opens directly in Microsoft Excel; the .csv works everywhere including Google Sheets.</p>
+    </div>
+  );
+}
+
+/* ---------- Auth screen (email + password) ---------- */
+function Auth(){
+  const [mode,setMode]=useState("in"); // in | up
+  const [email,setEmail]=useState("");
+  const [pw,setPw]=useState("");
+  const [busy,setBusy]=useState(false);
+  const [msg,setMsg]=useState(null); // {type,text}
+
+  const submit=async()=>{
+    setMsg(null);
+    if(!email || !pw){ setMsg({type:"err",text:"Enter an email and password."}); return; }
+    if(mode==="up" && pw.length<6){ setMsg({type:"err",text:"Password must be at least 6 characters."}); return; }
+    setBusy(true);
+    try{
+      if(mode==="in"){
+        const { error } = await auth.signIn(email,pw);
+        if(error) throw error;
+        // onAuthStateChange in App will pick up the session
+      }else{
+        const { data, error } = await auth.signUp(email,pw);
+        if(error) throw error;
+        if(data.session){ /* auto signed in (email confirmation off) */ }
+        else setMsg({type:"ok",text:"Account created. Check your email to confirm, then sign in."});
+      }
+    }catch(err){ setMsg({type:"err",text:err.message||String(err)}); }
+    setBusy(false);
+  };
+  const reset=async()=>{
+    if(!email){ setMsg({type:"err",text:"Enter your email above first."}); return; }
+    const { error } = await auth.resetPassword(email);
+    setMsg(error?{type:"err",text:error.message}:{type:"ok",text:"Password reset email sent."});
+  };
+
+  return (
+    <div className="authwrap">
+      <div className="authcard">
+        <div className="acc">Native Food Forest Planner</div>
+        <h2>{mode==="in"?"Sign in":"Create account"}</h2>
+        <p className="sub">Your plan is saved to your account, so it's there on any device you sign in from.</p>
+        <div className="fld"><label>Email</label>
+          <input type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)}
+                 onKeyDown={e=>e.key==="Enter"&&submit()} placeholder="you@example.com" /></div>
+        <div className="fld"><label>Password</label>
+          <input type="password" autoComplete={mode==="in"?"current-password":"new-password"} value={pw}
+                 onChange={e=>setPw(e.target.value)} onKeyDown={e=>e.key==="Enter"&&submit()} placeholder="••••••••" /></div>
+        <button className="authbtn" onClick={submit} disabled={busy}>
+          {busy?"Working…":(mode==="in"?"Sign in":"Create account")}</button>
+        {msg && <div className={"authmsg "+msg.type}>{msg.text}</div>}
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <button className="authtoggle" onClick={()=>{setMode(m=>m==="in"?"up":"in");setMsg(null);}}>
+            {mode==="in"?"Need an account? Create one":"Have an account? Sign in"}</button>
+          {mode==="in" && <button className="authtoggle" onClick={reset}>Forgot password?</button>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Menu + App shell ---------- */
+const PAGES=[["db","Database"],["plan","My Plan"],["guide","Scoring Guide"],["data","Raw Data"]];
+function App(){
+  const [page,setPage]=useState("db");
+  const [menu,setMenu]=useState(false);
+  const [state,setState]=useState("NY");
+  const [plants,setPlants]=useState([]);
+  const [plan,setPlan]=useState([]);
+  const [loadErr,setLoadErr]=useState(null);
+  const [user,setUser]=useState(null);
+  const [authReady,setAuthReady]=useState(false);
+
+  // track the auth session
+  useEffect(()=>{
+    auth.getSession().then(({data})=>{ setUser(data.session?.user||null); setAuthReady(true); });
+    const { data:sub } = auth.onChange(u=>{ setUser(u); });
+    return ()=> sub.subscription.unsubscribe();
+  },[]);
+
+  // load data whenever we have a signed-in user
+  useEffect(()=>{
+    if(!user){ setPlants([]); setPlan([]); setLoadErr(null); return; }
+    (async()=>{
+      try{
+        const [pl, plan] = await Promise.all([dataProvider.getPlants(), dataProvider.loadPlan()]);
+        setPlants(pl); setPlan(plan);
+      }catch(err){ console.error(err); setLoadErr(err.message||String(err)); }
+    })();
+  },[user]);
+
+  const toggle=id=>{
+    const have=plan.includes(id);
+    setPlan(pl=> have ? pl.filter(x=>x!==id) : [...pl,id]); // optimistic
+    (have ? dataProvider.removePlant(id) : dataProvider.addPlant(id))
+      .catch(err=>{ console.error(err); setPlan(pl=> have ? [...pl,id] : pl.filter(x=>x!==id)); }); // revert on failure
+  };
+  const go=p=>{ setPage(p); setMenu(false); };
+  const signOut=async()=>{ setMenu(false); await auth.signOut(); };
+
+  // gate: wait for auth, then require sign-in
+  if(!authReady) return <div className="wrap"><div className="empty">Loading…</div></div>;
+  if(!user) return <Auth/>;
+
+  return (
+    <div>
+      <div className="topbar">
+        <div className="brand">
+          <span className="acc">Native Plant Database</span>
+          <h1>Food Forest Planner</h1>
+        </div>
+        <button className="ham" aria-label="Menu" onClick={()=>setMenu(true)}><i></i><i></i><i></i></button>
+      </div>
+
+      <div className={"menu"+(menu?" open":"")}>
+        <div className="scrim" onClick={()=>setMenu(false)}></div>
+        <div className="panel">
+          <div className="ttl">Navigate</div>
+          {PAGES.map(([k,label],i)=>(
+            <button key={k} className={page===k?"active":""} onClick={()=>go(k)}>
+              {label}<span className="num">0{i+1}{k==="plan"&&plan.length?` · ${plan.length}`:""}</span>
+            </button>
+          ))}
+          <button className="close" onClick={()=>setMenu(false)}>Close ✕</button>
+          <div className="userbar">
+            <span className="em" title={user.email}>{user.email}</span>
+            <button onClick={signOut}>Sign out</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="wrap">
+        {loadErr ? (
+          <div className="empty" style={{borderColor:"var(--red)",color:"var(--ink)"}}>
+            <b>Couldn't reach Supabase.</b>
+            <div style={{margin:"8px 0",fontFamily:"'Space Mono'",fontSize:12,color:"var(--red)"}}>{loadErr}</div>
+            Check that you pasted your <b>Project URL</b> and <b>anon key</b> in the CONFIG block,
+            that the <b>Email</b> provider is enabled, and that you ran both SQL files.
+          </div>
+        ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
+          page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
+          page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
+          page==="guide" ? <ScoringGuide /> :
+          <RawData plants={plants} state={state} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
