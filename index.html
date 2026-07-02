@@ -237,6 +237,47 @@ function regionGroupOf(st){
   for(const g in REGION){ if(REGION[g].includes(st)) return g; }
   return "Other";
 }
+/* region -> color (from the shared palette) for the guide map + legend */
+const REGION_COLORS = {
+  "Northeast":"--blue", "Southeast":"--green", "Midwest":"--yellow",
+  "Great Plains":"--orange", "Mountain/Southwest":"--red", "Pacific":"--sage",
+};
+const REGION_DARKTEXT = {"Midwest":true}; // light fills that need dark labels
+/* [col,row] tile positions for the schematic US map (west->east, north->south) */
+const TILE = {
+  WA:[1,1],OR:[1,2],CA:[1,3],AK:[1,7],HI:[1,8],
+  ID:[2,1],NV:[2,2],UT:[2,3],AZ:[2,4],
+  MT:[3,1],WY:[3,2],CO:[3,3],NM:[3,4],
+  ND:[4,1],SD:[4,2],NE:[4,3],KS:[4,4],OK:[4,5],TX:[4,6],
+  MN:[5,1],IA:[5,2],MO:[5,3],AR:[5,4],LA:[5,5],
+  WI:[6,1],IL:[6,2],KY:[6,3],TN:[6,4],MS:[6,5],
+  IN:[7,2],WV:[7,3],AL:[7,5],GA:[7,6],
+  MI:[8,1],OH:[8,2],VA:[8,3],NC:[8,4],SC:[8,5],FL:[8,6],
+  PA:[9,3],NJ:[9,4],MD:[9,5],DC:[9,6],
+  VT:[10,2],NY:[10,3],CT:[10,4],DE:[10,5],
+  ME:[11,1],NH:[11,2],MA:[11,3],RI:[11,4],
+};
+function RegionMap(){
+  const CELL=32, INSET=2, COLS=11, ROWS=8;
+  return (
+    <svg viewBox={`0 0 ${COLS*CELL} ${ROWS*CELL}`} role="img"
+         aria-label="Map of US regions" style={{width:"100%",maxWidth:440,height:"auto",display:"block"}}>
+      {STATES.map(st=>{
+        const pos=TILE[st]; if(!pos) return null;
+        const [c,r]=pos, reg=regionGroupOf(st), dark=REGION_DARKTEXT[reg];
+        return (
+          <g key={st}>
+            <rect x={(c-1)*CELL+INSET} y={(r-1)*CELL+INSET} width={CELL-2*INSET} height={CELL-2*INSET}
+                  rx="3" fill={`var(${REGION_COLORS[reg]||"--line"})`} stroke="#f5f1e6" strokeWidth="1"/>
+            <text x={(c-1)*CELL+CELL/2} y={(r-1)*CELL+CELL/2+0.5} textAnchor="middle" dominantBaseline="central"
+                  fontFamily="'Space Mono',monospace" fontSize="10" fontWeight="700"
+                  fill={dark?"#2b2a22":"#fff"}>{st}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
 
 /* ---------- Scoring engine ---------- */
 const TIER = {P:"peer-reviewed",E:"ethnobotanical",A:"anecdotal",N:"no evidence"};
@@ -596,6 +637,22 @@ function ScoringGuide(){
           <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--ygreen)"}}>Ethnobotanical</span><p>Documented traditional or historical use by Indigenous peoples and foragers.</p></div>
           <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--yellow)"}}>Anecdotal</span><p>Informal reports or scattered claims without systematic documentation.</p></div>
           <div className="lvl" style={{gridTemplateColumns:"130px 1fr"}}><span className="b" style={{background:"var(--orange)",color:"#fff"}}>No evidence</span><p>No meaningful support for the claimed use in this category.</p></div>
+        </div>
+      </div>
+
+      <div className="gcat">
+        <h3>Native regions<span className="w">for the +8 “in region” score</span></h3>
+        <div className="scale">
+          <p style={{margin:"4px 0 12px",fontSize:15}}>Nativity is scored by your state, but a plant also earns partial credit (a Nativity of 8) when it's native across your <b>broader region</b>. The 50 states plus DC are grouped into the six regions below; a plant is tagged with a region when it's native to at least half of that region's states.</p>
+          <RegionMap/>
+          <div style={{marginTop:16}}>
+            {Object.keys(REGION).map(reg=>(
+              <div className="lvl" style={{gridTemplateColumns:"168px 1fr"}} key={reg}>
+                <span className="b" style={{background:`var(${REGION_COLORS[reg]})`,color:REGION_DARKTEXT[reg]?"#2b2a22":"#fff",fontSize:11}}>{reg}</span>
+                <p className="mono" style={{fontSize:12.5,letterSpacing:".02em"}}>{REGION[reg].join(" · ")}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
