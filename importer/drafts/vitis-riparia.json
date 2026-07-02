@@ -58,9 +58,11 @@
     "WA"
   ],
   "native_regions": [
-    "Eastern",
-    "Central",
-    "Western"
+    "Northeast",
+    "Southeast",
+    "Midwest",
+    "Great Plains",
+    "Mountain/Southwest"
   ],
   "native_to_us": true,
   "invasive_states": [],

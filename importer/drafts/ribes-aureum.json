@@ -32,8 +32,9 @@
     "TX"
   ],
   "native_regions": [
-    "Western",
-    "Central"
+    "Great Plains",
+    "Mountain/Southwest",
+    "Pacific"
   ],
   "native_to_us": true,
   "invasive_states": [],

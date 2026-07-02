@@ -53,9 +53,13 @@ database.
 
 - **From authoritative APIs (deterministic):** canonical scientific name and
   `family` (GBIF); reference text (Wikipedia).
+- **Derived automatically on import:** `native_regions` is computed from
+  `native_states` (a region is flagged when the plant covers >=50% of that
+  region's states — see `REGION` / `derive_regions` in the CLI), so you never
+  hand-tune it. Get `native_states` right and regions follow.
 - **Drafted with judgment, then reviewed by you:** `type`, `life`, the prose
-  fields, `native_states`/`native_regions`, `nf`/`pol`, the 7-category `scores`
-  with evidence tiers, and `sources`.
+  fields, `native_states`, `nf`/`pol`, the 7-category `scores` with evidence
+  tiers, and `sources`.
 
 Nativity is **not** stored as a score — the app computes it live from
 `native_states` / `native_regions` for the user's selected state.

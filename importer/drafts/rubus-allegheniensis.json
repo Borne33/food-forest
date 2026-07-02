@@ -47,7 +47,9 @@
     "LA"
   ],
   "native_regions": [
-    "Eastern"
+    "Northeast",
+    "Southeast",
+    "Midwest"
   ],
   "native_to_us": true,
   "invasive_states": [],

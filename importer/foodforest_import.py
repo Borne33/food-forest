@@ -44,13 +44,22 @@ DRAFTS_DIR = HERE / "drafts"
 
 # ── App-derived reference data (kept in sync with index.html) ──────────────
 REGION = {
-    "Eastern": ["ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "DE", "MD",
-                "DC", "VA", "WV", "NC", "SC", "GA", "FL", "AL", "MS", "TN", "KY",
-                "OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO", "AR", "LA"],
-    "Central": ["ND", "SD", "NE", "KS", "OK", "TX"],
-    "Western": ["MT", "WY", "CO", "NM", "ID", "UT", "AZ", "NV", "WA", "OR", "CA",
-                "AK", "HI"],
+    "Northeast": ["ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "DE", "MD", "DC"],
+    "Southeast": ["VA", "WV", "NC", "SC", "GA", "FL", "AL", "MS", "TN", "KY", "AR", "LA"],
+    "Midwest": ["OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO"],
+    "Great Plains": ["ND", "SD", "NE", "KS", "OK", "TX"],
+    "Mountain/Southwest": ["MT", "WY", "CO", "NM", "ID", "UT", "AZ", "NV"],
+    "Pacific": ["WA", "OR", "CA", "AK", "HI"],
 }
+REGION_THRESHOLD = 0.5  # flag a region when the plant covers >= this share of its states
+
+
+def derive_regions(states):
+    """native_regions is derived from native_states: a region is flagged when the
+    plant is native to at least REGION_THRESHOLD of that region's states."""
+    s = set(states or [])
+    return [name for name, rs in REGION.items()
+            if rs and len(s & set(rs)) / len(rs) >= REGION_THRESHOLD]
 STATES = sorted({s for g in REGION.values() for s in g})
 REGIONS = list(REGION.keys())
 TIERS = {"P": "peer-reviewed", "E": "ethnobotanical", "A": "anecdotal", "N": "no evidence"}
@@ -227,9 +236,9 @@ Source: {wiki_url}
   Region membership: Eastern={REGION['Eastern']}
                      Central={REGION['Central']}
                      Western={REGION['Western']}
-- native_regions = the broad regions the plant is generally native to (so an
-  unlisted state in that region still scores 8). Only include a region if the
-  plant is native across much of it.
+- native_regions is AUTO-DERIVED from native_states on import (a region is
+  flagged when the plant covers >=50% of that region's states), so focus on
+  getting native_states right and don't hand-tune native_regions.
 - evidence tiers: {list(TIERS.keys())}
 
 ## Already in the database (do NOT duplicate; pick a genuinely new species)
@@ -373,7 +382,8 @@ def clean_row(obj):
         if c in obj:
             row[c] = obj[c]
     row.setdefault("native_states", [])
-    row.setdefault("native_regions", [])
+    # native_regions is always derived from native_states for consistency
+    row["native_regions"] = derive_regions(row.get("native_states", []))
     row.setdefault("invasive_states", [])
     row.setdefault("sources", [])
     for b in ("native_to_us", "invasive_everywhere", "dec_priority", "nf", "pol"):

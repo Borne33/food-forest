@@ -224,11 +224,14 @@ const dataProvider = {
 
 /* ---------- US region grouping for the Nativity rule ---------- */
 const REGION = {
-  Eastern:["ME","NH","VT","MA","RI","CT","NY","NJ","PA","DE","MD","DC","VA","WV","NC","SC","GA","FL","AL","MS","TN","KY","OH","IN","IL","MI","WI","MN","IA","MO","AR","LA"],
-  Central:["ND","SD","NE","KS","OK","TX"],
-  Western:["MT","WY","CO","NM","ID","UT","AZ","NV","WA","OR","CA","AK","HI"],
+  "Northeast":["ME","NH","VT","MA","RI","CT","NY","NJ","PA","DE","MD","DC"],
+  "Southeast":["VA","WV","NC","SC","GA","FL","AL","MS","TN","KY","AR","LA"],
+  "Midwest":["OH","IN","IL","MI","WI","MN","IA","MO"],
+  "Great Plains":["ND","SD","NE","KS","OK","TX"],
+  "Mountain/Southwest":["MT","WY","CO","NM","ID","UT","AZ","NV"],
+  "Pacific":["WA","OR","CA","AK","HI"],
 };
-const STATES = [...REGION.Eastern,...REGION.Central,...REGION.Western].sort();
+const STATES = Object.values(REGION).flat().sort();
 const STATE_NAMES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"Washington DC",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming"};
 function regionGroupOf(st){
   for(const g in REGION){ if(REGION[g].includes(st)) return g; }
@@ -519,7 +522,7 @@ function MyPlan({plants, state, plan, toggle, go}){
 const GUIDE = {
   nativity:[
     [10,"Native to your selected state — best fit for local ecology."],
-    [8,"Native to your broader region (e.g. Eastern US) but not recorded in your state."],
+    [8,"Native to your broader region (e.g. the Northeast or Southeast) but not recorded in your state."],
     [5,"Native somewhere in the US, outside your region."],
     [0,"Introduced/non-native, but not classed as invasive."],
     [-5,"Invasive or prohibited in your area — actively harmful; avoid planting."],

@@ -36,7 +36,11 @@
     "PA",
     "KS"
   ],
-  "native_regions": [],
+  "native_regions": [
+    "Southeast",
+    "Midwest",
+    "Great Plains"
+  ],
   "native_to_us": true,
   "invasive_states": [],
   "invasive_everywhere": false,

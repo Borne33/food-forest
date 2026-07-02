@@ -33,7 +33,8 @@
     "OH"
   ],
   "native_regions": [
-    "Eastern"
+    "Northeast",
+    "Southeast"
   ],
   "native_to_us": true,
   "invasive_states": [],

@@ -53,8 +53,10 @@
     "TX"
   ],
   "native_regions": [
-    "Eastern",
-    "Central"
+    "Northeast",
+    "Southeast",
+    "Midwest",
+    "Great Plains"
   ],
   "native_to_us": true,
   "invasive_states": [],

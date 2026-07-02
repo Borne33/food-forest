@@ -37,7 +37,8 @@
     "MN"
   ],
   "native_regions": [
-    "Eastern"
+    "Northeast",
+    "Midwest"
   ],
   "native_to_us": true,
   "invasive_states": [],

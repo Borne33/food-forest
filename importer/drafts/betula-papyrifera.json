@@ -34,8 +34,9 @@
     "AK"
   ],
   "native_regions": [
-    "Eastern",
-    "Western"
+    "Northeast",
+    "Midwest",
+    "Pacific"
   ],
   "native_to_us": true,
   "invasive_states": [],

@@ -39,8 +39,9 @@
     "NM"
   ],
   "native_regions": [
-    "Eastern",
-    "Central"
+    "Northeast",
+    "Midwest",
+    "Great Plains"
   ],
   "native_to_us": true,
   "invasive_states": [],
