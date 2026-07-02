@@ -1,0 +1,12 @@
+# Target plants to import — one per line.
+# Format:  Common Name | Scientific name       (the | and sci name are optional)
+# Lines starting with # are ignored.
+#
+# Copy this to targets.txt and edit, then run:
+#   python3 foodforest_import.py fetch --file targets.txt
+
+Nannyberry | Viburnum lentago
+Beaked Hazelnut | Corylus cornuta
+Beach Plum | Prunus maritima
+Wapato (Broadleaf Arrowhead) | Sagittaria latifolia
+Groundcherry | Physalis heterophylla

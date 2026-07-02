@@ -1,0 +1,36 @@
+{
+  "common": "Nannyberry",
+  "sci": "Viburnum lentago",
+  "family": "Viburnaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Ripe blue-black fruits (drupes); each holds a single flat seed with a thin layer of sweet pulp.",
+  "other_uses": "Excellent wildlife hedge and ornamental; dense growth gives nesting cover and the fall fruit feeds many birds and mammals.",
+  "prep": "Eat fully ripe fruit out of hand — sweet with a date- or prune-like flavor. Also cooked into jams, sauces, and fruit leathers; sieve out the large seeds. Flavor improves as fruit softens on the plant.",
+  "harvest": "Late summer through fall (Sept–Oct); sweeter after the first frosts.",
+  "sun": "Full sun to part shade.",
+  "soil": "Adaptable; prefers moist, well-drained soils but tolerates a range including limestone and clay.",
+  "risks": "Ripe fruit is safe and edible; the large single seed and thin pulp are the main limitation. No significant toxicity reported.",
+  "buy": "Widely available from native-plant nurseries (e.g. Prairie Moon Nursery, Prairie Nursery) as bare-root or potted stock.",
+  "native_states": ["ME","NH","VT","MA","RI","CT","NY","NJ","PA","MD","WV","VA","OH","IN","IL","MI","WI","MN","IA","MO","ND","SD","NE"],
+  "native_regions": ["Eastern","Central"],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [7, "E"],
+    "cooked": [7, "E"],
+    "life": [10, "E"],
+    "eco": [7, "E"],
+    "fiber": [2, "A"],
+    "med": [3, "A"]
+  },
+  "sources": [
+    ["Wikipedia", "https://en.wikipedia.org/wiki/Viburnum_lentago"],
+    ["Plants For A Future", "https://pfaf.org/user/plant.aspx?latinname=Viburnum+lentago"],
+    ["USDA PLANTS", "https://plants.usda.gov/plant-profile/VILE"]
+  ]
+}

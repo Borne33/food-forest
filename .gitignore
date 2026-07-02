@@ -8,5 +8,8 @@ __pycache__/
 .venv/
 venv/
 
+# ── importer: regenerable scratch (drafts/ are kept as curated source) ──
+importer/packets/
+
 # ── os ──
 .DS_Store
