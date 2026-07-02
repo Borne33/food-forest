@@ -1,0 +1,92 @@
+{
+  "common": "Spotted Beebalm",
+  "sci": "Monarda punctata",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Short-lived perennial",
+  "edible_parts": "Leaves (thyme-scented tea/seasoning).",
+  "other_uses": "Exceptional specialist-bee and wasp plant; high thymol.",
+  "prep": "Use the strongly thyme-scented leaves as a seasoning or tea.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy, well-drained soils.",
+  "risks": "High thymol \u2014 use in culinary amounts only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Monarda_punctata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Monarda+punctata"
+    ]
+  ]
+}

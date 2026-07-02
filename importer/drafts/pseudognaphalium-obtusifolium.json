@@ -1,0 +1,92 @@
+{
+  "common": "Sweet Everlasting",
+  "sci": "Pseudognaphalium obtusifolium",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual/biennial",
+  "edible_parts": "Leaves/flowers (aromatic tea).",
+  "other_uses": "American lady host; maple-syrup-scented dried plant.",
+  "prep": "Steep the sweet-scented leaves and flowers for a folk tea.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy, poor soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "E"
+    ],
+    "life": [
+      2,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pseudognaphalium_obtusifolium"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pseudognaphalium+obtusifolium"
+    ]
+  ]
+}

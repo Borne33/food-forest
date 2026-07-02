@@ -1,0 +1,102 @@
+{
+  "common": "Canada Wild Rye",
+  "sci": "Elymus canadensis",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Cool-season perennial grass",
+  "edible_parts": "Grain (minor, historic).",
+  "other_uses": "Fast-establishing cool-season grass; nurse crop and erosion control.",
+  "prep": "A quick-establishing bunchgrass; the grain is a minor historic food (check for ergot).",
+  "harvest": "Seed heads summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to dry soils.",
+  "risks": "Wild-rye seed can carry toxic ergot fungus \u2014 do not eat affected heads.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "CO",
+    "MT",
+    "WY",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "E"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Elymus_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Elymus+canadensis"
+    ]
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "common": "Switchgrass",
+  "sci": "Panicum virgatum",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Long-lived warm-season grass",
+  "edible_parts": "Grain (minor, historic).",
+  "other_uses": "Keystone prairie grass; erosion control, biomass, and wildlife cover.",
+  "prep": "A robust warm-season grass for cover and soil; the grain is a minor historic food.",
+  "harvest": "Seed heads fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to dry \u2014 very adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "CO",
+    "MT",
+    "WY",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      10,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Panicum_virgatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Panicum+virgatum"
+    ]
+  ]
+}

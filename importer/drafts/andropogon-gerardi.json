@@ -1,0 +1,102 @@
+{
+  "common": "Big Bluestem",
+  "sci": "Andropogon gerardi",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Long-lived warm-season grass",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Iconic tallgrass-prairie keystone; skipper host; deep soil-building roots.",
+  "prep": "A towering warm-season prairie grass; grown for soil-building, wildlife, and structure.",
+  "harvest": "Seed heads fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to dry, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "CO",
+    "MT",
+    "WY",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      10,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      5,
+      "E"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Andropogon_gerardi"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Andropogon+gerardi"
+    ]
+  ]
+}

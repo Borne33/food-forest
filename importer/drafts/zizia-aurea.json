@@ -1,0 +1,81 @@
+{
+  "common": "Golden Alexanders",
+  "sci": "Zizia aurea",
+  "family": "Apiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young flower umbels (cooked, with caution).",
+  "other_uses": "Black swallowtail host; important early pollinator plant.",
+  "prep": "Some eat the young broccoli-like flower heads cooked \u2014 but carrot-family ID must be certain.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to average soils.",
+  "risks": "Apiaceae has deadly toxic look-alikes (hemlock) \u2014 only eat if ID is 100% certain.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Zizia_aurea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Zizia+aurea"
+    ]
+  ]
+}

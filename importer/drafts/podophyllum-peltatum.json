@@ -1,0 +1,81 @@
+{
+  "common": "Mayapple",
+  "sci": "Podophyllum peltatum",
+  "family": "Berberidaceae",
+  "type": "Herb",
+  "life": "Colony-forming perennial",
+  "edible_parts": "Only the fully ripe golden fruit.",
+  "other_uses": "Woodland colony groundcover; source of medicinal podophyllotoxin.",
+  "prep": "Eat ONLY the soft, fully ripe fruit (seeds and skin removed); everything else is toxic.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "Leaves, roots, seeds, and unripe fruit are TOXIC; eat only the ripe pulp, sparingly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Podophyllum_peltatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Podophyllum+peltatum"
+    ]
+  ]
+}

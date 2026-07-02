@@ -1,0 +1,81 @@
+{
+  "common": "Cut-leaved Toothwort",
+  "sci": "Cardamine concatenata",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Spring-ephemeral perennial",
+  "edible_parts": "Crisp, peppery rhizomes and young leaves.",
+  "other_uses": "Spring-ephemeral wildflower; early pollinator forage.",
+  "prep": "Eat the horseradish-flavored rhizomes and leaves raw in salad or as a wasabi-like relish.",
+  "harvest": "Early spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "Harvest sustainably \u2014 spring ephemerals are slow to recover.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cardamine_concatenata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cardamine+concatenata"
+    ]
+  ]
+}

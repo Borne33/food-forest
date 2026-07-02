@@ -1,0 +1,91 @@
+{
+  "common": "Fireweed",
+  "sci": "Chamaenerion angustifolium",
+  "family": "Onagraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young shoots, leaves (tea), and flowers.",
+  "other_uses": "Premier pollinator/honey plant; pioneer of burned ground.",
+  "prep": "Peel and eat young shoots like asparagus; dry leaves for tea; flowers garnish salads.",
+  "harvest": "Shoots spring; flowers summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Open, disturbed, well-drained soils.",
+  "risks": "Older leaves become tough and laxative in quantity.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "ID",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chamaenerion_angustifolium"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chamaenerion+angustifolium"
+    ]
+  ]
+}

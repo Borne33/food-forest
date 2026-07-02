@@ -1,0 +1,81 @@
+{
+  "common": "Woodland Strawberry",
+  "sci": "Fragaria vesca",
+  "family": "Rosaceae",
+  "type": "Groundcover",
+  "life": "Hardy perennial groundcover",
+  "edible_parts": "Small intensely sweet fruit; leaves (tea).",
+  "other_uses": "Edible groundcover; pollinator flowers.",
+  "prep": "Eat the aromatic little berries fresh; dry leaves for tea.",
+  "harvest": "Fruit early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, well-drained soils; part shade to sun.",
+  "risks": "None significant (use only fully wilted or fresh leaves for tea, not partly wilted).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      9,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Fragaria_vesca"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Fragaria+vesca"
+    ]
+  ]
+}

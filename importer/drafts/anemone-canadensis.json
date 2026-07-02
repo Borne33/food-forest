@@ -1,0 +1,86 @@
+{
+  "common": "Canada Anemone",
+  "sci": "Anemone canadensis",
+  "family": "Ranunculaceae",
+  "type": "Groundcover",
+  "life": "Colony-forming perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Vigorous groundcover with white spring flowers.",
+  "prep": "A spreading groundcover for tough sites; grown for ecology.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist soils; spreads.",
+  "risks": "Acrid/toxic sap \u2014 not edible; spreads aggressively.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Anemone_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Anemone+canadensis"
+    ]
+  ]
+}

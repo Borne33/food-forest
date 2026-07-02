@@ -1,0 +1,81 @@
+{
+  "common": "Wild Columbine",
+  "sci": "Aquilegia canadensis",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Flower nectar spurs (a trivial nibble).",
+  "other_uses": "Early hummingbird and native-bee plant; delicate woodland ornamental.",
+  "prep": "Enjoy as an ornamental \u2014 only the flower nectar is a minor curiosity; seeds and roots are toxic.",
+  "harvest": "Blooms mid-spring.",
+  "sun": "Part shade to sun",
+  "soil": "Rocky, well-drained soils; part shade.",
+  "risks": "Seeds and roots contain toxic compounds \u2014 do not eat.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Aquilegia_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Aquilegia+canadensis"
+    ]
+  ]
+}
