@@ -30,9 +30,7 @@
     "IN",
     "IL"
   ],
-  "native_regions": [
-    "Eastern"
-  ],
+  "native_regions": [],
   "native_to_us": true,
   "invasive_states": [],
   "invasive_everywhere": false,

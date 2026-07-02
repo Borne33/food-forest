@@ -13,23 +13,19 @@
   "risks": "No significant hazard in culinary amounts.",
   "buy": "Native-plant nurseries.",
   "native_states": [
-    "WI",
-    "MN",
     "IA",
+    "MN",
+    "WI",
     "ND",
     "SD",
     "NE",
-    "KS",
-    "MO",
-    "IL",
-    "MI",
     "CO",
     "MT",
     "WY"
   ],
   "native_regions": [
     "Central",
-    "Eastern"
+    "Western"
   ],
   "native_to_us": true,
   "invasive_states": [],
