@@ -1,0 +1,84 @@
+{
+  "common": "Yellow Birch",
+  "sci": "Betula alleghaniensis",
+  "family": "Betulaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Twigs/inner bark (wintergreen tea) and sap.",
+  "other_uses": "Valuable hardwood; wintergreen aroma.",
+  "prep": "Steep aromatic twigs for wintergreen tea; tap sap for syrup.",
+  "harvest": "Twigs year-round; sap late winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Cool moist rich soils.",
+  "risks": "None significant in culinary amounts.",
+  "buy": "Native-plant/forestry nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Betula_alleghaniensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Betula+alleghaniensis"
+    ]
+  ]
+}

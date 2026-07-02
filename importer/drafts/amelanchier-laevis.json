@@ -1,0 +1,84 @@
+{
+  "common": "Allegheny Serviceberry",
+  "sci": "Amelanchier laevis",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Berries (sweet, blueberry-like).",
+  "other_uses": "Spring pollinator blooms; ornamental.",
+  "prep": "Eat fresh or bake into pies and jams; almond-note from the soft seeds.",
+  "harvest": "Early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; understory to edge.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "OH",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      8,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Amelanchier_laevis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Amelanchier+laevis"
+    ]
+  ]
+}

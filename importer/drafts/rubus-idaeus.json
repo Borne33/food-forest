@@ -1,0 +1,93 @@
+{
+  "common": "American Red Raspberry",
+  "sci": "Rubus idaeus",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (red raspberries) and leaves (tea).",
+  "other_uses": "Wildlife thicket; the wild parent of cultivated raspberries.",
+  "prep": "Eat fruit fresh or preserve; dry leaves for a traditional tea.",
+  "harvest": "Summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; cool climates.",
+  "risks": "Thorny canes; leaf tea traditionally used in pregnancy \u2014 consult a professional.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "NM",
+    "ID",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      9,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_idaeus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+idaeus"
+    ]
+  ]
+}

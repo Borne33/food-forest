@@ -1,0 +1,101 @@
+{
+  "common": "Common Blue Violet",
+  "sci": "Viola sororia",
+  "family": "Violaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves and flowers.",
+  "other_uses": "Cheerful spring groundcover; fritillary butterfly host.",
+  "prep": "Eat young leaves and flowers raw in salad or candy the flowers; leaves are high in vitamins A and C.",
+  "harvest": "Spring.",
+  "sun": "Part shade",
+  "soil": "Moist rich soils; naturalizes freely.",
+  "risks": "Only eat true Viola; the roots and seeds can be mildly emetic in quantity.",
+  "buy": "Native-plant nurseries; common in lawns.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viola_sororia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viola+sororia"
+    ]
+  ]
+}

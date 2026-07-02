@@ -1,0 +1,80 @@
+{
+  "common": "Virginia Rose",
+  "sci": "Rosa virginiana",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Rose hips (vitamin C) and petals.",
+  "other_uses": "Suckering thicket rose; superb fall color and hips.",
+  "prep": "Make hips into tea, syrup, or jam (remove the irritating seed hairs); use petals in syrups.",
+  "harvest": "Hips fall\u2013winter; petals summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained to sandy soils; salt-tolerant.",
+  "risks": "Seed hairs inside hips irritate the gut \u2014 strain them out.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "AL",
+    "TN",
+    "OH"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rosa_virginiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rosa+virginiana"
+    ]
+  ]
+}

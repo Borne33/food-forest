@@ -1,0 +1,94 @@
+{
+  "common": "Sassafras",
+  "sci": "Sassafras albidum",
+  "family": "Lauraceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Leaves (fil\u00e9 powder) and root bark (tea flavor).",
+  "other_uses": "Aromatic; traditional root-beer flavoring; wildlife food.",
+  "prep": "Dry and grind young leaves into fil\u00e9 to thicken gumbo; historically root bark made tea.",
+  "harvest": "Leaves summer; roots dormant season.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained sandy or loamy soils.",
+  "risks": "Root bark/oil contains safrole, a carcinogen banned by the FDA as a food additive \u2014 leaf fil\u00e9 is the safe culinary use.",
+  "buy": "Native-plant nurseries; common wild.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sassafras_albidum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Sassafras+albidum"
+    ]
+  ]
+}

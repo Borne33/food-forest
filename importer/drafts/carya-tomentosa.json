@@ -1,0 +1,94 @@
+{
+  "common": "Mockernut Hickory",
+  "sci": "Carya tomentosa",
+  "family": "Juglandaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (sweet but small kernel, very hard shell).",
+  "other_uses": "Dense, strong wood; smoking wood.",
+  "prep": "Sweet kernel but hard to extract from the thick shell; roast or eat fresh.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry upland soils.",
+  "risks": "Very thick shell, small kernel.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carya_tomentosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Carya+tomentosa"
+    ]
+  ]
+}

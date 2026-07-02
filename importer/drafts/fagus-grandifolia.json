@@ -1,0 +1,94 @@
+{
+  "common": "American Beech",
+  "sci": "Fagus grandifolia",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Beechnuts (small triangular nuts).",
+  "other_uses": "Fine pale hardwood; important wildlife mast.",
+  "prep": "Eat ripe nuts raw in moderation or roast; shell the small triangular nuts.",
+  "harvest": "Fall after first frosts.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist, well-drained soils; slow-growing.",
+  "risks": "Raw nuts contain tannins/saponins \u2014 eat only in moderation raw.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Fagus_grandifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Fagus+grandifolia"
+    ]
+  ]
+}

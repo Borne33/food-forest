@@ -1,0 +1,85 @@
+{
+  "common": "Arrowwood Viburnum",
+  "sci": "Viburnum dentatum",
+  "family": "Viburnaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (marginal eating).",
+  "other_uses": "Straight shoots historically used for arrow shafts; top bird/pollinator shrub.",
+  "prep": "Fruit is thin and best left for wildlife; the shrub's real value is ecological and its straight stems.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to dry \u2014 very adaptable.",
+  "risks": "Fruit is astringent and low-yield for humans.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viburnum_dentatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viburnum+dentatum"
+    ]
+  ]
+}

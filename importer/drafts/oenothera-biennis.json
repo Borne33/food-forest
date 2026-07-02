@@ -1,0 +1,101 @@
+{
+  "common": "Common Evening Primrose",
+  "sci": "Oenothera biennis",
+  "family": "Onagraceae",
+  "type": "Herb",
+  "life": "Biennial",
+  "edible_parts": "First-year roots, young shoots, and seeds (oil).",
+  "other_uses": "Night-blooming pollinator plant; evening-primrose seed oil.",
+  "prep": "Boil the peppery first-year taproot; eat young shoots; seeds yield GLA-rich oil.",
+  "harvest": "Roots first fall/spring; flowers summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Poor, dry, disturbed soils.",
+  "risks": "It is a biennial (root only good in year one); seed oil is a supplement, not a bulk food.",
+  "buy": "Native-plant nurseries; common wild.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      2,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      5,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Oenothera_biennis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Oenothera+biennis"
+    ]
+  ]
+}

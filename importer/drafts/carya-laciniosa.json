@@ -1,0 +1,78 @@
+{
+  "common": "Shellbark Hickory",
+  "sci": "Carya laciniosa",
+  "family": "Juglandaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Large sweet nuts (biggest native hickory nut).",
+  "other_uses": "Strong, heavy wood.",
+  "prep": "Crack and eat fresh or use like pecans in baking; sweet and rich.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Deep moist bottomland soils.",
+  "risks": "Thick shells; slow to bear.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "NY",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "IA",
+    "MO",
+    "KY",
+    "TN",
+    "WV",
+    "VA",
+    "MD",
+    "NC",
+    "KS",
+    "OK"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      9,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carya_laciniosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Carya+laciniosa"
+    ]
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "common": "American Witch Hazel",
+  "sci": "Hamamelis virginiana",
+  "family": "Hamamelidaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Seeds (minor food); bark/leaves (medicinal).",
+  "other_uses": "Late-fall bloomer; the source of commercial witch-hazel astringent.",
+  "prep": "The famous use is medicinal \u2014 a bark/leaf astringent; oily seeds are a minor wild nibble.",
+  "harvest": "Flowers late fall; seeds fall.",
+  "sun": "Part shade",
+  "soil": "Moist woodland soils.",
+  "risks": "For topical/external astringent use; not a significant food.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      7,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hamamelis_virginiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Hamamelis+virginiana"
+    ]
+  ]
+}

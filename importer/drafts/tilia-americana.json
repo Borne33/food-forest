@@ -1,0 +1,100 @@
+{
+  "common": "American Basswood",
+  "sci": "Tilia americana",
+  "family": "Malvaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young leaves (salad) and flowers (tea).",
+  "other_uses": "Premier honey/bee tree; inner bark (bast) for cordage.",
+  "prep": "Eat tender young leaves raw; steep flowers for a mild sweet tea; strip inner bark for strong fiber.",
+  "harvest": "Leaves spring; flowers early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich moist well-drained soils.",
+  "risks": "Old or heat-affected flowers can cause nausea \u2014 use fresh flowers.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Tilia_americana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Tilia+americana"
+    ]
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "common": "Stinging Nettle",
+  "sci": "Urtica dioica",
+  "family": "Urticaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young shoots and leaves (cooked).",
+  "other_uses": "One of the best wild pot-herbs; strong bast fiber; medicinal.",
+  "prep": "Cook or dry young leaves (heat destroys the sting) for a nutritious spinach-like green or tea; retting yields textile fiber.",
+  "harvest": "Spring shoots.",
+  "sun": "Part shade to sun",
+  "soil": "Rich, moist, nitrogen-rich soils.",
+  "risks": "Fresh plant STINGS \u2014 wear gloves and always cook/dry before eating; don't harvest once flowering.",
+  "buy": "Native-plant nurseries; common wild.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "NM",
+    "ID",
+    "UT",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "E"
+    ],
+    "cooked": [
+      9,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      6,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Urtica_dioica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Urtica+dioica"
+    ]
+  ]
+}

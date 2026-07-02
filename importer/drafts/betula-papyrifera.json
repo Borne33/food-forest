@@ -1,0 +1,82 @@
+{
+  "common": "Paper Birch",
+  "sci": "Betula papyrifera",
+  "family": "Betulaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Sap (syrup) and inner bark.",
+  "other_uses": "Iconic white bark for containers/canoes; craft material.",
+  "prep": "Tap sap for birch syrup; the waterproof bark is a premier natural craft material.",
+  "harvest": "Sap late winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Cool moist to well-drained soils; pioneer.",
+  "risks": "Harvest bark only from fallen/dead trees to avoid killing living ones.",
+  "buy": "Native-plant/forestry nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "MT",
+    "WA",
+    "OR",
+    "AK"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      9,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Betula_papyrifera"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Betula+papyrifera"
+    ]
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "common": "Riverbank Grape",
+  "sci": "Vitis riparia",
+  "family": "Vitaceae",
+  "type": "Vine",
+  "life": "Long-lived woody perennial vine",
+  "edible_parts": "Grapes (tart) and young leaves.",
+  "other_uses": "Vigorous native grape; wildlife food; cordage and rootstock.",
+  "prep": "Cook tart grapes into jelly, juice, and wine; brine young leaves for dolmas.",
+  "harvest": "Grapes fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist soils, streambanks and edges; very vigorous.",
+  "risks": "Only eat grapes with the tendrils/leaves confirmed as grape \u2014 avoid toxic look-alikes like moonseed (which has a single crescent seed).",
+  "buy": "Native-plant nurseries; common wild.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "MT",
+    "WY",
+    "CO",
+    "ID",
+    "UT",
+    "WA"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vitis_riparia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vitis+riparia"
+    ]
+  ]
+}

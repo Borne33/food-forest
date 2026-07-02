@@ -1,0 +1,81 @@
+{
+  "common": "Kentucky Coffeetree",
+  "sci": "Gymnocladus dioicus",
+  "family": "Fabaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Roasted seeds (coffee substitute).",
+  "other_uses": "Handsome durable wood; ornamental.",
+  "prep": "Seeds and pods are toxic raw \u2014 must be thoroughly roasted before use as a caffeine-free coffee substitute.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich bottomland soils; slow-growing.",
+  "risks": "Raw seeds/pods contain toxic cytisine \u2014 ROAST thoroughly before any use; not a nitrogen-fixer.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "NY",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "KY",
+    "TN",
+    "WV",
+    "AR",
+    "KS",
+    "OK",
+    "NE",
+    "SD"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Gymnocladus_dioicus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Gymnocladus+dioicus"
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "common": "Allegheny Chinquapin",
+  "sci": "Castanea pumila",
+  "family": "Fagaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Small sweet nuts (one per bur).",
+  "other_uses": "Thicket-forming; wildlife food.",
+  "prep": "Roast or eat fresh; sweet like small chestnuts.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy or rocky well-drained soils.",
+  "risks": "Also susceptible to chestnut blight.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "TX",
+    "OH"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Castanea_pumila"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Castanea+pumila"
+    ]
+  ]
+}

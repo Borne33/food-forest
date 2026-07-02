@@ -1,0 +1,76 @@
+# 70 new native food-forest plants — batch to reach 100 total.
+# Trees
+White Oak | Quercus alba
+Bur Oak | Quercus macrocarpa
+Northern Red Oak | Quercus rubra
+Swamp White Oak | Quercus bicolor
+American Beech | Fagus grandifolia
+American Chestnut | Castanea dentata
+Allegheny Chinquapin | Castanea pumila
+Pignut Hickory | Carya glabra
+Bitternut Hickory | Carya cordiformis
+Shellbark Hickory | Carya laciniosa
+Mockernut Hickory | Carya tomentosa
+Black Cherry | Prunus serotina
+Red Mulberry | Morus rubra
+Allegheny Serviceberry | Amelanchier laevis
+Downy Serviceberry | Amelanchier canadensis
+Sassafras | Sassafras albidum
+American Basswood | Tilia americana
+Eastern White Pine | Pinus strobus
+Red Maple | Acer rubrum
+Silver Maple | Acer saccharinum
+Honey Locust | Gleditsia triacanthos
+Kentucky Coffeetree | Gymnocladus dioicus
+Sugarberry | Celtis laevigata
+Yellow Birch | Betula alleghaniensis
+Paper Birch | Betula papyrifera
+# Shrubs
+Beaked Hazelnut | Corylus cornuta
+Black Chokeberry | Aronia melanocarpa
+Red Chokeberry | Aronia arbutifolia
+Beach Plum | Prunus maritima
+Sand Cherry | Prunus pumila
+Blackhaw | Viburnum prunifolium
+Arrowwood Viburnum | Viburnum dentatum
+Wild Raisin | Viburnum nudum
+American Black Currant | Ribes americanum
+Golden Currant | Ribes aureum
+Prickly Gooseberry | Ribes cynosbati
+Virginia Rose | Rosa virginiana
+Swamp Rose | Rosa palustris
+Allegheny Blackberry | Rubus allegheniensis
+American Red Raspberry | Rubus idaeus
+Purple-flowering Raspberry | Rubus odoratus
+Northern Bayberry | Morella pensylvanica
+Sweetfern | Comptonia peregrina
+Russet Buffaloberry | Shepherdia canadensis
+Northern Spicebush | Lindera benzoin
+American Witch Hazel | Hamamelis virginiana
+Common Juniper | Juniperus communis
+Smooth Sumac | Rhus glabra
+Wineberry | Rubus phoenicolasius
+Bearberry | Arctostaphylos uva-ursi
+# Herbs / perennials
+Common Blue Violet | Viola sororia
+Stinging Nettle | Urtica dioica
+Wood Nettle | Laportea canadensis
+Broadleaf Cattail | Typha latifolia
+Canada Wild Ginger | Asarum canadense
+Smooth Solomon's Seal | Polygonatum biflorum
+False Solomon's Seal | Maianthemum racemosum
+Virginia Spring Beauty | Claytonia virginica
+Nodding Onion | Allium cernuum
+Meadow Garlic | Allium canadense
+Common Evening Primrose | Oenothera biennis
+Scarlet Beebalm | Monarda didyma
+Anise Hyssop | Agastache foeniculum
+Virginia Mountainmint | Pycnanthemum virginianum
+Common Boneset | Eupatorium perfoliatum
+Cutleaf Coneflower | Rudbeckia laciniata
+# Vines
+Purple Passionflower | Passiflora incarnata
+Riverbank Grape | Vitis riparia
+Fox Grape | Vitis labrusca
+# Wetland / groundcover
+Broadleaf Arrowhead | Sagittaria latifolia

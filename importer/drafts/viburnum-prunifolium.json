@@ -1,0 +1,85 @@
+{
+  "common": "Blackhaw",
+  "sci": "Viburnum prunifolium",
+  "family": "Viburnaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (sweet, date-like).",
+  "other_uses": "Understory small tree; traditional women's-health herb.",
+  "prep": "Eat ripe blue-black fruit fresh or cooked; bark used traditionally as a uterine tonic.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; understory to edge.",
+  "risks": "Medicinal bark use should be guided by a professional, especially in pregnancy.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "NY",
+    "NJ",
+    "PA",
+    "CT",
+    "MD",
+    "DE",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "MO",
+    "AR",
+    "TX",
+    "KS"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viburnum_prunifolium"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viburnum+prunifolium"
+    ]
+  ]
+}

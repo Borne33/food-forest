@@ -1,0 +1,84 @@
+{
+  "common": "American Chestnut",
+  "sci": "Castanea dentata",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (sweet, starchy).",
+  "other_uses": "Once-dominant timber tree; rot-resistant wood.",
+  "prep": "Roast, boil, or grind to flour; one of the finest native food nuts.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained acidic soils.",
+  "risks": "Functionally wiped out by chestnut blight \u2014 seek blight-resistant/backcross stock; wild trees usually die before large fruiting.",
+  "buy": "Specialty restoration nurseries (blight-resistant hybrids).",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "RI",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      10,
+      "E"
+    ],
+    "life": [
+      10,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Castanea_dentata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Castanea+dentata"
+    ]
+  ]
+}

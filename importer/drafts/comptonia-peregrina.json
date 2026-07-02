@@ -1,0 +1,84 @@
+{
+  "common": "Sweetfern",
+  "sci": "Comptonia peregrina",
+  "family": "Myricaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Aromatic leaves (tea/seasoning).",
+  "other_uses": "Nitrogen-fixing groundcover for poor soils.",
+  "prep": "Steep fresh or dried leaves for a spicy-sweet tea; use as a seasoning.",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy, sterile, acidic soils; fixes nitrogen.",
+  "risks": "Not a true fern; no significant hazards.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "GA",
+    "TN",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Comptonia_peregrina"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Comptonia+peregrina"
+    ]
+  ]
+}

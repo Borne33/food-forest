@@ -1,0 +1,78 @@
+{
+  "common": "Sand Cherry",
+  "sci": "Prunus pumila",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (dark cherries).",
+  "other_uses": "Sprawling dune/shoreline stabilizer.",
+  "prep": "Eat ripe fruit fresh or cook into jam; flavor ranges tart to sweet.",
+  "harvest": "Late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Sandy or rocky well-drained soils; drought-tolerant.",
+  "risks": "Pits/leaves cyanogenic \u2014 use flesh only.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "PA",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IN",
+    "IL",
+    "OH",
+    "ND",
+    "SD",
+    "NE"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_pumila"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+pumila"
+    ]
+  ]
+}

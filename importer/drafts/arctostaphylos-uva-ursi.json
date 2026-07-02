@@ -1,0 +1,88 @@
+{
+  "common": "Bearberry",
+  "sci": "Arctostaphylos uva-ursi",
+  "family": "Ericaceae",
+  "type": "Groundcover",
+  "life": "Evergreen woody perennial",
+  "edible_parts": "Berries (mealy) and leaves (medicinal tea).",
+  "other_uses": "Evergreen mat groundcover for sand/rock; the herb 'uva-ursi'.",
+  "prep": "Berries are dry and mealy (better cooked); leaves are the well-known urinary-tract herb uva-ursi.",
+  "harvest": "Berries late summer, persistent.",
+  "sun": "Full sun to part shade",
+  "soil": "Sandy, rocky, acidic, poor soils; drought-tolerant.",
+  "risks": "Leaf tea (uva-ursi) is for short-term use only and not in pregnancy; contains hydroquinone precursors.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "NM",
+    "ID",
+    "UT",
+    "NV",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      6,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Arctostaphylos_uva-ursi"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Arctostaphylos+uva-ursi"
+    ]
+  ]
+}

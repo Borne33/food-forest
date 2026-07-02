@@ -1,0 +1,89 @@
+{
+  "common": "Common Juniper",
+  "sci": "Juniperus communis",
+  "family": "Cupressaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Berries (cones) as spice.",
+  "other_uses": "Evergreen; the classic gin/game seasoning.",
+  "prep": "Use a few dried 'berries' to flavor game, sauerkraut, and spirits.",
+  "harvest": "Berries take 2\u20133 yrs; harvest ripe blue ones.",
+  "sun": "Full sun to part shade",
+  "soil": "Poor, rocky, well-drained soils.",
+  "risks": "Avoid in pregnancy and with kidney issues; use sparingly as a spice \u2014 some junipers are toxic, use only J. communis.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "NM",
+    "ID",
+    "UT",
+    "AZ",
+    "NV",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Juniperus_communis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Juniperus+communis"
+    ]
+  ]
+}

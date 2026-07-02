@@ -1,0 +1,82 @@
+{
+  "common": "Swamp White Oak",
+  "sci": "Quercus bicolor",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (sweet white-oak group).",
+  "other_uses": "Bottomland shade tree; wildlife mast.",
+  "prep": "Leach and roast or grind like white oak.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Tolerates wet, poorly-drained and floodplain soils.",
+  "risks": "Mild tannins \u2014 leach if bitter.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "VA",
+    "WV",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "KY",
+    "TN",
+    "NC",
+    "AR"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "P"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_bicolor"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+bicolor"
+    ]
+  ]
+}

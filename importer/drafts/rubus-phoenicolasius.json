@@ -1,0 +1,80 @@
+{
+  "common": "Wineberry",
+  "sci": "Rubus phoenicolasius",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (bright, tasty).",
+  "other_uses": "INVASIVE Asian bramble \u2014 tasty fruit but ecologically harmful.",
+  "prep": "The fruit is excellent fresh, but this species is invasive; forage wild fruit but do NOT plant it.",
+  "harvest": "Mid summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist soils, forest edges and disturbed ground.",
+  "risks": "Invasive across the eastern US \u2014 outcompetes native brambles; planting is discouraged or restricted.",
+  "buy": "Do not purchase or plant; forage only.",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "invasive_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "OH"
+  ],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      2,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_phoenicolasius"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+phoenicolasius"
+    ]
+  ]
+}

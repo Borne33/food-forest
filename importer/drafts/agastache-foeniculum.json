@@ -1,0 +1,76 @@
+{
+  "common": "Anise Hyssop",
+  "sci": "Agastache foeniculum",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves and flowers (anise-scented tea).",
+  "other_uses": "One of the top pollinator/nectar plants.",
+  "prep": "Steep the sweet anise-scented leaves and flowers for tea; use in baking and salads.",
+  "harvest": "Summer bloom.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; drought-tolerant.",
+  "risks": "No significant hazard in culinary amounts.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "MO",
+    "IL",
+    "MI",
+    "CO",
+    "MT",
+    "WY"
+  ],
+  "native_regions": [
+    "Central",
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Agastache_foeniculum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Agastache+foeniculum"
+    ]
+  ]
+}

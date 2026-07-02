@@ -1,0 +1,94 @@
+{
+  "common": "Canada Wild Ginger",
+  "sci": "Asarum canadense",
+  "family": "Aristolochiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Rhizome (ginger-like flavoring).",
+  "other_uses": "Handsome woodland groundcover.",
+  "prep": "Historically the rhizome flavored dishes like ginger \u2014 but see the safety note; grow mainly as a native groundcover.",
+  "harvest": "Rhizome any season.",
+  "sun": "Shade",
+  "soil": "Rich, moist, shaded woodland soils.",
+  "risks": "Contains aristolochic acid, a kidney toxin and carcinogen \u2014 modern guidance is to AVOID internal use; not true culinary ginger.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      4,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Asarum_canadense"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Asarum+canadense"
+    ]
+  ]
+}

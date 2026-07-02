@@ -1,0 +1,84 @@
+{
+  "common": "Purple Passionflower",
+  "sci": "Passiflora incarnata",
+  "family": "Passifloraceae",
+  "type": "Vine",
+  "life": "Herbaceous perennial vine",
+  "edible_parts": "Fruit (maypop) and leaves (calming tea).",
+  "other_uses": "Exotic-looking native flower; gulf fritillary host; herbal sedative.",
+  "prep": "Eat the ripe egg-shaped 'maypop' pulp; the aerial parts make a traditional calming tea.",
+  "harvest": "Fruit late summer\u2013fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; dies back and resprouts.",
+  "risks": "Eat only fully ripe fruit; sedative tea can interact with medications \u2014 use informed caution.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "OK",
+    "TX",
+    "IL",
+    "IN",
+    "OH",
+    "MD",
+    "DE",
+    "PA",
+    "KS"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      6,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Passiflora_incarnata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Passiflora+incarnata"
+    ]
+  ]
+}

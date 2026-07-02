@@ -1,0 +1,94 @@
+{
+  "common": "Black Cherry",
+  "sci": "Prunus serotina",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Ripe fruit (dark, slightly bitter).",
+  "other_uses": "Premium cabinet/furniture wood; major wildlife tree.",
+  "prep": "Cook ripe fruit into jelly, syrup, or wine; discard pits.",
+  "harvest": "Late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; fast-growing pioneer.",
+  "risks": "Leaves, twigs, bark and pits are cyanogenic (toxic); wilted foliage is dangerous to livestock \u2014 use only the ripe flesh.",
+  "buy": "Native-plant nurseries; common wild.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_serotina"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+serotina"
+    ]
+  ]
+}

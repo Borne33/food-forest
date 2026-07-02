@@ -1,0 +1,78 @@
+{
+  "common": "Sugarberry",
+  "sci": "Celtis laevigata",
+  "family": "Cannabaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Small sweet drupes.",
+  "other_uses": "Tough shade tree; heavy bird use.",
+  "prep": "Eat the thin sweet flesh fresh; can be pounded (seed and all) into an energy paste like hackberry.",
+  "harvest": "Fall, persisting into winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Bottomlands; tolerates wet and urban soils.",
+  "risks": "Fruit is mostly a hard seed with little flesh.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "OK",
+    "TX",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "A"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Celtis_laevigata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Celtis+laevigata"
+    ]
+  ]
+}

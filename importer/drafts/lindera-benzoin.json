@@ -1,0 +1,91 @@
+{
+  "common": "Northern Spicebush",
+  "sci": "Lindera benzoin",
+  "family": "Lauraceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Berries (spice) and leaves/twigs (tea).",
+  "other_uses": "Aromatic understory shrub; spicebush swallowtail host.",
+  "prep": "Dry and grind red berries as an allspice-like seasoning; steep twigs for tea.",
+  "harvest": "Berries fall.",
+  "sun": "Part shade",
+  "soil": "Moist rich woodland soils.",
+  "risks": "Use berries as a spice, not a bulk food.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "AR",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "MO",
+    "IA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lindera_benzoin"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lindera+benzoin"
+    ]
+  ]
+}

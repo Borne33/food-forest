@@ -1,0 +1,72 @@
+{
+  "common": "Beach Plum",
+  "sci": "Prunus maritima",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (tart plums).",
+  "other_uses": "Coastal dune stabilizer; classic beach-plum jelly.",
+  "prep": "Cook into prized jam and jelly; eat fully ripe fruit fresh.",
+  "harvest": "Late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Sandy, well-drained coastal soils; salt-tolerant.",
+  "risks": "Pits/leaves cyanogenic like other Prunus \u2014 use flesh only.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_maritima"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+maritima"
+    ]
+  ]
+}

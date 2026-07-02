@@ -1,0 +1,87 @@
+{
+  "common": "Eastern White Pine",
+  "sci": "Pinus strobus",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Needles (vitamin-C tea), inner bark (famine food), small seeds.",
+  "other_uses": "Premier softwood timber; wildlife cover.",
+  "prep": "Steep young needles for tea; inner bark can be dried and ground in scarcity.",
+  "harvest": "Needles year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained sandy or loamy soils.",
+  "risks": "Avoid pine needle tea in pregnancy; never confuse with toxic yew or 'pines' like Ponderosa for tea.",
+  "buy": "Native-plant/forestry nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      6,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_strobus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+strobus"
+    ]
+  ]
+}

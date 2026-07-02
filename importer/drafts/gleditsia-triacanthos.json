@@ -1,0 +1,87 @@
+{
+  "common": "Honey Locust",
+  "sci": "Gleditsia triacanthos",
+  "family": "Fabaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Sweet pod pulp.",
+  "other_uses": "Extremely durable rot-resistant wood; livestock forage.",
+  "prep": "Eat the sweet pulp lining ripe pods raw, or dry and grind; seeds are hard.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Adaptable; tolerates drought, salt, and poor soils.",
+  "risks": "Wild trees bear large branched thorns; despite being a legume it does NOT fix nitrogen; do not confuse pods with toxic black locust seeds.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "IA",
+    "MO",
+    "KY",
+    "TN",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "AL",
+    "MS",
+    "AR",
+    "LA",
+    "KS",
+    "OK",
+    "TX",
+    "NE",
+    "SD"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Gleditsia_triacanthos"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Gleditsia+triacanthos"
+    ]
+  ]
+}

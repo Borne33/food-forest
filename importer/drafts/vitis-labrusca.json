@@ -1,0 +1,82 @@
+{
+  "common": "Fox Grape",
+  "sci": "Vitis labrusca",
+  "family": "Vitaceae",
+  "type": "Vine",
+  "life": "Long-lived woody perennial vine",
+  "edible_parts": "Grapes (foxy, Concord-type) and young leaves.",
+  "other_uses": "Wild parent of Concord grapes; strong-flavored fruit.",
+  "prep": "Eat ripe fruit fresh or make into juice, jelly, and wine; use young leaves for dolmas.",
+  "harvest": "Grapes fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist well-drained soils; edges and thickets.",
+  "risks": "Confirm grape ID (tendrils, multiple seeds) versus toxic moonseed.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "OH",
+    "IN"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vitis_labrusca"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vitis+labrusca"
+    ]
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "common": "Smooth Sumac",
+  "sci": "Rhus glabra",
+  "family": "Anacardiaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Red berry clusters (tart 'sumac-ade' and spice).",
+  "other_uses": "Thicket-forming; brilliant fall color; the Middle-Eastern spice sumac.",
+  "prep": "Soak the red drupes in cool water for a pink lemonade, or dry and grind as tart spice.",
+  "harvest": "Berries late summer\u2013fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, poor, well-drained soils.",
+  "risks": "Use only RED-berried sumacs; white-berried poison sumac is toxic. Steep in COOL water (hot draws bitter tannins).",
+  "buy": "Native-plant nurseries; common wild.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "NM",
+    "ID",
+    "UT",
+    "AZ",
+    "WA",
+    "OR",
+    "CA"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhus_glabra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rhus+glabra"
+    ]
+  ]
+}

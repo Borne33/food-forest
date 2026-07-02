@@ -1,0 +1,94 @@
+{
+  "common": "Red Mulberry",
+  "sci": "Morus rubra",
+  "family": "Moraceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Ripe fruit (sweet, dark).",
+  "other_uses": "Fast shade tree; abundant wildlife/bird food.",
+  "prep": "Eat ripe berries fresh or in pies, jams, and wine.",
+  "harvest": "Early\u2013mid summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist soils.",
+  "risks": "Unripe fruit and milky sap can cause stomach upset and mild hallucinations; only eat fully ripe fruit.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "MA",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "OK",
+    "TX",
+    "NE",
+    "SD"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      9,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Morus_rubra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Morus+rubra"
+    ]
+  ]
+}

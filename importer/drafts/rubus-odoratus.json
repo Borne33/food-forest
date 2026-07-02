@@ -1,0 +1,80 @@
+{
+  "common": "Purple-flowering Raspberry",
+  "sci": "Rubus odoratus",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (dry, mild).",
+  "other_uses": "Showy rose-purple flowers; thornless; shade-tolerant.",
+  "prep": "Fruit is flat and seedy \u2014 nibble fresh; the plant's main value is ornamental and ecological.",
+  "harvest": "Late summer.",
+  "sun": "Part shade",
+  "soil": "Moist rich woodland soils.",
+  "risks": "Fruit quality is poor compared to other brambles.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "OH",
+    "MI"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_odoratus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+odoratus"
+    ]
+  ]
+}

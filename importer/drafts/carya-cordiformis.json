@@ -1,0 +1,94 @@
+{
+  "common": "Bitternut Hickory",
+  "sci": "Carya cordiformis",
+  "family": "Juglandaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (bitter, rarely eaten).",
+  "other_uses": "Excellent firewood and smoking wood; tough timber.",
+  "prep": "Nuts are too bitter to eat; the wood is prized for smoking meats.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist bottomlands and slopes.",
+  "risks": "Nuts are bitter/astringent \u2014 essentially inedible.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "E"
+    ],
+    "cooked": [
+      2,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carya_cordiformis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Carya+cordiformis"
+    ]
+  ]
+}

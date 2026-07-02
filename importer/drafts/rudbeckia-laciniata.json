@@ -1,0 +1,110 @@
+{
+  "common": "Cutleaf Coneflower",
+  "sci": "Rudbeckia laciniata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young spring greens ('sochan').",
+  "other_uses": "Tall pollinator perennial; cherished Cherokee spring green.",
+  "prep": "Cook the young spring basal leaves ('sochan') like greens before the plant bolts.",
+  "harvest": "Young greens early spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist rich soils, stream edges.",
+  "risks": "Eat only the young greens, well cooked; the plant is a traditional food green, not the seed head.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "CO",
+    "WY",
+    "ID",
+    "UT",
+    "AZ",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rudbeckia_laciniata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rudbeckia+laciniata"
+    ]
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "common": "White Oak",
+  "sci": "Quercus alba",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (sweet white-oak group).",
+  "other_uses": "Premium timber; keystone wildlife tree.",
+  "prep": "Shell and leach acorns in changes of water to remove tannins, then roast or grind to meal; among the least-bitter acorns.",
+  "harvest": "Fall (Sept\u2013Oct).",
+  "sun": "Full sun to part shade",
+  "soil": "Deep well-drained upland soils; very long-lived.",
+  "risks": "Raw acorns are bitter/astringent from tannins \u2014 leach before eating.",
+  "buy": "Native-plant nurseries; grown from local acorns.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      10,
+      "P"
+    ],
+    "fiber": [
+      9,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_alba"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+alba"
+    ]
+  ]
+}

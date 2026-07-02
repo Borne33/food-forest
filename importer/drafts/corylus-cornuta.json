@@ -1,0 +1,83 @@
+{
+  "common": "Beaked Hazelnut",
+  "sci": "Corylus cornuta",
+  "family": "Betulaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (sweet, filbert-like).",
+  "other_uses": "Thicket-forming wildlife shrub.",
+  "prep": "Gather husked nuts in fall (beat the tubular husk); eat raw or roasted like filberts.",
+  "harvest": "Late summer\u2013fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils; forest edge.",
+  "risks": "Bristly husks can irritate skin \u2014 wear gloves when husking.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "OH",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "WA",
+    "OR",
+    "CA",
+    "CO"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Western"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      9,
+      "E"
+    ],
+    "cooked": [
+      9,
+      "E"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Corylus_cornuta"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Corylus+cornuta"
+    ]
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "common": "American Black Currant",
+  "sci": "Ribes americanum",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (rich, musky-sweet).",
+  "other_uses": "Understory fruiting shrub; pollinator flowers.",
+  "prep": "Eat ripe fruit fresh or make into jam, syrup, and cordial.",
+  "harvest": "Mid\u2013late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist rich soils.",
+  "risks": "Ribes are an alternate host of white pine blister rust \u2014 avoid planting near white pines.",
+  "buy": "Native-plant/edible nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "WV",
+    "VA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "CO",
+    "NM"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_americanum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ribes+americanum"
+    ]
+  ]
+}

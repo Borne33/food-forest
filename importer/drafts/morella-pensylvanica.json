@@ -1,0 +1,79 @@
+{
+  "common": "Northern Bayberry",
+  "sci": "Morella pensylvanica",
+  "family": "Myricaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Waxy berries (seasoning) and leaves (bay-like flavor).",
+  "other_uses": "Aromatic wax for candles; nitrogen-fixing coastal shrub.",
+  "prep": "Use dried leaves like bay leaf; boil berries to skim off fragrant bayberry wax.",
+  "harvest": "Berries fall\u2013winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Poor, sandy, salty soils; fixes nitrogen.",
+  "risks": "Berries are waxy, not a fleshy food.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "OH"
+  ],
+  "native_regions": [
+    "Eastern"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Morella_pensylvanica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Morella+pensylvanica"
+    ]
+  ]
+}

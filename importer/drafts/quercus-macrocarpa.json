@@ -1,0 +1,84 @@
+{
+  "common": "Bur Oak",
+  "sci": "Quercus macrocarpa",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Large acorns (sweet, low-tannin).",
+  "other_uses": "Fire-resistant prairie/savanna keystone; strong timber.",
+  "prep": "Leach lightly and roast or grind; among the sweetest native acorns.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Adaptable, tolerates clay and drought; extremely long-lived.",
+  "risks": "Mild tannins \u2014 leach if bitter.",
+  "buy": "Native-plant nurseries.",
+  "native_states": [
+    "NY",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "KY",
+    "TN",
+    "WV",
+    "VA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [
+    "Eastern",
+    "Central"
+  ],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_macrocarpa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+macrocarpa"
+    ]
+  ]
+}
