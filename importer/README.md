@@ -76,6 +76,7 @@ default — quality is best when you review each plant.)
 | Path                    | Purpose                                            |
 |-------------------------|----------------------------------------------------|
 | `foodforest_import.py`  | The CLI (fetch / validate / apply / list-remote).  |
+| `fetch_images.py`       | Populate `plants.images` + photo sources from Wikimedia Commons (`python3 fetch_images.py`; `--force` to refetch, `--limit N` to test). Picks up to 3 photos per plant (lead + edible-part captions), skipping range maps / status icons; adds each photo's Commons page to `sources`. |
 | `.env`                  | Your secrets (gitignored).                         |
 | `.env.example`          | Template.                                          |
 | `targets.example.txt`   | Example batch input.                               |

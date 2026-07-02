@@ -62,7 +62,35 @@
   .count{font-family:'Space Mono';font-size:12px;color:var(--faint);margin:12px 2px 6px}
   /* ---------- plant card (Herbarium) ---------- */
   .card{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;box-shadow:0 1px 0 #fff inset, 0 10px 24px -22px #000;margin-bottom:14px;overflow:hidden}
-  .card .head{display:grid;grid-template-columns:1fr auto;gap:14px;padding:15px 18px 12px;border-bottom:1.5px solid var(--ink);cursor:pointer}
+  .card .head{display:flex;align-items:flex-start;gap:14px;padding:15px 18px 12px;border-bottom:1.5px solid var(--ink);cursor:pointer}
+  .card .head .info{flex:1 1 auto;min-width:0}
+  .card .head .rgt{display:flex;align-items:flex-start;gap:12px;flex:0 0 auto}
+  /* image carousel on the collapsed card */
+  .pcar{flex:0 0 auto;width:132px}
+  .pcar .frame{position:relative;width:132px;height:100px;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#efeadc}
+  .pcar img{width:100%;height:100%;object-fit:cover;display:block}
+  .pcar .nav{position:absolute;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:99px;border:1px solid var(--line);
+    background:rgba(247,244,234,.9);color:var(--ink);font-family:'Space Mono';font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+  .pcar .nav.l{left:4px} .pcar .nav.r{right:4px}
+  .pcar .cap{font-family:'Space Mono';font-size:8.5px;color:var(--faint);text-align:center;margin-top:3px;line-height:1.25;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .pcar .dots{position:absolute;bottom:4px;left:0;right:0;display:flex;justify-content:center;gap:4px}
+  .pcar .dots i{width:5px;height:5px;border-radius:99px;background:rgba(43,42,34,.35)}
+  .pcar .dots i.on{background:var(--paper)}
+  /* human-verified badge (collapsed card, left of the overall score) */
+  .vchk{text-align:center;align-self:start}
+  .vchk b{display:flex;align-items:center;justify-content:center;width:34px;height:34px;margin:0 auto;border-radius:99px;
+    background:var(--sage-d);color:var(--paper);font-size:18px;line-height:1}
+  .vchk small{font-family:'Space Mono';font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);display:block;margin-top:4px;font-weight:700}
+  /* verify page */
+  .vbar{border:1px solid var(--line);border-top:0;border-radius:0 0 4px 4px;background:#faf7ef;padding:12px 16px;margin:-14px 0 16px}
+  .vbar .vrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .vbar label{display:flex;align-items:center;gap:9px;font-family:'Space Mono';font-size:13px;letter-spacing:.03em;
+    text-transform:uppercase;color:var(--ink);cursor:pointer;font-weight:700}
+  .vbar input[type=checkbox]{width:20px;height:20px;accent-color:var(--sage-d);cursor:pointer}
+  .vbar .vsrc{margin-top:10px}
+  .vbar .vsrc dt{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+  .vbar .vsrc a{display:block;font-family:'Space Mono';font-size:12px;margin:2px 0;color:var(--sage-d);word-break:break-all}
   .card .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
   .card h3{margin:5px 0 1px;font-size:22px;font-weight:800;letter-spacing:-.01em}
   .card .sci{font-style:italic;color:var(--ink2);font-size:15px}
@@ -183,8 +211,13 @@ function rowToPlant(r){
     nativeStates:r.native_states||[], nativeRegions:r.native_regions||[], nativeToUS:r.native_to_us,
     invasiveStates:r.invasive_states||[], invasiveEverywhere:r.invasive_everywhere, decPriority:r.dec_priority,
     nf:r.nf, pol:r.pol, s:r.scores, sources:r.sources||[],
+    humanVerified:!!r.human_verified, images:r.images||[],
   };
 }
+
+/* Only this signed-in user sees the Human Verify page and may write
+   verification. Enforced server-side by an RLS policy on plants too. */
+const ADMIN_EMAIL = "alex@bornemann.us";
 
 /* =====================================================================
    DATA PROVIDER  —  the ONLY section that talks to the backend.
@@ -218,6 +251,11 @@ const dataProvider = {
   },
   async removePlant(plantId){
     const { error } = await sb.from('user_plans').delete().eq('plant_id', plantId);
+    if(error) throw error;
+  },
+  async setVerified(plantId, val){
+    // allowed only for the admin user (enforced by RLS on plants)
+    const { error } = await sb.from('plants').update({ human_verified:val }).eq('id', plantId);
     if(error) throw error;
   },
 };
@@ -337,6 +375,26 @@ function ScoreBox({label,val,tier}){
   );
 }
 
+function PlantImages({images}){
+  const [i,setI]=useState(0);
+  if(!images || !images.length) return null;
+  const n=images.length, img=images[i];
+  const go=(d,e)=>{ e.stopPropagation(); setI(x=>(x+d+n)%n); };
+  return (
+    <div className="pcar" onClick={e=>e.stopPropagation()}>
+      <div className="frame">
+        <img src={img.url} alt={img.title||""} loading="lazy" />
+        {n>1 && (<React.Fragment>
+          <button className="nav l" onClick={e=>go(-1,e)} aria-label="Previous image">‹</button>
+          <button className="nav r" onClick={e=>go(1,e)} aria-label="Next image">›</button>
+          <div className="dots">{images.map((_,k)=><i key={k} className={k===i?"on":""}></i>)}</div>
+        </React.Fragment>)}
+      </div>
+      {img.title && <div className="cap">{img.title}</div>}
+    </div>
+  );
+}
+
 function PlantCard({p, state, inPlan, toggle}){
   const [open,setOpen]=useState(false);
   const nat = nativity(p,state);
@@ -344,7 +402,7 @@ function PlantCard({p, state, inPlan, toggle}){
   return (
     <div className="card">
       <div className="head" onClick={()=>setOpen(o=>!o)}>
-        <div>
+        <div className="info">
           <div className="acc">{p.family} · {p.type}</div>
           <h3>{p.common}</h3>
           <div className="sci">{p.sci}</div>
@@ -357,9 +415,15 @@ function PlantCard({p, state, inPlan, toggle}){
             {inPlan && <span className="pill type">★ In plan</span>}
           </div>
         </div>
-        <div className="ov">
-          <b style={{background:bandColor(ov),color:bandText(ov)}}>{ov}</b>
-          <small>Overall {open?"▴":"▾"}</small>
+        <PlantImages images={p.images} />
+        <div className="rgt">
+          {p.humanVerified && (
+            <div className="vchk" title="Human Verified"><b>✓</b><small>Human Verified</small></div>
+          )}
+          <div className="ov">
+            <b style={{background:bandColor(ov),color:bandText(ov)}}>{ov}</b>
+            <small>Overall {open?"▴":"▾"}</small>
+          </div>
         </div>
       </div>
 
@@ -793,6 +857,57 @@ function Auth(){
   );
 }
 
+/* ---------- Human Verify page (admin only) ---------- */
+function VerifyPage({plants, state, plan, toggle, verifyToggle}){
+  const [q,setQ]=useState("");
+  const [filt,setFilt]=useState("all"); // all | yes | no
+  const nver=plants.filter(p=>p.humanVerified).length;
+  const view=plants.filter(p=>{
+    if(filt==="yes" && !p.humanVerified) return false;
+    if(filt==="no" && p.humanVerified) return false;
+    if(q){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(q.toLowerCase())) return false; }
+    return true;
+  });
+  return (
+    <div>
+      <div className="pagehead">
+        <div className="eye">Human Verify · {nver}/{plants.length} verified</div>
+        <h2>Verify plant data</h2>
+        <p>Review each plant against its sources, then mark it <b>Human Verified</b>. Verified plants show a check in the Database. Only your account can see this page.</p>
+      </div>
+      <div className="controls">
+        <div className="fld search"><label>Search name</label>
+          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="e.g. pawpaw or Asimina" /></div>
+      </div>
+      <div className="toggles">
+        <button className={"chip"+(filt==="all"?" on":"")} onClick={()=>setFilt("all")}>All</button>
+        <button className={"chip"+(filt==="yes"?" on":"")} onClick={()=>setFilt("yes")}>Verified</button>
+        <button className={"chip"+(filt==="no"?" on":"")} onClick={()=>setFilt("no")}>Unverified</button>
+      </div>
+      <div className="count">{view.length} shown</div>
+      {view.map(p=>(
+        <div key={p.id}>
+          <PlantCard p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />
+          <div className="vbar">
+            <div className="vrow">
+              <label>
+                <input type="checkbox" checked={!!p.humanVerified}
+                       onChange={e=>verifyToggle(p.id, e.target.checked)} />
+                Human Verified
+              </label>
+            </div>
+            <div className="vsrc">
+              <dt>All sources ({(p.sources||[]).length})</dt>
+              {(p.sources||[]).map((s,i)=><a key={i} href={s[1]} target="_blank" rel="noreferrer">↗ {s[0]}</a>)}
+            </div>
+          </div>
+        </div>
+      ))}
+      {view.length===0 && <div className="empty">No plants match those filters.</div>}
+    </div>
+  );
+}
+
 /* ---------- Menu + App shell ---------- */
 const PAGES=[["db","Database"],["plan","My Plan"],["guide","Scoring Guide"],["data","Raw Data"]];
 function App(){
@@ -829,12 +944,20 @@ function App(){
     (have ? dataProvider.removePlant(id) : dataProvider.addPlant(id))
       .catch(err=>{ console.error(err); setPlan(pl=> have ? [...pl,id] : pl.filter(x=>x!==id)); }); // revert on failure
   };
+  const verifyToggle=(id,val)=>{
+    setPlants(ps=>ps.map(p=>p.id===id?{...p,humanVerified:val}:p)); // optimistic
+    dataProvider.setVerified(id,val).catch(err=>{ console.error(err);
+      setPlants(ps=>ps.map(p=>p.id===id?{...p,humanVerified:!val}:p)); }); // revert on failure
+  };
   const go=p=>{ setPage(p); setMenu(false); };
   const signOut=async()=>{ setMenu(false); await auth.signOut(); };
 
   // gate: wait for auth, then require sign-in
   if(!authReady) return <div className="wrap"><div className="empty">Loading…</div></div>;
   if(!user) return <Auth/>;
+
+  const isAdmin = user.email === ADMIN_EMAIL;
+  const navPages = isAdmin ? [...PAGES, ["verify","Human Verify"]] : PAGES;
 
   return (
     <div>
@@ -850,7 +973,7 @@ function App(){
         <div className="scrim" onClick={()=>setMenu(false)}></div>
         <div className="panel">
           <div className="ttl">Navigate</div>
-          {PAGES.map(([k,label],i)=>(
+          {navPages.map(([k,label],i)=>(
             <button key={k} className={page===k?"active":""} onClick={()=>go(k)}>
               {label}<span className="num">0{i+1}{k==="plan"&&plan.length?` · ${plan.length}`:""}</span>
             </button>
@@ -875,6 +998,7 @@ function App(){
           page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
+          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} /> :
           <RawData plants={plants} state={state} />
         )}
       </div>
