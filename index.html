@@ -77,6 +77,24 @@
   .pcar .dots{position:absolute;bottom:4px;left:0;right:0;display:flex;justify-content:center;gap:4px}
   .pcar .dots i{width:5px;height:5px;border-radius:99px;background:rgba(43,42,34,.35)}
   .pcar .dots i.on{background:var(--paper)}
+  /* ---------- My Plan: layered mini cards ---------- */
+  .layer{margin-bottom:22px}
+  .layer h4{font-family:'Space Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+    border-bottom:1.5px solid var(--ink);padding-bottom:6px;margin:0 0 12px;display:flex;justify-content:space-between;align-items:baseline}
+  .layer h4 span{font-size:10px;color:var(--faint)}
+  .minigrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .mini{position:relative;border:1px solid var(--line);border-radius:5px;background:#f7f4ea;overflow:hidden;box-shadow:0 8px 20px -20px #000}
+  .mini .mtop{position:relative;background:#efeadc;min-height:40px}
+  .mini .pcar.full{width:100%}
+  .mini .pcar.full .frame{width:100%;height:120px;border:0;border-radius:0}
+  .mini .pcar .cap{display:none}
+  .mini .mscore{position:absolute;top:6px;right:6px;z-index:3;font-family:'Space Mono';font-weight:700;font-size:15px;
+    padding:2px 8px;border-radius:3px;box-shadow:0 1px 5px rgba(0,0,0,.35)}
+  .mini .mrm{position:absolute;top:6px;left:6px;z-index:3;width:20px;height:20px;border-radius:99px;border:0;
+    background:rgba(20,18,10,.55);color:#fff;font-family:'Space Mono';font-size:11px;line-height:1;
+    display:flex;align-items:center;justify-content:center;padding:0}
+  .mini .mname{font-size:15px;font-weight:800;line-height:1.15;padding:9px 10px 0}
+  .mini .msci{font-style:italic;color:var(--ink2);font-size:12.5px;padding:1px 10px 11px}
   /* human-verified badge (collapsed card, left of the overall score) */
   .vchk{text-align:center;align-self:start}
   .vchk b{display:flex;align-items:center;justify-content:center;width:34px;height:34px;margin:0 auto;border-radius:99px;
@@ -114,6 +132,7 @@
   .pill.pol{color:#7a4a86;background:#efe4f2;border-color:#d6bedd}
   .pill.dec{color:#8a5a1f;background:#f6e8d2;border-color:#e2c79c}
   .pill.inv{color:#9a2c22;background:#f6dcd7;border-color:#e3b1a8}
+  .pill.deer{color:#5b5027;background:#eef0dd;border-color:#cdd3a6}
   /* category score boxes (editorial style) */
   .scores{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px}
   .cardact{padding:0 18px 14px}
@@ -221,6 +240,7 @@ function rowToPlant(r){
     invasiveStates:r.invasive_states||[], invasiveEverywhere:r.invasive_everywhere, decPriority:r.dec_priority,
     nf:r.nf, pol:r.pol, s:r.scores, sources:r.sources||[],
     humanVerified:!!r.human_verified, images:r.images||[],
+    hardinessZones:r.hardiness_zones||"", deerResistant:!!r.deer_resistant,
   };
 }
 
@@ -389,13 +409,13 @@ function ScoreBox({label,val,tier}){
   );
 }
 
-function PlantImages({images}){
+function PlantImages({images, full}){
   const [i,setI]=useState(0);
   if(!images || !images.length) return null;
   const n=images.length, img=images[i];
   const go=(d,e)=>{ e.stopPropagation(); setI(x=>(x+d+n)%n); };
   return (
-    <div className="pcar" onClick={e=>e.stopPropagation()}>
+    <div className={"pcar"+(full?" full":"")} onClick={e=>e.stopPropagation()}>
       <div className="frame">
         <img src={img.url} alt={img.title||""} loading="lazy" />
         {n>1 && (<React.Fragment>
@@ -426,6 +446,7 @@ function PlantCard({p, state, inPlan, toggle}){
             {p.nf && <span className="pill nf">N-fixer</span>}
             {p.pol && <span className="pill pol">Pollinator</span>}
             {p.decPriority && <span className="pill dec">NY priority</span>}
+            {p.deerResistant && <span className="pill deer">Deer resistant</span>}
             {inPlan && <span className="pill type">★ In plan</span>}
           </div>
         </div>
@@ -461,6 +482,7 @@ function PlantCard({p, state, inPlan, toggle}){
         <div className="exp">
           <div className="grid">
             <div><dt>Native regions</dt><dd>{p.nativeRegions && p.nativeRegions.length ? p.nativeRegions.join(", ") : "—"}</dd></div>
+            <div><dt>USDA hardiness zones</dt><dd>{p.hardinessZones||"—"}</dd></div>
             <div><dt>Edible parts</dt><dd>{p.edibleParts}</dd></div>
             <div><dt>How to prepare</dt><dd>{p.prep}</dd></div>
             <div><dt>Other uses</dt><dd>{p.otherUses}</dd></div>
@@ -486,7 +508,7 @@ function Database({plants, state, setState, plan, toggle}){
   const [sortKey,setSortKey]=useState("overall");
   const [dir,setDir]=useState(-1); // -1 desc, 1 asc
   const [types,setTypes]=useState([]); // active type filters
-  const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false});
+  const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false,deer:false,dec:false});
 
   const allTypes=[...new Set(plants.map(p=>p.type))];
   const toggleType=t=>setTypes(ts=>ts.includes(t)?ts.filter(x=>x!==t):[...ts,t]);
@@ -500,6 +522,8 @@ function Database({plants, state, setState, plan, toggle}){
       if(flags.pol && !p.pol) return false;
       if(flags.raw && p.s.raw[0]<5) return false;
       if(flags.cooked && p.s.cooked[0]<5) return false;
+      if(flags.deer && !p.deerResistant) return false;
+      if(flags.dec && !p.decPriority) return false;
       if(flags.plan && !plan.includes(p.id)) return false;
       return true;
     });
@@ -554,12 +578,37 @@ function Database({plants, state, setState, plan, toggle}){
         <button className={"chip"+(flags.pol?" on":"")} onClick={()=>toggleFlag("pol")}>Pollinator</button>
         <button className={"chip"+(flags.raw?" on":"")} onClick={()=>toggleFlag("raw")}>Good raw</button>
         <button className={"chip"+(flags.cooked?" on":"")} onClick={()=>toggleFlag("cooked")}>Good cooked</button>
+        <button className={"chip"+(flags.deer?" on":"")} onClick={()=>toggleFlag("deer")}>Deer resistant</button>
+        <button className={"chip"+(flags.dec?" on":"")} onClick={()=>toggleFlag("dec")}>NY priority</button>
         <button className={"chip"+(flags.plan?" on":"")} onClick={()=>toggleFlag("plan")}>In my plan</button>
       </div>
 
       <div className="count">{view.length} shown</div>
       {view.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />)}
       {view.length===0 && <div className="empty">No plants match those filters. Clear a filter or search to see more.</div>}
+    </div>
+  );
+}
+
+/* ---------- My Plan: forest layers (top -> bottom) ---------- */
+const LAYERS = [
+  {name:"Canopy · Trees", types:["Tree"]},
+  {name:"Shrubs", types:["Shrub"]},
+  {name:"Herbaceous", types:["Herb","Fern","Grass"]},
+  {name:"Groundcover", types:["Groundcover"]},
+  {name:"Vines", types:["Vine"]},
+];
+function PlanMiniCard({p, state, remove}){
+  const ov=overall(p,state);
+  return (
+    <div className="mini">
+      <div className="mtop">
+        <PlantImages images={p.images} full />
+        <button className="mrm" onClick={e=>{e.stopPropagation();remove(p.id);}} title="Remove from plan">✕</button>
+        <span className="mscore" style={{background:bandColor(ov),color:bandText(ov)}}>{ov}</span>
+      </div>
+      <div className="mname">{p.common}</div>
+      <div className="msci">{p.sci}</div>
     </div>
   );
 }
@@ -611,7 +660,7 @@ function MyPlan({plants, state, plan, toggle, go}){
     <div>
       <div className="pagehead"><div className="eye">My Plan · {chosen.length} plants</div>
         <h2>Your food forest</h2>
-        <p>In-memory for this local build — your plan resets on refresh. Persistence arrives with the Supabase backend.</p></div>
+        <p>Your plants, arranged by forest layer from canopy to ground.</p></div>
 
       <div className="stats">
         <div className="stat"><b>{chosen.length}</b><span>Plants</span></div>
@@ -632,8 +681,19 @@ function MyPlan({plants, state, plan, toggle, go}){
         </div>
       ))}
 
-      <div className="pagehead" style={{border:0,margin:"18px 0 8px",padding:0}}><div className="eye">Plants in your plan</div></div>
-      {chosen.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={true} toggle={toggle} />)}
+      <div className="pagehead" style={{border:0,margin:"18px 0 10px",padding:0}}><div className="eye">Forest layers</div></div>
+      {LAYERS.map(layer=>{
+        const inLayer=chosen.filter(p=>layer.types.includes(p.type));
+        if(!inLayer.length) return null;
+        return (
+          <div className="layer" key={layer.name}>
+            <h4>{layer.name}<span>{inLayer.length} plant{inLayer.length>1?"s":""}</span></h4>
+            <div className="minigrid">
+              {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={toggle} />)}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -762,6 +822,8 @@ function flat(p, state){
     "Lifecycle Score":p.s.life[0], "Ecology":p.s.eco[0], "Ecology Evidence":TIER[p.s.eco[1]],
     "Fiber/Material":p.s.fiber[0], "Medicinal":p.s.med[0], "Medicinal Evidence":TIER[p.s.med[1]],
     "Nitrogen Fixer":p.nf?"Yes":"No", "Pollinator":p.pol?"Yes":"No",
+    "Deer Resistant":p.deerResistant?"Yes":"No", "Hardiness Zones":p.hardinessZones,
+    "NY Priority":p.decPriority?"Yes":"No",
     "Edible Parts":p.edibleParts, "Other Uses":p.otherUses, "Preparation":p.prep,
     "Harvest Time":p.harvest, "Sun":p.sun, "Soil":p.soil, "Health Risks":p.risks, "Where to Buy":p.buy,
     "Sources":p.sources.map(s=>s[1]).join(" | "),

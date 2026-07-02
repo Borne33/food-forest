@@ -72,6 +72,7 @@ COLUMNS = [
     "prep", "harvest", "sun", "soil", "risks", "buy", "native_states",
     "native_regions", "native_to_us", "invasive_states", "invasive_everywhere",
     "dec_priority", "nf", "pol", "scores", "sources",
+    "hardiness_zones", "deer_resistant",
 ]
 
 
@@ -386,7 +387,8 @@ def clean_row(obj):
     row["native_regions"] = derive_regions(row.get("native_states", []))
     row.setdefault("invasive_states", [])
     row.setdefault("sources", [])
-    for b in ("native_to_us", "invasive_everywhere", "dec_priority", "nf", "pol"):
+    for b in ("native_to_us", "invasive_everywhere", "dec_priority", "nf", "pol",
+              "deer_resistant"):
         row.setdefault(b, False)
     return row
 
