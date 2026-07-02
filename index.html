@@ -91,6 +91,14 @@
   .vbar .vsrc{margin-top:10px}
   .vbar .vsrc dt{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
   .vbar .vsrc a{display:block;font-family:'Space Mono';font-size:12px;margin:2px 0;color:var(--sage-d);word-break:break-all}
+  .vbar .vphotos{margin-top:12px}
+  .vbar .vphotos dt{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+  .vbar .vthumbs{display:flex;flex-wrap:wrap;gap:8px}
+  .vbar .vthumb{position:relative;width:74px;height:56px;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#efeadc}
+  .vbar .vthumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .vbar .vthumb .rm{position:absolute;top:2px;right:2px;width:19px;height:19px;border-radius:99px;border:0;
+    background:rgba(221,75,62,.94);color:#fff;font-family:'Space Mono';font-size:11px;line-height:1;
+    display:flex;align-items:center;justify-content:center;padding:0}
   .card .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
   .card h3{margin:5px 0 1px;font-size:22px;font-weight:800;letter-spacing:-.01em}
   .card .sci{font-style:italic;color:var(--ink2);font-size:15px}
@@ -256,6 +264,11 @@ const dataProvider = {
   async setVerified(plantId, val){
     // allowed only for the admin user (enforced by RLS on plants)
     const { error } = await sb.from('plants').update({ human_verified:val }).eq('id', plantId);
+    if(error) throw error;
+  },
+  async saveImages(plantId, images, sources){
+    // admin-only (RLS): persist a pruned image list + matching sources
+    const { error } = await sb.from('plants').update({ images, sources }).eq('id', plantId);
     if(error) throw error;
   },
 };
@@ -858,7 +871,7 @@ function Auth(){
 }
 
 /* ---------- Human Verify page (admin only) ---------- */
-function VerifyPage({plants, state, plan, toggle, verifyToggle}){
+function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage}){
   const [q,setQ]=useState("");
   const [filt,setFilt]=useState("all"); // all | yes | no
   const nver=plants.filter(p=>p.humanVerified).length;
@@ -896,6 +909,20 @@ function VerifyPage({plants, state, plan, toggle, verifyToggle}){
                 Human Verified
               </label>
             </div>
+            {(p.images||[]).length>0 && (
+              <div className="vphotos">
+                <dt>Photos ({p.images.length}) — remove any wrong ones</dt>
+                <div className="vthumbs">
+                  {p.images.map((im)=>(
+                    <div className="vthumb" key={im.url} title={im.title||""}>
+                      <img src={im.url} alt={im.title||""} loading="lazy" />
+                      <button className="rm" title="Remove this photo"
+                              onClick={()=>{ if(confirm("Remove this photo (and its source) from "+p.common+"?")) removeImage(p.id, im.url); }}>✕</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="vsrc">
               <dt>All sources ({(p.sources||[]).length})</dt>
               {(p.sources||[]).map((s,i)=><a key={i} href={s[1]} target="_blank" rel="noreferrer">↗ {s[0]}</a>)}
@@ -949,6 +976,18 @@ function App(){
     dataProvider.setVerified(id,val).catch(err=>{ console.error(err);
       setPlants(ps=>ps.map(p=>p.id===id?{...p,humanVerified:!val}:p)); }); // revert on failure
   };
+  const removeImage=(id,url)=>{
+    const p=plants.find(x=>x.id===id); if(!p) return;
+    const img=(p.images||[]).find(im=>im.url===url);
+    const images=(p.images||[]).filter(im=>im.url!==url);
+    // also drop the matching photo source (by its Commons url) so they stay in sync
+    const sources=(img&&img.source)
+      ? (p.sources||[]).filter(s=>!(Array.isArray(s)&&s[1]===img.source)) : (p.sources||[]);
+    const prevImg=p.images, prevSrc=p.sources;
+    setPlants(ps=>ps.map(x=>x.id===id?{...x,images,sources}:x)); // optimistic
+    dataProvider.saveImages(id,images,sources).catch(err=>{ console.error(err);
+      setPlants(ps=>ps.map(x=>x.id===id?{...x,images:prevImg,sources:prevSrc}:x)); }); // revert
+  };
   const go=p=>{ setPage(p); setMenu(false); };
   const signOut=async()=>{ setMenu(false); await auth.signOut(); };
 
@@ -998,7 +1037,7 @@ function App(){
           page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
-          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} /> :
+          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} /> :
           <RawData plants={plants} state={state} />
         )}
       </div>
