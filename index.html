@@ -237,7 +237,7 @@ function regionGroupOf(st){
 
 /* ---------- Scoring engine ---------- */
 const TIER = {P:"peer-reviewed",E:"ethnobotanical",A:"anecdotal",N:"no evidence"};
-const WEIGHTS = {nativity:4, raw:1.5, cooked:1.5, life:1, eco:1, fiber:0.7, med:0.3};
+const WEIGHTS = {nativity:4, raw:2, cooked:2, life:1, eco:1, fiber:0.7, med:0.3};
 
 function nativity(p, st){
   if(p.invasiveEverywhere || (p.invasiveStates||[]).includes(st)) return {v:-5,label:"Invasive here"};
@@ -270,8 +270,8 @@ function catText(v){ return bandText(v*10); }
 /* category metadata for guide + table */
 const CATS = [
   {key:"nativity", label:"Nativity", weight:4, abbr:"NAT"},
-  {key:"raw", label:"Edible Raw", weight:1.5, abbr:"RAW"},
-  {key:"cooked", label:"Edible Cooked", weight:1.5, abbr:"COOK"},
+  {key:"raw", label:"Edible Raw", weight:2, abbr:"RAW"},
+  {key:"cooked", label:"Edible Cooked", weight:2, abbr:"COOK"},
   {key:"life", label:"Lifecycle", weight:1, abbr:"LIFE"},
   {key:"eco", label:"Ecology", weight:1, abbr:"ECO"},
   {key:"fiber", label:"Fiber / Material", weight:0.7, abbr:"FIBER"},
@@ -579,7 +579,7 @@ function ScoringGuide(){
       <div className="gcat">
         <h3>Overall score &amp; color bands<span className="w">raw weighted sum</span></h3>
         <div className="scale">
-          <p style={{margin:"4px 0 10px",fontSize:15}}>Overall = Nativity×4 + Edible&nbsp;Raw×1.5 + Edible&nbsp;Cooked×1.5 + Lifecycle×1 + Ecology×1 + Fiber×0.7 + Medicinal×0.3. Range ≈ −20 to 100.</p>
+          <p style={{margin:"4px 0 10px",fontSize:15}}>Overall = Nativity×4 + Edible&nbsp;Raw×2 + Edible&nbsp;Cooked×2 + Lifecycle×1 + Ecology×1 + Fiber×0.7 + Medicinal×0.3. Range ≈ −20 to 110.</p>
           <div className="legend">
             <span style={{background:"var(--blue)",color:"#fff"}}>Blue 90–110</span>
             <span style={{background:"var(--green)",color:"#fff"}}>Green 80–89</span>
