@@ -382,6 +382,7 @@ function PlantCard({p, state, inPlan, toggle}){
       {open && (
         <div className="exp">
           <div className="grid">
+            <div><dt>Native regions</dt><dd>{p.nativeRegions && p.nativeRegions.length ? p.nativeRegions.join(", ") : "—"}</dd></div>
             <div><dt>Edible parts</dt><dd>{p.edibleParts}</dd></div>
             <div><dt>How to prepare</dt><dd>{p.prep}</dd></div>
             <div><dt>Other uses</dt><dd>{p.otherUses}</dd></div>
@@ -640,22 +641,6 @@ function ScoringGuide(){
         </div>
       </div>
 
-      <div className="gcat">
-        <h3>Native regions<span className="w">for the +8 “in region” score</span></h3>
-        <div className="scale">
-          <p style={{margin:"4px 0 12px",fontSize:15}}>Nativity is scored by your state, but a plant also earns partial credit (a Nativity of 8) when it's native across your <b>broader region</b>. The 50 states plus DC are grouped into the six regions below; a plant is tagged with a region when it's native to at least half of that region's states.</p>
-          <RegionMap/>
-          <div style={{marginTop:16}}>
-            {Object.keys(REGION).map(reg=>(
-              <div className="lvl" style={{gridTemplateColumns:"168px 1fr"}} key={reg}>
-                <span className="b" style={{background:`var(${REGION_COLORS[reg]})`,color:REGION_DARKTEXT[reg]?"#2b2a22":"#fff",fontSize:11}}>{reg}</span>
-                <p className="mono" style={{fontSize:12.5,letterSpacing:".02em"}}>{REGION[reg].join(" · ")}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {CATS.map(c=>(
         <div className="gcat" key={c.key}>
           <h3>{c.label}<span className="w">weight ×{c.weight}</span></h3>
@@ -666,6 +651,20 @@ function ScoringGuide(){
                 <p>{desc}</p>
               </div>
             ))}
+            {c.key==="nativity" && (
+              <div style={{marginTop:14,borderTop:"1px dashed var(--dot)",paddingTop:14}}>
+                <p style={{margin:"0 0 12px",fontSize:14.5}}>The <b>+8 "native to region"</b> credit uses the six regions below (50 states + DC). A plant is tagged with a region when it's native to at least half of that region's states.</p>
+                <RegionMap/>
+                <div style={{marginTop:16}}>
+                  {Object.keys(REGION).map(reg=>(
+                    <div className="lvl" style={{gridTemplateColumns:"168px 1fr"}} key={reg}>
+                      <span className="b" style={{background:`var(${REGION_COLORS[reg]})`,color:REGION_DARKTEXT[reg]?"#2b2a22":"#fff",fontSize:11}}>{reg}</span>
+                      <p className="mono" style={{fontSize:12.5,letterSpacing:".02em"}}>{REGION[reg].join(" · ")}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ))}
