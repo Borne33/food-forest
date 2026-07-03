@@ -237,6 +237,20 @@
   .viewtoggle button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .foresttriad{display:grid;gap:16px;grid-template-columns:minmax(0,0.85fr) minmax(0,1.9fr) minmax(0,1fr);grid-template-areas:"ins layers sug";align-items:start}
   @media(max-width:860px){ .foresttriad{grid-template-columns:1fr;grid-template-areas:"ins" "sug" "layers"} }
+  /* ---------- Risk Register ---------- */
+  .riskwrap{background:#f4ddd7;border:1.5px solid #e3b1a8;border-radius:6px;padding:14px 16px}
+  .risksum{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .rpill{font-family:'Space Mono';font-size:11px;padding:3px 11px;border-radius:99px;letter-spacing:.04em}
+  .rpill.hi{background:#9a2c22;color:#fff}
+  .rpill.mo{background:#efb3a7;color:#7a1c12}
+  .rpill.lo{background:#fbf6f2;color:var(--ink2);border:1px solid #e3b1a8}
+  .rrow{display:flex;flex-wrap:wrap;gap:3px 12px;padding:10px 0;border-bottom:1px solid #e3b1a8;align-items:baseline}
+  .rrow:last-child{border-bottom:0}
+  .rdot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;align-self:flex-start;margin-top:5px}
+  .rnm{font-size:14px;font-weight:600;flex:0 0 auto;width:180px}
+  .rnm .rtag{display:block;font-family:'Space Mono';font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:2px}
+  .rtxt{font-size:13.5px;color:var(--ink2);flex:1 1 200px;min-width:0}
+  @media(max-width:560px){ .rnm{width:100%} }
   .empty{border:1px dashed var(--line);border-radius:5px;padding:30px;text-align:center;color:var(--ink2)}
   /* guide */
   .gcat{border:1px solid var(--line);background:#f7f4ea;border-radius:5px;margin-bottom:16px;overflow:hidden}
@@ -514,6 +528,38 @@ function soilFit(p, sel){
 }
 function fitCls(v){ return v>=1?"ok":(v>=0.5?"mid":"no"); }
 function pctColor(pct){ return pct>=GOOD_FIT?"var(--green)":(pct>=40?"var(--yellow)":"var(--red)"); }
+
+/* ---- Risk register: severity from each plant's Risk text ---- */
+function riskSeverity(p){
+  const raw=p.risks||""; const t=raw.toLowerCase().trim();
+  if(!t || /^(none|no significant|no notable|not a food)/.test(t) || /no significant (hazard|toxicity)|none significant|no meaningful/.test(t)) return "low";
+  if(/TOXIC|POISON|HIGHLY/.test(raw) || /poison|fatal|deadly|severely toxic|highly toxic|cytisine|aristolochic|carcinogen|all parts/.test(t)) return "high";
+  if(/toxic|cyanogenic|irritat|sting|saponin|nausea|laxativ|emetic|acrid|photosensit|pyrrolizidine|caution|pregnan|hallucin|ergot|kidney|hepato|thorn|spine|prickl|bitter/.test(t)) return "mod";
+  return "low";
+}
+const RISK_META={high:{label:"High",dot:"#9a2c22"}, mod:{label:"Moderate",dot:"#dd4b3e"}, low:{label:"Low",dot:"#b98c82"}};
+const RISK_ORDER={high:0, mod:1, low:2};
+function RiskRegister({chosen}){
+  const rows=chosen.map(p=>({p, sev:riskSeverity(p)}))
+    .sort((a,b)=>RISK_ORDER[a.sev]-RISK_ORDER[b.sev] || a.p.common.localeCompare(b.p.common));
+  const counts={high:0,mod:0,low:0}; rows.forEach(r=>counts[r.sev]++);
+  return (
+    <div className="riskwrap">
+      <div className="risksum">
+        <span className="rpill hi">{counts.high} high</span>
+        <span className="rpill mo">{counts.mod} moderate</span>
+        <span className="rpill lo">{counts.low} low or none</span>
+      </div>
+      {rows.map(({p,sev})=>(
+        <div className="rrow" key={p.id}>
+          <span className="rdot" style={{background:RISK_META[sev].dot}}></span>
+          <div className="rnm">{p.common}<span className="rtag" style={{color:RISK_META[sev].dot}}>{RISK_META[sev].label}</span></div>
+          <div className="rtxt">{p.risks || "No significant hazards noted."}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /* Plant data now comes from Supabase via dataProvider.getPlants(); see CONFIG above. */
 
@@ -914,12 +960,10 @@ function MyPlan({plants, state, plan, toggle, go}){
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} />}
 
-      {view==="risk" && (
-        <div className="empty" style={{borderColor:"var(--red)",color:"var(--ink)"}}>
-          <b>Risk Register — choose a design.</b>
-          <div style={{margin:"8px 0 0",fontSize:14,color:"var(--ink2)"}}>Pick one of the three Risk Register layouts I mocked up in the chat and I'll build it right here.</div>
-        </div>
-      )}
+      {view==="risk" && (<React.Fragment>
+        <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Risk register · from each plant's cautions</div></div>
+        <RiskRegister chosen={chosen} />
+      </React.Fragment>)}
 
       {detail && (
         <div className="pmodal">
