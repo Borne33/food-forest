@@ -64,6 +64,14 @@ database.
 Nativity is **not** stored as a score — the app computes it live from
 `native_states` / `native_regions` for the user's selected state.
 
+### "No Data Found" convention (important for lesser-known plants)
+
+When no reliable information exists for a field, **leave it empty** — the app
+shows **"No Data Found"** for empty prose fields in the expanded card. For the
+six **category scores**, no data means a **score of 0** with evidence tier `N`
+(no evidence): `[0, "N"]`. Do not invent a value to fill a gap; an honest 0 /
+"No Data Found" is correct and will get more common as we add obscure species.
+
 ## Fully-automated drafting (optional)
 
 Route A keeps you in the loop for free. If you later want hands-off drafting,

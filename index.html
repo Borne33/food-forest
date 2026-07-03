@@ -101,6 +101,7 @@
   .fdot{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
   .fdot.ok{background:var(--green)} .fdot.mid{background:var(--yellow);color:#2b2a22} .fdot.no{background:var(--red)}
   .fpct{font-family:'Space Mono';font-size:13px;font-weight:700}
+  .ovmini{font-family:'Space Mono';font-size:11px;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:6px}
   .ssug{border-bottom:1px solid var(--soil-line);padding:9px 0}
   .ssug:last-child{border-bottom:0}
   .ssug .top{display:flex;align-items:center;gap:8px}
@@ -181,6 +182,24 @@
   .vbar .vthumb .rm{position:absolute;top:2px;right:2px;width:19px;height:19px;border-radius:99px;border:0;
     background:rgba(221,75,62,.94);color:#fff;font-family:'Space Mono';font-size:11px;line-height:1;
     display:flex;align-items:center;justify-content:center;padding:0}
+  .vbar .vrow{justify-content:space-between}
+  .editbtn{border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);border-radius:4px;padding:5px 11px;font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+  .peditor{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:14px 16px;margin:10px 0 16px}
+  .peditor h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);margin:15px 0 7px;border-bottom:1px solid var(--line);padding-bottom:4px}
+  .peditor h5:first-child{margin-top:0}
+  .peditor .frow{display:grid;grid-template-columns:120px 1fr;gap:8px;align-items:start;margin-bottom:6px}
+  .peditor .frow>label{font-family:'Space Mono';font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);padding-top:7px}
+  .peditor input,.peditor textarea,.peditor select{width:100%;font-family:'Spectral';font-size:14px;background:#fbf9f2;border:1.5px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink)}
+  .peditor textarea{min-height:50px;resize:vertical}
+  .peditor .checks{display:flex;flex-wrap:wrap;gap:8px 16px}
+  .peditor .checks label{display:flex;align-items:center;gap:5px;font-family:'Space Mono';font-size:12px;color:var(--ink)}
+  .peditor .checks input{width:auto}
+  .peditor .scorerow{display:grid;grid-template-columns:110px 62px 1fr;gap:8px;align-items:center;margin-bottom:5px}
+  .peditor .listrow{display:flex;gap:6px;margin-bottom:5px;align-items:center}
+  .peditor .rmbtn{flex:0 0 auto;width:30px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:5px 0;font-family:'Space Mono';font-size:12px;color:var(--red)}
+  .peditor .addbtn2{border:1.5px dashed var(--line);background:transparent;border-radius:4px;padding:5px 11px;font-family:'Space Mono';font-size:11px;color:var(--ink2);margin-top:3px}
+  .peditor .save{border:1.5px solid var(--sage-d);background:var(--sage-d);color:var(--paper);border-radius:4px;padding:9px 18px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin:14px 8px 0 0}
+  .peditor .cancel{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;padding:9px 18px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:14px}
   .card .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
   .card h3{margin:5px 0 1px;font-size:22px;font-weight:800;letter-spacing:-.01em}
   .card .sci{font-style:italic;color:var(--ink2);font-size:15px}
@@ -224,10 +243,12 @@
   .statebar select{font-family:'Spectral';font-size:15px;background:#fbf9f2;border:1.5px solid var(--line);border-radius:4px;padding:6px 8px}
   .statebar .note{font-size:13px;color:var(--ink2);font-style:italic}
   /* stats / plan */
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:18px}
-  .stat{border:1px solid var(--line);background:#f7f4ea;border-radius:4px;padding:12px 14px}
-  .stat b{display:block;font-family:'Space Mono';font-size:26px}
-  .stat span{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .stats{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:18px}
+  .stat{border:1px solid var(--line);background:#fbf9f2;border-radius:4px;padding:7px 9px}
+  .stat .lab{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.2}
+  .stat .v{font-family:'Space Mono';font-size:19px;font-weight:700;padding:0 7px;border-radius:3px;display:inline-block;margin-top:6px}
+  @media(max-width:760px){ .stats{grid-template-columns:repeat(3,1fr)} }
+  @media(max-width:430px){ .stats{grid-template-columns:repeat(2,1fr)} }
   .insight{border-left:3px solid var(--sage);background:#f0f3e9;padding:10px 14px;border-radius:0 4px 4px 0;margin-bottom:9px;font-size:15px}
   .insight b{font-weight:600}
   .sugg{border:1px dashed var(--dot);border-radius:4px;padding:10px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#faf7ef}
@@ -295,6 +316,12 @@
     .card .ov b{font-size:23px;min-width:52px}
     .sbox{flex:1 1 28%;min-width:0}
     .wrap{padding:18px 12px 80px}
+    /* stack the head so the picture never overlaps the name/score on mobile */
+    .card .head{flex-wrap:wrap}
+    .card .head .info{flex:1 1 60%}
+    .card .head .rgt{order:2}
+    .card .head .pcar{order:3;flex:1 1 100%;width:100%;margin-top:8px}
+    .card .head .pcar .frame{width:100%;height:150px}
   }
 </style>
 </head>
@@ -380,6 +407,12 @@ const dataProvider = {
     // admin-only (RLS): persist a pruned image list + matching sources
     const { error } = await sb.from('plants').update({ images, sources }).eq('id', plantId);
     if(error) throw error;
+  },
+  async updatePlant(plantId, patch){
+    // admin-only (RLS): edit plant fields; returns the fresh row
+    const { data, error } = await sb.from('plants').update(patch).eq('id', plantId).select('*').single();
+    if(error) throw error;
+    return rowToPlant(data);
   },
 };
 
@@ -488,6 +521,8 @@ function fruitLabel(p){
   if(!p.minPlantsFruit) return null;
   return p.minPlantsFruit>=2 ? p.minPlantsFruit+" to fruit" : "Self-fruitful";
 }
+/* show "No Data Found" for empty fields (matters most for lesser-known plants) */
+function nd(v){ return (v!=null && String(v).trim()!=="") ? v : "No Data Found"; }
 
 /* ---- Soil Exam: fit model ---- */
 const TEXTURES=["Sandy","Loam","Clay","Silt"];
@@ -622,7 +657,7 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
           <div className="sci">{p.sci}</div>
           <div className="pills">
             <span className={"pill "+(nat.v<0?"inv":"nat")}>{nat.label}</span>
-            <span className="pill life">{p.life}</span>
+            <span className="pill life">{nd(p.life)}</span>
             {p.nf && <span className="pill nf">N-fixer</span>}
             {p.pol && <span className="pill pol">Pollinator</span>}
             {p.decPriority && <span className="pill dec">NY priority</span>}
@@ -666,12 +701,12 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
             <div><dt>USDA hardiness zones</dt><dd>{p.hardinessZones||"—"}</dd></div>
             {p.yearsToFruit && <div><dt>Years to fruit</dt><dd>{p.yearsToFruit} years</dd></div>}
             {p.minPlantsFruit && <div><dt>Min. plants to fruit</dt><dd>{p.minPlantsFruit>=2 ? p.minPlantsFruit+" (needs a cross-pollination partner)" : "1 (self-fruitful)"}</dd></div>}
-            <div><dt>Edible parts</dt><dd>{p.edibleParts}</dd></div>
-            <div><dt>How to prepare</dt><dd>{p.prep}</dd></div>
-            <div><dt>Other uses</dt><dd>{p.otherUses}</dd></div>
-            <div><dt>Harvest time</dt><dd>{p.harvest}</dd></div>
-            <div><dt>Sun</dt><dd>{p.sun}</dd></div>
-            <div><dt>Soil</dt><dd>{p.soil}
+            <div><dt>Edible parts</dt><dd>{nd(p.edibleParts)}</dd></div>
+            <div><dt>How to prepare</dt><dd>{nd(p.prep)}</dd></div>
+            <div><dt>Other uses</dt><dd>{nd(p.otherUses)}</dd></div>
+            <div><dt>Harvest time</dt><dd>{nd(p.harvest)}</dd></div>
+            <div><dt>Sun</dt><dd>{nd(p.sun)}</dd></div>
+            <div><dt>Soil</dt><dd>{nd(p.soil)}
               {(p.soilPh||p.soilN) && (
                 <div className="soilnut">
                   {p.soilPh && <div><b>pH</b> {p.soilPh}</div>}
@@ -681,8 +716,8 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
                 </div>
               )}
             </dd></div>
-            <div><dt>Risks</dt><dd className="risk">{p.risks}</dd></div>
-            <div><dt>Where to buy</dt><dd>{p.buy}</dd></div>
+            <div><dt>Risks</dt><dd className="risk">{nd(p.risks)}</dd></div>
+            <div><dt>Where to buy</dt><dd>{nd(p.buy)}</dd></div>
           </div>
           <div className="srcs">
             <dt>Supporting sources</dt>
@@ -715,7 +750,7 @@ function Database({plants, state, setState, plan, toggle}){
   const [sortKey,setSortKey]=useState("overall");
   const [dir,setDir]=useState(-1); // -1 desc, 1 asc
   const [types,setTypes]=useState([]); // active type filters
-  const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false,deer:false,dec:false});
+  const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false,notplan:false,deer:false,dec:false});
 
   const allTypes=[...new Set(plants.map(p=>p.type))];
   const toggleType=t=>setTypes(ts=>ts.includes(t)?ts.filter(x=>x!==t):[...ts,t]);
@@ -732,6 +767,7 @@ function Database({plants, state, setState, plan, toggle}){
       if(flags.deer && !p.deerResistant) return false;
       if(flags.dec && !p.decPriority) return false;
       if(flags.plan && !plan.includes(p.id)) return false;
+      if(flags.notplan && plan.includes(p.id)) return false;
       return true;
     });
     const val=p=>{
@@ -797,6 +833,7 @@ function Database({plants, state, setState, plan, toggle}){
         <button className={"chip"+(flags.deer?" on":"")} onClick={()=>toggleFlag("deer")}>Deer resistant</button>
         <button className={"chip"+(flags.dec?" on":"")} onClick={()=>toggleFlag("dec")}>NY priority</button>
         <button className={"chip"+(flags.plan?" on":"")} onClick={()=>toggleFlag("plan")}>In my plan</button>
+        <button className={"chip"+(flags.notplan?" on":"")} onClick={()=>toggleFlag("notplan")}>Not in plan</button>
       </div>
 
       <div className="count">{view.length} shown{pageCount>1?` · page ${curPage} of ${pageCount}`:""}</div>
@@ -844,6 +881,7 @@ function PlanMiniCard({p, state, remove, onOpen}){
 function MyPlan({plants, state, plan, toggle, go}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | soil | risk
+  const [soil,setSoil]=useState({tex:["Loam"], dr:["Well-drained"], phL:["Neutral (6.5–7.5)"]});
   const chosen=plants.filter(p=>plan.includes(p.id));
   if(chosen.length===0){
     return (
@@ -901,6 +939,22 @@ function MyPlan({plants, state, plan, toggle, go}){
   // whole-forest category scores (average per category × 10, so each is out of 100)
   const catAvg=k=>Math.round(chosen.reduce((a,p)=>a+p.s[k][0],0)/chosen.length*10);
   const CAT_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["fiber","Fiber"],["med","Medicinal"]];
+  // overall soil fit (from the Soil Examination view's current profile)
+  const soilSel={tex:soil.tex, dr:soil.dr, ph:PH_BANDS.filter(b=>soil.phL.includes(b.label))};
+  const avgSoilFit=chosen.length?Math.round(chosen.reduce((a,p)=>a+soilFit(p,soilSel).pct,0)/chosen.length):0;
+  const nTypes=new Set(chosen.map(p=>p.type)).size;
+  const NEUTRAL={bg:"#ece7d7", fg:"var(--ink)"};
+  const scoreBox=(label,v)=>({label, val:v, bg:bandColor(v), fg:bandText(v)});
+  const sfC=pctColor(avgSoilFit);
+  const summaryBoxes=[
+    {label:"Overall Score", val:avg, bg:bandColor(avg), fg:bandText(avg)},
+    scoreBox("Edible Raw",catAvg("raw")), scoreBox("Edible Cooked",catAvg("cooked")),
+    scoreBox("Lifecycle",catAvg("life")), scoreBox("Ecology",catAvg("eco")),
+    scoreBox("Fiber",catAvg("fiber")), scoreBox("Medicinal",catAvg("med")),
+    {label:"Plants", val:chosen.length, ...NEUTRAL}, {label:"Layers/types", val:nTypes, ...NEUTRAL},
+    {label:"N-fixers", val:nfix.length, ...NEUTRAL}, {label:"Pollinator", val:polls.length, ...NEUTRAL},
+    {label:"Overall Soil Fit", val:avgSoilFit+"%", bg:sfC, fg:sfC==="var(--yellow)"?"#2b2a22":"#fff"},
+  ];
 
   return (
     <div>
@@ -916,14 +970,12 @@ function MyPlan({plants, state, plan, toggle, go}){
 
       {view==="layers" && (<React.Fragment>
         <div className="stats">
-          <div className="stat"><b>{chosen.length}</b><span>Plants</span></div>
-          <div className="stat"><b style={{color:bandColor(avg)}}>{avg}</b><span>Avg score</span></div>
-          <div className="stat"><b>{nfix.length}</b><span>N-fixers</span></div>
-          <div className="stat"><b>{polls.length}</b><span>Pollinator</span></div>
-          <div className="stat"><b>{new Set(chosen.map(p=>p.type)).size}</b><span>Layers/types</span></div>
-          {CAT_KEYS.map(([k,label])=>{ const v=catAvg(k); return (
-            <div className="stat" key={k}><b style={{color:bandColor(v)}}>{v}</b><span>{label} /100</span></div>
-          );})}
+          {summaryBoxes.map(b=>(
+            <div className="stat" key={b.label}>
+              <div className="lab">{b.label}</div>
+              <div className="v" style={{background:b.bg, color:b.fg}}>{b.val}</div>
+            </div>
+          ))}
         </div>
 
         <div className="foresttriad">
@@ -958,7 +1010,7 @@ function MyPlan({plants, state, plan, toggle, go}){
         </div>
       </React.Fragment>)}
 
-      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} />}
+      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} soil={soil} setSoil={setSoil} />}
 
       {view==="risk" && (<React.Fragment>
         <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Risk register · from each plant's cautions</div></div>
@@ -1228,9 +1280,140 @@ function Auth(){
 }
 
 /* ---------- Human Verify page (admin only) ---------- */
-function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage}){
+/* ---------- Plant editor (admin, on the Verify page) ---------- */
+const SCORE_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["fiber","Fiber"],["med","Medicinal"]];
+const TIER_OPTS=[["P","peer-reviewed"],["E","ethnobotanical"],["A","anecdotal"],["N","no evidence"]];
+function plantToForm(p){
+  return {
+    common:p.common||"", sci:p.sci||"", family:p.family||"", type:p.type||"", life:p.life||"",
+    edible_parts:p.edibleParts||"", other_uses:p.otherUses||"", prep:p.prep||"", harvest:p.harvest||"",
+    sun:p.sun||"", soil:p.soil||"", risks:p.risks||"", buy:p.buy||"",
+    hardiness_zones:p.hardinessZones||"", years_to_fruit:p.yearsToFruit||"", min_plants_fruit:p.minPlantsFruit==null?"":p.minPlantsFruit,
+    nf:!!p.nf, pol:!!p.pol, deer_resistant:!!p.deerResistant, dec_priority:!!p.decPriority,
+    native_to_us:!!p.nativeToUS, invasive_everywhere:!!p.invasiveEverywhere,
+    native_states:(p.nativeStates||[]).join(", "), native_regions:(p.nativeRegions||[]).join(", "),
+    invasive_states:(p.invasiveStates||[]).join(", "),
+    soil_ph:p.soilPh||"", soil_n:p.soilN||"", soil_p:p.soilP||"", soil_k:p.soilK||"",
+    soil_texture:(p.soilTexture||[]).join(", "), soil_drainage:(p.soilDrainage||[]).join(", "),
+    scores:Object.fromEntries(SCORE_KEYS.map(([k])=>[k,[p.s[k][0],p.s[k][1]]])),
+    images:(p.images||[]).map(im=>({url:im.url||"",title:im.title||"",source:im.source||""})),
+    sources:(p.sources||[]).map(s=>[s[0]||"",s[1]||""]),
+  };
+}
+function formToPatch(f){
+  const arr=s=>String(s||"").split(",").map(x=>x.trim()).filter(Boolean);
+  return {
+    common:f.common, sci:f.sci, family:f.family, type:f.type, life:f.life,
+    edible_parts:f.edible_parts, other_uses:f.other_uses, prep:f.prep, harvest:f.harvest,
+    sun:f.sun, soil:f.soil, risks:f.risks, buy:f.buy,
+    hardiness_zones:f.hardiness_zones, years_to_fruit:f.years_to_fruit,
+    min_plants_fruit:f.min_plants_fruit===""?null:Number(f.min_plants_fruit),
+    nf:f.nf, pol:f.pol, deer_resistant:f.deer_resistant, dec_priority:f.dec_priority,
+    native_to_us:f.native_to_us, invasive_everywhere:f.invasive_everywhere,
+    native_states:arr(f.native_states), native_regions:arr(f.native_regions), invasive_states:arr(f.invasive_states),
+    soil_ph:f.soil_ph, soil_n:f.soil_n, soil_p:f.soil_p, soil_k:f.soil_k,
+    soil_texture:arr(f.soil_texture), soil_drainage:arr(f.soil_drainage),
+    scores:Object.fromEntries(SCORE_KEYS.map(([k])=>[k,[Number(f.scores[k][0])||0, f.scores[k][1]]])),
+    images:f.images.filter(im=>im.url.trim()).map(im=>({url:im.url.trim(),title:im.title.trim(),source:im.source.trim()})),
+    sources:f.sources.filter(s=>s[1].trim()).map(s=>[s[0].trim(),s[1].trim()]),
+  };
+}
+function PlantEditor({p, onSave, onCancel}){
+  const [f,setF]=useState(()=>plantToForm(p));
+  const [busy,setBusy]=useState(false);
+  const [err,setErr]=useState(null);
+  const set=(k,v)=>setF(o=>({...o,[k]:v}));
+  const T=(k)=><textarea value={f[k]} onChange={e=>set(k,e.target.value)} />;
+  const I=(k,type)=><input type={type||"text"} value={f[k]} onChange={e=>set(k,e.target.value)} />;
+  const C=(k,label)=><label><input type="checkbox" checked={f[k]} onChange={e=>set(k,e.target.checked)} />{label}</label>;
+  const setScore=(k,i,v)=>setF(o=>({...o,scores:{...o.scores,[k]:i===0?[v,o.scores[k][1]]:[o.scores[k][0],v]}}));
+  const setImg=(i,k,v)=>setF(o=>({...o,images:o.images.map((im,j)=>j===i?{...im,[k]:v}:im)}));
+  const setSrc=(i,k,v)=>setF(o=>({...o,sources:o.sources.map((s,j)=>j===i?(k===0?[v,s[1]]:[s[0],v]):s)}));
+  const save=async()=>{
+    setBusy(true); setErr(null);
+    try{ await onSave(p.id, formToPatch(f)); onCancel(); }
+    catch(e){ setErr(e.message||String(e)); setBusy(false); }
+  };
+  return (
+    <div className="peditor">
+      <h5>Identity</h5>
+      <div className="frow"><label>Common name</label>{I("common")}</div>
+      <div className="frow"><label>Scientific</label>{I("sci")}</div>
+      <div className="frow"><label>Family</label>{I("family")}</div>
+      <div className="frow"><label>Type</label>{I("type")}</div>
+      <div className="frow"><label>Lifecycle</label>{I("life")}</div>
+
+      <h5>Details</h5>
+      <div className="frow"><label>Edible parts</label>{T("edible_parts")}</div>
+      <div className="frow"><label>Other uses</label>{T("other_uses")}</div>
+      <div className="frow"><label>How to prepare</label>{T("prep")}</div>
+      <div className="frow"><label>Harvest time</label>{T("harvest")}</div>
+      <div className="frow"><label>Sun</label>{T("sun")}</div>
+      <div className="frow"><label>Soil</label>{T("soil")}</div>
+      <div className="frow"><label>Risks</label>{T("risks")}</div>
+      <div className="frow"><label>Where to buy</label>{T("buy")}</div>
+
+      <h5>Category scores (0–10 + evidence tier)</h5>
+      {SCORE_KEYS.map(([k,label])=>(
+        <div className="scorerow" key={k}>
+          <span style={{fontFamily:"'Space Mono'",fontSize:11}}>{label}</span>
+          <input type="number" min="0" max="10" value={f.scores[k][0]} onChange={e=>setScore(k,0,e.target.value)} />
+          <select value={f.scores[k][1]} onChange={e=>setScore(k,1,e.target.value)}>
+            {TIER_OPTS.map(([v,l])=><option key={v} value={v}>{l}</option>)}
+          </select>
+        </div>
+      ))}
+
+      <h5>Traits</h5>
+      <div className="checks">{C("nf","N-fixer")}{C("pol","Pollinator")}{C("deer_resistant","Deer resistant")}{C("dec_priority","NY priority")}{C("native_to_us","Native to US")}{C("invasive_everywhere","Invasive everywhere")}</div>
+      <div className="frow" style={{marginTop:8}}><label>Hardiness zones</label>{I("hardiness_zones")}</div>
+      <div className="frow"><label>Years to fruit</label>{I("years_to_fruit")}</div>
+      <div className="frow"><label>Min plants to fruit</label>{I("min_plants_fruit","number")}</div>
+
+      <h5>Nativity (comma-separated 2-letter codes / region names)</h5>
+      <div className="frow"><label>Native states</label>{I("native_states")}</div>
+      <div className="frow"><label>Native regions</label>{I("native_regions")}</div>
+      <div className="frow"><label>Invasive states</label>{I("invasive_states")}</div>
+
+      <h5>Soil</h5>
+      <div className="frow"><label>Soil pH</label>{I("soil_ph")}</div>
+      <div className="frow"><label>Nitrogen (N)</label>{I("soil_n")}</div>
+      <div className="frow"><label>Phosphorus (P)</label>{I("soil_p")}</div>
+      <div className="frow"><label>Potassium (K)</label>{I("soil_k")}</div>
+      <div className="frow"><label>Texture (csv)</label>{I("soil_texture")}</div>
+      <div className="frow"><label>Drainage (csv)</label>{I("soil_drainage")}</div>
+
+      <h5>Pictures</h5>
+      {f.images.map((im,i)=>(
+        <div className="listrow" key={i}>
+          <input type="text" placeholder="image URL" value={im.url} onChange={e=>setImg(i,"url",e.target.value)} />
+          <input type="text" placeholder="caption" value={im.title} onChange={e=>setImg(i,"title",e.target.value)} style={{maxWidth:140}} />
+          <button className="rmbtn" onClick={()=>setF(o=>({...o,images:o.images.filter((_,j)=>j!==i)}))}>✕</button>
+        </div>
+      ))}
+      <button className="addbtn2" onClick={()=>setF(o=>({...o,images:[...o.images,{url:"",title:"",source:""}]}))}>+ Add picture</button>
+
+      <h5>Sources</h5>
+      {f.sources.map((s,i)=>(
+        <div className="listrow" key={i}>
+          <input type="text" placeholder="label" value={s[0]} onChange={e=>setSrc(i,0,e.target.value)} style={{maxWidth:150}} />
+          <input type="text" placeholder="URL" value={s[1]} onChange={e=>setSrc(i,1,e.target.value)} />
+          <button className="rmbtn" onClick={()=>setF(o=>({...o,sources:o.sources.filter((_,j)=>j!==i)}))}>✕</button>
+        </div>
+      ))}
+      <button className="addbtn2" onClick={()=>setF(o=>({...o,sources:[...o.sources,["",""]]}))}>+ Add source</button>
+
+      {err && <div className="authmsg err" style={{marginTop:10}}>{err}</div>}
+      <div><button className="save" onClick={save} disabled={busy}>{busy?"Saving…":"Save changes"}</button>
+        <button className="cancel" onClick={onCancel} disabled={busy}>Cancel</button></div>
+    </div>
+  );
+}
+
+function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage, updatePlant}){
   const [q,setQ]=useState("");
   const [filt,setFilt]=useState("all"); // all | yes | no
+  const [editingId,setEditingId]=useState(null);
   const nver=plants.filter(p=>p.humanVerified).length;
   const view=plants.filter(p=>{
     if(filt==="yes" && !p.humanVerified) return false;
@@ -1265,7 +1448,10 @@ function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage}){
                        onChange={e=>verifyToggle(p.id, e.target.checked)} />
                 Human Verified
               </label>
+              <button className="editbtn" onClick={()=>setEditingId(editingId===p.id?null:p.id)}>
+                {editingId===p.id?"Close editor":"✎ Edit data"}</button>
             </div>
+            {editingId===p.id && <PlantEditor p={p} onSave={updatePlant} onCancel={()=>setEditingId(null)} />}
             {(p.images||[]).length>0 && (
               <div className="vphotos">
                 <dt>Photos ({p.images.length}) — remove any wrong ones</dt>
@@ -1317,12 +1503,11 @@ function MultiSelect({label, options, value, onChange}){
 }
 function FitDot({v, label}){ return <span className={"fdot "+fitCls(v)} title={label}>{v>=1?"✓":(v>=0.5?"~":"✕")}</span>; }
 
-function SoilExam({plants, state, plan, toggle}){
+function SoilExam({plants, state, plan, toggle, soil, setSoil}){
   const [editing,setEditing]=useState(false);
-  const [selTex,setSelTex]=useState(["Loam"]);
-  const [selDr,setSelDr]=useState(["Well-drained"]);
-  const [selPhL,setSelPhL]=useState(["Neutral (6.5–7.5)"]);
   const [declined,setDeclined]=useState([]);
+  const selTex=soil.tex, selDr=soil.dr, selPhL=soil.phL;
+  const setSelTex=v=>setSoil(s=>({...s,tex:v})), setSelDr=v=>setSoil(s=>({...s,dr:v})), setSelPhL=v=>setSoil(s=>({...s,phL:v}));
 
   const sel={tex:selTex, dr:selDr, ph:PH_BANDS.filter(b=>selPhL.includes(b.label))};
   const planPlants=plants.filter(p=>plan.includes(p.id)).map(p=>({p, f:soilFit(p,sel)}))
@@ -1392,7 +1577,7 @@ function SoilExam({plants, state, plan, toggle}){
               <tbody>
                 {planPlants.map(({p,f})=>(
                   <tr key={p.id}>
-                    <td className="l">{p.common}</td>
+                    <td className="l">{p.common}<span className="ovmini" style={{background:bandColor(overall(p,state)),color:bandText(overall(p,state))}}>{overall(p,state)}</span></td>
                     <td><FitDot v={f.t} label="Texture" /></td>
                     <td><FitDot v={f.d} label="Drainage" /></td>
                     <td><FitDot v={f.h} label="pH" /></td>
@@ -1409,7 +1594,7 @@ function SoilExam({plants, state, plan, toggle}){
           <div className="wh"><span>Suggested for this soil</span></div>
           {suggestions.length ? suggestions.map(({p,f})=>(
             <div className="ssug" key={p.id}>
-              <div className="top"><span className="nm">{p.common}</span><span className="fpct" style={{color:pctColor(f.pct)}}>{f.pct}%</span></div>
+              <div className="top"><span className="nm">{p.common}<span className="ovmini" style={{background:bandColor(overall(p,state)),color:bandText(overall(p,state))}}>{overall(p,state)}</span></span><span className="fpct" style={{color:pctColor(f.pct)}}>{f.pct}%</span></div>
               <div className="dots"><FitDot v={f.t} label="Texture" /><FitDot v={f.d} label="Drainage" /><FitDot v={f.h} label="pH" /></div>
               <div className="acts">
                 <button className="add" onClick={()=>toggle(p.id)}>✓ Add</button>
@@ -1476,6 +1661,10 @@ function App(){
     dataProvider.saveImages(id,images,sources).catch(err=>{ console.error(err);
       setPlants(ps=>ps.map(x=>x.id===id?{...x,images:prevImg,sources:prevSrc}:x)); }); // revert
   };
+  const updatePlant=async(id,patch)=>{
+    const updated=await dataProvider.updatePlant(id,patch); // throws on failure
+    setPlants(ps=>ps.map(p=>p.id===id?updated:p));
+  };
   const go=p=>{ setPage(p); setMenu(false); };
   const signOut=async()=>{ setMenu(false); await auth.signOut(); };
 
@@ -1525,7 +1714,7 @@ function App(){
           page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
-          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} /> :
+          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} /> :
           <RawData plants={plants} state={state} />
         )}
         <footer className="disclaimer">The contents of this website, such as text, graphics, images, and other material contained on this site (“Content”) are for informational purposes only. The Content is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Caution must be used when utilizing any Content from this website and all Content must be verified by a reliable source before use. The creators of this website accept no liability or responsibility should any damage or injury occur as a result of the use that is made of the Content herein.</footer>
