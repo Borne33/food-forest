@@ -93,8 +93,21 @@
   .mini .mrm{position:absolute;top:6px;left:6px;z-index:3;width:20px;height:20px;border-radius:99px;border:0;
     background:rgba(20,18,10,.55);color:#fff;font-family:'Space Mono';font-size:11px;line-height:1;
     display:flex;align-items:center;justify-content:center;padding:0}
+  .mini{cursor:pointer}
+  .mini .pcar .dots{display:none}
   .mini .mname{font-size:15px;font-weight:800;line-height:1.15;padding:9px 10px 0}
   .mini .msci{font-style:italic;color:var(--ink2);font-size:12.5px;padding:1px 10px 11px}
+  /* harvest strip + fruit token overlaid on the image (no extra card height) */
+  .mini .mstrip{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:center;gap:5px;
+    background:linear-gradient(transparent,rgba(20,18,10,.72) 45%);padding:14px 8px 5px;pointer-events:none}
+  .mini .mstrip .harv{font-family:'Space Mono';font-size:9px;letter-spacing:.02em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mini .mstrip .fru{flex:0 0 auto;font-family:'Space Mono';font-size:9px;font-weight:700;color:#2b2a22;background:#f0d9a8;border-radius:3px;padding:1px 5px}
+  /* left-click detail modal */
+  .pmodal{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-start;justify-content:center;padding:38px 14px;overflow:auto}
+  .pmodal .scrim{position:fixed;inset:0;background:rgba(20,18,10,.42)}
+  .pmodal .inner{position:relative;z-index:1;width:100%;max-width:720px}
+  .pmodal .x{position:absolute;top:-32px;right:0;background:transparent;border:1.5px solid var(--paper);color:var(--paper);
+    border-radius:3px;font-family:'Space Mono';font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
   /* human-verified badge (collapsed card, left of the overall score) */
   .vchk{text-align:center;align-self:start}
   .vchk b{display:flex;align-items:center;justify-content:center;width:34px;height:34px;margin:0 auto;border-radius:99px;
@@ -133,6 +146,7 @@
   .pill.dec{color:#8a5a1f;background:#f6e8d2;border-color:#e2c79c}
   .pill.inv{color:#9a2c22;background:#f6dcd7;border-color:#e3b1a8}
   .pill.deer{color:#5b5027;background:#eef0dd;border-color:#cdd3a6}
+  .pill.fruit{color:#7a4a1f;background:#f7ead4;border-color:#e6c99b}
   /* category score boxes (editorial style) */
   .scores{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px}
   .cardact{padding:0 18px 14px}
@@ -241,6 +255,7 @@ function rowToPlant(r){
     nf:r.nf, pol:r.pol, s:r.scores, sources:r.sources||[],
     humanVerified:!!r.human_verified, images:r.images||[],
     hardinessZones:r.hardiness_zones||"", deerResistant:!!r.deer_resistant,
+    minPlantsFruit:r.min_plants_fruit||null, yearsToFruit:r.years_to_fruit||"",
   };
 }
 
@@ -381,6 +396,25 @@ function bandText(score){ return (score>=70 && score<80)||(score>=55&&score<70) 
 function catColor(v){ return bandColor(v*10); }
 function catText(v){ return bandText(v*10); }
 
+/* ---- harvest-season parsing + fruit helpers (My Plan insights) ---- */
+const SEASONS=["Spring","Summer","Fall","Winter"];
+function harvestSeasons(p){
+  const t=(p.harvest||"").toLowerCase(); const s=new Set();
+  if(/year|any season/.test(t)){ SEASONS.forEach(x=>s.add(x)); return s; }
+  if(/spring/.test(t)) s.add("Spring");
+  if(/summer/.test(t)) s.add("Summer");
+  if(/fall|autumn/.test(t)) s.add("Fall");
+  if(/winter/.test(t)) s.add("Winter");
+  const M={jan:"Winter",feb:"Winter",mar:"Spring",apr:"Spring",may:"Spring",jun:"Summer",jul:"Summer",aug:"Summer",sep:"Fall",oct:"Fall",nov:"Fall",dec:"Winter"};
+  for(const m in M){ if(t.includes(m)) s.add(M[m]); }
+  return s;
+}
+function isFood(p){ return Math.max(p.s.raw[0], p.s.cooked[0]) >= 5; }
+function fruitLabel(p){
+  if(!p.minPlantsFruit) return null;
+  return p.minPlantsFruit>=2 ? p.minPlantsFruit+" to fruit" : "Self-fruitful";
+}
+
 /* Plant data now comes from Supabase via dataProvider.getPlants(); see CONFIG above. */
 
 /* category metadata for guide + table */
@@ -415,7 +449,7 @@ function PlantImages({images, full}){
   const n=images.length, img=images[i];
   const go=(d,e)=>{ e.stopPropagation(); setI(x=>(x+d+n)%n); };
   return (
-    <div className={"pcar"+(full?" full":"")} onClick={e=>e.stopPropagation()}>
+    <div className={"pcar"+(full?" full":"")}>
       <div className="frame">
         <img src={img.url} alt={img.title||""} loading="lazy" />
         {n>1 && (<React.Fragment>
@@ -429,8 +463,8 @@ function PlantImages({images, full}){
   );
 }
 
-function PlantCard({p, state, inPlan, toggle}){
-  const [open,setOpen]=useState(false);
+function PlantCard({p, state, inPlan, toggle, defaultOpen}){
+  const [open,setOpen]=useState(!!defaultOpen);
   const nat = nativity(p,state);
   const ov = overall(p,state);
   return (
@@ -447,6 +481,7 @@ function PlantCard({p, state, inPlan, toggle}){
             {p.pol && <span className="pill pol">Pollinator</span>}
             {p.decPriority && <span className="pill dec">NY priority</span>}
             {p.deerResistant && <span className="pill deer">Deer resistant</span>}
+            {fruitLabel(p) && <span className="pill fruit">{fruitLabel(p)}</span>}
             {inPlan && <span className="pill type">★ In plan</span>}
           </div>
         </div>
@@ -483,6 +518,8 @@ function PlantCard({p, state, inPlan, toggle}){
           <div className="grid">
             <div><dt>Native regions</dt><dd>{p.nativeRegions && p.nativeRegions.length ? p.nativeRegions.join(", ") : "—"}</dd></div>
             <div><dt>USDA hardiness zones</dt><dd>{p.hardinessZones||"—"}</dd></div>
+            {p.yearsToFruit && <div><dt>Years to fruit</dt><dd>{p.yearsToFruit} years</dd></div>}
+            {p.minPlantsFruit && <div><dt>Min. plants to fruit</dt><dd>{p.minPlantsFruit>=2 ? p.minPlantsFruit+" (needs a cross-pollination partner)" : "1 (self-fruitful)"}</dd></div>}
             <div><dt>Edible parts</dt><dd>{p.edibleParts}</dd></div>
             <div><dt>How to prepare</dt><dd>{p.prep}</dd></div>
             <div><dt>Other uses</dt><dd>{p.otherUses}</dd></div>
@@ -598,14 +635,23 @@ const LAYERS = [
   {name:"Groundcover", types:["Groundcover"]},
   {name:"Vines", types:["Vine"]},
 ];
-function PlanMiniCard({p, state, remove}){
+// per-layer green, lightest (canopy, most light) -> darkest (vines, forest floor)
+const LAYER_BG = ["#eef4e5","#e1ebcf","#d2e1b8","#c1d5a1","#b0cb8b"];
+function PlanMiniCard({p, state, remove, onOpen}){
   const ov=overall(p,state);
+  const needsPartner = p.minPlantsFruit && p.minPlantsFruit>=2;
   return (
-    <div className="mini">
+    <div className="mini" onClick={()=>onOpen(p)} title="Click for full details">
       <div className="mtop">
         <PlantImages images={p.images} full />
         <button className="mrm" onClick={e=>{e.stopPropagation();remove(p.id);}} title="Remove from plan">✕</button>
         <span className="mscore" style={{background:bandColor(ov),color:bandText(ov)}}>{ov}</span>
+        {(p.harvest || needsPartner) && (
+          <div className="mstrip">
+            {needsPartner && <span className="fru" title="Minimum plants needed to set fruit">×{p.minPlantsFruit}</span>}
+            {p.harvest && <span className="harv" title={p.harvest}>{p.harvest}</span>}
+          </div>
+        )}
       </div>
       <div className="mname">{p.common}</div>
       <div className="msci">{p.sci}</div>
@@ -615,6 +661,7 @@ function PlanMiniCard({p, state, remove}){
 
 /* ---------- My Plan page ---------- */
 function MyPlan({plants, state, plan, toggle, go}){
+  const [detail,setDetail]=useState(null);
   const chosen=plants.filter(p=>plan.includes(p.id));
   if(chosen.length===0){
     return (
@@ -633,8 +680,20 @@ function MyPlan({plants, state, plan, toggle, go}){
   const groundcovers=chosen.filter(p=>p.type==="Herb"||p.type==="Fern");
   const invasive=chosen.filter(p=>nativity(p,state).v<0);
 
+  // food-harvest coverage across the four seasons (edible plants only)
+  const foodChosen=chosen.filter(isFood);
+  const covered=new Set();
+  foodChosen.forEach(p=>harvestSeasons(p).forEach(s=>covered.add(s)));
+  const gaps=SEASONS.filter(s=>!covered.has(s));
+
   // symbiosis insights
   const insights=[];
+  if(foodChosen.length){
+    if(gaps.length===0)
+      insights.push(<div className="insight" key="harv"><b>Year-round harvest.</b> Your edible plants together yield across all four seasons — nicely done.</div>);
+    else
+      insights.push(<div className="insight" key="harv"><b>Harvest calendar.</b> Your edible plants cover {[...SEASONS.filter(s=>covered.has(s))].join(", ")||"no seasons yet"}. Gap{gaps.length>1?"s":""}: <b>{gaps.join(", ")}</b> — see suggested additions to fill {gaps.length>1?"them":"it"}.</div>);
+  }
   if(nfix.length && heavy.length)
     insights.push(<div className="insight" key="nf"><b>Nitrogen pairing.</b> Your {nfix.map(p=>p.common).join(", ")} fix nitrogen — site them near hungry fruit/nut trees like {heavy.map(p=>p.common).join(", ")} to feed them naturally.</div>);
   if(polls.length>=2)
@@ -654,7 +713,8 @@ function MyPlan({plants, state, plan, toggle, go}){
   if(!nfix.length) pushSugg(ranked.find(p=>p.nf),"adds nitrogen fixing");
   if(!polls.length) pushSugg(ranked.find(p=>p.pol),"adds pollinator support");
   if(!groundcovers.length) pushSugg(ranked.find(p=>p.type==="Herb"||p.type==="Fern"),"adds a ground layer");
-  for(const p of ranked){ if(suggestions.length>=4) break; pushSugg(p,"high overall score for "+state); }
+  for(const g of gaps) pushSugg(ranked.find(p=>isFood(p)&&harvestSeasons(p).has(g)),"fills the "+g.toLowerCase()+" harvest gap");
+  for(const p of ranked){ if(suggestions.length>=6) break; pushSugg(p,"high overall score for "+state); }
 
   return (
     <div>
@@ -682,18 +742,28 @@ function MyPlan({plants, state, plan, toggle, go}){
       ))}
 
       <div className="pagehead" style={{border:0,margin:"18px 0 10px",padding:0}}><div className="eye">Forest layers</div></div>
-      {LAYERS.map(layer=>{
+      {LAYERS.map((layer,li)=>{
         const inLayer=chosen.filter(p=>layer.types.includes(p.type));
         if(!inLayer.length) return null;
         return (
-          <div className="layer" key={layer.name}>
+          <div className="layer" key={layer.name} style={{background:LAYER_BG[li],padding:"12px 12px 14px",borderRadius:6}}>
             <h4>{layer.name}<span>{inLayer.length} plant{inLayer.length>1?"s":""}</span></h4>
             <div className="minigrid">
-              {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={toggle} />)}
+              {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={toggle} onOpen={setDetail} />)}
             </div>
           </div>
         );
       })}
+
+      {detail && (
+        <div className="pmodal">
+          <div className="scrim" onClick={()=>setDetail(null)}></div>
+          <div className="inner">
+            <button className="x" onClick={()=>setDetail(null)}>Close ✕</button>
+            <PlantCard p={detail} state={state} inPlan={plan.includes(detail.id)} toggle={toggle} defaultOpen />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
