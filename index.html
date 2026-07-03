@@ -232,6 +232,11 @@
   .insight b{font-weight:600}
   .sugg{border:1px dashed var(--dot);border-radius:4px;padding:10px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#faf7ef}
   .sugg .why{font-size:13px;color:var(--ink2);font-style:italic}
+  .viewtoggle{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}
+  .viewtoggle button{font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:8px 14px;color:var(--ink2)}
+  .viewtoggle button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .foresttriad{display:grid;gap:16px;grid-template-columns:minmax(0,0.85fr) minmax(0,1.9fr) minmax(0,1fr);grid-template-areas:"ins layers sug";align-items:start}
+  @media(max-width:860px){ .foresttriad{grid-template-columns:1fr;grid-template-areas:"ins" "sug" "layers"} }
   .empty{border:1px dashed var(--line);border-radius:5px;padding:30px;text-align:center;color:var(--ink2)}
   /* guide */
   .gcat{border:1px solid var(--line);background:#f7f4ea;border-radius:5px;margin-bottom:16px;overflow:hidden}
@@ -792,6 +797,7 @@ function PlanMiniCard({p, state, remove, onOpen}){
 /* ---------- My Plan page ---------- */
 function MyPlan({plants, state, plan, toggle, go}){
   const [detail,setDetail]=useState(null);
+  const [view,setView]=useState("layers"); // layers | soil | risk
   const chosen=plants.filter(p=>plan.includes(p.id));
   if(chosen.length===0){
     return (
@@ -846,44 +852,74 @@ function MyPlan({plants, state, plan, toggle, go}){
   for(const g of gaps) pushSugg(ranked.find(p=>isFood(p)&&harvestSeasons(p).has(g)),"fills the "+g.toLowerCase()+" harvest gap");
   for(const p of ranked){ if(suggestions.length>=6) break; pushSugg(p,"high overall score for "+state); }
 
+  // whole-forest category scores (average per category × 10, so each is out of 100)
+  const catAvg=k=>Math.round(chosen.reduce((a,p)=>a+p.s[k][0],0)/chosen.length*10);
+  const CAT_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["fiber","Fiber"],["med","Medicinal"]];
+
   return (
     <div>
       <div className="pagehead"><div className="eye">My Plan · {chosen.length} plants</div>
         <h2>Your food forest</h2>
-        <p>Your plants, arranged by forest layer from canopy to ground.</p></div>
+        <p>Layers, soil fit, and risks for the plants in your plan.</p></div>
 
-      <div className="stats">
-        <div className="stat"><b>{chosen.length}</b><span>Plants</span></div>
-        <div className="stat"><b style={{color:bandColor(avg)}}>{avg}</b><span>Avg score</span></div>
-        <div className="stat"><b>{nfix.length}</b><span>N-fixers</span></div>
-        <div className="stat"><b>{polls.length}</b><span>Pollinator</span></div>
-        <div className="stat"><b>{new Set(chosen.map(p=>p.type)).size}</b><span>Layers/types</span></div>
+      <div className="viewtoggle">
+        <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
+        <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
+        <button className={view==="risk"?"on":""} onClick={()=>setView("risk")}>Risk Register</button>
       </div>
 
-      <div className="pagehead" style={{border:0,margin:"4px 0 8px",padding:0}}><div className="eye">Symbiosis insights</div></div>
-      {insights}
-
-      <div className="pagehead" style={{border:0,margin:"18px 0 8px",padding:0}}><div className="eye">Suggested additions</div></div>
-      {suggestions.map(({p,why})=>(
-        <div className="sugg" key={p.id}>
-          <div><b>{p.common}</b> <span style={{fontStyle:"italic",color:"var(--ink2)"}}>{p.sci}</span><div className="why">{why} · scores {overall(p,state)}</div></div>
-          <button className="addbtn" onClick={()=>toggle(p.id)}>+ Add</button>
+      {view==="layers" && (<React.Fragment>
+        <div className="stats">
+          <div className="stat"><b>{chosen.length}</b><span>Plants</span></div>
+          <div className="stat"><b style={{color:bandColor(avg)}}>{avg}</b><span>Avg score</span></div>
+          <div className="stat"><b>{nfix.length}</b><span>N-fixers</span></div>
+          <div className="stat"><b>{polls.length}</b><span>Pollinator</span></div>
+          <div className="stat"><b>{new Set(chosen.map(p=>p.type)).size}</b><span>Layers/types</span></div>
+          {CAT_KEYS.map(([k,label])=>{ const v=catAvg(k); return (
+            <div className="stat" key={k}><b style={{color:bandColor(v)}}>{v}</b><span>{label} /100</span></div>
+          );})}
         </div>
-      ))}
 
-      <div className="pagehead" style={{border:0,margin:"18px 0 10px",padding:0}}><div className="eye">Forest layers</div></div>
-      {LAYERS.map((layer,li)=>{
-        const inLayer=chosen.filter(p=>layer.types.includes(p.type));
-        if(!inLayer.length) return null;
-        return (
-          <div className="layer" key={layer.name} style={{background:LAYER_BG[li],padding:"12px 12px 14px",borderRadius:6}}>
-            <h4>{layer.name}<span>{inLayer.length} plant{inLayer.length>1?"s":""}</span></h4>
-            <div className="minigrid">
-              {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={toggle} onOpen={setDetail} />)}
-            </div>
+        <div className="foresttriad">
+          <div style={{gridArea:"ins"}}>
+            <div className="pagehead" style={{border:0,margin:"0 0 8px",padding:0}}><div className="eye">Symbiosis insights</div></div>
+            {insights}
           </div>
-        );
-      })}
+          <div style={{gridArea:"layers"}}>
+            <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Forest layers</div></div>
+            {LAYERS.map((layer,li)=>{
+              const inLayer=chosen.filter(p=>layer.types.includes(p.type));
+              if(!inLayer.length) return null;
+              return (
+                <div className="layer" key={layer.name} style={{background:LAYER_BG[li],padding:"12px 12px 14px",borderRadius:6}}>
+                  <h4>{layer.name}<span>{inLayer.length} plant{inLayer.length>1?"s":""}</span></h4>
+                  <div className="minigrid">
+                    {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={toggle} onOpen={setDetail} />)}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{gridArea:"sug"}}>
+            <div className="pagehead" style={{border:0,margin:"0 0 8px",padding:0}}><div className="eye">Suggested additions</div></div>
+            {suggestions.map(({p,why})=>(
+              <div className="sugg" key={p.id} style={{display:"block"}}>
+                <div><b>{p.common}</b> <span style={{fontStyle:"italic",color:"var(--ink2)"}}>{p.sci}</span><div className="why">{why} · scores {overall(p,state)}</div></div>
+                <button className="addbtn" onClick={()=>toggle(p.id)} style={{marginTop:6}}>+ Add</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </React.Fragment>)}
+
+      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} />}
+
+      {view==="risk" && (
+        <div className="empty" style={{borderColor:"var(--red)",color:"var(--ink)"}}>
+          <b>Risk Register — choose a design.</b>
+          <div style={{margin:"8px 0 0",fontSize:14,color:"var(--ink2)"}}>Pick one of the three Risk Register layouts I mocked up in the chat and I'll build it right here.</div>
+        </div>
+      )}
 
       {detail && (
         <div className="pmodal">
@@ -1344,7 +1380,7 @@ function SoilExam({plants, state, plan, toggle}){
 }
 
 /* ---------- Menu + App shell ---------- */
-const PAGES=[["db","Database"],["plan","My Plan"],["soil","Soil Exam"],["guide","Scoring Guide"],["data","Raw Data"]];
+const PAGES=[["db","Database"],["plan","My Plan"],["guide","Scoring Guide"],["data","Raw Data"]];
 function App(){
   const [page,setPage]=useState("db");
   const [menu,setMenu]=useState(false);
@@ -1444,7 +1480,6 @@ function App(){
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
-          page==="soil" ? <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} /> :
           page==="guide" ? <ScoringGuide /> :
           (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} /> :
           <RawData plants={plants} state={state} />
