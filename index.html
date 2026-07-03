@@ -16,6 +16,7 @@
     --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
     --line:#c9c2ab; --dot:#c2bba2; --sage:#6f8a5f; --sage-d:#42603a;
     --blue:#3b82f6; --green:#46a34a; --ygreen:#9bbf3a; --yellow:#e0b932; --orange:#e8923c; --red:#dd4b3e;
+    --soil:#7a5a34; --soil-d:#5c421f; --soil-bg:#efe4d0; --soil-line:#d8c39c;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -65,6 +66,51 @@
   .pager button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .pager button:disabled{opacity:.4;cursor:default}
   .pager .pgnum{font-family:'Space Mono';font-size:12px;color:var(--faint);padding:0 8px}
+  /* ---------- Soil Exam ---------- */
+  .msfield{position:relative;display:flex;flex-direction:column;gap:4px}
+  .msfield>label{font-family:'Space Mono';font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .mscontrol{min-height:39px;border:1.5px solid var(--soil-line);background:#fbf9f2;border-radius:4px;padding:5px 8px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;cursor:pointer}
+  .mschip{font-family:'Space Mono';font-size:11px;background:var(--soil-bg);color:var(--soil-d);border:1px solid var(--soil-line);border-radius:99px;padding:2px 8px}
+  .msph{font-family:'Space Mono';font-size:12px;color:var(--faint)}
+  .mschev{margin-left:auto;color:var(--soil);font-size:12px}
+  .msmenu{position:absolute;top:100%;left:0;right:0;z-index:20;margin-top:4px;background:#fbf9f2;border:1.5px solid var(--soil-line);border-radius:5px;box-shadow:0 14px 30px -18px #000;overflow:hidden}
+  .msopt{display:flex;align-items:center;gap:8px;padding:8px 11px;font-size:14px;cursor:pointer}
+  .msopt:hover{background:var(--soil-bg)}
+  .msopt .box{width:16px;height:16px;border:1.5px solid var(--soil-line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--paper)}
+  .msopt.on .box{background:var(--soil-d);border-color:var(--soil-d)}
+  .soilprof{background:var(--soil-bg);border:1.5px solid var(--soil-line);border-radius:6px;padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-bottom:16px}
+  .soilprof .eyes{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soil);flex-basis:100%}
+  .soilprof .at label{font-family:'Space Mono';font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--soil);display:block}
+  .soilprof .at .v{font-size:15px;color:var(--soil-d);font-weight:600}
+  .soilprof .edit{margin-left:auto;align-self:center;border:1.5px solid var(--soil-d);background:transparent;color:var(--soil-d);border-radius:4px;padding:8px 13px;font-family:'Space Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .soiledit{background:var(--soil-bg);border:1.5px solid var(--soil-line);border-radius:6px;padding:14px 16px;margin-bottom:16px}
+  .soiledit .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .soiledit .done{margin-top:12px;border:1.5px solid var(--soil-d);background:var(--soil-d);color:var(--paper);border-radius:4px;padding:8px 16px;font-family:'Space Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .soilcols{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.5fr) minmax(0,1fr);gap:14px;align-items:start}
+  .swidget{border:1px solid var(--soil-line);background:#f7f1e6;border-radius:6px;padding:13px 15px}
+  .swidget .wh{font-family:'Space Mono';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soil);border-bottom:1.5px solid var(--soil-line);padding-bottom:7px;margin-bottom:11px;display:flex;align-items:center;gap:6px}
+  .sfmetrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+  .sfmetric{background:var(--soil-bg);border-radius:5px;padding:10px 12px}
+  .sfmetric b{display:block;font-family:'Space Mono';font-size:24px;line-height:1.1}
+  .sfmetric span{font-family:'Space Mono';font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--soil)}
+  .smatrix{width:100%;border-collapse:collapse;font-size:13px}
+  .smatrix th{font-family:'Space Mono';font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);font-weight:400;text-align:center;padding:4px 3px;border-bottom:1.5px solid var(--soil-line)}
+  .smatrix th.l{text-align:left}
+  .smatrix td{padding:6px 3px;border-bottom:1px solid var(--soil-line);text-align:center}
+  .smatrix td.l{text-align:left}
+  .fdot{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+  .fdot.ok{background:var(--green)} .fdot.mid{background:var(--yellow);color:#2b2a22} .fdot.no{background:var(--red)}
+  .fpct{font-family:'Space Mono';font-size:13px;font-weight:700}
+  .ssug{border-bottom:1px solid var(--soil-line);padding:9px 0}
+  .ssug:last-child{border-bottom:0}
+  .ssug .top{display:flex;align-items:center;gap:8px}
+  .ssug .nm{font-size:14px;flex:1;min-width:0}
+  .ssug .dots{display:flex;gap:4px;margin:6px 0}
+  .ssug .acts{display:flex;gap:6px}
+  .ssug .acts button{flex:1;font-family:'Space Mono';font-size:11px;border:1.5px solid var(--soil-line);border-radius:4px;padding:4px 0;background:#fbf9f2;color:var(--soil-d);display:inline-flex;align-items:center;justify-content:center;gap:4px}
+  .ssug .acts button.add{background:var(--sage-d);border-color:var(--sage-d);color:var(--paper)}
+  .sinsight{border-left:3px solid var(--soil);background:var(--soil-bg);padding:8px 11px;border-radius:0 4px 4px 0;margin-bottom:8px;font-size:13.5px;color:var(--ink)}
+  @media(max-width:820px){ .soilcols{grid-template-columns:1fr} .soiledit .grid{grid-template-columns:1fr} }
   /* ---------- plant card (Herbarium) ---------- */
   .card{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;box-shadow:0 1px 0 #fff inset, 0 10px 24px -22px #000;margin-bottom:14px;overflow:hidden}
   .card .head{display:flex;align-items:flex-start;gap:14px;padding:15px 18px 12px;border-bottom:1.5px solid var(--ink);cursor:pointer}
@@ -264,6 +310,7 @@ function rowToPlant(r){
     hardinessZones:r.hardiness_zones||"", deerResistant:!!r.deer_resistant,
     minPlantsFruit:r.min_plants_fruit||null, yearsToFruit:r.years_to_fruit||"",
     soilPh:r.soil_ph||"", soilN:r.soil_n||"", soilP:r.soil_p||"", soilK:r.soil_k||"",
+    soilTexture:r.soil_texture||[], soilDrainage:r.soil_drainage||[],
   };
 }
 
@@ -422,6 +469,46 @@ function fruitLabel(p){
   if(!p.minPlantsFruit) return null;
   return p.minPlantsFruit>=2 ? p.minPlantsFruit+" to fruit" : "Self-fruitful";
 }
+
+/* ---- Soil Exam: fit model ---- */
+const TEXTURES=["Sandy","Loam","Clay","Silt"];
+const DRAINAGE=["Well-drained","Moist","Wet"]; // ordered dry -> wet
+const PH_BANDS=[
+  {label:"Acidic (4.5–5.5)", lo:4.5, hi:5.5},
+  {label:"Slightly acidic (5.5–6.5)", lo:5.5, hi:6.5},
+  {label:"Neutral (6.5–7.5)", lo:6.5, hi:7.5},
+  {label:"Alkaline (7.5–8.5)", lo:7.5, hi:8.5},
+];
+const GOOD_FIT=66; // % threshold for a "good fit"
+function parsePh(txt){ const m=(txt||"").match(/(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)/); return m?[parseFloat(m[1]),parseFloat(m[2])]:null; }
+function texScore(plantTex, sel){
+  if(!sel.length) return 1;
+  const set=new Set(plantTex||[]);
+  if(sel.some(t=>set.has(t))) return 1;
+  return (plantTex||[]).length>=3 ? 0.5 : 0; // adaptable = partial
+}
+function drainScore(plantDr, sel){
+  if(!sel.length) return 1;
+  const set=new Set(plantDr||[]);
+  if(sel.some(d=>set.has(d))) return 1;
+  const idx=d=>DRAINAGE.indexOf(d);
+  const near=sel.some(sd=>(plantDr||[]).some(pd=>Math.abs(idx(pd)-idx(sd))===1));
+  return near?0.5:0;
+}
+function phScore(plantPh, selBands){
+  if(!selBands.length) return 1;
+  const r=parsePh(plantPh); if(!r) return 0.5;
+  const [plo,phi]=r;
+  if(selBands.some(b=>plo<=b.hi && phi>=b.lo)) return 1;         // overlap
+  if(selBands.some(b=>plo-0.5<=b.hi && phi+0.5>=b.lo)) return 0.5; // within 0.5
+  return 0;
+}
+function soilFit(p, sel){
+  const t=texScore(p.soilTexture,sel.tex), d=drainScore(p.soilDrainage,sel.dr), h=phScore(p.soilPh,sel.ph);
+  return {t,d,h, pct:Math.round((t+d+h)/3*100)};
+}
+function fitCls(v){ return v>=1?"ok":(v>=0.5?"mid":"no"); }
+function pctColor(pct){ return pct>=GOOD_FIT?"var(--green)":(pct>=40?"var(--yellow)":"var(--red)"); }
 
 /* Plant data now comes from Supabase via dataProvider.getPlants(); see CONFIG above. */
 
@@ -919,6 +1006,18 @@ function ScoringGuide(){
           </div>
         </div>
       ))}
+
+      <div className="gcat">
+        <h3>Soil fit<span className="w">Soil Exam · % match</span></h3>
+        <div className="scale">
+          <p style={{margin:"4px 0 10px",fontSize:15}}>The <b>Soil Exam</b> scores every plant against the soil you describe — its <b>texture</b>, <b>drainage</b>, and <b>pH</b>. Each of those three attributes gets a sub-score:</p>
+          <div className="lvl" style={{gridTemplateColumns:"56px 1fr"}}><span className="b" style={{background:"var(--green)",color:"#fff"}}>1.0</span><p><b>Match</b> — the plant's preference includes what you selected.</p></div>
+          <div className="lvl" style={{gridTemplateColumns:"56px 1fr"}}><span className="b" style={{background:"var(--yellow)"}}>0.5</span><p><b>Near</b> — an adaptable texture, one step off on the dry–moist–wet drainage scale, or a pH within 0.5 of the plant's range.</p></div>
+          <div className="lvl" style={{gridTemplateColumns:"56px 1fr"}}><span className="b" style={{background:"var(--red)",color:"#fff"}}>0</span><p><b>Mismatch</b> — outside the plant's tolerated range.</p></div>
+          <p style={{margin:"12px 0 6px",fontSize:15}}><b>% fit = (Texture + Drainage + pH) ÷ 3 × 100.</b> So a plant that matches all three scores 100%, two-of-three scores 67%, and so on.</p>
+          <p style={{margin:"6px 0 0",fontSize:15}}>A plant is a <b>Good fit</b> when its % fit is <b>{GOOD_FIT}% or higher</b> — roughly two of the three attributes fully matching. The plan report shows your <b>average % fit</b> and how many plants clear the {GOOD_FIT}% good-fit line, and suggestions are drawn only from good-fit plants not yet in your plan.</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1113,8 +1212,139 @@ function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage}){
   );
 }
 
+/* ---------- Soil Exam page ---------- */
+function MultiSelect({label, options, value, onChange}){
+  const [open,setOpen]=useState(false);
+  const toggle=o=>onChange(value.includes(o)?value.filter(x=>x!==o):[...value,o]);
+  return (
+    <div className="msfield">
+      <label>{label}</label>
+      <div className="mscontrol" onClick={()=>setOpen(o=>!o)}>
+        {value.length ? value.map(v=><span className="mschip" key={v}>{v.replace(/ \(.*/,"")}</span>) : <span className="msph">Any</span>}
+        <span className="mschev">▼</span>
+      </div>
+      {open && (
+        <div className="msmenu">
+          {options.map(o=>(
+            <div key={o} className={"msopt"+(value.includes(o)?" on":"")} onClick={()=>toggle(o)}>
+              <span className="box">{value.includes(o)?"✓":""}</span>{o}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+function FitDot({v, label}){ return <span className={"fdot "+fitCls(v)} title={label}>{v>=1?"✓":(v>=0.5?"~":"✕")}</span>; }
+
+function SoilExam({plants, state, plan, toggle}){
+  const [editing,setEditing]=useState(false);
+  const [selTex,setSelTex]=useState(["Loam"]);
+  const [selDr,setSelDr]=useState(["Well-drained"]);
+  const [selPhL,setSelPhL]=useState(["Neutral (6.5–7.5)"]);
+  const [declined,setDeclined]=useState([]);
+
+  const sel={tex:selTex, dr:selDr, ph:PH_BANDS.filter(b=>selPhL.includes(b.label))};
+  const planPlants=plants.filter(p=>plan.includes(p.id)).map(p=>({p, f:soilFit(p,sel)}))
+    .sort((a,b)=>b.f.pct-a.f.pct);
+  const total=planPlants.length;
+  const goodCount=planPlants.filter(x=>x.f.pct>=GOOD_FIT).length;
+  const avgPct=total?Math.round(planPlants.reduce((a,x)=>a+x.f.pct,0)/total):0;
+  const suggestions=plants.filter(p=>!plan.includes(p.id) && !declined.includes(p.id))
+    .map(p=>({p, f:soilFit(p,sel)})).filter(x=>x.f.pct>=GOOD_FIT)
+    .sort((a,b)=>b.f.pct-a.f.pct).slice(0,5);
+
+  const insights=[];
+  if(total){
+    insights.push(<div className="sinsight" key="a"><b>{goodCount} of {total}</b> plants in your plan are a good fit ({GOOD_FIT}%+) for this soil.</div>);
+    const fails={Texture:0,Drainage:0,pH:0};
+    planPlants.forEach(({f})=>{ if(f.t<1)fails.Texture++; if(f.d<1)fails.Drainage++; if(f.h<1)fails.pH++; });
+    const worst=Object.entries(fails).sort((a,b)=>b[1]-a[1])[0];
+    if(worst[1]>0) insights.push(<div className="sinsight" key="b"><b>{worst[0]}</b> is the most common mismatch ({worst[1]} plant{worst[1]>1?"s":""}) — amend the soil or lean on the suggestions.</div>);
+    const poor=planPlants.filter(x=>x.f.pct<40).map(x=>x.p.common);
+    if(poor.length) insights.push(<div className="sinsight" key="c" style={{borderColor:"var(--red)"}}><b>Poor fit:</b> {poor.join(", ")} may struggle here.</div>);
+    if(!poor.length && goodCount===total) insights.push(<div className="sinsight" key="d" style={{borderColor:"var(--green)"}}>Every plant in your plan suits this soil — nicely matched.</div>);
+  } else {
+    insights.push(<div className="sinsight" key="e">Add plants to your plan to see how well they fit this soil.</div>);
+  }
+
+  return (
+    <div>
+      <div className="pagehead">
+        <div className="eye">Soil Exam</div><h2>Match your plan to your soil</h2>
+        <p>Set your soil's texture, drainage, and pH — then see how well your plan fits and what else would thrive.</p>
+      </div>
+
+      {editing ? (
+        <div className="soiledit">
+          <div className="grid">
+            <MultiSelect label="Texture" options={TEXTURES} value={selTex} onChange={setSelTex} />
+            <MultiSelect label="Drainage" options={DRAINAGE} value={selDr} onChange={setSelDr} />
+            <MultiSelect label="Soil pH" options={PH_BANDS.map(b=>b.label)} value={selPhL} onChange={setSelPhL} />
+          </div>
+          <button className="done" onClick={()=>setEditing(false)}>Done</button>
+        </div>
+      ) : (
+        <div className="soilprof">
+          <div className="eyes">Your soil profile</div>
+          <div className="at"><label>Texture</label><div className="v">{selTex.join(", ")||"Any"}</div></div>
+          <div className="at"><label>Drainage</label><div className="v">{selDr.join(", ")||"Any"}</div></div>
+          <div className="at"><label>Soil pH</label><div className="v">{selPhL.map(l=>l.replace(/ \(.*/,"")).join(", ")||"Any"}</div></div>
+          <button className="edit" onClick={()=>setEditing(true)}>Edit soil</button>
+        </div>
+      )}
+
+      <div className="soilcols">
+        <div className="swidget">
+          <div className="wh"><span>Soil insights</span></div>
+          {insights}
+        </div>
+
+        <div className="swidget">
+          <div className="wh"><span>Overall soil fit · your plan</span></div>
+          <div className="sfmetrics">
+            <div className="sfmetric"><b style={{color:pctColor(avgPct)}}>{avgPct}%</b><span>Average fit</span></div>
+            <div className="sfmetric"><b>{goodCount}/{total}</b><span>Good fits ({GOOD_FIT}%+)</span></div>
+          </div>
+          {total ? (
+            <table className="smatrix">
+              <thead><tr><th className="l">Plant</th><th>Tex</th><th>Drain</th><th>pH</th><th>Fit</th></tr></thead>
+              <tbody>
+                {planPlants.map(({p,f})=>(
+                  <tr key={p.id}>
+                    <td className="l">{p.common}</td>
+                    <td><FitDot v={f.t} label="Texture" /></td>
+                    <td><FitDot v={f.d} label="Drainage" /></td>
+                    <td><FitDot v={f.h} label="pH" /></td>
+                    <td><span className="fpct" style={{color:pctColor(f.pct)}}>{f.pct}%</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : <div className="empty">No plants in your plan yet.</div>}
+          <div style={{fontFamily:"'Space Mono'",fontSize:10,color:"var(--faint)",marginTop:9}}>✓ match · ~ near · ✕ off</div>
+        </div>
+
+        <div className="swidget">
+          <div className="wh"><span>Suggested for this soil</span></div>
+          {suggestions.length ? suggestions.map(({p,f})=>(
+            <div className="ssug" key={p.id}>
+              <div className="top"><span className="nm">{p.common}</span><span className="fpct" style={{color:pctColor(f.pct)}}>{f.pct}%</span></div>
+              <div className="dots"><FitDot v={f.t} label="Texture" /><FitDot v={f.d} label="Drainage" /><FitDot v={f.h} label="pH" /></div>
+              <div className="acts">
+                <button className="add" onClick={()=>toggle(p.id)}>✓ Add</button>
+                <button onClick={()=>setDeclined(d=>[...d,p.id])}>✕ Decline</button>
+              </div>
+            </div>
+          )) : <div style={{fontSize:13,color:"var(--faint)"}}>No more good-fit suggestions — all have been added or declined.</div>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Menu + App shell ---------- */
-const PAGES=[["db","Database"],["plan","My Plan"],["guide","Scoring Guide"],["data","Raw Data"]];
+const PAGES=[["db","Database"],["plan","My Plan"],["soil","Soil Exam"],["guide","Scoring Guide"],["data","Raw Data"]];
 function App(){
   const [page,setPage]=useState("db");
   const [menu,setMenu]=useState(false);
@@ -1214,6 +1444,7 @@ function App(){
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
+          page==="soil" ? <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} /> :
           page==="guide" ? <ScoringGuide /> :
           (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} /> :
           <RawData plants={plants} state={state} />
