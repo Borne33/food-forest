@@ -60,6 +60,11 @@
   .chip{font-family:'Space Mono';font-size:11px;letter-spacing:.04em;border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:6px 12px;color:var(--ink2)}
   .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .count{font-family:'Space Mono';font-size:12px;color:var(--faint);margin:12px 2px 6px}
+  .pager{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;margin:14px 0}
+  .pager button{font-family:'Space Mono';font-size:12px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:6px 11px;color:var(--ink)}
+  .pager button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .pager button:disabled{opacity:.4;cursor:default}
+  .pager .pgnum{font-family:'Space Mono';font-size:12px;color:var(--faint);padding:0 8px}
   /* ---------- plant card (Herbarium) ---------- */
   .card{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;box-shadow:0 1px 0 #fff inset, 0 10px 24px -22px #000;margin-bottom:14px;overflow:hidden}
   .card .head{display:flex;align-items:flex-start;gap:14px;padding:15px 18px 12px;border-bottom:1.5px solid var(--ink);cursor:pointer}
@@ -540,6 +545,21 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
 }
 
 /* ---------- Database page ---------- */
+function Pager({page, pageCount, go}){
+  if(pageCount<=1) return null;
+  const many=pageCount>12;
+  const nums=[]; for(let i=1;i<=pageCount;i++) nums.push(i);
+  return (
+    <div className="pager">
+      <button disabled={page<=1} onClick={()=>go(page-1)}>‹ Prev</button>
+      {many
+        ? <span className="pgnum">Page {page} of {pageCount}</span>
+        : nums.map(n=><button key={n} className={n===page?"on":""} onClick={()=>go(n)}>{n}</button>)}
+      <button disabled={page>=pageCount} onClick={()=>go(page+1)}>Next ›</button>
+    </div>
+  );
+}
+
 function Database({plants, state, setState, plan, toggle}){
   const [q,setQ]=useState("");
   const [sortKey,setSortKey]=useState("overall");
@@ -573,6 +593,15 @@ function Database({plants, state, setState, plan, toggle}){
     arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
     return arr;
   },[plants,q,types,flags,sortKey,dir,state,plan]);
+
+  // pagination: cap at 100 plants per page
+  const PER_PAGE=100;
+  const [page,setPage]=useState(1);
+  const pageCount=Math.max(1, Math.ceil(view.length/PER_PAGE));
+  const curPage=Math.min(page, pageCount);
+  const pageItems=view.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
+  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state]); // reset to page 1 on filter change
+  const goPage=n=>{ setPage(n); window.scrollTo({top:0,behavior:"smooth"}); };
 
   return (
     <div>
@@ -620,9 +649,11 @@ function Database({plants, state, setState, plan, toggle}){
         <button className={"chip"+(flags.plan?" on":"")} onClick={()=>toggleFlag("plan")}>In my plan</button>
       </div>
 
-      <div className="count">{view.length} shown</div>
-      {view.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />)}
+      <div className="count">{view.length} shown{pageCount>1?` · page ${curPage} of ${pageCount}`:""}</div>
+      <Pager page={curPage} pageCount={pageCount} go={goPage} />
+      {pageItems.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />)}
       {view.length===0 && <div className="empty">No plants match those filters. Clear a filter or search to see more.</div>}
+      <Pager page={curPage} pageCount={pageCount} go={goPage} />
     </div>
   );
 }
