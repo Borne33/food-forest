@@ -165,6 +165,8 @@
   .exp .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 22px}
   .exp dt{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
   .exp dd{margin:0 0 11px;font-size:15px}
+  .soilnut{margin-top:7px;display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;font-size:12.5px;color:var(--ink2)}
+  .soilnut b{font-family:'Space Mono';font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-right:5px}
   .exp .risk{color:#9a2c22}
   .exp .srcs{margin-top:6px}
   .exp .srcs a{display:inline-block;font-family:'Space Mono';font-size:12px;margin:3px 10px 3px 0;color:var(--sage-d)}
@@ -261,6 +263,7 @@ function rowToPlant(r){
     humanVerified:!!r.human_verified, images:r.images||[],
     hardinessZones:r.hardiness_zones||"", deerResistant:!!r.deer_resistant,
     minPlantsFruit:r.min_plants_fruit||null, yearsToFruit:r.years_to_fruit||"",
+    soilPh:r.soil_ph||"", soilN:r.soil_n||"", soilP:r.soil_p||"", soilK:r.soil_k||"",
   };
 }
 
@@ -530,7 +533,16 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
             <div><dt>Other uses</dt><dd>{p.otherUses}</dd></div>
             <div><dt>Harvest time</dt><dd>{p.harvest}</dd></div>
             <div><dt>Sun</dt><dd>{p.sun}</dd></div>
-            <div><dt>Soil</dt><dd>{p.soil}</dd></div>
+            <div><dt>Soil</dt><dd>{p.soil}
+              {(p.soilPh||p.soilN) && (
+                <div className="soilnut">
+                  {p.soilPh && <div><b>pH</b> {p.soilPh}</div>}
+                  {p.soilN && <div><b>Nitrogen (N)</b> {p.soilN}</div>}
+                  {p.soilP && <div><b>Phosphorus (P)</b> {p.soilP}</div>}
+                  {p.soilK && <div><b>Potassium (K)</b> {p.soilK}</div>}
+                </div>
+              )}
+            </dd></div>
             <div><dt>Risks</dt><dd className="risk">{p.risks}</dd></div>
             <div><dt>Where to buy</dt><dd>{p.buy}</dd></div>
           </div>
@@ -926,7 +938,9 @@ function flat(p, state){
     "Deer Resistant":p.deerResistant?"Yes":"No", "Hardiness Zones":p.hardinessZones,
     "NY Priority":p.decPriority?"Yes":"No",
     "Edible Parts":p.edibleParts, "Other Uses":p.otherUses, "Preparation":p.prep,
-    "Harvest Time":p.harvest, "Sun":p.sun, "Soil":p.soil, "Health Risks":p.risks, "Where to Buy":p.buy,
+    "Harvest Time":p.harvest, "Sun":p.sun, "Soil":p.soil,
+    "Soil pH":p.soilPh, "Soil N":p.soilN, "Soil P":p.soilP, "Soil K":p.soilK,
+    "Health Risks":p.risks, "Where to Buy":p.buy,
     "Sources":p.sources.map(s=>s[1]).join(" | "),
   };
 }
