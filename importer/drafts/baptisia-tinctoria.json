@@ -10,7 +10,7 @@
   "harvest": "Blooms summer.",
   "sun": "Full sun to part shade",
   "soil": "Dry, sandy, well-drained soils.",
-  "risks": "TOXIC if eaten \u2014 a dye and medicinal plant, not a food.",
+  "risks": "TOXIC if eaten — a dye and medicinal plant, not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

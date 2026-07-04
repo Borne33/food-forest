@@ -10,7 +10,7 @@
   "harvest": "Blooms early summer.",
   "sun": "Full sun to part shade",
   "soil": "Average to moist soils; edges.",
-  "risks": "Medicinally active \u2014 not a food.",
+  "risks": "Medicinally active — not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -75,7 +75,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Summer.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils; drought-tolerant.",
-  "risks": "Alternate host of white pine blister rust \u2014 keep away from white pines.",
+  "risks": "Alternate host of white pine blister rust — keep away from white pines.",
   "buy": "Native-plant/edible nurseries.",
   "native_states": [
     "WA",
@@ -44,11 +44,11 @@
   "pol": true,
   "scores": {
     "raw": [
-      7,
+      9,
       "E"
     ],
     "cooked": [
-      7,
+      9,
       "E"
     ],
     "life": [
@@ -59,7 +59,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

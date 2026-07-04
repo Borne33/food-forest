@@ -6,11 +6,11 @@
   "life": "Long-lived woody perennial",
   "edible_parts": "Roasted seeds (coffee substitute).",
   "other_uses": "Handsome durable wood; ornamental.",
-  "prep": "Seeds and pods are toxic raw \u2014 must be thoroughly roasted before use as a caffeine-free coffee substitute.",
+  "prep": "Seeds and pods are toxic raw — must be thoroughly roasted before use as a caffeine-free coffee substitute.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Rich bottomland soils; slow-growing.",
-  "risks": "Raw seeds/pods contain toxic cytisine \u2014 ROAST thoroughly before any use; not a nitrogen-fixer.",
+  "risks": "Raw seeds/pods contain toxic cytisine — ROAST thoroughly before any use; not a nitrogen-fixer.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "NY",
@@ -59,7 +59,7 @@
       5,
       "A"
     ],
-    "fiber": [
+    "materials": [
       6,
       "E"
     ],

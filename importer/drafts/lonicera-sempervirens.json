@@ -4,13 +4,13 @@
   "family": "Caprifoliaceae",
   "type": "Vine",
   "life": "Woody perennial vine",
-  "edible_parts": "Flowers (nectar, minor) \u2014 berries not edible.",
+  "edible_parts": "Flowers (nectar, minor) — berries not edible.",
   "other_uses": "Non-invasive native vine; premier hummingbird plant.",
   "prep": "A well-behaved native alternative to invasive Japanese honeysuckle; the tubular flowers can be nibbled for nectar.",
   "harvest": "Blooms late spring through summer.",
   "sun": "Full sun to part shade",
   "soil": "Average to moist, well-drained soils.",
-  "risks": "Berries are not considered edible \u2014 nectar only.",
+  "risks": "Berries are not considered edible — nectar only.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

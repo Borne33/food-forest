@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Annual",
   "edible_parts": "Not eaten.",
-  "other_uses": "Wetland annual with nodding yellow blooms; late pollinator/waterfowl-seed plant.",
+  "other_uses": "Wetland annual with nodding yellow blooms; late pollinator/waterfowl-seed plant. The flower heads yield a yellow-orange dye.",
   "prep": "Grown for wetland-edge pollinator and bird-seed value; barbed seeds cling to clothing.",
   "harvest": "Blooms late summer.",
   "sun": "Full sun to part shade",
@@ -80,9 +80,9 @@
       6,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      2,
+      "A"
     ],
     "med": [
       1,

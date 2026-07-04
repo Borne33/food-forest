@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Not eaten.",
   "other_uses": "Pollinator plant; strong stem fiber (cordage).",
-  "prep": "A tough fiber plant \u2014 dried stems yield strong cordage; grown for ecology, not food.",
+  "prep": "A tough fiber plant — dried stems yield strong cordage; grown for ecology, not food.",
   "harvest": "Blooms summer.",
   "sun": "Full sun to part shade",
   "soil": "Dry, well-drained soils.",
-  "risks": "TOXIC (cardiac glycosides) \u2014 not edible.",
+  "risks": "TOXIC (cardiac glycosides) — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -76,7 +76,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       6,
       "E"
     ],

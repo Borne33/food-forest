@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Tubers ('duck potato' / wapato).",
   "other_uses": "Historically a major wetland staple; waterfowl food.",
-  "prep": "Dislodge the walnut-sized tubers from the mud (fall\u2013winter) and boil or roast like potatoes.",
-  "harvest": "Tubers fall\u2013early winter.",
+  "prep": "Dislodge the walnut-sized tubers from the mud (fall–winter) and boil or roast like potatoes.",
+  "harvest": "Tubers fall–early winter.",
   "sun": "Full sun to part shade",
   "soil": "Shallow water and saturated pond/marsh margins.",
-  "risks": "Eat tubers cooked (raw are acrid); ID carefully \u2014 young leaves resemble toxic arum family plants.",
+  "risks": "Eat tubers cooked (raw are acrid); ID carefully — young leaves resemble toxic arum family plants.",
   "buy": "Native-plant/pond nurseries.",
   "native_states": [
     "ME",
@@ -85,7 +85,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -96,7 +96,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

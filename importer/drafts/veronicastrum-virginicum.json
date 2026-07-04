@@ -10,7 +10,7 @@
   "harvest": "Blooms mid-late summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist, rich soils.",
-  "risks": "Root is a strong traditional purgative \u2014 not for casual/unsupervised use.",
+  "risks": "Root is a strong traditional purgative — not for casual/unsupervised use.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

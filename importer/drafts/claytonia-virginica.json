@@ -10,7 +10,7 @@
   "harvest": "Early spring.",
   "sun": "Part shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "Dig sustainably \u2014 corms are small and slow to replace.",
+  "risks": "Dig sustainably — corms are small and slow to replace.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -74,7 +74,7 @@
       4,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Blooms summer.",
   "sun": "Full sun to part shade",
   "soil": "Dry, sandy, well-drained soils.",
-  "risks": "High thymol \u2014 use in culinary amounts only.",
+  "risks": "High thymol — use in culinary amounts only.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

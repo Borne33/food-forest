@@ -10,7 +10,7 @@
   "harvest": "Late summer.",
   "sun": "Full sun to part shade",
   "soil": "Sandy, well-drained coastal soils; salt-tolerant.",
-  "risks": "Pits/leaves cyanogenic like other Prunus \u2014 use flesh only.",
+  "risks": "Pits/leaves cyanogenic like other Prunus — use flesh only.",
   "buy": "Native-plant/edible nurseries.",
   "native_states": [
     "ME",
@@ -39,7 +39,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -50,7 +50,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

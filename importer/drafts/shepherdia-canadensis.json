@@ -10,7 +10,7 @@
   "harvest": "Summer.",
   "sun": "Full sun to part shade",
   "soil": "Poor, dry, calcareous soils; fixes nitrogen.",
-  "risks": "Berries contain saponins \u2014 eat in moderation; can cause GI upset in quantity.",
+  "risks": "Berries contain saponins — eat in moderation; can cause GI upset in quantity.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -60,7 +60,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

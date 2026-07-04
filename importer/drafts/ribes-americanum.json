@@ -7,10 +7,10 @@
   "edible_parts": "Berries (rich, musky-sweet).",
   "other_uses": "Understory fruiting shrub; pollinator flowers.",
   "prep": "Eat ripe fruit fresh or make into jam, syrup, and cordial.",
-  "harvest": "Mid\u2013late summer.",
+  "harvest": "Mid–late summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist rich soils.",
-  "risks": "Ribes are an alternate host of white pine blister rust \u2014 avoid planting near white pines.",
+  "risks": "Ribes are an alternate host of white pine blister rust — avoid planting near white pines.",
   "buy": "Native-plant/edible nurseries.",
   "native_states": [
     "ME",
@@ -55,7 +55,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -66,7 +66,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

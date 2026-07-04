@@ -7,9 +7,9 @@
   "edible_parts": "Berries (astringent raw, superb processed).",
   "other_uses": "High-antioxidant 'superfruit'; ornamental.",
   "prep": "Best juiced, dried, or cooked into jam, syrup, and wine; very high in antioxidants.",
-  "harvest": "Late summer\u2013fall.",
+  "harvest": "Late summer–fall.",
   "sun": "Full sun to part shade",
-  "soil": "Wet to dry \u2014 very adaptable.",
+  "soil": "Wet to dry — very adaptable.",
   "risks": "Strongly astringent (mouth-puckering) raw.",
   "buy": "Native-plant/edible nurseries.",
   "native_states": [
@@ -55,7 +55,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -66,7 +66,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

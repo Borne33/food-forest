@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Flower nectar spurs (a trivial nibble).",
   "other_uses": "Early hummingbird and native-bee plant; delicate woodland ornamental.",
-  "prep": "Enjoy as an ornamental \u2014 only the flower nectar is a minor curiosity; seeds and roots are toxic.",
+  "prep": "Enjoy as an ornamental — only the flower nectar is a minor curiosity; seeds and roots are toxic.",
   "harvest": "Blooms mid-spring.",
   "sun": "Part shade to sun",
   "soil": "Rocky, well-drained soils; part shade.",
-  "risks": "Seeds and roots contain toxic compounds \u2014 do not eat.",
+  "risks": "Seeds and roots contain toxic compounds — do not eat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

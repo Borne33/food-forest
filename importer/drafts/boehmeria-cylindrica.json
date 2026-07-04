@@ -7,7 +7,7 @@
   "edible_parts": "Young leaves (cooked; no sting).",
   "other_uses": "Host for red admiral and comma butterflies; shade wetland plant.",
   "prep": "A stingless nettle relative; cook young leaves like greens.",
-  "harvest": "Leaves spring\u2013summer.",
+  "harvest": "Leaves spring–summer.",
   "sun": "Part to full shade",
   "soil": "Wet to moist, shaded soils.",
   "risks": "None significant.",
@@ -70,7 +70,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

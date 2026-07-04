@@ -10,7 +10,7 @@
   "harvest": "Grapes fall.",
   "sun": "Full sun to part shade",
   "soil": "Moist soils, streambanks and edges; very vigorous.",
-  "risks": "Only eat grapes with the tendrils/leaves confirmed as grape \u2014 avoid toxic look-alikes like moonseed (which has a single crescent seed).",
+  "risks": "Only eat grapes with the tendrils/leaves confirmed as grape — avoid toxic look-alikes like moonseed (which has a single crescent seed).",
   "buy": "Native-plant nurseries; common wild.",
   "native_states": [
     "ME",
@@ -76,7 +76,7 @@
       "E"
     ],
     "cooked": [
-      7,
+      9,
       "E"
     ],
     "life": [
@@ -87,7 +87,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       4,
       "E"
     ],

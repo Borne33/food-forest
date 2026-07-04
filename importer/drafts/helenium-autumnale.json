@@ -7,7 +7,7 @@
   "edible_parts": "Not eaten.",
   "other_uses": "Bright yellow late pollinator plant for wet meadows.",
   "prep": "A late-season pollinator plant; grown for ecology.",
-  "harvest": "Blooms late summer\u2013fall.",
+  "harvest": "Blooms late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Moist to wet soils.",
   "risks": "TOXIC if eaten; bitter. Not a food.",
@@ -70,7 +70,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

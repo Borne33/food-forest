@@ -10,7 +10,7 @@
   "harvest": "Blooms spring.",
   "sun": "Part shade to sun",
   "soil": "Moist to average soils.",
-  "risks": "Contains pyrrolizidine alkaloids (liver toxin) \u2014 not edible.",
+  "risks": "Contains pyrrolizidine alkaloids (liver toxin) — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

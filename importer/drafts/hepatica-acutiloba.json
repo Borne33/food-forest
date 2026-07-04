@@ -10,7 +10,7 @@
   "harvest": "Blooms very early spring.",
   "sun": "Part to full shade",
   "soil": "Rich, well-drained woodland soils, often on limestone.",
-  "risks": "Mildly irritant sap typical of Ranunculaceae \u2014 not a food.",
+  "risks": "Mildly irritant sap typical of Ranunculaceae — not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -4,13 +4,13 @@
   "family": "Asteraceae",
   "type": "Herb",
   "life": "Biennial/short-lived perennial",
-  "edible_parts": "Not eaten (edibility disputed \u2014 treat as ornamental only).",
+  "edible_parts": "Not eaten (edibility disputed — treat as ornamental only).",
   "other_uses": "The quintessential American wildflower; long summer-to-fall bloom.",
   "prep": "Grown for its long, cheerful bloom and pollinator/bird-seed value; not established as a food plant.",
   "harvest": "Blooms summer into fall.",
   "sun": "Full sun to part shade",
   "soil": "Average to dry, well-drained soils.",
-  "risks": "Some sources note skin irritation from contact and disputed internal safety \u2014 treat as non-food.",
+  "risks": "Some sources note skin irritation from contact and disputed internal safety — treat as non-food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -69,7 +69,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

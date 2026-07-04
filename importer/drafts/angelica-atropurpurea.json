@@ -10,7 +10,7 @@
   "harvest": "Blooms early summer.",
   "sun": "Full sun to part shade",
   "soil": "Wet to moist soils.",
-  "risks": "Apiaceae has deadly toxic look-alikes (water hemlock) \u2014 do not forage without expert, 100%-certain ID.",
+  "risks": "Apiaceae has deadly toxic look-alikes (water hemlock) — do not forage without expert, 100%-certain ID.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

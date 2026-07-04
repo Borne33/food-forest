@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Young leaves/flower buds, only after thorough cooking.",
   "other_uses": "Bright yellow, one of the earliest wetland spring blooms.",
-  "prep": "Traditionally boiled in multiple changes of water (like a 'cooked green') to destroy the raw toxins \u2014 not eaten raw.",
+  "prep": "Traditionally boiled in multiple changes of water (like a 'cooked green') to destroy the raw toxins — not eaten raw.",
   "harvest": "Blooms early spring.",
   "sun": "Full sun to part shade",
   "soil": "Wet, saturated soils; pond and stream edges.",
-  "risks": "TOXIC raw (protoanemonin) \u2014 must be thoroughly cooked in changed water before any use; large amounts still risky.",
+  "risks": "TOXIC raw (protoanemonin) — must be thoroughly cooked in changed water before any use; large amounts still risky.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

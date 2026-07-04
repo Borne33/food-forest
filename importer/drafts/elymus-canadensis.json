@@ -10,7 +10,7 @@
   "harvest": "Seed heads summer.",
   "sun": "Full sun to part shade",
   "soil": "Average to dry soils.",
-  "risks": "Wild-rye seed can carry toxic ergot fungus \u2014 do not eat affected heads.",
+  "risks": "Wild-rye seed can carry toxic ergot fungus — do not eat affected heads.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -80,7 +80,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       4,
       "E"
     ],

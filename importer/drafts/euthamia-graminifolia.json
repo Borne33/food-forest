@@ -7,7 +7,7 @@
   "edible_parts": "Flowers/leaves (minor tea).",
   "other_uses": "Flat-topped late pollinator plant.",
   "prep": "Grown for pollinators.",
-  "harvest": "Blooms late summer\u2013fall.",
+  "harvest": "Blooms late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Moist to average soils.",
   "risks": "None significant.",
@@ -70,7 +70,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

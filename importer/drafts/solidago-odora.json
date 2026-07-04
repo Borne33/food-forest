@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Anise-scented leaves (tea) and flowers.",
-  "other_uses": "Excellent late-season pollinator/nectar plant.",
+  "other_uses": "Excellent late-season pollinator/nectar plant. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Steep the anise-scented leaves for a pleasant tea; flowers are edible.",
   "harvest": "Leaves summer; flowers late summer.",
   "sun": "Full sun to part shade",
@@ -70,9 +70,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       3,

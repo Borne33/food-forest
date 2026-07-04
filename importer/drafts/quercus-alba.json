@@ -7,10 +7,10 @@
   "edible_parts": "Acorns (sweet white-oak group).",
   "other_uses": "Premium timber; keystone wildlife tree.",
   "prep": "Shell and leach acorns in changes of water to remove tannins, then roast or grind to meal; among the least-bitter acorns.",
-  "harvest": "Fall (Sept\u2013Oct).",
+  "harvest": "Fall (Sept–Oct).",
   "sun": "Full sun to part shade",
   "soil": "Deep well-drained upland soils; very long-lived.",
-  "risks": "Raw acorns are bitter/astringent from tannins \u2014 leach before eating.",
+  "risks": "Raw acorns are bitter/astringent from tannins — leach before eating.",
   "buy": "Native-plant nurseries; grown from local acorns.",
   "native_states": [
     "ME",
@@ -63,7 +63,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -74,7 +74,7 @@
       10,
       "P"
     ],
-    "fiber": [
+    "materials": [
       9,
       "E"
     ],

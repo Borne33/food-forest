@@ -4,13 +4,13 @@
   "family": "Fagaceae",
   "type": "Tree",
   "life": "Long-lived woody perennial",
-  "edible_parts": "Acorns (bitter, red-oak group \u2014 needs thorough leaching).",
+  "edible_parts": "Acorns (bitter, red-oak group — needs thorough leaching).",
   "other_uses": "Prized bottomland timber tree of the southeast; a climate-shift candidate for NY.",
   "prep": "Leach thoroughly before eating, like other red-oak acorns.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Rich, moist bottomland soils.",
-  "risks": "High tannins raw \u2014 must leach thoroughly.",
+  "risks": "High tannins raw — must leach thoroughly.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "NJ",
@@ -54,7 +54,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

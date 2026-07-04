@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Annual / reseeding",
   "edible_parts": "Not eaten.",
-  "other_uses": "Golden-yellow tickseed sunflower that blankets wet meadows in fall; heavy nectar source.",
+  "other_uses": "Golden-yellow tickseed sunflower that blankets wet meadows in fall; heavy nectar source. The flower heads yield a yellow-orange dye.",
   "prep": "Grown as a fast, showy fall nectar annual for wet meadows and rain gardens; self-sows. Not a food.",
   "harvest": "Blooms fall.",
   "sun": "Full sun",
@@ -74,8 +74,8 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
+    "materials": [
+      2,
       "A"
     ],
     "med": [

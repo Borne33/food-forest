@@ -7,10 +7,10 @@
   "edible_parts": "Rhizomes (starch), young shoots, green flower spikes, and pollen.",
   "other_uses": "A wetland 'supermarket'; leaves for weaving and cordage.",
   "prep": "Peel and eat young shoots ('Cossack asparagus'), boil green spikes like corn, and use pollen as flour extender.",
-  "harvest": "Shoots spring; pollen early summer; rhizomes fall\u2013winter.",
+  "harvest": "Shoots spring; pollen early summer; rhizomes fall–winter.",
   "sun": "Full sun to part shade",
   "soil": "Shallow standing water and saturated soils.",
-  "risks": "Young plants can be confused with toxic iris (no cattail flower spike yet) \u2014 ID carefully; cattail concentrates water pollutants, so harvest from clean water only.",
+  "risks": "Young plants can be confused with toxic iris (no cattail flower spike yet) — ID carefully; cattail concentrates water pollutants, so harvest from clean water only.",
   "buy": "Native-plant/pond nurseries; abundant wild.",
   "native_states": [
     "ME",
@@ -85,7 +85,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -96,7 +96,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       7,
       "E"
     ],

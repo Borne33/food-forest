@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Rhizome (ginger-like flavoring).",
   "other_uses": "Handsome woodland groundcover.",
-  "prep": "Historically the rhizome flavored dishes like ginger \u2014 but see the safety note; grow mainly as a native groundcover.",
+  "prep": "Historically the rhizome flavored dishes like ginger — but see the safety note; grow mainly as a native groundcover.",
   "harvest": "Rhizome any season.",
   "sun": "Shade",
   "soil": "Rich, moist, shaded woodland soils.",
-  "risks": "Contains aristolochic acid, a kidney toxin and carcinogen \u2014 modern guidance is to AVOID internal use; not true culinary ginger.",
+  "risks": "Contains aristolochic acid, a kidney toxin and carcinogen — modern guidance is to AVOID internal use; not true culinary ginger.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -74,7 +74,7 @@
       4,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

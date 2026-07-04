@@ -7,10 +7,10 @@
   "edible_parts": "Berries (cones) as spice.",
   "other_uses": "Evergreen; the classic gin/game seasoning.",
   "prep": "Use a few dried 'berries' to flavor game, sauerkraut, and spirits.",
-  "harvest": "Berries take 2\u20133 yrs; harvest ripe blue ones.",
+  "harvest": "Berries take 2–3 yrs; harvest ripe blue ones.",
   "sun": "Full sun to part shade",
   "soil": "Poor, rocky, well-drained soils.",
-  "risks": "Avoid in pregnancy and with kidney issues; use sparingly as a spice \u2014 some junipers are toxic, use only J. communis.",
+  "risks": "Avoid in pregnancy and with kidney issues; use sparingly as a spice — some junipers are toxic, use only J. communis.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -68,7 +68,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       2,
       "A"
     ],

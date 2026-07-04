@@ -10,7 +10,7 @@
   "harvest": "Blooms summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist to wet soils.",
-  "risks": "Ranunculaceae \u2014 not edible.",
+  "risks": "Ranunculaceae — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

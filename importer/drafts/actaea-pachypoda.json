@@ -4,13 +4,13 @@
   "family": "Ranunculaceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "None \u2014 highly toxic.",
+  "edible_parts": "None — highly toxic.",
   "other_uses": "Striking 'doll's-eyes' white berries; woodland ornamental.",
   "prep": "Grown strictly as a woodland ornamental; every part is poisonous.",
   "harvest": "Berries late summer.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "HIGHLY TOXIC \u2014 berries and roots can be fatal; never eat.",
+  "risks": "HIGHLY TOXIC — berries and roots can be fatal; never eat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

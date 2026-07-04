@@ -9,7 +9,7 @@
   "prep": "Not a human food; grown for ecological/structural and landscaping value.",
   "harvest": "Seed heads spring-summer.",
   "sun": "Part shade to sun",
-  "soil": "Dry, sandy soils; spreads by rhizome \u2014 good for erosion control.",
+  "soil": "Dry, sandy soils; spreads by rhizome — good for erosion control.",
   "risks": "None significant (not a food).",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
@@ -55,7 +55,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

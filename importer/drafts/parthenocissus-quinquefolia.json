@@ -4,13 +4,13 @@
   "family": "Vitaceae",
   "type": "Vine",
   "life": "Long-lived woody perennial vine",
-  "edible_parts": "None \u2014 berries toxic.",
+  "edible_parts": "None — berries toxic.",
   "other_uses": "Vigorous native vine; brilliant red fall color; major bird-berry source.",
   "prep": "Grown for fast coverage and fall color; the berries are toxic to humans (oxalates) though loved by birds.",
   "harvest": "Berries fall.",
   "sun": "Full sun to part shade",
   "soil": "Adaptable; wet to dry, sun to shade.",
-  "risks": "Berries contain oxalate crystals \u2014 toxic to humans if eaten; sap can irritate sensitive skin.",
+  "risks": "Berries contain oxalate crystals — toxic to humans if eaten; sap can irritate sensitive skin.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -81,7 +81,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

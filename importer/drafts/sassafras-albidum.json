@@ -4,13 +4,13 @@
   "family": "Lauraceae",
   "type": "Tree",
   "life": "Long-lived woody perennial",
-  "edible_parts": "Leaves (fil\u00e9 powder) and root bark (tea flavor).",
+  "edible_parts": "Leaves (filé powder) and root bark (tea flavor).",
   "other_uses": "Aromatic; traditional root-beer flavoring; wildlife food.",
-  "prep": "Dry and grind young leaves into fil\u00e9 to thicken gumbo; historically root bark made tea.",
+  "prep": "Dry and grind young leaves into filé to thicken gumbo; historically root bark made tea.",
   "harvest": "Leaves summer; roots dormant season.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained sandy or loamy soils.",
-  "risks": "Root bark/oil contains safrole, a carcinogen banned by the FDA as a food additive \u2014 leaf fil\u00e9 is the safe culinary use.",
+  "risks": "Root bark/oil contains safrole, a carcinogen banned by the FDA as a food additive — leaf filé is the safe culinary use.",
   "buy": "Native-plant nurseries; common wild.",
   "native_states": [
     "ME",
@@ -74,7 +74,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       4,
       "A"
     ],

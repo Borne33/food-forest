@@ -10,7 +10,7 @@
   "harvest": "Blooms late spring.",
   "sun": "Full sun to part shade",
   "soil": "Moist soils; spreads.",
-  "risks": "Acrid/toxic sap \u2014 not edible; spreads aggressively.",
+  "risks": "Acrid/toxic sap — not edible; spreads aggressively.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -64,7 +64,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

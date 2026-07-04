@@ -7,7 +7,7 @@
   "edible_parts": "Waxy berries (seasoning) and leaves (bay-like flavor).",
   "other_uses": "Aromatic wax for candles; nitrogen-fixing coastal shrub.",
   "prep": "Use dried leaves like bay leaf; boil berries to skim off fragrant bayberry wax.",
-  "harvest": "Berries fall\u2013winter.",
+  "harvest": "Berries fall–winter.",
   "sun": "Full sun to part shade",
   "soil": "Poor, sandy, salty soils; fixes nitrogen.",
   "risks": "Berries are waxy, not a fleshy food.",
@@ -57,7 +57,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       6,
       "E"
     ],

@@ -7,7 +7,7 @@
   "edible_parts": "Berries (classic blackberries).",
   "other_uses": "Wildlife thicket; abundant summer fruit.",
   "prep": "Eat fresh or make into pies, jam, and wine.",
-  "harvest": "Mid\u2013late summer.",
+  "harvest": "Mid–late summer.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils; forms thickets.",
   "risks": "Thorny canes.",
@@ -63,7 +63,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -74,7 +74,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

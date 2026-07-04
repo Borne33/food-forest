@@ -4,9 +4,9 @@
   "family": "Fagaceae",
   "type": "Shrub",
   "life": "Long-lived woody perennial",
-  "edible_parts": "Acorns (sweet, low-tannin \u2014 among the best-tasting).",
+  "edible_parts": "Acorns (sweet, low-tannin — among the best-tasting).",
   "other_uses": "Shrubby oak ideal for hedgerows and small properties.",
-  "prep": "Eat fresh or lightly leached \u2014 these are sweet, low-tannin acorns like chestnut oak.",
+  "prep": "Eat fresh or lightly leached — these are sweet, low-tannin acorns like chestnut oak.",
   "harvest": "Fall; often bears at a young age.",
   "sun": "Full sun to part shade",
   "soil": "Dry, sandy or rocky, well-drained soils.",
@@ -70,7 +70,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       5,
       "E"
     ],

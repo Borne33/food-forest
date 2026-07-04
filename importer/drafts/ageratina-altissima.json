@@ -4,13 +4,13 @@
   "family": "Asteraceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "None \u2014 toxic.",
+  "edible_parts": "None — toxic.",
   "other_uses": "Shade-tolerant fall pollinator plant.",
   "prep": "Grown for late pollinators in shade; historically caused 'milk sickness' when livestock ate it and people drank the milk.",
   "harvest": "Blooms late summer-fall.",
   "sun": "Part to full shade",
   "soil": "Rich, moist to average woodland soils.",
-  "risks": "TOXIC (tremetol) \u2014 never eat; historically poisoned people via contaminated milk/meat.",
+  "risks": "TOXIC (tremetol) — never eat; historically poisoned people via contaminated milk/meat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

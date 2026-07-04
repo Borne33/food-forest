@@ -10,7 +10,7 @@
   "harvest": "Fall after first frosts.",
   "sun": "Full sun to part shade",
   "soil": "Rich, moist, well-drained soils; slow-growing.",
-  "risks": "Raw nuts contain tannins/saponins \u2014 eat only in moderation raw.",
+  "risks": "Raw nuts contain tannins/saponins — eat only in moderation raw.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -63,7 +63,7 @@
       "E"
     ],
     "cooked": [
-      7,
+      9,
       "E"
     ],
     "life": [
@@ -74,7 +74,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       7,
       "E"
     ],

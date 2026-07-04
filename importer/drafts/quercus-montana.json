@@ -4,9 +4,9 @@
   "family": "Fagaceae",
   "type": "Tree",
   "life": "Long-lived woody perennial",
-  "edible_parts": "Acorns (sweet, low-tannin \u2014 among the best-tasting native acorns).",
+  "edible_parts": "Acorns (sweet, low-tannin — among the best-tasting native acorns).",
   "other_uses": "Ridge-top oak; bark historically used for tanning leather.",
-  "prep": "Eat fresh or lightly leached \u2014 among the sweetest, least-bitter native acorns.",
+  "prep": "Eat fresh or lightly leached — among the sweetest, least-bitter native acorns.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Dry, rocky, acidic, well-drained ridge soils.",
@@ -70,7 +70,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

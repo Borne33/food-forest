@@ -5,9 +5,9 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Flowers/leaves (minor tea).",
-  "other_uses": "Earliest-blooming goldenrod; pollinator plant.",
+  "other_uses": "Earliest-blooming goldenrod; pollinator plant. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Grown for pollinators.",
-  "harvest": "Blooms mid\u2013late summer.",
+  "harvest": "Blooms mid–late summer.",
   "sun": "Full sun to part shade",
   "soil": "Dry to average soils.",
   "risks": "None significant.",
@@ -70,9 +70,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

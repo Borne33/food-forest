@@ -9,7 +9,7 @@
   "prep": "Fruit is thin and best left for wildlife; the shrub's real value is ecological and its straight stems.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
-  "soil": "Wet to dry \u2014 very adaptable.",
+  "soil": "Wet to dry — very adaptable.",
   "risks": "Fruit is astringent and low-yield for humans.",
   "buy": "Native-plant nurseries.",
   "native_states": [
@@ -64,7 +64,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       4,
       "E"
     ],

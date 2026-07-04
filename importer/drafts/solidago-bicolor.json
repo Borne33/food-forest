@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Flowers/leaves (minor tea).",
-  "other_uses": "The only white-flowered goldenrod; dry-woods fall pollinator plant.",
+  "other_uses": "The only white-flowered goldenrod; dry-woods fall pollinator plant. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Grown for pollinators and its unusual white plumes.",
   "harvest": "Blooms fall.",
   "sun": "Part shade to sun",
@@ -59,9 +59,9 @@
       7,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

@@ -10,7 +10,7 @@
   "harvest": "Bark harvested spring.",
   "sun": "Full sun to part shade",
   "soil": "Adaptable; average to dry, well-drained soils.",
-  "risks": "None significant; bark is medicinally active (salicin) \u2014 avoid if aspirin-sensitive.",
+  "risks": "None significant; bark is medicinally active (salicin) — avoid if aspirin-sensitive.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -61,7 +61,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       6,
       "E"
     ],

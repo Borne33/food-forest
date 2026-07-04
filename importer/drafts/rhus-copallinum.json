@@ -5,7 +5,7 @@
   "type": "Shrub",
   "life": "Hardy woody perennial",
   "edible_parts": "Fruit (tart 'sumac-ade' drink/spice).",
-  "other_uses": "Shrub with glossy winged leaf-stalks, cone-shaped red fruit clusters, and fiery fall color.",
+  "other_uses": "Shrub with glossy winged leaf-stalks, cone-shaped red fruit clusters, and fiery fall color. The tannin-rich fruit, leaves, and bark yield gray-to-black dye and natural ink.",
   "prep": "Steep or grind the tart red fruit for a lemonade-like drink and spice; a fast, colonizing shrub for poor dry sites and superb fall color.",
   "harvest": "Fruit late summer-fall.",
   "sun": "Full sun",
@@ -73,9 +73,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      2,
-      "A"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       3,

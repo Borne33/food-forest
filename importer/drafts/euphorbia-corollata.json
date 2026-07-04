@@ -4,13 +4,13 @@
   "family": "Euphorbiaceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "None \u2014 toxic/irritant.",
+  "edible_parts": "None — toxic/irritant.",
   "other_uses": "Airy white-flowered prairie plant; long summer bloom.",
   "prep": "Grown for its baby's-breath-like airy blooms and pollinator value; not a food.",
   "harvest": "Blooms mid-late summer.",
   "sun": "Full sun to part shade",
   "soil": "Dry, well-drained soils.",
-  "risks": "Milky sap is toxic and can irritate skin/eyes \u2014 handle with care, do not eat.",
+  "risks": "Milky sap is toxic and can irritate skin/eyes — handle with care, do not eat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

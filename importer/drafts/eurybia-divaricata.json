@@ -7,7 +7,7 @@
   "edible_parts": "Not eaten (grown for ecology).",
   "other_uses": "Shade groundcover; late pollinator plant for woodland edges.",
   "prep": "Grown as a shade groundcover for pollinators.",
-  "harvest": "Blooms late summer\u2013fall.",
+  "harvest": "Blooms late summer–fall.",
   "sun": "Part to full shade",
   "soil": "Dry to average woodland soils.",
   "risks": "None significant.",
@@ -59,7 +59,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

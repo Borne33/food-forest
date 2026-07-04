@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Annual",
   "edible_parts": "Not eaten.",
-  "other_uses": "Late-season pollinator plant; abundant wildlife seed.",
+  "other_uses": "Late-season pollinator plant; abundant wildlife seed. The flower heads yield a yellow-orange dye.",
   "prep": "A wetland-edge pollinator annual; barbed seeds cling to clothing.",
   "harvest": "Blooms late summer.",
   "sun": "Full sun to part shade",
@@ -70,9 +70,9 @@
       6,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      2,
+      "A"
     ],
     "med": [
       1,

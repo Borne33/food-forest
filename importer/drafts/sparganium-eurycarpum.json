@@ -4,7 +4,7 @@
   "family": "Typhaceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "Rhizomes/tubers (historic, minor \u2014 mostly wildlife food).",
+  "edible_parts": "Rhizomes/tubers (historic, minor — mostly wildlife food).",
   "other_uses": "Larger pond-edge relative; important waterfowl and muskrat food.",
   "prep": "Rootstocks were occasionally eaten historically, boiled like other aquatic tubers; today grown chiefly for wildlife.",
   "harvest": "Tubers fall.",
@@ -81,7 +81,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       2,
       "A"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Blooms mid-spring.",
   "sun": "Full sun to part shade",
   "soil": "Rocky, well-drained soils.",
-  "risks": "Acrid, skin-irritating sap like other Clematis \u2014 not edible.",
+  "risks": "Acrid, skin-irritating sap like other Clematis — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -68,7 +68,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       2,
       "A"
     ],

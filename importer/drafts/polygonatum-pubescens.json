@@ -10,7 +10,7 @@
   "harvest": "Shoots spring.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "The blue berries are toxic \u2014 eat only shoots and rhizome, and ID carefully.",
+  "risks": "The blue berries are toxic — eat only shoots and rhizome, and ID carefully.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       4,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

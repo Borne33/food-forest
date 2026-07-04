@@ -5,12 +5,12 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Flowers/leaves (minor tea).",
-  "other_uses": "Keystone late-season nectar and beneficial-insect plant.",
+  "other_uses": "Keystone late-season nectar and beneficial-insect plant. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Grown for pollinators.",
   "harvest": "Blooms fall.",
   "sun": "Full sun to part shade",
   "soil": "Average to dry soils; spreads.",
-  "risks": "Spreads aggressively by rhizome \u2014 give it room.",
+  "risks": "Spreads aggressively by rhizome — give it room.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,9 +70,9 @@
       9,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

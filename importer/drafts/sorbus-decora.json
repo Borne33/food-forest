@@ -10,7 +10,7 @@
   "harvest": "Fall, persisting into winter.",
   "sun": "Full sun to part shade",
   "soil": "Cool, moist, well-drained acidic soils.",
-  "risks": "Astringent and sour raw \u2014 cook before eating in quantity.",
+  "risks": "Astringent and sour raw — cook before eating in quantity.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -48,7 +48,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       2,
       "A"
     ],

@@ -7,10 +7,10 @@
   "edible_parts": "Young shoots and leaves (cooked).",
   "other_uses": "Native woodland pot-herb.",
   "prep": "Cook young greens like stinging nettle (heat removes the sting).",
-  "harvest": "Spring\u2013early summer.",
+  "harvest": "Spring–early summer.",
   "sun": "Part shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "Stinging hairs \u2014 wear gloves and cook before eating.",
+  "risks": "Stinging hairs — wear gloves and cook before eating.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -63,7 +63,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -74,7 +74,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       5,
       "A"
     ],

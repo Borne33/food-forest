@@ -5,9 +5,9 @@
   "type": "Shrub",
   "life": "Hardy woody perennial",
   "edible_parts": "Red berry clusters (tart 'sumac-ade' and spice).",
-  "other_uses": "Thicket-forming; brilliant fall color; the Middle-Eastern spice sumac.",
+  "other_uses": "Thicket-forming; brilliant fall color; the Middle-Eastern spice sumac. The tannin-rich fruit, leaves, and bark yield gray-to-black dye and natural ink.",
   "prep": "Soak the red drupes in cool water for a pink lemonade, or dry and grind as tart spice.",
-  "harvest": "Berries late summer\u2013fall.",
+  "harvest": "Berries late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Dry, poor, well-drained soils.",
   "risks": "Use only RED-berried sumacs; white-berried poison sumac is toxic. Steep in COOL water (hot draws bitter tannins).",
@@ -93,9 +93,9 @@
       6,
       "E"
     ],
-    "fiber": [
-      2,
-      "A"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       3,

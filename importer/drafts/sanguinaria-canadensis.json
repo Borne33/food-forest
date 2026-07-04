@@ -4,13 +4,13 @@
   "family": "Papaveraceae",
   "type": "Herb",
   "life": "Spring-ephemeral perennial",
-  "edible_parts": "None \u2014 toxic.",
+  "edible_parts": "None — toxic.",
   "other_uses": "Ephemeral white spring bloom with distinctive red-orange sap.",
   "prep": "Grown strictly as an ornamental spring ephemeral; the red sap was used as a dye/pigment.",
   "harvest": "Blooms early spring.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "TOXIC sap (sanguinarine) \u2014 corrosive to tissue in quantity; never ingest, avoid prolonged skin contact.",
+  "risks": "TOXIC sap (sanguinarine) — corrosive to tissue in quantity; never ingest, avoid prolonged skin contact.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,9 +59,9 @@
       5,
       "E"
     ],
-    "fiber": [
-      2,
-      "A"
+    "materials": [
+      5,
+      "E"
     ],
     "med": [
       3,

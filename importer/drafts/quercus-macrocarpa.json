@@ -10,7 +10,7 @@
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Adaptable, tolerates clay and drought; extremely long-lived.",
-  "risks": "Mild tannins \u2014 leach if bitter.",
+  "risks": "Mild tannins — leach if bitter.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "NY",
@@ -51,7 +51,7 @@
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -62,7 +62,7 @@
       9,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

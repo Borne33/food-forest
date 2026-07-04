@@ -10,7 +10,7 @@
   "harvest": "Blooms late summer.",
   "sun": "Part shade to sun",
   "soil": "Wet to moist soils.",
-  "risks": "TOXIC \u2014 contains lobeline alkaloids; do not ingest.",
+  "risks": "TOXIC — contains lobeline alkaloids; do not ingest.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -4,13 +4,13 @@
   "family": "Fagaceae",
   "type": "Tree",
   "life": "Long-lived woody perennial",
-  "edible_parts": "Acorns (bitter, red-oak group \u2014 needs thorough leaching).",
+  "edible_parts": "Acorns (bitter, red-oak group — needs thorough leaching).",
   "other_uses": "Fast-growing wet-tolerant shade tree; classic street/park tree.",
   "prep": "Leach thoroughly before eating, like other red-oak acorns.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Wet to moist, poorly-drained soils; tolerates clay and periodic flooding.",
-  "risks": "High tannins raw \u2014 must leach thoroughly.",
+  "risks": "High tannins raw — must leach thoroughly.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -62,7 +62,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       7,
       "E"
     ],

@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Leaves (tea, minor).",
-  "other_uses": "One of the showiest goldenrods, with dense pyramidal plumes of golden flowers on red stems.",
+  "other_uses": "One of the showiest goldenrods, with dense pyramidal plumes of golden flowers on red stems. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Goldenrod leaves make a minor tea; grown as a clump-forming (non-running) fall nectar powerhouse for bees and monarchs.",
   "harvest": "Blooms fall.",
   "sun": "Full sun to part shade",
@@ -74,9 +74,9 @@
       9,
       "E"
     ],
-    "fiber": [
-      1,
-      "A"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

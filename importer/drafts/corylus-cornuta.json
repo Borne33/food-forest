@@ -7,10 +7,10 @@
   "edible_parts": "Nuts (sweet, filbert-like).",
   "other_uses": "Thicket-forming wildlife shrub.",
   "prep": "Gather husked nuts in fall (beat the tubular husk); eat raw or roasted like filberts.",
-  "harvest": "Late summer\u2013fall.",
+  "harvest": "Late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils; forest edge.",
-  "risks": "Bristly husks can irritate skin \u2014 wear gloves when husking.",
+  "risks": "Bristly husks can irritate skin — wear gloves when husking.",
   "buy": "Native-plant/edible nurseries.",
   "native_states": [
     "ME",
@@ -62,7 +62,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

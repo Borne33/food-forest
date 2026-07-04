@@ -6,7 +6,7 @@
   "life": "Long-lived woody perennial",
   "edible_parts": "Seeds (minor food); bark/leaves (medicinal).",
   "other_uses": "Late-fall bloomer; the source of commercial witch-hazel astringent.",
-  "prep": "The famous use is medicinal \u2014 a bark/leaf astringent; oily seeds are a minor wild nibble.",
+  "prep": "The famous use is medicinal — a bark/leaf astringent; oily seeds are a minor wild nibble.",
   "harvest": "Flowers late fall; seeds fall.",
   "sun": "Part shade",
   "soil": "Moist woodland soils.",
@@ -74,7 +74,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

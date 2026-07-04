@@ -4,13 +4,13 @@
   "family": "Papaveraceae",
   "type": "Herb",
   "life": "Spring-ephemeral perennial",
-  "edible_parts": "None \u2014 toxic.",
+  "edible_parts": "None — toxic.",
   "other_uses": "Charming early-spring 'pantaloon' wildflower; specialist bee plant.",
   "prep": "A beloved spring ephemeral grown for beauty and early bees; not a food.",
   "harvest": "Blooms early spring.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "TOXIC alkaloids in all parts \u2014 do not eat.",
+  "risks": "TOXIC alkaloids in all parts — do not eat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

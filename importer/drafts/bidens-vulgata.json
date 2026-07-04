@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Annual",
   "edible_parts": "Not eaten.",
-  "other_uses": "Disturbed-ground/wetland-edge annual; late pollinator forage.",
+  "other_uses": "Disturbed-ground/wetland-edge annual; late pollinator forage. The flower heads yield a yellow-orange dye.",
   "prep": "A weedy but pollinator-friendly annual for disturbed wet soils.",
   "harvest": "Blooms late summer.",
   "sun": "Full sun to part shade",
@@ -74,9 +74,9 @@
       5,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      2,
+      "A"
     ],
     "med": [
       1,

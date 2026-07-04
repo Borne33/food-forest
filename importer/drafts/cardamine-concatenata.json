@@ -10,7 +10,7 @@
   "harvest": "Early spring.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "Harvest sustainably \u2014 spring ephemerals are slow to recover.",
+  "risks": "Harvest sustainably — spring ephemerals are slow to recover.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -44,7 +44,7 @@
   "pol": true,
   "scores": {
     "raw": [
-      7,
+      9,
       "E"
     ],
     "cooked": [
@@ -59,7 +59,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Blooms mid-late summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist to average soils.",
-  "risks": "Pods/seeds have a traditional laxative use \u2014 not a casual food.",
+  "risks": "Pods/seeds have a traditional laxative use — not a casual food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

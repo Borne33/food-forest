@@ -10,7 +10,7 @@
   "harvest": "Blooms late spring.",
   "sun": "Full sun to part shade",
   "soil": "Dry, well-drained soils.",
-  "risks": "Acrid sap \u2014 not edible.",
+  "risks": "Acrid sap — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "NY",
@@ -45,7 +45,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

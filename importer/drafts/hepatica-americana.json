@@ -10,7 +10,7 @@
   "harvest": "Blooms very early spring.",
   "sun": "Part to full shade",
   "soil": "Acidic, well-drained woodland soils.",
-  "risks": "Mildly irritant sap \u2014 not a food.",
+  "risks": "Mildly irritant sap — not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained acidic soils.",
-  "risks": "Functionally wiped out by chestnut blight \u2014 seek blight-resistant/backcross stock; wild trees usually die before large fruiting.",
+  "risks": "Functionally wiped out by chestnut blight — seek blight-resistant/backcross stock; wild trees usually die before large fruiting.",
   "buy": "Specialty restoration nurseries (blight-resistant hybrids).",
   "native_states": [
     "ME",
@@ -63,7 +63,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

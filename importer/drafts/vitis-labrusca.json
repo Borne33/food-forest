@@ -46,11 +46,11 @@
   "pol": false,
   "scores": {
     "raw": [
-      7,
+      9,
       "E"
     ],
     "cooked": [
-      8,
+      9,
       "E"
     ],
     "life": [
@@ -61,7 +61,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

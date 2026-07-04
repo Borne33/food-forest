@@ -350,6 +350,7 @@ function rowToPlant(r){
     edibleParts:r.edible_parts, otherUses:r.other_uses, prep:r.prep, harvest:r.harvest,
     sun:r.sun, soil:r.soil, risks:r.risks, buy:r.buy,
     nativeStates:r.native_states||[], nativeRegions:r.native_regions||[], nativeToUS:r.native_to_us,
+    nativeNorthAmerica:r.native_north_america, nativeAmericas:r.native_americas,
     invasiveStates:r.invasive_states||[], invasiveEverywhere:r.invasive_everywhere, decPriority:r.dec_priority,
     nf:r.nf, pol:r.pol, s:r.scores, sources:r.sources||[],
     humanVerified:!!r.human_verified, images:r.images||[],
@@ -475,20 +476,22 @@ function RegionMap(){
 
 /* ---------- Scoring engine ---------- */
 const TIER = {P:"peer-reviewed",E:"ethnobotanical",A:"anecdotal",N:"no evidence"};
-const WEIGHTS = {nativity:4, raw:2, cooked:2, life:1, eco:1, fiber:0.7, med:0.3};
+const WEIGHTS = {nativity:4, raw:2, cooked:2, life:1, eco:1, materials:0.7, med:0.3};
 
 function nativity(p, st){
   if(p.invasiveEverywhere || (p.invasiveStates||[]).includes(st)) return {v:-5,label:"Invasive here"};
   if((p.nativeStates||[]).includes(st)) return {v:10,label:"Native to "+st};
   if((p.nativeRegions||[]).includes(regionGroupOf(st))) return {v:8,label:"Native to region"};
   if(p.nativeToUS) return {v:5,label:"Native to US"};
+  if(p.nativeNorthAmerica) return {v:4,label:"Native to North America"};
+  if(p.nativeAmericas) return {v:3,label:"Native to the Americas"};
   return {v:0,label:"Not native"};
 }
 function overall(p, st){
   const nat = nativity(p,st).v;
   const s=p.s;
   const total = nat*WEIGHTS.nativity + s.raw[0]*WEIGHTS.raw + s.cooked[0]*WEIGHTS.cooked
-    + s.life[0]*WEIGHTS.life + s.eco[0]*WEIGHTS.eco + s.fiber[0]*WEIGHTS.fiber + s.med[0]*WEIGHTS.med;
+    + s.life[0]*WEIGHTS.life + s.eco[0]*WEIGHTS.eco + s.materials[0]*WEIGHTS.materials + s.med[0]*WEIGHTS.med;
   return Math.round(total*10)/10;
 }
 function bandColor(score){ // 0-100 scale
@@ -605,7 +608,7 @@ const CATS = [
   {key:"cooked", label:"Edible Cooked", weight:2, abbr:"COOK"},
   {key:"life", label:"Lifecycle", weight:1, abbr:"LIFE"},
   {key:"eco", label:"Ecology", weight:1, abbr:"ECO"},
-  {key:"fiber", label:"Fiber / Material", weight:0.7, abbr:"FIBER"},
+  {key:"materials", label:"Materials", weight:0.7, abbr:"MAT"},
   {key:"med", label:"Medicinal", weight:0.3, abbr:"MED"},
 ];
 
@@ -684,7 +687,7 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
         <ScoreBox label="Edible Cooked" val={p.s.cooked[0]} tier={p.s.cooked[1]} />
         <ScoreBox label="Lifecycle" val={p.s.life[0]} tier={p.s.life[1]} />
         <ScoreBox label="Ecology" val={p.s.eco[0]} tier={p.s.eco[1]} />
-        <ScoreBox label="Fiber" val={p.s.fiber[0]} tier={p.s.fiber[1]} />
+        <ScoreBox label="Materials" val={p.s.materials[0]} tier={p.s.materials[1]} />
         <ScoreBox label="Medicinal" val={p.s.med[0]} tier={p.s.med[1]} />
       </div>
 
@@ -816,7 +819,7 @@ function Database({plants, state, setState, plan, toggle}){
             <option value="cooked">Edible Cooked</option>
             <option value="life">Lifecycle</option>
             <option value="eco">Ecology</option>
-            <option value="fiber">Fiber / Material</option>
+            <option value="materials">Materials</option>
             <option value="med">Medicinal</option>
             <option value="name">Name (A–Z)</option>
           </select></div>
@@ -938,7 +941,7 @@ function MyPlan({plants, state, plan, toggle, go}){
 
   // whole-forest category scores (average per category × 10, so each is out of 100)
   const catAvg=k=>Math.round(chosen.reduce((a,p)=>a+p.s[k][0],0)/chosen.length*10);
-  const CAT_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["fiber","Fiber"],["med","Medicinal"]];
+  const CAT_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["materials","Materials"],["med","Medicinal"]];
   // overall soil fit (from the Soil Examination view's current profile)
   const soilSel={tex:soil.tex, dr:soil.dr, ph:PH_BANDS.filter(b=>soil.phL.includes(b.label))};
   const avgSoilFit=chosen.length?Math.round(chosen.reduce((a,p)=>a+soilFit(p,soilSel).pct,0)/chosen.length):0;
@@ -950,7 +953,7 @@ function MyPlan({plants, state, plan, toggle, go}){
     {label:"Overall Score", val:avg, bg:bandColor(avg), fg:bandText(avg)},
     scoreBox("Edible Raw",catAvg("raw")), scoreBox("Edible Cooked",catAvg("cooked")),
     scoreBox("Lifecycle",catAvg("life")), scoreBox("Ecology",catAvg("eco")),
-    scoreBox("Fiber",catAvg("fiber")), scoreBox("Medicinal",catAvg("med")),
+    scoreBox("Materials",catAvg("materials")), scoreBox("Medicinal",catAvg("med")),
     {label:"Plants", val:chosen.length, ...NEUTRAL}, {label:"Layers/types", val:nTypes, ...NEUTRAL},
     {label:"N-fixers", val:nfix.length, ...NEUTRAL}, {label:"Pollinator", val:polls.length, ...NEUTRAL},
     {label:"Overall Soil Fit", val:avgSoilFit+"%", bg:sfC, fg:sfC==="var(--yellow)"?"#2b2a22":"#fff"},
@@ -1036,19 +1039,21 @@ const GUIDE = {
     [10,"Native to your selected state — best fit for local ecology."],
     [8,"Native to your broader region (e.g. the Northeast or Southeast) but not recorded in your state."],
     [5,"Native somewhere in the US, outside your region."],
-    [0,"Introduced/non-native, but not classed as invasive."],
+    [4,"Native elsewhere in North America (Canada or Mexico) but not the US."],
+    [3,"Native elsewhere in the Americas (Central or South America, or the Caribbean)."],
+    [0,"Introduced from outside the Americas, but not classed as invasive."],
     [-5,"Invasive or prohibited in your area — actively harmful; avoid planting."],
   ],
   raw:[
     [10,"Excellent raw with strong evidence of safety & quality (e.g. blueberries)."],
-    [7,"Good raw, well documented, minor caveats."],
+    [9,"Good raw, well documented, minor caveats."],
     [4,"Edible raw but marginal, astringent, or limited evidence."],
     [1,"Technically raw-edible but poor/unsafe without cooking."],
     [0,"Toxic raw — must be cooked, or not eaten raw at all."],
   ],
   cooked:[
     [10,"Excellent cooked staple, strong evidence (e.g. hazelnuts)."],
-    [7,"Reliable cooked food, well documented."],
+    [9,"Reliable cooked food, well documented."],
     [4,"Edible cooked but minor/secondary use or thin evidence."],
     [1,"Rarely used cooked; weak evidence."],
     [0,"No meaningful cooked food use."],
@@ -1067,10 +1072,10 @@ const GUIDE = {
     [2,"Limited ecological function."],
     [0,"Little to no ecological benefit (or net negative)."],
   ],
-  fiber:[
-    [10,"Premium material use with strong evidence (e.g. rot-resistant timber)."],
-    [7,"Solid documented material/craft use (wood, dye, cordage)."],
-    [4,"Minor or historical material use."],
+  materials:[
+    [10,"Premium material use with strong evidence (e.g. rot-resistant timber, a major dye source)."],
+    [7,"Solid documented material/craft use — timber, dye, cordage, basketry, or fiber."],
+    [4,"Minor or historical material or dye use."],
     [1,"Negligible material value."],
     [0,"No material use."],
   ],
@@ -1094,7 +1099,7 @@ function ScoringGuide(){
       <div className="gcat">
         <h3>Overall score &amp; color bands<span className="w">raw weighted sum</span></h3>
         <div className="scale">
-          <p style={{margin:"4px 0 10px",fontSize:15}}>Overall = Nativity×4 + Edible&nbsp;Raw×2 + Edible&nbsp;Cooked×2 + Lifecycle×1 + Ecology×1 + Fiber×0.7 + Medicinal×0.3. Range ≈ −20 to 110.</p>
+          <p style={{margin:"4px 0 10px",fontSize:15}}>Overall = Nativity×4 + Edible&nbsp;Raw×2 + Edible&nbsp;Cooked×2 + Lifecycle×1 + Ecology×1 + Materials×0.7 + Medicinal×0.3. Range ≈ −20 to 110.</p>
           <div className="legend">
             <span style={{background:"var(--blue)",color:"#fff"}}>Blue 90–110</span>
             <span style={{background:"var(--green)",color:"#fff"}}>Green 80–89</span>
@@ -1164,7 +1169,7 @@ function flat(p, state){
     "Edible Raw":p.s.raw[0], "Raw Evidence":TIER[p.s.raw[1]],
     "Edible Cooked":p.s.cooked[0], "Cooked Evidence":TIER[p.s.cooked[1]],
     "Lifecycle Score":p.s.life[0], "Ecology":p.s.eco[0], "Ecology Evidence":TIER[p.s.eco[1]],
-    "Fiber/Material":p.s.fiber[0], "Medicinal":p.s.med[0], "Medicinal Evidence":TIER[p.s.med[1]],
+    "Materials":p.s.materials[0], "Medicinal":p.s.med[0], "Medicinal Evidence":TIER[p.s.med[1]],
     "Nitrogen Fixer":p.nf?"Yes":"No", "Pollinator":p.pol?"Yes":"No",
     "Deer Resistant":p.deerResistant?"Yes":"No", "Hardiness Zones":p.hardinessZones,
     "NY Priority":p.decPriority?"Yes":"No",
@@ -1281,7 +1286,7 @@ function Auth(){
 
 /* ---------- Human Verify page (admin only) ---------- */
 /* ---------- Plant editor (admin, on the Verify page) ---------- */
-const SCORE_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["fiber","Fiber"],["med","Medicinal"]];
+const SCORE_KEYS=[["raw","Edible Raw"],["cooked","Edible Cooked"],["life","Lifecycle"],["eco","Ecology"],["materials","Materials"],["med","Medicinal"]];
 const TIER_OPTS=[["P","peer-reviewed"],["E","ethnobotanical"],["A","anecdotal"],["N","no evidence"]];
 function plantToForm(p){
   return {
@@ -1290,7 +1295,8 @@ function plantToForm(p){
     sun:p.sun||"", soil:p.soil||"", risks:p.risks||"", buy:p.buy||"",
     hardiness_zones:p.hardinessZones||"", years_to_fruit:p.yearsToFruit||"", min_plants_fruit:p.minPlantsFruit==null?"":p.minPlantsFruit,
     nf:!!p.nf, pol:!!p.pol, deer_resistant:!!p.deerResistant, dec_priority:!!p.decPriority,
-    native_to_us:!!p.nativeToUS, invasive_everywhere:!!p.invasiveEverywhere,
+    native_to_us:!!p.nativeToUS, native_north_america:!!p.nativeNorthAmerica, native_americas:!!p.nativeAmericas,
+    invasive_everywhere:!!p.invasiveEverywhere,
     native_states:(p.nativeStates||[]).join(", "), native_regions:(p.nativeRegions||[]).join(", "),
     invasive_states:(p.invasiveStates||[]).join(", "),
     soil_ph:p.soilPh||"", soil_n:p.soilN||"", soil_p:p.soilP||"", soil_k:p.soilK||"",
@@ -1309,7 +1315,8 @@ function formToPatch(f){
     hardiness_zones:f.hardiness_zones, years_to_fruit:f.years_to_fruit,
     min_plants_fruit:f.min_plants_fruit===""?null:Number(f.min_plants_fruit),
     nf:f.nf, pol:f.pol, deer_resistant:f.deer_resistant, dec_priority:f.dec_priority,
-    native_to_us:f.native_to_us, invasive_everywhere:f.invasive_everywhere,
+    native_to_us:f.native_to_us, native_north_america:f.native_north_america, native_americas:f.native_americas,
+    invasive_everywhere:f.invasive_everywhere,
     native_states:arr(f.native_states), native_regions:arr(f.native_regions), invasive_states:arr(f.invasive_states),
     soil_ph:f.soil_ph, soil_n:f.soil_n, soil_p:f.soil_p, soil_k:f.soil_k,
     soil_texture:arr(f.soil_texture), soil_drainage:arr(f.soil_drainage),
@@ -1365,7 +1372,7 @@ function PlantEditor({p, onSave, onCancel}){
       ))}
 
       <h5>Traits</h5>
-      <div className="checks">{C("nf","N-fixer")}{C("pol","Pollinator")}{C("deer_resistant","Deer resistant")}{C("dec_priority","NY priority")}{C("native_to_us","Native to US")}{C("invasive_everywhere","Invasive everywhere")}</div>
+      <div className="checks">{C("nf","N-fixer")}{C("pol","Pollinator")}{C("deer_resistant","Deer resistant")}{C("dec_priority","NY priority")}{C("native_to_us","Native to US")}{C("native_north_america","Native to N. America")}{C("native_americas","Native to Americas")}{C("invasive_everywhere","Invasive everywhere")}</div>
       <div className="frow" style={{marginTop:8}}><label>Hardiness zones</label>{I("hardiness_zones")}</div>
       <div className="frow"><label>Years to fruit</label>{I("years_to_fruit")}</div>
       <div className="frow"><label>Min plants to fruit</label>{I("min_plants_fruit","number")}</div>

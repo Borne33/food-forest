@@ -5,9 +5,9 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Young leaves (edible) and flowers.",
-  "other_uses": "Salt-tolerant coastal pollinator plant; monarch fuel.",
+  "other_uses": "Salt-tolerant coastal pollinator plant; monarch fuel. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Young leaves are edible cooked; a key fall nectar source for migrating monarchs.",
-  "harvest": "Late summer\u2013fall.",
+  "harvest": "Late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Sandy, salty, well-drained coastal soils.",
   "risks": "None significant.",
@@ -52,9 +52,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       1,

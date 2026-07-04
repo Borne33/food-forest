@@ -10,7 +10,7 @@
   "harvest": "Leaves spring; flowers early summer.",
   "sun": "Full sun to part shade",
   "soil": "Rich moist well-drained soils.",
-  "risks": "Old or heat-affected flowers can cause nausea \u2014 use fresh flowers.",
+  "risks": "Old or heat-affected flowers can cause nausea — use fresh flowers.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -65,7 +65,7 @@
   "pol": true,
   "scores": {
     "raw": [
-      7,
+      9,
       "E"
     ],
     "cooked": [
@@ -80,7 +80,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       7,
       "E"
     ],

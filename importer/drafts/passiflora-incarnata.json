@@ -7,10 +7,10 @@
   "edible_parts": "Fruit (maypop) and leaves (calming tea).",
   "other_uses": "Exotic-looking native flower; gulf fritillary host; herbal sedative.",
   "prep": "Eat the ripe egg-shaped 'maypop' pulp; the aerial parts make a traditional calming tea.",
-  "harvest": "Fruit late summer\u2013fall.",
+  "harvest": "Fruit late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils; dies back and resprouts.",
-  "risks": "Eat only fully ripe fruit; sedative tea can interact with medications \u2014 use informed caution.",
+  "risks": "Eat only fully ripe fruit; sedative tea can interact with medications — use informed caution.",
   "buy": "Native-plant/edible nurseries.",
   "native_states": [
     "VA",
@@ -49,7 +49,7 @@
   "pol": true,
   "scores": {
     "raw": [
-      7,
+      9,
       "E"
     ],
     "cooked": [
@@ -64,7 +64,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

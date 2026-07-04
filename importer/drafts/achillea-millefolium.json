@@ -10,7 +10,7 @@
   "harvest": "Leaves spring; flowers summer.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained, poor to average soils; drought-tolerant.",
-  "risks": "Bitter and medicinally active \u2014 use in small amounts; avoid in pregnancy.",
+  "risks": "Bitter and medicinally active — use in small amounts; avoid in pregnancy.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Summer.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils; rock gardens.",
-  "risks": "Confirm the onion SMELL before eating any Allium \u2014 toxic look-alikes lack it.",
+  "risks": "Confirm the onion SMELL before eating any Allium — toxic look-alikes lack it.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -93,7 +93,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

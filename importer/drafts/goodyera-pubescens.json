@@ -10,7 +10,7 @@
   "harvest": "Blooms mid-late summer.",
   "sun": "Part to full shade",
   "soil": "Dry to average, acidic woodland soils.",
-  "risks": "None significant; native orchids are slow-growing \u2014 never dig from the wild.",
+  "risks": "None significant; native orchids are slow-growing — never dig from the wild.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       4,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

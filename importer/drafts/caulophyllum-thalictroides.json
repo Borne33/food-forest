@@ -4,13 +4,13 @@
   "family": "Berberidaceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "None \u2014 toxic.",
+  "edible_parts": "None — toxic.",
   "other_uses": "Distinctive blue-berried spring woodland plant; traditional women's-health herb.",
-  "prep": "A traditional (and risky) herbal root, historically used to ease childbirth \u2014 modern guidance advises against self-use.",
+  "prep": "A traditional (and risky) herbal root, historically used to ease childbirth — modern guidance advises against self-use.",
   "harvest": "Berries late summer.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "TOXIC \u2014 seeds/berries and roots contain compounds linked to cardiotoxicity in infants; not a food, and not for self-medication.",
+  "risks": "TOXIC — seeds/berries and roots contain compounds linked to cardiotoxicity in infants; not a food, and not for self-medication.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

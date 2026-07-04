@@ -10,7 +10,7 @@
   "harvest": "Shoots spring; seeds late summer.",
   "sun": "Part to full shade",
   "soil": "Moist, shaded soils.",
-  "risks": "Contains calcium oxalate \u2014 eat only young shoots, well cooked, in small amounts.",
+  "risks": "Contains calcium oxalate — eat only young shoots, well cooked, in small amounts.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Not eaten.",
   "other_uses": "Showy native iris for pond edges; pollinator plant.",
-  "prep": "A striking wetland ornamental; all parts are toxic \u2014 grown for beauty and ecology only.",
+  "prep": "A striking wetland ornamental; all parts are toxic — grown for beauty and ecology only.",
   "harvest": "Blooms early summer.",
   "sun": "Full sun to part shade",
   "soil": "Wet to moist soils.",
-  "risks": "TOXIC rhizome (irisin) \u2014 do not eat; can irritate skin.",
+  "risks": "TOXIC rhizome (irisin) — do not eat; can irritate skin.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

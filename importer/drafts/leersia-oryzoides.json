@@ -10,7 +10,7 @@
   "harvest": "Seed heads summer-fall.",
   "sun": "Full sun to part shade",
   "soil": "Wet, marshy soils.",
-  "risks": "Leaf edges are finely serrated and can cut skin \u2014 handle with care; not a food.",
+  "risks": "Leaf edges are finely serrated and can cut skin — handle with care; not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -76,7 +76,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

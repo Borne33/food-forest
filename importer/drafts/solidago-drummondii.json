@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Leaves (tea, minor).",
-  "other_uses": "Cliff- and glade-dwelling goldenrod with arching sprays of gold flowers.",
+  "other_uses": "Cliff- and glade-dwelling goldenrod with arching sprays of gold flowers. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "Goldenrod leaves make a minor tea; grown as a shade-tolerant fall nectar plant for rocky, wooded bluffs.",
   "harvest": "Blooms fall.",
   "sun": "Part shade to full sun",
@@ -44,9 +44,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
-      "A"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

@@ -5,12 +5,12 @@
   "type": "Shrub",
   "life": "Hardy woody perennial",
   "edible_parts": "Berries (bright, tasty).",
-  "other_uses": "INVASIVE Asian bramble \u2014 tasty fruit but ecologically harmful.",
+  "other_uses": "INVASIVE Asian bramble — tasty fruit but ecologically harmful.",
   "prep": "The fruit is excellent fresh, but this species is invasive; forage wild fruit but do NOT plant it.",
   "harvest": "Mid summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist soils, forest edges and disturbed ground.",
-  "risks": "Invasive across the eastern US \u2014 outcompetes native brambles; planting is discouraged or restricted.",
+  "risks": "Invasive across the eastern US — outcompetes native brambles; planting is discouraged or restricted.",
   "buy": "Do not purchase or plant; forage only.",
   "native_states": [],
   "native_regions": [],
@@ -43,7 +43,7 @@
   "pol": true,
   "scores": {
     "raw": [
-      7,
+      9,
       "E"
     ],
     "cooked": [
@@ -58,7 +58,7 @@
       2,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

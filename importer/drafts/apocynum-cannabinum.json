@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Not eaten.",
   "other_uses": "One of the finest native cordage/fiber plants.",
-  "prep": "Retted stems give exceptionally strong fiber for cordage and nets; TOXIC \u2014 grown for fiber and ecology.",
-  "harvest": "Stems late summer\u2013fall.",
+  "prep": "Retted stems give exceptionally strong fiber for cordage and nets; TOXIC — grown for fiber and ecology.",
+  "harvest": "Stems late summer–fall.",
   "sun": "Full sun to part shade",
   "soil": "Moist to average soils.",
-  "risks": "TOXIC (cardiac glycosides) \u2014 not edible.",
+  "risks": "TOXIC (cardiac glycosides) — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -77,7 +77,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       9,
       "E"
     ],

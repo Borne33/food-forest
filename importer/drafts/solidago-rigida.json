@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Flowers/leaves (minor tea).",
-  "other_uses": "Sturdy, upright late-season pollinator plant with flat flower clusters.",
+  "other_uses": "Sturdy, upright late-season pollinator plant with flat flower clusters. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "A tough prairie goldenrod for pollinators; grown mainly for ecology.",
   "harvest": "Blooms late summer-fall.",
   "sun": "Full sun to part shade",
@@ -76,9 +76,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

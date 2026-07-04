@@ -63,7 +63,7 @@ def derive_regions(states):
 STATES = sorted({s for g in REGION.values() for s in g})
 REGIONS = list(REGION.keys())
 TIERS = {"P": "peer-reviewed", "E": "ethnobotanical", "A": "anecdotal", "N": "no evidence"}
-SCORE_KEYS = ["raw", "cooked", "life", "eco", "fiber", "med"]
+SCORE_KEYS = ["raw", "cooked", "life", "eco", "materials", "med"]
 TYPES = ["Tree", "Shrub", "Herb", "Vine", "Fern", "Grass", "Groundcover"]
 
 # All columns we write to `plants` (snake_case, matching the table).
@@ -73,6 +73,7 @@ COLUMNS = [
     "native_regions", "native_to_us", "invasive_states", "invasive_everywhere",
     "dec_priority", "nf", "pol", "scores", "sources",
     "hardiness_zones", "deer_resistant",
+    "native_north_america", "native_americas",
 ]
 
 
@@ -173,13 +174,13 @@ RUBRIC = """\
 Score each category 0-10, paired with an evidence tier:
   P = peer-reviewed   E = ethnobotanical   A = anecdotal   N = no evidence
 
-  raw    Edibility RAW:     10 excellent & safe, 7 good, 4 marginal, 1 poor/unsafe, 0 toxic raw
-  cooked Edibility COOKED:  10 excellent staple, 7 reliable, 4 secondary, 1 rare, 0 none
+  raw    Edibility RAW:     10 excellent & safe, 9 good, 4 marginal, 1 poor/unsafe, 0 toxic raw
+  cooked Edibility COOKED:  10 excellent staple, 9 reliable, 4 secondary, 1 rare, 0 none
   life   Lifecycle:         10 long-lived woody perennial, 8 hardy herb. perennial,
                             5 short-lived/self-seeder, 2 biennial, 0 annual
   eco    Ecology:           10 keystone (e.g. monarch host), 8 strong pollinator/N-fixer,
                             5 moderate, 2 limited, 0 none/negative
-  fiber  Fiber/Material:    10 premium (rot-resistant timber), 7 solid, 4 minor, 1 negligible, 0 none
+  materials Materials:      10 premium (rot-resistant timber, major dye), 7 solid (timber/dye/cordage/fiber), 4 minor, 1 negligible, 0 none
   med    Medicinal:         10 peer-reviewed, 7 traditional+some science, 4 folk, 1 anecdotal, 0 none
 
 Nativity is NOT scored here — the app computes it from native_states/native_regions.
@@ -388,7 +389,7 @@ def clean_row(obj):
     row.setdefault("invasive_states", [])
     row.setdefault("sources", [])
     for b in ("native_to_us", "invasive_everywhere", "dec_priority", "nf", "pol",
-              "deer_resistant"):
+              "deer_resistant", "native_north_america", "native_americas"):
         row.setdefault(b, False)
     return row
 

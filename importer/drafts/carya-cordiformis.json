@@ -10,7 +10,7 @@
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Moist bottomlands and slopes.",
-  "risks": "Nuts are bitter/astringent \u2014 essentially inedible.",
+  "risks": "Nuts are bitter/astringent — essentially inedible.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -74,7 +74,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

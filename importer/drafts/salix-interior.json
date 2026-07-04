@@ -6,11 +6,11 @@
   "life": "Hardy woody perennial",
   "edible_parts": "Not eaten (bark is medicinal, not food).",
   "other_uses": "Streambank-stabilizing thicket willow; bark contains salicin (aspirin precursor).",
-  "prep": "Inner bark has a traditional pain-relief use (salicin) \u2014 chewed or steeped, not a food; flexible stems for basketry.",
+  "prep": "Inner bark has a traditional pain-relief use (salicin) — chewed or steeped, not a food; flexible stems for basketry.",
   "harvest": "Bark harvested dormant season.",
   "sun": "Full sun to part shade",
   "soil": "Wet, sandy streambanks and floodplains.",
-  "risks": "Bark is medicinally active \u2014 avoid if sensitive to aspirin/salicylates.",
+  "risks": "Bark is medicinally active — avoid if sensitive to aspirin/salicylates.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -79,7 +79,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       7,
       "E"
     ],

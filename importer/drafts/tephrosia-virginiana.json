@@ -10,7 +10,7 @@
   "harvest": "Blooms early summer.",
   "sun": "Full sun to part shade",
   "soil": "Dry, sandy, well-drained soils.",
-  "risks": "TOXIC (contains rotenone) \u2014 historically used as fish poison; not edible.",
+  "risks": "TOXIC (contains rotenone) — historically used as fish poison; not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -73,7 +73,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       2,
       "A"
     ],

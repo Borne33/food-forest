@@ -7,7 +7,7 @@
   "edible_parts": "Not eaten.",
   "other_uses": "Very early daisy for pollinators.",
   "prep": "Grown for early pollinator forage.",
-  "harvest": "Blooms spring\u2013early summer.",
+  "harvest": "Blooms spring–early summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist to average soils.",
   "risks": "None significant (not a food).",
@@ -70,7 +70,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

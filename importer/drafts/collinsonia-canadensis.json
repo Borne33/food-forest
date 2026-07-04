@@ -10,7 +10,7 @@
   "harvest": "Blooms late summer.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "Medicinally active root \u2014 not a bulk food.",
+  "risks": "Medicinally active root — not a bulk food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Blooms early summer.",
   "sun": "Part shade to sun",
   "soil": "Average to dry, well-drained soils.",
-  "risks": "Toxic cardiac glycosides \u2014 not edible.",
+  "risks": "Toxic cardiac glycosides — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

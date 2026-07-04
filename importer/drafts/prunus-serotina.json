@@ -10,7 +10,7 @@
   "harvest": "Late summer.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils; fast-growing pioneer.",
-  "risks": "Leaves, twigs, bark and pits are cyanogenic (toxic); wilted foliage is dangerous to livestock \u2014 use only the ripe flesh.",
+  "risks": "Leaves, twigs, bark and pits are cyanogenic (toxic); wilted foliage is dangerous to livestock — use only the ripe flesh.",
   "buy": "Native-plant nurseries; common wild.",
   "native_states": [
     "ME",
@@ -63,7 +63,7 @@
       "E"
     ],
     "cooked": [
-      7,
+      9,
       "E"
     ],
     "life": [
@@ -74,7 +74,7 @@
       9,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

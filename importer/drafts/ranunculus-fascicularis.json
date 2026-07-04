@@ -4,13 +4,13 @@
   "family": "Ranunculaceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "None \u2014 toxic.",
+  "edible_parts": "None — toxic.",
   "other_uses": "Early-spring yellow woodland-edge wildflower; minor pollinator plant.",
   "prep": "Grown as an early spring ornamental; not a food.",
   "harvest": "Blooms early spring.",
   "sun": "Part shade to sun",
   "soil": "Dry, well-drained soils.",
-  "risks": "TOXIC (protoanemonin) \u2014 acrid sap irritates skin and mouth; never eat.",
+  "risks": "TOXIC (protoanemonin) — acrid sap irritates skin and mouth; never eat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

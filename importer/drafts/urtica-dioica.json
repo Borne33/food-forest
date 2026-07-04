@@ -10,7 +10,7 @@
   "harvest": "Spring shoots.",
   "sun": "Part shade to sun",
   "soil": "Rich, moist, nitrogen-rich soils.",
-  "risks": "Fresh plant STINGS \u2014 wear gloves and always cook/dry before eating; don't harvest once flowering.",
+  "risks": "Fresh plant STINGS — wear gloves and always cook/dry before eating; don't harvest once flowering.",
   "buy": "Native-plant nurseries; common wild.",
   "native_states": [
     "ME",
@@ -93,7 +93,7 @@
       6,
       "E"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

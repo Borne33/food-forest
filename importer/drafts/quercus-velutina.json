@@ -4,13 +4,13 @@
   "family": "Fagaceae",
   "type": "Tree",
   "life": "Long-lived woody perennial",
-  "edible_parts": "Acorns (bitter, red-oak group \u2014 needs thorough leaching).",
+  "edible_parts": "Acorns (bitter, red-oak group — needs thorough leaching).",
   "other_uses": "Yellow inner bark was a historic dye source (quercitron).",
   "prep": "Leach thoroughly before eating, like other red-oak acorns.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Dry, sandy or rocky, well-drained soils.",
-  "risks": "High tannins raw \u2014 must leach thoroughly.",
+  "risks": "High tannins raw — must leach thoroughly.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

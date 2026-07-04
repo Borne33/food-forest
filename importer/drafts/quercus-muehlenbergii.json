@@ -6,7 +6,7 @@
   "life": "Long-lived woody perennial",
   "edible_parts": "Acorns (sweet, low-tannin, among the best-tasting native acorns).",
   "other_uses": "Excellent rot-resistant timber; limestone-soil specialist.",
-  "prep": "Shell and eat fresh or lightly leached \u2014 these are among the sweetest native acorns, needing little processing.",
+  "prep": "Shell and eat fresh or lightly leached — these are among the sweetest native acorns, needing little processing.",
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained soils, especially over limestone/calcareous bedrock.",
@@ -76,7 +76,7 @@
       8,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

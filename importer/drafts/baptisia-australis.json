@@ -10,7 +10,7 @@
   "harvest": "Blooms late spring.",
   "sun": "Full sun to part shade",
   "soil": "Deep, well-drained soils; drought-tolerant once established.",
-  "risks": "Seeds are mildly toxic \u2014 not a food plant.",
+  "risks": "Seeds are mildly toxic — not a food plant.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -69,7 +69,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

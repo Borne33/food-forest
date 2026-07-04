@@ -5,7 +5,7 @@
   "type": "Shrub",
   "life": "Hardy woody perennial",
   "edible_parts": "Fruit (tart 'sumac-ade' drink).",
-  "other_uses": "Low aromatic shrub with three-part leaves, yellow spring flowers, and fuzzy red fruit; brilliant fall color.",
+  "other_uses": "Low aromatic shrub with three-part leaves, yellow spring flowers, and fuzzy red fruit; brilliant fall color. The tannin-rich fruit, leaves, and bark yield gray-to-black dye and natural ink.",
   "prep": "Steep the tart red fruit clusters for a lemonade-like drink or dry and grind as a spice; grown as a tough groundcover shrub for slopes.",
   "harvest": "Fruit summer.",
   "sun": "Full sun to part shade",
@@ -74,9 +74,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      2,
-      "A"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       3,

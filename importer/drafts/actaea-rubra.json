@@ -4,13 +4,13 @@
   "family": "Ranunculaceae",
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
-  "edible_parts": "None \u2014 toxic.",
+  "edible_parts": "None — toxic.",
   "other_uses": "Striking red berry clusters; woodland ornamental.",
   "prep": "Grown strictly as an ornamental; every part is poisonous, like its white-berried relative.",
   "harvest": "Berries mid-late summer.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "HIGHLY TOXIC \u2014 berries and roots can cause serious illness; never eat.",
+  "risks": "HIGHLY TOXIC — berries and roots can cause serious illness; never eat.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

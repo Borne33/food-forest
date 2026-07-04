@@ -10,7 +10,7 @@
   "harvest": "Fall.",
   "sun": "Full sun to part shade",
   "soil": "Well-drained upland soils.",
-  "risks": "High tannins raw \u2014 must leach thoroughly.",
+  "risks": "High tannins raw — must leach thoroughly.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -74,7 +74,7 @@
       10,
       "P"
     ],
-    "fiber": [
+    "materials": [
       8,
       "E"
     ],

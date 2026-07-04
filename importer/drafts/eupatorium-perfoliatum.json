@@ -6,11 +6,11 @@
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Leaves/flowers (traditional medicine only).",
   "other_uses": "Classic cold-and-fever herb; good late-season pollinator plant.",
-  "prep": "Traditionally taken as a hot infusion for fevers and flu \u2014 a medicinal, not a food.",
+  "prep": "Traditionally taken as a hot infusion for fevers and flu — a medicinal, not a food.",
   "harvest": "Flowers late summer.",
   "sun": "Full sun to part shade",
   "soil": "Moist to wet soils.",
-  "risks": "Contains pyrrolizidine alkaloids (potential liver toxicity) \u2014 for informed short-term use only; not a food.",
+  "risks": "Contains pyrrolizidine alkaloids (potential liver toxicity) — for informed short-term use only; not a food.",
   "buy": "Native-plant nurseries.",
   "native_states": [
     "ME",
@@ -81,7 +81,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

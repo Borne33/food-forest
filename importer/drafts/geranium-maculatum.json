@@ -10,7 +10,7 @@
   "harvest": "Blooms spring.",
   "sun": "Part shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "Astringent tannins \u2014 the root is medicinal, not a vegetable.",
+  "risks": "Astringent tannins — the root is medicinal, not a vegetable.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

@@ -10,7 +10,7 @@
   "harvest": "Blooms early spring.",
   "sun": "Part to full shade",
   "soil": "Rich, moist, neutral-to-alkaline woodland soils.",
-  "risks": "Mildly toxic in quantity \u2014 not a food.",
+  "risks": "Mildly toxic in quantity — not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "NY",
@@ -51,7 +51,7 @@
       4,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

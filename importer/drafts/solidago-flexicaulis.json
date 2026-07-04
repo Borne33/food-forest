@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Leaves (minor tea).",
-  "other_uses": "One of few goldenrods for shade; late pollinator plant.",
+  "other_uses": "One of few goldenrods for shade; late pollinator plant. The flowers yield a classic, well-documented yellow-to-gold natural dye.",
   "prep": "A woodland goldenrod for pollinators.",
   "harvest": "Blooms fall.",
   "sun": "Part to full shade",
@@ -59,9 +59,9 @@
       8,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      4,
+      "E"
     ],
     "med": [
       2,

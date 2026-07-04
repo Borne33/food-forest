@@ -5,7 +5,7 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Corm (historic use, minor).",
-  "other_uses": "Tall purple spikes \u2014 a top butterfly and pollinator plant.",
+  "other_uses": "Tall purple spikes — a top butterfly and pollinator plant.",
   "prep": "A striking pollinator/cut-flower plant; the corm has minor historic food use but isn't a modern food.",
   "harvest": "Blooms mid-late summer.",
   "sun": "Full sun to part shade",
@@ -55,7 +55,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

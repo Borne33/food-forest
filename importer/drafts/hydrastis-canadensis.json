@@ -5,12 +5,12 @@
   "type": "Herb",
   "life": "Hardy herbaceous perennial",
   "edible_parts": "Not eaten.",
-  "other_uses": "Prized, historically over-harvested medicinal woodland herb; at-risk in the wild.",
-  "prep": "Root is a well-known (and heavily over-collected) herbal antimicrobial \u2014 buy only nursery-propagated stock, never wild-dug.",
+  "other_uses": "Prized, historically over-harvested medicinal woodland herb; at-risk in the wild. The root yields a bright yellow dye.",
+  "prep": "Root is a well-known (and heavily over-collected) herbal antimicrobial — buy only nursery-propagated stock, never wild-dug.",
   "harvest": "Root fall.",
   "sun": "Part to full shade",
   "soil": "Rich, moist woodland soils.",
-  "risks": "Root is medicinally potent \u2014 not for casual/unsupervised use; conservation status makes wild harvest inappropriate.",
+  "risks": "Root is medicinally potent — not for casual/unsupervised use; conservation status makes wild harvest inappropriate.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,9 +59,9 @@
       4,
       "E"
     ],
-    "fiber": [
-      1,
-      "N"
+    "materials": [
+      3,
+      "E"
     ],
     "med": [
       7,

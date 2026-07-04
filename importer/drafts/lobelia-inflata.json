@@ -6,7 +6,7 @@
   "life": "Annual/biennial",
   "edible_parts": "Not eaten.",
   "other_uses": "Historic medicinal; pollinator plant.",
-  "prep": "A traditional medicinal herb (respiratory) \u2014 POTENTIALLY TOXIC and not for casual use.",
+  "prep": "A traditional medicinal herb (respiratory) — POTENTIALLY TOXIC and not for casual use.",
   "harvest": "Blooms summer.",
   "sun": "Full sun to part shade",
   "soil": "Open, disturbed soils.",
@@ -70,7 +70,7 @@
       5,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

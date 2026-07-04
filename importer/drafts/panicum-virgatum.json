@@ -9,7 +9,7 @@
   "prep": "A robust warm-season grass for cover and soil; the grain is a minor historic food.",
   "harvest": "Seed heads fall.",
   "sun": "Full sun to part shade",
-  "soil": "Wet to dry \u2014 very adaptable.",
+  "soil": "Wet to dry — very adaptable.",
   "risks": "None significant.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
@@ -80,7 +80,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       6,
       "E"
     ],

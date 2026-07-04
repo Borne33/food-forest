@@ -4,13 +4,13 @@
   "family": "Aquifoliaceae",
   "type": "Tree",
   "life": "Long-lived woody perennial",
-  "edible_parts": "None \u2014 berries toxic.",
+  "edible_parts": "None — berries toxic.",
   "other_uses": "Classic evergreen winter ornamental; red berries a major bird food source.",
   "prep": "Grown for its glossy evergreen foliage and festive red berries; the berries are toxic to humans.",
   "harvest": "Berries fall-winter, persisting.",
   "sun": "Part shade to sun",
   "soil": "Moist, acidic, well-drained soils; tolerates shade.",
-  "risks": "Berries cause vomiting/diarrhea if eaten \u2014 toxic to humans (not to birds); leaves are spiny.",
+  "risks": "Berries cause vomiting/diarrhea if eaten — toxic to humans (not to birds); leaves are spiny.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "MA",
@@ -57,7 +57,7 @@
       8,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

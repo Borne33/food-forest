@@ -10,7 +10,7 @@
   "harvest": "Fruit fall.",
   "sun": "Full sun to part shade",
   "soil": "Average to dry, well-drained soils.",
-  "risks": "Seeds contain trace cyanogenic compounds like other Rosaceae \u2014 don't chew seeds in bulk; thorny branches.",
+  "risks": "Seeds contain trace cyanogenic compounds like other Rosaceae — don't chew seeds in bulk; thorny branches.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "NY",
@@ -46,7 +46,7 @@
       7,
       "E"
     ],
-    "fiber": [
+    "materials": [
       3,
       "A"
     ],

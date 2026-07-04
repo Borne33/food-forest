@@ -7,10 +7,10 @@
   "edible_parts": "Not eaten.",
   "other_uses": "Woodland-edge keystone pollinator plant.",
   "prep": "Grown for pollinators.",
-  "harvest": "Blooms mid\u2013late summer.",
+  "harvest": "Blooms mid–late summer.",
   "sun": "Part shade to sun",
   "soil": "Moist woodland soils.",
-  "risks": "Medicinally active root \u2014 not a food.",
+  "risks": "Medicinally active root — not a food.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -70,7 +70,7 @@
       9,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],

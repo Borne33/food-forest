@@ -10,7 +10,7 @@
   "harvest": "Blooms late spring.",
   "sun": "Full sun to part shade",
   "soil": "Dry, sandy, acidic, well-drained soils.",
-  "risks": "Seeds are toxic in quantity \u2014 not edible.",
+  "risks": "Seeds are toxic in quantity — not edible.",
   "buy": "Native-plant nurseries and native seed suppliers.",
   "native_states": [
     "ME",
@@ -59,7 +59,7 @@
       10,
       "E"
     ],
-    "fiber": [
+    "materials": [
       1,
       "N"
     ],
