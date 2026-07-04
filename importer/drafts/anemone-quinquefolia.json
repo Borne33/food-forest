@@ -1,0 +1,93 @@
+{
+  "common": "Wood Anemone",
+  "sci": "Anemone quinquefolia",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Spring ephemeral perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Delicate spring ephemeral carpeting rich woods with solitary white flowers.",
+  "prep": "Grown as an early woodland groundcover that goes dormant by summer; contains acrid protoanemonin — not edible.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "Toxic/acrid; can irritate skin.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Anemone_quinquefolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Anemone+quinquefolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ANQU"
+    ]
+  ]
+}

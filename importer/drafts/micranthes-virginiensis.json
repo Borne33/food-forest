@@ -1,0 +1,94 @@
+{
+  "common": "Early Saxifrage",
+  "sci": "Micranthes virginiensis",
+  "family": "Saxifragaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (minor salad/potherb).",
+  "other_uses": "Rosette-forming wildflower of rocky ledges with airy white flower sprays in early spring.",
+  "prep": "The young leaves are a minor salad green or potherb; grown chiefly as an early spring wildflower for rock gardens and ledges.",
+  "harvest": "Leaves/flowers early spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, rocky soils; ledges.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Micranthes_virginiensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Micranthes+virginiensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MIVI7"
+    ]
+  ]
+}

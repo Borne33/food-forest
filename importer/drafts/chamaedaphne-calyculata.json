@@ -1,0 +1,79 @@
+{
+  "common": "Leatherleaf",
+  "sci": "Chamaedaphne calyculata",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Low evergreen heath that dominates bog mats, blooming with white bells very early.",
+  "prep": "Grown as an acid-bog and pond-edge shrub; one of the earliest spring nectar sources. Not a food.",
+  "harvest": "Blooms early spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty bog soils.",
+  "risks": "Foliage contains toxic compounds; not edible.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "NC",
+    "GA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chamaedaphne_calyculata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chamaedaphne+calyculata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHCA2"
+    ]
+  ]
+}

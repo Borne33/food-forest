@@ -1,0 +1,83 @@
+{
+  "common": "White Beaksedge",
+  "sci": "Rhynchospora alba",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy sedge (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tufted bog sedge whose whitish flower clusters brighten sphagnum mats in summer.",
+  "prep": "Grown for bog and fen restoration and rain gardens; a peatland habitat plant. Not a food.",
+  "harvest": "Seed heads summer.",
+  "sun": "Full sun",
+  "soil": "Wet, acidic, peaty bog soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "NJ",
+    "NC",
+    "SC",
+    "GA",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhynchospora_alba"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rhynchospora+alba"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RHAL3"
+    ]
+  ]
+}

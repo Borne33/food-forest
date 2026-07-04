@@ -1,0 +1,95 @@
+{
+  "common": "Sheep Laurel",
+  "sci": "Kalmia angustifolia",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Low evergreen heath with clusters of deep-pink flowers below the new growth ('lambkill').",
+  "prep": "Grown as an acid-soil evergreen shrub with intense pink bloom; all parts are toxic (grayanotoxins) — not edible, and honey from it can be toxic.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to wet, acidic soils; bogs and barrens.",
+  "risks": "All parts toxic; toxic to livestock.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "NH",
+    "ME"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Kalmia_angustifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Kalmia+angustifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/KAAN"
+    ]
+  ]
+}

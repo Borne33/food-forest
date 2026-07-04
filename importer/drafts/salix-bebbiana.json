@@ -1,0 +1,83 @@
+{
+  "common": "Bebb Willow",
+  "sci": "Salix bebbiana",
+  "family": "Salicaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten (bark medicinal — salicin; withes for basketry).",
+  "other_uses": "Small willow ('diamond willow') whose fungus-scarred stems are prized for carving.",
+  "prep": "The bark contains salicin (aspirin precursor) and the pliable withes are used in basketry; grown chiefly as an early bee-pollen source and wildlife shrub. Not a food.",
+  "harvest": "Catkins early spring.",
+  "sun": "Full sun",
+  "soil": "Moist to wet soils; adaptable.",
+  "risks": "Bark medicinal, not food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "ND",
+    "SD",
+    "CO",
+    "MT",
+    "AK",
+    "NM",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Salix_bebbiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Salix+bebbiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SABE2"
+    ]
+  ]
+}

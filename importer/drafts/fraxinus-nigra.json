@@ -1,0 +1,80 @@
+{
+  "common": "Black Ash",
+  "sci": "Fraxinus nigra",
+  "family": "Oleaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Wetland ash whose pounded wood separates into strong splints — the traditional basket wood of the Haudenosaunee and other peoples.",
+  "prep": "The single most important splint-basketry tree; grown for wetland habitat and its cultural fiber value (now gravely threatened by emerald ash borer, so plant with awareness). Not a food.",
+  "harvest": "Seeds fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, mucky bottomland soils; swamps.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "WV",
+    "VA",
+    "ND",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Fraxinus_nigra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Fraxinus+nigra"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/FRNI"
+    ]
+  ]
+}

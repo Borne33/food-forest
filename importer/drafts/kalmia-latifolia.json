@@ -1,0 +1,95 @@
+{
+  "common": "Mountain Laurel",
+  "sci": "Kalmia latifolia",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Spectacular broadleaf evergreen shrub with intricate pink-and-white late-spring flower clusters.",
+  "prep": "A premier native flowering evergreen for acid woodland gardens; the hard wood was used for tool handles and 'spoonwood'. All parts are toxic (grayanotoxins) — not edible.",
+  "harvest": "Blooms late spring.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, acidic, well-drained woodland soils.",
+  "risks": "All parts toxic; honey from it is toxic.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "NH",
+    "ME"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Kalmia_latifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Kalmia+latifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/KALA"
+    ]
+  ]
+}

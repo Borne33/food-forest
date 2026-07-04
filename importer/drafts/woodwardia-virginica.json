@@ -1,0 +1,84 @@
+{
+  "common": "Virginia Chain Fern",
+  "sci": "Woodwardia virginica",
+  "family": "Blechnaceae",
+  "type": "Fern",
+  "life": "Hardy fern (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tall coarse fern spreading by cord-like rhizomes through open marshes and bogs.",
+  "prep": "Grown as a bold spreading fern for sunny to shaded wet ground and bog gardens; not a food.",
+  "harvest": "Fronds spring-fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty soils; marshes.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "PA",
+    "WV",
+    "TN",
+    "AR",
+    "MI",
+    "IN",
+    "NH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Woodwardia_virginica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Woodwardia+virginica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/WOVI"
+    ]
+  ]
+}

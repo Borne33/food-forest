@@ -1,0 +1,95 @@
+{
+  "common": "Broad Beech Fern",
+  "sci": "Phegopteris hexagonoptera",
+  "family": "Thelypteridaceae",
+  "type": "Fern",
+  "life": "Hardy fern (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Broad triangular fern with winged leaf-stalk, forming colonies in rich woods.",
+  "prep": "Grown as a spreading groundcover fern for moist to medium shade; not a food.",
+  "harvest": "Fronds spring-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "TX",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Phegopteris_hexagonoptera"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Phegopteris+hexagonoptera"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PHHE11"
+    ]
+  ]
+}

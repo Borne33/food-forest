@@ -1,0 +1,88 @@
+{
+  "common": "Plantainleaf Sedge",
+  "sci": "Carex plantaginea",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy sedge (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Handsome sedge with wide, seersuckered evergreen leaves and dark flower stalks.",
+  "prep": "Grown as a choice ornamental groundcover for rich, shaded woodland gardens; not a food.",
+  "harvest": "Flowers spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carex_plantaginea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Carex+plantaginea"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CAPL4"
+    ]
+  ]
+}

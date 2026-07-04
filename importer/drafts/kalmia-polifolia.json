@@ -1,0 +1,77 @@
+{
+  "common": "Bog Laurel",
+  "sci": "Kalmia polifolia",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Small evergreen bog heath with blue-green leaves and rose-pink flowers.",
+  "prep": "Grown as a choice acid-bog evergreen; all parts are toxic (grayanotoxins) — not edible.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty bog soils.",
+  "risks": "All parts toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "AK",
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Kalmia_polifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Kalmia+polifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/KAPO"
+    ]
+  ]
+}

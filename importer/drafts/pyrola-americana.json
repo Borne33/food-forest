@@ -1,0 +1,93 @@
+{
+  "common": "American Wintergreen",
+  "sci": "Pyrola americana",
+  "family": "Ericaceae",
+  "type": "Herb",
+  "life": "Evergreen herbaceous groundcover",
+  "edible_parts": "Leaves (minor tea).",
+  "other_uses": "Evergreen woodland wildflower with round glossy leaves and a spike of nodding white flowers ('roundleaf shinleaf').",
+  "prep": "The leaves make a minor wintergreen-ish tea and had folk-medicinal use; grown as an evergreen groundcover for cool acid shade.",
+  "harvest": "Leaves year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic woodland soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pyrola_americana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pyrola+americana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PYAM"
+    ]
+  ]
+}

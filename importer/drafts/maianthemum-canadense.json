@@ -1,0 +1,93 @@
+{
+  "common": "Canada Mayflower",
+  "sci": "Maianthemum canadense",
+  "family": "Asparagaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous groundcover",
+  "edible_parts": "Fruit (mildly edible ripe; mostly wildlife).",
+  "other_uses": "Carpeting woodland groundcover with white flower spikes and speckled red berries.",
+  "prep": "The ripe red berries are edible in small amounts (mildly laxative in quantity) — mostly a wildlife food; grown chiefly as a spreading woodland groundcover.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist to dry, acidic woodland soils.",
+  "risks": "Berries laxative in quantity; unripe berries not eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Maianthemum_canadense"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Maianthemum+canadense"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MACA4"
+    ]
+  ]
+}

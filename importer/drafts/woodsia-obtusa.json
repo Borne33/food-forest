@@ -1,0 +1,96 @@
+{
+  "common": "Blunt-lobed Woodsia",
+  "sci": "Woodsia obtusa",
+  "family": "Woodsiaceae",
+  "type": "Fern",
+  "life": "Hardy fern (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Small tufted fern of rocky slopes and ledges, tolerant of sun and drought.",
+  "prep": "Grown as a tough little fern for rock gardens, walls, and dry-ish part shade; not a food.",
+  "harvest": "Fronds spring-fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Dry to medium, rocky soils; ledges.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Woodsia_obtusa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Woodsia+obtusa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/WOOB2"
+    ]
+  ]
+}

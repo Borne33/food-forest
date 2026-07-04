@@ -1,0 +1,81 @@
+{
+  "common": "Great Laurel",
+  "sci": "Rhododendron maximum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Massive broadleaf evergreen rhododendron forming impenetrable thickets in cool ravines.",
+  "prep": "Grown as a large evergreen for shaded, acid, moist slopes and screening; all parts are toxic (grayanotoxins) — not edible, and its honey is toxic.",
+  "harvest": "Blooms early summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, acidic, well-drained woodland soils.",
+  "risks": "All parts toxic; honey from it is toxic.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "PA",
+    "NJ",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "OH",
+    "GA",
+    "SC",
+    "CT",
+    "MA",
+    "ME",
+    "NH",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhododendron_maximum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rhododendron+maximum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RHMA4"
+    ]
+  ]
+}

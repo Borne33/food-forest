@@ -1,0 +1,75 @@
+{
+  "common": "Rhodora",
+  "sci": "Rhododendron canadense",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Twiggy bog azalea that clouds itself in rose-purple flowers before its leaves in spring.",
+  "prep": "Grown as a hardy early-blooming azalea for wet, acid ground; like all rhododendrons it is toxic — not edible.",
+  "harvest": "Blooms early spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist, acidic, peaty soils.",
+  "risks": "All parts toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "NH",
+    "ME"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhododendron_canadense"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rhododendron+canadense"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RHCA6"
+    ]
+  ]
+}

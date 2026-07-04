@@ -1,0 +1,78 @@
+{
+  "common": "Atlantic White Cedar",
+  "sci": "Chamaecyparis thyoides",
+  "family": "Cupressaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Aromatic wetland conifer of coastal swamps with soft scale foliage and rot-resistant wood.",
+  "prep": "Grown as a distinctive swamp/rain-garden conifer; the light, rot-resistant, fragrant wood was prized for boats, shingles, and posts. A declining habitat specialist. Not a food.",
+  "harvest": "Cones fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty soils; swamps.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "NH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chamaecyparis_thyoides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chamaecyparis+thyoides"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHTH2"
+    ]
+  ]
+}

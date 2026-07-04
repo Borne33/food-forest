@@ -1,0 +1,93 @@
+{
+  "common": "Striped Wintergreen",
+  "sci": "Chimaphila maculata",
+  "family": "Ericaceae",
+  "type": "Herb",
+  "life": "Evergreen woody groundcover",
+  "edible_parts": "Leaves (minor tea/root-beer flavoring).",
+  "other_uses": "Low evergreen woodland subshrub with white-striped leaves and nodding waxy flowers.",
+  "prep": "The leaves had traditional use as a nibble and root-beer/tea flavoring (like pipsissewa) and in folk medicine; grown chiefly as a choice evergreen woodland groundcover.",
+  "harvest": "Leaves year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Dry to medium, acidic woodland soils.",
+  "risks": "Use only in small amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chimaphila_maculata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chimaphila+maculata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHMA3"
+    ]
+  ]
+}

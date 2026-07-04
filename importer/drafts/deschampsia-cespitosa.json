@@ -1,0 +1,83 @@
+{
+  "common": "Tufted Hairgrass",
+  "sci": "Deschampsia cespitosa",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy grass (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Cool-season bunchgrass forming dense tufts topped by airy shimmering flower clouds.",
+  "prep": "Grown as a premier ornamental grass for moist sites and shade, and for restoration; not a food.",
+  "harvest": "Flowers early-mid summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils; tolerates part shade.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "WV",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Deschampsia_cespitosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Deschampsia+cespitosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DECE"
+    ]
+  ]
+}

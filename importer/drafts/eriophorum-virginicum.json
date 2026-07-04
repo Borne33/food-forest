@@ -1,0 +1,95 @@
+{
+  "common": "Tawny Cottongrass",
+  "sci": "Eriophorum virginicum",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy sedge (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Bog sedge crowned in late summer with tawny cottony seed tufts.",
+  "prep": "Grown for its showy cotton-ball seed heads in sunny bogs and rain gardens; a peatland habitat plant. Not a food.",
+  "harvest": "Seed heads late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty bog soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "NH",
+    "ME"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Eriophorum_virginicum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Eriophorum+virginicum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ERVI8"
+    ]
+  ]
+}

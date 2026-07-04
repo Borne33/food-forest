@@ -1,0 +1,82 @@
+{
+  "common": "Pussy Willow",
+  "sci": "Salix discolor",
+  "family": "Salicaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten (bark medicinal — salicin).",
+  "other_uses": "Beloved shrub willow whose silky silvery catkins are the first sign of spring.",
+  "prep": "Grown for its ornamental spring catkins (and cut branches), as one of the first pollen sources for bees, and for streambank stabilization; the bark contains salicin. Not a food.",
+  "harvest": "Catkins late winter-early spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils.",
+  "risks": "Bark medicinal, not food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "IA",
+    "ND",
+    "SD",
+    "MO",
+    "MD",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Salix_discolor"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Salix+discolor"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SADI"
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "common": "American Golden Saxifrage",
+  "sci": "Chrysosplenium americanum",
+  "family": "Saxifragaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous groundcover",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tiny creeping plant forming mats in cold seeps, with inconspicuous golden-green flowers.",
+  "prep": "Grown as a delicate groundcover for consistently wet, shaded seeps and spring runs; not a food.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade to shade",
+  "soil": "Wet, mucky soils; cold seeps and springs.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chrysosplenium_americanum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chrysosplenium+americanum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHAM2"
+    ]
+  ]
+}

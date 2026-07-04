@@ -1,0 +1,93 @@
+{
+  "common": "Red Trillium",
+  "sci": "Trillium erectum",
+  "family": "Melanthiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten (root medicinal, historic).",
+  "other_uses": "Classic 'wake robin' with a deep maroon-red three-petaled flower ('stinking Benjamin').",
+  "prep": "The root had traditional medicinal use ('bethroot'); grown as a treasured spring woodland wildflower — buy nursery stock and never pick. Not a food.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich, acidic woodland soils.",
+  "risks": "Do not pick or dig wild plants; medicinal root only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Trillium_erectum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Trillium+erectum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/TRER3"
+    ]
+  ]
+}

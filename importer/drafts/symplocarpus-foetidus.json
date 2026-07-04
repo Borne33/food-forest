@@ -1,0 +1,94 @@
+{
+  "common": "Skunk Cabbage",
+  "sci": "Symplocarpus foetidus",
+  "family": "Araceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten raw (toxic); leaves/roots only after thorough drying (historic).",
+  "other_uses": "Remarkable wetland arum that melts snow with its own heat and blooms in late winter with a hooded spathe.",
+  "prep": "A fascinating earliest-spring wetland plant (thermogenic); ALL parts are intensely acrid and toxic raw — leaves and roots were eaten only after long drying. Grow it for its ecology, not the table.",
+  "harvest": "Emerges late winter.",
+  "sun": "Part shade to full sun",
+  "soil": "Wet, mucky soils; swamps and seeps.",
+  "risks": "Intensely acrid/toxic raw (calcium oxalate); requires thorough drying to eat.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Symplocarpus_foetidus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Symplocarpus+foetidus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SYFO"
+    ]
+  ]
+}

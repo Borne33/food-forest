@@ -1,0 +1,83 @@
+{
+  "common": "Coastal Sweet Pepperbush",
+  "sci": "Clethra alnifolia",
+  "family": "Clethraceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Suckering shrub with intensely fragrant white summer flower spikes swarmed by pollinators.",
+  "prep": "Grown as a superb late-summer fragrant shrub for wet or average soils; a top nectar plant for bees and butterflies. Not a food.",
+  "harvest": "Blooms mid-summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet, acidic soils; tolerates average.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "PA",
+    "WV",
+    "TN",
+    "AL",
+    "MS",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Clethra_alnifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Clethra+alnifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CLAL3"
+    ]
+  ]
+}

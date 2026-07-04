@@ -1,0 +1,80 @@
+{
+  "common": "Shining Willow",
+  "sci": "Salix lucida",
+  "family": "Salicaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten (bark medicinal — salicin).",
+  "other_uses": "Handsome willow with glossy lance leaves and yellowish twigs, on wet ground.",
+  "prep": "Grown for streambank stabilization, early bee pollen, and as a host to countless caterpillars; bark contains salicin. Not a food.",
+  "harvest": "Catkins spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils; streambanks.",
+  "risks": "Bark medicinal, not food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "ND",
+    "SD",
+    "WV",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Salix_lucida"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Salix+lucida"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SALU"
+    ]
+  ]
+}

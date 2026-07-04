@@ -1,0 +1,96 @@
+{
+  "common": "Shinleaf",
+  "sci": "Pyrola elliptica",
+  "family": "Ericaceae",
+  "type": "Herb",
+  "life": "Evergreen herbaceous groundcover",
+  "edible_parts": "Leaves (minor tea).",
+  "other_uses": "Evergreen woodland wildflower with elliptic leaves and fragrant nodding white flowers.",
+  "prep": "The leaves (containing a wintergreen-related compound) make a minor tea and were used as a folk poultice ('shin-plaster'); grown as an evergreen groundcover for shade.",
+  "harvest": "Leaves year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich, acidic woodland soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "CO",
+    "NM",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pyrola_elliptica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pyrola+elliptica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PYEL"
+    ]
+  ]
+}

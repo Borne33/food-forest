@@ -1,0 +1,105 @@
+{
+  "common": "Hardstem Bulrush",
+  "sci": "Schoenoplectus acutus",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy sedge (perennial)",
+  "edible_parts": "Rhizomes and young shoots (historic food, minor).",
+  "other_uses": "Tall round-stemmed bulrush ('tule') of marshes; a premier matting and habitat plant.",
+  "prep": "The starchy rhizomes and young shoots were eaten and the stems woven into mats and used for reed boats and roofing; grown chiefly for marsh restoration and cover. A minor human food.",
+  "harvest": "Rhizomes fall; shoots spring.",
+  "sun": "Full sun",
+  "soil": "Wet soils and shallow water; marshes.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "TX",
+    "AZ",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Schoenoplectus_acutus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Schoenoplectus+acutus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SCAC3"
+    ]
+  ]
+}

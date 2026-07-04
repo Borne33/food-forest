@@ -1,0 +1,82 @@
+{
+  "common": "Clinton's Wood Fern",
+  "sci": "Dryopteris clintoniana",
+  "family": "Dryopteridaceae",
+  "type": "Fern",
+  "life": "Hardy fern (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tall stately wood fern of swampy woods (a natural hybrid-derived species).",
+  "prep": "Grown as a large, upright fern for moist to wet shade; not a food.",
+  "harvest": "Fronds spring-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Wet to moist, rich woodland soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "MI",
+    "WI",
+    "WV",
+    "VA",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Dryopteris_clintoniana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Dryopteris+clintoniana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DRCL"
+    ]
+  ]
+}

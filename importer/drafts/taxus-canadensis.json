@@ -1,0 +1,82 @@
+{
+  "common": "Canada Yew",
+  "sci": "Taxus canadensis",
+  "family": "Taxaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody groundcover",
+  "edible_parts": "Not eaten — deadly toxic.",
+  "other_uses": "Sprawling evergreen conifer of cool shaded woods with flat needles and red arils; heavily deer-browsed.",
+  "prep": "Grown as a native evergreen groundcover for deep shade; ALL parts except the red aril flesh are deadly toxic (taxine) — the seeds especially. Treat as poisonous and do not eat.",
+  "harvest": "Arils late summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, rich woodland soils; shade tolerant.",
+  "risks": "DEADLY toxic (taxine) — foliage and seeds are poisonous.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "IA",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Taxus_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Taxus+canadensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/TACA7"
+    ]
+  ]
+}

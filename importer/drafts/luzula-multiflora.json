@@ -1,0 +1,99 @@
+{
+  "common": "Common Woodrush",
+  "sci": "Luzula multiflora",
+  "family": "Juncaceae",
+  "type": "Grass",
+  "life": "Hardy rush (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Grassy woodrush with soft hairy leaves and brown flower clusters; an early-season groundcover.",
+  "prep": "Grown as a fine evergreen-ish groundcover for woodland edges and lawns; not a food.",
+  "harvest": "Flowers spring.",
+  "sun": "Full sun to shade",
+  "soil": "Dry to moist, well-drained soils; adaptable.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Luzula_multiflora"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Luzula+multiflora"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LUMU2"
+    ]
+  ]
+}

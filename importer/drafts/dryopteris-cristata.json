@@ -1,0 +1,82 @@
+{
+  "common": "Crested Wood Fern",
+  "sci": "Dryopteris cristata",
+  "family": "Dryopteridaceae",
+  "type": "Fern",
+  "life": "Hardy fern (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Wetland wood fern with a ladder of horizontally-tilted 'venetian-blind' leaflets on fertile fronds.",
+  "prep": "Grown as a distinctive fern for wet shade, bog gardens, and pond edges; not a food.",
+  "harvest": "Fronds spring-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Wet, acidic to neutral soils; swamps.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "CO",
+    "ID"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Dryopteris_cristata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Dryopteris+cristata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DRCR4"
+    ]
+  ]
+}

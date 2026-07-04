@@ -1,0 +1,83 @@
+{
+  "common": "Twig-rush",
+  "sci": "Cladium mariscoides",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy sedge (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Wiry sawgrass relative of fens and lake shores with stiff branching flower clusters.",
+  "prep": "Grown for fen and shoreline restoration; provides cover and stabilizes wet, often calcareous, ground. Not a food.",
+  "harvest": "Seed heads summer.",
+  "sun": "Full sun",
+  "soil": "Wet, often calcareous, mucky soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "NH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cladium_mariscoides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cladium+mariscoides"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CLMA"
+    ]
+  ]
+}

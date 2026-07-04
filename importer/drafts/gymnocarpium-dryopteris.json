@@ -1,0 +1,83 @@
+{
+  "common": "Oak Fern",
+  "sci": "Gymnocarpium dryopteris",
+  "family": "Cystopteridaceae",
+  "type": "Fern",
+  "life": "Hardy fern (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Delicate triangular fern forming airy carpets in cool, moist northern woods.",
+  "prep": "Grown as a fine-textured groundcover fern for cool, moist, shaded gardens; not a food.",
+  "harvest": "Fronds spring-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic woodland soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "VA",
+    "CO",
+    "MT",
+    "ID",
+    "OR",
+    "WA",
+    "AK",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Gymnocarpium_dryopteris"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Gymnocarpium+dryopteris"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GYDR"
+    ]
+  ]
+}

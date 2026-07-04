@@ -1,0 +1,93 @@
+{
+  "common": "Fan Clubmoss",
+  "sci": "Diphasiastrum digitatum",
+  "family": "Lycopodiaceae",
+  "type": "Groundcover",
+  "life": "Evergreen clubmoss (perennial)",
+  "edible_parts": "Not eaten (spores historic 'lycopodium powder').",
+  "other_uses": "Evergreen fan-branched clubmoss ('running cedar') trailing over the forest floor.",
+  "prep": "Grown as an evergreen woodland groundcover; the flammable spores were the historic 'lycopodium powder' (flash powder, pill coating). Over-collected for holiday greenery — buy nursery stock. Not a food.",
+  "harvest": "Evergreen year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Dry to medium, acidic woodland soils.",
+  "risks": "Not a food; harvest sustainably.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Diphasiastrum_digitatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Diphasiastrum+digitatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DIDI8"
+    ]
+  ]
+}

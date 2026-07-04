@@ -1,0 +1,83 @@
+{
+  "common": "American Climbing Fern",
+  "sci": "Lygodium palmatum",
+  "family": "Lygodiaceae",
+  "type": "Fern",
+  "life": "Hardy climbing fern",
+  "edible_parts": "Not eaten.",
+  "other_uses": "North America's only twining fern, climbing with delicate hand-shaped leaflets; rare and protected in parts of its range.",
+  "prep": "Grown as a novelty climbing fern for moist, acid, shaded ground; historically over-collected for holiday greenery, so buy nursery stock. Not a food.",
+  "harvest": "Fronds summer-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Moist to wet, acidic, sandy soils.",
+  "risks": "Legally protected in some states — never wild-collect.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "OH",
+    "WV",
+    "TN",
+    "KY",
+    "AL",
+    "MS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lygodium_palmatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lygodium+palmatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LYPA3"
+    ]
+  ]
+}

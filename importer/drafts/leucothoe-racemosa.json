@@ -1,0 +1,84 @@
+{
+  "common": "Swamp Doghobble",
+  "sci": "Leucothoe racemosa",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Arching wetland shrub with one-sided racemes of fragrant white urn flowers.",
+  "prep": "Grown as a fragrant, arching shrub for moist to wet acid soils and pollinators; like other heaths it is toxic — not edible.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet, acidic soils.",
+  "risks": "Foliage toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "PA",
+    "WV",
+    "TN",
+    "AL",
+    "MS",
+    "LA",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Leucothoe_racemosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Leucothoe+racemosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LERA4"
+    ]
+  ]
+}

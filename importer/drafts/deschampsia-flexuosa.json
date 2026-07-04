@@ -1,0 +1,94 @@
+{
+  "common": "Wavy Hairgrass",
+  "sci": "Deschampsia flexuosa",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy grass (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Fine bunchgrass with wiry wavy stems and delicate bronzy flower sprays on dry acid soils.",
+  "prep": "Grown as a fine-textured grass for dry shade, rock gardens, and poor acid sites; not a food.",
+  "harvest": "Flowers early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, acidic, well-drained soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Deschampsia_flexuosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Deschampsia+flexuosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DEFL"
+    ]
+  ]
+}

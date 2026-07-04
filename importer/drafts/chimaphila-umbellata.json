@@ -1,0 +1,84 @@
+{
+  "common": "Pipsissewa",
+  "sci": "Chimaphila umbellata",
+  "family": "Ericaceae",
+  "type": "Herb",
+  "life": "Evergreen woody groundcover",
+  "edible_parts": "Leaves (root-beer/tea flavoring, in moderation).",
+  "other_uses": "Whorled-leaf evergreen subshrub with fragrant pink flowers; a traditional root-beer herb.",
+  "prep": "The leaves flavor traditional root beer and make a tea, and had folk-medicinal use; grown as an evergreen woodland groundcover. Use in moderation.",
+  "harvest": "Leaves year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Dry to medium, acidic woodland soils.",
+  "risks": "Use in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "GA",
+    "CO",
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chimaphila_umbellata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chimaphila+umbellata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHUM"
+    ]
+  ]
+}

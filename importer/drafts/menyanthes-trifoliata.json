@@ -1,0 +1,82 @@
+{
+  "common": "Bogbean",
+  "sci": "Menyanthes trifoliata",
+  "family": "Menyanthaceae",
+  "type": "Herb",
+  "life": "Aquatic/bog perennial",
+  "edible_parts": "Rhizome (famine food, thoroughly processed); leaves (bitter tonic).",
+  "other_uses": "Bog aquatic with three-part leaves and fringed white star flowers rising from the water.",
+  "prep": "The intensely bitter rhizome was a processed famine food and the leaves a traditional bitter tonic ('bog hops' in brewing); grown chiefly as a distinctive bog and pond-edge plant. Not a table food.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty soils and shallow water.",
+  "risks": "Very bitter; medicinal/famine use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "WV",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Menyanthes_trifoliata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Menyanthes+trifoliata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/METR3"
+    ]
+  ]
+}

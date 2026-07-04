@@ -1,0 +1,79 @@
+{
+  "common": "Goldthread",
+  "sci": "Coptis trifolia",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Evergreen herbaceous groundcover",
+  "edible_parts": "Not eaten (medicinal).",
+  "other_uses": "Low evergreen groundcover with glossy trifoliate leaves and bright golden threadlike roots.",
+  "prep": "The bitter gold root was a well-known traditional remedy for canker/mouth sores ('canker root'); grown as an evergreen groundcover for cool acid shade. Not a food.",
+  "harvest": "Leaves year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic woodland/bog soils.",
+  "risks": "Medicinal use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Coptis_trifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Coptis+trifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/COTR2"
+    ]
+  ]
+}

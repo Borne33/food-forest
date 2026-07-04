@@ -1,0 +1,74 @@
+{
+  "common": "Bog Rosemary",
+  "sci": "Andromeda polifolia",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody groundcover",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Slender evergreen heath of sphagnum bogs with blue-green leaves and pink bell flowers.",
+  "prep": "Grown as a choice acid-bog ornamental; all parts contain toxic grayanotoxins — not edible.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty bog soils.",
+  "risks": "All parts toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Andromeda_polifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Andromeda+polifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ANPO"
+    ]
+  ]
+}

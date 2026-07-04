@@ -1,0 +1,93 @@
+{
+  "common": "Dwarf Cinquefoil",
+  "sci": "Potentilla canadensis",
+  "family": "Rosaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous groundcover",
+  "edible_parts": "Leaves (minor tea, astringent).",
+  "other_uses": "Low spreading groundcover with five-parted leaves and small yellow flowers.",
+  "prep": "The astringent leaves make a minor tea and had folk-medicinal use; grown as a tough low groundcover for dry, poor sites.",
+  "harvest": "Leaves/flowers spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, poor, well-drained soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Potentilla_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Potentilla+canadensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POCA17"
+    ]
+  ]
+}

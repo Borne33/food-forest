@@ -1,0 +1,102 @@
+{
+  "common": "Prairie Cordgrass",
+  "sci": "Spartina pectinata",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy grass (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tall tough wetland grass with saw-edged leaves; a superb soil binder ('freshwater cordgrass').",
+  "prep": "Grown for streambank and wetland stabilization and as historic thatch/hay; spreads vigorously by rhizomes. Not a human food.",
+  "harvest": "Seed heads late summer.",
+  "sun": "Full sun",
+  "soil": "Wet to moist soils; tolerates some salt.",
+  "risks": "Leaf edges are sharp; spreads aggressively.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO",
+    "MT",
+    "TX",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Spartina_pectinata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Spartina+pectinata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SPPE"
+    ]
+  ]
+}

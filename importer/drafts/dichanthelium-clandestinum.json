@@ -1,0 +1,96 @@
+{
+  "common": "Deertongue",
+  "sci": "Dichanthelium clandestinum",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy grass (perennial)",
+  "edible_parts": "Not eaten (seeds for wildlife).",
+  "other_uses": "Robust panic grass with broad bamboo-like leaves; important game-bird seed and cover.",
+  "prep": "Grown for wildlife plantings, erosion control, and restoration; seeds feed quail and songbirds. Not a human food.",
+  "harvest": "Seed heads summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to medium soils; adaptable.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Dichanthelium_clandestinum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Dichanthelium+clandestinum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DICL"
+    ]
+  ]
+}

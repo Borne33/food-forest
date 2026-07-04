@@ -1,0 +1,95 @@
+{
+  "common": "Rock Polypody",
+  "sci": "Polypodium virginianum",
+  "family": "Polypodiaceae",
+  "type": "Fern",
+  "life": "Evergreen fern (perennial)",
+  "edible_parts": "Rhizome (licorice-like nibble, minor).",
+  "other_uses": "Small evergreen fern carpeting shaded boulders and ledges ('rockcap fern').",
+  "prep": "The sweet rhizome is a minor licorice-like nibble; grown chiefly as an evergreen fern for mossy rocks, walls, and shaded ledges.",
+  "harvest": "Fronds year-round.",
+  "sun": "Part shade to shade",
+  "soil": "Thin, mossy soil over shaded rocks; acidic.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "AR",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Polypodium_virginianum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Polypodium+virginianum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POVI7"
+    ]
+  ]
+}

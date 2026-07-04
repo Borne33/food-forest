@@ -1,0 +1,95 @@
+{
+  "common": "Canadian Rush",
+  "sci": "Juncus canadensis",
+  "family": "Juncaceae",
+  "type": "Grass",
+  "life": "Hardy rush (perennial)",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tufted wetland rush with branched clusters of chestnut-brown seed heads.",
+  "prep": "Grown for wet-meadow, shoreline, and rain-garden restoration; provides cover and seed for wildlife. Not a food.",
+  "harvest": "Seed heads late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, mucky or sandy soils.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "NH",
+    "ME"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Juncus_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Juncus+canadensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/JUCA3"
+    ]
+  ]
+}

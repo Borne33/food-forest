@@ -1,0 +1,83 @@
+{
+  "common": "Balsam Poplar",
+  "sci": "Populus balsamifera",
+  "family": "Salicaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten (buds medicinal — 'balm of Gilead').",
+  "other_uses": "Fast northern poplar whose sticky, fragrant spring buds yield a healing resin.",
+  "prep": "The aromatic resinous buds are infused into the traditional 'balm of Gilead' salve; grown as a fast pioneer and wildlife tree for moist ground. Not a food.",
+  "harvest": "Buds late winter-spring.",
+  "sun": "Full sun",
+  "soil": "Moist to wet bottomland soils.",
+  "risks": "Bud resin for topical use, not eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "ND",
+    "SD",
+    "CO",
+    "MT",
+    "AK",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Populus_balsamifera"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Populus+balsamifera"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POBA2"
+    ]
+  ]
+}

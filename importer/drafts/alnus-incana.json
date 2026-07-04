@@ -1,0 +1,80 @@
+{
+  "common": "Speckled Alder",
+  "sci": "Alnus incana",
+  "family": "Betulaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Nitrogen-fixing streambank shrub with speckled bark and early catkins; builds soil and stabilizes banks.",
+  "prep": "Grown for streambank restoration and as an actinorhizal nitrogen fixer; catkins are an early pollen source. Not a food.",
+  "harvest": "Catkins late winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet soils; streambanks and swamps.",
+  "risks": "No meaningful food use.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "WV",
+    "IA",
+    "ND",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Alnus_incana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Alnus+incana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ALIN2"
+    ]
+  ]
+}

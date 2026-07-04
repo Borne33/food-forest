@@ -1,0 +1,81 @@
+{
+  "common": "Sweetgrass",
+  "sci": "Hierochloe odorata",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy grass (perennial)",
+  "edible_parts": "Leaves (vanilla-scented tea, minor).",
+  "other_uses": "Sacred vanilla-scented grass braided and burned in many Indigenous traditions.",
+  "prep": "Grown for its sweet vanilla-coumarin fragrance — braided, used in basketry, and burned ceremonially; the leaves make a minor aromatic tea. A culturally important native grass (spreads by runners).",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, medium soils; adaptable.",
+  "risks": "Spreads by runners; use as flavoring only sparingly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "IA",
+    "CO",
+    "AK",
+    "AZ",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      2,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hierochloe_odorata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Hierochloe+odorata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HIOD"
+    ]
+  ]
+}
