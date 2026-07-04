@@ -49,6 +49,17 @@ plant before it goes live. Pure Python 3 standard library — **no installs**.
 Utility: `python3 foodforest_import.py list-remote` prints what's already in the
 database.
 
+5. **Backfill** — after applying a batch, run the trait backfills in the correct
+   order (rule-based first, USDA authoritative override last) with one command:
+   ```bash
+   python3 backfill.py                # steps 1-5 below
+   python3 backfill.py --with-images  # also fetch missing images
+   python3 backfill.py --plan         # just print the ordered steps
+   ```
+   Order: `populate_traits` → `populate_soil` → `populate_soildims` →
+   `populate_fruit` → `usda_enrich --apply` (→ optional images). USDA runs **last**
+   so it isn't clobbered by the rule-based soil-dimension step.
+
 ## What is auto-filled vs. drafted
 
 - **From authoritative APIs (deterministic):** canonical scientific name and
@@ -120,6 +131,7 @@ default — quality is best when you review each plant.)
 | `fetch_images_fallback.py` | For plants Wikipedia has no article for: retries the base binomial, then searches Wikimedia Commons' File namespace; last-resort photos come from iNaturalist. |
 | `usda_enrich.py`        | USDA PLANTS cross-check/enrichment (see section above). Dry-run by default; `--apply` to write. |
 | `populate_traits.py` / `populate_soil.py` / `populate_soildims.py` / `populate_fruit.py` | Rule-based backfills (hardiness + deer; soil N/P/K; soil texture/drainage; fruit traits). Run after `apply`; USDA pass runs after these. |
+| `backfill.py`           | One-command ordered pipeline: runs the four rule-based backfills, then `usda_enrich.py --apply` last. `--with-images`, `--no-usda`, `--usda-dry-run`, `--plan`. Use this after `apply` instead of running the steps by hand. |
 | `.env`                  | Your secrets (gitignored).                         |
 | `.env.example`          | Template.                                          |
 | `targets.example.txt`   | Example batch input.                               |
