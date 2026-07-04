@@ -1,0 +1,85 @@
+{
+  "common": "Roundleaf Dogwood",
+  "sci": "Cornus rugosa",
+  "family": "Cornaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit eaten by birds (minor human use).",
+  "other_uses": "Understory shrub with rounded leaves and light-blue fruit on red stalks.",
+  "prep": "The pale-blue drupes feed birds and are only a minor human food; grown as a shade-tolerant wildlife shrub.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rocky, often calcareous woodland soils.",
+  "risks": "None significant (fruit for wildlife).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "WV"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cornus_rugosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cornus+rugosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CORU"
+    ]
+  ]
+}

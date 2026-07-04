@@ -1,0 +1,68 @@
+{
+  "common": "Alpine Bearberry",
+  "sci": "Arctostaphylos alpina",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody groundcover",
+  "edible_parts": "Fruit (edible, raw or cooked).",
+  "other_uses": "Mat-forming alpine shrub with black berries and brilliant red fall foliage.",
+  "prep": "Eat the blackberries raw or cooked; more palatable than common bearberry. A tough alpine/arctic groundcover.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to moist, acidic, rocky alpine soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NH",
+    "ME",
+    "VT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Arctostaphylos_alpina"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Arctostaphylos+alpina"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ARAL2"
+    ]
+  ]
+}

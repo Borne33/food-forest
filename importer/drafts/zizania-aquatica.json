@@ -1,0 +1,86 @@
+{
+  "common": "Annual Wild Rice",
+  "sci": "Zizania aquatica",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Annual",
+  "edible_parts": "Grain (the true wild rice).",
+  "other_uses": "Tall aquatic grass of quiet waters bearing nutritious dark grain; a keystone marsh food.",
+  "prep": "Harvest and parch the dark grain as true wild rice — a nutty, protein-rich staple; a premier waterfowl and marsh-wildlife plant.",
+  "harvest": "Grain late summer.",
+  "sun": "Full sun",
+  "soil": "Shallow, quiet, mucky-bottomed water.",
+  "risks": "Harvest before ergot-infected grain (discard pink/purple deformed grains).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "PA",
+    "WV",
+    "OH",
+    "IN",
+    "IL",
+    "WI",
+    "MN",
+    "LA",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Zizania_aquatica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Zizania+aquatica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ZIAQ"
+    ]
+  ]
+}

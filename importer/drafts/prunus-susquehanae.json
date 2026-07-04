@@ -1,0 +1,81 @@
+{
+  "common": "Appalachian Dwarf Cherry",
+  "sci": "Prunus susquehanae",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (edible when ripe; jam).",
+  "other_uses": "Low sand-cherry shrub of dry barrens with dark-purple fruit.",
+  "prep": "Eat the ripe purple-black cherries fresh (best cooked into jam when tart); a low fruiting shrub for dry sandy sites.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy or rocky, acidic soils.",
+  "risks": "Pits contain cyanogenic compounds — flesh only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_susquehanae"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+susquehanae"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRSU3"
+    ]
+  ]
+}

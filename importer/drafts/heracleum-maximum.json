@@ -1,0 +1,101 @@
+{
+  "common": "Cow Parsnip",
+  "sci": "Heracleum maximum",
+  "family": "Apiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Peeled young stems and leaf stalks (cooked); seeds (spice).",
+  "other_uses": "Bold native carrot-family plant with huge leaves and white flower umbels.",
+  "prep": "Peel and cook the young stems and leaf stalks (celery-like); use the seeds as a spice. Learn it well — it resembles toxic relatives, and the raw sap is phototoxic.",
+  "harvest": "Young stems late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, rich soils; streamsides and meadows.",
+  "risks": "Sap is phototoxic (burns in sunlight); peel and cook, and don't confuse with poison-hemlock relatives.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Heracleum_maximum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Heracleum+maximum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HEMA80"
+    ]
+  ]
+}

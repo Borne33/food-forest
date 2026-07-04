@@ -1,0 +1,87 @@
+{
+  "common": "Black Maple",
+  "sci": "Acer nigrum",
+  "family": "Sapindaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Sap (maple syrup).",
+  "other_uses": "Close relative of sugar maple with drooping leaves; tapped for syrup.",
+  "prep": "Tap in late winter and boil the sap into syrup, exactly like sugar maple.",
+  "harvest": "Sap late winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist, well-drained bottomland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "KY",
+    "TN",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Acer_nigrum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Acer+nigrum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ACNI5"
+    ]
+  ]
+}

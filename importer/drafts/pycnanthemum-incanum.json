@@ -1,0 +1,93 @@
+{
+  "common": "Hoary Mountainmint",
+  "sci": "Pycnanthemum incanum",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (strong mint tea and seasoning).",
+  "other_uses": "Bushy mint with silver-frosted upper leaves; a pollinator powerhouse.",
+  "prep": "Steep the strongly minty leaves for tea or use as a seasoning; among the very best native plants for bees and beneficial wasps.",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pycnanthemum_incanum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pycnanthemum+incanum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PYIN"
+    ]
+  ]
+}

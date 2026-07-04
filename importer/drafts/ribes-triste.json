@@ -1,0 +1,76 @@
+{
+  "common": "Swamp Red Currant",
+  "sci": "Ribes triste",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (raw ripe or cooked — jelly).",
+  "other_uses": "Low sprawling wild red currant of cool swamps and wet woods.",
+  "prep": "Eat the translucent red berries fresh (tart) or cook into a fine jelly, like a wild red currant; a hardy shade-and-wet-tolerant shrub.",
+  "harvest": "Fruit summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Wet to moist, cool woodland soils.",
+  "risks": "Note Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_triste"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ribes+triste"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RITR"
+    ]
+  ]
+}

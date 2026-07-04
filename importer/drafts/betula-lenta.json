@@ -1,0 +1,81 @@
+{
+  "common": "Sweet Birch",
+  "sci": "Betula lenta",
+  "family": "Betulaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Sap (birch beer/syrup); twigs & inner bark (wintergreen tea).",
+  "other_uses": "Cherry-barked birch whose twigs smell strongly of wintergreen; source of birch beer.",
+  "prep": "Tap the sap in spring for birch beer or syrup, and steep the wintergreen-scented twigs and inner bark for tea; historic source of oil of wintergreen.",
+  "harvest": "Sap early spring; twigs year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist, well-drained slopes.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "PA",
+    "NJ",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "OH",
+    "GA",
+    "SC",
+    "CT",
+    "MA",
+    "OH",
+    "ME",
+    "NH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Betula_lenta"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Betula+lenta"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/BELE"
+    ]
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "common": "Setose Blackberry",
+  "sci": "Rubus setosus",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (edible, raw or cooked).",
+  "other_uses": "Bristly-caned native blackberry of moist thickets and bog edges.",
+  "prep": "Eat the black fruit fresh or cooked into jam and pies; a hardy bramble for damp ground.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet, acidic soils.",
+  "risks": "Bristly canes.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "WV",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_setosus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+setosus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RUSE"
+    ]
+  ]
+}

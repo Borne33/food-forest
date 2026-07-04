@@ -1,0 +1,78 @@
+{
+  "common": "Greater Water Dock",
+  "sci": "Rumex orbiculatus",
+  "family": "Polygonaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (cooked greens, tart) and seeds.",
+  "other_uses": "Tall native dock of marshes and wet meadows.",
+  "prep": "Cook the tart young leaves like sorrel/spinach (blanch to reduce oxalates) and grind the seeds as a minor grain.",
+  "harvest": "Leaves spring; seed late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, mucky soils; marshes.",
+  "risks": "Contains oxalic acid — eat cooked in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "IA",
+    "WV"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rumex_orbiculatus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rumex+orbiculatus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RUOR2"
+    ]
+  ]
+}

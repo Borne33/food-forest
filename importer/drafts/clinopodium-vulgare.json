@@ -1,0 +1,87 @@
+{
+  "common": "Wild Basil",
+  "sci": "Clinopodium vulgare",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (tea and mild seasoning).",
+  "other_uses": "Aromatic mint of dry edges with clustered pink flower whorls.",
+  "prep": "Steep the pleasantly aromatic leaves for tea or use as a mild oregano/basil-like seasoning.",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Clinopodium_vulgare"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Clinopodium+vulgare"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CLVU"
+    ]
+  ]
+}

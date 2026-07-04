@@ -1,0 +1,98 @@
+{
+  "common": "Pitseed Goosefoot",
+  "sci": "Chenopodium berlandieri",
+  "family": "Amaranthaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Leaves (cooked greens) and seeds (grain).",
+  "other_uses": "Native goosefoot — the wild ancestor of a domesticated Eastern-Woodlands grain crop; a quinoa/lambsquarters relative.",
+  "prep": "Cook the young leaves like spinach and thresh/winnow the abundant seeds as a nutritious grain (rinse to reduce saponins), exactly like quinoa.",
+  "harvest": "Leaves summer; seed fall.",
+  "sun": "Full sun",
+  "soil": "Rich, disturbed, well-drained soils.",
+  "risks": "Leaves high in oxalates — eat cooked in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chenopodium_berlandieri"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chenopodium+berlandieri"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHBE4"
+    ]
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "common": "Small White Violet",
+  "sci": "Viola macloskeyi",
+  "family": "Violaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Flowers and young leaves (salad, vitamin C).",
+  "other_uses": "Tiny white violet of wet seeps, springs, and bog edges.",
+  "prep": "Add the small flowers and mild leaves to salads; a diminutive violet for consistently wet, shaded ground.",
+  "harvest": "Flowers/leaves spring.",
+  "sun": "Part shade to shade",
+  "soil": "Wet, mucky or mossy soils; seeps.",
+  "risks": "Eat leaves in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "WV",
+    "NC",
+    "TN",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viola_macloskeyi"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viola+macloskeyi"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VIMA2"
+    ]
+  ]
+}

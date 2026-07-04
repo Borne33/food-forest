@@ -1,0 +1,79 @@
+{
+  "common": "Northern Bedstraw",
+  "sci": "Galium boreale",
+  "family": "Rubiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Roasted seeds (coffee substitute); roots (red dye).",
+  "other_uses": "Showy bedstraw with frothy white flower clusters; roots yield a red dye.",
+  "prep": "Roast the seeds as a coffee substitute; the roots give a madder-like red dye. A tidy, long-blooming pollinator plant.",
+  "harvest": "Seeds summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "WV",
+    "CO",
+    "MT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Galium_boreale"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Galium+boreale"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GABO2"
+    ]
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "common": "Violet Woodsorrel",
+  "sci": "Oxalis violacea",
+  "family": "Oxalidaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves, flowers, and bulblets (tart, in moderation).",
+  "other_uses": "Dainty woodland sorrel with violet flowers over cloverlike leaves.",
+  "prep": "Nibble the pleasantly sour leaves and flowers in salads and the crisp bulblets; refreshing but eat in moderation (oxalic acid).",
+  "harvest": "Leaves/flowers spring.",
+  "sun": "Part shade to full sun",
+  "soil": "Medium, well-drained soils; open woods and prairies.",
+  "risks": "Contains oxalic acid — eat in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Oxalis_violacea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Oxalis+violacea"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OXVI"
+    ]
+  ]
+}

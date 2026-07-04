@@ -1,0 +1,78 @@
+{
+  "common": "Skunk Currant",
+  "sci": "Ribes glandulosum",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (cooked — jelly; skunky raw).",
+  "other_uses": "Sprawling wild currant of cool moist woods; foliage smells skunky when bruised.",
+  "prep": "The bristly red berries are cooked into jelly and jam (the skunky odor cooks off); a hardy shade-tolerant currant.",
+  "harvest": "Fruit summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, cool, rocky woodland soils.",
+  "risks": "Note Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "NC",
+    "TN",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_glandulosum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ribes+glandulosum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RIGL"
+    ]
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "common": "Pin Cherry",
+  "sci": "Prunus pensylvanica",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (tart — jelly, juice).",
+  "other_uses": "Fast pioneer 'fire cherry' with clusters of small bright-red sour cherries.",
+  "prep": "Too tart to eat raw in quantity, the red cherries make excellent jelly, juice, and wine; a fast pioneer that heals clearings and feeds wildlife.",
+  "harvest": "Fruit mid-late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to moist, well-drained soils; clearings.",
+  "risks": "Pits, leaves, and bark contain cyanogenic compounds — use fruit flesh only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "SD",
+    "ND",
+    "CO",
+    "MT",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_pensylvanica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+pensylvanica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRPE2"
+    ]
+  ]
+}

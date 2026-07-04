@@ -1,0 +1,74 @@
+{
+  "common": "Red Spruce",
+  "sci": "Picea rubens",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young tips (tea/spruce beer); resin (gum).",
+  "other_uses": "Appalachian mountain spruce; the original 'spruce gum' tree.",
+  "prep": "Steep the young tips for tea and spruce beer and chew the aromatic resin as gum; a stately high-elevation timber tree.",
+  "harvest": "Tips spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, cool, acidic mountain soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "VT",
+    "NH",
+    "ME",
+    "MA",
+    "PA",
+    "WV",
+    "VA",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Picea_rubens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Picea+rubens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIRU"
+    ]
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "common": "Bog Bilberry",
+  "sci": "Vaccinium uliginosum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody groundcover",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Low alpine/boreal bilberry of summits and bogs with blue-black fruit.",
+  "prep": "Eat the sweet blue-black berries fresh or in pies and jam, like a blueberry; a cold-hardy alpine groundcover.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to dry, acidic, rocky or peaty soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NH",
+    "ME",
+    "VT",
+    "MI",
+    "MN",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_uliginosum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+uliginosum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAUL"
+    ]
+  ]
+}

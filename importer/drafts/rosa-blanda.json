@@ -1,0 +1,81 @@
+{
+  "common": "Smooth Rose",
+  "sci": "Rosa blanda",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Hips (tea/jam; vitamin C) and petals (edible).",
+  "other_uses": "Nearly thornless meadow rose with pink flowers and round red hips.",
+  "prep": "Use the vitamin-C-rich hips for tea, jam, and syrup and the fragrant petals in salads and syrups; a nearly thornless, easygoing native rose.",
+  "harvest": "Hips fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils; adaptable.",
+  "risks": "Remove the irritating hip seed-hairs before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "IA",
+    "ND",
+    "SD",
+    "NE",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rosa_blanda"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rosa+blanda"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ROBL"
+    ]
+  ]
+}

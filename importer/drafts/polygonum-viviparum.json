@@ -1,0 +1,68 @@
+{
+  "common": "Alpine Bistort",
+  "sci": "Polygonum viviparum",
+  "family": "Polygonaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Bulblets and root (starchy, raw or cooked; nutty).",
+  "other_uses": "Slender alpine plant that sprouts tiny bulblets on its flower spike instead of seeds.",
+  "prep": "Eat the starchy bulblets raw or cooked (nutty, almond-like) and the twisted root cooked; a traditional arctic-alpine food. (= Bistorta vivipara.)",
+  "harvest": "Bulblets summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Cool, moist, rocky alpine soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NH",
+    "ME",
+    "VT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Polygonum_viviparum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Polygonum+viviparum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POVI3"
+    ]
+  ]
+}

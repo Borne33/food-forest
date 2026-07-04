@@ -1,0 +1,97 @@
+{
+  "common": "Downy Yellow Violet",
+  "sci": "Viola pubescens",
+  "family": "Violaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Flowers and young leaves (salad, vitamin C).",
+  "other_uses": "Woodland violet with clear-yellow flowers over softly hairy heart-shaped leaves.",
+  "prep": "Add the yellow flowers and tender young leaves to salads (vitamin-rich) or use leaves to thicken soups; a cheerful spring woodland groundcover.",
+  "harvest": "Flowers/leaves spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "Eat leaves in moderation; yellow-violet roots/seeds can be cathartic.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viola_pubescens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viola+pubescens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VIPU3"
+    ]
+  ]
+}

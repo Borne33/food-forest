@@ -1,0 +1,98 @@
+{
+  "common": "Watershield",
+  "sci": "Brasenia schreberi",
+  "family": "Cabombaceae",
+  "type": "Herb",
+  "life": "Aquatic perennial",
+  "edible_parts": "Young leaves and stems (mucilaginous, eaten cooked/raw).",
+  "other_uses": "Floating-leaved aquatic whose submerged parts are coated in clear jelly; prized as 'junsai' in Japan.",
+  "prep": "The gelatinous unfurling young leaves and stems are eaten in soups and salads (a delicacy in East Asia); the starchy rhizome is also edible.",
+  "harvest": "Young leaves summer.",
+  "sun": "Full sun",
+  "soil": "Still, acidic water; ponds and slow streams.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "MN",
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Brasenia_schreberi"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Brasenia+schreberi"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/BRSC"
+    ]
+  ]
+}

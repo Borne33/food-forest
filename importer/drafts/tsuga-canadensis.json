@@ -1,0 +1,84 @@
+{
+  "common": "Eastern Hemlock",
+  "sci": "Tsuga canadensis",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles/tips (vitamin-C tea); inner bark (famine food).",
+  "other_uses": "Graceful shade-tolerant conifer of cool ravines; the state tree of Pennsylvania.",
+  "prep": "Steep the young needles and tips for a fragrant vitamin-C tea; the inner bark was a survival food and tannin source. A majestic shade tree (note: threatened by woolly adelgid).",
+  "harvest": "Needles year-round.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, cool, acidic, well-drained soils; shade tolerant.",
+  "risks": "Not to be confused with poison-hemlock the herb — this conifer is safe as tea.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "PA",
+    "NJ",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "OH",
+    "GA",
+    "SC",
+    "CT",
+    "MA",
+    "OH",
+    "MI",
+    "WI",
+    "MN",
+    "AL",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Tsuga_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Tsuga+canadensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/TSCA"
+    ]
+  ]
+}

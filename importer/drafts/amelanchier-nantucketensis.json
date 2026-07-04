@@ -1,0 +1,71 @@
+{
+  "common": "Nantucket Serviceberry",
+  "sci": "Amelanchier nantucketensis",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Rare low coastal-plain serviceberry.",
+  "prep": "Eat the sweet dark berries fresh or cooked; grown as a compact native juneberry for sandy sites.",
+  "harvest": "Fruit early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy, acidic coastal-plain soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "ME",
+    "NH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Amelanchier_nantucketensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Amelanchier+nantucketensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/AMNA2"
+    ]
+  ]
+}

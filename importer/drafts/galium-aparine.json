@@ -1,0 +1,99 @@
+{
+  "common": "Cleavers",
+  "sci": "Galium aparine",
+  "family": "Rubiaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Young shoots (cooked greens); roasted seeds (coffee substitute).",
+  "other_uses": "Sprawling, clingy 'goosegrass' with whorled leaves and Velcro-like hooks.",
+  "prep": "Cook the young spring shoots as a mild green and roast the seeds as one of the better wild coffee substitutes (Galium is in the coffee family).",
+  "harvest": "Shoots spring; seeds summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich soils; disturbed ground and edges.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "CA",
+    "OR",
+    "WA",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Galium_aparine"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Galium+aparine"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GAAP2"
+    ]
+  ]
+}

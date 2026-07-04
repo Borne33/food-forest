@@ -1,0 +1,95 @@
+{
+  "common": "Virginia Dwarf Dandelion",
+  "sci": "Krigia virginica",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Young leaves (salad or cooked greens).",
+  "other_uses": "Tiny annual dwarf dandelion of dry sandy open ground.",
+  "prep": "Eat the small mild leaves raw or cooked like dandelion greens; a diminutive early-season nibble.",
+  "harvest": "Leaves spring.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Krigia_virginica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Krigia+virginica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/KRVI"
+    ]
+  ]
+}

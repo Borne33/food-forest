@@ -1,0 +1,76 @@
+{
+  "common": "Black Spruce",
+  "sci": "Picea mariana",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young tips (tea/spruce beer); resin (gum).",
+  "other_uses": "Slender bog spruce of the north woods; source of spruce gum and spruce beer.",
+  "prep": "Steep young tips for tea and the classic 'spruce beer', and chew the resin as gum; a bog and cold-climate specialist.",
+  "harvest": "Tips spring.",
+  "sun": "Full sun",
+  "soil": "Wet, acidic, peaty soils; bogs.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "NJ",
+    "VA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Picea_mariana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Picea+mariana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIMA"
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "common": "Rosy Twistedstalk",
+  "sci": "Streptopus lanceolatus",
+  "family": "Liliaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young shoots (cucumber-flavored) and berries (in moderation).",
+  "other_uses": "Arching woodland lily with hidden rose bells and red berries.",
+  "prep": "Eat the just-emerged young shoots raw or cooked (cucumber taste) and the red berries in small amounts (mildly laxative in quantity); a graceful shade wildflower.",
+  "harvest": "Young shoots spring; berries late summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic woodland soils.",
+  "risks": "Berries laxative in quantity; don't confuse shoots with false hellebore.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "TN",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Streptopus_lanceolatus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Streptopus+lanceolatus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/STLA16"
+    ]
+  ]
+}

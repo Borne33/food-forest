@@ -1,0 +1,98 @@
+{
+  "common": "Virginia Pepperweed",
+  "sci": "Lepidium virginicum",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Young leaves, green seedpods, and seeds (peppery).",
+  "other_uses": "Common native peppergrass of open ground; a pantry of pepper flavor.",
+  "prep": "Use the peppery young leaves and green pods raw as a cress/pepper seasoning, and grind the seeds as a pepper substitute.",
+  "harvest": "Leaves spring; pods/seed summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, disturbed, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "TX",
+    "CA",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lepidium_virginicum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lepidium+virginicum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LEVI3"
+    ]
+  ]
+}

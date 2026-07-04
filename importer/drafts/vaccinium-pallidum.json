@@ -1,0 +1,93 @@
+{
+  "common": "Hillside Blueberry",
+  "sci": "Vaccinium pallidum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Common lowbush 'dryland' blueberry of dry oak woods and ridges.",
+  "prep": "Eat the sweet blue berries fresh or in pies, jam, and muffins; a spreading lowbush blueberry for dry acid sites.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, acidic, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_pallidum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+pallidum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAPA4"
+    ]
+  ]
+}

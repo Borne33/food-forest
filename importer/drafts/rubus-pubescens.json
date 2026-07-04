@@ -1,0 +1,79 @@
+{
+  "common": "Dwarf Red Blackberry",
+  "sci": "Rubus pubescens",
+  "family": "Rosaceae",
+  "type": "Herb",
+  "life": "Herbaceous/trailing bramble",
+  "edible_parts": "Fruit (sweet-tart, raw or cooked).",
+  "other_uses": "Soft herbaceous dewberry of cool moist woods with red raspberry-like fruit.",
+  "prep": "Eat the juicy red berries fresh or cook into jam; a low, unarmed woodland groundcover ('dewdrop').",
+  "harvest": "Fruit summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, cool woodland soils.",
+  "risks": "None significant (nearly unarmed).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "WV",
+    "CO",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_pubescens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+pubescens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RUPU"
+    ]
+  ]
+}

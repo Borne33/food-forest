@@ -1,0 +1,77 @@
+{
+  "common": "White Spruce",
+  "sci": "Picea glauca",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles/tips (tea); inner bark; resin (gum).",
+  "other_uses": "Fine northern spruce, adaptable and hardy; classic boreal timber tree.",
+  "prep": "Steep the young spring tips for a vitamin-C tea, chew the hardened resin as gum, and use inner bark as a survival food; spruce tips also flavor beer and syrups.",
+  "harvest": "Tips spring; needles year-round.",
+  "sun": "Full sun",
+  "soil": "Moist, cool soils; very cold-hardy.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "SD",
+    "MT",
+    "WY",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Picea_glauca"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Picea+glauca"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIGL"
+    ]
+  ]
+}

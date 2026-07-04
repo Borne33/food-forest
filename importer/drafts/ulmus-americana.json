@@ -1,0 +1,98 @@
+{
+  "common": "American Elm",
+  "sci": "Ulmus americana",
+  "family": "Ulmaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Inner bark (famine food) and young samaras (salad).",
+  "other_uses": "Iconic vase-shaped shade tree (now managed against Dutch elm disease).",
+  "prep": "The young spring samaras (winged seeds) are a mild salad green and the inner bark a survival food and tea; grown chiefly as a stately shade tree — plant disease-resistant cultivars.",
+  "harvest": "Samaras spring.",
+  "sun": "Full sun",
+  "soil": "Moist, rich bottomland soils; adaptable.",
+  "risks": "None significant (not a major food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      8,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ulmus_americana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ulmus+americana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ULAM"
+    ]
+  ]
+}

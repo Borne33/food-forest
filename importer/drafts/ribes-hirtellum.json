@@ -1,0 +1,81 @@
+{
+  "common": "Hairystem Gooseberry",
+  "sci": "Ribes hirtellum",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (raw ripe or cooked).",
+  "other_uses": "Nearly spineless northern gooseberry; a parent of cultivated gooseberries.",
+  "prep": "Eat the smooth blue-purple berries fresh when ripe or cook the green ones into pies and jam; an easy, productive native gooseberry.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to medium, well-drained soils.",
+  "risks": "Note Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "WV",
+    "NC",
+    "TN",
+    "ND",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_hirtellum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ribes+hirtellum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RIHI"
+    ]
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "common": "Velvetleaf Blueberry",
+  "sci": "Vaccinium myrtilloides",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Soft-hairy lowbush blueberry of cool woods and bogs; a top commercial wild blueberry in Canada.",
+  "prep": "Eat the sweet blue berries fresh or in pies, jam, and pancakes, like other blueberries.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to moist, acidic soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "WV",
+    "VA",
+    "MT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_myrtilloides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+myrtilloides"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAMY"
+    ]
+  ]
+}

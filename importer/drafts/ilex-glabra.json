@@ -1,0 +1,85 @@
+{
+  "common": "Inkberry",
+  "sci": "Ilex glabra",
+  "family": "Aquifoliaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves (roasted tea; berries NOT edible).",
+  "other_uses": "Evergreen native holly of acid wetlands and pine barrens; tidy foundation shrub.",
+  "prep": "The dried, roasted leaves make a mild caffeine-free tea ('Appalachian tea'); the black berries are mildly toxic and NOT eaten. Grown as an evergreen hedge and pollinator plant.",
+  "harvest": "Leaves year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet, acidic soils; tolerates average.",
+  "risks": "Berries mildly toxic — not for eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "PA",
+    "WV",
+    "AR",
+    "LA",
+    "MS",
+    "AL",
+    "TX",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ilex_glabra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ilex+glabra"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ILGL"
+    ]
+  ]
+}

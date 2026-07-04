@@ -1,0 +1,78 @@
+{
+  "common": "Bog Labrador Tea",
+  "sci": "Ledum groenlandicum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves (herbal tea, in moderation).",
+  "other_uses": "Evergreen bog shrub with rusty-woolly leaf undersides; classic northern trail tea.",
+  "prep": "Steep the fragrant leaves for the traditional 'Labrador tea'; use in moderation (steep lightly). A choice acid-bog and rain-garden shrub. (= Rhododendron groenlandicum.)",
+  "harvest": "Leaves year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty soils; bogs.",
+  "risks": "Use in moderation; strong/long brews and large amounts are not advised.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "NJ",
+    "AK",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ledum_groenlandicum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ledum+groenlandicum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LEGR"
+    ]
+  ]
+}

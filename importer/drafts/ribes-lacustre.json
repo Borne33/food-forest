@@ -1,0 +1,83 @@
+{
+  "common": "Bristly Black Currant",
+  "sci": "Ribes lacustre",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (cooked — jelly).",
+  "other_uses": "Prickly-stemmed currant of cool moist woods with dark bristly berries.",
+  "prep": "Cook the dark purple berries into jelly and jam; the stems are very prickly, so harvest carefully. A hardy shade currant.",
+  "harvest": "Fruit summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, cool woodland soils.",
+  "risks": "Prickly stems; Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "NC",
+    "TN",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_lacustre"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ribes+lacustre"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RILA"
+    ]
+  ]
+}

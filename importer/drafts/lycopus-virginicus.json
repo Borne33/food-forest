@@ -1,0 +1,95 @@
+{
+  "common": "Virginia Water Horehound",
+  "sci": "Lycopus virginicus",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Tuberous rhizomes (crisp, raw or cooked).",
+  "other_uses": "Wetland mint relative forming edible white tubers; dark-tinged foliage.",
+  "prep": "Eat the crisp white tubers raw or cooked like a mild water chestnut; a wetland groundcover for wildlife.",
+  "harvest": "Tubers fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils; streamsides.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lycopus_virginicus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lycopus+virginicus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LYVI4"
+    ]
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "common": "Northern Wild Rice",
+  "sci": "Zizania palustris",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Annual",
+  "edible_parts": "Grain (the true wild rice).",
+  "other_uses": "The northern wild rice of the Great Lakes — a sacred staple ('manoomin') of the Anishinaabe.",
+  "prep": "Harvest and parch the dark grain as true wild rice; a nutritious, culturally important staple and a top waterfowl food.",
+  "harvest": "Grain late summer-fall.",
+  "sun": "Full sun",
+  "soil": "Shallow, quiet, mucky-bottomed water; lakes and slow streams.",
+  "risks": "Discard ergot-infected (pink/purple, deformed) grains.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Zizania_palustris"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Zizania+palustris"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ZIPA3"
+    ]
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "common": "Bristly Dewberry",
+  "sci": "Rubus hispidus",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Trailing/semi-evergreen bramble",
+  "edible_parts": "Fruit (tart, raw or cooked).",
+  "other_uses": "Low trailing dewberry of moist/swampy ground with semi-evergreen leaves.",
+  "prep": "Eat the small tart-sweet black-red berries fresh or cooked into jam; a low semi-evergreen groundcover for damp sites.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils; adaptable.",
+  "risks": "Bristly trailing canes.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_hispidus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+hispidus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RUHI"
+    ]
+  ]
+}

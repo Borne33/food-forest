@@ -1,0 +1,83 @@
+{
+  "common": "Mountain Maple",
+  "sci": "Acer spicatum",
+  "family": "Sapindaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Sap (light syrup, minor).",
+  "other_uses": "Large shrub/small tree of cool moist woods with upright flower spikes; good fall color.",
+  "prep": "Sap yields a minor light syrup; grown chiefly as a native understory shrub for cool, shaded slopes.",
+  "harvest": "Sap late winter.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, rocky woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "PA",
+    "NJ",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "OH",
+    "GA",
+    "SC",
+    "CT",
+    "MA",
+    "OH",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Acer_spicatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Acer+spicatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ACSP2"
+    ]
+  ]
+}

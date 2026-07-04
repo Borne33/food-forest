@@ -1,0 +1,80 @@
+{
+  "common": "American Sea Rocket",
+  "sci": "Cakile edentula",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Leaves, young pods, and seeds (peppery).",
+  "other_uses": "Succulent mustard of upper sea beaches with fleshy leaves and horseradish-like bite.",
+  "prep": "Eat the fleshy peppery leaves and young pods raw or cooked as a wasabi-ish seasoning; a pioneer of open sand.",
+  "harvest": "Leaves/pods summer.",
+  "sun": "Full sun",
+  "soil": "Loose sand of ocean and lake beaches.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "MI",
+    "WI",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      4,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cakile_edentula"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cakile+edentula"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CAED"
+    ]
+  ]
+}

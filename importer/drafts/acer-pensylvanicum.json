@@ -1,0 +1,81 @@
+{
+  "common": "Striped Maple",
+  "sci": "Acer pensylvanicum",
+  "family": "Sapindaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Sap (light syrup); inner bark (famine food).",
+  "other_uses": "Understory 'moosewood' with green-and-white striped bark; deer/moose browse.",
+  "prep": "Sap can be boiled to a light syrup; inner bark was a survival food. Grown as a handsome shade-tolerant understory tree.",
+  "harvest": "Sap late winter.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, well-drained woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "PA",
+    "NJ",
+    "MD",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "OH",
+    "GA",
+    "SC",
+    "CT",
+    "MA",
+    "OH",
+    "MI",
+    "WI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Acer_pensylvanicum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Acer+pensylvanicum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ACPE"
+    ]
+  ]
+}

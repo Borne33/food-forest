@@ -1,0 +1,76 @@
+{
+  "common": "Creeping Snowberry",
+  "sci": "Gaultheria hispidula",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Creeping woody groundcover",
+  "edible_parts": "Fruit (wintergreen-flavored, raw) and leaves (tea).",
+  "other_uses": "Threadlike creeping evergreen of mossy bogs and conifer woods with tiny white berries.",
+  "prep": "Eat the aromatic white berries raw — intense wintergreen flavor — and steep the leaves for a wintergreen tea; a delicate shade groundcover.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic, mossy soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "WV",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Gaultheria_hispidula"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Gaultheria+hispidula"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GAHI2"
+    ]
+  ]
+}

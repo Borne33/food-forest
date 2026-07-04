@@ -34,6 +34,9 @@ API = "https://plantsservices.sc.egov.usda.gov/api/"
 UA = {"User-Agent": "food-forest-planner/1.0 (native plant education; github.com/Borne33)"}
 DR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "drafts")
 US_REGIONS = {"L48", "AK", "HI", "PR", "VI"}
+# Species where USDA's family-level "Nitrogen Fixation" value is wrong — don't let
+# it flip our nf. Gymnocladus dioicus is a well-known NON-nodulating legume.
+NF_SKIP = {"Gymnocladus dioicus"}
 
 
 def api_get(path):
@@ -166,7 +169,7 @@ def main():
 
         patch, notes = {}, {}
         nf_new = map_nf(cm)
-        if nf_new is not None and bool(nf_new) != bool(r["nf"]):
+        if nf_new is not None and bool(nf_new) != bool(r["nf"]) and r["sci"] not in NF_SKIP:
             patch["nf"] = nf_new; notes["nf"] = [r["nf"], nf_new]; stats["nf"] += 1
             nf_flips.append((r["common"], r["sci"], r["nf"], nf_new))
         tex_new = map_texture(cm)

@@ -1,0 +1,77 @@
+{
+  "common": "Triangle Orache",
+  "sci": "Atriplex prostrata",
+  "family": "Amaranthaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Leaves (cooked or raw greens).",
+  "other_uses": "Spear-leaved saltbush ('spearscale') of salt marshes and shores.",
+  "prep": "Use the mild salty triangular leaves raw or steamed like spinach; a productive coastal potherb.",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun",
+  "soil": "Brackish or saline coastal soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Atriplex_prostrata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Atriplex+prostrata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ATPR"
+    ]
+  ]
+}

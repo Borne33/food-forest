@@ -1,0 +1,99 @@
+{
+  "common": "Pennsylvania Smartweed",
+  "sci": "Polygonum pensylvanicum",
+  "family": "Polygonaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Seeds (grain) and young leaves (cooked).",
+  "other_uses": "Pink-spiked smartweed of moist ground; a top wildlife seed plant.",
+  "prep": "Thresh the abundant seeds as a grain (like buckwheat, a relative) and cook the young leaves as a green; a major food for waterfowl and songbirds.",
+  "harvest": "Seed late summer-fall.",
+  "sun": "Full sun",
+  "soil": "Moist to wet soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "TX",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Polygonum_pensylvanicum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Polygonum+pensylvanicum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POPE2"
+    ]
+  ]
+}

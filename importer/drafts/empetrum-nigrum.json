@@ -1,0 +1,71 @@
+{
+  "common": "Black Crowberry",
+  "sci": "Empetrum nigrum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody groundcover",
+  "edible_parts": "Fruit (edible, raw or cooked; better after frost).",
+  "other_uses": "Heath-like evergreen mat of alpine summits and northern bogs with black berries.",
+  "prep": "Eat the juicy black berries raw (mild) or cooked into jam and juice; sweeter after a frost. A cold-hardy alpine groundcover.",
+  "harvest": "Fruit late summer-fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to dry, acidic, peaty or rocky soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NH",
+    "ME",
+    "VT",
+    "MI",
+    "MN",
+    "WI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Empetrum_nigrum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Empetrum+nigrum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/EMNI"
+    ]
+  ]
+}

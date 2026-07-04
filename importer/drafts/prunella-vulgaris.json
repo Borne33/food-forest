@@ -1,0 +1,102 @@
+{
+  "common": "Selfheal",
+  "sci": "Prunella vulgaris",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (salad/cooked) and flowers (tea).",
+  "other_uses": "Low mint-family groundcover with violet flower spikes; a classic wound herb.",
+  "prep": "Add the mild young leaves to salads or soups and steep leaves/flowers for a pleasant tea; a tough, mowable pollinator groundcover.",
+  "harvest": "Leaves/flowers summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, moist to well-drained soils; adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunella_vulgaris"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunella+vulgaris"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRVU"
+    ]
+  ]
+}

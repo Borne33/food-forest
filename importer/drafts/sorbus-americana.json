@@ -1,0 +1,78 @@
+{
+  "common": "American Mountain Ash",
+  "sci": "Sorbus americana",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (cooked — jelly, after frost).",
+  "other_uses": "Northern tree with white flower clusters and showy orange-red berry bunches.",
+  "prep": "Cook the tart, vitamin-C-rich berries into jelly, jam, and 'rowan' preserves — best after a frost softens them; too astringent raw. A four-season wildlife tree.",
+  "harvest": "Fruit fall-winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, cool, well-drained acidic soils.",
+  "risks": "Astringent raw; cook, and don't eat the seeds in quantity.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sorbus_americana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Sorbus+americana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SOAM3"
+    ]
+  ]
+}

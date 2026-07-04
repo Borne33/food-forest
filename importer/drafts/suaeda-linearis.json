@@ -1,0 +1,77 @@
+{
+  "common": "Annual Seepweed",
+  "sci": "Suaeda linearis",
+  "family": "Amaranthaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Succulent stems and leaves ('sea blite', raw or cooked; salty).",
+  "other_uses": "Fleshy needle-leaved succulent of salt marshes, reddening in fall.",
+  "prep": "Eat the salty succulent leaves and stems raw, blanched, or sautéed as 'sea blite'; a coastal wild vegetable.",
+  "harvest": "Leaves/stems summer.",
+  "sun": "Full sun",
+  "soil": "Saline tidal-marsh soils.",
+  "risks": "Naturally salty.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Suaeda_linearis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Suaeda+linearis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SULI"
+    ]
+  ]
+}

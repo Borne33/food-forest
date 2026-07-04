@@ -1,0 +1,100 @@
+{
+  "common": "Longleaf Starwort",
+  "sci": "Stellaria longifolia",
+  "family": "Caryophyllaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves and stems (salad or cooked greens).",
+  "other_uses": "Delicate native chickweed of moist meadows and thickets.",
+  "prep": "Eat the mild tender greens raw in salad or lightly cooked, like common chickweed; a gentle spring/summer green.",
+  "harvest": "Greens spring-summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist soils; meadows and edges.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO",
+    "MT",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Stellaria_longifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Stellaria+longifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/STLO"
+    ]
+  ]
+}

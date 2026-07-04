@@ -1,0 +1,96 @@
+{
+  "common": "River Bulrush",
+  "sci": "Bolboschoenus fluviatilis",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy sedge (perennial)",
+  "edible_parts": "Starchy tubers/rhizomes (cooked) and seeds.",
+  "other_uses": "Tall marsh bulrush forming colonies in shallow water; important marsh wildlife plant.",
+  "prep": "The starchy rhizome tubers are cooked and eaten and the seeds ground into meal; grown chiefly for marsh restoration and wildlife.",
+  "harvest": "Tubers fall/winter.",
+  "sun": "Full sun",
+  "soil": "Wet soils and shallow water; marshes.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Bolboschoenus_fluviatilis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Bolboschoenus+fluviatilis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/BOFL3"
+    ]
+  ]
+}

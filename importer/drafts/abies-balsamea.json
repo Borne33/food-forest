@@ -1,0 +1,77 @@
+{
+  "common": "Balsam Fir",
+  "sci": "Abies balsamea",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles (vitamin-C tea); inner bark (famine food); resin.",
+  "other_uses": "Aromatic northern conifer; source of 'Canada balsam' resin; classic Christmas tree.",
+  "prep": "Steep young needles for a vitamin-C tea; the sticky resin blisters were chewed and used on wounds; inner bark was a survival food.",
+  "harvest": "Needles year-round; resin summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, cool, acidic soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "WV",
+    "VA",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Abies_balsamea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Abies+balsamea"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ABBA"
+    ]
+  ]
+}

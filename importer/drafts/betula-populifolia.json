@@ -1,0 +1,80 @@
+{
+  "common": "Gray Birch",
+  "sci": "Betula populifolia",
+  "family": "Betulaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Sap (drink/syrup, minor).",
+  "other_uses": "Fast pioneer birch with chalky-white bark and triangular leaves.",
+  "prep": "Tap the sap in spring for a mild drink or thin syrup; grown as a quick, short-lived pioneer for poor soils.",
+  "harvest": "Sap early spring.",
+  "sun": "Full sun",
+  "soil": "Dry to moist, poor soils; very adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "VA",
+    "NC",
+    "DE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Betula_populifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Betula+populifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/BEPO"
+    ]
+  ]
+}

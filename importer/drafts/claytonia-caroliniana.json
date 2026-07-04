@@ -1,0 +1,89 @@
+{
+  "common": "Carolina Spring Beauty",
+  "sci": "Claytonia caroliniana",
+  "family": "Montiaceae",
+  "type": "Herb",
+  "life": "Spring ephemeral perennial",
+  "edible_parts": "Corm ('fairy spud', cooked like a potato) and leaves (salad).",
+  "other_uses": "Woodland spring ephemeral with pink-striped white flowers over broad leaves.",
+  "prep": "Dig and boil the small corms like tiny potatoes (chestnut-sweet) and eat the succulent leaves raw or cooked; harvest only from abundant colonies.",
+  "harvest": "Corms/leaves spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "TN",
+    "KY",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Claytonia_caroliniana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Claytonia+caroliniana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CLCA"
+    ]
+  ]
+}

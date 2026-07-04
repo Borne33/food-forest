@@ -1,0 +1,103 @@
+{
+  "common": "Wild Mint",
+  "sci": "Mentha arvensis",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (mint tea and seasoning).",
+  "other_uses": "North America's only native mint; spreads by runners in moist ground.",
+  "prep": "Steep the true-mint leaves for tea or use fresh/dried as seasoning; a spreading pollinator plant for damp spots (give it room).",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils.",
+  "risks": "Spreads by runners — contain it.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO",
+    "MT",
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Mentha_arvensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Mentha+arvensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MEAR4"
+    ]
+  ]
+}

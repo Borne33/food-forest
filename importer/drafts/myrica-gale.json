@@ -1,0 +1,79 @@
+{
+  "common": "Sweetgale",
+  "sci": "Myrica gale",
+  "family": "Myricaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves and 'nutlets' (bay-like spice/tea).",
+  "other_uses": "Aromatic nitrogen-fixing shrub of pond margins and bogs; 'bog myrtle'.",
+  "prep": "Use the resinous leaves and catkin nutlets as a bay-leaf-like spice and in beer/tea (a traditional 'gruit' hop substitute); an actinorhizal nitrogen fixer for wet ground.",
+  "harvest": "Leaves summer; nutlets fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, acidic, peaty soils; shorelines.",
+  "risks": "Use as a seasoning in moderation; avoid in pregnancy.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "NJ",
+    "NC",
+    "WA",
+    "OR",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Myrica_gale"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Myrica+gale"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MYGA"
+    ]
+  ]
+}

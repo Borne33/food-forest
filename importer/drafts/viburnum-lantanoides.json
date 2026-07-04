@@ -1,0 +1,80 @@
+{
+  "common": "Hobblebush",
+  "sci": "Viburnum lantanoides",
+  "family": "Adoxaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet when ripe, raw or cooked).",
+  "other_uses": "Sprawling understory shrub with big showy white flower heads and red-to-black fruit.",
+  "prep": "Eat the sweet black fruit fresh when fully ripe (like a small date/raisin) or cooked; grown as a beautiful shade shrub with bold foliage and spring bloom.",
+  "harvest": "Fruit late summer-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic woodland soils.",
+  "risks": "Eat only fully ripe (black) fruit.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "TN",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viburnum_lantanoides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viburnum+lantanoides"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VILA11"
+    ]
+  ]
+}

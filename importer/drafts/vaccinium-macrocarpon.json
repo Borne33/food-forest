@@ -1,0 +1,84 @@
+{
+  "common": "Large Cranberry",
+  "sci": "Vaccinium macrocarpon",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Creeping woody groundcover",
+  "edible_parts": "Fruit (tart — sauce, juice, dried).",
+  "other_uses": "The commercial cranberry — a creeping bog vine with tart red berries.",
+  "prep": "Cook the tart berries into sauce, juice, and preserves, or dry them; too sour for most raw. A creeping evergreen groundcover for wet, acid, peaty ground.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun",
+  "soil": "Wet, acidic, peaty or sandy soils; bogs.",
+  "risks": "Very tart raw; best cooked/sweetened.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "WV",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_macrocarpon"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+macrocarpon"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAMA"
+    ]
+  ]
+}

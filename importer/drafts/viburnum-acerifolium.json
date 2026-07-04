@@ -1,0 +1,93 @@
+{
+  "common": "Mapleleaf Viburnum",
+  "sci": "Viburnum acerifolium",
+  "family": "Adoxaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (edible when fully ripe; minor).",
+  "other_uses": "Understory shrub with maple-like leaves, pink fall color, and blue-black fruit.",
+  "prep": "The blue-black drupes are edible when fully ripe (thin, sweetish flesh) — mostly a wildlife food; grown as a shade-tolerant understory shrub with lovely pink-purple fall color.",
+  "harvest": "Fruit fall.",
+  "sun": "Part shade to shade",
+  "soil": "Dry to medium woodland soils; shade tolerant.",
+  "risks": "Eat only fully ripe; mostly a wildlife fruit.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viburnum_acerifolium"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viburnum+acerifolium"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VIAC"
+    ]
+  ]
+}

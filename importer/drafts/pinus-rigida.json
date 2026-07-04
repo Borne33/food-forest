@@ -1,0 +1,83 @@
+{
+  "common": "Pitch Pine",
+  "sci": "Pinus rigida",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles (tea); inner bark (famine food); seeds (minor).",
+  "other_uses": "Rugged fire-adapted pine of pine barrens and rocky ridges; sprouts from the trunk.",
+  "prep": "Steep young needles for a vitamin-C tea; inner bark and small seeds were survival foods. A signature pine-barrens tree for poor, dry, sandy soils.",
+  "harvest": "Needles year-round.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or rocky, acidic soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_rigida"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+rigida"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIRI2"
+    ]
+  ]
+}

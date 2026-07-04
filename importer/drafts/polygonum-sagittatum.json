@@ -1,0 +1,95 @@
+{
+  "common": "Arrowleaf Tearthumb",
+  "sci": "Polygonum sagittatum",
+  "family": "Polygonaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Young stems/leaves (cooked greens, minor); seeds.",
+  "other_uses": "Sprawling wetland smartweed armed with tiny backward prickles that 'tear the thumb'.",
+  "prep": "The young growth can be cooked as a minor sour green and the seeds are edible; grown mainly as a wetland wildlife plant.",
+  "harvest": "Seed fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, mucky soils; marshes.",
+  "risks": "Backward-hooked prickles catch skin and clothing.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Polygonum_sagittatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Polygonum+sagittatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POSA5"
+    ]
+  ]
+}

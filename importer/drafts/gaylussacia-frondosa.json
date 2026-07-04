@@ -1,0 +1,81 @@
+{
+  "common": "Dangleberry",
+  "sci": "Gaylussacia frondosa",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Open huckleberry with a waxy bloom on sweet dangling blue fruit.",
+  "prep": "Eat the sweet blue 'blue huckleberries' fresh or cooked in pies and jam; a tasty coastal-plain heath.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to dry, acidic, sandy soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "NH",
+    "OH",
+    "WV",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Gaylussacia_frondosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Gaylussacia+frondosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GAFR2"
+    ]
+  ]
+}

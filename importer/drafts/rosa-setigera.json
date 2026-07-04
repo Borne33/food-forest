@@ -1,0 +1,96 @@
+{
+  "common": "Climbing Prairie Rose",
+  "sci": "Rosa setigera",
+  "family": "Rosaceae",
+  "type": "Vine",
+  "life": "Hardy woody vine",
+  "edible_parts": "Hips (tea/jam; vitamin C) and petals (edible).",
+  "other_uses": "The only native climbing/rambling rose, with pink single flowers and red hips.",
+  "prep": "Use the vitamin-C-rich hips for tea, jam, and syrup and the petals as a garnish; train it as a native climbing rose on fences and arbors.",
+  "harvest": "Hips fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils; adaptable.",
+  "risks": "Prickly canes; remove hip seed-hairs before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rosa_setigera"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rosa+setigera"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ROSE2"
+    ]
+  ]
+}

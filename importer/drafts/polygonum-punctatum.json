@@ -1,0 +1,99 @@
+{
+  "common": "Dotted Smartweed",
+  "sci": "Polygonum punctatum",
+  "family": "Polygonaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (peppery seasoning); seeds.",
+  "other_uses": "Wetland smartweed with a sharp peppery bite, like its cousin water-pepper.",
+  "prep": "Use the peppery leaves fresh as a hot seasoning (sparingly) and the seeds as a wildlife grain; a wetland plant for pond edges.",
+  "harvest": "Leaves summer; seed fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils; shallow water.",
+  "risks": "Peppery/acrid — use as a seasoning in small amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "TX",
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Polygonum_punctatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Polygonum+punctatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POPU5"
+    ]
+  ]
+}

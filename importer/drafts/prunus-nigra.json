@@ -1,0 +1,78 @@
+{
+  "common": "Canada Plum",
+  "sci": "Prunus nigra",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (raw when ripe; jam, preserves).",
+  "other_uses": "Hardy northern wild plum with fragrant pink-tinged blossoms and red-orange fruit.",
+  "prep": "Eat the sweet-tart ripe plums fresh or make jam, preserves, and 'plum leather'; a cold-hardy fruit and pollinator tree.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils; edges.",
+  "risks": "Pits (like all Prunus) contain cyanogenic compounds — don't eat the kernels.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IA",
+    "ND",
+    "CT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_nigra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+nigra"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRNI"
+    ]
+  ]
+}

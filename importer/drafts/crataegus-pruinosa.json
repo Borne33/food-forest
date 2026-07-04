@@ -1,0 +1,83 @@
+{
+  "common": "Frosted Hawthorn",
+  "sci": "Crataegus pruinosa",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (waxy haws — cooked).",
+  "other_uses": "Hawthorn with a waxy 'frosted' bloom on the red-purple haws.",
+  "prep": "Cook the waxy red-purple haws into jelly and preserves; grown as a thorny hedgerow wildlife plant.",
+  "harvest": "Haws fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Sharp thorns.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "VA",
+    "WV",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Crataegus_pruinosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Crataegus+pruinosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CRPR2"
+    ]
+  ]
+}

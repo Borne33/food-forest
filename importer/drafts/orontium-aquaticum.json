@@ -1,0 +1,84 @@
+{
+  "common": "Goldenclub",
+  "sci": "Orontium aquaticum",
+  "family": "Araceae",
+  "type": "Herb",
+  "life": "Aquatic perennial",
+  "edible_parts": "Seeds and rhizome (ONLY after thorough drying/cooking).",
+  "other_uses": "Aquatic arum with blue-green water-repellent leaves and gold-tipped flower spikes.",
+  "prep": "The seeds and rhizome were eaten only after repeated boiling or long drying to destroy the acrid calcium oxalate — treat as inedible raw. Grown chiefly as a distinctive pond-margin ornamental.",
+  "harvest": "Seeds summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Shallow water and saturated soils.",
+  "risks": "Intensely acrid/toxic raw; requires thorough cooking or drying.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "PA",
+    "WV",
+    "KY",
+    "TN",
+    "AL",
+    "MS",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Orontium_aquaticum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Orontium+aquaticum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ORAQ"
+    ]
+  ]
+}

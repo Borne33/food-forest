@@ -1,0 +1,77 @@
+{
+  "common": "Bunchberry",
+  "sci": "Cornus canadensis",
+  "family": "Cornaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous groundcover",
+  "edible_parts": "Fruit (edible, mild, raw or cooked).",
+  "other_uses": "Creeping dwarf dogwood with white bracts and clusters of red berries; superb woodland groundcover.",
+  "prep": "Eat the mild red berries raw or cook into pudding and jam (rich in pectin); grown chiefly as an evergreen-like carpet for cool acid shade.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, cool, acidic woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "WV",
+    "VA",
+    "MD",
+    "NC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cornus_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cornus+canadensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/COCA13"
+    ]
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "common": "Prickly Rose",
+  "sci": "Rosa acicularis",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Hips (tea/jam; vitamin C) and petals (edible).",
+  "other_uses": "Cold-hardy wild rose with fragrant pink flowers and red hips.",
+  "prep": "Use the vitamin-C-rich hips for tea, jam, and syrup and the petals as an edible garnish; a very hardy northern rose.",
+  "harvest": "Hips fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils.",
+  "risks": "Prickly stems; remove the irritating hip seed-hairs.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "IA",
+    "ND",
+    "SD",
+    "CO",
+    "MT",
+    "WY",
+    "AK",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rosa_acicularis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rosa+acicularis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ROAC"
+    ]
+  ]
+}

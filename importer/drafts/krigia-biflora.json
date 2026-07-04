@@ -1,0 +1,95 @@
+{
+  "common": "Two-flower Dwarf Dandelion",
+  "sci": "Krigia biflora",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (salad or cooked greens).",
+  "other_uses": "Slender native with orange-yellow dandelion-like flowers.",
+  "prep": "Eat the mild young leaves raw or cooked, like a gentler dandelion; a cheerful woodland-edge pollinator plant.",
+  "harvest": "Leaves spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils; open woods and meadows.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Krigia_biflora"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Krigia+biflora"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/KRBI"
+    ]
+  ]
+}

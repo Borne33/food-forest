@@ -1,0 +1,81 @@
+{
+  "common": "Bailey's Dewberry",
+  "sci": "Rubus baileyanus",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Trailing bramble",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Trailing native dewberry that runs along the ground.",
+  "prep": "Eat the sweet black dewberries fresh or in pies and jam; a low trailing bramble/groundcover.",
+  "harvest": "Fruit early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Prickly trailing canes.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "WV",
+    "VA",
+    "NC",
+    "KY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_baileyanus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+baileyanus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RUBA2"
+    ]
+  ]
+}

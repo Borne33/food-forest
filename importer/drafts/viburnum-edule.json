@@ -1,0 +1,77 @@
+{
+  "common": "Squashberry",
+  "sci": "Viburnum edule",
+  "family": "Adoxaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (tart — jelly, sauce).",
+  "other_uses": "Northern 'mooseberry' viburnum with translucent red-orange fruit.",
+  "prep": "Cook the tart red fruit into jelly, sauce, and juice (a northern cranberry substitute); too sour and musky raw for most. A cold-hardy wildlife shrub.",
+  "harvest": "Fruit fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, cool woodland soils; streamsides.",
+  "risks": "Astringent/musky raw; best cooked.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "AK",
+    "CO",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viburnum_edule"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Viburnum+edule"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VIED"
+    ]
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "common": "Slippery Elm",
+  "sci": "Ulmus rubra",
+  "family": "Ulmaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Inner bark (mucilaginous — food, throat lozenge, tea); samaras.",
+  "other_uses": "Elm whose fragrant inner bark is a famous demulcent for sore throats.",
+  "prep": "The mucilaginous inner bark is eaten as a gruel and soothing tea and made into throat lozenges (a well-known herbal remedy); young samaras are a mild salad green. Harvest bark sustainably (don't girdle trees).",
+  "harvest": "Bark spring; samaras spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, rich soils; adaptable.",
+  "risks": "Harvest bark from prunings/thinnings, not by girdling.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      5,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ulmus_rubra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ulmus+rubra"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ULRU"
+    ]
+  ]
+}

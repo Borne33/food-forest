@@ -1,0 +1,95 @@
+{
+  "common": "American Hog Peanut",
+  "sci": "Amphicarpaea bracteata",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Annual/perennial twining vine",
+  "edible_parts": "Underground seeds (cooked, like small beans) and aerial seeds.",
+  "other_uses": "Delicate twining legume that sets both aerial and underground seeds; nitrogen fixer.",
+  "prep": "The single-seeded underground pods are cooked and eaten like little beans (a traditional food gathered from vole caches); the small aerial seeds are also edible cooked.",
+  "harvest": "Underground seeds fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Amphicarpaea_bracteata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Amphicarpaea+bracteata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/AMBR2"
+    ]
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "common": "Virginia Glasswort",
+  "sci": "Salicornia depressa",
+  "family": "Amaranthaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Succulent stems ('sea beans', raw or cooked; salty).",
+  "other_uses": "Leafless jointed succulent of salt marshes, turning red in fall.",
+  "prep": "Eat the crisp salty stems raw as 'sea beans/samphire', blanched, or pickled; a gourmet coastal wild vegetable.",
+  "harvest": "Stems summer.",
+  "sun": "Full sun",
+  "soil": "Saline tidal-marsh soils.",
+  "risks": "Naturally very salty — no added salt needed.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Salicornia_depressa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Salicornia+depressa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SADE10"
+    ]
+  ]
+}

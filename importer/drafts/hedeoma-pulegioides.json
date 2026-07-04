@@ -1,0 +1,96 @@
+{
+  "common": "American Pennyroyal",
+  "sci": "Hedeoma pulegioides",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Leaves (strongly aromatic mint tea, in moderation).",
+  "other_uses": "Small aromatic annual mint of dry open woods and fields.",
+  "prep": "Steep the strongly mint-scented leaves for a warming tea and use as an insect-repellent rub; use culinarily only in small amounts.",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, open, well-drained soils.",
+  "risks": "Use in moderation; the concentrated oil is toxic — avoid in pregnancy.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hedeoma_pulegioides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Hedeoma+pulegioides"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HEPU"
+    ]
+  ]
+}

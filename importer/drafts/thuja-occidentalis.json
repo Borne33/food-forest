@@ -1,0 +1,80 @@
+{
+  "common": "Northern White Cedar",
+  "sci": "Thuja occidentalis",
+  "family": "Cupressaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Foliage (vitamin-C tea, in moderation).",
+  "other_uses": "Aromatic evergreen 'arborvitae' of cliffs and swamps; rot-resistant wood.",
+  "prep": "Steep the flat foliage sprays for a vitamin-C tea (this 'tree of life' cured scurvy for early explorers) — use in moderation. Grown as an evergreen hedge; the light rot-resistant wood is prized.",
+  "harvest": "Foliage year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet, neutral to alkaline soils; adaptable.",
+  "risks": "Use tea in moderation (thujone); avoid in pregnancy.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Thuja_occidentalis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Thuja+occidentalis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/THOC2"
+    ]
+  ]
+}

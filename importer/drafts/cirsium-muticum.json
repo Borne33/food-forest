@@ -1,0 +1,89 @@
+{
+  "common": "Swamp Thistle",
+  "sci": "Cirsium muticum",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial",
+  "edible_parts": "Peeled stems and first-year roots (cooked).",
+  "other_uses": "Tall native wetland thistle with pink-purple heads; a top pollinator and swamp-metalmark host.",
+  "prep": "Peel the stems and cook the crunchy cores and first-year taproot; a valuable native (non-weedy) thistle for bees and butterflies.",
+  "harvest": "Stems/roots summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, mucky soils; swamps and fens.",
+  "risks": "Spiny — wear gloves to harvest.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "TN",
+    "KY",
+    "GA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cirsium_muticum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cirsium+muticum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CIMU"
+    ]
+  ]
+}

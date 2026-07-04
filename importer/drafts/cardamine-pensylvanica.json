@@ -1,0 +1,96 @@
+{
+  "common": "Pennsylvania Bittercress",
+  "sci": "Cardamine pensylvanica",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Annual/biennial",
+  "edible_parts": "Leaves and young stems (peppery greens).",
+  "other_uses": "Common little wet-ground cress; a mild watercress substitute.",
+  "prep": "Eat the whole young peppery plant raw in salads or on sandwiches; abundant and easy to gather.",
+  "harvest": "Leaves spring-summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils; seeps and ditches.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "MN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cardamine_pensylvanica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cardamine+pensylvanica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CAPE3"
+    ]
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "common": "Strawberry Blite",
+  "sci": "Blitum capitatum",
+  "family": "Amaranthaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Leaves (cooked greens) and red fruiting heads (raw, mild).",
+  "other_uses": "Goosefoot relative topped with edible strawberry-red fruit clusters.",
+  "prep": "Cook the young leaves like spinach and nibble the mild red fruit clusters raw or as a garnish/dye; a novel dual-use wild green.",
+  "harvest": "Leaves/fruit summer.",
+  "sun": "Full sun",
+  "soil": "Disturbed, well-drained soils.",
+  "risks": "Leaves contain oxalates; eat cooked in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MA",
+    "MI",
+    "WI",
+    "MN",
+    "PA",
+    "OH",
+    "CO",
+    "MT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Blitum_capitatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Blitum+capitatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/BLCA"
+    ]
+  ]
+}

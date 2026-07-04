@@ -1,0 +1,93 @@
+{
+  "common": "Indian Cucumber-root",
+  "sci": "Medeola virginiana",
+  "family": "Liliaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Rhizome (crisp, cucumber-flavored, raw or cooked).",
+  "other_uses": "Delicate two-tiered woodland lily; the white rhizome tastes of cucumber.",
+  "prep": "Eat the crisp white rhizome raw or cooked — a fresh cucumber flavor — but harvest only from abundant stands, as it's slow to spread.",
+  "harvest": "Rhizome late summer-fall.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich, acidic woodland soils.",
+  "risks": "Harvest sparingly; slow-growing.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Medeola_virginiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Medeola+virginiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MEVI"
+    ]
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "common": "Tall Blue Lettuce",
+  "sci": "Lactuca biennis",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial",
+  "edible_parts": "Young leaves (cooked greens, bitter).",
+  "other_uses": "Towering native wild lettuce with blue flowers and milky sap.",
+  "prep": "Cook the young basal leaves as a bitter potherb (blanch to reduce bitterness); a tall native wild lettuce for edges.",
+  "harvest": "Young leaves spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, rich soils; edges and clearings.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "KS",
+    "NE",
+    "CO",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lactuca_biennis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lactuca+biennis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LABI"
+    ]
+  ]
+}

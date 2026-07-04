@@ -1,0 +1,73 @@
+{
+  "common": "Lingonberry",
+  "sci": "Vaccinium vitis-idaea",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody groundcover",
+  "edible_parts": "Fruit (tart — sauce, preserves).",
+  "other_uses": "Evergreen mat-forming heath with glossy leaves and tart red berries (the mountain cranberry).",
+  "prep": "Cook the tart red berries into the classic lingonberry sauce, jam, and juice; sweeter after frost. A choice evergreen groundcover for cool acid sites.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to dry, acidic, peaty or rocky soils.",
+  "risks": "Tart raw; best cooked.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NH",
+    "ME",
+    "VT",
+    "MA",
+    "MI",
+    "MN",
+    "WI",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_vitis-idaea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+vitis-idaea"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAVI"
+    ]
+  ]
+}

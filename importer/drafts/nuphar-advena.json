@@ -1,0 +1,94 @@
+{
+  "common": "Spatterdock",
+  "sci": "Nuphar advena",
+  "family": "Nymphaeaceae",
+  "type": "Herb",
+  "life": "Aquatic perennial",
+  "edible_parts": "Seeds (popped/ground) and rhizome (cooked, leached).",
+  "other_uses": "Yellow pond-lily with leathery floating leaves and golden ball flowers.",
+  "prep": "The ripe seeds can be roasted and popped or ground into meal; the starchy rhizome is edible after thorough cooking/leaching (bitter otherwise). A striking pond plant.",
+  "harvest": "Seeds late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Still or slow water; mucky pond bottoms.",
+  "risks": "Rhizome bitter — cook/leach well.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "DE",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "IL",
+    "WV",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY",
+    "AL",
+    "MS",
+    "AR",
+    "MO",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Nuphar_advena"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Nuphar+advena"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/NUAD2"
+    ]
+  ]
+}
