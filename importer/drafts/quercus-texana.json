@@ -1,0 +1,70 @@
+{
+  "common": "Texas Red Oak",
+  "sci": "Quercus texana",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (cooked after leaching).",
+  "other_uses": "Fast-growing bottomland red oak (Nuttall's oak) with good scarlet fall color; tolerant of wet clay.",
+  "prep": "Leach the acorns before use; grown chiefly as a fast shade tree for wet, heavy soils that feeds waterfowl.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Wet to moist, heavy bottomland soils.",
+  "risks": "Red-oak acorns need thorough leaching.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "LA",
+    "MS",
+    "TX",
+    "OK",
+    "IL",
+    "KY",
+    "TN",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_texana"
+    ]
+  ]
+}

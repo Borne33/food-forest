@@ -1,0 +1,93 @@
+{
+  "common": "Woodland Stonecrop",
+  "sci": "Sedum ternatum",
+  "family": "Crassulaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (raw/cooked, minor; can be laxative in quantity).",
+  "other_uses": "Low native succulent groundcover with whorled fleshy leaves and white star flowers for shade.",
+  "prep": "The young leaves are a minor salad/nibble but are laxative in quantity; grown chiefly as a native succulent groundcover for shady rocks.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade to shade",
+  "soil": "Medium, well-drained rocky woodland soils; shade tolerant.",
+  "risks": "Laxative if eaten in quantity.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sedum_ternatum"
+    ]
+  ]
+}

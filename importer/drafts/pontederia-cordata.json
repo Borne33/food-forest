@@ -1,0 +1,95 @@
+{
+  "common": "Pickerelweed",
+  "sci": "Pontederia cordata",
+  "family": "Pontederiaceae",
+  "type": "Herb",
+  "life": "Aquatic / marginal perennial",
+  "edible_parts": "Seeds (raw or cooked) and young leaves (cooked).",
+  "other_uses": "Marginal aquatic with glossy heart-shaped leaves and showy blue-violet flower spikes all summer.",
+  "prep": "The starchy seeds are eaten raw, roasted, or ground into flour, and unfurling young leaves cooked as greens; a top pond-edge plant for pollinators.",
+  "harvest": "Seeds late summer-fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Shallow water and saturated soil; pond and stream margins.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "MO",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pontederia_cordata"
+    ]
+  ]
+}

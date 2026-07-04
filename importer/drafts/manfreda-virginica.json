@@ -1,0 +1,82 @@
+{
+  "common": "False Aloe",
+  "sci": "Manfreda virginica",
+  "family": "Asparagaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten (root medicinal, historic).",
+  "other_uses": "Succulent-leaved agave relative with a rosette of fleshy spotted leaves and a tall fragrant flower spike.",
+  "prep": "Grown as an architectural succulent-like accent for dry glades; the root had historic medicinal use. Not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils; glades.",
+  "risks": "None significant; medicinal root only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "KS",
+    "WV",
+    "MD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Manfreda_virginica"
+    ]
+  ]
+}

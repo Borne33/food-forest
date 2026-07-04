@@ -1,0 +1,96 @@
+{
+  "common": "Whorled Milkweed",
+  "sci": "Asclepias verticillata",
+  "family": "Apocynaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten (toxic); monarch host.",
+  "other_uses": "Fine threadleaf milkweed with white flower clusters; late-season monarch host.",
+  "prep": "Grown as a monarch host and nectar plant for dry sites; toxic and not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils.",
+  "risks": "Toxic to livestock and people; not eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE",
+    "TX",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Asclepias_verticillata"
+    ]
+  ]
+}

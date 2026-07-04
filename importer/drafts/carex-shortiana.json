@@ -1,0 +1,70 @@
+{
+  "common": "Short's Sedge",
+  "sci": "Carex shortiana",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Clumping sedge of moist meadows with dense cylindrical seed spikes.",
+  "prep": "Grown for wet-meadow and rain-garden restoration; not a food plant.",
+  "harvest": "Seed heads summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to medium soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "OH",
+    "IA",
+    "KY",
+    "TN",
+    "KS",
+    "PA",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carex_shortiana"
+    ]
+  ]
+}

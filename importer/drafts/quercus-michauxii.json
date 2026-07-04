@@ -1,0 +1,78 @@
+{
+  "common": "Swamp Chestnut Oak",
+  "sci": "Quercus michauxii",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (sweet, low-tannin — among the best native acorns).",
+  "other_uses": "Majestic bottomland white oak with large sweet acorns (the 'cow oak' or 'basket oak').",
+  "prep": "The large acorns are among the sweetest native ones, needing little leaching; a premier bottomland shade, timber, and wildlife tree.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Moist to wet, rich bottomland soils.",
+  "risks": "Minimal leaching needed once shelled.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "IL",
+    "IN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_michauxii"
+    ]
+  ]
+}

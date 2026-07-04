@@ -1,0 +1,72 @@
+{
+  "common": "Tube Beardtongue",
+  "sci": "Penstemon tubaeflorus",
+  "family": "Plantaginaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Prairie beardtongue with clean white tubular flowers in tidy tiered clusters.",
+  "prep": "Grown as a crisp white early-summer prairie perennial and bumblebee plant; not a food.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "OK",
+    "TX",
+    "AR",
+    "IA",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "WI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Penstemon_tubaeflorus"
+    ]
+  ]
+}

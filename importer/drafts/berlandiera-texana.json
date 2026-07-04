@@ -1,0 +1,71 @@
+{
+  "common": "Texas Greeneyes",
+  "sci": "Berlandiera texana",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Prairie/glade perennial with yellow daisy flowers over green centers.",
+  "prep": "Grown as a long-blooming pollinator plant for dry sites; not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained rocky soils; glades.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Berlandiera_texana"
+    ]
+  ]
+}

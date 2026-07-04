@@ -1,0 +1,79 @@
+{
+  "common": "Blue Wood Sedge",
+  "sci": "Carex flaccosperma",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Broad blue-green woodland sedge for shady groundcover.",
+  "prep": "Grown as a blue-toned shade groundcover and lawn alternative; not a food plant.",
+  "harvest": "Seed heads spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist to medium woodland soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carex_flaccosperma"
+    ]
+  ]
+}

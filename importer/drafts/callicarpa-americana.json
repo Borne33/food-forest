@@ -1,0 +1,76 @@
+{
+  "common": "American Beautyberry",
+  "sci": "Callicarpa americana",
+  "family": "Lamiaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (cooked into jelly).",
+  "other_uses": "Arching shrub with brilliant magenta berry clusters; crushed leaves repel mosquitoes.",
+  "prep": "Cook the tart magenta berries into jelly; the crushed foliage is a traditional mosquito repellent. Berries are astringent raw.",
+  "harvest": "Berries fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, well-drained woodland soils.",
+  "risks": "Berries best cooked; raw are unpalatably astringent.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Callicarpa_americana"
+    ]
+  ]
+}

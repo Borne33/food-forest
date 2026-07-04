@@ -1,0 +1,66 @@
+{
+  "common": "Barbara's Buttons",
+  "sci": "Marshallia caespitosa",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Glade wildflower with domed, fragrant white-to-pink pincushion flowers on slender stems.",
+  "prep": "Grown as a delicate late-spring pollinator plant for dry, rocky sites; not a food.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained calcareous soils; glades.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "KS",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Marshallia_caespitosa"
+    ]
+  ]
+}

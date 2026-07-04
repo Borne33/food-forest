@@ -1,0 +1,93 @@
+{
+  "common": "Arrow Arum",
+  "sci": "Peltandra virginica",
+  "family": "Araceae",
+  "type": "Herb",
+  "life": "Aquatic / marginal perennial",
+  "edible_parts": "Roots/seeds (thoroughly cooked/dried, historic); TOXIC raw.",
+  "other_uses": "Wetland plant with big glossy arrowhead leaves and green flower spathes.",
+  "prep": "The roots and seeds were eaten only after long cooking or drying by Indigenous peoples; ALL parts are intensely acrid and toxic raw (calcium oxalate) — grow chiefly as a marginal pond plant.",
+  "harvest": "Roots/seeds fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet soils and shallow water; pond and stream margins.",
+  "risks": "Intensely toxic raw; requires long cooking/drying to eat.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Peltandra_virginica"
+    ]
+  ]
+}

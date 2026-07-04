@@ -1,0 +1,78 @@
+{
+  "common": "Prairie Alumroot",
+  "sci": "Heuchera richardsonii",
+  "family": "Saxifragaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten (root astringent, medicinal/historic).",
+  "other_uses": "The hardiest prairie alumroot, with large scalloped leaves and greenish flower spikes.",
+  "prep": "The astringent root had medicinal use; grown as a tough foliage groundcover for sun to part shade.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained prairie soils.",
+  "risks": "None significant; medicinal root only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "MI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Heuchera_richardsonii"
+    ]
+  ]
+}

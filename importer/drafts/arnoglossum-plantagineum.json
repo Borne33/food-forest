@@ -1,0 +1,78 @@
+{
+  "common": "Groovestem Indian Plantain",
+  "sci": "Arnoglossum plantagineum",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (cooked pot-herb, minor).",
+  "other_uses": "Prairie perennial with broad basal leaves and flat-topped white flower clusters.",
+  "prep": "Very young leaves have been cooked as greens; grown mainly for wet-prairie restoration and pollinators.",
+  "harvest": "Leaves spring; blooms summer.",
+  "sun": "Full sun",
+  "soil": "Moist to medium prairie soils, often calcareous.",
+  "risks": "None significant in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "KY",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Arnoglossum_plantagineum"
+    ]
+  ]
+}

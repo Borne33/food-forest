@@ -1,0 +1,94 @@
+{
+  "common": "Field Thistle",
+  "sci": "Cirsium discolor",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial",
+  "edible_parts": "Peeled stems and roots (cooked, historic).",
+  "other_uses": "Native thistle with pink heads over white-backed leaves; superb pollinator/goldfinch plant.",
+  "prep": "Peeled stems and roots are edible cooked; a valuable native (not weedy) thistle for wildlife.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun",
+  "soil": "Medium, well-drained soils.",
+  "risks": "Spiny foliage; wear gloves.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cirsium_discolor"
+    ]
+  ]
+}

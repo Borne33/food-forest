@@ -1,0 +1,76 @@
+{
+  "common": "Carolina Snailseed",
+  "sci": "Cocculus carolinus",
+  "family": "Menispermaceae",
+  "type": "Vine",
+  "life": "Hardy woody vine",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Twining vine with glossy red fall berries for birds.",
+  "prep": "Grown for wildlife and fall color; the berries contain toxic alkaloids and are not for people.",
+  "harvest": "Berries fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, well-drained soils; woodland edges.",
+  "risks": "Berries and roots are poisonous if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cocculus_carolinus"
+    ]
+  ]
+}

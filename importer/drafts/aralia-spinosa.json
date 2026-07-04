@@ -1,0 +1,80 @@
+{
+  "common": "Devil's Walking Stick",
+  "sci": "Aralia spinosa",
+  "family": "Araliaceae",
+  "type": "Tree",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Young spring shoots (cooked, with caution); berries not eaten.",
+  "other_uses": "Fiercely spiny large shrub/small tree with huge compound leaves and late-summer berry heads.",
+  "prep": "Very young shoots have been cooked like the related Aralia spikenard, but the plant is heavily armed and mature parts are mildly toxic — treat as marginal.",
+  "harvest": "Berries late summer (for birds).",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist woodland soils and edges.",
+  "risks": "Sharp prickles on stems; berries mildly toxic raw.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "PA",
+    "NJ",
+    "OH",
+    "IN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Aralia_spinosa"
+    ]
+  ]
+}

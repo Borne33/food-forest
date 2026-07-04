@@ -1,0 +1,65 @@
+{
+  "common": "Corkwood",
+  "sci": "Leitneria floridana",
+  "family": "Simaroubaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Rare wetland shrub with the lightest wood of any North American plant (lighter than cork).",
+  "prep": "Grown as a botanical curiosity and wetland thicket plant; the ultralight wood was used for fishing floats. Not a food plant.",
+  "harvest": "Catkins spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, swampy soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "TX",
+    "FL",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Leitneria_floridana"
+    ]
+  ]
+}

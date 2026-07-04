@@ -1,0 +1,72 @@
+{
+  "common": "Royal Catchfly",
+  "sci": "Silene regia",
+  "family": "Caryophyllaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Show-stopping prairie perennial with intense scarlet star flowers on tall stems; a hummingbird favorite.",
+  "prep": "Grown as a spectacular red-flowered prairie perennial and premier hummingbird plant; not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils, often calcareous.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "OH",
+    "KY",
+    "TN",
+    "GA",
+    "AL",
+    "MS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Silene_regia"
+    ]
+  ]
+}

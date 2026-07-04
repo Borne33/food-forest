@@ -1,0 +1,63 @@
+{
+  "common": "Fremont's Leather Flower",
+  "sci": "Clematis fremontii",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Non-climbing clematis forming a leathery clump with urn-shaped purple flowers; glade specialist.",
+  "prep": "Grown as a choice glade/rock-garden perennial; toxic — not edible.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, calcareous soils; glades.",
+  "risks": "Toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Clematis_fremontii"
+    ]
+  ]
+}

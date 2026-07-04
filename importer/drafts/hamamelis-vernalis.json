@@ -1,0 +1,70 @@
+{
+  "common": "Ozark Witch Hazel",
+  "sci": "Hamamelis vernalis",
+  "family": "Hamamelidaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten (bark/leaf medicinal — witch hazel astringent).",
+  "other_uses": "Suckering shrub that blooms in the dead of winter with fragrant ribbon-like red-orange flowers.",
+  "prep": "The bark and leaves are the source of astringent witch hazel; grown chiefly for its fragrant midwinter bloom and habitat value.",
+  "harvest": "Blooms winter.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, well-drained soils; streambanks and gravel bars.",
+  "risks": "None significant; medicinal use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hamamelis_vernalis"
+    ]
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "common": "Leadplant",
+  "sci": "Amorpha canescens",
+  "family": "Fabaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves (traditional tea, minor).",
+  "other_uses": "Deep-rooted, nitrogen-fixing prairie legume with silvery foliage and purple flower spikes.",
+  "prep": "Dried leaves were brewed as a tea by Plains peoples; grown chiefly as a tough, drought-proof prairie forb.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained prairie soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "MI",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Amorpha_canescens"
+    ]
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "common": "Adam's Needle",
+  "sci": "Yucca filamentosa",
+  "family": "Asparagaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody perennial",
+  "edible_parts": "Flowers (cooked) and fruit (cooked); flower stalk (roasted, historic).",
+  "other_uses": "Evergreen rosette of stiff sword leaves edged with curly fibers, sending up tall spikes of creamy bell flowers.",
+  "prep": "The flowers and young fruit are eaten cooked and the emerging flower stalk roasted; the tough leaf fibers make cordage. Grown as a bold architectural evergreen for dry sites.",
+  "harvest": "Flowers early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy/rocky, sharply drained soils.",
+  "risks": "Leaf tips are sharp; roots contain saponins (not eaten).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "MD",
+    "VA",
+    "NC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      5,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Yucca_filamentosa"
+    ]
+  ]
+}

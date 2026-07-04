@@ -1,0 +1,81 @@
+{
+  "common": "Pale Purple Coneflower",
+  "sci": "Echinacea pallida",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Root (medicinal, historic); not a food.",
+  "other_uses": "Prairie coneflower with drooping pale-pink rays and a spiny orange cone.",
+  "prep": "The root has traditional immune-support use (like E. angustifolia); grown chiefly as a drought-proof prairie perennial and pollinator magnet.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained prairie soils.",
+  "risks": "None significant; medicinal use of root only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "MI",
+    "AL",
+    "GA",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      5,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Echinacea_pallida"
+    ]
+  ]
+}

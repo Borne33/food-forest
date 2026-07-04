@@ -1,0 +1,79 @@
+{
+  "common": "White Sage",
+  "sci": "Artemisia ludoviciana",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (seasoning/tea, minor; bitter).",
+  "other_uses": "Aromatic silver-white prairie sage used in smudging; spreads by rhizomes.",
+  "prep": "The pungent silvery foliage is used ceremonially (smudging) and as a strong bitter seasoning/tea in small amounts; spreads vigorously.",
+  "harvest": "Leaves summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils.",
+  "risks": "Strongly aromatic; use culinarily only in small amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "MI",
+    "OH",
+    "TX",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Artemisia_ludoviciana"
+    ]
+  ]
+}

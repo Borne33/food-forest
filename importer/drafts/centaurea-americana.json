@@ -1,0 +1,78 @@
+{
+  "common": "American Basketflower",
+  "sci": "Centaurea americana",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual / reseeding",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Large thistle-like lavender-pink flower heads on a well-behaved annual.",
+  "prep": "Grown as a showy, non-thistly annual for cutting and pollinators; self-sows. Not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Medium, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "TX",
+    "LA",
+    "MS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Centaurea_americana"
+    ]
+  ]
+}

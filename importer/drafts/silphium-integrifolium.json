@@ -1,0 +1,81 @@
+{
+  "common": "Rosinweed",
+  "sci": "Silphium integrifolium",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Resin gum (chewed, historic).",
+  "other_uses": "Stout prairie perennial with rough leaves and clusters of yellow sunflower-like heads.",
+  "prep": "The dried resin was chewed like gum by Indigenous peoples; grown as a robust prairie perennial and pollinator/seed plant.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Medium, well-drained to moist soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "KY",
+    "TN",
+    "MS",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Silphium_integrifolium"
+    ]
+  ]
+}

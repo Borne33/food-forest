@@ -1,0 +1,71 @@
+{
+  "common": "Clove Currant",
+  "sci": "Ribes odoratum",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (eaten raw ripe or cooked); flowers scented.",
+  "other_uses": "Thornless currant with intensely clove-scented golden spring flowers and black summer berries.",
+  "prep": "Eat the ripe black berries raw or cooked into jam; grown for both the edible fruit and the spicy-sweet flower fragrance.",
+  "harvest": "Berries summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils.",
+  "risks": "Note Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "OK",
+    "TX",
+    "AR",
+    "SD",
+    "MN",
+    "CO",
+    "IA",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_odoratum"
+    ]
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "common": "Ernest's Spiderwort",
+  "sci": "Tradescantia ernestiana",
+  "family": "Commelinaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Flowers/young leaves/stems (raw or cooked).",
+  "other_uses": "Woodland spiderwort with rich blue-purple three-petaled flowers in spring.",
+  "prep": "The flowers are an edible garnish and young leaves/stems are eaten raw or cooked; grown chiefly as a spring woodland wildflower.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TN",
+    "AL",
+    "GA",
+    "NC",
+    "SC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Tradescantia_ernestiana"
+    ]
+  ]
+}

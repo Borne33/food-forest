@@ -1,0 +1,95 @@
+{
+  "common": "Lizard's Tail",
+  "sci": "Saururus cernuus",
+  "family": "Saururaceae",
+  "type": "Herb",
+  "life": "Aquatic / marginal perennial",
+  "edible_parts": "Not eaten (root medicinal, historic).",
+  "other_uses": "Wetland groundcover with heart-shaped leaves and nodding fragrant white flower tails.",
+  "prep": "The root had traditional poultice/medicinal use; grown as a spreading groundcover for pond edges and rain gardens. Not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Wet soils and shallow water; spreads by rhizomes.",
+  "risks": "None significant; medicinal root only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Saururus_cernuus"
+    ]
+  ]
+}

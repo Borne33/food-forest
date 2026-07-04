@@ -1,0 +1,81 @@
+{
+  "common": "Prairie Dock",
+  "sci": "Silphium terebinthinaceum",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Resin gum (chewed, historic).",
+  "other_uses": "Prairie perennial with huge paddle-shaped basal leaves and tall bare stalks of yellow flowers.",
+  "prep": "The dried resin was chewed as gum; grown as a striking large-leaved prairie plant with a very deep taproot; strong pollinator/seed value.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun",
+  "soil": "Medium to moist, often heavy or calcareous soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "KY",
+    "TN",
+    "GA",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Silphium_terebinthinaceum"
+    ]
+  ]
+}

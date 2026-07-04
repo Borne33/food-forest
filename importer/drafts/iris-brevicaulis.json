@@ -1,0 +1,78 @@
+{
+  "common": "Zigzag Iris",
+  "sci": "Iris brevicaulis",
+  "family": "Iridaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten — toxic rhizome.",
+  "other_uses": "Low blue-flag iris with zigzag stems and rich blue flowers held among the leaves.",
+  "prep": "Grown as a moisture-loving iris for rain gardens; the rhizome is toxic — not edible.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils.",
+  "risks": "Rhizome poisonous if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "OH",
+    "KS",
+    "NE",
+    "AR",
+    "OK",
+    "KY",
+    "TN",
+    "MS",
+    "AL",
+    "LA",
+    "TX",
+    "MN",
+    "WI",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Iris_brevicaulis"
+    ]
+  ]
+}

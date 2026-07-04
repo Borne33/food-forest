@@ -1,0 +1,77 @@
+{
+  "common": "Crossvine",
+  "sci": "Bignonia capreolata",
+  "family": "Bignoniaceae",
+  "type": "Vine",
+  "life": "Hardy woody vine",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Semi-evergreen climbing vine with showy red-orange trumpet flowers for hummingbirds.",
+  "prep": "Grown as an ornamental and hummingbird vine for fences and arbors; not a food plant.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, rich, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Bignonia_capreolata"
+    ]
+  ]
+}

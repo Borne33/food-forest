@@ -1,0 +1,74 @@
+{
+  "common": "Purple Rocket",
+  "sci": "Iodanthus pinnatifidus",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves (cooked greens, minor).",
+  "other_uses": "Woodland mustard with spikes of pale lavender flowers in rich floodplains.",
+  "prep": "The young leaves are edible cooked as a mustard-family green; grown chiefly as a spring woodland wildflower.",
+  "harvest": "Blooms late spring.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich woodland/floodplain soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "OH",
+    "IA",
+    "KY",
+    "TN",
+    "WI",
+    "MN",
+    "AR",
+    "KS",
+    "PA",
+    "WV",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Iodanthus_pinnatifidus"
+    ]
+  ]
+}

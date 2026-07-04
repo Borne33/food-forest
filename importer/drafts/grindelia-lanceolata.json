@@ -1,0 +1,73 @@
+{
+  "common": "Spiny-toothed Gumweed",
+  "sci": "Grindelia lanceolata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial / short-lived perennial",
+  "edible_parts": "Not eaten (resinous flower heads medicinal, historic).",
+  "other_uses": "Glade plant with sticky, resinous yellow daisy buds.",
+  "prep": "The gummy flower buds had traditional respiratory-medicine use; grown for late-season pollinators on dry sites.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, calcareous soils; glades.",
+  "risks": "None significant; medicinal use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX",
+    "TX",
+    "AL",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Grindelia_lanceolata"
+    ]
+  ]
+}

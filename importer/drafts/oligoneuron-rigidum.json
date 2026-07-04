@@ -1,0 +1,81 @@
+{
+  "common": "Stiff Goldenrod",
+  "sci": "Oligoneuron rigidum",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (tea, minor).",
+  "other_uses": "Robust prairie goldenrod with flat-topped golden flower heads and stiff basal leaves; a pollinator powerhouse.",
+  "prep": "Goldenrod leaves make a minor tea; grown as one of the best fall nectar/pollen plants for bees and migrating monarchs.",
+  "harvest": "Blooms fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils; very adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "MI",
+    "KY",
+    "TN",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Oligoneuron_rigidum"
+    ]
+  ]
+}

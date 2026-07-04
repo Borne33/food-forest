@@ -1,0 +1,68 @@
+{
+  "common": "Missouri Coneflower",
+  "sci": "Rudbeckia missouriensis",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Golden coneflower with narrow hairy leaves, adapted to dry rocky glades.",
+  "prep": "Grown as a drought-proof black-eyed-Susan for glades and dry prairies; long summer bloom for pollinators. Not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained calcareous soils; glades.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "TX",
+    "LA",
+    "MS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rudbeckia_missouriensis"
+    ]
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "common": "Fragrant Water Lily",
+  "sci": "Nymphaea odorata",
+  "family": "Nymphaeaceae",
+  "type": "Herb",
+  "life": "Aquatic perennial",
+  "edible_parts": "Young leaves/flower buds and tubers (cooked, historic); seeds.",
+  "other_uses": "Classic white water lily with fragrant floating flowers and round floating pads.",
+  "prep": "Young leaves, buds, and starchy tubers were cooked as food and seeds eaten; grown chiefly as an ornamental pond plant with fragrant blooms.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Aquatic; still or slow water 1-6 ft deep.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Nymphaea_odorata"
+    ]
+  ]
+}

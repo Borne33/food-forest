@@ -1,0 +1,76 @@
+{
+  "common": "Purple Poppy Mallow",
+  "sci": "Callirhoe involucrata",
+  "family": "Malvaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Root (cooked) and leaves (mild greens).",
+  "other_uses": "Sprawling groundcover smothered in magenta chalice flowers all summer.",
+  "prep": "The large taproot was roasted/boiled as food by Plains peoples and leaves eaten as mild greens; a top drought-proof ornamental groundcover.",
+  "harvest": "Blooms late spring-summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Callirhoe_involucrata"
+    ]
+  ]
+}

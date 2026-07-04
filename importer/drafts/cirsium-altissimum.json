@@ -1,0 +1,96 @@
+{
+  "common": "Tall Thistle",
+  "sci": "Cirsium altissimum",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial",
+  "edible_parts": "Peeled stems and roots (cooked, historic).",
+  "other_uses": "Tall native thistle with pink-purple heads; a major pollinator and goldfinch plant.",
+  "prep": "The peeled stems and taproots are edible cooked; a key native thistle for bees and seed-eating birds — unlike invasive thistles.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils; edges.",
+  "risks": "Spiny foliage; wear gloves.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE",
+    "TX",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cirsium_altissimum"
+    ]
+  ]
+}

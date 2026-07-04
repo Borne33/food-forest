@@ -1,0 +1,76 @@
+{
+  "common": "Blue Grama",
+  "sci": "Bouteloua gracilis",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten (forage grass).",
+  "other_uses": "Fine short-grass with distinctive 'eyebrow' seed heads; drought-proof lawn alternative.",
+  "prep": "Grown as a low-water lawn/meadow grass and for prairie restoration; excellent forage. Not a human food.",
+  "harvest": "Seed heads summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Bouteloua_gracilis"
+    ]
+  ]
+}

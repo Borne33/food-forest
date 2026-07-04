@@ -1,0 +1,79 @@
+{
+  "common": "Snow-on-the-Mountain",
+  "sci": "Euphorbia marginata",
+  "family": "Euphorbiaceae",
+  "type": "Herb",
+  "life": "Annual / reseeding",
+  "edible_parts": "Not eaten — toxic sap.",
+  "other_uses": "Prairie annual with white-margined upper leaves that look frosted; self-sows.",
+  "prep": "Grown as a striking white-and-green annual for cutting; the milky sap is a skin/eye irritant and toxic — not edible.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Milky sap irritates skin and eyes; toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "TX",
+    "MN",
+    "LA",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Euphorbia_marginata"
+    ]
+  ]
+}

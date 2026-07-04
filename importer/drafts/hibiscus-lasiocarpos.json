@@ -1,0 +1,79 @@
+{
+  "common": "Woolly Rose Mallow",
+  "sci": "Hibiscus lasiocarpos",
+  "family": "Malvaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves/shoots (cooked, mucilaginous).",
+  "other_uses": "Softly hairy wetland mallow with enormous white-to-pink dark-centered flowers.",
+  "prep": "Young leaves are edible cooked (okra relative); grown for dramatic summer bloom in wet ground.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Wet to moist soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "IN",
+    "IL",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hibiscus_lasiocarpos"
+    ]
+  ]
+}

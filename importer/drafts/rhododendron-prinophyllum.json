@@ -1,0 +1,74 @@
+{
+  "common": "Roseshell Azalea",
+  "sci": "Rhododendron prinophyllum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Deciduous native azalea with intensely fragrant clove-scented pink spring flowers.",
+  "prep": "Grown as a fragrant flowering shrub for acidic woodland soils; like all azaleas it is toxic — not edible.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade",
+  "soil": "Moist, rich, acidic, well-drained woodland soils.",
+  "risks": "All parts toxic if eaten; honey from it can be toxic.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "VA",
+    "WV",
+    "PA",
+    "NY",
+    "VT",
+    "NH",
+    "MA",
+    "CT",
+    "OH",
+    "TN",
+    "NC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhododendron_prinophyllum"
+    ]
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "common": "Beakgrain",
+  "sci": "Diarrhena obovata",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Seed grain (minor).",
+  "other_uses": "Shade grass of rich woods with broad arching leaves and beaked grains.",
+  "prep": "The grains can be eaten as a minor grain; grown chiefly as a native shade grass and groundcover.",
+  "harvest": "Seed fall.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "OH",
+    "IA",
+    "KY",
+    "TN",
+    "WI",
+    "MN",
+    "AR",
+    "KS",
+    "PA",
+    "NY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Diarrhena_obovata"
+    ]
+  ]
+}

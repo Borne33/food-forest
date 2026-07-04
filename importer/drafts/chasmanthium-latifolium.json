@@ -1,0 +1,78 @@
+{
+  "common": "Inland Sea Oats",
+  "sci": "Chasmanthium latifolium",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Seed grain (minor, historic).",
+  "other_uses": "Shade-tolerant grass with flat, dangling oat-like seed heads that rustle in the breeze.",
+  "prep": "The seeds can be threshed and ground as a minor grain; grown chiefly as an ornamental shade grass. Self-sows readily.",
+  "harvest": "Seed heads late summer-fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist to medium woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "PA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chasmanthium_latifolium"
+    ]
+  ]
+}

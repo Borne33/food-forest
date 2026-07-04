@@ -1,0 +1,78 @@
+{
+  "common": "Carolina Buckthorn",
+  "sci": "Frangula caroliniana",
+  "family": "Rhamnaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit not recommended (laxative).",
+  "other_uses": "Well-behaved native buckthorn (not the invasive kind) with red-to-black fruit and good fall color.",
+  "prep": "Grown as a native alternative to invasive buckthorns for wildlife; the fruit is a strong laxative and not a human food.",
+  "harvest": "Fruit fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist to medium, well-drained soils.",
+  "risks": "Fruit is a laxative; not for eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Frangula_caroliniana"
+    ]
+  ]
+}

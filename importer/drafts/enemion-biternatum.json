@@ -1,0 +1,72 @@
+{
+  "common": "False Rue Anemone",
+  "sci": "Enemion biternatum",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Spring ephemeral perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Spring-ephemeral wildflower carpeting rich floodplains with delicate white flowers.",
+  "prep": "Grown as an early spring woodland groundcover that goes dormant by summer; not a food plant.",
+  "harvest": "Blooms spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland/floodplain soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "OH",
+    "IA",
+    "KY",
+    "TN",
+    "WI",
+    "MN",
+    "AR",
+    "KS",
+    "FL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Enemion_biternatum"
+    ]
+  ]
+}

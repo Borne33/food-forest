@@ -1,0 +1,79 @@
+{
+  "common": "Prairie Onion",
+  "sci": "Allium stellatum",
+  "family": "Amaryllidaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Bulbs and leaves (onion/garlic flavor, raw or cooked).",
+  "other_uses": "Late-summer prairie onion with rose-pink starry flower umbels.",
+  "prep": "Use the bulbs and leaves like a mild wild onion, raw or cooked; the pink blooms are also ornamental.",
+  "harvest": "Bulbs/leaves summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained rocky soils; glades.",
+  "risks": "Like all wild onions, avoid confusing with toxic look-alikes lacking onion smell.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "IL",
+    "WI",
+    "MN",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Allium_stellatum"
+    ]
+  ]
+}

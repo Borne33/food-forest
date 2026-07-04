@@ -1,0 +1,70 @@
+{
+  "common": "Powdery Thalia",
+  "sci": "Thalia dealbata",
+  "family": "Marantaceae",
+  "type": "Herb",
+  "life": "Aquatic / marginal perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Bold aquatic ('alligator flag') with big canna-like leaves and tall stalks of purple flowers dusted white.",
+  "prep": "Grown as a dramatic architectural marginal plant for ponds and rain gardens; not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Shallow water and saturated soil; pond margins.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Thalia_dealbata"
+    ]
+  ]
+}

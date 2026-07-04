@@ -1,0 +1,80 @@
+{
+  "common": "Possumhaw",
+  "sci": "Ilex decidua",
+  "family": "Aquifoliaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten — toxic berries.",
+  "other_uses": "Deciduous holly that drops its leaves to reveal branches jammed with red berries all winter.",
+  "prep": "Grown for spectacular winter red-berry display (needs a male pollinator); berries feed birds but are toxic to people — not edible.",
+  "harvest": "Fruit fall-winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils; adaptable.",
+  "risks": "Berries toxic to humans if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ilex_decidua"
+    ]
+  ]
+}

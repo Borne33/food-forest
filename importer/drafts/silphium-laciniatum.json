@@ -1,0 +1,81 @@
+{
+  "common": "Compass Plant",
+  "sci": "Silphium laciniatum",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Resin gum (chewed, historic).",
+  "other_uses": "Iconic tallgrass-prairie giant with deeply cut leaves that align north-south and yellow flowers up 8-ft stems.",
+  "prep": "The dried resin was chewed as gum; grown as a signature prairie plant with a taproot to 15 ft. A pollinator and goldfinch magnet.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Medium, deep, well-drained prairie soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "KY",
+    "TN",
+    "MS",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Silphium_laciniatum"
+    ]
+  ]
+}

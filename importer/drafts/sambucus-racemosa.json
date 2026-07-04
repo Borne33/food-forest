@@ -1,0 +1,79 @@
+{
+  "common": "Red Elderberry",
+  "sci": "Sambucus racemosa",
+  "family": "Adoxaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Cooked fruit only (seeds/raw fruit toxic); NOT the black elderberry.",
+  "other_uses": "Cool-climate shrub with pyramidal clusters of bright red summer berries.",
+  "prep": "Unlike black elderberry, the RED berries and all raw/green parts are toxic; berries are eaten only cooked and strained by some, but treat as marginal — grow chiefly for wildlife.",
+  "harvest": "Berries summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich soils; cooler sites.",
+  "risks": "Raw berries, seeds, and foliage toxic; cook and strain if eaten at all.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IA",
+    "WI",
+    "MN",
+    "MI",
+    "IN",
+    "OH",
+    "PA",
+    "NY",
+    "VT",
+    "NH",
+    "ME",
+    "MA",
+    "CT",
+    "WV",
+    "NC",
+    "TN",
+    "CO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sambucus_racemosa"
+    ]
+  ]
+}

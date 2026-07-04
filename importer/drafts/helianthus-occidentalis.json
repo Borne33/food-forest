@@ -1,0 +1,79 @@
+{
+  "common": "Western Sunflower",
+  "sci": "Helianthus occidentalis",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Seeds (eaten by wildlife; minor for people).",
+  "other_uses": "Prairie sunflower with nearly leafless flowering stems rising from a basal rosette.",
+  "prep": "The seeds feed birds and can be eaten; grown as a well-behaved, non-aggressive prairie sunflower.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained sandy/rocky soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "MI",
+    "GA",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Helianthus_occidentalis"
+    ]
+  ]
+}

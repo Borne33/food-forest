@@ -1,0 +1,69 @@
+{
+  "common": "Western Soapberry",
+  "sci": "Sapindus drummondii",
+  "family": "Sapindaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten — toxic (saponins).",
+  "other_uses": "Adaptable small tree with translucent amber fruit rich in natural soap (saponin).",
+  "prep": "The fruit lathers as a natural soap and was used for washing; all parts are toxic to eat. A tough, drought-proof shade tree for hard sites.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils; very adaptable.",
+  "risks": "Fruit toxic if eaten; saponins can irritate skin.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "OK",
+    "TX",
+    "AR",
+    "LA",
+    "CO",
+    "NM",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sapindus_drummondii"
+    ]
+  ]
+}

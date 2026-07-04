@@ -1,0 +1,65 @@
+{
+  "common": "Missouri Leafflower",
+  "sci": "Phyllanthopsis phyllanthoides",
+  "family": "Phyllanthaceae",
+  "type": "Shrub",
+  "life": "Woody subshrub",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Small woody glade plant with tiny leaves and inconspicuous flowers; an Ozark specialty.",
+  "prep": "Grown as a curiosity subshrub for dry, rocky glade plantings; not a food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, calcareous soils; glades.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Phyllanthopsis_phyllanthoides"
+    ]
+  ]
+}

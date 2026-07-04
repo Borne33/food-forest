@@ -1,0 +1,96 @@
+{
+  "common": "Bearded Beggarticks",
+  "sci": "Bidens aristosa",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual / reseeding",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Golden-yellow tickseed sunflower that blankets wet meadows in fall; heavy nectar source.",
+  "prep": "Grown as a fast, showy fall nectar annual for wet meadows and rain gardens; self-sows. Not a food.",
+  "harvest": "Blooms fall.",
+  "sun": "Full sun",
+  "soil": "Moist to wet soils.",
+  "risks": "Barbed seeds cling to clothing.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE",
+    "TX",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Bidens_aristosa"
+    ]
+  ]
+}

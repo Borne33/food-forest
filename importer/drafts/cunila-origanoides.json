@@ -1,0 +1,75 @@
+{
+  "common": "Common Dittany",
+  "sci": "Cunila origanoides",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (oregano-like seasoning/tea).",
+  "other_uses": "Wiry aromatic mint of dry woods; famed for 'frost flowers' of ice on fall stems.",
+  "prep": "Use the oregano-scented leaves as a seasoning or steep for a warming tea; grown as a fragrant dry-shade plant.",
+  "harvest": "Leaves summer-fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Dry, rocky, well-drained woodland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX",
+    "OH",
+    "PA",
+    "NY",
+    "NC",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cunila_origanoides"
+    ]
+  ]
+}

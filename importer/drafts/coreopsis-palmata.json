@@ -1,0 +1,78 @@
+{
+  "common": "Prairie Coreopsis",
+  "sci": "Coreopsis palmata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Flowers (dye, minor).",
+  "other_uses": "Stiff prairie tickseed with pale-yellow daisies; spreads into drifts.",
+  "prep": "The flowers yield a dye; grown chiefly for prairie restoration and long yellow bloom. Not a notable food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained prairie soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "MI",
+    "OH",
+    "WI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Coreopsis_palmata"
+    ]
+  ]
+}

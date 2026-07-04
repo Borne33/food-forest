@@ -1,0 +1,78 @@
+{
+  "common": "Bald Cypress",
+  "sci": "Taxodium distichum",
+  "family": "Cupressaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Iconic deciduous conifer of southern swamps, with feathery needles, buttressed trunks, and 'knees'; russet fall color.",
+  "prep": "Grown as a majestic, long-lived tree for wet or ordinary soils (thrives in standing water yet fine in gardens); rot-resistant timber. Not a food plant.",
+  "harvest": "Cones fall.",
+  "sun": "Full sun",
+  "soil": "Wet to medium soils; tolerates flooding and average garden soil.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "IL",
+    "IN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Taxodium_distichum"
+    ]
+  ]
+}

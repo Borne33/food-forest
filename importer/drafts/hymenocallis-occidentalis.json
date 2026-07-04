@@ -1,0 +1,78 @@
+{
+  "common": "Woodland Spider Lily",
+  "sci": "Hymenocallis occidentalis",
+  "family": "Amaryllidaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten — toxic bulb.",
+  "other_uses": "Striking late-summer wildflower with fragrant white spidery flowers.",
+  "prep": "Grown for its exotic fragrant summer flowers in moist shade; the bulb is toxic — not edible.",
+  "harvest": "Blooms late summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich soils; streamsides and wet woods.",
+  "risks": "Bulb poisonous if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hymenocallis_occidentalis"
+    ]
+  ]
+}

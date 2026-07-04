@@ -1,0 +1,66 @@
+{
+  "common": "Drummond's Goldenrod",
+  "sci": "Solidago drummondii",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (tea, minor).",
+  "other_uses": "Cliff- and glade-dwelling goldenrod with arching sprays of gold flowers.",
+  "prep": "Goldenrod leaves make a minor tea; grown as a shade-tolerant fall nectar plant for rocky, wooded bluffs.",
+  "harvest": "Blooms fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Dry, rocky, calcareous soils; bluffs and glades.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Solidago_drummondii"
+    ]
+  ]
+}

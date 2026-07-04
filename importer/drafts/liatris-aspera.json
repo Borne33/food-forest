@@ -1,0 +1,80 @@
+{
+  "common": "Rough Blazing Star",
+  "sci": "Liatris aspera",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Corm (cooked, historic); leaves (tea, minor).",
+  "other_uses": "Prairie forb with wands of fluffy rose-purple button flowers in fall.",
+  "prep": "The corm was baked as food and the plant used medicinally by Indigenous peoples; grown chiefly as a top pollinator/monarch nectar plant.",
+  "harvest": "Blooms fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained sandy/rocky soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "MI",
+    "WI",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Liatris_aspera"
+    ]
+  ]
+}

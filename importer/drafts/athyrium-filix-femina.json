@@ -1,0 +1,92 @@
+{
+  "common": "Lady Fern",
+  "sci": "Athyrium filix-femina",
+  "family": "Athyriaceae",
+  "type": "Fern",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Fiddleheads (cooked, with caution).",
+  "other_uses": "Soft, lacy, fast-spreading fern for moist shade.",
+  "prep": "The young fiddleheads have been eaten cooked, but lady fern is less recommended than ostrich fern and should be thoroughly cooked; grown chiefly as an ornamental shade fern.",
+  "harvest": "Fiddleheads spring.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich woodland soils.",
+  "risks": "Eat fiddleheads only cooked and sparingly; raw ferns are not safe.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Athyrium_filix-femina"
+    ]
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "common": "Bradbury's Bee Balm",
+  "sci": "Monarda bradburiana",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (mint/oregano tea).",
+  "other_uses": "Compact early bee balm with lavender-pink flowers spotted purple; aromatic foliage.",
+  "prep": "Steep the fragrant leaves for a mint-oregano tea; grown as an early-blooming, mildew-resistant pollinator plant.",
+  "harvest": "Leaves/blooms late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX",
+    "OH",
+    "IN",
+    "KY",
+    "TN",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Monarda_bradburiana"
+    ]
+  ]
+}

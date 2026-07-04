@@ -1,0 +1,79 @@
+{
+  "common": "Missouri Gooseberry",
+  "sci": "Ribes missouriense",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (eaten raw ripe or cooked into pies/jam).",
+  "other_uses": "Thorny shrub with lobed leaves and tart green-to-purple berries.",
+  "prep": "Eat the ripe purple berries raw or cook the green ones into pies, jam, and jelly; a classic native fruit shrub for hedgerows.",
+  "harvest": "Berries early-mid summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils; woodland edges.",
+  "risks": "Sharp thorns; note Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "OH",
+    "KS",
+    "NE",
+    "AR",
+    "OK",
+    "KY",
+    "TN",
+    "MS",
+    "AL",
+    "LA",
+    "TX",
+    "SD",
+    "MN",
+    "WI",
+    "CO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_missouriense"
+    ]
+  ]
+}

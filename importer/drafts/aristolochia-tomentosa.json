@@ -1,0 +1,79 @@
+{
+  "common": "Woolly Dutchman's Pipe",
+  "sci": "Aristolochia tomentosa",
+  "family": "Aristolochiaceae",
+  "type": "Vine",
+  "life": "Hardy woody vine",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Vigorous woody vine; larval host for the pipevine swallowtail butterfly.",
+  "prep": "Grown as a pipevine-swallowtail host and screening vine; all parts contain toxic aristolochic acid — not edible.",
+  "harvest": "Blooms late spring.",
+  "sun": "Part shade",
+  "soil": "Moist, rich bottomland soils.",
+  "risks": "Contains aristolochic acid; toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "IN",
+    "IL",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Aristolochia_tomentosa"
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "common": "Shumard Oak",
+  "sci": "Quercus shumardii",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (cooked after long leaching).",
+  "other_uses": "Large fast red oak with brilliant scarlet fall color; heat- and drought-tough.",
+  "prep": "Leach the acorns well (red-oak acorns are high in tannin) before use; grown chiefly as a superb fast shade tree with red fall color.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Moist to medium, well-drained soils; adaptable.",
+  "risks": "Red-oak acorns need thorough leaching.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "OH",
+    "KS",
+    "NE",
+    "AR",
+    "OK",
+    "KY",
+    "TN",
+    "MS",
+    "AL",
+    "LA",
+    "TX",
+    "PA",
+    "VA",
+    "NC",
+    "GA",
+    "FL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_shumardii"
+    ]
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "common": "Lanceleaf Buckthorn",
+  "sci": "Rhamnus lanceolata",
+  "family": "Rhamnaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit not recommended (laxative).",
+  "other_uses": "Native buckthorn (not the invasive kind) with narrow leaves and small black fruit.",
+  "prep": "Grown as a native alternative to invasive buckthorns for wildlife; the fruit is a laxative and not a human food.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils, often calcareous.",
+  "risks": "Fruit is a laxative; not for eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "OH",
+    "KS",
+    "NE",
+    "AR",
+    "OK",
+    "KY",
+    "TN",
+    "MS",
+    "AL",
+    "LA",
+    "TX",
+    "PA",
+    "WV",
+    "GA",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhamnus_lanceolata"
+    ]
+  ]
+}

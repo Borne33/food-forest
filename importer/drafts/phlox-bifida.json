@@ -1,0 +1,69 @@
+{
+  "common": "Cleft Phlox",
+  "sci": "Phlox bifida",
+  "family": "Polemoniaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Low mat-forming phlox smothered in pale-blue, deeply notched flowers in spring.",
+  "prep": "Grown as a spring-flowering groundcover for rock gardens and dry slopes; not a food.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy/rocky, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "KY",
+    "TN",
+    "MI",
+    "OK",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Phlox_bifida"
+    ]
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "common": "Yellow Honeysuckle",
+  "sci": "Lonicera flava",
+  "family": "Caprifoliaceae",
+  "type": "Vine",
+  "life": "Hardy woody vine",
+  "edible_parts": "Flower nectar (nibble, minor); not the invasive kind.",
+  "other_uses": "Well-behaved native climbing honeysuckle with clusters of fragrant yellow tubular flowers.",
+  "prep": "A native, non-invasive honeysuckle grown as a hummingbird vine; children sip the flower nectar. Berries are for birds. Choose over invasive Japanese honeysuckle.",
+  "harvest": "Blooms spring; fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained rocky soils; woodland edges.",
+  "risks": "Berries not for eating; nectar sip only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX",
+    "NC",
+    "GA",
+    "AL",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lonicera_flava"
+    ]
+  ]
+}

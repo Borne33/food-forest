@@ -1,0 +1,76 @@
+{
+  "common": "Pecan",
+  "sci": "Carya illinoinensis",
+  "family": "Juglandaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (rich, sweet, eaten raw or cooked).",
+  "other_uses": "Massive bottomland hickory; the premier native nut tree of North America.",
+  "prep": "Shell and eat the sweet nuts raw, or use in baking; a long-lived, high-value nut and timber tree.",
+  "harvest": "Nuts fall.",
+  "sun": "Full sun",
+  "soil": "Deep, rich, moist bottomland soils.",
+  "risks": "None significant once shelled.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "OH",
+    "KS",
+    "NE",
+    "AR",
+    "OK",
+    "KY",
+    "TN",
+    "MS",
+    "AL",
+    "LA",
+    "TX",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      9,
+      "E"
+    ],
+    "cooked": [
+      9,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carya_illinoinensis"
+    ]
+  ]
+}

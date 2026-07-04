@@ -1,0 +1,69 @@
+{
+  "common": "Tall Larkspur",
+  "sci": "Delphinium exaltatum",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten — highly toxic.",
+  "other_uses": "Rare woodland larkspur with tall spikes of blue-purple spurred flowers.",
+  "prep": "Grown as a choice ornamental for rich woods; all parts are highly toxic — not edible.",
+  "harvest": "Blooms late summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich, well-drained soils, often calcareous.",
+  "risks": "All parts poisonous if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "OH",
+    "PA",
+    "VA",
+    "WV",
+    "NC",
+    "KY",
+    "TN",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Delphinium_exaltatum"
+    ]
+  ]
+}

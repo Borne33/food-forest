@@ -1,0 +1,77 @@
+{
+  "common": "Ohio Buckeye",
+  "sci": "Aesculus glabra",
+  "family": "Sapindaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten — nuts are toxic raw.",
+  "other_uses": "Early-leafing shade tree; showy spring flower panicles.",
+  "prep": "Nuts and all parts contain toxic aesculin; historically leached only as a survival famine food — treat as inedible.",
+  "harvest": "Nuts fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist, well-drained bottomland soils.",
+  "risks": "Seeds, leaves, and bark are poisonous if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "IL",
+    "IN",
+    "IA",
+    "OH",
+    "KS",
+    "NE",
+    "AR",
+    "OK",
+    "KY",
+    "TN",
+    "MS",
+    "AL",
+    "LA",
+    "TX",
+    "PA",
+    "WV"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Aesculus_glabra"
+    ]
+  ]
+}

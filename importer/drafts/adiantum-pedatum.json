@@ -1,0 +1,92 @@
+{
+  "common": "Northern Maidenhair Fern",
+  "sci": "Adiantum pedatum",
+  "family": "Pteridaceae",
+  "type": "Fern",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Fronds (traditional tea, minor).",
+  "other_uses": "Elegant fern with horseshoe-shaped whorls of fronds on shining black stems.",
+  "prep": "The fronds had a traditional use as a tea and hair rinse; grown as a premier ornamental fern for rich shade.",
+  "harvest": "Fronds spring-summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist, rich, well-drained woodland soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Adiantum_pedatum"
+    ]
+  ]
+}

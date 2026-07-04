@@ -1,0 +1,69 @@
+{
+  "common": "Missouri Evening Primrose",
+  "sci": "Oenothera macrocarpa",
+  "family": "Onagraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Roots and young shoots (cooked, minor; like other evening primroses).",
+  "other_uses": "Sprawling glade plant with enormous lemon-yellow evening flowers and winged seed pods.",
+  "prep": "The roots and young shoots of evening primroses are edible cooked; grown chiefly for its huge, showy glade flowers.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained calcareous soils; glades.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "OK",
+    "TX",
+    "AR",
+    "CO",
+    "IL",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Oenothera_macrocarpa"
+    ]
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "common": "Fameflower",
+  "sci": "Phemeranthus calycinus",
+  "family": "Montiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not commonly eaten (succulent).",
+  "other_uses": "Succulent glade plant with grassy fleshy leaves and pink flowers that open in afternoon.",
+  "prep": "Grown as a tough succulent for rock gardens and glade plantings; not a notable food.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry, gravelly/sandy, sharply drained soils; glades and rock outcrops.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "TX",
+    "IL",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Phemeranthus_calycinus"
+    ]
+  ]
+}

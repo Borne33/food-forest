@@ -1,0 +1,94 @@
+{
+  "common": "Cinnamon Fern",
+  "sci": "Osmunda cinnamomea",
+  "family": "Osmundaceae",
+  "type": "Fern",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Fiddleheads (cooked, minor).",
+  "other_uses": "Bold fern with tall green fronds ringing striking cinnamon-colored fertile spikes.",
+  "prep": "The young fiddleheads are eaten cooked in small amounts; grown chiefly as a dramatic architectural fern for wet shade.",
+  "harvest": "Fiddleheads spring.",
+  "sun": "Part shade to shade",
+  "soil": "Wet to moist, acidic soils.",
+  "risks": "Eat fiddleheads only cooked and sparingly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "AR",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Osmunda_cinnamomea"
+    ]
+  ]
+}

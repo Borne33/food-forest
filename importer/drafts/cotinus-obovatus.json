@@ -1,0 +1,73 @@
+{
+  "common": "Smoketree",
+  "sci": "Cotinus obovatus",
+  "family": "Anacardiaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Rare native tree with airy 'smoky' flower plumes and spectacular fall color.",
+  "prep": "Grown as a specimen ornamental for its smoky flower haze and brilliant fall foliage; the wood yields an orange dye. Not a food plant.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils, often over limestone glades.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX",
+    "TN",
+    "AL",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cotinus_obovatus"
+    ]
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "common": "Tharp's Spiderwort",
+  "sci": "Tradescantia tharpii",
+  "family": "Commelinaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Flowers/young leaves (raw or cooked).",
+  "other_uses": "Dwarf early spiderwort forming low tufts with large rose-purple to blue flowers at ground level.",
+  "prep": "Flowers are an edible garnish and young leaves eaten raw or cooked; grown as a diminutive early-spring bloomer for dry, rocky sites.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils; glades and prairies.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "OK",
+    "TX",
+    "AR",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Tradescantia_tharpii"
+    ]
+  ]
+}

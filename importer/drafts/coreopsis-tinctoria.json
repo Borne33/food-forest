@@ -1,0 +1,79 @@
+{
+  "common": "Plains Coreopsis",
+  "sci": "Coreopsis tinctoria",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual / reseeding",
+  "edible_parts": "Flowers (tea/dye).",
+  "other_uses": "Fast annual with mahogany-and-gold daisies; a traditional 'coreopsis tea' and dye plant.",
+  "prep": "The flowers make a reddish tea and a strong red-brown dye; a quick, self-sowing annual for pollinators.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun",
+  "soil": "Medium, well-drained soils; tolerates poor sites.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "TX",
+    "LA",
+    "MS",
+    "AL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Coreopsis_tinctoria"
+    ]
+  ]
+}

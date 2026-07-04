@@ -1,0 +1,77 @@
+{
+  "common": "Giant Cane",
+  "sci": "Arundinaria gigantea",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Long-lived woody grass",
+  "edible_parts": "Young shoots (cooked) and seed grain (historic, minor).",
+  "other_uses": "North America's native bamboo; forms canebrakes that shelter wildlife.",
+  "prep": "Young shoots can be cooked like bamboo shoots; grain was historically ground. Grown mostly for erosion control and habitat.",
+  "harvest": "Shoots spring; grain rare.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet bottomland soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "P"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Arundinaria_gigantea"
+    ]
+  ]
+}

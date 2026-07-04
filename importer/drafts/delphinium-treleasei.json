@@ -1,0 +1,62 @@
+{
+  "common": "Trelease's Larkspur",
+  "sci": "Delphinium treleasei",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten — highly toxic.",
+  "other_uses": "Missouri glade endemic larkspur with deep-blue flower spikes.",
+  "prep": "Grown as a rare glade ornamental; highly toxic — not edible.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, calcareous soils; limestone/dolomite glades.",
+  "risks": "All parts poisonous if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Delphinium_treleasei"
+    ]
+  ]
+}

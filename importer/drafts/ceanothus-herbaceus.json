@@ -1,0 +1,80 @@
+{
+  "common": "Redroot",
+  "sci": "Ceanothus herbaceus",
+  "family": "Rhamnaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves (tea).",
+  "other_uses": "Low nitrogen-fixing prairie shrub with white flower clusters; 'New Jersey tea' relative.",
+  "prep": "Dry the leaves for a caffeine-free tea like its cousin New Jersey tea; a nitrogen fixer for dry prairie.",
+  "harvest": "Leaves/blooms early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained rocky soils; glades and prairies.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ceanothus_herbaceus"
+    ]
+  ]
+}

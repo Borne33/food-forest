@@ -1,0 +1,92 @@
+{
+  "common": "Sharp-lobed Hepatica",
+  "sci": "Hepatica nobilis var. acuta",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Spring ephemeral perennial",
+  "edible_parts": "Not eaten (leaf medicinal, historic; mildly toxic).",
+  "other_uses": "One of the earliest spring wildflowers, with fuzzy stems and blue-to-white flowers over liver-shaped leaves.",
+  "prep": "Grown as a treasured early woodland wildflower; leaves had historic 'liverwort' medicinal use but are mildly toxic — not a food.",
+  "harvest": "Blooms early spring.",
+  "sun": "Part shade to shade",
+  "soil": "Medium, well-drained woodland soils, often calcareous.",
+  "risks": "Mildly toxic if eaten; medicinal use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hepatica_nobilis_var._acuta"
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "common": "Lemon Bee Balm",
+  "sci": "Monarda citriodora",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Annual / biennial",
+  "edible_parts": "Leaves (lemon-mint tea/seasoning); flowers edible.",
+  "other_uses": "Fast annual with tiered pink-lavender flower whorls and lemony foliage.",
+  "prep": "Use the lemon-scented leaves for tea and seasoning and the flowers as an edible garnish; a quick self-sowing pollinator annual.",
+  "harvest": "Leaves/blooms summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      4,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Monarda_citriodora"
+    ]
+  ]
+}

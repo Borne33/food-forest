@@ -1,0 +1,77 @@
+{
+  "common": "Indian Pink",
+  "sci": "Spigelia marilandica",
+  "family": "Loganiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten — toxic (historic vermifuge).",
+  "other_uses": "Woodland perennial with stunning red trumpets tipped in yellow stars; a hummingbird magnet.",
+  "prep": "Historically used in tiny doses as a deworming medicine, but the plant is toxic — grow it purely as a spectacular shade-tolerant hummingbird flower.",
+  "harvest": "Blooms early summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, rich, well-drained woodland soils.",
+  "risks": "Toxic if eaten; historic medicinal use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "IN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Spigelia_marilandica"
+    ]
+  ]
+}

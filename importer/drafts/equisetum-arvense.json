@@ -1,0 +1,102 @@
+{
+  "common": "Field Horsetail",
+  "sci": "Equisetum arvense",
+  "family": "Equisetaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young fertile shoots (cooked, with strong caution); medicinal.",
+  "other_uses": "Ancient spore-bearing plant with jointed hollow stems; spreads aggressively.",
+  "prep": "Young spring fertile shoots have been eaten cooked and the plant used medicinally, but it contains thiaminase and is not recommended for regular eating — grow with caution as it is very aggressive.",
+  "harvest": "Shoots spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils; very adaptable.",
+  "risks": "Contains thiaminase; toxic to livestock; do not eat regularly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE",
+    "SD",
+    "ND",
+    "CO",
+    "NM",
+    "TX",
+    "OK",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Equisetum_arvense"
+    ]
+  ]
+}

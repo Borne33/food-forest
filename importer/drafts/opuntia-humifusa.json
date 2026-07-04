@@ -1,0 +1,97 @@
+{
+  "common": "Prickly Pear",
+  "sci": "Opuntia humifusa",
+  "family": "Cactaceae",
+  "type": "Herb",
+  "life": "Hardy cactus",
+  "edible_parts": "Pads (nopales) and fruit (tunas) — both eaten cooked or raw.",
+  "other_uses": "The Midwest's hardy native cactus, with yellow flowers, red fruit, and flat spiny pads.",
+  "prep": "Singe/peel the spines, then eat the pads (nopales) cooked and the ripe red fruit (tunas) raw or in jelly; grown as a drought-proof glade/rock-garden plant.",
+  "harvest": "Pads year-round; fruit late summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky/sandy, sharply drained soils; glades.",
+  "risks": "Spines and tiny barbed glochids — handle carefully.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "KS",
+    "NE",
+    "OK",
+    "TX",
+    "CO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Opuntia_humifusa"
+    ]
+  ]
+}

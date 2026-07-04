@@ -1,0 +1,79 @@
+{
+  "common": "Prairie Ragwort",
+  "sci": "Packera plattensis",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial / short-lived perennial",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Woolly-stemmed prairie plant with flat clusters of yellow daisies in late spring.",
+  "prep": "Grown as an early prairie pollinator plant; contains toxic pyrrolizidine alkaloids — not edible.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Toxic pyrrolizidine alkaloids; not edible.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "NE",
+    "IA",
+    "IL",
+    "MN",
+    "WI",
+    "SD",
+    "ND",
+    "OK",
+    "TX",
+    "AR",
+    "IN",
+    "CO",
+    "NM",
+    "OH",
+    "IN",
+    "MI",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Packera_plattensis"
+    ]
+  ]
+}

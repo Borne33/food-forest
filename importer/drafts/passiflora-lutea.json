@@ -1,0 +1,79 @@
+{
+  "common": "Yellow Passionflower",
+  "sci": "Passiflora lutea",
+  "family": "Passifloraceae",
+  "type": "Vine",
+  "life": "Herbaceous / woody vine",
+  "edible_parts": "Small fruit (eaten when ripe); host for fritillary butterflies.",
+  "other_uses": "Dainty climbing vine with intricate greenish-yellow flowers and small dark berries.",
+  "prep": "The small purple-black fruits are edible when fully ripe; grown chiefly as a delicate native vine and butterfly host. Fruit is much smaller than maypop.",
+  "harvest": "Fruit fall.",
+  "sun": "Part shade to full sun",
+  "soil": "Medium, well-drained woodland soils; edges.",
+  "risks": "Eat fruit only fully ripe.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "PA",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Passiflora_lutea"
+    ]
+  ]
+}

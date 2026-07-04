@@ -1,0 +1,80 @@
+{
+  "common": "Heartleaf Skullcap",
+  "sci": "Scutellaria ovata",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten (foliage medicinal, historic).",
+  "other_uses": "Silvery-leaved mint with blue-violet hooded flowers for shade.",
+  "prep": "Skullcaps had traditional nervine medicinal use; grown chiefly as a soft-textured shade perennial and pollinator plant. Not a food.",
+  "harvest": "Blooms early summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Medium, well-drained woodland soils.",
+  "risks": "None significant; medicinal use only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "KS",
+    "OH",
+    "PA",
+    "MD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Scutellaria_ovata"
+    ]
+  ]
+}

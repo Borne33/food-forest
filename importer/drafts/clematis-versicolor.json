@@ -1,0 +1,70 @@
+{
+  "common": "Leather Flower",
+  "sci": "Clematis versicolor",
+  "family": "Ranunculaceae",
+  "type": "Vine",
+  "life": "Herbaceous / woody vine",
+  "edible_parts": "Not eaten — toxic.",
+  "other_uses": "Slender climbing clematis with small rose-purple urn flowers of rocky woods.",
+  "prep": "Grown as a delicate native clematis; toxic — not edible.",
+  "harvest": "Blooms summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, rocky, well-drained soils.",
+  "risks": "Toxic if eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "IL",
+    "IN",
+    "KY",
+    "TN",
+    "LA",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Clematis_versicolor"
+    ]
+  ]
+}

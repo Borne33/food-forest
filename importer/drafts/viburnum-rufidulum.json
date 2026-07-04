@@ -1,0 +1,80 @@
+{
+  "common": "Rusty Blackhaw",
+  "sci": "Viburnum rufidulum",
+  "family": "Adoxaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (eaten ripe, raisin-like).",
+  "other_uses": "Small tree/shrub with glossy leaves, white flower clusters, and blue-black fruit; wine-red fall color.",
+  "prep": "Eat the sweet blue-black drupes fresh when fully ripe or use like raisins; grown as a handsome four-season understory tree and wildlife plant.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils; adaptable.",
+  "risks": "Fruit best fully ripe.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Viburnum_rufidulum"
+    ]
+  ]
+}

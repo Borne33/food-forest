@@ -1,0 +1,65 @@
+{
+  "common": "Bush's Coneflower",
+  "sci": "Echinacea paradoxa",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Root (medicinal, historic).",
+  "other_uses": "The only yellow-flowered coneflower — golden rays around a dark cone; Ozark glade endemic.",
+  "prep": "Root has traditional medicinal use; grown as a striking yellow coneflower for dry sites.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, calcareous soils; glades.",
+  "risks": "None significant; medicinal root only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "KS",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      5,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Echinacea_paradoxa"
+    ]
+  ]
+}

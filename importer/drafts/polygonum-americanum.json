@@ -1,0 +1,77 @@
+{
+  "common": "American Jointweed",
+  "sci": "Polygonum americanum",
+  "family": "Polygonaceae",
+  "type": "Herb",
+  "life": "Subshrub / perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Wiry, much-branched glade plant with tiny white flowers giving an airy 'baby's breath' effect.",
+  "prep": "Grown as an airy late-season plant for dry, sandy glades; not a food.",
+  "harvest": "Blooms late summer-fall.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy/rocky, sharply drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "AR",
+    "OK",
+    "TX",
+    "LA",
+    "MS",
+    "AL",
+    "GA",
+    "FL",
+    "SC",
+    "NC",
+    "TN",
+    "KY",
+    "IL",
+    "IN",
+    "VA",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Polygonum_americanum"
+    ]
+  ]
+}

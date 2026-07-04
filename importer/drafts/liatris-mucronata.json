@@ -1,0 +1,67 @@
+{
+  "common": "Cusp Blazing Star",
+  "sci": "Liatris mucronata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Corm (cooked, historic).",
+  "other_uses": "Fine-leaved blazing star with dense purple flower spikes on glade and prairie sites.",
+  "prep": "The corm was historically eaten; grown as a drought-proof fall nectar plant for bees and monarchs.",
+  "harvest": "Blooms fall.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained calcareous soils; glades.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MO",
+    "KS",
+    "OK",
+    "TX",
+    "AR",
+    "LA",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Grow Native! (Missouri Prairie Foundation)",
+      "https://grownative.org/native-plant-database/"
+    ],
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Liatris_mucronata"
+    ]
+  ]
+}
