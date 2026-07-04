@@ -42,15 +42,25 @@ def drainage(soil):
     return sorted(out)
 
 
+def _has_usda(r):
+    """True once usda_enrich.py has enriched this plant (adds a USDA source)."""
+    return any(isinstance(s, list) and len(s) == 2 and "plants.usda.gov" in (s[1] or "")
+               for s in (r.get("sources") or []))
+
+
 def main():
     env = ff.load_env()
-    rows = ff.supabase_request(env, "GET", "plants?select=id,soil&order=id") or []
-    for r in rows:
+    # Skip plants already USDA-enriched — usda_enrich.py owns their soil dims and
+    # this rule-based pass would otherwise clobber those authoritative values.
+    rows = ff.supabase_request(env, "GET", "plants?select=id,soil,sources&order=id") or []
+    todo = [r for r in rows if not _has_usda(r)]
+    for r in todo:
         ff.supabase_request(env, "PATCH", "plants?id=eq.%d" % r["id"],
             body={"soil_texture": texture(r.get("soil")),
                   "soil_drainage": drainage(r.get("soil"))},
             extra_headers={"Prefer": "return=minimal"})
-    print("set soil texture/drainage on %d plants" % len(rows))
+    print("set soil texture/drainage on %d plants (%d USDA-enriched skipped)"
+          % (len(todo), len(rows) - len(todo)))
 
 
 if __name__ == "__main__":

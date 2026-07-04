@@ -57,8 +57,13 @@ database.
    python3 backfill.py --plan         # just print the ordered steps
    ```
    Order: `populate_traits` → `populate_soil` → `populate_soildims` →
-   `populate_fruit` → `usda_enrich --apply` (→ optional images). USDA runs **last**
-   so it isn't clobbered by the rule-based soil-dimension step.
+   `populate_fruit` → `usda_enrich --apply --only-new` (→ optional images). USDA
+   runs **last** so it isn't clobbered by the rule-based soil-dimension step.
+   By default the USDA pass only touches the **current batch** (plants with no
+   USDA source yet), so re-running after a new batch is fast and leaves already-
+   enriched plants alone; `populate_soildims` likewise skips USDA-enriched plants.
+   Use `backfill.py --usda-all` (or `usda_enrich.py --apply` without `--only-new`)
+   to force a full re-enrichment of every plant.
 
 ## What is auto-filled vs. drafted
 

@@ -48,8 +48,11 @@ def build_steps(a):
         ("Fruit traits",                      ["populate_fruit.py"]),
     ]
     if not a.no_usda:
-        usda = ["usda_enrich.py"] + ([] if a.usda_dry_run else ["--apply"])
-        steps.append(("USDA PLANTS enrichment — authoritative, runs LAST", usda))
+        usda = ["usda_enrich.py"]
+        usda += [] if a.usda_dry_run else ["--apply"]
+        usda += [] if a.usda_all else ["--only-new"]   # default: only the current batch
+        scope = "all plants" if a.usda_all else "current batch (new only)"
+        steps.append((f"USDA PLANTS enrichment — authoritative, LAST, {scope}", usda))
     if a.with_images:
         steps.append(("Images — Wikimedia",              ["fetch_images.py"]))
         steps.append(("Images — Commons/iNaturalist fallback", ["fetch_images_fallback.py"]))
@@ -61,6 +64,8 @@ def main():
     ap.add_argument("--with-images", action="store_true", help="also fetch missing images at the end")
     ap.add_argument("--no-usda", action="store_true", help="skip the USDA enrichment step")
     ap.add_argument("--usda-dry-run", action="store_true", help="run USDA as a dry-run (no writes)")
+    ap.add_argument("--usda-all", action="store_true",
+                    help="re-enrich ALL plants (default: only new/unenriched plants)")
     ap.add_argument("--plan", action="store_true", help="print the ordered steps and exit")
     a = ap.parse_args()
 

@@ -136,8 +136,10 @@ def main():
     ap.add_argument("--apply", action="store_true", help="write changes (default: dry-run)")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--only", type=str, default="")
+    ap.add_argument("--only-new", action="store_true",
+                    help="only plants not yet enriched (no USDA source) — the current batch")
     ap.add_argument("--report", type=str,
-                    default="/private/tmp/claude-501/-Users-alexbornemann-Library-CloudStorage-Dropbox-Claude-AI/776c5c38-2e5e-44ee-8bdb-880e097b65c8/scratchpad/usda_report.json")
+                    default=os.path.join(os.path.dirname(DR), "usda_report.json"))
     args = ap.parse_args()
     env = ff.load_env()
 
@@ -146,6 +148,13 @@ def main():
         "native_north_america,sources&order=sci&limit=2000")
     if args.only:
         rows = [r for r in rows if r["sci"].lower() == args.only.lower()]
+    if args.only_new:
+        def _has_usda(r):
+            return any(isinstance(s, list) and len(s) == 2 and "plants.usda.gov" in (s[1] or "")
+                       for s in (r.get("sources") or []))
+        before = len(rows)
+        rows = [r for r in rows if not _has_usda(r)]
+        print("--only-new: %d of %d plants are unenriched (new)" % (len(rows), before))
     if args.limit:
         rows = rows[:args.limit]
 
