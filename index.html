@@ -358,6 +358,7 @@ function rowToPlant(r){
     minPlantsFruit:r.min_plants_fruit||null, yearsToFruit:r.years_to_fruit||"",
     soilPh:r.soil_ph||"", soilN:r.soil_n||"", soilP:r.soil_p||"", soilK:r.soil_k||"",
     soilTexture:r.soil_texture||[], soilDrainage:r.soil_drainage||[],
+    batch:r.batch||null, createdAt:r.created_at||null,
   };
 }
 
@@ -754,8 +755,19 @@ function Database({plants, state, setState, plan, toggle}){
   const [dir,setDir]=useState(-1); // -1 desc, 1 asc
   const [types,setTypes]=useState([]); // active type filters
   const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false,notplan:false,deer:false,dec:false});
+  const [batch,setBatch]=useState("all"); // added-batch filter (by created_at cluster)
 
   const allTypes=[...new Set(plants.map(p=>p.type))];
+  // distinct batches with their add-date + count, for the "Added batch" dropdown
+  const batches=useMemo(()=>{
+    const m=new Map();
+    plants.forEach(p=>{ if(p.batch==null) return;
+      const b=m.get(p.batch)||{n:p.batch,count:0,date:p.createdAt};
+      b.count++; if(p.createdAt && (!b.date || p.createdAt<b.date)) b.date=p.createdAt;
+      m.set(p.batch,b); });
+    return [...m.values()].sort((a,b)=>a.n-b.n);
+  },[plants]);
+  const fmtDate=d=>d?new Date(d).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}):"";
   const toggleType=t=>setTypes(ts=>ts.includes(t)?ts.filter(x=>x!==t):[...ts,t]);
   const toggleFlag=f=>setFlags(s=>({...s,[f]:!s[f]}));
 
@@ -771,6 +783,7 @@ function Database({plants, state, setState, plan, toggle}){
       if(flags.dec && !p.decPriority) return false;
       if(flags.plan && !plan.includes(p.id)) return false;
       if(flags.notplan && plan.includes(p.id)) return false;
+      if(batch!=="all" && String(p.batch)!==batch) return false;
       return true;
     });
     const val=p=>{
@@ -781,7 +794,7 @@ function Database({plants, state, setState, plan, toggle}){
     };
     arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
     return arr;
-  },[plants,q,types,flags,sortKey,dir,state,plan]);
+  },[plants,q,types,flags,sortKey,dir,state,plan,batch]);
 
   // pagination: cap at 100 plants per page
   const PER_PAGE=100;
@@ -789,7 +802,7 @@ function Database({plants, state, setState, plan, toggle}){
   const pageCount=Math.max(1, Math.ceil(view.length/PER_PAGE));
   const curPage=Math.min(page, pageCount);
   const pageItems=view.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
-  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state]); // reset to page 1 on filter change
+  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch]); // reset to page 1 on filter change
   const goPage=n=>{ setPage(n); window.scrollTo({top:0,behavior:"smooth"}); };
 
   return (
@@ -822,6 +835,11 @@ function Database({plants, state, setState, plan, toggle}){
             <option value="materials">Materials</option>
             <option value="med">Medicinal</option>
             <option value="name">Name (A–Z)</option>
+          </select></div>
+        <div className="fld"><label>Added batch</label>
+          <select value={batch} onChange={e=>setBatch(e.target.value)}>
+            <option value="all">All batches</option>
+            {batches.map(b=><option key={b.n} value={String(b.n)}>Batch {b.n} — {fmtDate(b.date)} ({b.count})</option>)}
           </select></div>
         <button className="dirbtn" title="Toggle direction" onClick={()=>setDir(d=>-d)}>{dir===-1?"↓":"↑"}</button>
       </div>
