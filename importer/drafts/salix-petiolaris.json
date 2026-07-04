@@ -1,0 +1,74 @@
+{
+  "common": "Meadow Willow",
+  "sci": "Salix petiolaris",
+  "family": "Salicaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Not eaten (bark is medicinal, not food).",
+  "other_uses": "Wetland-edge thicket willow; bark contains salicin.",
+  "prep": "Inner bark has a traditional pain-relief use (salicin); flexible stems used for basketry.",
+  "harvest": "Bark harvested dormant season.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils; wetland margins.",
+  "risks": "Bark is medicinally active \u2014 avoid if aspirin-sensitive.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA",
+    "NJ",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Salix_petiolaris"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Salix+petiolaris"
+    ]
+  ]
+}

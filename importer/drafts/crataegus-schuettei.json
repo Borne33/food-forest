@@ -1,0 +1,68 @@
+{
+  "common": "Schuette's Hawthorn",
+  "sci": "Crataegus schuettei",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Haws (small tart fruit).",
+  "other_uses": "Thorny small tree/shrub; excellent thicket cover and spring bloom for pollinators.",
+  "prep": "Cook the tart haws into jelly, or eat fresh once fully ripe, like other native hawthorns.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to dry, well-drained soils.",
+  "risks": "Seeds contain trace cyanogenic compounds like other Rosaceae \u2014 don't chew seeds in bulk; thorny branches.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Crataegus_schuettei"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Crataegus+schuettei"
+    ]
+  ]
+}

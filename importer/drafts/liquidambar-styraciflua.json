@@ -1,0 +1,92 @@
+{
+  "common": "Sweetgum",
+  "sci": "Liquidambar styraciflua",
+  "family": "Altingiaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Star-shaped leaves with brilliant fall color; resin ('storax') has historic medicinal/fragrance use.",
+  "prep": "The aromatic resin was historically chewed and used medicinally; not a modern food plant.",
+  "harvest": "Seed 'gumballs' fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, rich, well-drained soils; tolerates wet clay.",
+  "risks": "Spiky seed balls are a litter/footwear nuisance, not a hazard.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Liquidambar_styraciflua"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Liquidambar+styraciflua"
+    ]
+  ]
+}

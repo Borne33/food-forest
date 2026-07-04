@@ -1,0 +1,92 @@
+{
+  "common": "Black Tupelo",
+  "sci": "Nyssa sylvatica",
+  "family": "Nyssaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (sour, minor human use; major wildlife/bee food).",
+  "other_uses": "Spectacular early scarlet fall color; source of prized tupelo honey.",
+  "prep": "The small sour blue-black fruits are edible but mostly left for wildlife; bees make renowned tupelo honey from its bloom.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist, acidic soils; very adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Nyssa_sylvatica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Nyssa+sylvatica"
+    ]
+  ]
+}

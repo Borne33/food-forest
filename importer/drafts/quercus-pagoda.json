@@ -1,0 +1,76 @@
+{
+  "common": "Cherrybark Oak",
+  "sci": "Quercus pagoda",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (bitter, red-oak group \u2014 needs thorough leaching).",
+  "other_uses": "Prized bottomland timber tree of the southeast; a climate-shift candidate for NY.",
+  "prep": "Leach thoroughly before eating, like other red-oak acorns.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, moist bottomland soils.",
+  "risks": "High tannins raw \u2014 must leach thoroughly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TX",
+    "TN",
+    "AR",
+    "MO",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_pagoda"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+pagoda"
+    ]
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "common": "Tall Beggarticks",
+  "sci": "Bidens vulgata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Disturbed-ground/wetland-edge annual; late pollinator forage.",
+  "prep": "A weedy but pollinator-friendly annual for disturbed wet soils.",
+  "harvest": "Blooms late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist, disturbed soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      0,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Bidens_vulgata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Bidens+vulgata"
+    ]
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "common": "Virginia Wild Rye",
+  "sci": "Elymus virginicus",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten by humans (grain is minor wildlife/historic food in a few species).",
+  "other_uses": "A native grass grown for erosion control, wildlife cover, and habitat structure.",
+  "prep": "Not a human food; grown for ecological/structural value.",
+  "harvest": "Seed heads summer-fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to average soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Elymus_virginicus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Elymus+virginicus"
+    ]
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "common": "Golden Heather",
+  "sci": "Hudsonia ericoides",
+  "family": "Cistaceae",
+  "type": "Groundcover",
+  "life": "Evergreen perennial groundcover",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tiny heath-like evergreen shrublet for coastal dunes and sandy barrens.",
+  "prep": "A specialist groundcover for the toughest sandy, nutrient-poor sites; not a food plant.",
+  "harvest": "Blooms spring.",
+  "sun": "Full sun",
+  "soil": "Very dry, sandy, acidic, nutrient-poor soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hudsonia_ericoides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Hudsonia+ericoides"
+    ]
+  ]
+}

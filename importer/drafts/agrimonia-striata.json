@@ -1,0 +1,74 @@
+{
+  "common": "Roadside Agrimony",
+  "sci": "Agrimonia striata",
+  "family": "Rosaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Leaves (astringent tea).",
+  "other_uses": "Traditional astringent herb; burr-like seeds cling to clothing/fur.",
+  "prep": "Steep the leaves for a mild astringent tea, like its relative common agrimony.",
+  "harvest": "Leaves summer.",
+  "sun": "Part shade to sun",
+  "soil": "Average to moist, well-drained soils; edges.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA",
+    "NJ",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Agrimonia_striata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Agrimonia+striata"
+    ]
+  ]
+}

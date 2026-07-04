@@ -1,0 +1,71 @@
+{
+  "common": "Red Pine",
+  "sci": "Pinus resinosa",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles (vitamin-C tea, minor).",
+  "other_uses": "Straight-trunked reforestation and timber pine.",
+  "prep": "Steep young needles for a mild vitamin-C tea; grown chiefly for timber and reforestation.",
+  "harvest": "Needles year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy, acidic, well-drained soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "MI",
+    "WI",
+    "MN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_resinosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+resinosa"
+    ]
+  ]
+}

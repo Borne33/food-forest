@@ -1,0 +1,98 @@
+{
+  "common": "Chinquapin Oak",
+  "sci": "Quercus muehlenbergii",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (sweet, low-tannin, among the best-tasting native acorns).",
+  "other_uses": "Excellent rot-resistant timber; limestone-soil specialist.",
+  "prep": "Shell and eat fresh or lightly leached \u2014 these are among the sweetest native acorns, needing little processing.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained soils, especially over limestone/calcareous bedrock.",
+  "risks": "None significant once shelled.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      9,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_muehlenbergii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+muehlenbergii"
+    ]
+  ]
+}

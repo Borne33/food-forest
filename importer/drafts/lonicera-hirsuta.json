@@ -1,0 +1,74 @@
+{
+  "common": "Hairy Honeysuckle",
+  "sci": "Lonicera hirsuta",
+  "family": "Caprifoliaceae",
+  "type": "Vine",
+  "life": "Woody perennial vine",
+  "edible_parts": "Not eaten (berries not considered edible).",
+  "other_uses": "Native twining vine; hummingbird and pollinator nectar source.",
+  "prep": "A non-invasive native vine alternative to the invasive Japanese honeysuckle; grown for ecology.",
+  "harvest": "Blooms early summer.",
+  "sun": "Part shade to sun",
+  "soil": "Average, well-drained woodland-edge soils.",
+  "risks": "Berries are not considered edible.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA",
+    "NJ",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lonicera_hirsuta"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lonicera+hirsuta"
+    ]
+  ]
+}

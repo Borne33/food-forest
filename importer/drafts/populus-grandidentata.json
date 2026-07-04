@@ -1,0 +1,74 @@
+{
+  "common": "Bigtooth Aspen",
+  "sci": "Populus grandidentata",
+  "family": "Salicaceae",
+  "type": "Tree",
+  "life": "Fast-growing perennial",
+  "edible_parts": "Inner bark (historic famine food).",
+  "other_uses": "Fast-colonizing pioneer tree; important grouse and beaver food source.",
+  "prep": "Inner bark was a historic emergency food; bark contains salicin like willow.",
+  "harvest": "Bark harvested spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Adaptable; average to dry, well-drained soils.",
+  "risks": "None significant; bark is medicinally active (salicin).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA",
+    "NJ",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Populus_grandidentata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Populus+grandidentata"
+    ]
+  ]
+}

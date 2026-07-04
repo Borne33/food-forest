@@ -1,0 +1,70 @@
+{
+  "common": "Northern Mountain Ash",
+  "sci": "Sorbus decora",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Berries (astringent raw, good cooked).",
+  "other_uses": "Showy orange-red berry clusters; cold-climate wildlife tree.",
+  "prep": "Cook the astringent berries into jelly or wine, like European mountain ash; too sour/astringent raw.",
+  "harvest": "Fall, persisting into winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Cool, moist, well-drained acidic soils.",
+  "risks": "Astringent and sour raw \u2014 cook before eating in quantity.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sorbus_decora"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Sorbus+decora"
+    ]
+  ]
+}

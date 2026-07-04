@@ -1,0 +1,74 @@
+{
+  "common": "Tamarack",
+  "sci": "Larix laricina",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles (vitamin-C tea, minor).",
+  "other_uses": "A deciduous conifer \u2014 needles turn gold and drop each fall; bog/wetland specialist.",
+  "prep": "Steep young needles for a mild vitamin-C tea, like other conifers; grown chiefly for wetland restoration and fall color.",
+  "harvest": "Needles spring-summer.",
+  "sun": "Full sun",
+  "soil": "Wet, boggy, acidic soils; full sun.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA",
+    "NJ",
+    "OH",
+    "IN",
+    "IL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      6,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Larix_laricina"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Larix+laricina"
+    ]
+  ]
+}

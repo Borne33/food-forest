@@ -1,0 +1,92 @@
+{
+  "common": "Tulip Tree",
+  "sci": "Liriodendron tulipifera",
+  "family": "Magnoliaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten (flowers historically steeped, minor).",
+  "other_uses": "Towering, arrow-straight canopy tree; premier bee/honey tree.",
+  "prep": "One of the tallest eastern hardwoods; a major nectar source for honeybees; not a modern food plant.",
+  "harvest": "Blooms late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Rich, deep, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Liriodendron_tulipifera"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Liriodendron+tulipifera"
+    ]
+  ]
+}

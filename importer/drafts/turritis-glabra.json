@@ -1,0 +1,103 @@
+{
+  "common": "Tower Mustard",
+  "sci": "Turritis glabra",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Biennial",
+  "edible_parts": "Young leaves (peppery, edible like other mustards).",
+  "other_uses": "Tall, slender dry-meadow biennial in the mustard family.",
+  "prep": "Young basal leaves can be eaten raw or cooked like other wild mustard greens \u2014 peppery flavor.",
+  "harvest": "Leaves in the first-year rosette; blooms second year.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "MT",
+    "WY",
+    "CO",
+    "ID",
+    "UT",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      4,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Turritis_glabra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Turritis+glabra"
+    ]
+  ]
+}

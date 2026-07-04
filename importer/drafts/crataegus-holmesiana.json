@@ -1,0 +1,67 @@
+{
+  "common": "Holmes's Hawthorn",
+  "sci": "Crataegus holmesiana",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Haws (small tart fruit).",
+  "other_uses": "Thorny small tree; excellent thicket cover, spring bloom, and fall/winter bird food.",
+  "prep": "Cook the tart haws into jelly, or eat fresh once fully ripe.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Average, well-drained soils.",
+  "risks": "Thorny branches; don't chew seeds in bulk.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "NY",
+    "PA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      3,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Crataegus_holmesiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Crataegus+holmesiana"
+    ]
+  ]
+}

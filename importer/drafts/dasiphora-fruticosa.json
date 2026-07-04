@@ -1,0 +1,71 @@
+{
+  "common": "Shrubby Cinquefoil",
+  "sci": "Dasiphora fruticosa",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves (mild tea, minor).",
+  "other_uses": "Extremely tough, long-blooming yellow-flowered shrub for poor soils.",
+  "prep": "Dried leaves have a minor traditional tea use; grown chiefly as a hardy, low-maintenance flowering shrub.",
+  "harvest": "Blooms all summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Adaptable; wet to dry, poor to rocky soils.",
+  "risks": "None significant in tea amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "NY",
+    "MI",
+    "WI",
+    "MN",
+    "ND",
+    "SD",
+    "PA",
+    "NJ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Dasiphora_fruticosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Dasiphora+fruticosa"
+    ]
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "common": "Eastern Sycamore",
+  "sci": "Platanus occidentalis",
+  "family": "Platanaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten (seeds minor wildlife food).",
+  "other_uses": "Massive streamside tree with distinctive mottled, peeling bark.",
+  "prep": "Grown chiefly for its huge size, striking bark, and streambank stabilization; not a food plant.",
+  "harvest": "Seed balls fall-winter.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, rich, well-drained bottomland soils.",
+  "risks": "Fine hairs from seed balls can irritate airways if disturbed.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "OK",
+    "TX",
+    "KS",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Platanus_occidentalis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Platanus+occidentalis"
+    ]
+  ]
+}

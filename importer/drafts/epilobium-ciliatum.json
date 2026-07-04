@@ -1,0 +1,102 @@
+{
+  "common": "Fringed Willowherb",
+  "sci": "Epilobium ciliatum",
+  "family": "Onagraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young shoots (minor, edible).",
+  "other_uses": "Wetland-edge forb with small pink evening-primrose-family flowers.",
+  "prep": "Young shoots are edible like other willowherbs, but this is grown chiefly for pollinators.",
+  "harvest": "Blooms mid-late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "ID",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Epilobium_ciliatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Epilobium+ciliatum"
+    ]
+  ]
+}

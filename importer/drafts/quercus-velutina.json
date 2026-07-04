@@ -1,0 +1,92 @@
+{
+  "common": "Black Oak",
+  "sci": "Quercus velutina",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (bitter, red-oak group \u2014 needs thorough leaching).",
+  "other_uses": "Yellow inner bark was a historic dye source (quercitron).",
+  "prep": "Leach thoroughly before eating, like other red-oak acorns.",
+  "harvest": "Fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy or rocky, well-drained soils.",
+  "risks": "High tannins raw \u2014 must leach thoroughly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "fiber": [
+      8,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_velutina"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+velutina"
+    ]
+  ]
+}

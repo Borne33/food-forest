@@ -1,0 +1,78 @@
+{
+  "common": "Shortleaf Pine",
+  "sci": "Pinus echinata",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Young needles (vitamin-C tea) and inner bark (famine food, historic).",
+  "other_uses": "Fire-adapted southern pine; valuable lumber.",
+  "prep": "Steep young needles for tea; inner bark was a historic famine food, dried and ground.",
+  "harvest": "Needles year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, sandy, well-drained, acidic soils.",
+  "risks": "None significant in culinary amounts.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "OK",
+    "TX",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      7,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_echinata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+echinata"
+    ]
+  ]
+}

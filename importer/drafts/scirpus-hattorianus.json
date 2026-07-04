@@ -1,0 +1,81 @@
+{
+  "common": "Mosquito Bulrush",
+  "sci": "Scirpus hattorianus",
+  "family": "Cyperaceae",
+  "type": "Grass",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "A native bulrush/'wool grass' for wetland restoration; fluffy seed heads add winter texture.",
+  "prep": "Not a human food; grown for ecological and structural (erosion control, wildlife) value.",
+  "harvest": "Seed heads late summer-fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet, marshy soils; standing water tolerant.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      4,
+      "A"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Scirpus_hattorianus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Scirpus+hattorianus"
+    ]
+  ]
+}

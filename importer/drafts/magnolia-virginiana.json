@@ -1,0 +1,72 @@
+{
+  "common": "Sweetbay Magnolia",
+  "sci": "Magnolia virginiana",
+  "family": "Magnoliaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Fragrant, semi-evergreen wetland magnolia; sweetbay silkmoth host.",
+  "prep": "Grown for its lemon-scented creamy summer blooms and wetland tolerance; not a food plant.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist, acidic soils; swamp margins.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Magnolia_virginiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Magnolia+virginiana"
+    ]
+  ]
+}
