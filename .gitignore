@@ -13,3 +13,4 @@ importer/packets/
 
 # ── os ──
 .DS_Store
+importer/usda_report.json
