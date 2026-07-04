@@ -1,0 +1,81 @@
+{
+  "common": "Purple-stemmed Angelica",
+  "sci": "Angelica atropurpurea",
+  "family": "Apiaceae",
+  "type": "Herb",
+  "life": "Biennial/short-lived perennial",
+  "edible_parts": "Stems (candied, with extreme caution) and roots (historic).",
+  "other_uses": "Towering wetland pollinator magnet.",
+  "prep": "Some Apiaceae relatives are candied, but positive ID is essential before eating any part.",
+  "harvest": "Blooms early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Wet to moist soils.",
+  "risks": "Apiaceae has deadly toxic look-alikes (water hemlock) \u2014 do not forage without expert, 100%-certain ID.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Angelica_atropurpurea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Angelica+atropurpurea"
+    ]
+  ]
+}

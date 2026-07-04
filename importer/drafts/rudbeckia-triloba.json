@@ -1,0 +1,92 @@
+{
+  "common": "Brown-eyed Susan",
+  "sci": "Rudbeckia triloba",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial/short-lived perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Profuse small-flowered black-eyed-Susan relative; self-seeds readily.",
+  "prep": "A prolific, easy-care pollinator and cut-flower plant.",
+  "harvest": "Blooms mid-late summer into fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to moist, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rudbeckia_triloba"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rudbeckia+triloba"
+    ]
+  ]
+}

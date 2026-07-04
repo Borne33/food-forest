@@ -1,0 +1,90 @@
+{
+  "common": "Purple Clematis",
+  "sci": "Clematis occidentalis",
+  "family": "Ranunculaceae",
+  "type": "Vine",
+  "life": "Woody-based perennial vine",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Early-blooming native clematis vine; rock-outcrop specialist.",
+  "prep": "A spring-blooming vine for rocky sites; grown for ecology and ornament.",
+  "harvest": "Blooms mid-spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Rocky, well-drained soils.",
+  "risks": "Acrid, skin-irritating sap like other Clematis \u2014 not edible.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "ID",
+    "UT",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Clematis_occidentalis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Clematis+occidentalis"
+    ]
+  ]
+}

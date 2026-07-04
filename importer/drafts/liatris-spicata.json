@@ -1,0 +1,77 @@
+{
+  "common": "Blazing Star",
+  "sci": "Liatris spicata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Corm (historic use, minor).",
+  "other_uses": "Tall purple spikes \u2014 a top butterfly and pollinator plant.",
+  "prep": "A striking pollinator/cut-flower plant; the corm has minor historic food use but isn't a modern food.",
+  "harvest": "Blooms mid-late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to average soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NJ",
+    "PA",
+    "VA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Liatris_spicata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Liatris+spicata"
+    ]
+  ]
+}

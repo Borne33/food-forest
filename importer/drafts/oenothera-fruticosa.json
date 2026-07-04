@@ -1,0 +1,81 @@
+{
+  "common": "Sundrops",
+  "sci": "Oenothera fruticosa",
+  "family": "Onagraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves and shoots (mild, minor).",
+  "other_uses": "Cheerful yellow clump-forming evening-primrose relative.",
+  "prep": "Young leaves/shoots are edible like its biennial relative; mostly grown for its tidy yellow blooms.",
+  "harvest": "Blooms early-mid summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to dry, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Oenothera_fruticosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Oenothera+fruticosa"
+    ]
+  ]
+}

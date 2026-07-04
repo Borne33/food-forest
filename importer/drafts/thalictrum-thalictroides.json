@@ -1,0 +1,81 @@
+{
+  "common": "Rue Anemone",
+  "sci": "Thalictrum thalictroides",
+  "family": "Ranunculaceae",
+  "type": "Groundcover",
+  "life": "Perennial groundcover",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Dainty pink-white spring-ephemeral groundcover for rich woods.",
+  "prep": "A delicate, well-behaved spring groundcover for woodland gardens.",
+  "harvest": "Blooms early-mid spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, well-drained woodland soils.",
+  "risks": "Mildly toxic like other Ranunculaceae \u2014 not a food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Thalictrum_thalictroides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Thalictrum+thalictroides"
+    ]
+  ]
+}

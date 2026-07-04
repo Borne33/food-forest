@@ -1,0 +1,81 @@
+{
+  "common": "Trumpet Honeysuckle",
+  "sci": "Lonicera sempervirens",
+  "family": "Caprifoliaceae",
+  "type": "Vine",
+  "life": "Woody perennial vine",
+  "edible_parts": "Flowers (nectar, minor) \u2014 berries not edible.",
+  "other_uses": "Non-invasive native vine; premier hummingbird plant.",
+  "prep": "A well-behaved native alternative to invasive Japanese honeysuckle; the tubular flowers can be nibbled for nectar.",
+  "harvest": "Blooms late spring through summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to moist, well-drained soils.",
+  "risks": "Berries are not considered edible \u2014 nectar only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lonicera_sempervirens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lonicera+sempervirens"
+    ]
+  ]
+}

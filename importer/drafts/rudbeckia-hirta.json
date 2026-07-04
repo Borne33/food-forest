@@ -1,0 +1,91 @@
+{
+  "common": "Black-eyed Susan",
+  "sci": "Rudbeckia hirta",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Biennial/short-lived perennial",
+  "edible_parts": "Not eaten (edibility disputed \u2014 treat as ornamental only).",
+  "other_uses": "The quintessential American wildflower; long summer-to-fall bloom.",
+  "prep": "Grown for its long, cheerful bloom and pollinator/bird-seed value; not established as a food plant.",
+  "harvest": "Blooms summer into fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to dry, well-drained soils.",
+  "risks": "Some sources note skin irritation from contact and disputed internal safety \u2014 treat as non-food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rudbeckia_hirta"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rudbeckia+hirta"
+    ]
+  ]
+}

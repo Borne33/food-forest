@@ -1,0 +1,81 @@
+{
+  "common": "Blue Cohosh",
+  "sci": "Caulophyllum thalictroides",
+  "family": "Berberidaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "None \u2014 toxic.",
+  "other_uses": "Distinctive blue-berried spring woodland plant; traditional women's-health herb.",
+  "prep": "A traditional (and risky) herbal root, historically used to ease childbirth \u2014 modern guidance advises against self-use.",
+  "harvest": "Berries late summer.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "TOXIC \u2014 seeds/berries and roots contain compounds linked to cardiotoxicity in infants; not a food, and not for self-medication.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Caulophyllum_thalictroides"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Caulophyllum+thalictroides"
+    ]
+  ]
+}

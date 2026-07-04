@@ -1,0 +1,91 @@
+{
+  "common": "Purple Coneflower",
+  "sci": "Echinacea purpurea",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not typically eaten (petals as garnish).",
+  "other_uses": "Iconic immune-support herb; premier pollinator and finch-seed plant.",
+  "prep": "Roots and aerial parts are the famous echinacea herbal supplement; petals are an edible garnish.",
+  "harvest": "Blooms mid-late summer; roots for medicinal use in fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Average to dry, well-drained soils.",
+  "risks": "Generally well-tolerated as an herbal supplement, but can trigger allergic reactions in sensitive individuals.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "AR",
+    "LA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      1,
+      "A"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      7,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Echinacea_purpurea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Echinacea+purpurea"
+    ]
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "common": "Woodland Phlox",
+  "sci": "Phlox divaricata",
+  "family": "Polemoniaceae",
+  "type": "Groundcover",
+  "life": "Perennial groundcover",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Fragrant lavender-blue spring groundcover; hummingbird moth favorite.",
+  "prep": "A fragrant, shade-tolerant spring groundcover for woodland gardens.",
+  "harvest": "Blooms mid-spring.",
+  "sun": "Part shade to sun",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Phlox_divaricata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Phlox+divaricata"
+    ]
+  ]
+}

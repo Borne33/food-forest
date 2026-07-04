@@ -1,0 +1,81 @@
+{
+  "common": "Robin's Plantain",
+  "sci": "Erigeron pulchellus",
+  "family": "Asteraceae",
+  "type": "Groundcover",
+  "life": "Perennial groundcover",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Early-spring lavender daisy groundcover for dry shade.",
+  "prep": "A tough groundcover for dry shade with early pollinator blooms.",
+  "harvest": "Blooms mid-spring.",
+  "sun": "Part shade to sun",
+  "soil": "Dry to average, well-drained soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Erigeron_pulchellus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Erigeron+pulchellus"
+    ]
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "common": "Bloodroot",
+  "sci": "Sanguinaria canadensis",
+  "family": "Papaveraceae",
+  "type": "Herb",
+  "life": "Spring-ephemeral perennial",
+  "edible_parts": "None \u2014 toxic.",
+  "other_uses": "Ephemeral white spring bloom with distinctive red-orange sap.",
+  "prep": "Grown strictly as an ornamental spring ephemeral; the red sap was used as a dye/pigment.",
+  "harvest": "Blooms early spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "TOXIC sap (sanguinarine) \u2014 corrosive to tissue in quantity; never ingest, avoid prolonged skin contact.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sanguinaria_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Sanguinaria+canadensis"
+    ]
+  ]
+}

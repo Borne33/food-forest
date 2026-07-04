@@ -1,0 +1,73 @@
+{
+  "common": "Twinleaf",
+  "sci": "Jeffersonia diphylla",
+  "family": "Berberidaceae",
+  "type": "Herb",
+  "life": "Spring-ephemeral perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Distinctive butterfly-shaped-leaf spring ephemeral, named for Thomas Jefferson.",
+  "prep": "Grown as a choice, slow-spreading spring-woodland collector's plant.",
+  "harvest": "Blooms early spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist, neutral-to-alkaline woodland soils.",
+  "risks": "Mildly toxic in quantity \u2014 not a food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NJ",
+    "PA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MO",
+    "WV",
+    "VA",
+    "KY",
+    "TN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      4,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Jeffersonia_diphylla"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Jeffersonia+diphylla"
+    ]
+  ]
+}

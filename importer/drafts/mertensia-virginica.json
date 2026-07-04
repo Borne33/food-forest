@@ -1,0 +1,83 @@
+{
+  "common": "Virginia Bluebells",
+  "sci": "Mertensia virginica",
+  "family": "Boraginaceae",
+  "type": "Herb",
+  "life": "Spring-ephemeral perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Beloved blue-pink spring-ephemeral carpet for rich floodplains.",
+  "prep": "A classic spring-ephemeral colony plant for woodland gardens; not a food.",
+  "harvest": "Blooms early-mid spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist floodplain soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "NC",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Mertensia_virginica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Mertensia+virginica"
+    ]
+  ]
+}

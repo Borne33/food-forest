@@ -1,0 +1,81 @@
+{
+  "common": "Foamflower",
+  "sci": "Tiarella cordifolia",
+  "family": "Saxifragaceae",
+  "type": "Groundcover",
+  "life": "Perennial groundcover",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Frothy spring-blooming spreading groundcover for shade.",
+  "prep": "A choice, spreading shade groundcover with airy spring blooms; a close relative of the clumping Tiarella stolonifera already in this database.",
+  "harvest": "Blooms mid-spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Tiarella_cordifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Tiarella+cordifolia"
+    ]
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "common": "Pink Tickseed",
+  "sci": "Coreopsis rosea",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Delicate pink-flowered wetland-edge pollinator plant.",
+  "prep": "Grown for pollinators along pond and stream margins.",
+  "harvest": "Blooms mid-late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet, sandy soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "DE",
+    "MD",
+    "VA",
+    "NC",
+    "SC",
+    "GA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Coreopsis_rosea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Coreopsis+rosea"
+    ]
+  ]
+}

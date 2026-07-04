@@ -1,0 +1,81 @@
+{
+  "common": "Goldenseal",
+  "sci": "Hydrastis canadensis",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Prized, historically over-harvested medicinal woodland herb; at-risk in the wild.",
+  "prep": "Root is a well-known (and heavily over-collected) herbal antimicrobial \u2014 buy only nursery-propagated stock, never wild-dug.",
+  "harvest": "Root fall.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "Root is medicinally potent \u2014 not for casual/unsupervised use; conservation status makes wild harvest inappropriate.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": true,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      4,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      7,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Hydrastis_canadensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Hydrastis+canadensis"
+    ]
+  ]
+}

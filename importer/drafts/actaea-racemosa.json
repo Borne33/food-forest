@@ -1,0 +1,81 @@
+{
+  "common": "Black Cohosh",
+  "sci": "Actaea racemosa",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tall woodland pollinator plant; long history as a women's-health herb.",
+  "prep": "The root is a well-known herbal supplement (menopause symptoms) \u2014 not a food; grown for its dramatic white bottlebrush blooms.",
+  "harvest": "Blooms mid-late summer.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "Root is medicinally active with reported liver-safety concerns in supplement form \u2014 not a casual food or DIY remedy.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      6,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Actaea_racemosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Actaea+racemosa"
+    ]
+  ]
+}

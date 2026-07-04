@@ -1,0 +1,75 @@
+{
+  "common": "New York Ironweed",
+  "sci": "Vernonia noveboracensis",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten.",
+  "other_uses": "Tall magenta-purple late-summer bloomer for moist meadows; butterfly magnet.",
+  "prep": "A dramatic tall perennial for wet meadows and pollinator gardens.",
+  "harvest": "Blooms late summer-fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils.",
+  "risks": "None significant (not a food).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "OH",
+    "IN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vernonia_noveboracensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vernonia+noveboracensis"
+    ]
+  ]
+}

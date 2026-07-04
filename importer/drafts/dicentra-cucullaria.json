@@ -1,0 +1,81 @@
+{
+  "common": "Dutchman's Breeches",
+  "sci": "Dicentra cucullaria",
+  "family": "Papaveraceae",
+  "type": "Herb",
+  "life": "Spring-ephemeral perennial",
+  "edible_parts": "None \u2014 toxic.",
+  "other_uses": "Charming early-spring 'pantaloon' wildflower; specialist bee plant.",
+  "prep": "A beloved spring ephemeral grown for beauty and early bees; not a food.",
+  "harvest": "Blooms early spring.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "TOXIC alkaloids in all parts \u2014 do not eat.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Dicentra_cucullaria"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Dicentra+cucullaria"
+    ]
+  ]
+}

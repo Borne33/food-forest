@@ -1,0 +1,92 @@
+{
+  "common": "Red Baneberry",
+  "sci": "Actaea rubra",
+  "family": "Ranunculaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "None \u2014 toxic.",
+  "other_uses": "Striking red berry clusters; woodland ornamental.",
+  "prep": "Grown strictly as an ornamental; every part is poisonous, like its white-berried relative.",
+  "harvest": "Berries mid-late summer.",
+  "sun": "Part to full shade",
+  "soil": "Rich, moist woodland soils.",
+  "risks": "HIGHLY TOXIC \u2014 berries and roots can cause serious illness; never eat.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "ND",
+    "SD",
+    "MT",
+    "WY",
+    "CO",
+    "ID",
+    "UT",
+    "WA",
+    "OR",
+    "CA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Actaea_rubra"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Actaea+rubra"
+    ]
+  ]
+}

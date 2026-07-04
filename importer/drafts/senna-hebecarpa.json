@@ -1,0 +1,81 @@
+{
+  "common": "Northern Wild Senna",
+  "sci": "Senna hebecarpa",
+  "family": "Fabaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Not eaten by humans.",
+  "other_uses": "Nitrogen-fixing legume; sulphur butterfly host; tall yellow summer bloom.",
+  "prep": "A tall nitrogen-fixing legume and butterfly host; the seed pods have a history as a laxative, not a food.",
+  "harvest": "Blooms mid-late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to average soils.",
+  "risks": "Pods/seeds have a traditional laxative use \u2014 not a casual food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "DC",
+    "WV",
+    "VA",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "fiber": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Senna_hebecarpa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Senna+hebecarpa"
+    ]
+  ]
+}
