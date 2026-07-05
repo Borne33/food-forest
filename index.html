@@ -217,6 +217,33 @@
   .pill.inv{color:#9a2c22;background:#f6dcd7;border-color:#e3b1a8}
   .pill.deer{color:#5b5027;background:#eef0dd;border-color:#cdd3a6}
   .pill.fruit{color:#7a4a1f;background:#f7ead4;border-color:#e6c99b}
+  .pill.planpill{border-color:transparent;font-weight:600}
+  /* add-to-plan dropdown (multi-plan) */
+  .addwrap{position:relative;display:inline-block}
+  .planmenu{position:absolute;bottom:100%;left:0;z-index:30;margin-bottom:6px;min-width:210px;background:#fbf9f2;
+    border:1.5px solid var(--soil-line);border-radius:6px;box-shadow:0 16px 34px -18px #000;overflow:hidden;padding:4px}
+  .planmenu .prow{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;
+    font-family:'Spectral';font-size:14.5px;color:var(--ink);padding:8px 10px;border-radius:4px;cursor:pointer}
+  .planmenu .prow:hover{background:var(--paper2)}
+  .planmenu .dot{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+  .planmenu .chk{margin-left:auto;font-family:'Space Mono';font-size:12px;color:var(--sage-d)}
+  .planmenu .newp{border-top:1px solid var(--line);color:var(--sage-d);font-style:italic}
+  /* nested plan list in the nav */
+  .menu .panel .plannav{display:flex;align-items:center;gap:8px;font-size:15.5px;font-weight:600;padding:9px 12px 9px 26px}
+  .menu .panel .plannav .dot{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+  .menu .panel .plannav.active{background:var(--ink);color:var(--paper)}
+  .menu .panel .plannav.newp{font-style:italic;font-weight:500;color:var(--sage-d)}
+  /* My Plans: plan switcher bar */
+  .planbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px}
+  .planbar .pgrow{flex:1 1 auto}
+  .planchip{display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono';font-size:12px;letter-spacing:.03em;
+    border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:6px 12px;color:var(--ink);cursor:pointer}
+  .planchip .cdot{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+  .planchip .n{font-size:11px;opacity:.65;margin-left:2px}
+  .planchip.add{border-style:dashed;color:var(--sage-d)}
+  .planlink{background:transparent;border:0;font-family:'Space Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--sage-d);cursor:pointer;padding:6px 6px}
+  .planlink.del{color:var(--red)}
   /* category score boxes (editorial style) */
   .scores{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px}
   .cardact{padding:0 18px 14px}
@@ -386,18 +413,38 @@ const dataProvider = {
     if(error) throw error;
     return data.map(rowToPlant);
   },
-  async loadPlan(){
-    const { data, error } = await sb.from('user_plans').select('plant_id');
+  async loadPlans(){
+    const { data, error } = await sb.from('plans').select('id,name,color,created_at').order('created_at');
     if(error) throw error;
-    return data.map(r=>r.plant_id);
+    return data;
   },
-  async addPlant(plantId){
+  async loadPlanItems(){
+    // membership rows: which plant is in which plan
+    const { data, error } = await sb.from('user_plans').select('plant_id,plan_id');
+    if(error) throw error;
+    return data.map(r=>({ planId:r.plan_id, plantId:r.plant_id }));
+  },
+  async addPlant(plantId, planId){
     // user_id is filled automatically by the column default auth.uid()
-    const { error } = await sb.from('user_plans').insert({ plant_id:plantId });
+    const { error } = await sb.from('user_plans').insert({ plant_id:plantId, plan_id:planId });
     if(error) throw error;
   },
-  async removePlant(plantId){
-    const { error } = await sb.from('user_plans').delete().eq('plant_id', plantId);
+  async removePlant(plantId, planId){
+    const { error } = await sb.from('user_plans').delete().eq('plant_id', plantId).eq('plan_id', planId);
+    if(error) throw error;
+  },
+  async createPlan(name, color){
+    const { data, error } = await sb.from('plans').insert({ name, color }).select('id,name,color,created_at').single();
+    if(error) throw error;
+    return data;
+  },
+  async renamePlan(planId, name){
+    const { error } = await sb.from('plans').update({ name }).eq('id', planId);
+    if(error) throw error;
+  },
+  async deletePlan(planId){
+    // membership rows cascade via the plan_id FK
+    const { error } = await sb.from('plans').delete().eq('id', planId);
     if(error) throw error;
   },
   async setVerified(plantId, val){
@@ -648,10 +695,44 @@ function PlantImages({images, full}){
   );
 }
 
-function PlantCard({p, state, inPlan, toggle, defaultOpen}){
+/* Add-to-plan control: a single toggle button when there's one plan, else a
+   dropdown of plans (each row toggles membership; a plant can be in several). */
+function AddToPlan({p, plans, memberOf, toggle}){
+  const [open,setOpen]=useState(false);
+  useEffect(()=>{ if(!open) return; const h=()=>setOpen(false);
+    document.addEventListener("click",h); return ()=>document.removeEventListener("click",h); },[open]);
+  const inSet=new Set(memberOf||[]);
+  if((plans||[]).length<=1){
+    const pl=plans[0]; if(!pl) return null;
+    const inPlan=inSet.has(pl.id);
+    return <button className={"addbtn"+(inPlan?" in":"")} onClick={e=>{e.stopPropagation();toggle(p.id,pl.id);}}>
+      {inPlan?"★ In your plan — remove":"+ Add to my plan"}</button>;
+  }
+  const count=(memberOf||[]).length;
+  return (
+    <div className="addwrap" onClick={e=>e.stopPropagation()}>
+      <button className={"addbtn"+(count?" in":"")} onClick={()=>setOpen(o=>!o)}>
+        {count?`★ In ${count} plan${count>1?"s":""} — edit ▾`:"+ Add to a plan ▾"}
+      </button>
+      {open && (
+        <div className="planmenu">
+          {plans.map(pl=>{ const inP=inSet.has(pl.id); return (
+            <button key={pl.id} className="prow" onClick={()=>toggle(p.id,pl.id)}>
+              <span className="dot" style={{background:pl.color}}></span>
+              <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{pl.name}</span>
+              <span className="chk">{inP?"✓ added":"+ add"}</span>
+            </button>
+          );})}
+        </div>
+      )}
+    </div>
+  );
+}
+function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
   const [open,setOpen]=useState(!!defaultOpen);
   const nat = nativity(p,state);
   const ov = overall(p,state);
+  const inPlans=(plans||[]).filter(pl=>(memberOf||[]).includes(pl.id));
   return (
     <div className="card">
       <div className="head" onClick={()=>setOpen(o=>!o)}>
@@ -667,7 +748,9 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
             {p.decPriority && <span className="pill dec">NY priority</span>}
             {p.deerResistant && <span className="pill deer">Deer resistant</span>}
             {fruitLabel(p) && <span className="pill fruit">{fruitLabel(p)}</span>}
-            {inPlan && <span className="pill type">★ In plan</span>}
+            {inPlans.map(pl=>(
+              <span key={pl.id} className="pill planpill" style={{background:pl.color,color:textOn(pl.color)}}>★ {pl.name}</span>
+            ))}
           </div>
         </div>
         <PlantImages images={p.images} />
@@ -693,9 +776,7 @@ function PlantCard({p, state, inPlan, toggle, defaultOpen}){
       </div>
 
       <div className="cardact">
-        <button className={"addbtn"+(inPlan?" in":"")} onClick={(e)=>{e.stopPropagation();toggle(p.id);}}>
-          {inPlan?"★ In your plan — remove":"+ Add to my plan"}
-        </button>
+        <AddToPlan p={p} plans={plans} memberOf={memberOf} toggle={toggle} />
       </div>
 
       {open && (
@@ -749,7 +830,8 @@ function Pager({page, pageCount, go}){
   );
 }
 
-function Database({plants, state, setState, plan, toggle}){
+function Database({plants, state, setState, plans, membership, toggle}){
+  const inAnyPlan=id=>!!(membership[id]&&membership[id].length);
   const [q,setQ]=useState("");
   const [sortKey,setSortKey]=useState("overall");
   const [dir,setDir]=useState(-1); // -1 desc, 1 asc
@@ -781,8 +863,8 @@ function Database({plants, state, setState, plan, toggle}){
       if(flags.cooked && p.s.cooked[0]<5) return false;
       if(flags.deer && !p.deerResistant) return false;
       if(flags.dec && !p.decPriority) return false;
-      if(flags.plan && !plan.includes(p.id)) return false;
-      if(flags.notplan && plan.includes(p.id)) return false;
+      if(flags.plan && !inAnyPlan(p.id)) return false;
+      if(flags.notplan && inAnyPlan(p.id)) return false;
       if(batch!=="all" && String(p.batch)!==batch) return false;
       return true;
     });
@@ -794,7 +876,7 @@ function Database({plants, state, setState, plan, toggle}){
     };
     arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
     return arr;
-  },[plants,q,types,flags,sortKey,dir,state,plan,batch]);
+  },[plants,q,types,flags,sortKey,dir,state,membership,batch]);
 
   // pagination: cap at 100 plants per page
   const PER_PAGE=100;
@@ -859,7 +941,7 @@ function Database({plants, state, setState, plan, toggle}){
 
       <div className="count">{view.length} shown{pageCount>1?` · page ${curPage} of ${pageCount}`:""}</div>
       <Pager page={curPage} pageCount={pageCount} go={goPage} />
-      {pageItems.map(p=><PlantCard key={p.id} p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />)}
+      {pageItems.map(p=><PlantCard key={p.id} p={p} state={state} plans={plans} memberOf={membership[p.id]} toggle={toggle} />)}
       {view.length===0 && <div className="empty">No plants match those filters. Clear a filter or search to see more.</div>}
       <Pager page={curPage} pageCount={pageCount} go={goPage} />
     </div>
@@ -899,17 +981,40 @@ function PlanMiniCard({p, state, remove, onOpen}){
 }
 
 /* ---------- My Plan page ---------- */
-function MyPlan({plants, state, plan, toggle, go}){
+function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | soil | risk
   const [soil,setSoil]=useState({tex:["Loam"], dr:["Well-drained"], phL:["Neutral (6.5–7.5)"]});
-  const chosen=plants.filter(p=>plan.includes(p.id));
+  const curObj=plans.find(p=>p.id===curPlan)||plans[0];
+  const curSet=useMemo(()=>new Set(planItems.filter(it=>it.planId===curPlan).map(it=>it.plantId)),[planItems,curPlan]);
+  const plan=plants.filter(p=>curSet.has(p.id)).map(p=>p.id); // plant ids in the CURRENT plan
+  const curToggle=id=>toggle(id,curPlan);                      // add/remove within the current plan
+  const planCount=id=>planItems.filter(it=>it.planId===id).length;
+  const doNew=async()=>{ const nm=prompt("Name your new plan:",""); if(nm===null) return; try{ await newPlan(nm); }catch(e){ alert("Couldn't create plan: "+(e.message||e)); } };
+  const doRename=()=>{ const nm=prompt("Rename plan:", curObj?curObj.name:""); if(nm!==null) renamePlan(curPlan,nm); };
+  const doDelete=async()=>{ if(!curObj) return; if(!confirm(`Delete the plan "${curObj.name}" and its ${planCount(curPlan)} plant(s)? This can't be undone.`)) return; try{ await deletePlan(curPlan); }catch(e){ alert("Couldn't delete plan: "+(e.message||e)); } };
+  const planBar=(
+    <div className="planbar">
+      {plans.map(pn=>(
+        <button key={pn.id} className={"planchip"+(pn.id===curPlan?" on":"")} onClick={()=>setCurPlan(pn.id)}
+          style={pn.id===curPlan?{background:pn.color,color:textOn(pn.color),borderColor:pn.color}:{}}>
+          <span className="cdot" style={{background:pn.color}}></span>{pn.name}<span className="n">{planCount(pn.id)}</span>
+        </button>
+      ))}
+      <button className="planchip add" onClick={doNew}>+ New plan</button>
+      <span className="pgrow"></span>
+      <button className="planlink" onClick={doRename}>✎ Rename</button>
+      {plans.length>1 && <button className="planlink del" onClick={doDelete}>✕ Delete</button>}
+    </div>
+  );
+  const chosen=plants.filter(p=>curSet.has(p.id));
   if(chosen.length===0){
     return (
       <div>
-        <div className="pagehead"><div className="eye">My Plan</div><h2>Your food forest</h2>
-          <p>You haven't added any plants yet.</p></div>
-        <div className="empty">Browse the database and tap <b>+ Add to my plan</b> on any plant.<br/><br/>
+        {planBar}
+        <div className="pagehead"><div className="eye">My Plans</div><h2>{curObj?curObj.name:"Your food forest"}</h2>
+          <p>This plan is empty.</p></div>
+        <div className="empty">Browse the database and add plants to <b>{curObj?curObj.name:"this plan"}</b> — the add button lets you pick which plan.<br/><br/>
           <button className="addbtn" onClick={()=>go("db")}>Go to the database</button></div>
       </div>
     );
@@ -979,9 +1084,10 @@ function MyPlan({plants, state, plan, toggle, go}){
 
   return (
     <div>
-      <div className="pagehead"><div className="eye">My Plan · {chosen.length} plants</div>
-        <h2>Your food forest</h2>
-        <p>Layers, soil fit, and risks for the plants in your plan.</p></div>
+      {planBar}
+      <div className="pagehead"><div className="eye">My Plans · {chosen.length} plants</div>
+        <h2>{curObj?curObj.name:"Your food forest"}</h2>
+        <p>Layers, soil fit, and risks for the plants in this plan.</p></div>
 
       <div className="viewtoggle">
         <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
@@ -1013,7 +1119,7 @@ function MyPlan({plants, state, plan, toggle, go}){
                 <div className="layer" key={layer.name} style={{background:LAYER_BG[li],padding:"12px 12px 14px",borderRadius:6}}>
                   <h4>{layer.name}<span>{inLayer.length} plant{inLayer.length>1?"s":""}</span></h4>
                   <div className="minigrid">
-                    {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={toggle} onOpen={setDetail} />)}
+                    {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={curToggle} onOpen={setDetail} />)}
                   </div>
                 </div>
               );
@@ -1024,14 +1130,14 @@ function MyPlan({plants, state, plan, toggle, go}){
             {suggestions.map(({p,why})=>(
               <div className="sugg" key={p.id} style={{display:"block"}}>
                 <div><b>{p.common}</b> <span style={{fontStyle:"italic",color:"var(--ink2)"}}>{p.sci}</span><div className="why">{why} · scores {overall(p,state)}</div></div>
-                <button className="addbtn" onClick={()=>toggle(p.id)} style={{marginTop:6}}>+ Add</button>
+                <button className="addbtn" onClick={()=>curToggle(p.id)} style={{marginTop:6}}>+ Add</button>
               </div>
             ))}
           </div>
         </div>
       </React.Fragment>)}
 
-      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={toggle} soil={soil} setSoil={setSoil} />}
+      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} />}
 
       {view==="risk" && (<React.Fragment>
         <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Risk register · from each plant's cautions</div></div>
@@ -1043,7 +1149,7 @@ function MyPlan({plants, state, plan, toggle, go}){
           <div className="scrim" onClick={()=>setDetail(null)}></div>
           <div className="inner">
             <button className="x" onClick={()=>setDetail(null)}>Close ✕</button>
-            <PlantCard p={detail} state={state} inPlan={plan.includes(detail.id)} toggle={toggle} defaultOpen />
+            <PlantCard p={detail} state={state} plans={plans} memberOf={membership[detail.id]} toggle={toggle} defaultOpen />
           </div>
         </div>
       )}
@@ -1435,7 +1541,7 @@ function PlantEditor({p, onSave, onCancel}){
   );
 }
 
-function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage, updatePlant}){
+function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, removeImage, updatePlant}){
   const [q,setQ]=useState("");
   const [filt,setFilt]=useState("all"); // all | yes | no
   const [editingId,setEditingId]=useState(null);
@@ -1465,7 +1571,7 @@ function VerifyPage({plants, state, plan, toggle, verifyToggle, removeImage, upd
       <div className="count">{view.length} shown</div>
       {view.map(p=>(
         <div key={p.id}>
-          <PlantCard p={p} state={state} inPlan={plan.includes(p.id)} toggle={toggle} />
+          <PlantCard p={p} state={state} plans={plans} memberOf={membership[p.id]} toggle={toggle} />
           <div className="vbar">
             <div className="vrow">
               <label>
@@ -1634,13 +1740,22 @@ function SoilExam({plants, state, plan, toggle, soil, setSoil}){
 }
 
 /* ---------- Menu + App shell ---------- */
-const PAGES=[["db","Database"],["plan","My Plan"],["guide","Scoring Guide"],["data","Raw Data"]];
+const PAGES=[["db","Database"],["plan","My Plans"],["guide","Scoring Guide"],["data","Raw Data"]];
+// palette for plan pills; new plans cycle through these
+const PLAN_COLORS=["#6b8f5a","#b5651d","#4a7a96","#9c6b9e","#c99a2e","#7a8b3f","#a5504d","#4f8a7b"];
+// readable text color (dark/light) for a given hex background
+function textOn(hex){
+  const h=(hex||"#6b8f5a").replace("#",""); const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16);
+  return (0.299*r+0.587*g+0.114*b)>150 ? "#2b2a22" : "#fff";
+}
 function App(){
   const [page,setPage]=useState("db");
   const [menu,setMenu]=useState(false);
   const [state,setState]=useState("NY");
   const [plants,setPlants]=useState([]);
-  const [plan,setPlan]=useState([]);
+  const [plans,setPlans]=useState([]);          // [{id,name,color}]
+  const [planItems,setPlanItems]=useState([]);  // [{planId,plantId}]
+  const [curPlan,setCurPlan]=useState(null);    // plan currently shown on the My Plans page
   const [loadErr,setLoadErr]=useState(null);
   const [user,setUser]=useState(null);
   const [authReady,setAuthReady]=useState(false);
@@ -1654,20 +1769,46 @@ function App(){
 
   // load data whenever we have a signed-in user
   useEffect(()=>{
-    if(!user){ setPlants([]); setPlan([]); setLoadErr(null); return; }
+    if(!user){ setPlants([]); setPlans([]); setPlanItems([]); setCurPlan(null); setLoadErr(null); return; }
     (async()=>{
       try{
-        const [pl, plan] = await Promise.all([dataProvider.getPlants(), dataProvider.loadPlan()]);
-        setPlants(pl); setPlan(plan);
+        const [pl, pns, items] = await Promise.all([dataProvider.getPlants(), dataProvider.loadPlans(), dataProvider.loadPlanItems()]);
+        let list=pns;
+        if(list.length===0){ list=[await dataProvider.createPlan("My Plan", PLAN_COLORS[0])]; } // brand-new user
+        setPlants(pl); setPlans(list); setPlanItems(items);
+        setCurPlan(c=> (c && list.some(p=>p.id===c)) ? c : list[0].id);
       }catch(err){ console.error(err); setLoadErr(err.message||String(err)); }
     })();
   },[user]);
 
-  const toggle=id=>{
-    const have=plan.includes(id);
-    setPlan(pl=> have ? pl.filter(x=>x!==id) : [...pl,id]); // optimistic
-    (have ? dataProvider.removePlant(id) : dataProvider.addPlant(id))
-      .catch(err=>{ console.error(err); setPlan(pl=> have ? [...pl,id] : pl.filter(x=>x!==id)); }); // revert on failure
+  // membership map: plantId -> [planId,...]
+  const membership=useMemo(()=>{
+    const m={}; planItems.forEach(it=>{ (m[it.plantId]||(m[it.plantId]=[])).push(it.planId); }); return m;
+  },[planItems]);
+
+  const toggle=(plantId, planId)=>{
+    planId = planId || curPlan; if(!planId) return;
+    const have = planItems.some(it=>it.planId===planId && it.plantId===plantId);
+    setPlanItems(items=> have ? items.filter(it=>!(it.planId===planId&&it.plantId===plantId)) : [...items,{planId,plantId}]); // optimistic
+    (have ? dataProvider.removePlant(plantId,planId) : dataProvider.addPlant(plantId,planId))
+      .catch(err=>{ console.error(err); setPlanItems(items=> have ? [...items,{planId,plantId}] : items.filter(it=>!(it.planId===planId&&it.plantId===plantId))); });
+  };
+  const newPlan=async(name)=>{
+    const color=PLAN_COLORS[plans.length % PLAN_COLORS.length];
+    const d=await dataProvider.createPlan((name&&name.trim())||("Plan "+(plans.length+1)), color);
+    setPlans(ps=>[...ps,d]); setCurPlan(d.id); return d;
+  };
+  const renamePlan=(id,name)=>{
+    const nm=(name||"").trim(); if(!nm) return;
+    setPlans(ps=>ps.map(p=>p.id===id?{...p,name:nm}:p)); // optimistic
+    dataProvider.renamePlan(id,nm).catch(err=>console.error(err));
+  };
+  const deletePlan=async(id)=>{
+    await dataProvider.deletePlan(id); // membership rows cascade
+    const rest=plans.filter(p=>p.id!==id);
+    setPlanItems(items=>items.filter(it=>it.planId!==id));
+    if(rest.length===0){ const d=await dataProvider.createPlan("My Plan", PLAN_COLORS[0]); setPlans([d]); setCurPlan(d.id); }
+    else { setPlans(rest); if(curPlan===id) setCurPlan(rest[0].id); }
   };
   const verifyToggle=(id,val)=>{
     setPlants(ps=>ps.map(p=>p.id===id?{...p,humanVerified:val}:p)); // optimistic
@@ -1715,9 +1856,26 @@ function App(){
         <div className="panel">
           <div className="ttl">Navigate</div>
           {navPages.map(([k,label],i)=>(
-            <button key={k} className={page===k?"active":""} onClick={()=>go(k)}>
-              {label}<span className="num">0{i+1}{k==="plan"&&plan.length?` · ${plan.length}`:""}</span>
-            </button>
+            k==="plan" ? (
+              <React.Fragment key={k}>
+                <button className={page==="plan"?"active":""} onClick={()=>go("plan")}>
+                  {label}<span className="num">0{i+1}</span>
+                </button>
+                {plans.map(pn=>(
+                  <button key={pn.id} className={"plannav"+(page==="plan"&&curPlan===pn.id?" active":"")}
+                    onClick={()=>{ setCurPlan(pn.id); go("plan"); }}>
+                    <span className="dot" style={{background:pn.color}}></span>
+                    <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{pn.name}</span>
+                    <span className="num" style={{marginLeft:"auto"}}>{planItems.filter(it=>it.planId===pn.id).length}</span>
+                  </button>
+                ))}
+                <button className="plannav newp" onClick={async()=>{ const nm=prompt("Name your new plan:",""); if(nm===null) return; try{ await newPlan(nm); go("plan"); }catch(e){ alert("Couldn't create plan: "+(e.message||e)); } }}>+ New plan</button>
+              </React.Fragment>
+            ) : (
+              <button key={k} className={page===k?"active":""} onClick={()=>go(k)}>
+                {label}<span className="num">0{i+1}</span>
+              </button>
+            )
           ))}
           <button className="close" onClick={()=>setMenu(false)}>Close ✕</button>
           <div className="userbar">
@@ -1736,10 +1894,10 @@ function App(){
             that the <b>Email</b> provider is enabled, and that you ran both SQL files.
           </div>
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
-          page==="db" ? <Database plants={plants} state={state} setState={setState} plan={plan} toggle={toggle} /> :
-          page==="plan" ? <MyPlan plants={plants} state={state} plan={plan} toggle={toggle} go={go} /> :
+          page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
+          page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
-          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plan={plan} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} /> :
+          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} /> :
           <RawData plants={plants} state={state} />
         )}
         <footer className="disclaimer">The contents of this website, such as text, graphics, images, and other material contained on this site (“Content”) are for informational purposes only. The Content is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Caution must be used when utilizing any Content from this website and all Content must be verified by a reliable source before use. The creators of this website accept no liability or responsibility should any damage or injury occur as a result of the use that is made of the Content herein.</footer>
