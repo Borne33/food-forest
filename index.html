@@ -73,7 +73,7 @@
   .mschip{font-family:'Space Mono';font-size:11px;background:var(--soil-bg);color:var(--soil-d);border:1px solid var(--soil-line);border-radius:99px;padding:2px 8px}
   .msph{font-family:'Space Mono';font-size:12px;color:var(--faint)}
   .mschev{margin-left:auto;color:var(--soil);font-size:12px}
-  .msmenu{position:absolute;top:100%;left:0;right:0;z-index:20;margin-top:4px;background:#fbf9f2;border:1.5px solid var(--soil-line);border-radius:5px;box-shadow:0 14px 30px -18px #000;overflow:hidden}
+  .msmenu{position:absolute;top:100%;left:0;right:0;z-index:20;margin-top:4px;background:#fbf9f2;border:1.5px solid var(--soil-line);border-radius:5px;box-shadow:0 14px 30px -18px #000;overflow-y:auto;max-height:300px}
   .msopt{display:flex;align-items:center;gap:8px;padding:8px 11px;font-size:14px;cursor:pointer}
   .msopt:hover{background:var(--soil-bg)}
   .msopt .box{width:16px;height:16px;border:1.5px solid var(--soil-line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--paper)}
@@ -218,6 +218,10 @@
   .pill.deer{color:#5b5027;background:#eef0dd;border-color:#cdd3a6}
   .pill.fruit{color:#7a4a1f;background:#f7ead4;border-color:#e6c99b}
   .pill.planpill{border-color:transparent;font-weight:600}
+  .tagrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+  .utag{font-family:'Space Mono';font-size:10px;letter-spacing:.03em;border-radius:99px;padding:2px 8px;border:1px solid}
+  .utag.food{color:#6b4a1c;background:#f5ead2;border-color:#e2cfa0}
+  .utag.mat{color:#3a4660;background:#e6eaf3;border-color:#c2cce0}
   /* add-to-plan dropdown (multi-plan) */
   .addwrap{position:relative;display:inline-block}
   .planmenu{position:absolute;bottom:100%;left:0;z-index:30;margin-bottom:6px;min-width:210px;background:#fbf9f2;
@@ -386,8 +390,15 @@ function rowToPlant(r){
     soilPh:r.soil_ph||"", soilN:r.soil_n||"", soilP:r.soil_p||"", soilK:r.soil_k||"",
     soilTexture:r.soil_texture||[], soilDrainage:r.soil_drainage||[],
     batch:r.batch||null, createdAt:r.created_at||null,
+    foodTypes:r.food_types||[], materialTypes:r.material_types||[], lifecycle:r.lifecycle||"",
+    ecoUses:r.eco_uses||"", materialUses:r.material_uses||"",
   };
 }
+const FOOD_TYPES=["Fruit","Nut/Seed","Grain","Leafy Green","Vegetable","Root/Tuber/Bulb","Herb/Spice","Tea/Drink","Flower","Sap/Syrup"];
+const MATERIAL_TYPES=["Timber/Wood","Fiber/Cordage","Basketry/Weaving","Dye","Soap/Saponin","Wax/Resin/Gum","Fuelwood","Other"];
+const LIFECYCLES=["Annual","Biennial","Short-Lived Perennial","Long-Lived Perennial"];
+const PLANT_TYPES=["Tree","Shrub","Herb","Vine","Fern","Grass","Groundcover"];
+const NPK_LEVELS=["Low","Moderate","High"];
 
 /* Only this signed-in user sees the Human Verify page and may write
    verification. Enforced server-side by an RLS policy on plants too. */
@@ -479,6 +490,12 @@ const STATE_NAMES = {AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"Cal
 function regionGroupOf(st){
   for(const g in REGION){ if(REGION[g].includes(st)) return g; }
   return "Other";
+}
+// native_regions is derived from native_states: a region is flagged when the
+// plant covers >=50% of that region's states (mirrors the importer).
+function deriveRegions(states){
+  const set=new Set(states||[]);
+  return Object.keys(REGION).filter(r=>{ const rs=REGION[r]; return rs.filter(s=>set.has(s)).length*2 >= rs.length; });
 }
 /* region -> color (from the shared palette) for the guide map + legend */
 const REGION_COLORS = {
@@ -742,7 +759,7 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
           <div className="sci">{p.sci}</div>
           <div className="pills">
             <span className={"pill "+(nat.v<0?"inv":"nat")}>{nat.label}</span>
-            <span className="pill life">{nd(p.life)}</span>
+            <span className="pill life">{p.lifecycle||nd(p.life)}</span>
             {p.nf && <span className="pill nf">N-fixer</span>}
             {p.pol && <span className="pill pol">Pollinator</span>}
             {p.decPriority && <span className="pill dec">NY priority</span>}
@@ -786,9 +803,14 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
             <div><dt>USDA hardiness zones</dt><dd>{p.hardinessZones||"—"}</dd></div>
             {p.yearsToFruit && <div><dt>Years to fruit</dt><dd>{p.yearsToFruit} years</dd></div>}
             {p.minPlantsFruit && <div><dt>Min. plants to fruit</dt><dd>{p.minPlantsFruit>=2 ? p.minPlantsFruit+" (needs a cross-pollination partner)" : "1 (self-fruitful)"}</dd></div>}
-            <div><dt>Edible parts</dt><dd>{nd(p.edibleParts)}</dd></div>
+            <div><dt>Lifecycle</dt><dd>{p.lifecycle ? <React.Fragment><b>{p.lifecycle}</b>{p.life && p.life.toLowerCase()!==p.lifecycle.toLowerCase() ? " · "+p.life : ""}</React.Fragment> : nd(p.life)}</dd></div>
+            <div><dt>Edible parts</dt><dd>{nd(p.edibleParts)}
+              {p.foodTypes.length>0 && <div className="tagrow">{p.foodTypes.map(t=><span key={t} className="utag food">{t}</span>)}</div>}</dd></div>
             <div><dt>How to prepare</dt><dd>{nd(p.prep)}</dd></div>
-            <div><dt>Other uses</dt><dd>{nd(p.otherUses)}</dd></div>
+            <div><dt>Ecological uses</dt><dd>{nd(p.ecoUses)}</dd></div>
+            <div><dt>Material uses</dt><dd>
+              {p.materialTypes.length>0 && <div className="tagrow">{p.materialTypes.map(t=><span key={t} className="utag mat">{t}</span>)}</div>}
+              {p.materialUses ? <div style={{marginTop:p.materialTypes.length?6:0}}>{p.materialUses}</div> : (p.materialTypes.length?null:<span>No Data Found</span>)}</dd></div>
             <div><dt>Harvest time</dt><dd>{nd(p.harvest)}</dd></div>
             <div><dt>Sun</dt><dd>{nd(p.sun)}</dd></div>
             <div><dt>Soil</dt><dd>{nd(p.soil)}
@@ -839,6 +861,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
   const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false,notplan:false,deer:false,dec:false});
   const [batch,setBatch]=useState("all"); // added-batch filter (by created_at cluster)
   const [planFilter,setPlanFilter]=useState([]); // selected plan ids to filter by (empty = any)
+  const [foodF,setFoodF]=useState([]), [matF,setMatF]=useState([]), [lifeF,setLifeF]=useState([]); // food/material/lifecycle filters
 
   const allTypes=[...new Set(plants.map(p=>p.type))];
   // distinct batches with their add-date + count, for the "Added batch" dropdown
@@ -865,6 +888,9 @@ function Database({plants, state, setState, plans, membership, toggle}){
       if(flags.deer && !p.deerResistant) return false;
       if(flags.dec && !p.decPriority) return false;
       if(planFilter.length && !planFilter.some(pid=>(membership[p.id]||[]).includes(pid))) return false;
+      if(foodF.length && !foodF.some(t=>(p.foodTypes||[]).includes(t))) return false;
+      if(matF.length && !matF.some(t=>(p.materialTypes||[]).includes(t))) return false;
+      if(lifeF.length && !lifeF.includes(p.lifecycle)) return false;
       if(flags.notplan && inAnyPlan(p.id)) return false;
       if(batch!=="all" && String(p.batch)!==batch) return false;
       return true;
@@ -877,7 +903,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
     };
     arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
     return arr;
-  },[plants,q,types,flags,sortKey,dir,state,membership,batch,planFilter]);
+  },[plants,q,types,flags,sortKey,dir,state,membership,batch,planFilter,foodF,matF,lifeF]);
 
   // pagination: cap at 100 plants per page
   const PER_PAGE=100;
@@ -885,7 +911,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
   const pageCount=Math.max(1, Math.ceil(view.length/PER_PAGE));
   const curPage=Math.min(page, pageCount);
   const pageItems=view.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
-  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch,planFilter]); // reset to page 1 on filter change
+  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch,planFilter,foodF,matF,lifeF]); // reset to page 1 on filter change
   useEffect(()=>{ setPlanFilter(pf=>pf.filter(id=>plans.some(p=>p.id===id))); },[plans]); // drop deleted plans
   const goPage=n=>{ setPage(n); window.scrollTo({top:0,behavior:"smooth"}); };
 
@@ -927,6 +953,12 @@ function Database({plants, state, setState, plans, membership, toggle}){
           </select></div>
         <div style={{minWidth:180,flex:"1 1 180px"}}><PlanFilter plans={plans} value={planFilter} onChange={setPlanFilter} /></div>
         <button className="dirbtn" title="Toggle direction" onClick={()=>setDir(d=>-d)}>{dir===-1?"↓":"↑"}</button>
+      </div>
+
+      <div className="controls">
+        <div style={{minWidth:170,flex:"1 1 170px"}}><MultiSelect label="Food type" options={FOOD_TYPES} value={foodF} onChange={setFoodF} /></div>
+        <div style={{minWidth:170,flex:"1 1 170px"}}><MultiSelect label="Material type" options={MATERIAL_TYPES} value={matF} onChange={setMatF} /></div>
+        <div style={{minWidth:170,flex:"1 1 170px"}}><MultiSelect label="Lifecycle" options={LIFECYCLES} value={lifeF} onChange={setLifeF} /></div>
       </div>
 
       <div className="toggles">
@@ -1417,35 +1449,37 @@ const TIER_OPTS=[["P","peer-reviewed"],["E","ethnobotanical"],["A","anecdotal"],
 function plantToForm(p){
   return {
     common:p.common||"", sci:p.sci||"", family:p.family||"", type:p.type||"", life:p.life||"",
+    lifecycle:p.lifecycle||"", food_types:p.foodTypes||[], material_types:p.materialTypes||[],
     edible_parts:p.edibleParts||"", other_uses:p.otherUses||"", prep:p.prep||"", harvest:p.harvest||"",
+    eco_uses:p.ecoUses||"", material_uses:p.materialUses||"",
     sun:p.sun||"", soil:p.soil||"", risks:p.risks||"", buy:p.buy||"",
     hardiness_zones:p.hardinessZones||"", years_to_fruit:p.yearsToFruit||"", min_plants_fruit:p.minPlantsFruit==null?"":p.minPlantsFruit,
     nf:!!p.nf, pol:!!p.pol, deer_resistant:!!p.deerResistant, dec_priority:!!p.decPriority,
     native_to_us:!!p.nativeToUS, native_north_america:!!p.nativeNorthAmerica, native_americas:!!p.nativeAmericas,
     invasive_everywhere:!!p.invasiveEverywhere,
-    native_states:(p.nativeStates||[]).join(", "), native_regions:(p.nativeRegions||[]).join(", "),
-    invasive_states:(p.invasiveStates||[]).join(", "),
+    native_states:p.nativeStates||[], invasive_states:p.invasiveStates||[],
     soil_ph:p.soilPh||"", soil_n:p.soilN||"", soil_p:p.soilP||"", soil_k:p.soilK||"",
-    soil_texture:(p.soilTexture||[]).join(", "), soil_drainage:(p.soilDrainage||[]).join(", "),
+    soil_texture:p.soilTexture||[], soil_drainage:p.soilDrainage||[],
     scores:Object.fromEntries(SCORE_KEYS.map(([k])=>[k,[p.s[k][0],p.s[k][1]]])),
     images:(p.images||[]).map(im=>({url:im.url||"",title:im.title||"",source:im.source||""})),
     sources:(p.sources||[]).map(s=>[s[0]||"",s[1]||""]),
   };
 }
 function formToPatch(f){
-  const arr=s=>String(s||"").split(",").map(x=>x.trim()).filter(Boolean);
   return {
-    common:f.common, sci:f.sci, family:f.family, type:f.type, life:f.life,
+    common:f.common, sci:f.sci, family:f.family, type:f.type, life:f.life, lifecycle:f.lifecycle||null,
+    food_types:f.food_types, material_types:f.material_types,
     edible_parts:f.edible_parts, other_uses:f.other_uses, prep:f.prep, harvest:f.harvest,
+    eco_uses:f.eco_uses, material_uses:f.material_uses,
     sun:f.sun, soil:f.soil, risks:f.risks, buy:f.buy,
     hardiness_zones:f.hardiness_zones, years_to_fruit:f.years_to_fruit,
     min_plants_fruit:f.min_plants_fruit===""?null:Number(f.min_plants_fruit),
     nf:f.nf, pol:f.pol, deer_resistant:f.deer_resistant, dec_priority:f.dec_priority,
     native_to_us:f.native_to_us, native_north_america:f.native_north_america, native_americas:f.native_americas,
     invasive_everywhere:f.invasive_everywhere,
-    native_states:arr(f.native_states), native_regions:arr(f.native_regions), invasive_states:arr(f.invasive_states),
+    native_states:f.native_states, native_regions:deriveRegions(f.native_states), invasive_states:f.invasive_states,
     soil_ph:f.soil_ph, soil_n:f.soil_n, soil_p:f.soil_p, soil_k:f.soil_k,
-    soil_texture:arr(f.soil_texture), soil_drainage:arr(f.soil_drainage),
+    soil_texture:f.soil_texture, soil_drainage:f.soil_drainage,
     scores:Object.fromEntries(SCORE_KEYS.map(([k])=>[k,[Number(f.scores[k][0])||0, f.scores[k][1]]])),
     images:f.images.filter(im=>im.url.trim()).map(im=>({url:im.url.trim(),title:im.title.trim(),source:im.source.trim()})),
     sources:f.sources.filter(s=>s[1].trim()).map(s=>[s[0].trim(),s[1].trim()]),
@@ -1459,6 +1493,8 @@ function PlantEditor({p, onSave, onCancel}){
   const T=(k)=><textarea value={f[k]} onChange={e=>set(k,e.target.value)} />;
   const I=(k,type)=><input type={type||"text"} value={f[k]} onChange={e=>set(k,e.target.value)} />;
   const C=(k,label)=><label><input type="checkbox" checked={f[k]} onChange={e=>set(k,e.target.checked)} />{label}</label>;
+  const Sel=(k,opts,allowEmpty)=><select value={f[k]} onChange={e=>set(k,e.target.value)}>{allowEmpty&&<option value="">—</option>}{opts.map(o=><option key={o} value={o}>{o}</option>)}</select>;
+  const MSrow=(label,k,opts)=><div style={{margin:"0 0 10px"}}><MultiSelect label={label} options={opts} value={f[k]} onChange={v=>set(k,v)} /></div>;
   const setScore=(k,i,v)=>setF(o=>({...o,scores:{...o.scores,[k]:i===0?[v,o.scores[k][1]]:[o.scores[k][0],v]}}));
   const setImg=(i,k,v)=>setF(o=>({...o,images:o.images.map((im,j)=>j===i?{...im,[k]:v}:im)}));
   const setSrc=(i,k,v)=>setF(o=>({...o,sources:o.sources.map((s,j)=>j===i?(k===0?[v,s[1]]:[s[0],v]):s)}));
@@ -1473,14 +1509,23 @@ function PlantEditor({p, onSave, onCancel}){
       <div className="frow"><label>Common name</label>{I("common")}</div>
       <div className="frow"><label>Scientific</label>{I("sci")}</div>
       <div className="frow"><label>Family</label>{I("family")}</div>
-      <div className="frow"><label>Type</label>{I("type")}</div>
-      <div className="frow"><label>Lifecycle</label>{I("life")}</div>
+      <div className="frow"><label>Type</label>{Sel("type",PLANT_TYPES)}</div>
+      <div className="frow"><label>Lifecycle</label>{Sel("lifecycle",LIFECYCLES,true)}</div>
+      <div className="frow"><label>Lifecycle detail</label>{I("life")}</div>
 
-      <h5>Details</h5>
+      <h5>Food &amp; edibility</h5>
+      {MSrow("Food types","food_types",FOOD_TYPES)}
       <div className="frow"><label>Edible parts</label>{T("edible_parts")}</div>
-      <div className="frow"><label>Other uses</label>{T("other_uses")}</div>
       <div className="frow"><label>How to prepare</label>{T("prep")}</div>
       <div className="frow"><label>Harvest time</label>{T("harvest")}</div>
+
+      <h5>Uses (ecological &amp; material)</h5>
+      <div className="frow"><label>Ecological uses</label>{T("eco_uses")}</div>
+      {MSrow("Material types","material_types",MATERIAL_TYPES)}
+      <div className="frow"><label>Material uses</label>{T("material_uses")}</div>
+      <div className="frow"><label>Other uses (source)</label>{T("other_uses")}</div>
+
+      <h5>Growing</h5>
       <div className="frow"><label>Sun</label>{T("sun")}</div>
       <div className="frow"><label>Soil</label>{T("soil")}</div>
       <div className="frow"><label>Risks</label>{T("risks")}</div>
@@ -1503,18 +1548,18 @@ function PlantEditor({p, onSave, onCancel}){
       <div className="frow"><label>Years to fruit</label>{I("years_to_fruit")}</div>
       <div className="frow"><label>Min plants to fruit</label>{I("min_plants_fruit","number")}</div>
 
-      <h5>Nativity (comma-separated 2-letter codes / region names)</h5>
-      <div className="frow"><label>Native states</label>{I("native_states")}</div>
-      <div className="frow"><label>Native regions</label>{I("native_regions")}</div>
-      <div className="frow"><label>Invasive states</label>{I("invasive_states")}</div>
+      <h5>Nativity</h5>
+      {MSrow("Native states","native_states",STATES)}
+      <div className="frow"><label>Native regions (auto)</label><span style={{fontFamily:"'Space Mono'",fontSize:12,color:"var(--ink2)"}}>{deriveRegions(f.native_states).join(" · ")||"—"}</span></div>
+      {MSrow("Invasive states","invasive_states",STATES)}
 
       <h5>Soil</h5>
       <div className="frow"><label>Soil pH</label>{I("soil_ph")}</div>
-      <div className="frow"><label>Nitrogen (N)</label>{I("soil_n")}</div>
-      <div className="frow"><label>Phosphorus (P)</label>{I("soil_p")}</div>
-      <div className="frow"><label>Potassium (K)</label>{I("soil_k")}</div>
-      <div className="frow"><label>Texture (csv)</label>{I("soil_texture")}</div>
-      <div className="frow"><label>Drainage (csv)</label>{I("soil_drainage")}</div>
+      <div className="frow"><label>Nitrogen (N)</label>{Sel("soil_n",NPK_LEVELS,true)}</div>
+      <div className="frow"><label>Phosphorus (P)</label>{Sel("soil_p",NPK_LEVELS,true)}</div>
+      <div className="frow"><label>Potassium (K)</label>{Sel("soil_k",NPK_LEVELS,true)}</div>
+      {MSrow("Texture","soil_texture",TEXTURES)}
+      {MSrow("Drainage","soil_drainage",DRAINAGE)}
 
       <h5>Pictures</h5>
       {f.images.map((im,i)=>(
