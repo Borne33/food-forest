@@ -1,0 +1,75 @@
+{
+  "common": "Tapertip Onion",
+  "sci": "Allium acuminatum",
+  "family": "Amaryllidaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulbs and leaves (onion flavor, raw or cooked).",
+  "other_uses": "Western wild onion with rose-pink starry flower umbels on dry slopes.",
+  "prep": "Use the bulbs and leaves like a mild wild onion, raw or cooked; a widespread Western food plant. As with all wild onions, confirm the onion smell (toxic look-alikes lack it).",
+  "harvest": "Bulbs/leaves spring-summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils.",
+  "risks": "Confirm onion odor to avoid toxic look-alikes.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Allium_acuminatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Allium+acuminatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ALAC4"
+    ]
+  ]
+}

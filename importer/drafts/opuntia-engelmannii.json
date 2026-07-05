@@ -1,0 +1,72 @@
+{
+  "common": "Engelmann Prickly Pear",
+  "sci": "Opuntia engelmannii",
+  "family": "Cactaceae",
+  "type": "Shrub",
+  "life": "Perennial cactus",
+  "edible_parts": "Pads (nopales) and fruit (tunas) — both eaten.",
+  "other_uses": "Large sprawling prickly pear forming thickets, with big yellow flowers and deep-red fruit.",
+  "prep": "Singe/peel the pads and eat them (nopales) cooked, and eat the sweet red fruit (tunas) fresh or as syrup, jelly, and 'queso de tuna'; a Southwest food staple. De-spine carefully.",
+  "harvest": "Pads year-round; fruit late summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky or sandy, well-drained soils.",
+  "risks": "Spines and barbed glochids — de-spine carefully.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "OK",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Opuntia_engelmannii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Opuntia+engelmannii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OPEN3"
+    ]
+  ]
+}

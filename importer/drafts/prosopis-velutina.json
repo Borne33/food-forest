@@ -1,0 +1,67 @@
+{
+  "common": "Velvet Mesquite",
+  "sci": "Prosopis velutina",
+  "family": "Fabaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Pods → sweet flour.",
+  "other_uses": "Arizona's signature mesquite, with velvety leaves and sweet pods; a nitrogen fixer.",
+  "prep": "Grind the ripe sweet pods into mesquite flour for baking and drinks — a Sonoran Desert staple; the wood is a premier grilling fuel. An actinorhizal soil builder.",
+  "harvest": "Pods summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils; drought-tolerant.",
+  "risks": "Sharp thorns.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prosopis_velutina"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prosopis+velutina"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRVE"
+    ]
+  ]
+}

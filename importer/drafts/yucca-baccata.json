@@ -1,0 +1,71 @@
+{
+  "common": "Banana Yucca",
+  "sci": "Yucca baccata",
+  "family": "Asparagaceae",
+  "type": "Shrub",
+  "life": "Perennial succulent",
+  "edible_parts": "Fruit (banana-like, roasted) and flowers/stalk (cooked); fiber.",
+  "other_uses": "Southwestern yucca with fleshy 'datil' fruit the size of small bananas.",
+  "prep": "Roast or dry the sweet fleshy fruit (a major Southwestern food, eaten fresh, dried into cakes, or boiled into syrup) and cook the flowers and young stalk; the leaves yield strong fiber and the roots soap.",
+  "harvest": "Fruit summer; flowers spring.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils.",
+  "risks": "Leaf tips are spine-sharp; roots are soapy (not eaten).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CO",
+    "UT",
+    "NV",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Yucca_baccata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Yucca+baccata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/YUBA"
+    ]
+  ]
+}

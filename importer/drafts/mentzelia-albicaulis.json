@@ -1,0 +1,78 @@
+{
+  "common": "Whitestem Blazingstar",
+  "sci": "Mentzelia albicaulis",
+  "family": "Loasaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Seeds (ground into pinole; oily).",
+  "other_uses": "Slender desert annual with white stems, small yellow flowers, and clinging leaves.",
+  "prep": "Parch and grind the oil-rich seeds into 'pinole' meal — a valued Great Basin/Southwest seed food gathered in quantity.",
+  "harvest": "Seed summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or gravelly, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NV",
+    "UT",
+    "ID",
+    "OR",
+    "CA",
+    "AZ",
+    "CO",
+    "WY",
+    "NM",
+    "AZ",
+    "NM",
+    "TX",
+    "MT",
+    "WY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Mentzelia_albicaulis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Mentzelia+albicaulis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MEAL6"
+    ]
+  ]
+}

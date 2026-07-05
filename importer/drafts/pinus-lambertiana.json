@@ -1,0 +1,67 @@
+{
+  "common": "Sugar Pine",
+  "sci": "Pinus lambertiana",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Seeds (large, sweet) and sweet resin ('pine sugar').",
+  "other_uses": "The tallest pine on Earth, with foot-long cones and the largest seeds of any pine.",
+  "prep": "Shell and eat the big rich seeds raw or roasted; the sweet crystallized resin was eaten as a sugar/gum (mildly laxative in quantity). A magnificent Sierra/Cascade timber tree.",
+  "harvest": "Nuts fall.",
+  "sun": "Full sun",
+  "soil": "Deep, well-drained mountain soils.",
+  "risks": "Resin is mildly laxative in quantity.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "NV"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_lambertiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+lambertiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PILA"
+    ]
+  ]
+}

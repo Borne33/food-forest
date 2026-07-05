@@ -1,0 +1,67 @@
+{
+  "common": "Evergreen Huckleberry",
+  "sci": "Vaccinium ovatum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody perennial",
+  "edible_parts": "Fruit (sweet, late; raw or cooked).",
+  "other_uses": "Glossy evergreen Pacific-coast huckleberry with leathery leaves and shiny black berries into winter.",
+  "prep": "Eat the sweet-tart black berries fresh or in pies, jam, and syrup — the last berries of the Northwest year (sweeter after frost); the handsome evergreen foliage is prized greenery. A superb shade shrub.",
+  "harvest": "Fruit fall-winter.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, acidic, well-drained forest soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_ovatum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+ovatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAOV2"
+    ]
+  ]
+}

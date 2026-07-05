@@ -1,0 +1,79 @@
+{
+  "common": "Gum Bumelia",
+  "sci": "Sideroxylon lanuginosum",
+  "family": "Sapotaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (sweet black, ripe, in moderation).",
+  "other_uses": "Thorny, drought-hardy Southern tree ('woolly buckthorn/chittamwood') with black berries and a chewable gum.",
+  "prep": "Eat the sweet black fruit when fully ripe (in moderation — large amounts can upset the stomach); the tree exudes a gum that was chewed. A tough wildlife and honey tree.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils; very adaptable.",
+  "risks": "Thorns; eat ripe fruit in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA",
+    "TX",
+    "OK",
+    "KS",
+    "MO",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sideroxylon_lanuginosum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Sideroxylon+lanuginosum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SILA20"
+    ]
+  ]
+}

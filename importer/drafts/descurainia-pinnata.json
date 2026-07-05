@@ -1,0 +1,85 @@
+{
+  "common": "Western Tansymustard",
+  "sci": "Descurainia pinnata",
+  "family": "Brassicaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Seeds (ground into pinole) and young greens (cooked).",
+  "other_uses": "Ferny-leaved desert mustard that carpets open ground after winter rain.",
+  "prep": "Grind the tiny abundant seeds into 'pinole' meal or a mucilaginous drink, and cook the young greens as a peppery potherb — an important Southwestern seed food.",
+  "harvest": "Greens spring; seed early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, disturbed, well-drained soils.",
+  "risks": "Can accumulate nitrates — eat greens in moderation.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "OR",
+    "WA",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Descurainia_pinnata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Descurainia+pinnata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DEPI"
+    ]
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "common": "Screwbean Mesquite",
+  "sci": "Prosopis pubescens",
+  "family": "Fabaceae",
+  "type": "Tree",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Pods (tightly coiled, sweet — ground into meal).",
+  "other_uses": "Desert riparian mesquite whose pods spiral into tight 'screws'; a nitrogen fixer.",
+  "prep": "Grind the sweet coiled pods into meal or boil into syrup, like honey mesquite; an important food along Southwestern desert rivers.",
+  "harvest": "Pods summer.",
+  "sun": "Full sun",
+  "soil": "Dry to moist, well-drained soils; desert washes.",
+  "risks": "Thorns present.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prosopis_pubescens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prosopis+pubescens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRPU"
+    ]
+  ]
+}

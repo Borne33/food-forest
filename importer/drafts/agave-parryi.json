@@ -1,0 +1,67 @@
+{
+  "common": "Parry's Agave",
+  "sci": "Agave parryi",
+  "family": "Asparagaceae",
+  "type": "Shrub",
+  "life": "Perennial succulent",
+  "edible_parts": "Roasted heart and flower stalk ('mescal'); flowers.",
+  "other_uses": "Compact silver-blue rosette succulent of the Southwest; sends up a towering flower stalk once, then dies.",
+  "prep": "The starchy heart ('cabeza') and young flower stalk were pit-roasted for days into sweet, molasses-rich 'mescal' — a Southwest staple; the leaf fibers make cordage. Distilled, agave hearts make mescal/tequila-type spirits.",
+  "harvest": "Heart before flowering; stalk spring.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, sharply drained soils.",
+  "risks": "Sap can irritate skin; leaf tips are spine-sharp.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      6,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Agave_parryi"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Agave+parryi"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/AGPA4"
+    ]
+  ]
+}

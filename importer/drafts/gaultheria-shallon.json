@@ -1,0 +1,69 @@
+{
+  "common": "Salal",
+  "sci": "Gaultheria shallon",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet, fresh or dried into cakes); leaves (tea).",
+  "other_uses": "Lush evergreen understory shrub of Pacific forests with urn flowers and dark-blue fruit.",
+  "prep": "Eat the sweet-fruity berries fresh, or dry and press them into storage cakes (a major Northwest fruit); steep the leaves for tea and use them to line cooking pits. A superb evergreen shade groundcover.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, acidic, well-drained forest soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "AK",
+    "ID"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Gaultheria_shallon"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Gaultheria+shallon"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GASH"
+    ]
+  ]
+}

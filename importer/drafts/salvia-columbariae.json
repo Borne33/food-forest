@@ -1,0 +1,69 @@
+{
+  "common": "Chia",
+  "sci": "Salvia columbariae",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Seeds (the original chia — gel drink, meal).",
+  "other_uses": "Low desert sage with tiered blue flower clusters; the true native chia.",
+  "prep": "Soak the mucilaginous seeds for a gelling energy drink or grind into 'pinole' meal — a legendary Southwestern endurance food (this is the native chia, kin to the crop chia). Fast, easy annual.",
+  "harvest": "Seed early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or gravelly, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "AZ",
+    "NV",
+    "UT",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Salvia_columbariae"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Salvia+columbariae"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SACO6"
+    ]
+  ]
+}

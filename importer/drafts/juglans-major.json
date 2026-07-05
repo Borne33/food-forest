@@ -1,0 +1,67 @@
+{
+  "common": "Arizona Walnut",
+  "sci": "Juglans major",
+  "family": "Juglandaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (small, rich).",
+  "other_uses": "Southwestern walnut of canyon streamsides with small, hard, rich nuts.",
+  "prep": "Crack and eat the small oily nuts (a bit of work for the rich meat), or use them ground; the husks yield a brown dye. A key riparian shade and wildlife tree.",
+  "harvest": "Nuts fall.",
+  "sun": "Full sun",
+  "soil": "Moist, well-drained canyon/streamside soils.",
+  "risks": "None significant once shelled.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Juglans_major"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Juglans+major"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/JUMA"
+    ]
+  ]
+}

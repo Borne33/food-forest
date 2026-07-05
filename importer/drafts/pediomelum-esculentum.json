@@ -1,0 +1,78 @@
+{
+  "common": "Prairie Turnip",
+  "sci": "Pediomelum esculentum",
+  "family": "Fabaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Root (raw, cooked, or dried and ground into flour).",
+  "other_uses": "Deep-rooted Plains legume ('timpsula'/'breadroot') — a cornerstone Great Plains food.",
+  "prep": "Peel and eat the starchy root raw, roasted, or dried and pounded into a storable flour; a staple that was braided and traded across the Plains. A nitrogen fixer.",
+  "harvest": "Root early-mid summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained prairie soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "WI",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pediomelum_esculentum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pediomelum+esculentum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PEES"
+    ]
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "common": "Saguaro",
+  "sci": "Carnegiea gigantea",
+  "family": "Cactaceae",
+  "type": "Tree",
+  "life": "Perennial cactus",
+  "edible_parts": "Fruit (fresh, syrup, wine, seeds).",
+  "other_uses": "The giant columnar cactus of the Sonoran Desert; its fruit harvest opens the Tohono O'odham new year.",
+  "prep": "Knock down the ripe red fruit with a long rib pole; eat fresh, boil into syrup and jam, ferment into ceremonial wine, and grind the seeds. A protected keystone — harvest only by permission/tradition.",
+  "harvest": "Fruit early summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, sharply drained desert soils.",
+  "risks": "Protected species; spines. Harvest only where legal/permitted.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Carnegiea_gigantea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Carnegiea+gigantea"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CAGI10"
+    ]
+  ]
+}

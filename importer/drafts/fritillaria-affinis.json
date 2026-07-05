@@ -1,0 +1,68 @@
+{
+  "common": "Chocolate Lily",
+  "sci": "Fritillaria affinis",
+  "family": "Liliaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulb and rice-like bulblets (cooked).",
+  "other_uses": "Somber woodland lily with nodding brown-and-green mottled bells.",
+  "prep": "Steam or boil the bulbs and the surrounding 'rice' of tiny bulblets — a traditional Northwest food ('rice-root'). Harvest only from your own abundant plantings.",
+  "harvest": "Bulb after flowering.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, well-drained soils; meadows and open woods.",
+  "risks": "Harvest sparingly.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "ID"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Fritillaria_affinis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Fritillaria+affinis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/FRAF2"
+    ]
+  ]
+}

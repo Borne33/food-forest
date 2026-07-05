@@ -1,0 +1,73 @@
+{
+  "common": "Honey Mesquite",
+  "sci": "Prosopis glandulosa",
+  "family": "Fabaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Pods → sweet flour ('mesquite meal').",
+  "other_uses": "Thorny, deep-rooted desert tree with fern-like leaves and long sweet seed pods; a nitrogen fixer.",
+  "prep": "Grind the ripe sweet pods (pericarp) into nutritious, naturally sweet 'mesquite flour' for cakes, drinks, and porridge — a keystone Southwestern staple. The wood is prized for grilling. An actinorhizal soil builder.",
+  "harvest": "Pods summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils; extremely drought-tolerant.",
+  "risks": "Sharp thorns.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "OK",
+    "KS",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prosopis_glandulosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prosopis+glandulosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRGL2"
+    ]
+  ]
+}

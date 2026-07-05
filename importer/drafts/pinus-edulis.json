@@ -1,0 +1,71 @@
+{
+  "common": "Twoneedle Pinyon",
+  "sci": "Pinus edulis",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Seeds (piñon nuts — rich, raw or roasted).",
+  "other_uses": "The classic Southwestern piñon pine, source of the beloved piñon nut.",
+  "prep": "Roast and shell the fat, buttery seeds — a premier Southwestern nut food, gathered by the sackful and central to Puebloan and other cuisines. A slow-growing high-desert tree.",
+  "harvest": "Nuts fall (good crops every few years).",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils; high desert.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "CO",
+    "UT",
+    "TX",
+    "WY",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_edulis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+edulis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIED"
+    ]
+  ]
+}

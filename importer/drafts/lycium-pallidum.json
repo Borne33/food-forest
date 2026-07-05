@@ -1,0 +1,71 @@
+{
+  "common": "Pale Wolfberry",
+  "sci": "Lycium pallidum",
+  "family": "Solanaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (red, tomato-like — a native goji).",
+  "other_uses": "Spiny gray desert shrub with pale trumpet flowers and juicy red berries.",
+  "prep": "Eat the red berries fresh, cooked, or dried — a native relative of goji berry, an important Southwestern (esp. Puebloan) fruit. (Fully ripe fruit only.)",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained desert soils.",
+  "risks": "Eat ripe fruit; this is an edible Lycium (some relatives' foliage is not eaten).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CO",
+    "UT",
+    "NV",
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lycium_pallidum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lycium+pallidum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LYPA"
+    ]
+  ]
+}

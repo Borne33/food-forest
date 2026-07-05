@@ -1,0 +1,84 @@
+{
+  "common": "Netleaf Hackberry",
+  "sci": "Celtis reticulata",
+  "family": "Cannabaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (sweet, whole; calcium-rich).",
+  "other_uses": "Tough drought-hardy Western hackberry with net-veined leaves and orange-red berries.",
+  "prep": "Eat the sweet dry berries whole (crunchy seed and all) or pound seed-and-flesh together into a nutritious calcium-rich paste — a widely used Western food and premier bird plant.",
+  "harvest": "Fruit fall-winter.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils; very adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "WA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Celtis_reticulata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Celtis+reticulata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CERE2"
+    ]
+  ]
+}

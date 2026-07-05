@@ -1,0 +1,92 @@
+{
+  "common": "Common Sunflower",
+  "sci": "Helianthus annuus",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Seeds (eaten, oil, meal); sprouts.",
+  "other_uses": "The wild ancestor of the crop sunflower — big golden heads following the sun.",
+  "prep": "Eat the nutritious seeds raw or roasted, press them for oil, or grind into meal; a fast, cheerful annual domesticated by Indigenous peoples of North America. A pollinator and songbird magnet.",
+  "harvest": "Seed late summer-fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils; adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "MN",
+    "IA",
+    "MO",
+    "IL",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Helianthus_annuus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Helianthus+annuus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HEAN3"
+    ]
+  ]
+}

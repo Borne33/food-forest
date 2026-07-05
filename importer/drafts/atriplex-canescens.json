@@ -1,0 +1,84 @@
+{
+  "common": "Fourwing Saltbush",
+  "sci": "Atriplex canescens",
+  "family": "Amaranthaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Seeds (ground meal) and leaves (salty greens); flowers/ash as seasoning.",
+  "other_uses": "Silvery evergreen desert shrub with papery four-winged seeds; a premier browse plant.",
+  "prep": "Grind the abundant seeds into meal, cook the salty leaves as greens, and use the mineral-rich ash as a leavening/seasoning; extremely drought- and salt-tolerant.",
+  "harvest": "Seeds fall; leaves spring-summer.",
+  "sun": "Full sun",
+  "soil": "Dry, alkaline or saline, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Atriplex_canescens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Atriplex+canescens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ATCA2"
+    ]
+  ]
+}

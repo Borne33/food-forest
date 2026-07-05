@@ -1,0 +1,69 @@
+{
+  "common": "Columbia Tiger Lily",
+  "sci": "Lilium columbianum",
+  "family": "Liliaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulb (peppery, cooked).",
+  "other_uses": "Elegant lily with whorled leaves and nodding orange turk's-cap flowers spotted maroon.",
+  "prep": "The scaly bulbs are eaten cooked — peppery and used more as a flavoring/thickener than a staple; grow chiefly as a spectacular native lily and harvest bulbs only from your own stock.",
+  "harvest": "Bulb after flowering.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, well-drained soils; meadows and open woods.",
+  "risks": "Harvest sparingly; a treasured wildflower.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "ID",
+    "NV"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lilium_columbianum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lilium+columbianum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LICO"
+    ]
+  ]
+}

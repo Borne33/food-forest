@@ -1,0 +1,77 @@
+{
+  "common": "Mexican Plum",
+  "sci": "Prunus mexicana",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (tart — jam, preserves).",
+  "other_uses": "Single-trunked small plum tree with fragrant white spring flowers and purple-red fruit.",
+  "prep": "Cook the tart purple plums into jam, jelly, and preserves (good fresh when fully ripe); a handsome specimen and wildlife tree.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Medium, well-drained soils.",
+  "risks": "Pits contain cyanogenic compounds — flesh only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "TX",
+    "OK",
+    "KS",
+    "NE",
+    "MO",
+    "AR",
+    "LA",
+    "MS",
+    "AL",
+    "TN",
+    "KY",
+    "IA",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Prunus_mexicana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Prunus+mexicana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRME"
+    ]
+  ]
+}

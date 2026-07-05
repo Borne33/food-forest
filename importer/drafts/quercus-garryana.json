@@ -1,0 +1,67 @@
+{
+  "common": "Oregon White Oak",
+  "sci": "Quercus garryana",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (leached, then meal).",
+  "other_uses": "The Pacific Northwest's great white oak, anchoring its rare oak-savanna prairies.",
+  "prep": "Leach the ground acorns into meal — a staple food of Northwest peoples who tended the oak prairies with fire; a keystone habitat tree.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Leach acorns before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_garryana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+garryana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QUGA4"
+    ]
+  ]
+}

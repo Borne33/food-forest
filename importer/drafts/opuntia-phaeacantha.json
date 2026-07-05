@@ -1,0 +1,81 @@
+{
+  "common": "Tulip Prickly Pear",
+  "sci": "Opuntia phaeacantha",
+  "family": "Cactaceae",
+  "type": "Shrub",
+  "life": "Perennial cactus",
+  "edible_parts": "Pads (nopales) and fruit (tunas) — both eaten.",
+  "other_uses": "Widespread sprawling prickly pear with yellow-to-red flowers and purple-red fruit; very cold-hardy for a cactus.",
+  "prep": "Eat the pads cooked (nopales) and the sweet-tart purple fruit fresh or in jelly, syrup, and drinks; one of the most widespread and useful Western prickly pears. De-spine carefully.",
+  "harvest": "Pads year-round; fruit late summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky or sandy, well-drained soils.",
+  "risks": "Spines and barbed glochids — de-spine carefully.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "TX",
+    "OK",
+    "KS",
+    "ND",
+    "SD",
+    "NE"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Opuntia_phaeacantha"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Opuntia+phaeacantha"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OPPH"
+    ]
+  ]
+}

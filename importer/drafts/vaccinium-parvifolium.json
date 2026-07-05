@@ -1,0 +1,68 @@
+{
+  "common": "Red Huckleberry",
+  "sci": "Vaccinium parvifolium",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (tart-sweet red; raw or cooked).",
+  "other_uses": "Airy green-twigged Pacific huckleberry, often growing from mossy old stumps, with bright red berries.",
+  "prep": "Eat the tart-sweet translucent red berries fresh or in jam, pies, and drinks (excellent with salmon); a graceful Northwest forest shrub.",
+  "harvest": "Fruit summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, acidic, humus-rich forest soils; loves rotten wood.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_parvifolium"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+parvifolium"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAPA"
+    ]
+  ]
+}

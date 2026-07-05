@@ -1,0 +1,84 @@
+{
+  "common": "Buffalo Gourd",
+  "sci": "Cucurbita foetidissima",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Sprawling perennial vine",
+  "edible_parts": "Seeds (roasted, oily/protein-rich); flesh inedible.",
+  "other_uses": "Rank-smelling desert gourd with huge leaves, a massive root, and hard striped gourds.",
+  "prep": "Roast and eat the abundant oil- and protein-rich SEEDS; the bitter flesh is inedible and the saponin-rich root/gourds were used as soap. A drought-proof perennial once studied as an oilseed crop.",
+  "harvest": "Gourds/seeds fall.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy, well-drained soils.",
+  "risks": "Flesh and root are bitter/soapy (saponins) — only the seeds are eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "CA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cucurbita_foetidissima"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cucurbita+foetidissima"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUFO"
+    ]
+  ]
+}

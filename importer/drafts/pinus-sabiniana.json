@@ -1,0 +1,65 @@
+{
+  "common": "Gray Pine",
+  "sci": "Pinus sabiniana",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Seeds (large, rich) and green cones (roasted).",
+  "other_uses": "Airy, sparse-needled California foothill pine ('digger pine') with huge heavy cones.",
+  "prep": "Crack and eat the large rich seeds raw or roasted — a major California nut food — and roast the immature green cones for their sweet inner parts.",
+  "harvest": "Nuts fall.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky foothill soils.",
+  "risks": "Heavy cones — mind falling cones.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_sabiniana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+sabiniana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PISA2"
+    ]
+  ]
+}

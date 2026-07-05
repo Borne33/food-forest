@@ -1,0 +1,77 @@
+{
+  "common": "Thinleaf Huckleberry",
+  "sci": "Vaccinium membranaceum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (rich, sweet — the prized Western huckleberry).",
+  "other_uses": "The famous mountain huckleberry of the Northwest, with large dark-purple berries.",
+  "prep": "Eat the rich, sweet-tart berries fresh or in pies, jam, and syrup — the most prized wild huckleberry of the Western mountains, gathered avidly and central to many traditions (and a key grizzly food).",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist, acidic, well-drained montane soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "MI",
+    "MN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      8,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_membranaceum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+membranaceum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAME"
+    ]
+  ]
+}

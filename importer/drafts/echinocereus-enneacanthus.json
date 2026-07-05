@@ -1,0 +1,66 @@
+{
+  "common": "Strawberry Cactus",
+  "sci": "Echinocereus enneacanthus",
+  "family": "Cactaceae",
+  "type": "Shrub",
+  "life": "Perennial cactus",
+  "edible_parts": "Fruit (strawberry-flavored) and stems (peeled).",
+  "other_uses": "Sprawling clump of spiny ribbed stems with magenta flowers and red fruit ('pitaya').",
+  "prep": "Eat the ripe red fruit fresh — it genuinely tastes of strawberry; the peeled, de-spined stems are also cooked. A hedgehog cactus of the Chihuahuan Desert.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, sharply drained soils.",
+  "risks": "Spines — de-spine before handling fruit/stems.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "TX",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Echinocereus_enneacanthus"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Echinocereus+enneacanthus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ECEN2"
+    ]
+  ]
+}

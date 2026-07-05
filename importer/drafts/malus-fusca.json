@@ -1,0 +1,68 @@
+{
+  "common": "Oregon Crabapple",
+  "sci": "Malus fusca",
+  "family": "Rosaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (tart — stored, preserves).",
+  "other_uses": "The Pacific Northwest's only native apple, a thicket-forming tree of wet ground with small tart pomes.",
+  "prep": "Eat the small tart apples fresh once softened, or (traditionally) store them in water/oil to mellow, and cook into sauce, jelly, and preserves; a highly valued Northwest fruit. The hard wood was prized for tools.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet soils; streambanks and swamps.",
+  "risks": "Thorny spur shoots.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Malus_fusca"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Malus+fusca"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MAFU"
+    ]
+  ]
+}

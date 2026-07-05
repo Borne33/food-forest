@@ -1,0 +1,66 @@
+{
+  "common": "California Black Oak",
+  "sci": "Quercus kelloggii",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (leached — a prized acorn).",
+  "other_uses": "Mountain oak with big bristle-tipped leaves and large acorns highly valued for food.",
+  "prep": "Leach the ground acorns into meal and mush — among the most prized California acorns for flavor and richness; a keystone Sierra oak.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Well-drained mountain soils.",
+  "risks": "Leach acorns before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_kelloggii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+kelloggii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QUKE"
+    ]
+  ]
+}

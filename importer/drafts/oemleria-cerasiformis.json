@@ -1,0 +1,67 @@
+{
+  "common": "Indian Plum",
+  "sci": "Oemleria cerasiformis",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (bittersweet, fresh or dried).",
+  "other_uses": "One of the first shrubs to leaf and flower in the Northwest, with dangling white flowers and plum-like fruit.",
+  "prep": "Eat the small bluish 'plums' fresh or dried — bittersweet, almond-cucumber flavored, better cooked or mixed with other fruit; an early wildlife plant and welcome first sign of spring. (Seeds/bark are cyanogenic — flesh only.)",
+  "harvest": "Fruit early-mid summer.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, well-drained soils; woodland edges.",
+  "risks": "Seeds and bark cyanogenic — eat flesh only.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Oemleria_cerasiformis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Oemleria+cerasiformis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OECE"
+    ]
+  ]
+}

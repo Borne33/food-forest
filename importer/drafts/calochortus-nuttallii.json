@@ -1,0 +1,77 @@
+{
+  "common": "Sego Lily",
+  "sci": "Calochortus nuttallii",
+  "family": "Liliaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulb (cooked, sweet, nutty).",
+  "other_uses": "Exquisite white mariposa lily of the Great Basin; Utah's state flower.",
+  "prep": "Pit-cook or boil the small starchy bulbs (sweet and nutty) — a famous food that helped sustain Mormon settlers through crop failure. Harvest only from your own abundant plantings.",
+  "harvest": "Bulb summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or gravelly, well-drained soils.",
+  "risks": "Harvest sparingly; slow to grow.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NV",
+    "UT",
+    "ID",
+    "OR",
+    "CA",
+    "AZ",
+    "CO",
+    "WY",
+    "NM",
+    "ND",
+    "SD",
+    "NE",
+    "MT"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Calochortus_nuttallii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Calochortus+nuttallii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CANU3"
+    ]
+  ]
+}

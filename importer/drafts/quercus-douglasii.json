@@ -1,0 +1,65 @@
+{
+  "common": "Blue Oak",
+  "sci": "Quercus douglasii",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (leached; comparatively sweet).",
+  "other_uses": "Drought-hardy California oak with blue-green leaves dotting the golden foothills.",
+  "prep": "Leach the ground acorns (relatively low-tannin) into meal — a valued California acorn; a signature foothill tree that endures extreme drought.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky foothill soils.",
+  "risks": "Leach acorns before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_douglasii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+douglasii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QUDO"
+    ]
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "common": "Large Camas",
+  "sci": "Camassia leichtlinii",
+  "family": "Asparagaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulb (slow-cooked, sweet); toxic look-alike warning.",
+  "other_uses": "Robust camas with tall spikes of blue-violet star flowers in wet Western meadows.",
+  "prep": "Slow pit-cook the bulbs (12–48 hrs) to convert inulin into sweet, molasses-like food — a keystone Northwest crop. CRITICAL: the deadly 'death camas' (Toxicoscordion) grows alongside; harvest only in flower to tell them apart.",
+  "harvest": "Bulb after flowering.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist meadows; seasonally wet soils.",
+  "risks": "Deadly 'death camas' look-alike — dig only when flowering (blue).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Camassia_leichtlinii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Camassia+leichtlinii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CALE5"
+    ]
+  ]
+}

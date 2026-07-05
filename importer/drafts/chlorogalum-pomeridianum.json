@@ -1,0 +1,66 @@
+{
+  "common": "Soap Plant",
+  "sci": "Chlorogalum pomeridianum",
+  "family": "Asparagaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulb (edible only after long roasting); soap/fiber raw.",
+  "other_uses": "California 'amole' with a wavy-edged leaf rosette and airy evening-opening white flowers.",
+  "prep": "The bulb is edible only after slow pit-roasting (raw it is a soap and a fish poison); the fibrous bulb coat makes brushes, the crushed raw bulb makes lather, and the sap a glue. A true multi-use plant.",
+  "harvest": "Bulb fall (roast).",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained soils; open hills.",
+  "risks": "Raw bulb is a soap/fish-poison (saponins) — edible only well-roasted.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Chlorogalum_pomeridianum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Chlorogalum+pomeridianum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHPO3"
+    ]
+  ]
+}

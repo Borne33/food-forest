@@ -1,0 +1,75 @@
+{
+  "common": "Southern Dewberry",
+  "sci": "Rubus trivialis",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Trailing bramble",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Trailing evergreen Southern dewberry running over sandy ground, fruiting early.",
+  "prep": "Eat the sweet early black dewberries fresh or in cobbler and jam; a low trailing bramble/groundcover for the Southeast.",
+  "harvest": "Fruit late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, sandy soils.",
+  "risks": "Prickly trailing canes.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rubus_trivialis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rubus+trivialis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RUTR"
+    ]
+  ]
+}

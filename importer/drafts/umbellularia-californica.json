@@ -1,0 +1,66 @@
+{
+  "common": "California Bay Laurel",
+  "sci": "Umbellularia californica",
+  "family": "Lauraceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Nuts (roasted) and leaves (potent bay spice).",
+  "other_uses": "Aromatic evergreen tree ('pepperwood') whose pungent leaves clear the sinuses when crushed.",
+  "prep": "Roast and shell the nuts (a rich, coffee-chocolate-like Indigenous food) and use the intensely aromatic leaves sparingly as a stronger bay-leaf spice; the leaves were also used to repel fleas. A handsome evergreen.",
+  "harvest": "Nuts fall; leaves year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to dry, well-drained soils.",
+  "risks": "Leaves are very potent — use sparingly; crushed-leaf vapor can cause headaches in some.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Umbellularia_californica"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Umbellularia+californica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/UMCA"
+    ]
+  ]
+}

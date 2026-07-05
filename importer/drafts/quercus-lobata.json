@@ -1,0 +1,65 @@
+{
+  "common": "Valley Oak",
+  "sci": "Quercus lobata",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (large; leached, then meal).",
+  "other_uses": "California's grandest oak, a massive spreading tree of valley floors with very long acorns.",
+  "prep": "Leach the big ground acorns into meal — a major California staple; a magnificent, long-lived shade and wildlife tree.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Deep, moist to medium valley soils.",
+  "risks": "Leach acorns before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_lobata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+lobata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QULO"
+    ]
+  ]
+}

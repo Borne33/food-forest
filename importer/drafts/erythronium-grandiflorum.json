@@ -1,0 +1,75 @@
+{
+  "common": "Glacier Lily",
+  "sci": "Erythronium grandiflorum",
+  "family": "Liliaceae",
+  "type": "Herb",
+  "life": "Spring ephemeral perennial",
+  "edible_parts": "Bulb (cooked) and green pods/leaves (minor).",
+  "other_uses": "Nodding golden lily that blooms at melting snowline across Western mountains.",
+  "prep": "The bulbs are eaten cooked (raw they can be emetic) and the green seed pods and leaves nibbled; a key spring food for people and grizzly bears alike. Harvest only from abundant stands.",
+  "harvest": "Bulb/greens spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist montane soils at snowmelt.",
+  "risks": "Bulbs best cooked; can be emetic raw.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Erythronium_grandiflorum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Erythronium+grandiflorum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ERGR9"
+    ]
+  ]
+}

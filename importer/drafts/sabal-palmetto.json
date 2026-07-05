@@ -1,0 +1,74 @@
+{
+  "common": "Cabbage Palmetto",
+  "sci": "Sabal palmetto",
+  "family": "Arecaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Heart ('swamp cabbage', cooked); fruit (minor).",
+  "other_uses": "The classic Southeastern fan palm — state tree of Florida and South Carolina.",
+  "prep": "The tender inner bud ('heart of palm'/swamp cabbage) is a celebrated cooked vegetable — but taking it kills the tree, so harvest only from trees being cleared; the small fruit was also eaten. A salt- and hurricane-tough palm.",
+  "harvest": "Heart any time (destructive); fruit fall.",
+  "sun": "Full sun",
+  "soil": "Moist to dry soils; salt-tolerant.",
+  "risks": "Harvesting the heart kills the tree.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Sabal_palmetto"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Sabal+palmetto"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SAPA"
+    ]
+  ]
+}

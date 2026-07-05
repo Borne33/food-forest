@@ -1,0 +1,74 @@
+{
+  "common": "Saw Palmetto",
+  "sci": "Serenoa repens",
+  "family": "Arecaceae",
+  "type": "Shrub",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Fruit (historic food; strongly flavored) and heart.",
+  "other_uses": "Sprawling fan palm forming vast thickets across the Southeastern coastal plain; a top nectar plant.",
+  "prep": "The ripe black fruit was a traditional food (an intense, divisive flavor) and is the source of the well-known prostate-health supplement; the heart is edible. Grown chiefly as a tough evergreen and premier honey/pollinator plant.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to moist, sandy soils; salt- and fire-tolerant.",
+  "risks": "Fruit strongly flavored; saw-edged leaf stalks.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Serenoa_repens"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Serenoa+repens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SERE2"
+    ]
+  ]
+}

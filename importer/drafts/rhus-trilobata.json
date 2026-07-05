@@ -1,0 +1,87 @@
+{
+  "common": "Skunkbush Sumac",
+  "sci": "Rhus trilobata",
+  "family": "Anacardiaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (tart 'lemonade-berry' drink and spice); withes for basketry.",
+  "other_uses": "Aromatic three-leaflet sumac of the West with fuzzy red berries; brilliant fall color.",
+  "prep": "Steep or grind the tart red berries for a lemonade-like drink and spice; the flexible split stems are a premier basketry material across the West. A tough, drought-proof shrub. (A non-poison sumac.)",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, well-drained soils; very adaptable.",
+  "risks": "Soak (don't boil) berries; a non-poison sumac.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Rhus_trilobata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Rhus+trilobata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RHTR"
+    ]
+  ]
+}

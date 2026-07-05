@@ -1,0 +1,72 @@
+{
+  "common": "Gambel Oak",
+  "sci": "Quercus gambelii",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Acorns (leached, then meal).",
+  "other_uses": "Thicket-forming Rocky Mountain/Southwestern oak with classic lobed leaves and good fall color.",
+  "prep": "Leach the ground acorns into meal — an important Southwestern acorn; forms wildlife-rich oak thickets ('chaparral'). ",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained foothill and mountain soils.",
+  "risks": "Leach acorns before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CO",
+    "UT",
+    "AZ",
+    "NM",
+    "NV",
+    "WY",
+    "TX",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_gambelii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+gambelii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QUGA"
+    ]
+  ]
+}

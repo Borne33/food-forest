@@ -1,0 +1,77 @@
+{
+  "common": "Gairdner's Yampah",
+  "sci": "Perideridia gairdneri",
+  "family": "Apiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Root (sweet, raw or cooked) and seeds (spice).",
+  "other_uses": "Slender Western meadow plant with lacy white flower umbels over clusters of sweet tubers.",
+  "prep": "Eat the crisp sweet tubers raw or cooked (one of the finest wild roots, a top Western food) and the seeds as a caraway-like spice. CAUTION: learn it well — the carrot family includes deadly poison-hemlock and water-hemlock.",
+  "harvest": "Root fall; seed summer.",
+  "sun": "Full sun",
+  "soil": "Moist meadows drying by summer; well-drained.",
+  "risks": "CAUTION: deadly Apiaceae look-alikes — eat only confirmed plants.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "SD",
+    "ND"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      5,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Perideridia_gairdneri"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Perideridia+gairdneri"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PEGA3"
+    ]
+  ]
+}

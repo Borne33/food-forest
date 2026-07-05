@@ -1,0 +1,69 @@
+{
+  "common": "Western Redbud",
+  "sci": "Cercis occidentalis",
+  "family": "Fabaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Flowers (tangy, raw) and young pods (cooked).",
+  "other_uses": "Multi-stem shrub/small tree wreathed in magenta pea flowers before its heart-shaped leaves.",
+  "prep": "Eat the tangy flowers raw in salads or as a garnish and the young green pods cooked; the branches are prized for basketry. A nitrogen-fixing pollinator plant.",
+  "harvest": "Flowers spring; pods late spring.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Older pods/seeds not eaten.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "AZ",
+    "NV",
+    "UT",
+    "OR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Cercis_occidentalis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Cercis+occidentalis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CEOC3"
+    ]
+  ]
+}

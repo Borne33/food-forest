@@ -1,0 +1,71 @@
+{
+  "common": "Tall Oregon Grape",
+  "sci": "Mahonia aquifolium",
+  "family": "Berberidaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (tart — jelly, wine); root (dye/medicinal).",
+  "other_uses": "Spiny-leaved evergreen shrub with golden flower clusters and dusty-blue tart berries; Oregon's state flower.",
+  "prep": "Cook the very tart blue berries into jelly, wine, and juice (often mixed with sweeter fruit); the bright-yellow inner bark/root yields a dye and the medicinal alkaloid berberine. A handsome evergreen for shade.",
+  "harvest": "Fruit late summer.",
+  "sun": "Full sun to shade",
+  "soil": "Dry to medium, well-drained soils; shade tolerant.",
+  "risks": "Very tart raw; berberine root is medicinal, not food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "OR",
+    "WA",
+    "CA",
+    "ID",
+    "MT",
+    "NV",
+    "CO"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Mahonia_aquifolium"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Mahonia+aquifolium"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MAAQ2"
+    ]
+  ]
+}

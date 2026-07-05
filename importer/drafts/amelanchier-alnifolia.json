@@ -1,0 +1,81 @@
+{
+  "common": "Saskatoon Serviceberry",
+  "sci": "Amelanchier alnifolia",
+  "family": "Rosaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (sweet, raw or cooked; dried).",
+  "other_uses": "The great Western serviceberry, with sweet blue-purple 'juneberries' — a cornerstone of pemmican.",
+  "prep": "Eat the sweet berries fresh, in pies and jam, or dried into cakes; they were the classic fruit pounded into pemmican. A top wildlife and hedgerow shrub.",
+  "harvest": "Fruit early-mid summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to medium, well-drained soils; very adaptable.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "ND",
+    "SD",
+    "NE",
+    "MN",
+    "IA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      9,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Amelanchier_alnifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Amelanchier+alnifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/AMAL2"
+    ]
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "common": "Yaupon Holly",
+  "sci": "Ilex vomitoria",
+  "family": "Aquifoliaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Leaves (roasted → North America's only native caffeine tea); berries TOXIC.",
+  "other_uses": "Evergreen holly of the Southeast whose leaves brew the caffeinated 'black drink' (cassina).",
+  "prep": "Dry and roast the leaves for 'yaupon tea' — the only caffeine-bearing plant native to North America (despite the alarming Latin name, it does not cause vomiting in normal tea). The red berries, however, are toxic and NOT eaten.",
+  "harvest": "Leaves year-round.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to dry, well-drained soils; very adaptable.",
+  "risks": "Berries toxic — leaves only, for tea.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA",
+    "OK",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ilex_vomitoria"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ilex+vomitoria"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ILVO"
+    ]
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "common": "Common Camas",
+  "sci": "Camassia quamash",
+  "family": "Asparagaceae",
+  "type": "Herb",
+  "life": "Perennial bulb",
+  "edible_parts": "Bulb (slow-cooked, sweet); toxic look-alike warning.",
+  "other_uses": "Iconic blue-flowered camas whose wet meadows were carefully tended food fields across the Northwest.",
+  "prep": "Pit-cook the bulbs for a day or more to turn them sweet and digestible — one of the most important Indigenous root crops of the West. CRITICAL: deadly 'death camas' grows in the same meadows; dig only when the blue flowers confirm the ID.",
+  "harvest": "Bulb after flowering.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to wet meadows; seasonally wet soils.",
+  "risks": "Deadly 'death camas' look-alike — dig only when flowering (blue).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "ND",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Camassia_quamash"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Camassia+quamash"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CAQU2"
+    ]
+  ]
+}

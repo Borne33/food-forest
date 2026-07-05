@@ -1,0 +1,79 @@
+{
+  "common": "Farkleberry",
+  "sci": "Vaccinium arboreum",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (dry, edible, better cooked).",
+  "other_uses": "The largest blueberry relative — a small tree with glossy leaves and hard black berries.",
+  "prep": "The dry, seedy black berries are edible but best cooked into jam or with other fruit (rather mealy raw); grown chiefly as a handsome small tree with fine fall color and wildlife value.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry, acidic, well-drained soils; adaptable.",
+  "risks": "Rather dry/seedy raw — better cooked.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA",
+    "TX",
+    "OK",
+    "MO",
+    "IL",
+    "IN"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_arboreum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+arboreum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VAAR"
+    ]
+  ]
+}

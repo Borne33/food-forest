@@ -1,0 +1,67 @@
+{
+  "common": "Fishhook Barrel Cactus",
+  "sci": "Ferocactus wislizeni",
+  "family": "Cactaceae",
+  "type": "Shrub",
+  "life": "Perennial cactus",
+  "edible_parts": "Fruit (lemony) and seeds; flower buds.",
+  "other_uses": "Stout barrel cactus with hooked red spines and a crown of yellow fruit persisting into winter.",
+  "prep": "Eat the lemony yellow fruit and the tiny black seeds (ground), and pickle the flower buds ('cactus candy' from the pulp is historic); a Sonoran Desert food. Note: the pulp is a laxative, not an emergency water source.",
+  "harvest": "Fruit fall-winter.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, sharply drained desert soils.",
+  "risks": "Pulp is a laxative in quantity; hooked spines.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ferocactus_wislizeni"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ferocactus+wislizeni"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/FEWI"
+    ]
+  ]
+}

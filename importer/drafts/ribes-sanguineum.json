@@ -1,0 +1,68 @@
+{
+  "common": "Redflower Currant",
+  "sci": "Ribes sanguineum",
+  "family": "Grossulariaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (edible, bland); grown mainly as an ornamental.",
+  "other_uses": "Show-stopping Pacific currant draped in deep-pink to red flower clusters in early spring.",
+  "prep": "The blue-black berries are edible but rather bland/insipid (better for birds or mixed into other fruit); grown chiefly as one of the finest native flowering shrubs and an early hummingbird plant.",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Moist to dry, well-drained soils.",
+  "risks": "Ribes can host white pine blister rust.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "ID"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Ribes_sanguineum"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Ribes+sanguineum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/RISA"
+    ]
+  ]
+}

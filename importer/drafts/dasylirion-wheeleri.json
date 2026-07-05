@@ -1,0 +1,67 @@
+{
+  "common": "Sotol",
+  "sci": "Dasylirion wheeleri",
+  "family": "Asparagaceae",
+  "type": "Shrub",
+  "life": "Perennial succulent",
+  "edible_parts": "Roasted heart/crown (and distilled into sotol).",
+  "other_uses": "Spherical rosette of saw-toothed blue leaves ('desert spoon') with a tall flower spike.",
+  "prep": "The starchy central heart was pit-roasted for food and is distilled into the spirit 'sotol'; the leaf bases ('desert spoons') and fibers are used in crafts. Very drought-hardy.",
+  "harvest": "Heart before flowering.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, sharply drained soils.",
+  "risks": "Leaf margins are saw-toothed — handle carefully.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      1,
+      "A"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Dasylirion_wheeleri"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Dasylirion+wheeleri"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/DAWH2"
+    ]
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "common": "Rocky Mountain Pond-lily",
+  "sci": "Nuphar polysepala",
+  "family": "Nymphaeaceae",
+  "type": "Herb",
+  "life": "Aquatic perennial",
+  "edible_parts": "Seeds ('wokas' — popped/ground) and rhizome (cooked).",
+  "other_uses": "Western yellow pond-lily whose big leathery leaves and golden globe flowers fill mountain lakes.",
+  "prep": "Roast and pop the ripe seeds or grind them into 'wokas' meal — a staple of the Klamath people, gathered by the canoe-load; the starchy rhizome is also eaten cooked. A striking pond plant.",
+  "harvest": "Seeds late summer.",
+  "sun": "Full sun",
+  "soil": "Still or slow water; mucky mountain-lake bottoms.",
+  "risks": "Rhizome bitter — cook well.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Nuphar_polysepala"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Nuphar+polysepala"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/NUPO2"
+    ]
+  ]
+}

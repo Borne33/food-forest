@@ -1,0 +1,65 @@
+{
+  "common": "Coast Live Oak",
+  "sci": "Quercus agrifolia",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (leached, then meal).",
+  "other_uses": "Evergreen oak with holly-like leaves forming the great oak woodlands of coastal California.",
+  "prep": "Leach the ground acorns to remove tannins, then use as meal/mush — a central California staple food. A majestic evergreen shade and wildlife tree.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Leach acorns before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_agrifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+agrifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QUAG"
+    ]
+  ]
+}

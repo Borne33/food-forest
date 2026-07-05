@@ -1,0 +1,75 @@
+{
+  "common": "Southern Live Oak",
+  "sci": "Quercus virginiana",
+  "family": "Fagaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Acorns (sweet, low-tannin; also pressed for oil).",
+  "other_uses": "Iconic sprawling evergreen oak of the Deep South, draped in Spanish moss.",
+  "prep": "The comparatively sweet acorns need little leaching and were also pounded and boiled to skim off a cooking oil; a majestic, extremely long-lived shade tree.",
+  "harvest": "Acorns fall.",
+  "sun": "Full sun",
+  "soil": "Dry to moist, well-drained soils; salt-tolerant.",
+  "risks": "Lightly leach if bitter.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      10,
+      "P"
+    ],
+    "eco": [
+      9,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Quercus_virginiana"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Quercus+virginiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/QUVI"
+    ]
+  ]
+}

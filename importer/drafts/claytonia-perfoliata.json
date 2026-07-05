@@ -1,0 +1,77 @@
+{
+  "common": "Miner's Lettuce",
+  "sci": "Claytonia perfoliata",
+  "family": "Montiaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Leaves and stems (crisp salad green; vitamin C).",
+  "other_uses": "Succulent annual whose round leaves clasp the stem into a little green saucer around the flowers.",
+  "prep": "Eat the mild, crisp, vitamin-C-rich leaves raw in salad or lightly steamed — the famous green that kept Gold Rush miners from scurvy. Self-sows readily in cool shade.",
+  "harvest": "Leaves spring.",
+  "sun": "Part shade to full sun",
+  "soil": "Moist, cool, shaded soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "WA",
+    "OR",
+    "CA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "CO",
+    "AZ",
+    "NM",
+    "ND",
+    "SD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Claytonia_perfoliata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Claytonia+perfoliata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CLPE"
+    ]
+  ]
+}

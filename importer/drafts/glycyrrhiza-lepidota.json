@@ -1,0 +1,85 @@
+{
+  "common": "American Licorice",
+  "sci": "Glycyrrhiza lepidota",
+  "family": "Fabaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Root (licorice flavor — chewed, tea) and young shoots.",
+  "other_uses": "Erect prairie legume with sticky burred seed pods and true licorice-flavored roots.",
+  "prep": "Chew the sweet licorice-flavored root raw, roast it, or steep for tea, and eat the young spring shoots; a nitrogen-fixing relative of commercial licorice. Use the flavoring in moderation.",
+  "harvest": "Root fall/spring; shoots spring.",
+  "sun": "Full sun",
+  "soil": "Moist to medium soils; adaptable.",
+  "risks": "Use in moderation (as with all licorice).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "WA",
+    "OR",
+    "CA",
+    "AZ",
+    "NM",
+    "WI",
+    "MN",
+    "MO",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Glycyrrhiza_lepidota"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Glycyrrhiza+lepidota"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GLLE3"
+    ]
+  ]
+}

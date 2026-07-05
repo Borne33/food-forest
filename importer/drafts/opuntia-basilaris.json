@@ -1,0 +1,69 @@
+{
+  "common": "Beavertail Cactus",
+  "sci": "Opuntia basilaris",
+  "family": "Cactaceae",
+  "type": "Shrub",
+  "life": "Perennial cactus",
+  "edible_parts": "Fruit, flower buds, and young pads (all cooked/eaten).",
+  "other_uses": "Spineless-looking blue-gray prickly pear (armed with tiny glochids) with brilliant magenta flowers.",
+  "prep": "Roast the flower buds, eat the fruit, and cook the young pads (nopales); a desert food — but beware the fine barbed glochids, which must be burned or scraped off first.",
+  "harvest": "Buds/pads spring; fruit summer.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, sharply drained desert soils.",
+  "risks": "Tiny barbed glochids — remove carefully before eating.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "AZ",
+    "NV",
+    "UT",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Opuntia_basilaris"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Opuntia+basilaris"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OPBA2"
+    ]
+  ]
+}

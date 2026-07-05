@@ -1,0 +1,67 @@
+{
+  "common": "Soaptree Yucca",
+  "sci": "Yucca elata",
+  "family": "Asparagaceae",
+  "type": "Shrub",
+  "life": "Perennial succulent",
+  "edible_parts": "Flowers, young flower stalk, and fruit (cooked); fiber/soap.",
+  "other_uses": "Tall trunk-forming desert yucca with fine grassy leaves and towering cream flower spikes.",
+  "prep": "Cook the flowers and young emerging flower stalk (asparagus-like) and the green fruit; the leaves make cordage/baskets and the roots ('amole') a soap. A signature Chihuahuan Desert plant.",
+  "harvest": "Flowers/stalk spring-summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy, well-drained desert soils.",
+  "risks": "Leaf tips sharp; roots soapy (not eaten).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Yucca_elata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Yucca+elata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/YUEL"
+    ]
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "common": "Soapweed Yucca",
+  "sci": "Yucca glauca",
+  "family": "Asparagaceae",
+  "type": "Shrub",
+  "life": "Perennial succulent",
+  "edible_parts": "Flowers and fruit (cooked); fiber/soap.",
+  "other_uses": "Low plains yucca with narrow blue-green leaves and greenish-white flower spikes; the hardiest yucca.",
+  "prep": "Cook the flowers (petals, de-bittered) and the green fruit as vegetables; the leaf fibers make cordage and the roots a soap ('amole'). An extremely cold- and drought-hardy Great Plains plant, tied to its yucca moth.",
+  "harvest": "Flowers early summer; fruit late summer.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or rocky, well-drained soils.",
+  "risks": "Leaf tips sharp; roots soapy (not eaten).",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "IA",
+    "MO",
+    "AZ",
+    "NM"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Yucca_glauca"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Yucca+glauca"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/YUGL"
+    ]
+  ]
+}

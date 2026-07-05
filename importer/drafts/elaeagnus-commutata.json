@@ -1,0 +1,75 @@
+{
+  "common": "Silverberry",
+  "sci": "Elaeagnus commutata",
+  "family": "Elaeagnaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (dry, mealy, edible; N-fixer).",
+  "other_uses": "Suckering shrub with intensely silver leaves and fragrant yellow flowers; a nitrogen fixer.",
+  "prep": "Eat the silvery, dry-mealy berries raw or cooked (better cooked, and after frost); the fragrant flowers scent the air and the seeds are used as beads. An actinorhizal soil builder. (This is the NATIVE silverberry, not invasive Russian/autumn olive.)",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "MT",
+    "WY",
+    "CO",
+    "UT",
+    "ID",
+    "ND",
+    "SD",
+    "MN",
+    "AK",
+    "OR",
+    "WA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Elaeagnus_commutata"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Elaeagnus+commutata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ELCO"
+    ]
+  ]
+}

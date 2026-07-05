@@ -1,0 +1,70 @@
+{
+  "common": "Darrow's Blueberry",
+  "sci": "Vaccinium darrowii",
+  "family": "Ericaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody perennial",
+  "edible_parts": "Fruit (sweet, raw or cooked).",
+  "other_uses": "Low evergreen Southern blueberry with blue-tinted leaves and sweet fruit; a parent of Southern highbush cultivars.",
+  "prep": "Eat the sweet blue berries fresh or in pies and jam, like other blueberries; a heat-tolerant evergreen blueberry for the Deep South.",
+  "harvest": "Fruit early summer.",
+  "sun": "Full sun to part shade",
+  "soil": "Dry to moist, acidic, sandy soils.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "FL",
+    "GA",
+    "AL",
+    "MS",
+    "LA",
+    "SC"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      6,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vaccinium_darrowii"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vaccinium+darrowii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VADA"
+    ]
+  ]
+}

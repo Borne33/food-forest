@@ -1,0 +1,78 @@
+{
+  "common": "Muscadine",
+  "sci": "Vitis rotundifolia",
+  "family": "Vitaceae",
+  "type": "Vine",
+  "life": "Hardy woody vine",
+  "edible_parts": "Fruit (sweet, thick-skinned; fresh, juice, wine).",
+  "other_uses": "The great grape of the Southeast, with thick-skinned bronze ('scuppernong') to purple fruit.",
+  "prep": "Eat the sweet musky grapes fresh (pop them from the skin), or make juice, jelly, and wine; the thick skins and seeds are rich in antioxidants. A vigorous, disease-resistant Southern arbor vine.",
+  "harvest": "Fruit fall.",
+  "sun": "Full sun",
+  "soil": "Moist to medium, well-drained soils.",
+  "risks": "Vigorous — give it a sturdy support.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA",
+    "TN",
+    "AR",
+    "VA",
+    "TX",
+    "OK",
+    "KY",
+    "MD"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Vitis_rotundifolia"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Vitis+rotundifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VIRO3"
+    ]
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "common": "Singleleaf Pinyon",
+  "sci": "Pinus monophylla",
+  "family": "Pinaceae",
+  "type": "Tree",
+  "life": "Long-lived woody perennial",
+  "edible_parts": "Seeds (piñon nuts — rich, raw or roasted).",
+  "other_uses": "Great Basin piñon with unique single needles; the premier nut tree of Nevada and the Basin.",
+  "prep": "Roast and shell the rich piñon nuts — a Great Basin staple gathered communally each fall; the nut of Nevada's 'pine nut' harvests. A slow high-desert tree.",
+  "harvest": "Nuts fall (mast years).",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils; high desert.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "NV",
+    "UT",
+    "CA",
+    "AZ",
+    "ID"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      9,
+      "E"
+    ],
+    "eco": [
+      8,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Pinus_monophylla"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Pinus+monophylla"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIMO"
+    ]
+  ]
+}

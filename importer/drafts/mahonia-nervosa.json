@@ -1,0 +1,68 @@
+{
+  "common": "Cascade Oregon Grape",
+  "sci": "Mahonia nervosa",
+  "family": "Berberidaceae",
+  "type": "Shrub",
+  "life": "Evergreen woody groundcover",
+  "edible_parts": "Fruit (tart — jelly); root (dye/medicinal).",
+  "other_uses": "Low evergreen with long holly-like leaves and tart blue berries; a fine forest groundcover.",
+  "prep": "Cook the tart blue berries into jelly and juice; the yellow root yields dye and berberine. Grown as a shade-tolerant evergreen groundcover under conifers.",
+  "harvest": "Fruit late summer.",
+  "sun": "Part shade to shade",
+  "soil": "Moist to dry, acidic forest soils; shade tolerant.",
+  "risks": "Very tart raw; root medicinal, not food.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "OR",
+    "WA",
+    "CA",
+    "ID"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Mahonia_nervosa"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Mahonia+nervosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MANE2"
+    ]
+  ]
+}

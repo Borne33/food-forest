@@ -1,0 +1,73 @@
+{
+  "common": "Barestem Biscuitroot",
+  "sci": "Lomatium nudicaule",
+  "family": "Apiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial",
+  "edible_parts": "Young leaves/stems (celery-like) and seeds (spice).",
+  "other_uses": "Stout blue-green desert-parsley with leafless flower stalks ('pestle parsnip').",
+  "prep": "Eat the young leaves and stems raw or cooked like celery, and use the aromatic seeds as a seasoning and traditional smoke; a widely used Western food and medicine plant. Know your carrot-family plants.",
+  "harvest": "Greens spring; seed summer.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Know your Apiaceae to avoid toxic look-alikes.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "ID",
+    "NV",
+    "UT",
+    "MT",
+    "WY",
+    "AZ"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Lomatium_nudicaule"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Lomatium+nudicaule"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LONU2"
+    ]
+  ]
+}

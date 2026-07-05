@@ -1,0 +1,84 @@
+{
+  "common": "Silver Buffaloberry",
+  "sci": "Shepherdia argentea",
+  "family": "Elaeagnaceae",
+  "type": "Shrub",
+  "life": "Hardy woody perennial",
+  "edible_parts": "Fruit (tart — sauce, jelly; better after frost).",
+  "other_uses": "Silvery thorny shrub of the Plains and West with tart scarlet berries; a nitrogen fixer.",
+  "prep": "Cook the tart red berries into a tangy sauce (a classic 'buffalo berry' sauce for meat), jelly, and drinks — sweeter after a frost. An actinorhizal soil builder and windbreak shrub.",
+  "harvest": "Fruit late summer-fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils; salt-tolerant.",
+  "risks": "Thorns; tart raw.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "OK",
+    "TX",
+    "MT",
+    "WY",
+    "CO",
+    "MN",
+    "IA",
+    "MO",
+    "OR",
+    "NV",
+    "UT",
+    "CA",
+    "AZ",
+    "NM",
+    "MN",
+    "IA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "scores": {
+    "raw": [
+      3,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      7,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Shepherdia_argentea"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Shepherdia+argentea"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SHAR"
+    ]
+  ]
+}

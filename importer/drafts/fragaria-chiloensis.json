@@ -1,0 +1,68 @@
+{
+  "common": "Beach Strawberry",
+  "sci": "Fragaria chiloensis",
+  "family": "Rosaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous groundcover",
+  "edible_parts": "Fruit (sweet) and leaves (tea).",
+  "other_uses": "Glossy-leaved coastal strawberry of Pacific dunes and bluffs — a parent of the cultivated strawberry.",
+  "prep": "Eat the small intensely sweet berries fresh or in preserves and steep the leaves for tea; a tough, salt-tolerant strawberry groundcover (crossed with a Virginia strawberry to create the garden strawberry).",
+  "harvest": "Fruit summer.",
+  "sun": "Full sun",
+  "soil": "Sandy, well-drained coastal soils; salt-tolerant.",
+  "risks": "None significant.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "CA",
+    "OR",
+    "WA",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      7,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      1,
+      "A"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Fragaria_chiloensis"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Fragaria+chiloensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/FRCH"
+    ]
+  ]
+}

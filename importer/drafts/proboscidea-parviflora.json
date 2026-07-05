@@ -1,0 +1,72 @@
+{
+  "common": "Devil's Claw",
+  "sci": "Proboscidea parviflora",
+  "family": "Martyniaceae",
+  "type": "Herb",
+  "life": "Annual",
+  "edible_parts": "Young pods (okra-like, cooked) and seeds (oily); black fiber for basketry.",
+  "other_uses": "Sticky sprawling desert annual whose dry pods split into two vicious curved claws.",
+  "prep": "Cook the tender young green pods like okra and eat the oil-rich seeds from mature pods; the strong black fiber peeled from the dry claws is a prized basketry material (cultivated by the Tohono O'odham for it).",
+  "harvest": "Young pods summer; seeds fall.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained soils.",
+  "risks": "Mature claws catch skin and clothing.",
+  "buy": "Native-plant nurseries and native seed suppliers.",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX",
+    "CA",
+    "NV",
+    "UT",
+    "OK",
+    "KS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      5,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Proboscidea_parviflora"
+    ],
+    [
+      "Plants For A Future",
+      "https://pfaf.org/user/plant.aspx?latinname=Proboscidea+parviflora"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PRPA2"
+    ]
+  ]
+}
