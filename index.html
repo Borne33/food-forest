@@ -838,6 +838,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
   const [types,setTypes]=useState([]); // active type filters
   const [flags,setFlags]=useState({nf:false,pol:false,raw:false,cooked:false,plan:false,notplan:false,deer:false,dec:false});
   const [batch,setBatch]=useState("all"); // added-batch filter (by created_at cluster)
+  const [planFilter,setPlanFilter]=useState([]); // selected plan ids to filter by (empty = any)
 
   const allTypes=[...new Set(plants.map(p=>p.type))];
   // distinct batches with their add-date + count, for the "Added batch" dropdown
@@ -863,7 +864,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
       if(flags.cooked && p.s.cooked[0]<5) return false;
       if(flags.deer && !p.deerResistant) return false;
       if(flags.dec && !p.decPriority) return false;
-      if(flags.plan && !inAnyPlan(p.id)) return false;
+      if(planFilter.length && !planFilter.some(pid=>(membership[p.id]||[]).includes(pid))) return false;
       if(flags.notplan && inAnyPlan(p.id)) return false;
       if(batch!=="all" && String(p.batch)!==batch) return false;
       return true;
@@ -876,7 +877,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
     };
     arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
     return arr;
-  },[plants,q,types,flags,sortKey,dir,state,membership,batch]);
+  },[plants,q,types,flags,sortKey,dir,state,membership,batch,planFilter]);
 
   // pagination: cap at 100 plants per page
   const PER_PAGE=100;
@@ -884,7 +885,8 @@ function Database({plants, state, setState, plans, membership, toggle}){
   const pageCount=Math.max(1, Math.ceil(view.length/PER_PAGE));
   const curPage=Math.min(page, pageCount);
   const pageItems=view.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
-  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch]); // reset to page 1 on filter change
+  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch,planFilter]); // reset to page 1 on filter change
+  useEffect(()=>{ setPlanFilter(pf=>pf.filter(id=>plans.some(p=>p.id===id))); },[plans]); // drop deleted plans
   const goPage=n=>{ setPage(n); window.scrollTo({top:0,behavior:"smooth"}); };
 
   return (
@@ -923,6 +925,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
             <option value="all">All batches</option>
             {batches.map(b=><option key={b.n} value={String(b.n)}>Batch {b.n} — {fmtDate(b.date)} ({b.count})</option>)}
           </select></div>
+        <div style={{minWidth:180,flex:"1 1 180px"}}><PlanFilter plans={plans} value={planFilter} onChange={setPlanFilter} /></div>
         <button className="dirbtn" title="Toggle direction" onClick={()=>setDir(d=>-d)}>{dir===-1?"↓":"↑"}</button>
       </div>
 
@@ -935,8 +938,7 @@ function Database({plants, state, setState, plans, membership, toggle}){
         <button className={"chip"+(flags.cooked?" on":"")} onClick={()=>toggleFlag("cooked")}>Good cooked</button>
         <button className={"chip"+(flags.deer?" on":"")} onClick={()=>toggleFlag("deer")}>Deer resistant</button>
         <button className={"chip"+(flags.dec?" on":"")} onClick={()=>toggleFlag("dec")}>NY priority</button>
-        <button className={"chip"+(flags.plan?" on":"")} onClick={()=>toggleFlag("plan")}>In my plan</button>
-        <button className={"chip"+(flags.notplan?" on":"")} onClick={()=>toggleFlag("notplan")}>Not in plan</button>
+        <button className={"chip"+(flags.notplan?" on":"")} onClick={()=>toggleFlag("notplan")}>Not in any plan</button>
       </div>
 
       <div className="count">{view.length} shown{pageCount>1?` · page ${curPage} of ${pageCount}`:""}</div>
@@ -1625,6 +1627,34 @@ function MultiSelect({label, options, value, onChange}){
           {options.map(o=>(
             <div key={o} className={"msopt"+(value.includes(o)?" on":"")} onClick={()=>toggle(o)}>
               <span className="box">{value.includes(o)?"✓":""}</span>{o}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+/* plan multi-select (color chips, selects by plan id) for the Database filter */
+function PlanFilter({plans, value, onChange}){
+  const [open,setOpen]=useState(false);
+  useEffect(()=>{ if(!open) return; const h=()=>setOpen(false);
+    document.addEventListener("click",h); return ()=>document.removeEventListener("click",h); },[open]);
+  const toggle=id=>onChange(value.includes(id)?value.filter(x=>x!==id):[...value,id]);
+  const chosen=plans.filter(p=>value.includes(p.id));
+  return (
+    <div className="msfield" onClick={e=>e.stopPropagation()}>
+      <label>Filter by plan</label>
+      <div className="mscontrol" onClick={()=>setOpen(o=>!o)}>
+        {chosen.length ? chosen.map(p=><span className="mschip" key={p.id} style={{background:p.color,color:textOn(p.color),borderColor:p.color}}>{p.name}</span>)
+                       : <span className="msph">Any plan</span>}
+        <span className="mschev">▼</span>
+      </div>
+      {open && (
+        <div className="msmenu">
+          {plans.map(p=>(
+            <div key={p.id} className={"msopt"+(value.includes(p.id)?" on":"")} onClick={()=>toggle(p.id)}>
+              <span className="box">{value.includes(p.id)?"✓":""}</span>
+              <span style={{display:"inline-block",width:11,height:11,borderRadius:3,background:p.color,flex:"0 0 auto"}}></span>{p.name}
             </div>
           ))}
         </div>
