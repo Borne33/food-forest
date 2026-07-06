@@ -30,14 +30,14 @@ FOOD_KW={
 }
 MAT_KW={
  "Timber/Wood":["timber","lumber","hardwood","rot-resistant wood","tool handle","tool handles","fence-post","posts","shingle","carv","boat","pencil","bat","plank","the wood","its wood","light wood","hard wood","durable wood","cedar-chest","musclewood","ironwood","tools"],
- "Fiber/Cordage":["fiber","fibre","cordage","cord ","rope","twine","string","sandals","netting"],
+ "Fiber/Cordage":["fiber","fibre","cordage","cord "," rope","twine"," string","sandals","netting"],  # padded: not 'European'/'astringent'
  "Basketry/Weaving":["basket","weav","splint","wicker","withe","matting"," mat "],
  "Dye":["dye"],
  "Soap/Saponin":["soap","saponin","amole","lather"],
  "Wax/Resin/Gum":["resin","gum ","gum (","gum.","gum,","balsam","chewing gum","latex","storax","candle","beeswax","wax"],
  "Fuelwood":["fuelwood","firewood","grilling","charcoal","kindling"],
 }
-OTHER_MAT_KW=[" ink","glue","tannin"," brush","beads","smoking","kinnikinnick","fishing float","abrasive","scour ","gruit","lycopodium powder","flash powder"]
+OTHER_MAT_KW=[" ink","glue"," brush","beads","smoking","kinnikinnick","fishing float","abrasive","scour ","gruit","lycopodium powder","flash powder"]  # dropped 'tannin' (matches acorn-leaching)
 def _prep(t): return (t or "").lower().replace("waxy","")  # 'waxy bloom' isn't a wax use
 ECO_SENT_KW=["nitrogen","n-fix","actinorhizal","pollinator","bee","butterfl","moth","bird","wildlife","host","nectar","habitat","cover","erosion","streambank","stream bank","stabiliz","soil builder","hedgerow","forage","waterfowl","monarch","larval","songbird","browse","game","quail","grizzly","pollen","understory","restoration","windbreak","screening","shelter","swallowtail","checkerspot","fritillary","hummingbird","carbon"]
 
