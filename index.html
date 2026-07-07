@@ -11,6 +11,11 @@
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Leaflet + Leaflet.draw (Planting Plan map): pinned versions, no build step -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
 <style>
   :root{
     --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
@@ -354,13 +359,77 @@
     .card .head .pcar{order:3;flex:1 1 100%;width:100%;margin-top:8px}
     .card .head .pcar .frame{width:100%;height:150px}
   }
+  /* ---------- Planting Plan (wizard + Leaflet map) ---------- */
+  .ppsteps{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+  .ppstep{display:flex;align-items:center;gap:7px;font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+    border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:7px 11px;color:var(--ink2)}
+  .ppstep .n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--line);color:#fff;font-size:10px;font-weight:700}
+  .ppstep.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .ppstep.on .n{background:var(--sage)}
+  .ppstep.done{border-color:var(--sage);color:var(--sage-d)}
+  .ppstep.done .n{background:var(--sage)}
+  .ppstep .arrow{color:var(--faint)}
+  .ppbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
+  .ppbar .grow{flex:1 1 auto}
+  .ppbtn{font-family:'Space Mono';font-size:12px;letter-spacing:.04em;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:4px;padding:8px 14px}
+  .ppbtn.primary{background:var(--sage);border-color:var(--sage-d);color:#fff}
+  .ppbtn:disabled{opacity:.4;cursor:not-allowed}
+  .ppbtn.ghost{border-color:var(--line);color:var(--ink2)}
+  .ppbtn.danger{border-color:#c0503f;color:#b03a2e}
+  /* Step 1 list */
+  .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;background:#fbf9f2}
+  .pplhead,.pplrow{display:grid;grid-template-columns:1.6fr 66px 70px 1.3fr 90px 90px;gap:10px;align-items:center;padding:10px 12px}
+  .pplhead{background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--line)}
+  .pplrow{border-bottom:1px solid var(--line);cursor:pointer}
+  .pplrow:last-child{border-bottom:0}
+  .pplrow:hover{background:#f4efe0}
+  .pplrow .cn{font-weight:600}
+  .pplrow .cn i{display:block;font-size:12px;color:var(--ink2);font-style:italic}
+  .pplrow .sc{display:inline-flex;align-items:center;justify-content:center;min-width:34px;padding:3px 6px;border-radius:4px;font-family:'Space Mono';font-size:12px;font-weight:700}
+  .pplrow .eco{display:flex;gap:4px;flex-wrap:wrap}
+  .ecopill{font-family:'Space Mono';font-size:9px;letter-spacing:.04em;padding:2px 6px;border-radius:99px;border:1px solid var(--line);color:var(--ink2);background:#fff}
+  .ecopill.nf{background:#e3efd9;border-color:#9bbf3a;color:#4a6b1f}
+  .ppqty{display:flex;align-items:center;gap:4px}
+  .ppqty input{width:56px;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff}
+  .ppqty button{width:26px;height:30px;border:1.5px solid var(--line);background:#fff;border-radius:4px;font-size:15px;line-height:1;color:var(--ink)}
+  @media(max-width:720px){ .pplhead{display:none} .pplrow{grid-template-columns:1fr auto;grid-auto-flow:row;gap:6px 10px} }
+  /* Map + side panel */
+  .ppmapwrap{position:relative;z-index:1;display:flex;gap:14px;align-items:stretch}
+  .ppmap{flex:1 1 auto;min-width:0;height:min(64vh,600px);border:1.5px solid var(--ink);border-radius:6px}
+  .ppside{flex:0 0 260px;display:flex;flex-direction:column;gap:12px}
+  @media(max-width:840px){ .ppmapwrap{flex-direction:column} .ppside{flex-basis:auto} .ppmap{height:52vh} }
+  .ppcard{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;padding:12px 13px}
+  .ppcard h4{margin:0 0 8px;font-family:'Space Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .ppgeo{display:flex;gap:6px;margin-bottom:10px}
+  .ppgeo input{flex:1 1 auto;min-width:0;border:1.5px solid var(--line);border-radius:4px;padding:7px 9px;font-family:'Spectral';font-size:14px;background:#fff}
+  .pptotals{display:flex;gap:10px;flex-wrap:wrap}
+  .pptot{flex:1 1 80px;text-align:center;border:1.5px solid var(--line);border-radius:5px;padding:8px 6px;background:#fff}
+  .pptot .v{font-family:'Space Mono';font-size:18px;font-weight:700;color:var(--sage-d)}
+  .pptot .l{font-family:'Space Mono';font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-top:2px}
+  .pphint{font-size:12.5px;color:var(--ink2);line-height:1.45}
+  /* Step 4 palette */
+  .ppspecies{display:flex;flex-direction:column;gap:5px;max-height:min(46vh,420px);overflow:auto}
+  .ppsp{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:#fff;border-radius:5px;padding:6px 8px;text-align:left;width:100%}
+  .ppsp.on{border-color:var(--sage);background:#eef4e5;box-shadow:0 0 0 1.5px var(--sage) inset}
+  .ppsp.done{opacity:.55}
+  .ppsp .dot{flex:0 0 auto;width:14px;height:14px;border-radius:50%}
+  .ppsp .nm{flex:1 1 auto;min-width:0;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ppsp .ct{font-family:'Space Mono';font-size:11px;color:var(--ink2);flex:0 0 auto}
+  .ppmark{display:flex;align-items:center;justify-content:center;font-family:'Space Mono';font-weight:700;color:#fff;
+    border:2px solid #fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.4);white-space:nowrap}
+  .ppleg{display:flex;flex-wrap:wrap;gap:6px 12px}
+  .ppleg .it{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2)}
+  .ppleg .sw{width:12px;height:12px;border-radius:50%}
+  .ppseg{display:flex;gap:4px}
+  .ppseg button{flex:1 1 0;font-family:'Space Mono';font-size:11px;border:1.5px solid var(--line);background:#fff;border-radius:4px;padding:6px 4px;color:var(--ink2)}
+  .ppseg button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 </style>
 </head>
 <body>
 <div id="root"></div>
 
 <script type="text/babel">
-const {useState,useMemo,useEffect} = React;
+const {useState,useMemo,useEffect,useRef} = React;
 
 /* =====================================================================
    ▼▼▼  CONFIG — PASTE YOUR TWO SUPABASE VALUES HERE  ▼▼▼
@@ -473,6 +542,18 @@ const dataProvider = {
     const { data, error } = await sb.from('plants').update(patch).eq('id', plantId).select('*').single();
     if(error) throw error;
     return rowToPlant(data);
+  },
+  async loadLayout(planId){
+    // Planting Plan layout for one plan (may not exist yet -> null)
+    const { data, error } = await sb.from('plan_layouts').select('data').eq('plan_id', planId).maybeSingle();
+    if(error) throw error;
+    return data ? data.data : null;
+  },
+  async saveLayout(planId, layout){
+    // upsert the whole layout blob (one row per plan); user_id fills via default
+    const { error } = await sb.from('plan_layouts')
+      .upsert({ plan_id:planId, data:layout, updated_at:new Date().toISOString() }, { onConflict:'plan_id' });
+    if(error) throw error;
   },
 };
 
@@ -1015,6 +1096,321 @@ function PlanMiniCard({p, state, remove, onOpen}){
 }
 
 /* ---------- My Plan page ---------- */
+/* =====================================================================
+   PLANTING PLAN  — step-through wizard living inside the My Plans page.
+   Step 1 plant counts -> Step 2 map & mapped areas -> Step 4 place plants
+   on a Leaflet map. (Step 3 soil-mapping lands in a follow-up.) The whole
+   layout persists per-plan: localStorage for instant autosave, plus the
+   plan_layouts table in Supabase for cross-device. The component is keyed
+   by planId in MyPlan, so switching plans remounts it cleanly.
+   ===================================================================== */
+// mature canopy diameter (ft) by plant type -> real-world circle on the map
+const CANOPY_FT = { Tree:25, Shrub:8, Vine:6, Herb:2, Fern:3, Grass:2, Groundcover:3 };
+// plant type -> forest layer + a distinct marker/circle color
+const PP_LAYER = {
+  Tree:{layer:"Canopy", color:"#4f7a3a"}, Shrub:{layer:"Shrub", color:"#7a8b3f"},
+  Herb:{layer:"Herbaceous", color:"#9bbf3a"}, Fern:{layer:"Herbaceous", color:"#9bbf3a"},
+  Grass:{layer:"Herbaceous", color:"#9bbf3a"}, Groundcover:{layer:"Groundcover", color:"#c99a2e"},
+  Vine:{layer:"Vine", color:"#9c6b9e"},
+};
+const PP_LAYER_LEGEND = [
+  ["Canopy · Tree","#4f7a3a"],["Shrub","#7a8b3f"],["Herbaceous","#9bbf3a"],
+  ["Groundcover","#c99a2e"],["Vine","#9c6b9e"],
+];
+const PP_MARK_PX = { Tree:34, Shrub:28, Vine:26, Herb:22, Fern:22, Grass:22, Groundcover:24 };
+const M2_TO_SQFT = 10.7639104, M2_TO_ACRE = 1/4046.8564224;
+const TILE_LAYERS = [
+  { name:"Map", url:"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", max:19, attr:"&copy; OpenStreetMap contributors" },
+  { name:"Satellite", url:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", max:19, attr:"Imagery &copy; Esri, Maxar, Earthstar Geographics" },
+  { name:"Topographic", url:"https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", max:17, attr:"&copy; OpenTopoMap (CC-BY-SA), &copy; OpenStreetMap contributors" },
+];
+function ppAcronym(name){
+  const w=(name||"").replace(/[^A-Za-z ]/g," ").split(/\s+/).filter(Boolean);
+  if(!w.length) return "?";
+  if(w.length===1) return w[0].slice(0,4).toUpperCase();
+  return w.map(x=>x[0]).join("").slice(0,4).toUpperCase();
+}
+function ppCodes(plants){ // unique short marker label per plant within the plan
+  const used={}, out={};
+  plants.forEach(p=>{ let b=ppAcronym(p.common), c=b, i=2; while(used[c]){ c=b.slice(0,3)+i; i++; } used[c]=true; out[p.id]=c; });
+  return out;
+}
+
+function PlantingPlan({chosen, state, planId, openDetail}){
+  const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"place",label:"Place Plants"}];
+  const [ready,setReady]=useState(false);
+  const [mapReady,setMapReady]=useState(false);
+  const [step,setStep]=useState("plants");
+  const [counts,setCounts]=useState({});   // {plantId:n}
+  const [view,setView]=useState(null);      // {center:[lat,lng], zoom, base}
+  const [polys,setPolys]=useState([]);      // [[[lat,lng],...], ...]
+  const [places,setPlaces]=useState([]);    // [{id, plantId, lat, lng}]
+  const [placeMode,setPlaceMode]=useState("plant"); // plant | move
+  const [activeSp,setActiveSp]=useState(null);
+  const [geo,setGeo]=useState("");
+
+  const byId=useMemo(()=>{ const m={}; chosen.forEach(p=>m[p.id]=p); return m; },[chosen]);
+  const codes=useMemo(()=>ppCodes(chosen),[chosen]);
+  const stepIdx=STEPS.findIndex(s=>s.key===step);
+
+  const mapRef=useRef(null), mapObj=useRef(null), drawn=useRef(null), placeG=useRef(null);
+  const drawCtl=useRef(null), markers=useRef({});
+  const stepRef=useRef(step), modeRef=useRef(placeMode), activeRef=useRef(activeSp), openRef=useRef(openDetail);
+  useEffect(()=>{stepRef.current=step;},[step]);
+  useEffect(()=>{modeRef.current=placeMode;},[placeMode]);
+  useEffect(()=>{activeRef.current=activeSp;},[activeSp]);
+  useEffect(()=>{openRef.current=openDetail;},[openDetail]);
+
+  // latest place-at fn (fresh counts/places closure), called by the map click handler
+  const placeAtRef=useRef(()=>{});
+  placeAtRef.current=(plantId,lat,lng)=>{
+    const cap=counts[plantId]||0, cur=places.filter(x=>x.plantId===plantId).length;
+    if(cur>=cap) return;
+    setPlaces(ps=>[...ps,{id:"pl_"+Math.random().toString(36).slice(2,9),plantId,lat,lng}]);
+  };
+
+  /* ---- load layout on mount (localStorage instant, Supabase authoritative) ---- */
+  useEffect(()=>{
+    let cancelled=false;
+    const apply=(L)=>{ if(!L) return;
+      if(L.step && STEPS.some(s=>s.key===L.step)) setStep(L.step);
+      setCounts(L.counts||{}); setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]);
+    };
+    try{ const s=localStorage.getItem("ff-layout-"+planId); if(s) apply(JSON.parse(s)); }catch(e){}
+    dataProvider.loadLayout(planId).then(remote=>{ if(cancelled) return; apply(remote); setReady(true); })
+      .catch(e=>{ console.error(e); if(!cancelled) setReady(true); });
+    return ()=>{ cancelled=true; };
+  },[planId]);
+
+  /* ---- autosave (debounced) once loaded ---- */
+  const saveT=useRef(null);
+  useEffect(()=>{
+    if(!ready) return;
+    const layout={ v:1, step, counts, view, polys, places };
+    try{ localStorage.setItem("ff-layout-"+planId, JSON.stringify(layout)); }catch(e){}
+    clearTimeout(saveT.current);
+    saveT.current=setTimeout(()=>{ dataProvider.saveLayout(planId,layout).catch(e=>console.error(e)); },800);
+    return ()=>clearTimeout(saveT.current);
+  },[ready,planId,step,counts,view,polys,places]);
+
+  /* ---- create the Leaflet map once data is loaded ---- */
+  useEffect(()=>{
+    if(!ready || mapObj.current || !mapRef.current || !window.L) return;
+    const bases=TILE_LAYERS.map(t=>L.tileLayer(t.url,{maxZoom:t.max,attribution:t.attr}));
+    const baseIdx=(view&&Number.isInteger(view.base))?view.base:0;
+    const center=(view&&view.center)||[42.9,-75.5], zoom=(view&&view.zoom)||7; // default: upstate NY
+    const map=L.map(mapRef.current,{center,zoom,layers:[bases[baseIdx]||bases[0]]});
+    const baseObj={}; TILE_LAYERS.forEach((t,i)=>baseObj[t.name]=bases[i]);
+    L.control.layers(baseObj,null,{position:"topright"}).addTo(map);
+    drawn.current=new L.FeatureGroup(); map.addLayer(drawn.current);
+    placeG.current=new L.LayerGroup(); map.addLayer(placeG.current);
+    // seed previously-drawn polygons
+    (polys||[]).forEach(ring=>{ if(ring&&ring.length>=3)
+      drawn.current.addLayer(L.polygon(ring,{color:"#3a6b2e",weight:2,fillColor:"#6f8a5f",fillOpacity:.12})); });
+    const sync=()=>{ setPolys(drawn.current.getLayers().map(l=>l.getLatLngs()[0].map(p=>[p.lat,p.lng]))); };
+    map.on(L.Draw.Event.CREATED, e=>{
+      if(drawn.current.getLayers().length>=5){ alert("You can map up to 5 areas."); return; }
+      drawn.current.addLayer(e.layer); sync();
+    });
+    map.on(L.Draw.Event.EDITED, sync);
+    map.on(L.Draw.Event.DELETED, sync);
+    const remember=()=>setView(v=>({center:[map.getCenter().lat,map.getCenter().lng],zoom:map.getZoom(),base:(v&&Number.isInteger(v.base))?v.base:baseIdx}));
+    map.on("moveend zoomend", remember);
+    map.on("baselayerchange", e=>{ const i=TILE_LAYERS.findIndex(t=>t.name===e.name); setView(v=>({center:[map.getCenter().lat,map.getCenter().lng],zoom:map.getZoom(),base:i<0?0:i})); });
+    map.on("click", e=>{ if(stepRef.current==="place" && modeRef.current==="plant" && activeRef.current!=null) placeAtRef.current(activeRef.current,e.latlng.lat,e.latlng.lng); });
+    mapObj.current=map; setMapReady(true);
+    return ()=>{ map.remove(); mapObj.current=null; };
+  },[ready]);
+
+  /* ---- add/remove the polygon draw control per step; keep map sized ---- */
+  useEffect(()=>{
+    if(!mapReady) return; const map=mapObj.current;
+    if(step==="map"){
+      if(!drawCtl.current) drawCtl.current=new L.Control.Draw({
+        draw:{ polygon:{ showArea:false, showLength:true, metric:false, feet:true, allowIntersection:false,
+          shapeOptions:{color:"#3a6b2e",weight:2,fillColor:"#6f8a5f",fillOpacity:.12} },
+          polyline:false, rectangle:false, circle:false, marker:false, circlemarker:false },
+        edit:{ featureGroup:drawn.current } });
+      map.addControl(drawCtl.current);
+    } else if(drawCtl.current){ map.removeControl(drawCtl.current); }
+    if(step!=="plants") setTimeout(()=>map.invalidateSize(),30);
+  },[step,mapReady]);
+
+  /* ---- render plant placements as canopy circles + labeled markers ---- */
+  useEffect(()=>{
+    if(!mapReady || !placeG.current) return;
+    placeG.current.clearLayers(); markers.current={};
+    places.forEach(pl=>{
+      const p=byId[pl.plantId]; if(!p) return;
+      const info=PP_LAYER[p.type]||{color:"#6f8a5f"};
+      const rad=(CANOPY_FT[p.type]||6)*0.3048/2;
+      const circle=L.circle([pl.lat,pl.lng],{radius:rad,color:info.color,weight:1.5,fillColor:info.color,fillOpacity:.28,interactive:false});
+      const px=PP_MARK_PX[p.type]||24;
+      const icon=L.divIcon({className:"",iconSize:[px,px],iconAnchor:[px/2,px/2],
+        html:`<div class="ppmark" style="width:${px}px;height:${px}px;background:${info.color};font-size:${Math.max(8,Math.round(px*0.34))}px">${codes[pl.plantId]||"?"}</div>`});
+      const marker=L.marker([pl.lat,pl.lng],{icon,draggable:placeMode==="move"});
+      marker.on("click",()=>{ if(modeRef.current!=="move" && openRef.current) openRef.current(byId[pl.plantId]); });
+      marker.on("dragend",()=>{ const ll=marker.getLatLng(); circle.setLatLng(ll); setPlaces(ps=>ps.map(x=>x.id===pl.id?{...x,lat:ll.lat,lng:ll.lng}:x)); });
+      placeG.current.addLayer(circle); placeG.current.addLayer(marker);
+      markers.current[pl.id]={marker,circle};
+    });
+  },[places,placeMode,mapReady,byId,codes]);
+
+  /* ---- when placing, keep a species active until it's fully placed, then advance ---- */
+  const toPlace=chosen.filter(p=>(counts[p.id]||0)>0);
+  const placedCount=id=>places.filter(x=>x.plantId===id).length;
+  useEffect(()=>{
+    if(step!=="place") return;
+    const remaining=id=>(counts[id]||0)-placedCount(id);
+    if(activeSp==null || remaining(activeSp)<=0){
+      const next=toPlace.find(p=>remaining(p.id)>0);
+      setActiveSp(next?next.id:(toPlace[0]?toPlace[0].id:null));
+    }
+  },[step,places,counts]); // eslint-disable-line
+
+  const setQty=(id,n)=>{ n=Math.max(0,Math.min(999,n|0)); setCounts(c=>{ const nc={...c}; if(n) nc[id]=n; else delete nc[id]; return nc; }); };
+  const doRestart=()=>{
+    if(!confirm("Restart this planting plan from scratch? Your plant counts, mapped areas, and placements will be cleared.")) return;
+    if(drawn.current) drawn.current.clearLayers();
+    setCounts({}); setView(null); setPolys([]); setPlaces([]); setActiveSp(null); setPlaceMode("plant"); setStep("plants");
+  };
+  const clearPolys=()=>{ if(drawn.current) drawn.current.clearLayers(); setPolys([]); };
+  const doGeo=async()=>{
+    const q=geo.trim(); if(!q||!mapObj.current) return;
+    try{ const r=await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q="+encodeURIComponent(q));
+      const j=await r.json();
+      if(j&&j[0]) mapObj.current.setView([parseFloat(j[0].lat),parseFloat(j[0].lon)],18); else alert("Couldn't find that place.");
+    }catch(e){ alert("Address lookup failed."); }
+  };
+
+  const areaM2=useMemo(()=>{
+    if(!(window.L&&L.GeometryUtil&&L.GeometryUtil.geodesicArea)) return 0;
+    return polys.reduce((a,ring)=>{ if(!ring||ring.length<3) return a; return a+Math.abs(L.GeometryUtil.geodesicArea(ring.map(([la,ln])=>L.latLng(la,ln)))); },0);
+  },[polys]);
+  const sqft=areaM2*M2_TO_SQFT, acres=areaM2*M2_TO_ACRE;
+  const fmt=n=>Math.round(n).toLocaleString();
+  const totalToPlace=chosen.reduce((a,p)=>a+(counts[p.id]||0),0);
+  const treeCanopyM2=places.reduce((a,pl)=>{ const p=byId[pl.plantId]; if(p&&p.type==="Tree"){ const r=CANOPY_FT.Tree*0.3048/2; return a+Math.PI*r*r; } return a; },0);
+  const treePct=areaM2?Math.round(treeCanopyM2/areaM2*100):0;
+  const placedPlants=places.map(pl=>byId[pl.plantId]).filter(Boolean);
+  const polCount=placedPlants.filter(p=>p.pol).length, deerCount=placedPlants.filter(p=>p.deerResistant).length;
+
+  return (
+    <div>
+      <div className="ppsteps">
+        {STEPS.map((s,i)=>(
+          <React.Fragment key={s.key}>
+            {i>0 && <span className="arrow">→</span>}
+            <button className={"ppstep"+(step===s.key?" on":"")+(i<stepIdx?" done":"")} onClick={()=>setStep(s.key)}>
+              <span className="n">{i+1}</span>{s.label}
+            </button>
+          </React.Fragment>
+        ))}
+      </div>
+      <div className="ppbar">
+        <button className="ppbtn ghost" disabled={stepIdx<=0} onClick={()=>setStep(STEPS[stepIdx-1].key)}>← Back</button>
+        <button className="ppbtn primary" disabled={stepIdx>=STEPS.length-1} onClick={()=>setStep(STEPS[stepIdx+1].key)}>Next →</button>
+        <span className="grow"></span>
+        <span className="pphint" style={{marginRight:8}}>Autosaves as you go</span>
+        <button className="ppbtn danger" onClick={doRestart}>⟲ Restart</button>
+      </div>
+
+      {!ready && <div className="empty">Loading your planting plan…</div>}
+
+      {ready && step==="plants" && (
+        <div>
+          <div className="pphint" style={{margin:"0 0 12px"}}>Enter how many of each plant you want to place. Vital stats are shown for each — click any row to open its full card. Total to place: <b>{totalToPlace}</b>.</div>
+          <div className="pplist">
+            <div className="pplhead">
+              <div>Common name</div><div>Score</div><div>Min→fruit</div><div>Harvest</div><div>Ecology</div><div>Quantity</div>
+            </div>
+            {chosen.map(p=>{
+              const sc=overall(p,state);
+              return (
+                <div className="pplrow" key={p.id} onClick={()=>openDetail(p)}>
+                  <div className="cn">{p.common}<i>{p.sci}</i></div>
+                  <div><span className="sc" style={{background:bandColor(sc),color:bandText(sc)}}>{sc}</span></div>
+                  <div>{p.minPlantsFruit?(p.minPlantsFruit>=2?p.minPlantsFruit+" plants":"Self‑fruitful"):"—"}</div>
+                  <div style={{fontSize:13,color:"var(--ink2)"}}>{nd(p.harvest)}</div>
+                  <div className="eco">{p.nf&&<span className="ecopill nf">N‑fixer</span>}{p.pol&&<span className="ecopill">Pollinator</span>}{!p.nf&&!p.pol&&<span style={{color:"var(--faint)",fontSize:12}}>—</span>}</div>
+                  <div className="ppqty" onClick={e=>e.stopPropagation()}>
+                    <button onClick={()=>setQty(p.id,(counts[p.id]||0)-1)}>–</button>
+                    <input type="number" min="0" value={counts[p.id]||0} onChange={e=>setQty(p.id,parseInt(e.target.value||"0",10))}/>
+                    <button onClick={()=>setQty(p.id,(counts[p.id]||0)+1)}>+</button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div className="ppmapwrap" style={{display: (ready&&step!=="plants")?"flex":"none"}}>
+        <div className="ppmap" ref={mapRef}></div>
+        {step==="map" && (
+          <div className="ppside">
+            <div className="ppcard">
+              <h4>Find your site</h4>
+              <div className="ppgeo">
+                <input placeholder="Address or place…" value={geo} onChange={e=>setGeo(e.target.value)} onKeyDown={e=>{ if(e.key==="Enter") doGeo(); }}/>
+                <button className="ppbtn" onClick={doGeo}>Go</button>
+              </div>
+              <div className="pphint">Use the polygon tool (top‑left of the map) to outline 1–5 areas. Edge length shows in feet as you draw. Switch Map / Satellite / Topographic at top‑right.</div>
+            </div>
+            <div className="ppcard">
+              <h4>Mapped area · {polys.length}/5</h4>
+              <div className="pptotals">
+                <div className="pptot"><div className="v">{fmt(sqft)}</div><div className="l">sq ft</div></div>
+                <div className="pptot"><div className="v">{acres.toFixed(3)}</div><div className="l">acres</div></div>
+              </div>
+              {polys.length>0 && <button className="ppbtn ghost" style={{marginTop:10,width:"100%"}} onClick={clearPolys}>Clear areas</button>}
+            </div>
+          </div>
+        )}
+        {step==="place" && (
+          <div className="ppside">
+            <div className="ppcard">
+              <h4>Place plants</h4>
+              <div className="ppseg" style={{marginBottom:10}}>
+                <button className={placeMode==="plant"?"on":""} onClick={()=>setPlaceMode("plant")}>Plant</button>
+                <button className={placeMode==="move"?"on":""} onClick={()=>setPlaceMode("move")}>Move</button>
+              </div>
+              <div className="pphint">{placeMode==="plant" ? (activeSp!=null ? <span>Click the map to place <b>{byId[activeSp]&&byId[activeSp].common}</b>. It keeps placing until all are down.</span> : "Pick a species below, then click the map.") : "Drag any plant to reposition it. Click a plant to open its card."}</div>
+            </div>
+            <div className="ppcard">
+              <h4>Species</h4>
+              <div className="ppspecies">
+                {toPlace.length===0 && <div className="pphint">No counts yet — go to Step 1 and set how many of each plant you want.</div>}
+                {toPlace.map(p=>{ const done=placedCount(p.id), cap=counts[p.id]||0, info=PP_LAYER[p.type]||{color:"#6f8a5f"};
+                  return (
+                    <button key={p.id} className={"ppsp"+(activeSp===p.id?" on":"")+(done>=cap?" done":"")} onClick={()=>setActiveSp(p.id)}>
+                      <span className="dot" style={{background:info.color}}></span>
+                      <span className="nm">{codes[p.id]} · {p.common}</span>
+                      <span className="ct">{done}/{cap}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="ppcard">
+              <h4>Canopy legend</h4>
+              <div className="ppleg">{PP_LAYER_LEGEND.map(([nm,c])=><span className="it" key={nm}><span className="sw" style={{background:c}}></span>{nm}</span>)}</div>
+            </div>
+            <div className="ppcard">
+              <h4>Plan health</h4>
+              <div className="pphint">
+                <b>{places.length}</b> of <b>{totalToPlace}</b> plants placed.<br/>
+                Tree canopy fills <b style={{color:treePct>100?"var(--red)":"var(--sage-d)"}}>{treePct}%</b> of your mapped area.<br/>
+                <b>{polCount}</b> pollinator‑supporting · <b>{deerCount}</b> deer‑resistant (of placed).
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | soil | risk
@@ -1125,6 +1521,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
 
       <div className="viewtoggle">
         <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
+        <button className={view==="plant"?"on":""} onClick={()=>setView("plant")}>Planting Plan</button>
         <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
         <button className={view==="risk"?"on":""} onClick={()=>setView("risk")}>Risk Register</button>
       </div>
@@ -1170,6 +1567,8 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
           </div>
         </div>
       </React.Fragment>)}
+
+      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} />}
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} />}
 
