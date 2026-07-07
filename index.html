@@ -423,6 +423,16 @@
   .ppseg{display:flex;gap:4px}
   .ppseg button{flex:1 1 0;font-family:'Space Mono';font-size:11px;border:1.5px solid var(--line);background:#fff;border-radius:4px;padding:6px 4px;color:var(--ink2)}
   .ppseg button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .ppstack{display:flex;flex-direction:column;gap:6px}
+  .ppstackrow{display:flex;align-items:center;gap:8px}
+  .ppstackrow .lb{flex:0 0 84px;font-size:12px;color:var(--ink2)}
+  .ppstackrow .track{flex:1 1 auto;height:12px;background:#ece7d7;border-radius:99px;overflow:hidden}
+  .ppstackrow .fill{display:block;height:100%;border-radius:99px}
+  .ppstackrow .vn{flex:0 0 auto;font-family:'Space Mono';font-size:12px;color:var(--ink2);min-width:16px;text-align:right}
+  .ppgauge{position:relative;height:14px;border-radius:99px;background:#ece7d7;overflow:hidden}
+  .ppgauge .band{position:absolute;left:25%;width:10%;top:0;bottom:0;background:rgba(70,163,74,.35)}
+  .ppgauge .fillg{position:absolute;left:0;top:0;bottom:0;background:var(--sage);border-radius:99px}
+  .leaflet-container.pppaint,.leaflet-container.pppaint .leaflet-interactive{cursor:crosshair}
 </style>
 </head>
 <body>
@@ -1136,8 +1146,56 @@ function ppCodes(plants){ // unique short marker label per plant within the plan
   return out;
 }
 
-function PlantingPlan({chosen, state, planId, openDetail}){
-  const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"place",label:"Place Plants"}];
+/* ---- Step 3 soil-mapping vocab. Keys MATCH the Soil Exam's TEXTURES /
+   DRAINAGE / PH_BANDS labels so a painted map can feed the exam directly. ---- */
+const SOIL_DEF = {
+  texture:{ label:"Texture", opts:[
+    {k:"Sandy", c:"#e3cd95", pat:"dots"},   // area symbols, USDA-style
+    {k:"Silt",  c:"#cabf98", pat:"fine"},
+    {k:"Loam",  c:"#b98c5a", pat:"solid"},
+    {k:"Clay",  c:"#bf7f68", pat:"hatch"},
+    {k:"Unknown", c:"#d8d2c2", pat:"q"},
+  ]},
+  drainage:{ label:"Drainage", opts:[   // lighter = drier, darker = wetter
+    {k:"Well-drained", c:"#ececec", pat:"solid"},
+    {k:"Moist", c:"#9c9c9c", pat:"solid"},
+    {k:"Wet", c:"#4c4c4c", pat:"solid"},
+    {k:"Unknown", c:"#cfcabb", pat:"q"},
+  ]},
+  ph:{ label:"Soil pH", opts:[   // red acidic -> purple ~7 -> blue basic
+    {k:"Acidic (4.5–5.5)", c:"#d1495b", pat:"solid"},
+    {k:"Slightly acidic (5.5–6.5)", c:"#b0567e", pat:"solid"},
+    {k:"Neutral (6.5–7.5)", c:"#8a6ea6", pat:"solid"},
+    {k:"Alkaline (7.5–8.5)", c:"#4a7ab5", pat:"solid"},
+    {k:"Unknown", c:"#cfcabb", pat:"q"},
+  ]},
+};
+const SOIL_CATS=["texture","drainage","ph"];
+const SOIL_BRUSH={ S:1, M:3, L:6 }; // brush radius in grid cells
+function soilOptIdx(cat,k){ return SOIL_DEF[cat].opts.findIndex(o=>o.k===k); } // 0-based; array stores idx+1
+// ray-casting point-in-polygon on [lat,lng] rings
+function pointInRing(lat,lng,ring){
+  let inside=false;
+  for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+    const yi=ring[i][0],xi=ring[i][1],yj=ring[j][0],xj=ring[j][1];
+    if(((yi>lat)!==(yj>lat)) && (lng < (xj-xi)*(lat-yi)/(yj-yi)+xi)) inside=!inside;
+  }
+  return inside;
+}
+function rleEncode(arr){ const out=[]; let v=arr[0],n=0; for(let i=0;i<arr.length;i++){ if(arr[i]===v){n++;} else {out.push([v,n]); v=arr[i]; n=1;} } out.push([v,n]); return out; }
+function rleDecode(pairs,len){ const a=new Int8Array(len); let i=0; (pairs||[]).forEach(([v,n])=>{ for(let k=0;k<n&&i<len;k++) a[i++]=v; }); return a; }
+const SOIL_PX=8; // px per grid cell on the offscreen raster canvas
+function drawSoilPattern(ctx,pat,x,y,px){ // USDA-ish area symbols over the base tint
+  ctx.save();
+  if(pat==="dots"){ ctx.fillStyle="rgba(90,60,20,.55)"; ctx.beginPath(); ctx.arc(x+px*0.5,y+px*0.5,px*0.15,0,7); ctx.fill(); }
+  else if(pat==="fine"){ ctx.fillStyle="rgba(90,80,40,.5)"; ctx.beginPath(); ctx.arc(x+px*0.34,y+px*0.34,px*0.08,0,7); ctx.arc(x+px*0.7,y+px*0.7,px*0.08,0,7); ctx.fill(); }
+  else if(pat==="hatch"){ ctx.strokeStyle="rgba(70,30,20,.5)"; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x,y+px); ctx.lineTo(x+px,y); ctx.stroke(); }
+  else if(pat==="q"){ ctx.fillStyle="rgba(80,80,80,.4)"; ctx.fillRect(x+px*0.42,y+px*0.28,px*0.16,px*0.16); ctx.fillRect(x+px*0.44,y+px*0.6,px*0.1,px*0.1); }
+  ctx.restore();
+}
+
+function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
+  const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"soil",label:"Soil Map"},{key:"place",label:"Place Plants"}];
   const [ready,setReady]=useState(false);
   const [mapReady,setMapReady]=useState(false);
   const [step,setStep]=useState("plants");
@@ -1148,6 +1206,12 @@ function PlantingPlan({chosen, state, planId, openDetail}){
   const [placeMode,setPlaceMode]=useState("plant"); // plant | move
   const [activeSp,setActiveSp]=useState(null);
   const [geo,setGeo]=useState("");
+  // Step 3 soil map
+  const [soilMap,setSoilMap]=useState(null);   // {grid:{cols,rows,b:[[s,w],[n,e]]}, data:{texture:rle,drainage:rle,ph:rle}} (persisted)
+  const [soilCat,setSoilCat]=useState("texture");
+  const [soilTool,setSoilTool]=useState({type:"paint", k:"Sandy"}); // {type:paint,k} | {type:erase} | {type:pan}
+  const [soilBrush,setSoilBrush]=useState("M");
+  const [soilTick,setSoilTick]=useState(0); // bump to force overlay redraw
 
   const byId=useMemo(()=>{ const m={}; chosen.forEach(p=>m[p.id]=p); return m; },[chosen]);
   const codes=useMemo(()=>ppCodes(chosen),[chosen]);
@@ -1155,6 +1219,13 @@ function PlantingPlan({chosen, state, planId, openDetail}){
 
   const mapRef=useRef(null), mapObj=useRef(null), drawn=useRef(null), placeG=useRef(null);
   const drawCtl=useRef(null), markers=useRef({});
+  // soil raster: arrays (Int8 per category), inside-polygon mask, offscreen canvas, image overlay
+  const soilArr=useRef(null), soilMask=useRef(null), soilCanvas=useRef(null), soilOverlay=useRef(null);
+  const soilGrid=useRef(null), soilPainting=useRef(false), soilRaf=useRef(0);
+  const soilCatRef=useRef(soilCat), soilToolRef=useRef(soilTool), soilBrushRef=useRef(soilBrush);
+  useEffect(()=>{soilCatRef.current=soilCat;},[soilCat]);
+  useEffect(()=>{soilToolRef.current=soilTool;},[soilTool]);
+  useEffect(()=>{soilBrushRef.current=soilBrush;},[soilBrush]);
   const stepRef=useRef(step), modeRef=useRef(placeMode), activeRef=useRef(activeSp), openRef=useRef(openDetail);
   useEffect(()=>{stepRef.current=step;},[step]);
   useEffect(()=>{modeRef.current=placeMode;},[placeMode]);
@@ -1174,7 +1245,7 @@ function PlantingPlan({chosen, state, planId, openDetail}){
     let cancelled=false;
     const apply=(L)=>{ if(!L) return;
       if(L.step && STEPS.some(s=>s.key===L.step)) setStep(L.step);
-      setCounts(L.counts||{}); setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]);
+      setCounts(L.counts||{}); setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]); setSoilMap(L.soilMap||null);
     };
     try{ const s=localStorage.getItem("ff-layout-"+planId); if(s) apply(JSON.parse(s)); }catch(e){}
     dataProvider.loadLayout(planId).then(remote=>{ if(cancelled) return; apply(remote); setReady(true); })
@@ -1186,12 +1257,12 @@ function PlantingPlan({chosen, state, planId, openDetail}){
   const saveT=useRef(null);
   useEffect(()=>{
     if(!ready) return;
-    const layout={ v:1, step, counts, view, polys, places };
+    const layout={ v:1, step, counts, view, polys, places, soilMap };
     try{ localStorage.setItem("ff-layout-"+planId, JSON.stringify(layout)); }catch(e){}
     clearTimeout(saveT.current);
     saveT.current=setTimeout(()=>{ dataProvider.saveLayout(planId,layout).catch(e=>console.error(e)); },800);
     return ()=>clearTimeout(saveT.current);
-  },[ready,planId,step,counts,view,polys,places]);
+  },[ready,planId,step,counts,view,polys,places,soilMap]);
 
   /* ---- create the Leaflet map once data is loaded ---- */
   useEffect(()=>{
@@ -1236,6 +1307,105 @@ function PlantingPlan({chosen, state, planId, openDetail}){
     if(step!=="plants") setTimeout(()=>map.invalidateSize(),30);
   },[step,mapReady]);
 
+  /* =============== Step 3 soil map: grid, raster render, painting =============== */
+  const onSoilRef=useRef(onSoilDerived); useEffect(()=>{onSoilRef.current=onSoilDerived;},[onSoilDerived]);
+  const polysBounds=()=>{ let s=90,w=180,n=-90,e=-180,any=false;
+    polys.forEach(r=>r.forEach(([la,ln])=>{ any=true; if(la<s)s=la; if(la>n)n=la; if(ln<w)w=ln; if(ln>e)e=ln; }));
+    return any?[[s,w],[n,e]]:null; };
+  const computeGrid=(b)=>{ const [s,w]=b[0],[n,e]=b[1], midLat=(s+n)/2;
+    const mLat=(n-s)*111320, mLng=(e-w)*111320*Math.cos(midLat*Math.PI/180), maxM=Math.max(mLat,mLng,1);
+    const cell=Math.max(0.5,maxM/140);
+    return { cols:Math.max(1,Math.min(160,Math.ceil(mLng/cell))), rows:Math.max(1,Math.min(160,Math.ceil(mLat/cell))), b }; };
+  const computeMask=()=>{ const g=soilGrid.current; if(!g) return;
+    const [s,w]=g.b[0],[n,e]=g.b[1], mask=new Uint8Array(g.cols*g.rows);
+    for(let r=0;r<g.rows;r++){ const lat=n-(r+0.5)/g.rows*(n-s);
+      for(let c=0;c<g.cols;c++){ const lng=w+(c+0.5)/g.cols*(e-w); let inside=false;
+        for(const ring of polys){ if(ring.length>=3 && pointInRing(lat,lng,ring)){ inside=true; break; } }
+        mask[r*g.cols+c]=inside?1:0; } }
+    soilMask.current=mask; };
+  const ensureCanvasOverlay=()=>{ const g=soilGrid.current; if(!g||!mapObj.current) return;
+    if(!soilCanvas.current) soilCanvas.current=document.createElement("canvas");
+    const cv=soilCanvas.current; cv.width=g.cols*SOIL_PX; cv.height=g.rows*SOIL_PX;
+    const bnds=L.latLngBounds([g.b[0][0],g.b[0][1]],[g.b[1][0],g.b[1][1]]);
+    if(!soilOverlay.current){ soilOverlay.current=L.imageOverlay(cv.toDataURL(),bnds,{opacity:0,interactive:false}); soilOverlay.current.addTo(mapObj.current); }
+    else soilOverlay.current.setBounds(bnds); };
+  const renderSoil=()=>{ const g=soilGrid.current, arr=soilArr.current, cv=soilCanvas.current; if(!g||!arr||!cv) return;
+    const cat=soilCatRef.current, opts=SOIL_DEF[cat].opts, a=arr[cat], mask=soilMask.current, ctx=cv.getContext("2d");
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(let r=0;r<g.rows;r++){ for(let c=0;c<g.cols;c++){ const i=r*g.cols+c;
+      if(mask&&!mask[i]) continue; const v=a[i]; if(!v) continue; const o=opts[v-1]; if(!o) continue;
+      const x=c*SOIL_PX,y=r*SOIL_PX; ctx.fillStyle=o.c; ctx.fillRect(x,y,SOIL_PX,SOIL_PX); drawSoilPattern(ctx,o.pat,x,y,SOIL_PX); } }
+    if(soilOverlay.current) soilOverlay.current.setUrl(cv.toDataURL()); };
+  const scheduleSoilRender=()=>{ if(soilRaf.current) return; soilRaf.current=requestAnimationFrame(()=>{ soilRaf.current=0; renderSoil(); }); };
+  const ensureSoilGrid=()=>{ if(!mapReady) return; let grid,arr;
+    if(soilMap&&soilMap.grid){ grid=soilMap.grid; const len=grid.cols*grid.rows;
+      arr={ texture:rleDecode(soilMap.data.texture,len), drainage:rleDecode(soilMap.data.drainage,len), ph:rleDecode(soilMap.data.ph,len) };
+    } else { const b=polysBounds(); if(!b) return; grid=computeGrid(b); const len=grid.cols*grid.rows;
+      arr={ texture:new Int8Array(len), drainage:new Int8Array(len), ph:new Int8Array(len) }; }
+    soilGrid.current=grid; soilArr.current=arr; computeMask(); ensureCanvasOverlay(); renderSoil(); };
+  const paintAt=(latlng)=>{ const g=soilGrid.current, arr=soilArr.current; if(!g||!arr) return;
+    const [s,w]=g.b[0],[n,e]=g.b[1], cf=(latlng.lng-w)/(e-w), rf=(n-latlng.lat)/(n-s);
+    if(cf<0||cf>1||rf<0||rf>1) return;
+    const cc=Math.floor(cf*g.cols), rr=Math.floor(rf*g.rows), tool=soilToolRef.current, cat=soilCatRef.current, rad=SOIL_BRUSH[soilBrushRef.current]||1;
+    const val = tool.type==="erase" ? 0 : (tool.type==="paint" ? soilOptIdx(cat,tool.k)+1 : -1); if(val<0) return;
+    const a=arr[cat], mask=soilMask.current;
+    for(let dr=-rad+1;dr<rad;dr++) for(let dc=-rad+1;dc<rad;dc++){
+      if(dr*dr+dc*dc>(rad-0.5)*(rad-0.5)) continue; const R=rr+dr,C=cc+dc;
+      if(R<0||C<0||R>=g.rows||C>=g.cols) continue; const i=R*g.cols+C; if(mask&&!mask[i]) continue; a[i]=val; }
+    scheduleSoilRender(); };
+  const deriveSoil=(arr)=>{ const prof={tex:[],dr:[],phL:[]}, ck={texture:"tex",drainage:"dr",ph:"phL"};
+    SOIL_CATS.forEach(cat=>{ const a=arr[cat], opts=SOIL_DEF[cat].opts, cnt=new Array(opts.length).fill(0);
+      for(let i=0;i<a.length;i++){ const v=a[i]; if(v) cnt[v-1]++; }
+      let best=0,bi=-1; opts.forEach((o,idx)=>{ if(o.k==="Unknown") return; if(cnt[idx]>best){ best=cnt[idx]; bi=idx; } });
+      if(bi>=0) prof[ck[cat]]=[opts[bi].k]; });
+    if(onSoilRef.current) onSoilRef.current(prof); };
+  const commitSoil=()=>{ const g=soilGrid.current, arr=soilArr.current; if(!g||!arr) return;
+    setSoilMap({ grid:g, data:{ texture:rleEncode(arr.texture), drainage:rleEncode(arr.drainage), ph:rleEncode(arr.ph) } });
+    deriveSoil(arr); };
+  const resetSoil=()=>{ if(!confirm("Clear the painted soil map?")) return;
+    soilGrid.current=null; soilArr.current=null; setSoilMap(null);
+    if(soilOverlay.current){ soilOverlay.current.remove(); soilOverlay.current=null; }
+    if(onSoilRef.current) onSoilRef.current({tex:[],dr:[],phL:[]});
+    setTimeout(()=>{ ensureSoilGrid(); },0); };
+  const sampleSoilAt=(lat,lng)=>{ const g=soilGrid.current, arr=soilArr.current; if(!g||!arr) return null;
+    const [s,w]=g.b[0],[n,e]=g.b[1], cf=(lng-w)/(e-w), rf=(n-lat)/(n-s); if(cf<0||cf>1||rf<0||rf>1) return null;
+    const c=Math.min(g.cols-1,Math.floor(cf*g.cols)), r=Math.min(g.rows-1,Math.floor(rf*g.rows)), i=r*g.cols+c;
+    const val=cat=>{ const v=arr[cat][i]; if(!v) return null; const o=SOIL_DEF[cat].opts[v-1]; return (o&&o.k!=="Unknown")?o.k:null; };
+    return { tex:val("texture"), dr:val("drainage"), ph:val("ph") }; };
+  const soilFns=useRef({}); soilFns.current={ ensureSoilGrid, computeMask, renderSoil, paintAt, commitSoil };
+
+  // placements sitting on unsuitable painted soil (#4)
+  const soilFlags=useMemo(()=>{ const set=new Set();
+    if(!soilArr.current||!soilGrid.current) return set;
+    places.forEach(pl=>{ const p=byId[pl.plantId]; if(!p) return; const sm=sampleSoilAt(pl.lat,pl.lng); if(!sm) return;
+      const sel={ tex:sm.tex?[sm.tex]:[], dr:sm.dr?[sm.dr]:[], ph:sm.ph?PH_BANDS.filter(b=>b.label===sm.ph):[] };
+      const f=soilFit(p,sel);
+      if((sm.tex&&f.t===0)||(sm.dr&&f.d===0)||(sm.ph&&f.h===0)) set.add(pl.id); });
+    return set; },[places,soilMap,byId]);
+
+  // build grid when data present; toggle overlay visibility by step
+  useEffect(()=>{ if(!mapReady) return;
+    if(!soilGrid.current && (soilMap || step==="soil")) ensureSoilGrid();
+    if(step==="soil"){ computeMask(); renderSoil(); }
+    if(soilOverlay.current) soilOverlay.current.setOpacity(step==="soil"?0.62:0);
+  },[step,mapReady,soilMap]); // eslint-disable-line
+  // re-render the active category when it changes
+  useEffect(()=>{ if(step==="soil") renderSoil(); },[soilCat]); // eslint-disable-line
+  // enable/disable map dragging so a brush stroke doesn't pan the map
+  useEffect(()=>{ if(!mapReady) return; const map=mapObj.current, paint=step==="soil"&&soilTool.type!=="pan";
+    if(paint) map.dragging.disable(); else map.dragging.enable();
+    if(map.getContainer()) map.getContainer().classList.toggle("pppaint",paint);
+    return ()=>{ if(mapObj.current) mapObj.current.dragging.enable(); };
+  },[step,soilTool,mapReady]);
+  // soil paint pointer handlers (attached once map exists; call latest fns via ref)
+  useEffect(()=>{ if(!mapReady) return; const map=mapObj.current;
+    const down=e=>{ if(stepRef.current!=="soil"||soilToolRef.current.type==="pan") return; soilPainting.current=true; soilFns.current.paintAt(e.latlng); };
+    const move=e=>{ if(soilPainting.current) soilFns.current.paintAt(e.latlng); };
+    const up=()=>{ if(soilPainting.current){ soilPainting.current=false; soilFns.current.commitSoil(); } };
+    map.on("mousedown",down); map.on("mousemove",move); map.on("mouseup",up);
+    return ()=>{ map.off("mousedown",down); map.off("mousemove",move); map.off("mouseup",up); };
+  },[mapReady]);
+
   /* ---- render plant placements as canopy circles + labeled markers ---- */
   useEffect(()=>{
     if(!mapReady || !placeG.current) return;
@@ -1246,15 +1416,16 @@ function PlantingPlan({chosen, state, planId, openDetail}){
       const rad=(CANOPY_FT[p.type]||6)*0.3048/2;
       const circle=L.circle([pl.lat,pl.lng],{radius:rad,color:info.color,weight:1.5,fillColor:info.color,fillOpacity:.28,interactive:false});
       const px=PP_MARK_PX[p.type]||24;
+      const bd=soilFlags.has(pl.id)?"3px solid #dd4b3e":"2px solid #fff";
       const icon=L.divIcon({className:"",iconSize:[px,px],iconAnchor:[px/2,px/2],
-        html:`<div class="ppmark" style="width:${px}px;height:${px}px;background:${info.color};font-size:${Math.max(8,Math.round(px*0.34))}px">${codes[pl.plantId]||"?"}</div>`});
+        html:`<div class="ppmark" style="width:${px}px;height:${px}px;background:${info.color};border:${bd};font-size:${Math.max(8,Math.round(px*0.34))}px">${codes[pl.plantId]||"?"}</div>`});
       const marker=L.marker([pl.lat,pl.lng],{icon,draggable:placeMode==="move"});
       marker.on("click",()=>{ if(modeRef.current!=="move" && openRef.current) openRef.current(byId[pl.plantId]); });
       marker.on("dragend",()=>{ const ll=marker.getLatLng(); circle.setLatLng(ll); setPlaces(ps=>ps.map(x=>x.id===pl.id?{...x,lat:ll.lat,lng:ll.lng}:x)); });
       placeG.current.addLayer(circle); placeG.current.addLayer(marker);
       markers.current[pl.id]={marker,circle};
     });
-  },[places,placeMode,mapReady,byId,codes]);
+  },[places,placeMode,mapReady,byId,codes,soilFlags]);
 
   /* ---- when placing, keep a species active until it's fully placed, then advance ---- */
   const toPlace=chosen.filter(p=>(counts[p.id]||0)>0);
@@ -1294,6 +1465,13 @@ function PlantingPlan({chosen, state, planId, openDetail}){
   const treePct=areaM2?Math.round(treeCanopyM2/areaM2*100):0;
   const placedPlants=places.map(pl=>byId[pl.plantId]).filter(Boolean);
   const polCount=placedPlants.filter(p=>p.pol).length, deerCount=placedPlants.filter(p=>p.deerResistant).length;
+  const LAYER_ORDER=["Canopy","Shrub","Herbaceous","Groundcover","Vine"];
+  const LAYER_COLOR={Canopy:"#4f7a3a",Shrub:"#7a8b3f",Herbaceous:"#9bbf3a",Groundcover:"#c99a2e",Vine:"#9c6b9e"};
+  const layerCounts={}; LAYER_ORDER.forEach(l=>layerCounts[l]=0);
+  placedPlants.forEach(p=>{ const lyr=(PP_LAYER[p.type]||{}).layer; if(lyr&&layerCounts[lyr]!=null) layerCounts[lyr]++; });
+  const maxLayer=Math.max(1,...LAYER_ORDER.map(l=>layerCounts[l]));
+  const supportCount=placedPlants.filter(p=>p.nf||p.pol).length;
+  const supportPct=placedPlants.length?Math.round(supportCount/placedPlants.length*100):0;
 
   return (
     <div>
@@ -1367,6 +1545,37 @@ function PlantingPlan({chosen, state, planId, openDetail}){
             </div>
           </div>
         )}
+        {step==="soil" && (
+          <div className="ppside">
+            {polys.length===0 && <div className="ppcard"><div className="pphint">Draw at least one area in <b>Step 2</b> first — soil paints only inside your mapped areas.</div></div>}
+            <div className="ppcard">
+              <h4>Soil category</h4>
+              <div className="ppseg">
+                {SOIL_CATS.map(c=><button key={c} className={soilCat===c?"on":""} onClick={()=>{ setSoilCat(c); setSoilTool({type:"paint",k:SOIL_DEF[c].opts[0].k}); }}>{SOIL_DEF[c].label}</button>)}
+              </div>
+              <div className="pphint" style={{marginTop:8}}>You paint one category at a time. A value replaces others in the <i>same</i> category but leaves the other two untouched.</div>
+            </div>
+            <div className="ppcard">
+              <h4>{SOIL_DEF[soilCat].label} · legend & paint</h4>
+              <div className="ppspecies" style={{maxHeight:"none"}}>
+                {SOIL_DEF[soilCat].opts.map(o=>(
+                  <button key={o.k} className={"ppsp"+(soilTool.type==="paint"&&soilTool.k===o.k?" on":"")} onClick={()=>setSoilTool({type:"paint",k:o.k})}>
+                    <span className="dot" style={{background:o.c,border:"1px solid rgba(0,0,0,.25)"}}></span>
+                    <span className="nm">{o.k}</span>
+                  </button>
+                ))}
+                <button className={"ppsp"+(soilTool.type==="erase"?" on":"")} onClick={()=>setSoilTool({type:"erase"})}><span className="dot" style={{background:"#fff",border:"1px dashed #999"}}></span><span className="nm">Erase</span></button>
+                <button className={"ppsp"+(soilTool.type==="pan"?" on":"")} onClick={()=>setSoilTool({type:"pan"})}><span className="dot" style={{border:"1px solid #999",background:"transparent"}}></span><span className="nm">Pan / move map</span></button>
+              </div>
+            </div>
+            <div className="ppcard">
+              <h4>Brush size</h4>
+              <div className="ppseg">{["S","M","L"].map(b=><button key={b} className={soilBrush===b?"on":""} onClick={()=>setSoilBrush(b)}>{b==="S"?"Small":b==="M"?"Medium":"Large"}</button>)}</div>
+              <button className="ppbtn ghost" style={{marginTop:10,width:"100%"}} onClick={resetSoil}>Clear soil map</button>
+              <div className="pphint" style={{marginTop:8}}>This map feeds your <b>Soil Exam</b> (dominant value per category); you can still adjust the exam by hand afterward.</div>
+            </div>
+          </div>
+        )}
         {step==="place" && (
           <div className="ppside">
             <div className="ppcard">
@@ -1397,10 +1606,29 @@ function PlantingPlan({chosen, state, planId, openDetail}){
               <div className="ppleg">{PP_LAYER_LEGEND.map(([nm,c])=><span className="it" key={nm}><span className="sw" style={{background:c}}></span>{nm}</span>)}</div>
             </div>
             <div className="ppcard">
+              <h4>Layer stacking</h4>
+              {placedPlants.length===0 ? <div className="pphint">Place plants to see how they stack across forest layers.</div> :
+                <div className="ppstack">
+                  {LAYER_ORDER.map(l=>(
+                    <div className="ppstackrow" key={l}>
+                      <span className="lb">{l}</span>
+                      <span className="track"><span className="fill" style={{width:Math.round(layerCounts[l]/maxLayer*100)+"%",background:LAYER_COLOR[l]}}></span></span>
+                      <span className="vn">{layerCounts[l]}</span>
+                    </div>
+                  ))}
+                </div>}
+            </div>
+            <div className="ppcard">
+              <h4>Support species · target 25–35%</h4>
+              <div className="ppgauge"><span className="band"></span><span className="fillg" style={{width:Math.min(100,supportPct)+"%"}}></span></div>
+              <div className="pphint" style={{marginTop:7}}><b>{supportPct}%</b> of placed plants fix nitrogen or feed pollinators ({supportCount}/{placedPlants.length}). {placedPlants.length? (supportPct<25?"Consider adding more N‑fixers or pollinators.":supportPct>35?"Well supported — you have room for more productive plants.":"Nicely balanced."):""}</div>
+            </div>
+            <div className="ppcard">
               <h4>Plan health</h4>
               <div className="pphint">
                 <b>{places.length}</b> of <b>{totalToPlace}</b> plants placed.<br/>
                 Tree canopy fills <b style={{color:treePct>100?"var(--red)":"var(--sage-d)"}}>{treePct}%</b> of your mapped area.<br/>
+                {soilMap && <span><b style={{color:soilFlags.size?"var(--red)":"var(--sage-d)"}}>{soilFlags.size}</b> placement{soilFlags.size===1?"":"s"} on unsuitable soil (red ring).<br/></span>}
                 <b>{polCount}</b> pollinator‑supporting · <b>{deerCount}</b> deer‑resistant (of placed).
               </div>
             </div>
@@ -1415,6 +1643,14 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | soil | risk
   const [soil,setSoil]=useState({tex:["Loam"], dr:["Well-drained"], phL:["Neutral (6.5–7.5)"]});
+  const [soilDerived,setSoilDerived]=useState(null); // dominant profile from the Planting Plan soil map
+  const lastDerived=useRef("");
+  const onSoilDerived=(prof)=>{
+    setSoilDerived(prof);
+    const sig=JSON.stringify(prof), hasAny=prof && (prof.tex.length||prof.dr.length||prof.phL.length);
+    if(sig!==lastDerived.current && hasAny){ lastDerived.current=sig;
+      setSoil(s=>({ tex:prof.tex.length?prof.tex:s.tex, dr:prof.dr.length?prof.dr:s.dr, phL:prof.phL.length?prof.phL:s.phL })); }
+  };
   const curObj=plans.find(p=>p.id===curPlan)||plans[0];
   const curSet=useMemo(()=>new Set(planItems.filter(it=>it.planId===curPlan).map(it=>it.plantId)),[planItems,curPlan]);
   const plan=plants.filter(p=>curSet.has(p.id)).map(p=>p.id); // plant ids in the CURRENT plan
@@ -1568,9 +1804,9 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         </div>
       </React.Fragment>)}
 
-      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} />}
+      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} />}
 
-      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} />}
+      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} />}
 
       {view==="risk" && (<React.Fragment>
         <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Risk register · from each plant's cautions</div></div>
@@ -2108,10 +2344,17 @@ function PlanFilter({plans, value, onChange}){
 }
 function FitDot({v, label}){ return <span className={"fdot "+fitCls(v)} title={label}>{v>=1?"✓":(v>=0.5?"~":"✕")}</span>; }
 
-function SoilExam({plants, state, plan, toggle, soil, setSoil}){
+function SoilExam({plants, state, plan, toggle, soil, setSoil, soilDerived}){
   const [editing,setEditing]=useState(false);
   const [declined,setDeclined]=useState([]);
   const selTex=soil.tex, selDr=soil.dr, selPhL=soil.phL;
+  // mismatch between the painted soil map (dominant) and the manual exam inputs
+  const mism=[];
+  if(soilDerived){
+    if(soilDerived.tex.length && !soilDerived.tex.every(t=>selTex.includes(t))) mism.push(["Texture",soilDerived.tex.join(", ")]);
+    if(soilDerived.dr.length && !soilDerived.dr.every(t=>selDr.includes(t))) mism.push(["Drainage",soilDerived.dr.join(", ")]);
+    if(soilDerived.phL.length && !soilDerived.phL.every(t=>selPhL.includes(t))) mism.push(["pH",soilDerived.phL.map(l=>l.replace(/ \(.*/,"")).join(", ")]);
+  }
   const setSelTex=v=>setSoil(s=>({...s,tex:v})), setSelDr=v=>setSoil(s=>({...s,dr:v})), setSelPhL=v=>setSoil(s=>({...s,phL:v}));
 
   const sel={tex:selTex, dr:selDr, ph:PH_BANDS.filter(b=>selPhL.includes(b.label))};
@@ -2144,6 +2387,12 @@ function SoilExam({plants, state, plan, toggle, soil, setSoil}){
         <div className="eye">Soil Exam</div><h2>Match your plan to your soil</h2>
         <p>Set your soil's texture, drainage, and pH — then see how well your plan fits and what else would thrive.</p>
       </div>
+
+      {mism.length>0 && (
+        <div className="sinsight" style={{borderColor:"var(--orange)",background:"#f6ead6",marginBottom:14}}>
+          <b>Heads up — your Soil Exam doesn't match your painted soil map.</b> The map's dominant {mism.map(m=>m[0]).join(", ")} ({mism.map(m=>m[0]+": "+m[1]).join(" · ")}) differ{mism.length===1?"s":""} from the values set here. Adjust below to match, or keep your manual values.
+        </div>
+      )}
 
       {editing ? (
         <div className="soiledit">
