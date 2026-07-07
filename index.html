@@ -1267,17 +1267,19 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   /* ---- create the Leaflet map once data is loaded ---- */
   useEffect(()=>{
     if(!ready || mapObj.current || !mapRef.current || !window.L) return;
-    const bases=TILE_LAYERS.map(t=>L.tileLayer(t.url,{maxZoom:t.max,attribution:t.attr}));
+    // maxNativeZoom = last real tile zoom; maxZoom 24 lets tiles overzoom (blurry)
+    // so a ~15 ft garden can fill the screen for detailed placement.
+    const bases=TILE_LAYERS.map(t=>L.tileLayer(t.url,{maxNativeZoom:t.max,maxZoom:24,attribution:t.attr}));
     const baseIdx=(view&&Number.isInteger(view.base))?view.base:0;
     const center=(view&&view.center)||[42.9,-75.5], zoom=(view&&view.zoom)||7; // default: upstate NY
-    const map=L.map(mapRef.current,{center,zoom,layers:[bases[baseIdx]||bases[0]]});
+    const map=L.map(mapRef.current,{center,zoom,maxZoom:24,layers:[bases[baseIdx]||bases[0]]});
     const baseObj={}; TILE_LAYERS.forEach((t,i)=>baseObj[t.name]=bases[i]);
     L.control.layers(baseObj,null,{position:"topright"}).addTo(map);
     drawn.current=new L.FeatureGroup(); map.addLayer(drawn.current);
     placeG.current=new L.LayerGroup(); map.addLayer(placeG.current);
     // seed previously-drawn polygons
     (polys||[]).forEach(ring=>{ if(ring&&ring.length>=3)
-      drawn.current.addLayer(L.polygon(ring,{color:"#3a6b2e",weight:2,fillColor:"#6f8a5f",fillOpacity:.12})); });
+      drawn.current.addLayer(L.polygon(ring,{color:"#e0201a",weight:2,fillColor:"#e0201a",fillOpacity:.12})); });
     const sync=()=>{ setPolys(drawn.current.getLayers().map(l=>l.getLatLngs()[0].map(p=>[p.lat,p.lng]))); };
     map.on(L.Draw.Event.CREATED, e=>{
       if(drawn.current.getLayers().length>=5){ alert("You can map up to 5 areas."); return; }
@@ -1299,7 +1301,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     if(step==="map"){
       if(!drawCtl.current) drawCtl.current=new L.Control.Draw({
         draw:{ polygon:{ showArea:false, showLength:true, metric:false, feet:true, allowIntersection:false,
-          shapeOptions:{color:"#3a6b2e",weight:2,fillColor:"#6f8a5f",fillOpacity:.12} },
+          shapeOptions:{color:"#e0201a",weight:2,fillColor:"#e0201a",fillOpacity:.12} },
           polyline:false, rectangle:false, circle:false, marker:false, circlemarker:false },
         edit:{ featureGroup:drawn.current } });
       map.addControl(drawCtl.current);
@@ -1419,8 +1421,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
       const bd=soilFlags.has(pl.id)?"3px solid #dd4b3e":"2px solid #fff";
       const icon=L.divIcon({className:"",iconSize:[px,px],iconAnchor:[px/2,px/2],
         html:`<div class="ppmark" style="width:${px}px;height:${px}px;background:${info.color};border:${bd};font-size:${Math.max(8,Math.round(px*0.34))}px">${codes[pl.plantId]||"?"}</div>`});
-      const marker=L.marker([pl.lat,pl.lng],{icon,draggable:placeMode==="move"});
-      marker.on("click",()=>{ if(modeRef.current!=="move" && openRef.current) openRef.current(byId[pl.plantId]); });
+      // non-interactive while placing so clicks fall through to the map (place plants close together);
+      // clickable to open the card only in Done/view mode; draggable only in Move mode.
+      const marker=L.marker([pl.lat,pl.lng],{icon,draggable:placeMode==="move",interactive:placeMode!=="plant"});
+      marker.on("click",()=>{ if(modeRef.current==="view" && openRef.current) openRef.current(byId[pl.plantId]); });
       marker.on("dragend",()=>{ const ll=marker.getLatLng(); circle.setLatLng(ll); setPlaces(ps=>ps.map(x=>x.id===pl.id?{...x,lat:ll.lat,lng:ll.lng}:x)); });
       placeG.current.addLayer(circle); placeG.current.addLayer(marker);
       markers.current[pl.id]={marker,circle};
@@ -1450,7 +1454,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     const q=geo.trim(); if(!q||!mapObj.current) return;
     try{ const r=await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q="+encodeURIComponent(q));
       const j=await r.json();
-      if(j&&j[0]) mapObj.current.setView([parseFloat(j[0].lat),parseFloat(j[0].lon)],18); else alert("Couldn't find that place.");
+      if(j&&j[0]) mapObj.current.setView([parseFloat(j[0].lat),parseFloat(j[0].lon)],22); else alert("Couldn't find that place.");
     }catch(e){ alert("Address lookup failed."); }
   };
 
@@ -1583,8 +1587,9 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
               <div className="ppseg" style={{marginBottom:10}}>
                 <button className={placeMode==="plant"?"on":""} onClick={()=>setPlaceMode("plant")}>Plant</button>
                 <button className={placeMode==="move"?"on":""} onClick={()=>setPlaceMode("move")}>Move</button>
+                <button className={placeMode==="view"?"on":""} onClick={()=>setPlaceMode("view")}>Done</button>
               </div>
-              <div className="pphint">{placeMode==="plant" ? (activeSp!=null ? <span>Click the map to place <b>{byId[activeSp]&&byId[activeSp].common}</b>. It keeps placing until all are down.</span> : "Pick a species below, then click the map.") : "Drag any plant to reposition it. Click a plant to open its card."}</div>
+              <div className="pphint">{placeMode==="plant" ? (activeSp!=null ? <span>Click the map to place <b>{byId[activeSp]&&byId[activeSp].common}</b>. It keeps placing until all are down — clicks near an existing plant add another, not open its card.</span> : "Pick a species below, then click the map.") : placeMode==="move" ? "Drag any plant to reposition it." : "Done — explore freely: pan and zoom the map, and click any plant to open its card. Nothing gets placed or moved."}</div>
             </div>
             <div className="ppcard">
               <h4>Species</h4>
