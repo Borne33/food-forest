@@ -433,6 +433,12 @@
   .ppgauge .band{position:absolute;left:25%;width:10%;top:0;bottom:0;background:rgba(70,163,74,.35)}
   .ppgauge .fillg{position:absolute;left:0;top:0;bottom:0;background:var(--sage);border-radius:99px}
   .leaflet-container.pppaint,.leaflet-container.pppaint .leaflet-interactive{cursor:crosshair}
+  .ppnorth{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:4px;padding:1px 3px;line-height:0;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  .ppbom{width:100%;border-collapse:collapse;font-size:12.5px}
+  .ppbom td{padding:3px 4px;border-bottom:1px solid var(--line)}
+  .ppbom td:first-child{font-family:'Space Mono';font-size:11px;color:var(--faint);width:44px}
+  .ppbom td:last-child{text-align:right;font-family:'Space Mono';width:34px}
+  .ppbom tr:last-child td{border-bottom:0}
 </style>
 </head>
 <body>
@@ -1128,6 +1134,9 @@ const PP_LAYER_LEGEND = [
   ["Groundcover","#c99a2e"],["Vine","#9c6b9e"],
 ];
 const PP_MARK_PX = { Tree:34, Shrub:28, Vine:26, Herb:22, Fern:22, Grass:22, Groundcover:24 };
+// rough years to mature canopy size, per type — drives the growth-over-time slider
+const MATURE_YEARS = { Tree:20, Shrub:8, Vine:6, Herb:2, Fern:2, Grass:2, Groundcover:3 };
+const GROWTH_YEARS = [1,3,5,10,20];
 const M2_TO_SQFT = 10.7639104, M2_TO_ACRE = 1/4046.8564224;
 const TILE_LAYERS = [
   { name:"Map", url:"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", max:19, attr:"&copy; OpenStreetMap contributors" },
@@ -1203,9 +1212,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   const [view,setView]=useState(null);      // {center:[lat,lng], zoom, base}
   const [polys,setPolys]=useState([]);      // [[[lat,lng],...], ...]
   const [places,setPlaces]=useState([]);    // [{id, plantId, lat, lng}]
-  const [placeMode,setPlaceMode]=useState("plant"); // plant | move
+  const [placeMode,setPlaceMode]=useState("plant"); // plant | move | view
   const [activeSp,setActiveSp]=useState(null);
   const [geo,setGeo]=useState("");
+  const [growthYear,setGrowthYear]=useState(20); // growth-over-time slider (20 = mature)
   // Step 3 soil map
   const [soilMap,setSoilMap]=useState(null);   // {grid:{cols,rows,b:[[s,w],[n,e]]}, data:{texture:rle,drainage:rle,ph:rle}} (persisted)
   const [soilCat,setSoilCat]=useState("texture");
@@ -1275,6 +1285,12 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     const map=L.map(mapRef.current,{center,zoom,maxZoom:24,layers:[bases[baseIdx]||bases[0]]});
     const baseObj={}; TILE_LAYERS.forEach((t,i)=>baseObj[t.name]=bases[i]);
     L.control.layers(baseObj,null,{position:"topright"}).addTo(map);
+    L.control.scale({imperial:true, metric:true, position:"bottomleft"}).addTo(map);
+    // north arrow (the map is always north-up)
+    const North=L.Control.extend({ onAdd:function(){ const d=L.DomUtil.create("div","ppnorth");
+      d.innerHTML='<svg viewBox="0 0 30 32" width="26" height="28" aria-label="North"><polygon points="15,3 21,21 15,16 9,21" fill="#2b2a22"/><text x="15" y="30" text-anchor="middle" font-size="9" font-family="\'Space Mono\',monospace" font-weight="700" fill="#2b2a22">N</text></svg>';
+      return d; } });
+    map.addControl(new North({position:"bottomright"}));
     drawn.current=new L.FeatureGroup(); map.addLayer(drawn.current);
     placeG.current=new L.LayerGroup(); map.addLayer(placeG.current);
     // seed previously-drawn polygons
@@ -1385,6 +1401,17 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
       if((sm.tex&&f.t===0)||(sm.dr&&f.d===0)||(sm.ph&&f.h===0)) set.add(pl.id); });
     return set; },[places,soilMap,byId]);
 
+  // full-sun plants sitting under a tree's mature canopy (#5 shade modeling)
+  const wantsFullSun=p=>{ const s=(p.sun||"").toLowerCase(); return /full sun|full-sun/.test(s) || (/\bsun\b/.test(s) && !/shade|part/.test(s)); };
+  const shadeFlags=useMemo(()=>{ const set=new Set();
+    const trees=places.map(pl=>({pl,p:byId[pl.plantId]})).filter(x=>x.p&&x.p.type==="Tree")
+      .map(x=>({lat:x.pl.lat,lng:x.pl.lng,r:CANOPY_FT.Tree*0.3048/2}));
+    if(!trees.length) return set;
+    places.forEach(pl=>{ const p=byId[pl.plantId]; if(!p||p.type==="Tree"||!wantsFullSun(p)) return;
+      const here=L.latLng(pl.lat,pl.lng);
+      if(trees.some(t=>here.distanceTo(L.latLng(t.lat,t.lng))<t.r)) set.add(pl.id); });
+    return set; },[places,byId]);
+
   // build grid when data present; toggle overlay visibility by step
   useEffect(()=>{ if(!mapReady) return;
     if(!soilGrid.current && (soilMap || step==="soil")) ensureSoilGrid();
@@ -1415,10 +1442,12 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     places.forEach(pl=>{
       const p=byId[pl.plantId]; if(!p) return;
       const info=PP_LAYER[p.type]||{color:"#6f8a5f"};
-      const rad=(CANOPY_FT[p.type]||6)*0.3048/2;
+      const frac=Math.min(1, growthYear/(MATURE_YEARS[p.type]||10)); // growth-over-time scaling
+      const rad=Math.max(0.15,(CANOPY_FT[p.type]||6)*0.3048/2*frac);
       const circle=L.circle([pl.lat,pl.lng],{radius:rad,color:info.color,weight:1.5,fillColor:info.color,fillOpacity:.28,interactive:false});
       const px=PP_MARK_PX[p.type]||24;
-      const bd=soilFlags.has(pl.id)?"3px solid #dd4b3e":"2px solid #fff";
+      // red ring = on unsuitable soil (#4); amber ring = full-sun plant under a tree (#5)
+      const bd=soilFlags.has(pl.id)?"3px solid #dd4b3e":(shadeFlags.has(pl.id)?"3px solid #e8923c":"2px solid #fff");
       const icon=L.divIcon({className:"",iconSize:[px,px],iconAnchor:[px/2,px/2],
         html:`<div class="ppmark" style="width:${px}px;height:${px}px;background:${info.color};border:${bd};font-size:${Math.max(8,Math.round(px*0.34))}px">${codes[pl.plantId]||"?"}</div>`});
       // non-interactive while placing so clicks fall through to the map (place plants close together);
@@ -1429,7 +1458,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
       placeG.current.addLayer(circle); placeG.current.addLayer(marker);
       markers.current[pl.id]={marker,circle};
     });
-  },[places,placeMode,mapReady,byId,codes,soilFlags]);
+  },[places,placeMode,mapReady,byId,codes,soilFlags,shadeFlags,growthYear]);
 
   /* ---- when placing, keep a species active until it's fully placed, then advance ---- */
   const toPlace=chosen.filter(p=>(counts[p.id]||0)>0);
@@ -1476,6 +1505,20 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   const maxLayer=Math.max(1,...LAYER_ORDER.map(l=>layerCounts[l]));
   const supportCount=placedPlants.filter(p=>p.nf||p.pol).length;
   const supportPct=placedPlants.length?Math.round(supportCount/placedPlants.length*100):0;
+  // --- #7 bill of materials + export ---
+  const downloadFile=(name,type,content)=>{ const blob=new Blob([content],{type}); const url=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500); };
+  const csvCell=x=>`"${String(x==null?"":x).replace(/"/g,'""')}"`;
+  const exportCSV=()=>{ const rows=[["code","common","sci","type","lat","lng"]];
+    places.forEach(pl=>{ const p=byId[pl.plantId]; if(!p) return; rows.push([codes[pl.plantId],p.common,p.sci,p.type,pl.lat,pl.lng]); });
+    downloadFile("planting-placements.csv","text/csv",rows.map(r=>r.map(csvCell).join(",")).join("\n")); };
+  const exportGeoJSON=()=>{ const fc={type:"FeatureCollection",features:places.map(pl=>{ const p=byId[pl.plantId]||{};
+    return {type:"Feature",geometry:{type:"Point",coordinates:[pl.lng,pl.lat]},properties:{code:codes[pl.plantId],common:p.common,sci:p.sci,type:p.type}}; })};
+    downloadFile("planting-placements.geojson","application/geo+json",JSON.stringify(fc,null,2)); };
+  const printList=()=>{ const w=window.open("","_blank"); if(!w){ alert("Allow pop-ups to print the list."); return; }
+    const body=toPlace.map(p=>`<tr><td>${codes[p.id]}</td><td>${p.common}</td><td><i>${p.sci}</i></td><td style="text-align:right">${counts[p.id]||0}</td></tr>`).join("");
+    w.document.write(`<!doctype html><html><head><title>Planting list</title><style>body{font-family:Georgia,serif;margin:32px;color:#2b2a22}h1{font-size:20px}table{border-collapse:collapse;width:100%;margin-top:12px}td,th{padding:5px 8px;border-bottom:1px solid #ccc;font-size:14px}th{text-align:left;border-bottom:2px solid #2b2a22}</style></head><body><h1>Planting list</h1><table><thead><tr><th>Code</th><th>Common name</th><th>Scientific name</th><th style="text-align:right">Qty</th></tr></thead><tbody>${body}</tbody></table><p style="margin-top:14px;font-size:13px">${totalToPlace} plants total.</p></body></html>`);
+    w.document.close(); w.focus(); setTimeout(()=>w.print(),250); };
 
   return (
     <div>
@@ -1607,6 +1650,11 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
               </div>
             </div>
             <div className="ppcard">
+              <h4>Growth over time · year {growthYear}</h4>
+              <div className="ppseg">{GROWTH_YEARS.map(y=><button key={y} className={growthYear===y?"on":""} onClick={()=>setGrowthYear(y)}>{y}</button>)}</div>
+              <div className="pphint" style={{marginTop:7}}>Canopy circles show each plant's size at year {growthYear}. {growthYear<=1?"Year 1 — establish nitrogen‑fixers and overstory trees first.":growthYear<=5?"Early years — shrubs and herbs fill in under establishing trees.":growthYear<20?"Maturing — canopies begin to close and layers overlap.":"Mature — full canopy footprint; watch for crowding."}</div>
+            </div>
+            <div className="ppcard">
               <h4>Canopy legend</h4>
               <div className="ppleg">{PP_LAYER_LEGEND.map(([nm,c])=><span className="it" key={nm}><span className="sw" style={{background:c}}></span>{nm}</span>)}</div>
             </div>
@@ -1634,8 +1682,29 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
                 <b>{places.length}</b> of <b>{totalToPlace}</b> plants placed.<br/>
                 Tree canopy fills <b style={{color:treePct>100?"var(--red)":"var(--sage-d)"}}>{treePct}%</b> of your mapped area.<br/>
                 {soilMap && <span><b style={{color:soilFlags.size?"var(--red)":"var(--sage-d)"}}>{soilFlags.size}</b> placement{soilFlags.size===1?"":"s"} on unsuitable soil (red ring).<br/></span>}
+                {shadeFlags.size>0 && <span><b style={{color:"var(--orange)"}}>{shadeFlags.size}</b> full‑sun plant{shadeFlags.size===1?"":"s"} shaded under a tree (amber ring).<br/></span>}
                 <b>{polCount}</b> pollinator‑supporting · <b>{deerCount}</b> deer‑resistant (of placed).
               </div>
+            </div>
+            <div className="ppcard">
+              <h4>Bill of materials</h4>
+              {toPlace.length===0 ? <div className="pphint">Set plant counts in Step 1 to build your planting list.</div> : (
+                <React.Fragment>
+                  <table className="ppbom"><tbody>
+                    {toPlace.map(p=>(
+                      <tr key={p.id}><td>{codes[p.id]}</td>
+                        <td>{p.common}{/^https?:\/\//.test(p.buy||"") && <a href={p.buy} target="_blank" rel="noopener"> · buy</a>}</td>
+                        <td>{counts[p.id]||0}</td></tr>
+                    ))}
+                  </tbody></table>
+                  <div className="pphint" style={{margin:"6px 0 8px"}}>{totalToPlace} plants total · {places.length} placed.</div>
+                  <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+                    <button className="ppbtn ghost" onClick={printList}>Print list</button>
+                    <button className="ppbtn ghost" onClick={exportCSV}>CSV</button>
+                    <button className="ppbtn ghost" onClick={exportGeoJSON}>GeoJSON</button>
+                  </div>
+                </React.Fragment>
+              )}
             </div>
           </div>
         )}
