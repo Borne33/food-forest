@@ -463,6 +463,12 @@
   .hvlegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:11px 0 0}
   .hvlegend .it{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2)}
   .hvlegend .sw{width:12px;height:12px;border-radius:3px}
+  .hcedit{display:flex;align-items:center;gap:10px;margin:0 0 7px;flex-wrap:wrap}
+  .hcedit .ftlab{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;min-width:120px}
+  .hcedit .ftlab .sw{width:10px;height:10px;border-radius:2px;flex:0 0 auto}
+  .hcmonths{display:flex;gap:2px}
+  .hcmonths button{width:22px;height:24px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:3px;font-family:'Space Mono';font-size:10px;color:var(--ink2);padding:0}
+  .hcmonths button.on{background:var(--sage);color:#fff;border-color:var(--sage-d)}
 </style>
 </head>
 <body>
@@ -2311,6 +2317,7 @@ function plantToForm(p){
     common:p.common||"", sci:p.sci||"", family:p.family||"", type:p.type||"", life:p.life||"",
     lifecycle:p.lifecycle||"", food_types:p.foodTypes||[], material_types:p.materialTypes||[],
     edible_parts:p.edibleParts||"", other_uses:p.otherUses||"", prep:p.prep||"", harvest:p.harvest||"",
+    harvest_calendar:{...(p.harvestCalendar||{})},
     eco_uses:p.ecoUses||"", material_uses:p.materialUses||"",
     sun:p.sun||"", soil:p.soil||"", risks:p.risks||"", buy:p.buy||"",
     hardiness_zones:p.hardinessZones||"", years_to_fruit:p.yearsToFruit||"", min_plants_fruit:p.minPlantsFruit==null?"":p.minPlantsFruit,
@@ -2330,6 +2337,7 @@ function formToPatch(f){
     common:f.common, sci:f.sci, family:f.family, type:f.type, life:f.life, lifecycle:f.lifecycle||null,
     food_types:f.food_types, material_types:f.material_types,
     edible_parts:f.edible_parts, other_uses:f.other_uses, prep:f.prep, harvest:f.harvest,
+    harvest_calendar:Object.fromEntries(Object.entries(f.harvest_calendar||{}).filter(([ft,ms])=>f.food_types.includes(ft) && ms && ms.length)),
     eco_uses:f.eco_uses, material_uses:f.material_uses,
     sun:f.sun, soil:f.soil, risks:f.risks, buy:f.buy,
     hardiness_zones:f.hardiness_zones, years_to_fruit:f.years_to_fruit,
@@ -2356,6 +2364,9 @@ function PlantEditor({p, onSave, onCancel}){
   const Sel=(k,opts,allowEmpty)=><select value={f[k]} onChange={e=>set(k,e.target.value)}>{allowEmpty&&<option value="">—</option>}{opts.map(o=><option key={o} value={o}>{o}</option>)}</select>;
   const MSrow=(label,k,opts)=><div style={{margin:"0 0 10px"}}><MultiSelect label={label} options={opts} value={f[k]} onChange={v=>set(k,v)} /></div>;
   const setScore=(k,i,v)=>setF(o=>({...o,scores:{...o.scores,[k]:i===0?[v,o.scores[k][1]]:[o.scores[k][0],v]}}));
+  const toggleHM=(ft,m)=>setF(o=>{ const cal={...(o.harvest_calendar||{})}; const s=new Set(cal[ft]||[]);
+    if(s.has(m)) s.delete(m); else s.add(m); const list=[...s].sort((a,b)=>a-b);
+    if(list.length) cal[ft]=list; else delete cal[ft]; return {...o,harvest_calendar:cal}; });
   const setImg=(i,k,v)=>setF(o=>({...o,images:o.images.map((im,j)=>j===i?{...im,[k]:v}:im)}));
   const setSrc=(i,k,v)=>setF(o=>({...o,sources:o.sources.map((s,j)=>j===i?(k===0?[v,s[1]]:[s[0],v]):s)}));
   const save=async()=>{
@@ -2378,6 +2389,19 @@ function PlantEditor({p, onSave, onCancel}){
       <div className="frow"><label>Edible parts</label>{T("edible_parts")}</div>
       <div className="frow"><label>How to prepare</label>{T("prep")}</div>
       <div className="frow"><label>Harvest time</label>{T("harvest")}</div>
+
+      <h5>Harvest calendar (per part, by month)</h5>
+      {f.food_types.filter(ft=>FOOD_COLOR[ft]).length===0
+        ? <div style={{fontSize:12.5,color:"var(--ink2)",margin:"0 0 10px"}}>Add a food type above to set which months each part is harvested. Feeds the Harvest view.</div>
+        : f.food_types.filter(ft=>FOOD_COLOR[ft]).map(ft=>(
+            <div className="hcedit" key={ft}>
+              <span className="ftlab"><span className="sw" style={{background:FOOD_COLOR[ft]}}></span>{ft}</span>
+              <div className="hcmonths">
+                {MONTH_ABBR.map((m,i)=>{ const on=(f.harvest_calendar[ft]||[]).includes(i+1);
+                  return <button type="button" key={m} className={on?"on":""} onClick={()=>toggleHM(ft,i+1)} title={m}>{m[0]}</button>; })}
+              </div>
+            </div>
+          ))}
 
       <h5>Uses (ecological &amp; material)</h5>
       <div className="frow"><label>Ecological uses</label>{T("eco_uses")}</div>
