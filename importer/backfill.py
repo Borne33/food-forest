@@ -47,6 +47,7 @@ def build_steps(a):
         ("Soil texture/drainage (rule-based)", ["populate_soildims.py"]),
         ("Fruit traits",                      ["populate_fruit.py"]),
         ("Uses: food/material types, lifecycle, eco/material split", ["populate_uses.py"]),
+        ("Harvest calendar (per-part months, from harvest text + food_types)", ["populate_harvest_calendar.py"]),
     ]
     if not a.no_usda:
         usda = ["usda_enrich.py"]

@@ -439,6 +439,30 @@
   .ppbom td:first-child{font-family:'Space Mono';font-size:11px;color:var(--faint);width:44px}
   .ppbom td:last-child{text-align:right;font-family:'Space Mono';width:34px}
   .ppbom tr:last-child td{border-bottom:0}
+  /* ---------- Harvest view ---------- */
+  .hvctrls{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+  .hvchip{font-family:'Space Mono';font-size:11px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:5px 11px;color:var(--ink2);display:inline-flex;align-items:center;gap:6px}
+  .hvchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .hvchip .sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+  .hvnote{border:1.5px solid var(--line);background:#fbf9f2;border-radius:6px;padding:10px 13px;margin:0 0 12px;font-size:13.5px;line-height:1.5}
+  .hvtable{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;background:#fbf9f2}
+  .hvhead,.hvrow{display:grid;grid-template-columns:minmax(116px,1.4fr) repeat(12,minmax(0,1fr))}
+  .hvhead{background:var(--paper2);border-bottom:1.5px solid var(--line);font-family:'Space Mono';font-size:10px;color:var(--faint)}
+  .hvhead .mh{padding:6px 0;text-align:center;border-left:1px solid var(--line)}
+  .hvhead .mh.now{background:var(--sage);color:#fff}
+  .hvhead .cn{padding:6px 8px;display:flex;align-items:center}
+  .hvlayerhead{grid-column:1/-1;background:#eef1e6;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sage-d);padding:5px 8px;border-bottom:1px solid var(--line)}
+  .hvrow{border-bottom:1px solid var(--line);cursor:pointer}
+  .hvrow:last-child{border-bottom:0}
+  .hvrow:hover{background:#f4efe0}
+  .hvrow .cn{padding:6px 8px;font-size:13px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .hvrow .cn i{font-size:11px;color:var(--ink2);font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hvcell{border-left:1px solid #e7e1cf;display:flex;gap:1px;padding:5px 2px;min-height:28px;align-items:stretch}
+  .hvcell.now{background:rgba(111,138,95,.12)}
+  .hvseg{flex:1 1 0;border-radius:2px;min-width:3px}
+  .hvlegend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:11px 0 0}
+  .hvlegend .it{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2)}
+  .hvlegend .sw{width:12px;height:12px;border-radius:3px}
 </style>
 </head>
 <body>
@@ -477,6 +501,7 @@ function rowToPlant(r){
     batch:r.batch||null, createdAt:r.created_at||null,
     foodTypes:r.food_types||[], materialTypes:r.material_types||[], lifecycle:r.lifecycle||"",
     ecoUses:r.eco_uses||"", materialUses:r.material_uses||"",
+    harvestCalendar:r.harvest_calendar||{},
   };
 }
 const FOOD_TYPES=["Fruit","Nut/Seed","Grain","Leafy Green","Vegetable","Root/Tuber/Bulb","Herb/Spice","Tea/Drink","Flower","Sap/Syrup"];
@@ -1713,6 +1738,129 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   );
 }
 
+/* =====================================================================
+   HARVEST VIEW — month-by-month, per-part harvest calendar for a plan.
+   Reads plants.harvest_calendar ({food_type:[months]}) via p.harvestCalendar.
+   ===================================================================== */
+const MONTH_ABBR=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const FOOD_COLOR={ Fruit:"#dd4b3e", "Nut/Seed":"#7a5a34", Grain:"#e0b932", "Leafy Green":"#46a34a",
+  Vegetable:"#6f8a5f", "Root/Tuber/Bulb":"#b5651d", "Herb/Spice":"#9c6b9e", "Tea/Drink":"#4a7a96",
+  Flower:"#e8923c", "Sap/Syrup":"#9bbf3a" };
+const STORABLE=new Set(["Nut/Seed","Grain","Root/Tuber/Bulb"]); // keep in the pantry past harvest
+function storedMonths(months){ // months available from storage after the fresh window, through winter
+  if(!months||!months.length) return [];
+  const out=[]; let m=Math.max(...months);
+  for(let i=0;i<5;i++){ m=m%12+1; if(months.includes(m)) break; out.push(m); if(m===3) break; }
+  return out;
+}
+
+function HarvestView({chosen, plants, state, openDetail}){
+  const nowMonth=new Date().getMonth()+1;
+  const [filter,setFilter]=useState([]);       // food_types included; [] = all
+  const [showStored,setShowStored]=useState(true);
+  const active=ft=> (filter.length===0 || filter.includes(ft)) && FOOD_COLOR[ft];
+
+  const ediblePlan=chosen.filter(p=>Object.keys(p.harvestCalendar||{}).length>0);
+  const presentFts=FOOD_TYPES.filter(ft=>FOOD_COLOR[ft] && ediblePlan.some(p=>(p.harvestCalendar||{})[ft]));
+
+  const freshAt=(p,m)=>Object.keys(p.harvestCalendar||{}).filter(ft=>active(ft)&&(p.harvestCalendar[ft]||[]).includes(m));
+  const segsAt=(p,m)=>{ const segs=[]; const cal=p.harvestCalendar||{};
+    Object.keys(cal).forEach(ft=>{ if(!active(ft)) return; const months=cal[ft]||[];
+      if(months.includes(m)) segs.push({ft,stored:false});
+      else if(showStored && STORABLE.has(ft) && storedMonths(months).includes(m)) segs.push({ft,stored:true}); });
+    return segs; };
+
+  // #1 gap finder — months with no fresh (filtered) harvest across the plan
+  const gaps=[]; for(let m=1;m<=12;m++){ if(!ediblePlan.some(p=>freshAt(p,m).length)) gaps.push(m); }
+  const gapSet=new Set(gaps), inPlan=new Set(chosen.map(p=>p.id));
+  const suggs = gaps.length ? plants.filter(p=>!inPlan.has(p.id) && nativity(p,state).v>=0 &&
+      Object.keys(p.harvestCalendar||{}).some(ft=>active(ft)&&(p.harvestCalendar[ft]||[]).some(m=>gapSet.has(m))))
+      .sort((a,b)=>overall(b,state)-overall(a,state)).slice(0,5) : [];
+  // #4 ready now
+  const nowList=ediblePlan.map(p=>{ const fts=freshAt(p,nowMonth); return fts.length?{p,fts}:null; }).filter(Boolean);
+
+  // #5 export / print
+  const downloadFile=(name,type,content)=>{ const blob=new Blob([content],{type}); const url=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500); };
+  const exportCSV=()=>{ const rows=[["common","sci","part","months"]];
+    ediblePlan.forEach(p=>Object.keys(p.harvestCalendar||{}).forEach(ft=>{ if(!active(ft)) return;
+      rows.push([p.common,p.sci,ft,(p.harvestCalendar[ft]||[]).map(m=>MONTH_ABBR[m-1]).join(" ")]); }));
+    downloadFile("harvest-calendar.csv","text/csv",rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(",")).join("\n")); };
+  const printCal=()=>{ const w=window.open("","_blank"); if(!w){ alert("Allow pop-ups to print."); return; }
+    const hdr=MONTH_ABBR.map(m=>`<th>${m}</th>`).join("");
+    const body=ediblePlan.map(p=>{ const cells=MONTH_ABBR.map((_,i)=>{ const s=segsAt(p,i+1);
+      return `<td style="background:${s.length?(s[0].stored?"#e8e2d2":FOOD_COLOR[s[0].ft]):"#fff"}"></td>`; }).join("");
+      return `<tr><td style="text-align:left">${p.common}</td>${cells}</tr>`; }).join("");
+    w.document.write(`<!doctype html><html><head><title>Harvest calendar</title><style>body{font-family:Georgia,serif;margin:28px;color:#2b2a22}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;height:20px;font-size:11px;text-align:center;padding:2px}td:first-child,th:first-child{text-align:left;padding:2px 6px;white-space:nowrap}</style></head><body><h1>Harvest calendar</h1><table><thead><tr><th>Plant</th>${hdr}</tr></thead><tbody>${body}</tbody></table></body></html>`);
+    w.document.close(); w.focus(); setTimeout(()=>w.print(),250); };
+
+  if(!ediblePlan.length) return (
+    <div>
+      <div className="pagehead"><div className="eye">Harvest</div><h2>Month-by-month harvest</h2>
+        <p>When each edible part of your plants is ready to pick.</p></div>
+      <div className="empty">No edible plants with harvest timing in this plan yet. Add some fruit, nut, or green producers, then check back.</div>
+    </div>
+  );
+
+  const monthCell=(p,m)=>{ const segs=segsAt(p,m);
+    return <div className={"hvcell"+(m===nowMonth?" now":"")} key={m}>{segs.map((s,i)=>
+      <span className="hvseg" key={i} title={s.ft+(s.stored?" (stored)":"")} style={{background:FOOD_COLOR[s.ft],opacity:s.stored?0.3:1}}></span>)}</div>; };
+
+  return (
+    <div>
+      <div className="pagehead"><div className="eye">Harvest · {ediblePlan.length} edible plants</div>
+        <h2>Month-by-month harvest</h2>
+        <p>Each row is a plant; colored blocks show when each edible part is ready. Faint blocks are pantry storage. Click a plant for its card.</p></div>
+
+      <div className="hvctrls">
+        {presentFts.map(ft=>(
+          <button key={ft} className={"hvchip"+(filter.includes(ft)?" on":"")}
+            onClick={()=>setFilter(f=>f.includes(ft)?f.filter(x=>x!==ft):[...f,ft])}>
+            <span className="sw" style={{background:FOOD_COLOR[ft]}}></span>{ft}</button>
+        ))}
+        {filter.length>0 && <button className="hvchip" onClick={()=>setFilter([])}>Clear filter</button>}
+        <span style={{flex:"1 1 auto"}}></span>
+        <button className={"hvchip"+(showStored?" on":"")} onClick={()=>setShowStored(s=>!s)}>Storage {showStored?"on":"off"}</button>
+        <button className="hvchip" onClick={printCal}>Print</button>
+        <button className="hvchip" onClick={exportCSV}>CSV</button>
+      </div>
+
+      {nowList.length>0 && <div className="hvnote"><b>Ready in {MONTH_ABBR[nowMonth-1]}:</b> {nowList.map(({p,fts})=>`${p.common} (${fts.join(", ")})`).join(" · ")}</div>}
+      {gaps.length>0
+        ? <div className="hvnote" style={{borderColor:"var(--orange)",background:"#f6ead6"}}>
+            <b>Fresh-harvest gap{gaps.length>1?"s":""}:</b> {gaps.map(m=>MONTH_ABBR[m-1]).join(", ")}.
+            {suggs.length>0 && <React.Fragment> Consider {suggs.map((p,i)=><React.Fragment key={p.id}>{i>0?", ":" "}<b style={{cursor:"pointer",textDecoration:"underline"}} onClick={()=>openDetail(p)}>{p.common}</b></React.Fragment>)} to help fill {gaps.length>1?"them":"it"}.</React.Fragment>}
+          </div>
+        : <div className="hvnote" style={{borderColor:"var(--green)",background:"#e7f0dd"}}><b>Year-round fresh harvest</b> — some part of your plan is pickable every month.</div>}
+
+      <div className="hvtable">
+        <div className="hvhead">
+          <div className="cn">Plant</div>
+          {MONTH_ABBR.map((m,i)=><div key={m} className={"mh"+(i+1===nowMonth?" now":"")}>{m[0]}</div>)}
+        </div>
+        {LAYERS.map(layer=>{ const inLayer=ediblePlan.filter(p=>layer.types.includes(p.type)); if(!inLayer.length) return null;
+          return (
+            <React.Fragment key={layer.name}>
+              <div className="hvlayerhead">{layer.name}</div>
+              {inLayer.map(p=>(
+                <div className="hvrow" key={p.id} onClick={()=>openDetail(p)}>
+                  <div className="cn">{p.common}<i>{p.sci}</i></div>
+                  {MONTH_ABBR.map((_,i)=>monthCell(p,i+1))}
+                </div>
+              ))}
+            </React.Fragment>
+          );
+        })}
+      </div>
+
+      <div className="hvlegend">
+        {presentFts.map(ft=><span className="it" key={ft}><span className="sw" style={{background:FOOD_COLOR[ft]}}></span>{ft}</span>)}
+        {showStored && <span className="it"><span className="sw" style={{background:"#7a5a34",opacity:0.3}}></span>from storage</span>}
+      </div>
+    </div>
+  );
+}
+
 function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | soil | risk
@@ -1832,6 +1980,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
       <div className="viewtoggle">
         <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
         <button className={view==="plant"?"on":""} onClick={()=>setView("plant")}>Planting Plan</button>
+        <button className={view==="harvest"?"on":""} onClick={()=>setView("harvest")}>Harvest</button>
         <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
         <button className={view==="risk"?"on":""} onClick={()=>setView("risk")}>Risk Register</button>
       </div>
@@ -1879,6 +2028,8 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
       </React.Fragment>)}
 
       {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} />}
+
+      {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} />}
 
