@@ -2543,9 +2543,11 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
 /* ---------- Soil Exam page ---------- */
 function MultiSelect({label, options, value, onChange}){
   const [open,setOpen]=useState(false);
+  useEffect(()=>{ if(!open) return; const h=()=>setOpen(false);
+    document.addEventListener("click",h); return ()=>document.removeEventListener("click",h); },[open]);
   const toggle=o=>onChange(value.includes(o)?value.filter(x=>x!==o):[...value,o]);
   return (
-    <div className="msfield">
+    <div className="msfield" onClick={e=>e.stopPropagation()}>
       <label>{label}</label>
       <div className="mscontrol" onClick={()=>setOpen(o=>!o)}>
         {value.length ? value.map(v=><span className="mschip" key={v}>{v.replace(/ \(.*/,"")}</span>) : <span className="msph">Any</span>}
