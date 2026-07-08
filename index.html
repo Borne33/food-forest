@@ -2025,7 +2025,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
             <div className="pagehead" style={{border:0,margin:"0 0 8px",padding:0}}><div className="eye">Suggested additions</div></div>
             {suggestions.map(({p,why})=>(
               <div className="sugg" key={p.id} style={{display:"block"}}>
-                <div><b>{p.common}</b> <span style={{fontStyle:"italic",color:"var(--ink2)"}}>{p.sci}</span><div className="why">{why} · scores {overall(p,state)}</div></div>
+                <div onClick={()=>setDetail(p)} style={{cursor:"pointer"}} title="Open card"><b>{p.common}</b> <span style={{fontStyle:"italic",color:"var(--ink2)"}}>{p.sci}</span><div className="why">{why} · scores {overall(p,state)}</div></div>
                 <button className="addbtn" onClick={()=>curToggle(p.id)} style={{marginTop:6}}>+ Add</button>
               </div>
             ))}
@@ -2037,7 +2037,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
 
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
-      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} />}
+      {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} openDetail={setDetail} />}
 
       {view==="risk" && (<React.Fragment>
         <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Risk register · from each plant's cautions</div></div>
@@ -2045,9 +2045,9 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
       </React.Fragment>)}
 
       {detail && (
-        <div className="pmodal">
-          <div className="scrim" onClick={()=>setDetail(null)}></div>
-          <div className="inner">
+        <div className="pmodal" onClick={()=>setDetail(null)}>
+          <div className="scrim"></div>
+          <div className="inner" onClick={e=>e.stopPropagation()}>
             <button className="x" onClick={()=>setDetail(null)}>Close ✕</button>
             <PlantCard p={detail} state={state} plans={plans} memberOf={membership[detail.id]} toggle={toggle} defaultOpen />
           </div>
@@ -2595,7 +2595,7 @@ function PlanFilter({plans, value, onChange}){
 }
 function FitDot({v, label}){ return <span className={"fdot "+fitCls(v)} title={label}>{v>=1?"✓":(v>=0.5?"~":"✕")}</span>; }
 
-function SoilExam({plants, state, plan, toggle, soil, setSoil, soilDerived}){
+function SoilExam({plants, state, plan, toggle, soil, setSoil, soilDerived, openDetail}){
   const [editing,setEditing]=useState(false);
   const [declined,setDeclined]=useState([]);
   const selTex=soil.tex, selDr=soil.dr, selPhL=soil.phL;
@@ -2699,7 +2699,7 @@ function SoilExam({plants, state, plan, toggle, soil, setSoil, soilDerived}){
           <div className="wh"><span>Suggested for this soil</span></div>
           {suggestions.length ? suggestions.map(({p,f})=>(
             <div className="ssug" key={p.id}>
-              <div className="top"><span className="nm">{p.common}<span className="ovmini" style={{background:bandColor(overall(p,state)),color:bandText(overall(p,state))}}>{overall(p,state)}</span></span><span className="fpct" style={{color:pctColor(f.pct)}}>{f.pct}%</span></div>
+              <div className="top" onClick={()=>openDetail&&openDetail(p)} style={{cursor:"pointer"}} title="Open card"><span className="nm">{p.common}<span className="ovmini" style={{background:bandColor(overall(p,state)),color:bandText(overall(p,state))}}>{overall(p,state)}</span></span><span className="fpct" style={{color:pctColor(f.pct)}}>{f.pct}%</span></div>
               <div className="dots"><FitDot v={f.t} label="Texture" /><FitDot v={f.d} label="Drainage" /><FitDot v={f.h} label="pH" /></div>
               <div className="acts">
                 <button className="add" onClick={()=>toggle(p.id)}>✓ Add</button>
