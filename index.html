@@ -205,6 +205,16 @@
   .peditor .addbtn2{border:1.5px dashed var(--line);background:transparent;border-radius:4px;padding:5px 11px;font-family:'Space Mono';font-size:11px;color:var(--ink2);margin-top:3px}
   .peditor .save{border:1.5px solid var(--sage-d);background:var(--sage-d);color:var(--paper);border-radius:4px;padding:9px 18px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin:14px 8px 0 0}
   .peditor .cancel{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;padding:9px 18px;font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:14px}
+  /* Verify: add-a-new-plant workflow */
+  .npbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+  .npbtn{border:1.5px solid var(--sage-d);background:var(--sage-d);color:var(--paper);border-radius:4px;padding:9px 16px;
+    font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .npbtn.off{background:transparent;color:var(--sage-d)}
+  .npwrap{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:14px 16px;margin:0 0 20px}
+  .npwrap>.npttl{font-family:'Space Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-d);margin-bottom:4px}
+  .npwrap>.npnote{font-size:13px;color:var(--ink2);line-height:1.5;margin-bottom:10px}
+  .npwrap .peditor{border:0;background:transparent;padding:0;margin:0}
+  .npok{border:1.5px solid var(--sage-d);background:#e9f2df;border-radius:6px;padding:10px 14px;margin:0 0 14px;font-size:13.5px}
   .card .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
   .card h3{margin:5px 0 1px;font-size:22px;font-weight:800;letter-spacing:-.01em}
   .card .sci{font-style:italic;color:var(--ink2);font-size:15px}
@@ -377,27 +387,56 @@
   .ppbtn.ghost{border-color:var(--line);color:var(--ink2)}
   .ppbtn.danger{border-color:#c0503f;color:#b03a2e}
   /* Step 1 list */
-  .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;background:#fbf9f2}
-  .pplhead,.pplrow{display:grid;grid-template-columns:1.6fr 66px 70px 1.3fr 90px 90px;gap:10px;align-items:center;padding:10px 12px}
-  .pplhead{background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--line)}
-  .pplrow{border-bottom:1px solid var(--line);cursor:pointer}
+  .pplbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+  .pplbar input.q{flex:1 1 200px;min-width:0;border:1.5px solid var(--line);border-radius:5px;padding:8px 10px;font-family:'Spectral';font-size:14px;background:#fff}
+  .pplsum{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+  .pplsum .b{border:1.5px solid var(--line);border-radius:5px;background:#fbf9f2;padding:7px 12px;display:flex;align-items:baseline;gap:7px}
+  .pplsum .b b{font-family:'Space Mono';font-size:17px;color:var(--sage-d)}
+  .pplsum .b span{font-family:'Space Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  /* overflow:clip (not hidden) keeps the rounded corners AND lets the header stick to the page scroll */
+  .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;overflow:clip;background:#fbf9f2}
+  .pplhead,.pplrow{display:grid;grid-template-columns:minmax(180px,2.1fr) 76px 104px minmax(140px,1.4fr) 148px 128px;gap:14px;align-items:center;padding:12px 14px}
+  .pplhead{position:sticky;top:63px;z-index:3;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
+  .pplhead>div:last-child{text-align:center}
+  .pplrow{border-bottom:1px solid var(--line);cursor:pointer;background:#fbf9f2}
+  .pplrow.alt{background:#f7f2e4}
   .pplrow:last-child{border-bottom:0}
-  .pplrow:hover{background:#f4efe0}
-  .pplrow .cn{font-weight:600}
-  .pplrow .cn i{display:block;font-size:12px;color:var(--ink2);font-style:italic}
-  .pplrow .sc{display:inline-flex;align-items:center;justify-content:center;min-width:34px;padding:3px 6px;border-radius:4px;font-family:'Space Mono';font-size:12px;font-weight:700}
+  .pplrow:hover{background:#f1ead6}
+  .pplrow.has{background:#eaf2e0;box-shadow:inset 4px 0 0 var(--sage)}
+  .pplrow.has:hover{background:#e2ecd4}
+  .pplrow .cn{font-weight:600;font-size:15px;line-height:1.25}
+  .pplrow .cn i{display:block;font-size:12px;color:var(--ink2);font-style:italic;margin-top:1px}
+  .pplrow .sc{display:inline-flex;align-items:center;justify-content:center;min-width:38px;padding:4px 7px;border-radius:4px;font-family:'Space Mono';font-size:13px;font-weight:700}
+  .pplrow .fr{font-size:12.5px;color:var(--ink2)}
   .pplrow .eco{display:flex;gap:4px;flex-wrap:wrap}
   .ecopill{font-family:'Space Mono';font-size:9px;letter-spacing:.04em;padding:2px 6px;border-radius:99px;border:1px solid var(--line);color:var(--ink2);background:#fff}
   .ecopill.nf{background:#e3efd9;border-color:#9bbf3a;color:#4a6b1f}
-  .ppqty{display:flex;align-items:center;gap:4px}
-  .ppqty input{width:56px;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff}
-  .ppqty button{width:26px;height:30px;border:1.5px solid var(--line);background:#fff;border-radius:4px;font-size:15px;line-height:1;color:var(--ink)}
-  @media(max-width:720px){ .pplhead{display:none} .pplrow{grid-template-columns:1fr auto;grid-auto-flow:row;gap:6px 10px} }
-  /* Map + side panel */
-  .ppmapwrap{position:relative;z-index:1;display:flex;gap:14px;align-items:stretch}
-  .ppmap{flex:1 1 auto;min-width:0;height:min(64vh,600px);border:1.5px solid var(--ink);border-radius:6px}
-  .ppside{flex:0 0 260px;display:flex;flex-direction:column;gap:12px}
-  @media(max-width:840px){ .ppmapwrap{flex-direction:column} .ppside{flex-basis:auto} .ppmap{height:52vh} }
+  .ppqty{display:flex;align-items:center;gap:5px;justify-content:center}
+  .ppqty input{width:56px;font-family:'Space Mono';font-size:16px;font-weight:700;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:7px 2px;background:#fff;-moz-appearance:textfield}
+  .ppqty input::-webkit-outer-spin-button,.ppqty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .ppqty button{width:30px;height:34px;border:1.5px solid var(--line);background:#fff;border-radius:4px;font-size:17px;line-height:1;color:var(--ink)}
+  .ppqty button:hover{background:var(--sage);border-color:var(--sage-d);color:#fff}
+  @media(max-width:820px){
+    .pplhead{display:none}
+    .pplrow{grid-template-columns:1fr;gap:7px;padding:13px 14px}
+    .pplrow>div[data-l]::before{content:attr(data-l);align-self:center;font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:7px}
+    .pplrow>div[data-l]{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+    .ppqty{justify-content:flex-start}
+  }
+  /* Map + tool cards (tools sit BELOW the map, full width) */
+  .ppmapwrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px}
+  .ppmap{width:100%;min-width:0;height:min(56vh,560px);border:1.5px solid var(--ink);border-radius:6px}
+  .ppside{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:12px;align-items:start}
+  @media(min-width:1000px){ .ppcard.wide{grid-column:span 2} }
+  @media(max-width:840px){ .ppmap{height:52vh} }
+  /* Step 2 area list */
+  .pparea{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:#fff;border-radius:5px;padding:6px 8px;margin-bottom:5px}
+  .pparea .ix{font-family:'Space Mono';font-size:11px;color:var(--faint);flex:0 0 auto}
+  .pparea .sz{flex:1 1 auto;font-size:13px}
+  .pparea .sz i{font-style:normal;color:var(--ink2);font-size:11.5px}
+  .pparea button{border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;font-family:'Space Mono';font-size:10px;padding:4px 7px;color:var(--ink2)}
+  .pparea button.del{border-color:#c0503f;color:#b03a2e}
+  .pparea button.del:hover{background:#b03a2e;color:#fff}
   .ppcard{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;padding:12px 13px}
   .ppcard h4{margin:0 0 8px;font-family:'Space Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700}
   .ppgeo{display:flex;gap:6px;margin-bottom:10px}
@@ -409,6 +448,8 @@
   .pphint{font-size:12.5px;color:var(--ink2);line-height:1.45}
   /* Step 4 palette */
   .ppspecies{display:flex;flex-direction:column;gap:5px;max-height:min(46vh,420px);overflow:auto}
+  .ppspecies.pprow{flex-direction:row;flex-wrap:wrap;gap:6px}
+  .ppspecies.pprow .ppsp{width:auto;flex:1 1 150px}
   .ppsp{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:#fff;border-radius:5px;padding:6px 8px;text-align:left;width:100%}
   .ppsp.on{border-color:var(--sage);background:#eef4e5;box-shadow:0 0 0 1.5px var(--sage) inset}
   .ppsp.done{opacity:.55}
@@ -433,6 +474,8 @@
   .ppgauge .band{position:absolute;left:25%;width:10%;top:0;bottom:0;background:rgba(70,163,74,.35)}
   .ppgauge .fillg{position:absolute;left:0;top:0;bottom:0;background:var(--sage);border-radius:99px}
   .leaflet-container.pppaint,.leaflet-container.pppaint .leaflet-interactive{cursor:crosshair}
+  .leaflet-container.pperase .ppmark{cursor:pointer}
+  .leaflet-container.pperase .ppmark:hover{outline:3px solid #dd4b3e;outline-offset:1px}
   .ppnorth{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:4px;padding:1px 3px;line-height:0;box-shadow:0 1px 4px rgba(0,0,0,.25)}
   .ppbom{width:100%;border-collapse:collapse;font-size:12.5px}
   .ppbom td{padding:3px 4px;border-bottom:1px solid var(--line)}
@@ -587,6 +630,13 @@ const dataProvider = {
   async updatePlant(plantId, patch){
     // admin-only (RLS): edit plant fields; returns the fresh row
     const { data, error } = await sb.from('plants').update(patch).eq('id', plantId).select('*').single();
+    if(error) throw error;
+    return rowToPlant(data);
+  },
+  async insertPlant(patch){
+    // admin-only (RLS "admin can insert plants"): id is an identity column and the
+    // BEFORE INSERT trigger assigns the batch, so we send neither.
+    const { data, error } = await sb.from('plants').insert(patch).select('*').single();
     if(error) throw error;
     return rowToPlant(data);
   },
@@ -1212,6 +1262,8 @@ const SOIL_DEF = {
 };
 const SOIL_CATS=["texture","drainage","ph"];
 const SOIL_BRUSH={ S:1, M:3, L:6 }; // brush radius in grid cells
+const PP_POLY_STYLE={color:"#e0201a",weight:2,fillColor:"#e0201a",fillOpacity:.12};
+const PP_POLY_HI={color:"#e8923c",weight:4,fillColor:"#e8923c",fillOpacity:.3};
 function soilOptIdx(cat,k){ return SOIL_DEF[cat].opts.findIndex(o=>o.k===k); } // 0-based; array stores idx+1
 // ray-casting point-in-polygon on [lat,lng] rings
 function pointInRing(lat,lng,ring){
@@ -1247,6 +1299,8 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   const [activeSp,setActiveSp]=useState(null);
   const [geo,setGeo]=useState("");
   const [growthYear,setGrowthYear]=useState(20); // growth-over-time slider (20 = mature)
+  const [qtyQ,setQtyQ]=useState("");             // Step 1 name filter
+  const [onlyChosen,setOnlyChosen]=useState(false);
   // Step 3 soil map
   const [soilMap,setSoilMap]=useState(null);   // {grid:{cols,rows,b:[[s,w],[n,e]]}, data:{texture:rle,drainage:rle,ph:rle}} (persisted)
   const [soilCat,setSoilCat]=useState("texture");
@@ -1325,8 +1379,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     drawn.current=new L.FeatureGroup(); map.addLayer(drawn.current);
     placeG.current=new L.LayerGroup(); map.addLayer(placeG.current);
     // seed previously-drawn polygons
-    (polys||[]).forEach(ring=>{ if(ring&&ring.length>=3)
-      drawn.current.addLayer(L.polygon(ring,{color:"#e0201a",weight:2,fillColor:"#e0201a",fillOpacity:.12})); });
+    (polys||[]).forEach(ring=>{ if(ring&&ring.length>=3) drawn.current.addLayer(L.polygon(ring,PP_POLY_STYLE)); });
     const sync=()=>{ setPolys(drawn.current.getLayers().map(l=>l.getLatLngs()[0].map(p=>[p.lat,p.lng]))); };
     map.on(L.Draw.Event.CREATED, e=>{
       if(drawn.current.getLayers().length>=5){ alert("You can map up to 5 areas."); return; }
@@ -1348,7 +1401,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     if(step==="map"){
       if(!drawCtl.current) drawCtl.current=new L.Control.Draw({
         draw:{ polygon:{ showArea:false, showLength:true, metric:false, feet:true, allowIntersection:false,
-          shapeOptions:{color:"#e0201a",weight:2,fillColor:"#e0201a",fillOpacity:.12} },
+          shapeOptions:PP_POLY_STYLE },
           polyline:false, rectangle:false, circle:false, marker:false, circlemarker:false },
         edit:{ featureGroup:drawn.current } });
       map.addControl(drawCtl.current);
@@ -1361,15 +1414,41 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   const polysBounds=()=>{ let s=90,w=180,n=-90,e=-180,any=false;
     polys.forEach(r=>r.forEach(([la,ln])=>{ any=true; if(la<s)s=la; if(la>n)n=la; if(ln<w)w=ln; if(ln>e)e=ln; }));
     return any?[[s,w],[n,e]]:null; };
+  // The raster grid covers the bbox of the drawn areas, padded by one cell so the
+  // outermost cells fully cover the boundary (otherwise paint stops short of the edge).
   const computeGrid=(b)=>{ const [s,w]=b[0],[n,e]=b[1], midLat=(s+n)/2;
-    const mLat=(n-s)*111320, mLng=(e-w)*111320*Math.cos(midLat*Math.PI/180), maxM=Math.max(mLat,mLng,1);
-    const cell=Math.max(0.5,maxM/140);
-    return { cols:Math.max(1,Math.min(160,Math.ceil(mLng/cell))), rows:Math.max(1,Math.min(160,Math.ceil(mLat/cell))), b }; };
+    const mPerLng=Math.max(1,111320*Math.cos(midLat*Math.PI/180));
+    const mLat=(n-s)*111320, mLng=(e-w)*mPerLng, maxM=Math.max(mLat,mLng,1);
+    const cell=Math.max(0.5,maxM/140), padLat=cell/111320, padLng=cell/mPerLng;
+    return { cols:Math.max(1,Math.min(170,Math.ceil((mLng+2*cell)/cell))),
+             rows:Math.max(1,Math.min(170,Math.ceil((mLat+2*cell)/cell))),
+             b:[[s-padLat,w-padLng],[n+padLat,e+padLng]] }; };
+  const sameGrid=(a,b)=>!!a&&!!b&&a.cols===b.cols&&a.rows===b.rows&&
+    Math.abs(a.b[0][0]-b.b[0][0])<1e-9&&Math.abs(a.b[0][1]-b.b[0][1])<1e-9&&
+    Math.abs(a.b[1][0]-b.b[1][0])<1e-9&&Math.abs(a.b[1][1]-b.b[1][1])<1e-9;
+  // carry painted values across a re-grid (nearest cell), so redrawing/adding an
+  // area keeps the soil you already painted instead of clipping it to the old bbox
+  const resampleSoil=(og,oa,ng)=>{
+    const out={}; SOIL_CATS.forEach(k=>out[k]=new Int8Array(ng.cols*ng.rows));
+    const [os,ow]=og.b[0],[on,oe]=og.b[1],[ns,nw]=ng.b[0],[nn,ne]=ng.b[1];
+    for(let r=0;r<ng.rows;r++){ const lat=nn-(r+0.5)/ng.rows*(nn-ns), rf=(on-lat)/(on-os);
+      if(rf<0||rf>=1) continue; const orr=Math.min(og.rows-1,Math.floor(rf*og.rows));
+      for(let c=0;c<ng.cols;c++){ const lng=nw+(c+0.5)/ng.cols*(ne-nw), cf=(lng-ow)/(oe-ow);
+        if(cf<0||cf>=1) continue; const occ=Math.min(og.cols-1,Math.floor(cf*og.cols));
+        const oi=orr*og.cols+occ, ni=r*ng.cols+c;
+        SOIL_CATS.forEach(k=>{ out[k][ni]=oa[k][oi]; }); } }
+    return out; };
+  // a cell is paintable when its centre OR any corner falls inside an area, so the
+  // brush reaches all the way into corners and along edges of the polygon
   const computeMask=()=>{ const g=soilGrid.current; if(!g) return;
     const [s,w]=g.b[0],[n,e]=g.b[1], mask=new Uint8Array(g.cols*g.rows);
-    for(let r=0;r<g.rows;r++){ const lat=n-(r+0.5)/g.rows*(n-s);
-      for(let c=0;c<g.cols;c++){ const lng=w+(c+0.5)/g.cols*(e-w); let inside=false;
-        for(const ring of polys){ if(ring.length>=3 && pointInRing(lat,lng,ring)){ inside=true; break; } }
+    const dLat=(n-s)/g.rows, dLng=(e-w)/g.cols, rings=polys.filter(r=>r&&r.length>=3);
+    for(let r=0;r<g.rows;r++){ const lat=n-(r+0.5)*dLat;
+      for(let c=0;c<g.cols;c++){ const lng=w+(c+0.5)*dLng; let inside=false;
+        for(const ring of rings){
+          if(pointInRing(lat,lng,ring)
+            || pointInRing(lat-dLat/2,lng-dLng/2,ring) || pointInRing(lat-dLat/2,lng+dLng/2,ring)
+            || pointInRing(lat+dLat/2,lng-dLng/2,ring) || pointInRing(lat+dLat/2,lng+dLng/2,ring)){ inside=true; break; } }
         mask[r*g.cols+c]=inside?1:0; } }
     soilMask.current=mask; };
   const ensureCanvasOverlay=()=>{ const g=soilGrid.current; if(!g||!mapObj.current) return;
@@ -1386,12 +1465,19 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
       const x=c*SOIL_PX,y=r*SOIL_PX; ctx.fillStyle=o.c; ctx.fillRect(x,y,SOIL_PX,SOIL_PX); drawSoilPattern(ctx,o.pat,x,y,SOIL_PX); } }
     if(soilOverlay.current) soilOverlay.current.setUrl(cv.toDataURL()); };
   const scheduleSoilRender=()=>{ if(soilRaf.current) return; soilRaf.current=requestAnimationFrame(()=>{ soilRaf.current=0; renderSoil(); }); };
-  const ensureSoilGrid=()=>{ if(!mapReady) return; let grid,arr;
+  const ensureSoilGrid=()=>{ if(!mapReady) return; let grid=null,arr=null,regridded=false;
     if(soilMap&&soilMap.grid){ grid=soilMap.grid; const len=grid.cols*grid.rows;
-      arr={ texture:rleDecode(soilMap.data.texture,len), drainage:rleDecode(soilMap.data.drainage,len), ph:rleDecode(soilMap.data.ph,len) };
-    } else { const b=polysBounds(); if(!b) return; grid=computeGrid(b); const len=grid.cols*grid.rows;
-      arr={ texture:new Int8Array(len), drainage:new Int8Array(len), ph:new Int8Array(len) }; }
-    soilGrid.current=grid; soilArr.current=arr; computeMask(); ensureCanvasOverlay(); renderSoil(); };
+      arr={ texture:rleDecode(soilMap.data.texture,len), drainage:rleDecode(soilMap.data.drainage,len), ph:rleDecode(soilMap.data.ph,len) }; }
+    const b=polysBounds();
+    if(b){ const want=computeGrid(b);
+      if(!grid||!arr){ grid=want; const len=want.cols*want.rows;
+        arr={ texture:new Int8Array(len), drainage:new Int8Array(len), ph:new Int8Array(len) }; }
+      else if(!sameGrid(grid,want)){ arr=resampleSoil(grid,arr,want); grid=want; regridded=true; } }
+    if(!grid||!arr) return;
+    soilGrid.current=grid; soilArr.current=arr; computeMask(); ensureCanvasOverlay(); renderSoil();
+    // the areas changed under an existing soil map — persist the re-gridded raster
+    // (it now matches the new bounds, so this settles after one pass)
+    if(regridded) setSoilMap({ grid, data:{ texture:rleEncode(arr.texture), drainage:rleEncode(arr.drainage), ph:rleEncode(arr.ph) } }); };
   const paintAt=(latlng)=>{ const g=soilGrid.current, arr=soilArr.current; if(!g||!arr) return;
     const [s,w]=g.b[0],[n,e]=g.b[1], cf=(latlng.lng-w)/(e-w), rf=(n-latlng.lat)/(n-s);
     if(cf<0||cf>1||rf<0||rf>1) return;
@@ -1443,20 +1529,20 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
       if(trees.some(t=>here.distanceTo(L.latLng(t.lat,t.lng))<t.r)) set.add(pl.id); });
     return set; },[places,byId]);
 
-  // build grid when data present; toggle overlay visibility by step
+  // build/refresh the grid when data or the mapped areas change; toggle overlay by step
   useEffect(()=>{ if(!mapReady) return;
-    if(!soilGrid.current && (soilMap || step==="soil")) ensureSoilGrid();
-    if(step==="soil"){ computeMask(); renderSoil(); }
+    if(soilMap || step==="soil") ensureSoilGrid();
     if(soilOverlay.current) soilOverlay.current.setOpacity(step==="soil"?0.62:0);
-  },[step,mapReady,soilMap]); // eslint-disable-line
+  },[step,mapReady,soilMap,polys]); // eslint-disable-line
   // re-render the active category when it changes
   useEffect(()=>{ if(step==="soil") renderSoil(); },[soilCat]); // eslint-disable-line
   // enable/disable map dragging so a brush stroke doesn't pan the map
   useEffect(()=>{ if(!mapReady) return; const map=mapObj.current, paint=step==="soil"&&soilTool.type!=="pan";
     if(paint) map.dragging.disable(); else map.dragging.enable();
-    if(map.getContainer()) map.getContainer().classList.toggle("pppaint",paint);
+    const el=map.getContainer();
+    if(el){ el.classList.toggle("pppaint",paint); el.classList.toggle("pperase",step==="place"&&placeMode==="erase"); }
     return ()=>{ if(mapObj.current) mapObj.current.dragging.enable(); };
-  },[step,soilTool,mapReady]);
+  },[step,soilTool,mapReady,placeMode]);
   // soil paint pointer handlers (attached once map exists; call latest fns via ref)
   useEffect(()=>{ if(!mapReady) return; const map=mapObj.current;
     const down=e=>{ if(stepRef.current!=="soil"||soilToolRef.current.type==="pan") return; soilPainting.current=true; soilFns.current.paintAt(e.latlng); };
@@ -1482,9 +1568,11 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
       const icon=L.divIcon({className:"",iconSize:[px,px],iconAnchor:[px/2,px/2],
         html:`<div class="ppmark" style="width:${px}px;height:${px}px;background:${info.color};border:${bd};font-size:${Math.max(8,Math.round(px*0.34))}px">${codes[pl.plantId]||"?"}</div>`});
       // non-interactive while placing so clicks fall through to the map (place plants close together);
-      // clickable to open the card only in Done/view mode; draggable only in Move mode.
-      const marker=L.marker([pl.lat,pl.lng],{icon,draggable:placeMode==="move",interactive:placeMode!=="plant"});
-      marker.on("click",()=>{ if(modeRef.current==="view" && openRef.current) openRef.current(byId[pl.plantId]); });
+      // clickable to open the card in Done/view mode or to delete in Remove mode; draggable only in Move mode.
+      const marker=L.marker([pl.lat,pl.lng],{icon,draggable:placeMode==="move",interactive:placeMode!=="plant",
+        title:placeMode==="erase"?("Remove "+(p.common||"this plant")):(p.common||"")});
+      marker.on("click",()=>{ if(modeRef.current==="erase"){ removePlace(pl.id); return; }
+        if(modeRef.current==="view" && openRef.current) openRef.current(byId[pl.plantId]); });
       marker.on("dragend",()=>{ const ll=marker.getLatLng(); circle.setLatLng(ll); setPlaces(ps=>ps.map(x=>x.id===pl.id?{...x,lat:ll.lat,lng:ll.lng}:x)); });
       placeG.current.addLayer(circle); placeG.current.addLayer(marker);
       markers.current[pl.id]={marker,circle};
@@ -1509,7 +1597,25 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     if(drawn.current) drawn.current.clearLayers();
     setCounts({}); setView(null); setPolys([]); setPlaces([]); setActiveSp(null); setPlaceMode("plant"); setStep("plants");
   };
-  const clearPolys=()=>{ if(drawn.current) drawn.current.clearLayers(); setPolys([]); };
+  const clearPolys=()=>{ if(!confirm("Delete all mapped areas? Your painted soil map is kept but will be re-fitted to whatever you draw next.")) return;
+    if(drawn.current) drawn.current.clearLayers(); setPolys([]); };
+  /* ---- per-area delete / zoom / hover-highlight (drawn layer order === polys order) ---- */
+  const redrawPolys=(list)=>{ if(!drawn.current) return; drawn.current.clearLayers();
+    list.forEach(ring=>{ if(ring&&ring.length>=3) drawn.current.addLayer(L.polygon(ring,PP_POLY_STYLE)); }); };
+  const deletePolyAt=(i)=>{ const list=polys.filter((_,j)=>j!==i); setPolys(list); redrawPolys(list); };
+  const zoomToPoly=(i)=>{ const r=polys[i]; if(!r||!r.length||!mapObj.current) return;
+    mapObj.current.fitBounds(L.latLngBounds(r.map(([la,ln])=>L.latLng(la,ln))),{padding:[24,24]}); };
+  const hiPoly=(i,on)=>{ const ls=drawn.current&&drawn.current.getLayers();
+    if(ls&&ls[i]&&ls[i].setStyle) ls[i].setStyle(on?PP_POLY_HI:PP_POLY_STYLE); };
+  const ringArea=(ring)=>{ if(!(window.L&&L.GeometryUtil&&L.GeometryUtil.geodesicArea)||!ring||ring.length<3) return 0;
+    return Math.abs(L.GeometryUtil.geodesicArea(ring.map(([la,ln])=>L.latLng(la,ln)))); };
+  /* ---- placement removal (Step 4) ---- */
+  const removePlace=(id)=>setPlaces(ps=>ps.filter(x=>x.id!==id));
+  const undoPlace=()=>setPlaces(ps=>ps.slice(0,-1));
+  const clearPlaces=()=>{ if(!places.length) return;
+    if(!confirm("Remove all "+places.length+" placed plant"+(places.length===1?"":"s")+" from the map? Your quantities in Step 1 are kept.")) return;
+    setPlaces([]); };
+  const clearSpecies=(plantId)=>setPlaces(ps=>ps.filter(x=>x.plantId!==plantId));
   const doGeo=async()=>{
     const q=geo.trim(); if(!q||!mapObj.current) return;
     try{ const r=await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q="+encodeURIComponent(q));
@@ -1525,6 +1631,12 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   const sqft=areaM2*M2_TO_SQFT, acres=areaM2*M2_TO_ACRE;
   const fmt=n=>Math.round(n).toLocaleString();
   const totalToPlace=chosen.reduce((a,p)=>a+(counts[p.id]||0),0);
+  const speciesChosen=chosen.filter(p=>(counts[p.id]||0)>0).length;
+  const qtyRows=chosen.filter(p=>{
+    if(onlyChosen && !(counts[p.id]||0)) return false;
+    if(qtyQ.trim()){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(qtyQ.trim().toLowerCase())) return false; }
+    return true;
+  });
   const treeCanopyM2=places.reduce((a,pl)=>{ const p=byId[pl.plantId]; if(p&&p.type==="Tree"){ const r=CANOPY_FT.Tree*0.3048/2; return a+Math.PI*r*r; } return a; },0);
   const treePct=areaM2?Math.round(treeCanopyM2/areaM2*100):0;
   const placedPlants=places.map(pl=>byId[pl.plantId]).filter(Boolean);
@@ -1575,24 +1687,36 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
 
       {ready && step==="plants" && (
         <div>
-          <div className="pphint" style={{margin:"0 0 12px"}}>Enter how many of each plant you want to place. Vital stats are shown for each — click any row to open its full card. Total to place: <b>{totalToPlace}</b>.</div>
+          <div className="pphint" style={{margin:"0 0 12px"}}>Enter how many of each plant you want to place. Rows you've given a quantity are highlighted in green. Click any row to open its full card.</div>
+          <div className="pplsum">
+            <div className="b"><b>{totalToPlace}</b><span>plants to place</span></div>
+            <div className="b"><b>{speciesChosen}</b><span>of {chosen.length} species</span></div>
+            <div className="b"><b>{places.length}</b><span>already placed</span></div>
+          </div>
+          <div className="pplbar">
+            <input className="q" placeholder="Filter this plan…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} />
+            <button className={"ppbtn"+(onlyChosen?" primary":" ghost")} onClick={()=>setOnlyChosen(v=>!v)}>
+              {onlyChosen?"✓ Only with a quantity":"Only with a quantity"}</button>
+            {totalToPlace>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every quantity in this plan?")) setCounts({}); }}>Clear quantities</button>}
+          </div>
           <div className="pplist">
             <div className="pplhead">
               <div>Common name</div><div>Score</div><div>Min→fruit</div><div>Harvest</div><div>Ecology</div><div>Quantity</div>
             </div>
-            {chosen.map(p=>{
-              const sc=overall(p,state);
+            {qtyRows.length===0 && <div className="pplrow" style={{gridTemplateColumns:"1fr",cursor:"default"}}><div className="pphint">No plants match that filter.</div></div>}
+            {qtyRows.map((p,i)=>{
+              const sc=overall(p,state), n=counts[p.id]||0;
               return (
-                <div className="pplrow" key={p.id} onClick={()=>openDetail(p)}>
+                <div className={"pplrow"+(n?" has":(i%2?" alt":""))} key={p.id} onClick={()=>openDetail(p)}>
                   <div className="cn">{p.common}<i>{p.sci}</i></div>
-                  <div><span className="sc" style={{background:bandColor(sc),color:bandText(sc)}}>{sc}</span></div>
-                  <div>{p.minPlantsFruit?(p.minPlantsFruit>=2?p.minPlantsFruit+" plants":"Self‑fruitful"):"—"}</div>
-                  <div style={{fontSize:13,color:"var(--ink2)"}}>{nd(p.harvest)}</div>
-                  <div className="eco">{p.nf&&<span className="ecopill nf">N‑fixer</span>}{p.pol&&<span className="ecopill">Pollinator</span>}{!p.nf&&!p.pol&&<span style={{color:"var(--faint)",fontSize:12}}>—</span>}</div>
-                  <div className="ppqty" onClick={e=>e.stopPropagation()}>
-                    <button onClick={()=>setQty(p.id,(counts[p.id]||0)-1)}>–</button>
-                    <input type="number" min="0" value={counts[p.id]||0} onChange={e=>setQty(p.id,parseInt(e.target.value||"0",10))}/>
-                    <button onClick={()=>setQty(p.id,(counts[p.id]||0)+1)}>+</button>
+                  <div data-l="Score"><span className="sc" style={{background:bandColor(sc),color:bandText(sc)}}>{sc}</span></div>
+                  <div className="fr" data-l="Min → fruit">{p.minPlantsFruit?(p.minPlantsFruit>=2?p.minPlantsFruit+" plants":"Self‑fruitful"):"—"}</div>
+                  <div className="fr" data-l="Harvest">{nd(p.harvest)}</div>
+                  <div className="eco" data-l="Ecology">{p.nf&&<span className="ecopill nf">N‑fixer</span>}{p.pol&&<span className="ecopill">Pollinator</span>}{!p.nf&&!p.pol&&<span style={{color:"var(--faint)",fontSize:12}}>—</span>}</div>
+                  <div className="ppqty" data-l="Quantity" onClick={e=>e.stopPropagation()}>
+                    <button title="One fewer" onClick={()=>setQty(p.id,n-1)}>–</button>
+                    <input type="number" min="0" value={n} onChange={e=>setQty(p.id,parseInt(e.target.value||"0",10))}/>
+                    <button title="One more" onClick={()=>setQty(p.id,n+1)}>+</button>
                   </div>
                 </div>
               );
@@ -1619,7 +1743,24 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
                 <div className="pptot"><div className="v">{fmt(sqft)}</div><div className="l">sq ft</div></div>
                 <div className="pptot"><div className="v">{acres.toFixed(3)}</div><div className="l">acres</div></div>
               </div>
-              {polys.length>0 && <button className="ppbtn ghost" style={{marginTop:10,width:"100%"}} onClick={clearPolys}>Clear areas</button>}
+            </div>
+            <div className="ppcard wide">
+              <h4>Your areas</h4>
+              {polys.length===0 ? <div className="pphint">Nothing drawn yet. Outline an area with the polygon tool at the top‑left of the map.</div> : (
+                <React.Fragment>
+                  {polys.map((ring,i)=>(
+                    <div className="pparea" key={i} onMouseEnter={()=>hiPoly(i,true)} onMouseLeave={()=>hiPoly(i,false)}>
+                      <span className="ix">{i+1}</span>
+                      <span className="sz">{fmt(ringArea(ring)*M2_TO_SQFT)} sq ft <i>· {ring.length} corners</i></span>
+                      <button title="Zoom the map to this area" onClick={()=>zoomToPoly(i)}>Zoom</button>
+                      <button className="del" title="Delete this area"
+                        onClick={()=>{ if(confirm("Delete area "+(i+1)+" ("+fmt(ringArea(ring)*M2_TO_SQFT)+" sq ft)?")){ hiPoly(i,false); deletePolyAt(i); } }}>✕ Delete</button>
+                    </div>
+                  ))}
+                  <button className="ppbtn ghost" style={{marginTop:8,width:"100%"}} onClick={clearPolys}>Delete all areas</button>
+                  <div className="pphint" style={{marginTop:8}}>You can also reshape an area with the edit (pencil) tool on the map. Deleting an area re‑fits your painted soil map to what's left.</div>
+                </React.Fragment>
+              )}
             </div>
           </div>
         )}
@@ -1633,9 +1774,9 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
               </div>
               <div className="pphint" style={{marginTop:8}}>You paint one category at a time. A value replaces others in the <i>same</i> category but leaves the other two untouched.</div>
             </div>
-            <div className="ppcard">
+            <div className="ppcard wide">
               <h4>{SOIL_DEF[soilCat].label} · legend & paint</h4>
-              <div className="ppspecies" style={{maxHeight:"none"}}>
+              <div className="ppspecies pprow" style={{maxHeight:"none"}}>
                 {SOIL_DEF[soilCat].opts.map(o=>(
                   <button key={o.k} className={"ppsp"+(soilTool.type==="paint"&&soilTool.k===o.k?" on":"")} onClick={()=>setSoilTool({type:"paint",k:o.k})}>
                     <span className="dot" style={{background:o.c,border:"1px solid rgba(0,0,0,.25)"}}></span>
@@ -1661,21 +1802,28 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
               <div className="ppseg" style={{marginBottom:10}}>
                 <button className={placeMode==="plant"?"on":""} onClick={()=>setPlaceMode("plant")}>Plant</button>
                 <button className={placeMode==="move"?"on":""} onClick={()=>setPlaceMode("move")}>Move</button>
+                <button className={placeMode==="erase"?"on":""} onClick={()=>setPlaceMode("erase")}>Remove</button>
                 <button className={placeMode==="view"?"on":""} onClick={()=>setPlaceMode("view")}>Done</button>
               </div>
-              <div className="pphint">{placeMode==="plant" ? (activeSp!=null ? <span>Click the map to place <b>{byId[activeSp]&&byId[activeSp].common}</b>. It keeps placing until all are down — clicks near an existing plant add another, not open its card.</span> : "Pick a species below, then click the map.") : placeMode==="move" ? "Drag any plant to reposition it." : "Done — explore freely: pan and zoom the map, and click any plant to open its card. Nothing gets placed or moved."}</div>
+              <div className="pphint">{placeMode==="plant" ? (activeSp!=null ? <span>Click the map to place <b>{byId[activeSp]&&byId[activeSp].common}</b>. It keeps placing until all are down — clicks near an existing plant add another, not open its card.</span> : "Pick a species below, then click the map.") : placeMode==="move" ? "Drag any plant to reposition it." : placeMode==="erase" ? "Click any plant on the map to remove it. Hover shows a red outline; its quantity in Step 1 stays, so you can re‑place it." : "Done — explore freely: pan and zoom the map, and click any plant to open its card. Nothing gets placed or moved."}</div>
+              <div style={{display:"flex",gap:6,flexWrap:"wrap",marginTop:10}}>
+                <button className="ppbtn ghost" disabled={!places.length} onClick={undoPlace}>↶ Undo last</button>
+                <button className="ppbtn danger" disabled={!places.length} onClick={clearPlaces}>✕ Clear all</button>
+              </div>
             </div>
-            <div className="ppcard">
+            <div className="ppcard wide">
               <h4>Species</h4>
               <div className="ppspecies">
                 {toPlace.length===0 && <div className="pphint">No counts yet — go to Step 1 and set how many of each plant you want.</div>}
                 {toPlace.map(p=>{ const done=placedCount(p.id), cap=counts[p.id]||0, info=PP_LAYER[p.type]||{color:"#6f8a5f"};
                   return (
-                    <button key={p.id} className={"ppsp"+(activeSp===p.id?" on":"")+(done>=cap?" done":"")} onClick={()=>setActiveSp(p.id)}>
+                    <div key={p.id} className={"ppsp"+(activeSp===p.id?" on":"")+(done>=cap?" done":"")} onClick={()=>setActiveSp(p.id)} style={{cursor:"pointer"}}>
                       <span className="dot" style={{background:info.color}}></span>
                       <span className="nm">{codes[p.id]} · {p.common}</span>
                       <span className="ct">{done}/{cap}</span>
-                    </button>
+                      {done>0 && <span className="ct" title={"Remove all placed "+p.common} style={{cursor:"pointer",color:"#b03a2e"}}
+                        onClick={e=>{ e.stopPropagation(); if(confirm("Remove all "+done+" placed "+p.common+" from the map?")) clearSpecies(p.id); }}>✕</span>}
+                    </div>
                   );
                 })}
               </div>
@@ -1717,7 +1865,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
                 <b>{polCount}</b> pollinator‑supporting · <b>{deerCount}</b> deer‑resistant (of placed).
               </div>
             </div>
-            <div className="ppcard">
+            <div className="ppcard wide">
               <h4>Bill of materials</h4>
               {toPlace.length===0 ? <div className="pphint">Set plant counts in Step 1 to build your planting list.</div> : (
                 <React.Fragment>
@@ -2353,7 +2501,20 @@ function formToPatch(f){
     sources:f.sources.filter(s=>s[1].trim()).map(s=>[s[0].trim(),s[1].trim()]),
   };
 }
-function PlantEditor({p, onSave, onCancel}){
+/* A blank plant for the "+ Add new plant" workflow — same shape rowToPlant produces,
+   so plantToForm/formToPatch work unchanged. id null means "insert, don't update". */
+function emptyPlant(){
+  return { id:null, common:"", sci:"", family:"", type:"Herb", life:"", lifecycle:"",
+    edibleParts:"", otherUses:"", prep:"", harvest:"", harvestCalendar:{}, ecoUses:"", materialUses:"",
+    sun:"", soil:"", risks:"", buy:"",
+    nativeStates:[], nativeRegions:[], nativeToUS:true, nativeNorthAmerica:false, nativeAmericas:false,
+    invasiveStates:[], invasiveEverywhere:false, decPriority:false, nf:false, pol:false,
+    s:Object.fromEntries(SCORE_KEYS.map(([k])=>[k,[0,"N"]])), sources:[], images:[], humanVerified:false,
+    hardinessZones:"", deerResistant:false, minPlantsFruit:null, yearsToFruit:"",
+    soilPh:"", soilN:"", soilP:"", soilK:"", soilTexture:[], soilDrainage:[],
+    foodTypes:[], materialTypes:[], batch:null, createdAt:null };
+}
+function PlantEditor({p, onSave, onCancel, isNew}){
   const [f,setF]=useState(()=>plantToForm(p));
   const [busy,setBusy]=useState(false);
   const [err,setErr]=useState(null);
@@ -2370,6 +2531,8 @@ function PlantEditor({p, onSave, onCancel}){
   const setImg=(i,k,v)=>setF(o=>({...o,images:o.images.map((im,j)=>j===i?{...im,[k]:v}:im)}));
   const setSrc=(i,k,v)=>setF(o=>({...o,sources:o.sources.map((s,j)=>j===i?(k===0?[v,s[1]]:[s[0],v]):s)}));
   const save=async()=>{
+    if(!f.common.trim() || !f.sci.trim()){ setErr("Common name and scientific name are both required."); return; }
+    if(!PLANT_TYPES.includes(f.type)){ setErr("Pick a plant type."); return; }
     setBusy(true); setErr(null);
     try{ await onSave(p.id, formToPatch(f)); onCancel(); }
     catch(e){ setErr(e.message||String(e)); setBusy(false); }
@@ -2466,17 +2629,29 @@ function PlantEditor({p, onSave, onCancel}){
       <button className="addbtn2" onClick={()=>setF(o=>({...o,sources:[...o.sources,["",""]]}))}>+ Add source</button>
 
       {err && <div className="authmsg err" style={{marginTop:10}}>{err}</div>}
-      <div><button className="save" onClick={save} disabled={busy}>{busy?"Saving…":"Save changes"}</button>
+      <div><button className="save" onClick={save} disabled={busy}>{busy?"Saving…":(isNew?"Add this plant":"Save changes")}</button>
         <button className="cancel" onClick={onCancel} disabled={busy}>Cancel</button></div>
     </div>
   );
 }
 
-function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, removeImage, updatePlant}){
+function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, removeImage, updatePlant, createPlant}){
   const [q,setQ]=useState("");
   const [filt,setFilt]=useState("all"); // all | yes | no
   const [editingId,setEditingId]=useState(null);
+  const [adding,setAdding]=useState(false);
+  const [newKey,setNewKey]=useState(0);   // bump to reset the blank form
+  const [added,setAdded]=useState(null);  // the plant just inserted
   const nver=plants.filter(p=>p.humanVerified).length;
+  const dupe=(sci)=>plants.find(p=>(p.sci||"").trim().toLowerCase()===(sci||"").trim().toLowerCase());
+  const addNew=async(_id,patch)=>{
+    const d=dupe(patch.sci);
+    if(d) throw new Error(`"${patch.sci}" is already in the database as "${d.common}" (id ${d.id}). Edit that plant instead.`);
+    // a hand-entered plant is verified by definition — the admin just typed it in
+    const row=await createPlant({...patch, human_verified:true});
+    setAdded(row); setAdding(false); setNewKey(k=>k+1); setQ(row.common);
+    window.scrollTo({top:0,behavior:"smooth"});
+  };
   const view=plants.filter(p=>{
     if(filt==="yes" && !p.humanVerified) return false;
     if(filt==="no" && p.humanVerified) return false;
@@ -2490,6 +2665,31 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
         <h2>Verify plant data</h2>
         <p>Review each plant against its sources, then mark it <b>Human Verified</b>. Verified plants show a check in the Database. Only your account can see this page.</p>
       </div>
+
+      {added && (
+        <div className="npok">
+          ✓ Added <b>{added.common}</b> (<i>{added.sci}</i>) as plant <b>#{added.id}</b>{added.batch?<span> in batch {added.batch}</span>:null}. It's live in the Database now and marked Human Verified — it's shown below so you can keep editing it.
+          <button className="editbtn" style={{marginLeft:10}} onClick={()=>setAdded(null)}>Dismiss</button>
+        </div>
+      )}
+      <div className="npbar">
+        <button className={"npbtn"+(adding?" off":"")} onClick={()=>{ setAdded(null); setAdding(a=>!a); }}>
+          {adding?"✕ Cancel new plant":"+ Add new plant"}</button>
+        {!adding && <span className="pphint">Hand-enter a plant that isn't in the database yet. For whole batches, use the importer pipeline instead.</span>}
+      </div>
+      {adding && (
+        <div className="npwrap">
+          <div className="npttl">New plant</div>
+          <div className="npnote">
+            <b>Common name</b>, <b>scientific name</b> and <b>type</b> are required; everything else can be filled in later.
+            Scientific name must be unique. Native regions derive themselves from the states you pick, and the plant is saved
+            marked <b>Human Verified</b> (untick it on the card below if you want to re-check it). Scores default to 0 / no evidence —
+            set the six categories so the plant ranks correctly.
+          </div>
+          <PlantEditor key={"new"+newKey} isNew p={emptyPlant()} onSave={addNew} onCancel={()=>setAdding(false)} />
+        </div>
+      )}
+
       <div className="controls">
         <div className="fld search"><label>Search name</label>
           <input value={q} onChange={e=>setQ(e.target.value)} placeholder="e.g. pawpaw or Asimina" /></div>
@@ -2805,6 +3005,11 @@ function App(){
     const updated=await dataProvider.updatePlant(id,patch); // throws on failure
     setPlants(ps=>ps.map(p=>p.id===id?updated:p));
   };
+  const createPlant=async(patch)=>{
+    const row=await dataProvider.insertPlant(patch); // throws on failure (incl. duplicate sci)
+    setPlants(ps=>[...ps,row].sort((a,b)=>a.id-b.id));
+    return row;
+  };
   const go=p=>{ setPage(p); setMenu(false); };
   const signOut=async()=>{ setMenu(false); await auth.signOut(); };
 
@@ -2871,7 +3076,7 @@ function App(){
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
-          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} /> :
+          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} createPlant={createPlant} /> :
           <RawData plants={plants} state={state} />
         )}
         <footer className="disclaimer">The contents of this website, such as text, graphics, images, and other material contained on this site (“Content”) are for informational purposes only. The Content is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Caution must be used when utilizing any Content from this website and all Content must be verified by a reliable source before use. The creators of this website accept no liability or responsibility should any damage or injury occur as a result of the use that is made of the Content herein.</footer>
