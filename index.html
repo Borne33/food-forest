@@ -150,6 +150,8 @@
   .mini .mrm{position:absolute;top:6px;left:6px;z-index:3;width:20px;height:20px;border-radius:99px;border:0;
     background:rgba(20,18,10,.55);color:#fff;font-family:'Space Mono';font-size:11px;line-height:1;
     display:flex;align-items:center;justify-content:center;padding:0}
+  .mini .mphase{position:absolute;bottom:6px;right:6px;z-index:3;font-family:'Space Mono';font-weight:700;font-size:11px;
+    padding:2px 6px;border-radius:3px;background:var(--ink);color:var(--paper);box-shadow:0 1px 4px rgba(0,0,0,.4)}
   .mini{cursor:pointer}
   .mini .pcar .dots{display:none}
   .mini .mname{font-size:15px;font-weight:800;line-height:1.15;padding:9px 10px 0}
@@ -299,6 +301,10 @@
   .insight b{font-weight:600}
   .sugg{border:1px dashed var(--dot);border-radius:4px;padding:10px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#faf7ef}
   .sugg .why{font-size:13px;color:var(--ink2);font-style:italic}
+  .phasefilter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .phasefilter .lb{font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:2px}
+  .phasefilter button{font-family:'Space Mono';font-size:12px;min-width:30px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:5px 9px;color:var(--ink2)}
+  .phasefilter button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .viewtoggle{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}
   .viewtoggle button{font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:8px 14px;color:var(--ink2)}
   .viewtoggle button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -395,7 +401,8 @@
   .pplsum .b span{font-family:'Space Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
   /* overflow:clip (not hidden) keeps the rounded corners AND lets the header stick to the page scroll */
   .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;overflow:clip;background:#fbf9f2}
-  .pplhead,.pplrow{display:grid;grid-template-columns:minmax(180px,2.1fr) 76px 104px minmax(140px,1.4fr) 148px 128px;gap:14px;align-items:center;padding:12px 14px}
+  .pplhead,.pplrow{display:grid;grid-template-columns:minmax(160px,2fr) 70px 96px minmax(120px,1.3fr) 132px 74px 120px;gap:12px;align-items:center;padding:12px 14px}
+  .ppphase{width:100%;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff;color:var(--ink)}
   .pplhead{position:sticky;top:63px;z-index:3;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
   .pplhead>div:last-child{text-align:center}
   .pplrow{border-bottom:1px solid var(--line);cursor:pointer;background:#fbf9f2}
@@ -1170,7 +1177,7 @@ const LAYERS = [
 ];
 // per-layer green, lightest (canopy, most light) -> darkest (vines, forest floor)
 const LAYER_BG = ["#eef4e5","#e1ebcf","#d2e1b8","#c1d5a1","#b0cb8b"];
-function PlanMiniCard({p, state, remove, onOpen}){
+function PlanMiniCard({p, state, remove, onOpen, phase}){
   const ov=overall(p,state);
   const needsPartner = p.minPlantsFruit && p.minPlantsFruit>=2;
   return (
@@ -1178,6 +1185,7 @@ function PlanMiniCard({p, state, remove, onOpen}){
       <div className="mtop">
         <PlantImages images={p.images} full />
         <button className="mrm" onClick={e=>{e.stopPropagation();remove(p.id);}} title="Remove from plan">✕</button>
+        {phase>=1 && <span className="mphase" title={"Planting phase "+phase}>P{phase}</span>}
         <span className="mscore" style={{background:bandColor(ov),color:bandText(ov)}}>{ov}</span>
         {(p.harvest || needsPartner) && (
           <div className="mstrip">
@@ -1286,7 +1294,8 @@ function drawSoilPattern(ctx,pat,x,y,px){ // USDA-ish area symbols over the base
   ctx.restore();
 }
 
-function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
+const PHASE_MAX=10; // planting plan supports up to 10 manual phases
+function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases, setPhases}){
   const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"soil",label:"Soil Map"},{key:"place",label:"Place Plants"}];
   const [ready,setReady]=useState(false);
   const [mapReady,setMapReady]=useState(false);
@@ -1341,6 +1350,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
     const apply=(L)=>{ if(!L) return;
       if(L.step && STEPS.some(s=>s.key===L.step)) setStep(L.step);
       setCounts(L.counts||{}); setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]); setSoilMap(L.soilMap||null);
+      if(setPhases) setPhases(L.phases||{});
     };
     try{ const s=localStorage.getItem("ff-layout-"+planId); if(s) apply(JSON.parse(s)); }catch(e){}
     dataProvider.loadLayout(planId).then(remote=>{ if(cancelled) return; apply(remote); setReady(true); })
@@ -1352,12 +1362,12 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   const saveT=useRef(null);
   useEffect(()=>{
     if(!ready) return;
-    const layout={ v:1, step, counts, view, polys, places, soilMap };
+    const layout={ v:1, step, counts, view, polys, places, soilMap, phases:phases||{} };
     try{ localStorage.setItem("ff-layout-"+planId, JSON.stringify(layout)); }catch(e){}
     clearTimeout(saveT.current);
     saveT.current=setTimeout(()=>{ dataProvider.saveLayout(planId,layout).catch(e=>console.error(e)); },800);
     return ()=>clearTimeout(saveT.current);
-  },[ready,planId,step,counts,view,polys,places,soilMap]);
+  },[ready,planId,step,counts,view,polys,places,soilMap,phases]);
 
   /* ---- create the Leaflet map once data is loaded ---- */
   useEffect(()=>{
@@ -1592,6 +1602,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
   },[step,places,counts]); // eslint-disable-line
 
   const setQty=(id,n)=>{ n=Math.max(0,Math.min(999,n|0)); setCounts(c=>{ const nc={...c}; if(n) nc[id]=n; else delete nc[id]; return nc; }); };
+  const setPhase=(id,n)=>{ n=n|0; if(setPhases) setPhases(ph=>{ const np={...ph}; if(n>=1&&n<=PHASE_MAX) np[id]=n; else delete np[id]; return np; }); };
   const doRestart=()=>{
     if(!confirm("Restart this planting plan from scratch? Your plant counts, mapped areas, and placements will be cleared.")) return;
     if(drawn.current) drawn.current.clearLayers();
@@ -1693,15 +1704,17 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
             <div className="b"><b>{speciesChosen}</b><span>of {chosen.length} species</span></div>
             <div className="b"><b>{places.length}</b><span>already placed</span></div>
           </div>
+          <div className="pphint" style={{margin:"0 0 12px"}}><b>Phase</b> sets the planting order (1 = plant first). Phases group your plan into waves — e.g. nitrogen‑fixers and overstory trees first, understory later. Filter Forest Layers by phase to see each wave. Leave blank for unphased.</div>
           <div className="pplbar">
             <input className="q" placeholder="Filter this plan…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} />
             <button className={"ppbtn"+(onlyChosen?" primary":" ghost")} onClick={()=>setOnlyChosen(v=>!v)}>
               {onlyChosen?"✓ Only with a quantity":"Only with a quantity"}</button>
             {totalToPlace>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every quantity in this plan?")) setCounts({}); }}>Clear quantities</button>}
+            {Object.keys(phases||{}).length>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every phase assignment in this plan?")) setPhases&&setPhases({}); }}>Clear phases</button>}
           </div>
           <div className="pplist">
             <div className="pplhead">
-              <div>Common name</div><div>Score</div><div>Min→fruit</div><div>Harvest</div><div>Ecology</div><div>Quantity</div>
+              <div>Common name</div><div>Score</div><div>Min→fruit</div><div>Harvest</div><div>Ecology</div><div>Phase</div><div>Quantity</div>
             </div>
             {qtyRows.length===0 && <div className="pplrow" style={{gridTemplateColumns:"1fr",cursor:"default"}}><div className="pphint">No plants match that filter.</div></div>}
             {qtyRows.map((p,i)=>{
@@ -1713,6 +1726,12 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived}){
                   <div className="fr" data-l="Min → fruit">{p.minPlantsFruit?(p.minPlantsFruit>=2?p.minPlantsFruit+" plants":"Self‑fruitful"):"—"}</div>
                   <div className="fr" data-l="Harvest">{nd(p.harvest)}</div>
                   <div className="eco" data-l="Ecology">{p.nf&&<span className="ecopill nf">N‑fixer</span>}{p.pol&&<span className="ecopill">Pollinator</span>}{!p.nf&&!p.pol&&<span style={{color:"var(--faint)",fontSize:12}}>—</span>}</div>
+                  <div data-l="Phase" onClick={e=>e.stopPropagation()}>
+                    <select className="ppphase" value={phases&&phases[p.id]||""} onChange={e=>setPhase(p.id,parseInt(e.target.value||"0",10))}>
+                      <option value="">—</option>
+                      {Array.from({length:PHASE_MAX},(_,k)=>k+1).map(ph=><option key={ph} value={ph}>{ph}</option>)}
+                    </select>
+                  </div>
                   <div className="ppqty" data-l="Quantity" onClick={e=>e.stopPropagation()}>
                     <button title="One fewer" onClick={()=>setQty(p.id,n-1)}>–</button>
                     <input type="number" min="0" value={n} onChange={e=>setQty(p.id,parseInt(e.target.value||"0",10))}/>
@@ -2017,7 +2036,16 @@ function HarvestView({chosen, plants, state, openDetail}){
 
 function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
   const [detail,setDetail]=useState(null);
-  const [view,setView]=useState("layers"); // layers | soil | risk
+  const [view,setView]=useState("layers"); // layers | plant | harvest | soil | risk
+  const [phases,setPhases]=useState({});   // {plantId: 1..10} for the current plan (lives in the plan layout)
+  const [phaseFilter,setPhaseFilter]=useState("all"); // "all" | number | "none" — Forest Layers filter
+  // load phases for the current plan (localStorage instant, then Supabase). The
+  // Planting Plan's Plants tab is the sole writer; here we read for the layer filter.
+  useEffect(()=>{ setPhases({}); setPhaseFilter("all"); let cancelled=false;
+    try{ const s=localStorage.getItem("ff-layout-"+curPlan); if(s){ const L=JSON.parse(s); if(L&&L.phases) setPhases(L.phases); } }catch(e){}
+    dataProvider.loadLayout(curPlan).then(L=>{ if(!cancelled&&L&&L.phases) setPhases(L.phases); }).catch(()=>{});
+    return ()=>{ cancelled=true; };
+  },[curPlan]);
   const [soil,setSoil]=useState({tex:["Loam"], dr:["Well-drained"], phL:["Neutral (6.5–7.5)"]});
   const [soilDerived,setSoilDerived]=useState(null); // dominant profile from the Planting Plan soil map
   const lastDerived=useRef("");
@@ -2124,6 +2152,13 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
     {label:"Overall Soil Fit", val:avgSoilFit+"%", bg:sfC, fg:sfC==="var(--yellow)"?"#2b2a22":"#fff"},
   ];
 
+  // phase filter (Forest Layers): distinct phases present in the plan + an unphased bucket
+  const phaseVals=[...new Set(chosen.map(p=>phases[p.id]).filter(n=>n>=1))].sort((a,b)=>a-b);
+  const hasUnphased=chosen.some(p=>!phases[p.id]);
+  const layerChosen = phaseFilter==="all" ? chosen
+    : phaseFilter==="none" ? chosen.filter(p=>!phases[p.id])
+    : chosen.filter(p=>phases[p.id]===phaseFilter);
+
   return (
     <div>
       {planBar}
@@ -2156,14 +2191,23 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
           </div>
           <div style={{gridArea:"layers"}}>
             <div className="pagehead" style={{border:0,margin:"0 0 10px",padding:0}}><div className="eye">Forest layers</div></div>
+            {phaseVals.length>0 && (
+              <div className="phasefilter">
+                <span className="lb">Phase</span>
+                <button className={phaseFilter==="all"?"on":""} onClick={()=>setPhaseFilter("all")}>All</button>
+                {phaseVals.map(ph=><button key={ph} className={phaseFilter===ph?"on":""} onClick={()=>setPhaseFilter(ph)}>{ph}</button>)}
+                {hasUnphased && <button className={phaseFilter==="none"?"on":""} onClick={()=>setPhaseFilter("none")}>Unphased</button>}
+              </div>
+            )}
+            {layerChosen.length===0 && <div className="empty" style={{margin:0}}>No plants in {phaseFilter==="none"?"the unphased group":"phase "+phaseFilter}.</div>}
             {LAYERS.map((layer,li)=>{
-              const inLayer=chosen.filter(p=>layer.types.includes(p.type));
+              const inLayer=layerChosen.filter(p=>layer.types.includes(p.type));
               if(!inLayer.length) return null;
               return (
                 <div className="layer" key={layer.name} style={{background:LAYER_BG[li],padding:"12px 12px 14px",borderRadius:6}}>
                   <h4>{layer.name}<span>{inLayer.length} plant{inLayer.length>1?"s":""}</span></h4>
                   <div className="minigrid">
-                    {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={curToggle} onOpen={setDetail} />)}
+                    {inLayer.map(p=><PlanMiniCard key={p.id} p={p} state={state} remove={curToggle} onOpen={setDetail} phase={phases[p.id]} />)}
                   </div>
                 </div>
               );
@@ -2181,7 +2225,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         </div>
       </React.Fragment>)}
 
-      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} />}
+      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} phases={phases} setPhases={setPhases} />}
 
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
