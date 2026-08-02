@@ -620,7 +620,7 @@ function rowToPlant(r){
     soilTexture:r.soil_texture||[], soilDrainage:r.soil_drainage||[],
     batch:r.batch||null, createdAt:r.created_at||null,
     foodTypes:r.food_types||[], materialTypes:r.material_types||[], lifecycle:r.lifecycle||"",
-    ecoUses:r.eco_uses||"", materialUses:r.material_uses||"",
+    ecoUses:r.eco_uses||"", materialUses:r.material_uses||"", propagation:r.propagation||"",
     harvestCalendar:r.harvest_calendar||{},
   };
 }
@@ -1083,6 +1083,7 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
                 </div>
               )}
             </dd></div>
+            <div><dt>How to propagate</dt><dd>{nd(p.propagation)}</dd></div>
             <div><dt>Risks</dt><dd className="risk">{nd(p.risks)}</dd></div>
             <div><dt>Where to buy</dt><dd>{nd(p.buy)}</dd></div>
           </div>
@@ -3067,7 +3068,7 @@ function plantToForm(p){
     lifecycle:p.lifecycle||"", food_types:p.foodTypes||[], material_types:p.materialTypes||[],
     edible_parts:p.edibleParts||"", other_uses:p.otherUses||"", prep:p.prep||"", harvest:p.harvest||"",
     harvest_calendar:{...(p.harvestCalendar||{})},
-    eco_uses:p.ecoUses||"", material_uses:p.materialUses||"",
+    eco_uses:p.ecoUses||"", material_uses:p.materialUses||"", propagation:p.propagation||"",
     sun:p.sun||"", soil:p.soil||"", risks:p.risks||"", buy:p.buy||"",
     hardiness_zones:p.hardinessZones||"", years_to_fruit:p.yearsToFruit||"", min_plants_fruit:p.minPlantsFruit==null?"":p.minPlantsFruit,
     nf:!!p.nf, pol:!!p.pol, deer_resistant:!!p.deerResistant, dec_priority:!!p.decPriority,
@@ -3087,7 +3088,7 @@ function formToPatch(f){
     food_types:f.food_types, material_types:f.material_types,
     edible_parts:f.edible_parts, other_uses:f.other_uses, prep:f.prep, harvest:f.harvest,
     harvest_calendar:Object.fromEntries(Object.entries(f.harvest_calendar||{}).filter(([ft,ms])=>f.food_types.includes(ft) && ms && ms.length)),
-    eco_uses:f.eco_uses, material_uses:f.material_uses,
+    eco_uses:f.eco_uses, material_uses:f.material_uses, propagation:f.propagation,
     sun:f.sun, soil:f.soil, risks:f.risks, buy:f.buy,
     hardiness_zones:f.hardiness_zones, years_to_fruit:f.years_to_fruit,
     min_plants_fruit:f.min_plants_fruit===""?null:Number(f.min_plants_fruit),
@@ -3106,7 +3107,7 @@ function formToPatch(f){
    so plantToForm/formToPatch work unchanged. id null means "insert, don't update". */
 function emptyPlant(){
   return { id:null, common:"", sci:"", family:"", type:"Herb", life:"", lifecycle:"",
-    edibleParts:"", otherUses:"", prep:"", harvest:"", harvestCalendar:{}, ecoUses:"", materialUses:"",
+    edibleParts:"", otherUses:"", prep:"", harvest:"", harvestCalendar:{}, ecoUses:"", materialUses:"", propagation:"",
     sun:"", soil:"", risks:"", buy:"",
     nativeStates:[], nativeRegions:[], nativeToUS:true, nativeNorthAmerica:false, nativeAmericas:false,
     invasiveStates:[], invasiveEverywhere:false, decPriority:false, nf:false, pol:false,
@@ -3176,6 +3177,7 @@ function PlantEditor({p, onSave, onCancel, isNew}){
       <h5>Growing</h5>
       <div className="frow"><label>Sun</label>{T("sun")}</div>
       <div className="frow"><label>Soil</label>{T("soil")}</div>
+      <div className="frow"><label>How to propagate</label>{T("propagation")}</div>
       <div className="frow"><label>Risks</label>{T("risks")}</div>
       <div className="frow"><label>Where to buy</label>{T("buy")}</div>
 
