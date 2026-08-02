@@ -50,6 +50,9 @@
   .menu .panel button .num{font-family:'Space Mono';font-size:11px;opacity:.6}
   .menu .close{margin-top:auto;border:1.5px solid var(--ink);border-radius:3px;background:transparent;padding:10px;font-family:'Space Mono';font-size:12px;letter-spacing:.1em;text-transform:uppercase}
   .wrap{max-width:1020px;margin:0 auto;padding:22px 18px 90px}
+  /* My Plan pages run near-full-bleed on desktop: ~1/4 inch (24px) side margins */
+  .wrap.wide{max-width:none}
+  @media(min-width:721px){ .wrap.wide{padding-left:24px;padding-right:24px} }
   .pagehead{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
   .pagehead .eye{font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
   .pagehead h2{margin:6px 0 4px;font-size:30px;font-weight:800;letter-spacing:-.02em}
@@ -1902,6 +1905,43 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
                 <button className="ppbtn danger" disabled={!places.length} onClick={clearPlaces}>✕ Clear all</button>
               </div>
             </div>
+            <div className="ppcard">
+              <h4>Canopy legend</h4>
+              <div className="ppleg">{PP_LAYER_LEGEND.map(([nm,c])=><span className="it" key={nm}><span className="sw" style={{background:c}}></span>{nm}</span>)}</div>
+            </div>
+            <div className="ppcard">
+              <h4>Growth over time · year {growthYear}</h4>
+              <div className="ppseg">{GROWTH_YEARS.map(y=><button key={y} className={growthYear===y?"on":""} onClick={()=>setGrowthYear(y)}>{y}</button>)}</div>
+              <div className="pphint" style={{marginTop:7}}>Canopy circles show each plant's size at year {growthYear}. {growthYear<=1?"Year 1 — establish nitrogen‑fixers and overstory trees first.":growthYear<=5?"Early years — shrubs and herbs fill in under establishing trees.":growthYear<20?"Maturing — canopies begin to close and layers overlap.":"Mature — full canopy footprint; watch for crowding."}</div>
+            </div>
+            <div className="ppcard">
+              <h4>Support species · target 25–35%</h4>
+              <div className="ppgauge"><span className="band"></span><span className="fillg" style={{width:Math.min(100,supportPct)+"%"}}></span></div>
+              <div className="pphint" style={{marginTop:7}}><b>{supportPct}%</b> of placed plants fix nitrogen or feed pollinators ({supportCount}/{placedPlants.length}). {placedPlants.length? (supportPct<25?"Consider adding more N‑fixers or pollinators.":supportPct>35?"Well supported — you have room for more productive plants.":"Nicely balanced."):""}</div>
+            </div>
+            <div className="ppcard">
+              <h4>Plan health</h4>
+              <div className="pphint">
+                <b>{places.length}</b> of <b>{totalToPlace}</b> plants placed.<br/>
+                Tree canopy fills <b style={{color:treePct>100?"var(--red)":"var(--sage-d)"}}>{treePct}%</b> of your mapped area.<br/>
+                {soilMap && <span><b style={{color:soilFlags.size?"var(--red)":"var(--sage-d)"}}>{soilFlags.size}</b> placement{soilFlags.size===1?"":"s"} on unsuitable soil (red ring).<br/></span>}
+                {shadeFlags.size>0 && <span><b style={{color:"var(--orange)"}}>{shadeFlags.size}</b> full‑sun plant{shadeFlags.size===1?"":"s"} shaded under a tree (amber ring).<br/></span>}
+                <b>{polCount}</b> pollinator‑supporting · <b>{deerCount}</b> deer‑resistant (of placed).
+              </div>
+            </div>
+            <div className="ppcard">
+              <h4>Layer stacking</h4>
+              {placedPlants.length===0 ? <div className="pphint">Place plants to see how they stack across forest layers.</div> :
+                <div className="ppstack">
+                  {LAYER_ORDER.map(l=>(
+                    <div className="ppstackrow" key={l}>
+                      <span className="lb">{l}</span>
+                      <span className="track"><span className="fill" style={{width:Math.round(layerCounts[l]/maxLayer*100)+"%",background:LAYER_COLOR[l]}}></span></span>
+                      <span className="vn">{layerCounts[l]}</span>
+                    </div>
+                  ))}
+                </div>}
+            </div>
             <div className="ppcard wide">
               <h4>Species</h4>
               <div className="ppspecies">
@@ -1917,43 +1957,6 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
                     </div>
                   );
                 })}
-              </div>
-            </div>
-            <div className="ppcard">
-              <h4>Growth over time · year {growthYear}</h4>
-              <div className="ppseg">{GROWTH_YEARS.map(y=><button key={y} className={growthYear===y?"on":""} onClick={()=>setGrowthYear(y)}>{y}</button>)}</div>
-              <div className="pphint" style={{marginTop:7}}>Canopy circles show each plant's size at year {growthYear}. {growthYear<=1?"Year 1 — establish nitrogen‑fixers and overstory trees first.":growthYear<=5?"Early years — shrubs and herbs fill in under establishing trees.":growthYear<20?"Maturing — canopies begin to close and layers overlap.":"Mature — full canopy footprint; watch for crowding."}</div>
-            </div>
-            <div className="ppcard">
-              <h4>Canopy legend</h4>
-              <div className="ppleg">{PP_LAYER_LEGEND.map(([nm,c])=><span className="it" key={nm}><span className="sw" style={{background:c}}></span>{nm}</span>)}</div>
-            </div>
-            <div className="ppcard">
-              <h4>Layer stacking</h4>
-              {placedPlants.length===0 ? <div className="pphint">Place plants to see how they stack across forest layers.</div> :
-                <div className="ppstack">
-                  {LAYER_ORDER.map(l=>(
-                    <div className="ppstackrow" key={l}>
-                      <span className="lb">{l}</span>
-                      <span className="track"><span className="fill" style={{width:Math.round(layerCounts[l]/maxLayer*100)+"%",background:LAYER_COLOR[l]}}></span></span>
-                      <span className="vn">{layerCounts[l]}</span>
-                    </div>
-                  ))}
-                </div>}
-            </div>
-            <div className="ppcard">
-              <h4>Support species · target 25–35%</h4>
-              <div className="ppgauge"><span className="band"></span><span className="fillg" style={{width:Math.min(100,supportPct)+"%"}}></span></div>
-              <div className="pphint" style={{marginTop:7}}><b>{supportPct}%</b> of placed plants fix nitrogen or feed pollinators ({supportCount}/{placedPlants.length}). {placedPlants.length? (supportPct<25?"Consider adding more N‑fixers or pollinators.":supportPct>35?"Well supported — you have room for more productive plants.":"Nicely balanced."):""}</div>
-            </div>
-            <div className="ppcard">
-              <h4>Plan health</h4>
-              <div className="pphint">
-                <b>{places.length}</b> of <b>{totalToPlace}</b> plants placed.<br/>
-                Tree canopy fills <b style={{color:treePct>100?"var(--red)":"var(--sage-d)"}}>{treePct}%</b> of your mapped area.<br/>
-                {soilMap && <span><b style={{color:soilFlags.size?"var(--red)":"var(--sage-d)"}}>{soilFlags.size}</b> placement{soilFlags.size===1?"":"s"} on unsuitable soil (red ring).<br/></span>}
-                {shadeFlags.size>0 && <span><b style={{color:"var(--orange)"}}>{shadeFlags.size}</b> full‑sun plant{shadeFlags.size===1?"":"s"} shaded under a tree (amber ring).<br/></span>}
-                <b>{polCount}</b> pollinator‑supporting · <b>{deerCount}</b> deer‑resistant (of placed).
               </div>
             </div>
             <div className="ppcard wide">
@@ -3662,7 +3665,7 @@ function App(){
         </div>
       </div>
 
-      <div className="wrap">
+      <div className={"wrap"+(page==="plan"?" wide":"")}>
         {loadErr ? (
           <div className="empty" style={{borderColor:"var(--red)",color:"var(--ink)"}}>
             <b>Couldn't reach Supabase.</b>
