@@ -301,6 +301,20 @@
   .insight b{font-weight:600}
   .sugg{border:1px dashed var(--dot);border-radius:4px;padding:10px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#faf7ef}
   .sugg .why{font-size:13px;color:var(--ink2);font-style:italic}
+  /* Maintenance schedule */
+  .mtsched{display:flex;flex-direction:column;gap:14px}
+  .mtplant{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;overflow:hidden}
+  .mtplant .mthead{background:var(--paper2);padding:10px 13px;border-bottom:1.5px solid var(--line);font-size:15px;cursor:pointer}
+  .mtplant .mthead i{color:var(--ink2);font-size:12.5px}
+  .mtplant .mthead .mtmeta{font-family:'Space Mono';font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint);margin-left:6px}
+  .mttask{display:grid;grid-template-columns:auto auto 1fr;gap:9px;align-items:start;padding:9px 13px;border-bottom:1px solid var(--line)}
+  .mttask:last-child{border-bottom:0}
+  .mttask .yr{font-family:'Space Mono';font-size:11px;font-weight:700;color:var(--ink2);white-space:nowrap;padding-top:2px;min-width:44px}
+  .mtcat{align-self:start;font-family:'Space Mono';font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#fff;padding:2px 7px;border-radius:99px;white-space:nowrap}
+  .mttask .body{font-size:13.5px;line-height:1.45}
+  .mttask .body .when{font-family:'Space Mono';font-size:11px;color:var(--ink2)}
+  .mttask .body .note{color:var(--ink2);font-size:12.5px;margin-top:2px}
+  @media(max-width:620px){ .mttask{grid-template-columns:auto 1fr} .mttask .yr{grid-column:1/-1} }
   .phasefilter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 12px}
   .phasefilter .lb{font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:2px}
   .phasefilter button{font-family:'Space Mono';font-size:12px;min-width:30px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:5px 9px;color:var(--ink2)}
@@ -2034,9 +2048,161 @@ function HarvestView({chosen, plants, state, openDetail}){
   );
 }
 
+/* =====================================================================
+   MAINTENANCE SCHEDULE — rule-based per-plant task generator.
+   Timing is relative to each plant's planting year (Year 1 = the year it
+   goes in the ground). These are general horticultural rules derived from
+   type, lifecycle, years_to_fruit, hardiness zone and traits — sensible
+   defaults, not species-specific prescriptions. Reused by the Project Plan
+   (scope / schedule / budget) in a later stage.
+   ===================================================================== */
+const MAINT_CATS={
+  Source:"#7a5a34", Plant:"#4f7a3a", Water:"#4a7a96", Mulch:"#b5651d", Protect:"#9c6b9e",
+  Prune:"#7a8b3f", Feed:"#c99a2e", Divide:"#6f8a5f", Harvest:"#dd4b3e", Monitor:"#8a8577",
+};
+const WOODY_TYPES=new Set(["Tree","Shrub","Vine"]);
+function zoneMin(hz){ const m=String(hz||"").match(/\d+/); return m?parseInt(m[0],10):5; }
+function firstFruitYear(p){ const m=String(p.yearsToFruit||"").match(/\d+/); return m?parseInt(m[0],10):null; }
+// coarse spring windows keyed to cold-hardiness — colder zones plant later
+function plantWindow(zmin){
+  if(zmin<=3) return {source:"Feb–Mar", plant:"May", prune:"Mar"};
+  if(zmin<=5) return {source:"Feb–Mar", plant:"Apr–May", prune:"Mar"};
+  if(zmin<=6) return {source:"Jan–Feb", plant:"Apr", prune:"Feb–Mar"};
+  return {source:"Jan–Feb", plant:"Mar–Apr", prune:"Feb"};
+}
+function plantTasks(p){
+  const z=zoneMin(p.hardinessZones), w=plantWindow(z), woody=WOODY_TYPES.has(p.type);
+  const ff=firstFruitYear(p), food=isFood(p)||(p.foodTypes||[]).length>0, t=[];
+  const stock = woody ? "bare-root or containerized stock"
+    : (["Herb","Fern","Grass"].includes(p.type) ? "plugs, divisions, or seed" : "plugs or divisions");
+  t.push({year:1, when:w.source, cat:"Source", title:"Order "+(woody?"bare-root stock":"plants / seed"),
+    note:"Order "+stock+" in late winter while dormant — bare-root is cheapest and establishes well if planted promptly."});
+  t.push({year:1, when:w.plant, cat:"Plant", title:"Plant out",
+    note:(woody?"Plant while dormant in early spring (or fall in milder areas). ":"Plant after your last hard frost. ")+"Set at the original soil line and water in deeply."});
+  t.push({year:1, when:"Apr–Sep", cat:"Water", title:"Water to establish",
+    note:"Deep-soak weekly through the first growing season (more in drought). Most first-year losses are from drying out."});
+  t.push({year:1, when:w.plant, cat:"Mulch", title:"Mulch, refresh yearly", recurring:true,
+    note:"3–4 in of wood chips or leaf mould kept off the stem/crown; refresh each spring to hold moisture and feed soil life."});
+  if(!p.deerResistant)
+    t.push({year:1, when:w.plant, cat:"Protect", title:"Protect from browse",
+      note:"Not deer-resistant — fit a tube, cage, or fence at planting. "+(woody?"Keep on trees ~5 years, until bark is above browse height.":"Protect until well established.")});
+  if(woody)
+    t.push({year:2, when:w.prune, cat:"Prune", title:"Formative / dormant pruning", recurring:true,
+      note:(p.type==="Vine"?"Train to a trellis or arbor and ":"Prune for a strong scaffold and open centre; ")+"work in late winter while dormant, removing dead or crossing wood."});
+  else
+    t.push({year:3, when:"Oct–Apr", cat:"Divide", title:"Divide / cut back", recurring:true,
+      note:"Cut back spent growth; lift and divide congested clumps every ~3 years to rejuvenate and to propagate free plants."});
+  if(p.lifecycle==="Annual")
+    t.push({year:1, when:w.plant, cat:"Plant", title:"Resow each year", recurring:true, note:"Annual — resow every spring, or let it self-seed and thin the volunteers."});
+  else if(p.lifecycle==="Biennial")
+    t.push({year:2, when:w.plant, cat:"Plant", title:"Resow every 2 years", recurring:true, note:"Biennial — flowers and seeds in year two, then dies; sow a fresh batch yearly for continuity."});
+  if(p.nf)
+    t.push({year:3, when:"Jun–Aug", cat:"Feed", title:"Chop-and-drop for nitrogen", recurring:true, note:"Nitrogen-fixer — cut back once or twice each summer and drop the prunings as mulch to feed nearby fruit/nut plants."});
+  else if(woody && food)
+    t.push({year:2, when:"Mar–Apr", cat:"Feed", title:"Spring compost topdress", recurring:true, note:"Feed young fruiting woody plants with a spring compost topdress until established; lean on N-fixers over synthetic feed."});
+  if(ff){
+    const partner = p.minPlantsFruit>=2 ? " Needs "+p.minPlantsFruit+"+ plants (or a compatible partner) nearby to set fruit." : "";
+    t.push({year:ff, when:(p.harvest||"its season"), cat:"Harvest", title:"First harvest (≈ year "+ff+")", note:"Expect the first meaningful yield around year "+ff+"."+partner});
+    t.push({year:ff, when:(p.harvest||"its season"), cat:"Harvest", title:"Annual harvest", recurring:true, note:"Harvest yearly once bearing."+partner});
+  }
+  return t.sort((a,b)=>a.year-b.year || a.title.localeCompare(b.title));
+}
+
+function MaintenanceView({chosen, phases, state, openDetail}){
+  const [mode,setMode]=useState("plant"); // plant | year
+  const [cats,setCats]=useState([]);      // category filter (empty = all)
+  const byPlant=useMemo(()=>chosen.map(p=>({p, tasks:plantTasks(p)}))
+    .sort((a,b)=>((phases[a.p.id]||99)-(phases[b.p.id]||99)) || a.p.common.localeCompare(b.p.common)),[chosen,phases]);
+  const allCats=useMemo(()=>{ const s=new Set(); byPlant.forEach(x=>x.tasks.forEach(t=>s.add(t.cat))); return [...s].sort((a,b)=>Object.keys(MAINT_CATS).indexOf(a)-Object.keys(MAINT_CATS).indexOf(b)); },[byPlant]);
+  const show=t=>cats.length===0||cats.includes(t.cat);
+  const maxYear=useMemo(()=>Math.max(1,...byPlant.flatMap(x=>x.tasks.map(t=>t.year))),[byPlant]);
+  const catChip=c=><span className="mtcat" style={{background:MAINT_CATS[c]}}>{c}</span>;
+
+  const byYear=useMemo(()=>{ const rows=[];
+    for(let y=1;y<=maxYear;y++){ const items=[];
+      byPlant.forEach(({p,tasks})=>tasks.forEach(t=>{ if(t.year===y && show(t)) items.push({p,t}); }));
+      if(items.length) rows.push({year:y, items});
+    }
+    // recurring tasks summarised once, after the timeline
+    const rec=[]; byPlant.forEach(({p,tasks})=>tasks.forEach(t=>{ if(t.recurring && show(t)) rec.push({p,t}); }));
+    return {rows, rec};
+  },[byPlant,cats,maxYear]);
+
+  const printSched=()=>{ const w=window.open("","_blank"); if(!w){ alert("Allow pop-ups to print."); return; }
+    const body=byPlant.map(({p,tasks})=>`<h3>${p.common} <i>${p.sci}</i>${phases[p.id]?` — Phase ${phases[p.id]}`:""}</h3><table><tbody>${tasks.map(t=>`<tr><td>Yr ${t.year}${t.recurring?"+":""}</td><td>${t.when}</td><td><b>${t.title}</b><br>${t.note}</td></tr>`).join("")}</tbody></table>`).join("");
+    w.document.write(`<!doctype html><html><head><title>Maintenance schedule</title><style>body{font-family:Georgia,serif;margin:32px;color:#2b2a22}h3{margin:18px 0 4px;font-size:16px}i{color:#666}table{border-collapse:collapse;width:100%;margin-bottom:8px}td{padding:4px 8px;border-bottom:1px solid #ddd;font-size:13px;vertical-align:top}td:first-child{white-space:nowrap;font-family:monospace}</style></head><body><h1>Plant maintenance schedule</h1>${body}</body></html>`);
+    w.document.close(); w.focus(); setTimeout(()=>w.print(),250); };
+
+  return (
+    <div>
+      <div className="pagehead" style={{border:0,margin:"0 0 12px",padding:0}}><div className="eye">Maintenance schedule · {chosen.length} plants</div>
+        <p style={{margin:"4px 0 0"}}>Per-plant tasks — sourcing, planting, mulch, protection, pruning, feeding, division and first harvest — timed relative to each plant's <b>planting year</b> and its USDA zone{" "}({STATE_NAMES[state]}). General guidance you can adapt; concrete calendar dates come from the Project Plan → Schedule.</p></div>
+
+      <div className="hvctrls">
+        <button className={"hvchip"+(mode==="plant"?" on":"")} onClick={()=>setMode("plant")}>By plant</button>
+        <button className={"hvchip"+(mode==="year"?" on":"")} onClick={()=>setMode("year")}>By year</button>
+        <span style={{width:12}}></span>
+        {allCats.map(c=>(
+          <button key={c} className={"hvchip"+(cats.includes(c)?" on":"")} onClick={()=>setCats(f=>f.includes(c)?f.filter(x=>x!==c):[...f,c])}>
+            <span className="sw" style={{background:MAINT_CATS[c]}}></span>{c}</button>
+        ))}
+        {cats.length>0 && <button className="hvchip" onClick={()=>setCats([])}>Clear</button>}
+        <span style={{flex:"1 1 auto"}}></span>
+        <button className="hvchip" onClick={printSched}>Print</button>
+      </div>
+
+      {mode==="plant" ? (
+        <div className="mtsched">
+          {byPlant.map(({p,tasks})=>{ const vis=tasks.filter(show); if(!vis.length) return null;
+            return (
+              <div className="mtplant" key={p.id}>
+                <div className="mthead" onClick={()=>openDetail(p)}>
+                  <b>{p.common}</b> <i>{p.sci}</i>
+                  <span className="mtmeta">{p.type}{p.hardinessZones?` · zones ${p.hardinessZones}`:""}{phases[p.id]?` · Phase ${phases[p.id]}`:""}</span>
+                </div>
+                {vis.map((t,i)=>(
+                  <div className="mttask" key={i}>
+                    <span className="yr">Yr {t.year}{t.recurring?"+":""}</span>
+                    {catChip(t.cat)}
+                    <div className="body"><b>{t.title}</b> <span className="when">· {t.when}</span><div className="note">{t.note}</div></div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="mtsched">
+          {byYear.rows.map(({year,items})=>(
+            <div className="mtplant" key={year}>
+              <div className="mthead"><b>Year {year}</b> <span className="mtmeta">{items.length} task{items.length>1?"s":""} · from each plant's planting</span></div>
+              {items.map(({p,t},i)=>(
+                <div className="mttask" key={i}>
+                  {catChip(t.cat)}
+                  <div className="body"><b onClick={()=>openDetail(p)} style={{cursor:"pointer"}}>{p.common}</b> — {t.title} <span className="when">· {t.when}{t.recurring?" · recurring":""}</span><div className="note">{t.note}</div></div>
+                </div>
+              ))}
+            </div>
+          ))}
+          {byYear.rec.length>0 && (
+            <div className="mtplant">
+              <div className="mthead"><b>Recurring upkeep</b> <span className="mtmeta">ongoing once established</span></div>
+              {byYear.rec.map(({p,t},i)=>(
+                <div className="mttask" key={i}>{catChip(t.cat)}
+                  <div className="body"><b onClick={()=>openDetail(p)} style={{cursor:"pointer"}}>{p.common}</b> — {t.title} <span className="when">· {t.when}</span></div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
   const [detail,setDetail]=useState(null);
-  const [view,setView]=useState("layers"); // layers | plant | harvest | soil | risk
+  const [view,setView]=useState("layers"); // layers | plant | harvest | maint | project | soil | risk
   const [phases,setPhases]=useState({});   // {plantId: 1..10} for the current plan (lives in the plan layout)
   const [phaseFilter,setPhaseFilter]=useState("all"); // "all" | number | "none" — Forest Layers filter
   // load phases for the current plan (localStorage instant, then Supabase). The
@@ -2170,6 +2336,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
         <button className={view==="plant"?"on":""} onClick={()=>setView("plant")}>Planting Plan</button>
         <button className={view==="harvest"?"on":""} onClick={()=>setView("harvest")}>Harvest</button>
+        <button className={view==="maint"?"on":""} onClick={()=>setView("maint")}>Maintenance</button>
         <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
         <button className={view==="risk"?"on":""} onClick={()=>setView("risk")}>Risk Register</button>
       </div>
@@ -2228,6 +2395,8 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
       {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} phases={phases} setPhases={setPhases} />}
 
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
+
+      {view==="maint" && <MaintenanceView chosen={chosen} phases={phases} state={state} openDetail={setDetail} />}
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} openDetail={setDetail} />}
 
