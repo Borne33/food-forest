@@ -301,6 +301,53 @@
   .insight b{font-weight:600}
   .sugg{border:1px dashed var(--dot);border-radius:4px;padding:10px 14px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#faf7ef}
   .sugg .why{font-size:13px;color:var(--ink2);font-style:italic}
+  /* Project plan */
+  .pjtabs{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 16px;border-bottom:1.5px solid var(--line)}
+  .pjtabs button{font-family:'Space Mono';font-size:12px;letter-spacing:.04em;border:1.5px solid transparent;border-bottom:0;background:transparent;padding:8px 14px;color:var(--ink2);border-radius:5px 5px 0 0;margin-bottom:-1.5px}
+  .pjtabs button.on{background:#fbf9f2;border-color:var(--line);color:var(--ink);font-weight:700}
+  .pjcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .pjc{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;padding:12px 13px}
+  .pjc .l{font-family:'Space Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint)}
+  .pjc .v{font-family:'Space Mono';font-size:22px;font-weight:700;color:var(--sage-d);margin:3px 0 1px}
+  .pjc .s{font-size:11.5px;color:var(--ink2)}
+  .pjmini{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;padding:12px 14px;margin-top:14px}
+  .pjmini b{font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint)}
+  .pjmini ul{margin:8px 0 0;padding-left:18px;columns:2;font-size:13px;line-height:1.6}
+  .pjnum{width:88px;font-family:'Space Mono';font-size:13px;text-align:right;border:1.5px solid var(--line);border-radius:4px;padding:6px 7px;background:#fff;color:var(--ink)}
+  .pjtblwrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:6px}
+  .pjtbl{width:100%;border-collapse:collapse;font-size:13px;background:#fbf9f2;min-width:520px}
+  .pjtbl th,.pjtbl td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  .pjtbl th:first-child,.pjtbl td:first-child{text-align:left}
+  .pjtbl thead th{background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint)}
+  .pjtbl thead th span{display:block;font-size:9px;color:var(--faint);font-weight:400}
+  .pjtbl tr.sub td{font-weight:700;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+  .pjtbl tr.rev td{color:var(--sage-d)}
+  .pjtbl tr.net td{font-weight:700}
+  .pjtbl tr.cum td{font-family:'Space Mono';color:var(--ink2);font-size:12px}
+  .pjcal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+  .pjmo{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;min-height:60px;padding:6px}
+  .pjmo .mh{font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:5px}
+  .pjev{font-size:11.5px;line-height:1.3;border-left:3px solid #8a8577;background:#fff;border-radius:3px;padding:3px 6px;margin-bottom:4px}
+  .pjev span{display:block;font-family:'Space Mono';font-size:10px;color:var(--ink2)}
+  .pjgrid{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;font-size:12.5px}
+  .pjgrid .pgh,.pjgrid .pgr{display:grid;grid-template-columns:1.3fr repeat(4,1fr) .8fr 1fr}
+  .pjgrid .pgh{background:var(--paper2);font-family:'Space Mono';font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
+  .pjgrid .pgh>div,.pjgrid .pgr>div{padding:7px 9px;text-align:right;border-bottom:1px solid var(--line)}
+  .pjgrid .pgh>div:first-child,.pjgrid .pgr>div:first-child{text-align:left}
+  .pjgrid .pgr:last-child>div{border-bottom:0}
+  .pjassume{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;align-items:start}
+  @media(min-width:900px){ .pjassume .ppcard.wide{grid-column:1/-1} }
+  .pjrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;font-size:13.5px}
+  .pjchk{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-bottom:8px}
+  .pjchk input{width:18px;height:18px;accent-color:var(--sage-d)}
+  .pjcats{width:100%;border-collapse:collapse;font-size:13px}
+  .pjcats td{padding:4px 5px;border-bottom:1px solid var(--line)}
+  .pjcats td input[type=text],.pjcats td input:not([type]){width:100%;border:1.5px solid var(--line);border-radius:4px;padding:5px 7px;background:#fff;font-family:'Spectral';font-size:13px}
+  .pjcats td.ty{font-family:'Space Mono';font-size:10px;color:var(--faint);white-space:nowrap}
+  .pjprices{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 14px}
+  .pjprow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .pjprow .nm{font-size:13px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pjprow .nm i{color:var(--ink2);font-size:11px}
   /* Maintenance schedule */
   .mtsched{display:flex;flex-direction:column;gap:14px}
   .mtplant{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;overflow:hidden}
@@ -671,6 +718,17 @@ const dataProvider = {
     // upsert the whole layout blob (one row per plan); user_id fills via default
     const { error } = await sb.from('plan_layouts')
       .upsert({ plan_id:planId, data:layout, updated_at:new Date().toISOString() }, { onConflict:'plan_id' });
+    if(error) throw error;
+  },
+  async loadProject(planId){
+    // Project Plan settings for one plan (Budget/Scope/Schedule); null if unset
+    const { data, error } = await sb.from('plan_projects').select('data').eq('plan_id', planId).maybeSingle();
+    if(error) throw error;
+    return data ? data.data : null;
+  },
+  async saveProject(planId, project){
+    const { error } = await sb.from('plan_projects')
+      .upsert({ plan_id:planId, data:project, updated_at:new Date().toISOString() }, { onConflict:'plan_id' });
     if(error) throw error;
   },
 };
@@ -2200,16 +2258,340 @@ function MaintenanceView({chosen, phases, state, openDetail}){
   );
 }
 
+/* =====================================================================
+   PROJECT PLAN — Budget, Scope and Schedule for establishing the plan.
+   A single pure model (computeProject) turns the plan (plants, counts,
+   phases, mapped area) + editable assumptions into: a scope of work
+   (tasks with hours), a schedule (tasks on a calendar), and a budget
+   (per-period costs, optional revenue, cashflow). All assumptions are
+   editable defaults — figures are planning estimates, not quotes.
+   ===================================================================== */
+const PLANT_PRICE = { Tree:25, Shrub:15, Vine:12, Herb:6, Fern:8, Grass:5, Groundcover:4 }; // $/plant defaults by type
+const INSTALL_HRS = { Tree:0.75, Shrub:0.4, Vine:0.3, Herb:0.15, Fern:0.15, Grass:0.15, Groundcover:0.1 }; // labor hrs/plant to install
+const YIELD_VALUE = { Tree:40, Shrub:20, Vine:15, Herb:8, Fern:3, Grass:3, Groundcover:5 }; // rough $/mature plant/yr (edible only)
+const QLABEL=["Q1","Q2","Q3","Q4"];
+const projPrice=(p,st)=> (st.prices&&st.prices[p.id]!=null) ? Number(st.prices[p.id]) : (PLANT_PRICE[p.type]||10);
+function defaultCats(){ return [
+  {id:"stock",   name:"Plant stock",                        type:"plantStock"},
+  {id:"siteprep",name:"Site prep (sheet mulch, sod removal)",type:"perSqFtOnce", rate:0.15},
+  {id:"amend",   name:"Soil amendments & compost",          type:"perSqFtOnce", rate:0.10},
+  {id:"mulch",   name:"Mulch (annual refresh)",             type:"perSqFtAnnual",rate:0.05},
+  {id:"tools",   name:"Tools & equipment",                  type:"oneTime", rate:400, year:1},
+  {id:"irrig",   name:"Irrigation (drip, timers, barrels)", type:"oneTime", rate:600, year:1},
+  {id:"deer",    name:"Deer / browse protection",           type:"oneTime", rate:800, year:1},
+  {id:"trellis", name:"Trellises & supports",               type:"oneTime", rate:200, year:1},
+  {id:"labor",   name:"Labor",                              type:"labor"},
+  {id:"misc",    name:"Misc / consumables",                 type:"annual",  rate:100},
+  {id:"contingency", name:"Contingency",                    type:"contingencyPct", rate:10},
+]; }
+function defaultProject(){ return {
+  startYear:new Date().getFullYear(), horizon:5, revenueOn:false, imputedOn:false,
+  labor:{ yourRate:25, hiredRate:45, hiredPct:0 }, // hiredPct = % of hours contracted out (cash)
+  yieldFactor:1, prices:{}, cats:null,
+}; }
+function mergeProject(loaded){ const d=defaultProject(); const s={...d,...(loaded||{})};
+  s.labor={...d.labor,...(loaded&&loaded.labor||{})}; s.prices={...(loaded&&loaded.prices||{})};
+  s.cats=(loaded&&Array.isArray(loaded.cats)&&loaded.cats.length)?loaded.cats:defaultCats();
+  s.horizon=Math.max(1,Math.min(15,s.horizon|0||5)); return s; }
+
+function computeProject(chosen, counts, phases, areaSqft, st){
+  const N=st.horizon, area=areaSqft||0;
+  const hasCounts=Object.keys(counts||{}).length>0;
+  const qtyOf=p=>hasCounts?(counts[p.id]||0):1;
+  const pYear=p=>Math.max(1,Math.min(N, phases[p.id]||1)); // one phase per year; unphased => yr 1
+  const phased=Object.keys(phases||{}).length>0;
+  const totalQty=chosen.reduce((a,p)=>a+qtyOf(p),0)||1;
+  const scope=[]; const S=(y,q,mo,cat,name,hours)=>{ if(y>=1&&y<=N&&hours>0) scope.push({y,q,mo,cat,name,hours:+hours.toFixed(1)}); };
+  const entries=[]; const E=(y,q,catId,catName,cash,kind,timeVal)=>{ if(y>=1&&y<=N&&(cash||timeVal)) entries.push({y,q,catId,catName,cash:cash||0,timeVal:timeVal||0,kind:kind||"cost"}); };
+
+  // --- scope of work ---
+  for(let y=1;y<=N;y++){
+    const newP=chosen.filter(p=>pYear(p)===y), nqty=newP.reduce((a,p)=>a+qtyOf(p),0);
+    if(newP.length){
+      S(y,2,4,"Plant",`Plant ${nqty} plant${nqty===1?"":"s"}`+(phased?` — Phase ${y}`:""), newP.reduce((a,p)=>a+qtyOf(p)*(INSTALL_HRS[p.type]||0.3),0));
+      S(y,2,4,"Site prep",`Prepare & amend beds (${nqty} plant${nqty===1?"":"s"})`, nqty*0.4);
+    }
+  }
+  if(area>0) S(1,1,3,"Setup","Install irrigation", Math.max(2,area*0.005));
+  if(chosen.some(p=>!p.deerResistant)) S(1,2,4,"Setup","Install browse protection / fencing", 16);
+  const vines=chosen.filter(p=>p.type==="Vine").length; if(vines) S(1,2,5,"Setup",`Build ${vines} trellis/support${vines===1?"":"s"}`, vines*2);
+  for(let y=1;y<=N;y++){
+    const est=chosen.filter(p=>pYear(p)<=y); if(!est.length) continue;
+    if(area>0) S(y,2,4,"Maintenance","Mulch refresh", Math.max(1,area*0.01));
+    S(y,3,6,"Maintenance",`Weeding & monitoring (${est.length} plants)`, est.length*0.25);
+    const nw=chosen.filter(p=>pYear(p)===y), nwq=nw.reduce((a,p)=>a+qtyOf(p),0);
+    if(nwq) S(y,3,7,"Maintenance",`Establishment watering (${nwq} new)`, nwq*0.4);
+    const woody=est.filter(p=>WOODY_TYPES.has(p.type)&&pYear(p)<y);
+    if(woody.length) S(y,1,2,"Prune",`Dormant pruning (${woody.length} woody)`, woody.length*0.5);
+    const bearing=est.filter(p=>isFood(p)&&(y-pYear(p)+1)>=(firstFruitYear(p)||1));
+    if(bearing.length) S(y,4,9,"Harvest",`Harvest & process (${bearing.length} bearing)`, bearing.length*0.6);
+  }
+
+  // --- costs ---
+  for(let y=1;y<=N;y++){ const newP=chosen.filter(p=>pYear(p)===y);
+    const cost=newP.reduce((a,p)=>a+qtyOf(p)*projPrice(p,st),0); E(y,2,"stock","Plant stock",cost,"cost"); }
+  (st.cats||[]).forEach(cat=>{
+    if(cat.type==="oneTime") E(Math.max(1,Math.min(N,cat.year||1)), cat.id==="tools"?1:2, cat.id, cat.name, +cat.rate||0, "cost");
+    else if(cat.type==="perSqFtOnce"){ const total=(+cat.rate||0)*area;
+      for(let y=1;y<=N;y++){ const q=chosen.filter(p=>pYear(p)===y).reduce((a,p)=>a+qtyOf(p),0); if(q) E(y,2,cat.id,cat.name,total*q/totalQty,"cost"); } }
+    else if(cat.type==="perSqFtAnnual"){ for(let y=1;y<=N;y++) E(y,2,cat.id,cat.name,(+cat.rate||0)*area,"cost"); }
+    else if(cat.type==="annual"){ for(let y=1;y<=N;y++) E(y,3,cat.id,cat.name,+cat.rate||0,"cost"); }
+  });
+  // labor from scope hours (seasonal split), split cash (hired) vs your time
+  const hiredPct=Math.max(0,Math.min(100,st.labor.hiredPct||0))/100;
+  const laborCat=(st.cats||[]).find(c=>c.type==="labor");
+  const hrsYQ={}; scope.forEach(t=>{ hrsYQ[t.y]=hrsYQ[t.y]||[0,0,0,0]; hrsYQ[t.y][t.q-1]+=t.hours; });
+  if(laborCat) for(let y=1;y<=N;y++){ const qs=hrsYQ[y]||[0,0,0,0];
+    for(let q=1;q<=4;q++){ const h=qs[q-1]; if(!h) continue;
+      E(y,q,"labor","Labor", h*(st.labor.hiredRate||0)*hiredPct, "cost", h*(st.labor.yourRate||0)*(1-hiredPct)); } }
+  // contingency (% of that year's cash costs so far, excl. contingency)
+  const cont=(st.cats||[]).find(c=>c.type==="contingencyPct");
+  if(cont&&+cont.rate){ for(let y=1;y<=N;y++){ const base=entries.filter(e=>e.y===y&&e.kind==="cost").reduce((a,e)=>a+e.cash,0);
+    if(base) E(y,2,"contingency","Contingency",base*(+cont.rate)/100,"cost"); } }
+  // revenue / imputed savings (rough, from yield value × ramp)
+  if(st.revenueOn||st.imputedOn){ const kind=st.revenueOn?"revenue":"imputed", label=st.revenueOn?"Produce sales":"Imputed harvest value";
+    for(let y=1;y<=N;y++){ let val=0;
+      chosen.forEach(p=>{ if(!isFood(p)) return; const age=y-pYear(p)+1, ff=firstFruitYear(p)||2;
+        let f=0; if(age>=1){ if(age>=ff) f=1; else if(age>=ff-1) f=0.4; } if(f<=0) return;
+        val+=(YIELD_VALUE[p.type]||5)*(st.yieldFactor||1)*qtyOf(p)*f; });
+      if(val){ E(y,3,"yield",label,val*0.5,kind); E(y,4,"yield",label,val*0.5,kind); } }
+  }
+  return { N, entries, scope, hrsYQ, phased,
+    calYear:y=>st.startYear+(y-1),
+    totalHours:scope.reduce((a,t)=>a+t.hours,0) };
+}
+
+function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetail}){
+  const [st,setSt]=useState(defaultProject);
+  const [ready,setReady]=useState(false);
+  const [tab,setTab]=useState("summary"); // summary | scope | schedule | budget | assume
+  const [period,setPeriod]=useState("year"); // year | quarter | five
+  const [selYear,setSelYear]=useState(1);
+  const [loaded,setLoaded]=useState(false);
+
+  useEffect(()=>{ let cancelled=false; setReady(false);
+    try{ const s=localStorage.getItem("ff-project-"+planId); if(s) setSt(mergeProject(JSON.parse(s))); }catch(e){}
+    dataProvider.loadProject(planId).then(d=>{ if(cancelled) return; if(d) setSt(mergeProject(d)); setReady(true); setLoaded(true); })
+      .catch(e=>{ console.error(e); if(!cancelled){ setReady(true); setLoaded(true); } });
+    return ()=>{ cancelled=true; };
+  },[planId]);
+  const saveT=useRef(null);
+  useEffect(()=>{ if(!ready) return;
+    try{ localStorage.setItem("ff-project-"+planId, JSON.stringify(st)); }catch(e){}
+    clearTimeout(saveT.current); saveT.current=setTimeout(()=>{ dataProvider.saveProject(planId,st).catch(e=>console.error(e)); },800);
+    return ()=>clearTimeout(saveT.current);
+  },[ready,planId,st]);
+
+  const M=useMemo(()=>computeProject(chosen,counts||{},phases||{},areaSqft||0,st),[chosen,counts,phases,areaSqft,st]);
+  const set=(k,v)=>setSt(o=>({...o,[k]:v}));
+  const setLabor=(k,v)=>setSt(o=>({...o,labor:{...o.labor,[k]:v}}));
+  const $=n=>(n<0?"-$":"$")+Math.abs(Math.round(n)).toLocaleString();
+  const blended=(st.labor.yourRate*(1-(st.labor.hiredPct||0)/100)+st.labor.hiredRate*((st.labor.hiredPct||0)/100));
+
+  // period columns + bucket fn
+  const cols = period==="year" ? Array.from({length:M.N},(_,i)=>({key:i+1,label:"Yr "+(i+1),sub:M.calYear(i+1)}))
+    : period==="quarter" ? QLABEL.map((q,i)=>({key:i+1,label:q,sub:M.calYear(selYear)}))
+    : [{key:"all",label:M.N+"-yr total",sub:M.calYear(1)+"–"+M.calYear(M.N)}];
+  const inScope = e => period==="quarter" ? e.y===selYear : true;
+  const colOf = e => period==="year" ? e.y : period==="quarter" ? e.q : "all";
+  const catRows=useMemo(()=>{ const ids=[]; M.entries.forEach(e=>{ if(e.kind==="cost"&&!ids.includes(e.catId)) ids.push(e.catId); }); return ids; },[M]);
+  const catName=id=>{ const e=M.entries.find(x=>x.catId===id); return e?e.catName:id; };
+  const cell=(pred)=>{ const o={}; cols.forEach(c=>o[c.key]=0);
+    M.entries.forEach(e=>{ if(!inScope(e)||!pred(e)) return; o[colOf(e)]+=e.cash+(showTime?e.timeVal:0)*(e.kind==="cost"?1:0); }); return o; };
+  const [showTime,setShowTime]=useState(false); // fully-loaded (include your time)
+  const costCell=id=>cell(e=>e.kind==="cost"&&e.catId===id);
+  const totalCostCell=cell(e=>e.kind==="cost");
+  const revCell=cell(e=>e.kind==="revenue"||e.kind==="imputed");
+  const anyRev=M.entries.some(e=>e.kind==="revenue"||e.kind==="imputed");
+  const sumRow=o=>cols.reduce((a,c)=>a+o[c.key],0);
+
+  // summary numbers (whole horizon)
+  const totalCash=M.entries.filter(e=>e.kind==="cost").reduce((a,e)=>a+e.cash,0);
+  const totalTime=M.entries.filter(e=>e.kind==="cost").reduce((a,e)=>a+e.timeVal,0);
+  const totalRev=M.entries.filter(e=>e.kind==="revenue"||e.kind==="imputed").reduce((a,e)=>a+e.cash,0);
+  const y1Cash=M.entries.filter(e=>e.kind==="cost"&&e.y===1).reduce((a,e)=>a+e.cash,0);
+  const firstBearing=(()=>{ for(let y=1;y<=M.N;y++){ if(chosen.some(p=>isFood(p)&&(y-Math.max(1,Math.min(M.N,phases[p.id]||1))+1)>=(firstFruitYear(p)||1))) return y; } return null; })();
+
+  const num=(val,on,step)=><input type="number" step={step||1} value={val} onChange={e=>on(e.target.value===""?"":Number(e.target.value))} className="pjnum"/>;
+
+  return (
+    <div>
+      <div className="pagehead" style={{border:0,margin:"0 0 12px",padding:0}}><div className="eye">Project plan · {chosen.length} plants{areaSqft?` · ${areaSqft.toLocaleString()} sq ft`:""}</div>
+        <p style={{margin:"4px 0 0"}}>Scope, schedule and budget to establish this food forest over {M.N} years from {M.calYear(1)}. All figures are editable planning estimates — set your prices and rates under <b>Assumptions</b>. {!areaSqft&&<span style={{color:"var(--orange)"}}>Tip: draw your area in the Planting Plan → Map step so area-based costs (mulch, site prep) fill in.</span>}</p></div>
+
+      <div className="pjtabs">
+        {[["summary","Summary"],["scope","Scope"],["schedule","Schedule"],["budget","Budget"],["assume","Assumptions"]].map(([k,l])=>(
+          <button key={k} className={tab===k?"on":""} onClick={()=>setTab(k)}>{l}</button>
+        ))}
+      </div>
+
+      {tab==="summary" && (
+        <div>
+          <div className="pjcards">
+            <div className="pjc"><div className="l">Cash to establish</div><div className="v">{$(totalCash)}</div><div className="s">over {M.N} yrs</div></div>
+            <div className="pjc"><div className="l">Year 1 cash</div><div className="v">{$(y1Cash)}</div><div className="s">biggest outlay</div></div>
+            <div className="pjc"><div className="l">Your labor</div><div className="v">{Math.round(M.totalHours).toLocaleString()} h</div><div className="s">{$(totalTime)} at your rate</div></div>
+            <div className="pjc"><div className="l">Fully-loaded</div><div className="v">{$(totalCash+totalTime)}</div><div className="s">cash + your time</div></div>
+            <div className="pjc"><div className="l">First harvest</div><div className="v">{firstBearing?("Yr "+firstBearing):"—"}</div><div className="s">{firstBearing?M.calYear(firstBearing):"no edibles"}</div></div>
+            {anyRev && <div className="pjc"><div className="l">{st.revenueOn?"Revenue":"Imputed value"}</div><div className="v">{$(totalRev)}</div><div className="s">over {M.N} yrs</div></div>}
+          </div>
+          <div className="hvnote" style={{marginTop:14}}>
+            <b>The plan at a glance.</b> Establishing <b>{chosen.length}</b> species{M.phased?` across ${Math.max(...chosen.map(p=>Math.max(1,Math.min(M.N,phases[p.id]||1))))} planting phases`:" in year one"} costs about <b>{$(totalCash)}</b> in cash over {M.N} years, front-loaded at <b>{$(y1Cash)}</b> in {M.calYear(1)}. Expect roughly <b>{Math.round(M.totalHours)} hours</b> of work{st.labor.hiredPct?` (${st.labor.hiredPct}% contracted out)`:""}. {firstBearing?<span>First meaningful harvest around <b>{M.calYear(firstBearing)}</b>.</span>:null} {anyRev?<span> Estimated {st.revenueOn?"sales":"grocery savings"} of <b>{$(totalRev)}</b> across the horizon.</span>:<span> Turn on a yield estimate under Assumptions to project {"savings or income"}.</span>}
+          </div>
+          <div className="pjmini">
+            <b>Scope highlights</b>
+            <ul>{Array.from(new Set(M.scope.map(t=>t.cat))).map(c=>{ const h=M.scope.filter(t=>t.cat===c).reduce((a,t)=>a+t.hours,0);
+              return <li key={c}>{c}: {Math.round(h)} h</li>; })}</ul>
+          </div>
+        </div>
+      )}
+
+      {tab==="scope" && (
+        <div className="mtsched">
+          <p className="pphint" style={{margin:"0 0 12px"}}>Work packages generated from your plan — planting waves, site setup, upkeep and harvest — with estimated hours. These drive the Schedule and the Labor line in the Budget.</p>
+          {Array.from({length:M.N},(_,i)=>i+1).map(y=>{ const rows=M.scope.filter(t=>t.y===y); if(!rows.length) return null;
+            const hrs=rows.reduce((a,t)=>a+t.hours,0);
+            return (
+              <div className="mtplant" key={y}>
+                <div className="mthead"><b>Year {y}</b> <span className="mtmeta">{M.calYear(y)} · {Math.round(hrs)} h · ≈ {$(hrs*blended)} labor</span></div>
+                {rows.sort((a,b)=>a.q-b.q).map((t,i)=>(
+                  <div className="mttask" key={i}>
+                    <span className="yr">{QLABEL[t.q-1]}</span>
+                    <span className="mtcat" style={{background:MAINT_CATS[t.cat]||"#8a8577"}}>{t.cat}</span>
+                    <div className="body">{t.name} <span className="when">· {t.hours} h</span></div>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {tab==="schedule" && (
+        <div>
+          <div className="hvctrls">
+            <span className="pphint" style={{marginRight:8}}>Calendar of scope items. Finest useful grain across a multi-year plan is the month; pick a year for its month view, or see the whole horizon by quarter.</span>
+            <span style={{flex:"1 1 auto"}}></span>
+            <select className="pjnum" style={{width:"auto"}} value={selYear} onChange={e=>setSelYear(Number(e.target.value))}>
+              {Array.from({length:M.N},(_,i)=>i+1).map(y=><option key={y} value={y}>Year {y} · {M.calYear(y)}</option>)}
+            </select>
+          </div>
+          <div className="pjcal">
+            {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((mo,mi)=>{ const items=M.scope.filter(t=>t.y===selYear&&t.mo===mi+1);
+              return (
+                <div className="pjmo" key={mo}>
+                  <div className="mh">{mo}</div>
+                  {items.map((t,i)=><div key={i} className="pjev" style={{borderLeftColor:MAINT_CATS[t.cat]||"#8a8577"}}>{t.name}<span>{t.hours} h</span></div>)}
+                </div>
+              );
+            })}
+          </div>
+          <div className="pjgrid" style={{marginTop:16}}>
+            <div className="pgh"><div>Year</div>{QLABEL.map(q=><div key={q}>{q}</div>)}<div>Hours</div><div>Labor</div></div>
+            {Array.from({length:M.N},(_,i)=>i+1).map(y=>{ const qs=M.hrsYQ[y]||[0,0,0,0], h=qs.reduce((a,b)=>a+b,0);
+              return <div className="pgr" key={y}><div>{M.calYear(y)}</div>{qs.map((v,qi)=><div key={qi}>{v?Math.round(v)+"h":"·"}</div>)}<div>{Math.round(h)}</div><div>{$(h*blended)}</div></div>;
+            })}
+          </div>
+        </div>
+      )}
+
+      {tab==="budget" && (
+        <div>
+          <div className="hvctrls">
+            <button className={"hvchip"+(period==="year"?" on":"")} onClick={()=>setPeriod("year")}>By year</button>
+            <button className={"hvchip"+(period==="quarter"?" on":"")} onClick={()=>setPeriod("quarter")}>By quarter</button>
+            <button className={"hvchip"+(period==="five"?" on":"")} onClick={()=>setPeriod("five")}>{M.N}-yr total</button>
+            {period==="quarter" && <select className="pjnum" style={{width:"auto"}} value={selYear} onChange={e=>setSelYear(Number(e.target.value))}>
+              {Array.from({length:M.N},(_,i)=>i+1).map(y=><option key={y} value={y}>{M.calYear(y)}</option>)}</select>}
+            <span style={{flex:"1 1 auto"}}></span>
+            <button className={"hvchip"+(showTime?" on":"")} onClick={()=>setShowTime(t=>!t)}>{showTime?"Fully-loaded (incl. your time)":"Cash only"}</button>
+          </div>
+          <div className="pjtblwrap">
+            <table className="pjtbl">
+              <thead><tr><th>Category</th>{cols.map(c=><th key={c.key}>{c.label}<span>{c.sub}</span></th>)}<th>Total</th></tr></thead>
+              <tbody>
+                {catRows.map(id=>{ const o=costCell(id); const tot=sumRow(o); if(!tot) return null;
+                  return <tr key={id}><td>{catName(id)}</td>{cols.map(c=><td key={c.key}>{o[c.key]?$(o[c.key]):"·"}</td>)}<td>{$(tot)}</td></tr>; })}
+                <tr className="sub"><td>Total costs</td>{cols.map(c=><td key={c.key}>{$(totalCostCell[c.key])}</td>)}<td>{$(sumRow(totalCostCell))}</td></tr>
+                {anyRev && <tr className="rev"><td>{st.revenueOn?"Revenue":"Imputed value"}</td>{cols.map(c=><td key={c.key}>{$(revCell[c.key])}</td>)}<td>{$(sumRow(revCell))}</td></tr>}
+                <tr className="net"><td>Net {anyRev?"income":"cash flow"}</td>{cols.map(c=><td key={c.key}>{$(revCell[c.key]-totalCostCell[c.key])}</td>)}<td>{$(sumRow(revCell)-sumRow(totalCostCell))}</td></tr>
+                {period==="year" && <tr className="cum"><td>Cumulative</td>{(()=>{ let run=0; return cols.map(c=>{ run+=revCell[c.key]-totalCostCell[c.key]; return <td key={c.key}>{$(run)}</td>; }); })()}<td></td></tr>}
+              </tbody>
+            </table>
+          </div>
+          <div className="pphint" style={{marginTop:8}}>{showTime?"Fully-loaded includes your own labor time valued at $"+st.labor.yourRate+"/h.":"Cash view shows only out-of-pocket spending"+(st.labor.hiredPct?` (incl. ${st.labor.hiredPct}% hired labor)`:" (your own labor excluded)")+"."} {anyRev?"":"Add a yield estimate under Assumptions for an income statement."}</div>
+        </div>
+      )}
+
+      {tab==="assume" && (
+        <div className="pjassume">
+          <div className="ppcard">
+            <h4>Timeline &amp; rates</h4>
+            <div className="pjrow"><label>Start year</label>{num(st.startYear,v=>set("startYear",v||new Date().getFullYear()))}</div>
+            <div className="pjrow"><label>Horizon (years)</label>{num(st.horizon,v=>set("horizon",Math.max(1,Math.min(15,v||5))))}</div>
+            <div className="pjrow"><label>Your time rate ($/h)</label>{num(st.labor.yourRate,v=>setLabor("yourRate",v||0))}</div>
+            <div className="pjrow"><label>Hired labor rate ($/h)</label>{num(st.labor.hiredRate,v=>setLabor("hiredRate",v||0))}</div>
+            <div className="pjrow"><label>% labor hired out</label>{num(st.labor.hiredPct,v=>setLabor("hiredPct",Math.max(0,Math.min(100,v||0))))}</div>
+            <div className="pphint">Blended labor rate: <b>${Math.round(blended)}/h</b> · {Math.round(M.totalHours)} h total.</div>
+          </div>
+          <div className="ppcard">
+            <h4>Yield / income</h4>
+            <label className="pjchk"><input type="checkbox" checked={st.revenueOn} onChange={e=>setSt(o=>({...o,revenueOn:e.target.checked, imputedOn:e.target.checked?false:o.imputedOn}))}/> Model produce <b>sales</b> (income)</label>
+            <label className="pjchk"><input type="checkbox" checked={st.imputedOn} onChange={e=>setSt(o=>({...o,imputedOn:e.target.checked, revenueOn:e.target.checked?false:o.revenueOn}))}/> Value harvest as <b>grocery savings</b> (personal use)</label>
+            <div className="pjrow"><label>Yield factor ×</label>{num(st.yieldFactor,v=>set("yieldFactor",v||0),0.1)}</div>
+            <div className="pphint">Rough estimate: mature edible plants yield ~${YIELD_VALUE.Tree}/tree, ${YIELD_VALUE.Shrub}/shrub, ${YIELD_VALUE.Groundcover}/groundcover per year, ramping to full at each plant's years-to-fruit. Tune with the factor.</div>
+          </div>
+          <div className="ppcard wide">
+            <h4>Cost categories</h4>
+            <table className="pjcats"><tbody>
+              {(st.cats||[]).map((c,i)=>(
+                <tr key={c.id}>
+                  <td><input value={c.name} onChange={e=>setSt(o=>({...o,cats:o.cats.map((x,j)=>j===i?{...x,name:e.target.value}:x)}))}/></td>
+                  <td className="ty">{c.type==="plantStock"?"per plant":c.type==="labor"?"from scope":c.type==="perSqFtOnce"?"$/sqft once":c.type==="perSqFtAnnual"?"$/sqft·yr":c.type==="annual"?"$/yr":c.type==="contingencyPct"?"% of costs":"one-time"}</td>
+                  <td>{(c.type==="plantStock"||c.type==="labor")?<span className="pphint">auto</span>:<input type="number" step={c.type==="perSqFtOnce"||c.type==="perSqFtAnnual"?0.01:1} value={c.rate} onChange={e=>setSt(o=>({...o,cats:o.cats.map((x,j)=>j===i?{...x,rate:Number(e.target.value)}:x)}))} className="pjnum"/>}</td>
+                  <td>{c.type==="oneTime"?<span className="pphint">yr {c.year||1}</span>:""}</td>
+                  <td>{(c.type==="plantStock"||c.type==="labor")?"":<button className="rmbtn" onClick={()=>setSt(o=>({...o,cats:o.cats.filter((_,j)=>j!==i)}))}>✕</button>}</td>
+                </tr>
+              ))}
+            </tbody></table>
+            <button className="addbtn2" onClick={()=>setSt(o=>({...o,cats:[...o.cats,{id:"c"+Date.now(),name:"New cost",type:"oneTime",rate:0,year:1}]}))}>+ Add one-time cost</button>
+            <button className="addbtn2" onClick={()=>setSt(o=>({...o,cats:[...o.cats,{id:"c"+Date.now(),name:"New annual cost",type:"annual",rate:0}]}))}>+ Add annual cost</button>
+          </div>
+          <div className="ppcard wide">
+            <h4>Per-plant prices ($ each) — defaults by type; override any</h4>
+            <div className="pjprices">
+              {chosen.map(p=>(
+                <div className="pjprow" key={p.id}>
+                  <span className="nm" onClick={()=>openDetail(p)} title="Open card">{p.common} <i>({p.type})</i></span>
+                  <input type="number" step={1} value={st.prices[p.id]!=null?st.prices[p.id]:(PLANT_PRICE[p.type]||10)}
+                    onChange={e=>setSt(o=>({...o,prices:{...o.prices,[p.id]:Number(e.target.value)}}))} className="pjnum"/>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | plant | harvest | maint | project | soil | risk
   const [phases,setPhases]=useState({});   // {plantId: 1..10} for the current plan (lives in the plan layout)
   const [phaseFilter,setPhaseFilter]=useState("all"); // "all" | number | "none" — Forest Layers filter
-  // load phases for the current plan (localStorage instant, then Supabase). The
-  // Planting Plan's Plants tab is the sole writer; here we read for the layer filter.
-  useEffect(()=>{ setPhases({}); setPhaseFilter("all"); let cancelled=false;
-    try{ const s=localStorage.getItem("ff-layout-"+curPlan); if(s){ const L=JSON.parse(s); if(L&&L.phases) setPhases(L.phases); } }catch(e){}
-    dataProvider.loadLayout(curPlan).then(L=>{ if(!cancelled&&L&&L.phases) setPhases(L.phases); }).catch(()=>{});
+  const [layoutCounts,setLayoutCounts]=useState({}); // {plantId:qty} from the Planting Plan (for Project Plan)
+  const [layoutArea,setLayoutArea]=useState(0);       // mapped area in sq ft (for Project Plan)
+  // load layout-derived data for the current plan (localStorage instant, then
+  // Supabase). The Planting Plan's Plants tab is the sole writer; here we read
+  // phases (layer filter), counts and mapped area (Project Plan).
+  useEffect(()=>{ setPhases({}); setPhaseFilter("all"); setLayoutCounts({}); setLayoutArea(0); let cancelled=false;
+    const areaOf=polys=>{ if(!(window.L&&L.GeometryUtil&&L.GeometryUtil.geodesicArea)||!polys) return 0;
+      const m2=polys.reduce((a,r)=>(!r||r.length<3)?a:a+Math.abs(L.GeometryUtil.geodesicArea(r.map(([la,ln])=>L.latLng(la,ln)))),0);
+      return Math.round(m2*M2_TO_SQFT); };
+    const apply=L=>{ if(!L) return; if(L.phases) setPhases(L.phases); if(L.counts) setLayoutCounts(L.counts); if(L.polys) setLayoutArea(areaOf(L.polys)); };
+    try{ const s=localStorage.getItem("ff-layout-"+curPlan); if(s) apply(JSON.parse(s)); }catch(e){}
+    dataProvider.loadLayout(curPlan).then(L=>{ if(!cancelled) apply(L); }).catch(()=>{});
     return ()=>{ cancelled=true; };
   },[curPlan]);
   const [soil,setSoil]=useState({tex:["Loam"], dr:["Well-drained"], phL:["Neutral (6.5–7.5)"]});
@@ -2337,6 +2719,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         <button className={view==="plant"?"on":""} onClick={()=>setView("plant")}>Planting Plan</button>
         <button className={view==="harvest"?"on":""} onClick={()=>setView("harvest")}>Harvest</button>
         <button className={view==="maint"?"on":""} onClick={()=>setView("maint")}>Maintenance</button>
+        <button className={view==="project"?"on":""} onClick={()=>setView("project")}>Project Plan</button>
         <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
         <button className={view==="risk"?"on":""} onClick={()=>setView("risk")}>Risk Register</button>
       </div>
@@ -2397,6 +2780,8 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
       {view==="maint" && <MaintenanceView chosen={chosen} phases={phases} state={state} openDetail={setDetail} />}
+
+      {view==="project" && <ProjectPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} counts={layoutCounts} phases={phases} areaSqft={layoutArea} openDetail={setDetail} />}
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} openDetail={setDetail} />}
 
