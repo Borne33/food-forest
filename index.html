@@ -235,6 +235,7 @@
   .pill.pol{color:#7a4a86;background:#efe4f2;border-color:#d6bedd}
   .pill.dec{color:#8a5a1f;background:#f6e8d2;border-color:#e2c79c}
   .pill.inv{color:#9a2c22;background:#f6dcd7;border-color:#e3b1a8}
+  .pill.prot{color:#5a3a86;background:#ece2f4;border-color:#cdb8e0}
   .pill.deer{color:#5b5027;background:#eef0dd;border-color:#cdd3a6}
   .pill.fruit{color:#7a4a1f;background:#f7ead4;border-color:#e6c99b}
   .pill.planpill{border-color:transparent;font-weight:600}
@@ -612,6 +613,7 @@ function rowToPlant(r){
     nativeStates:r.native_states||[], nativeRegions:r.native_regions||[], nativeToUS:r.native_to_us,
     nativeNorthAmerica:r.native_north_america, nativeAmericas:r.native_americas,
     invasiveStates:r.invasive_states||[], invasiveEverywhere:r.invasive_everywhere, decPriority:r.dec_priority,
+    nyProtected:r.ny_protected_status||"",
     nf:r.nf, pol:r.pol, s:r.scores, sources:r.sources||[],
     humanVerified:!!r.human_verified, images:r.images||[],
     hardinessZones:r.hardiness_zones||"", deerResistant:!!r.deer_resistant,
@@ -1023,6 +1025,7 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
             {p.nf && <span className="pill nf">N-fixer</span>}
             {p.pol && <span className="pill pol">Pollinator</span>}
             {p.decPriority && <span className="pill dec">NY priority</span>}
+            {p.nyProtected && <span className="pill prot" title={"Protected native plant in NY (6 NYCRR 193.3): "+p.nyProtected+". Don't wild-harvest — use nursery-propagated stock."}>NY protected · {p.nyProtected}</span>}
             {p.deerResistant && <span className="pill deer">Deer resistant</span>}
             {fruitLabel(p) && <span className="pill fruit">{fruitLabel(p)}</span>}
             {inPlans.map(pl=>(
@@ -3073,7 +3076,7 @@ function plantToForm(p){
     hardiness_zones:p.hardinessZones||"", years_to_fruit:p.yearsToFruit||"", min_plants_fruit:p.minPlantsFruit==null?"":p.minPlantsFruit,
     nf:!!p.nf, pol:!!p.pol, deer_resistant:!!p.deerResistant, dec_priority:!!p.decPriority,
     native_to_us:!!p.nativeToUS, native_north_america:!!p.nativeNorthAmerica, native_americas:!!p.nativeAmericas,
-    invasive_everywhere:!!p.invasiveEverywhere,
+    invasive_everywhere:!!p.invasiveEverywhere, ny_protected_status:p.nyProtected||"",
     native_states:p.nativeStates||[], invasive_states:p.invasiveStates||[],
     soil_ph:p.soilPh||"", soil_n:p.soilN||"", soil_p:p.soilP||"", soil_k:p.soilK||"",
     soil_texture:p.soilTexture||[], soil_drainage:p.soilDrainage||[],
@@ -3094,7 +3097,7 @@ function formToPatch(f){
     min_plants_fruit:f.min_plants_fruit===""?null:Number(f.min_plants_fruit),
     nf:f.nf, pol:f.pol, deer_resistant:f.deer_resistant, dec_priority:f.dec_priority,
     native_to_us:f.native_to_us, native_north_america:f.native_north_america, native_americas:f.native_americas,
-    invasive_everywhere:f.invasive_everywhere,
+    invasive_everywhere:f.invasive_everywhere, ny_protected_status:f.ny_protected_status||null,
     native_states:f.native_states, native_regions:deriveRegions(f.native_states), invasive_states:f.invasive_states,
     soil_ph:f.soil_ph, soil_n:f.soil_n, soil_p:f.soil_p, soil_k:f.soil_k,
     soil_texture:f.soil_texture, soil_drainage:f.soil_drainage,
@@ -3110,7 +3113,7 @@ function emptyPlant(){
     edibleParts:"", otherUses:"", prep:"", harvest:"", harvestCalendar:{}, ecoUses:"", materialUses:"", propagation:"",
     sun:"", soil:"", risks:"", buy:"",
     nativeStates:[], nativeRegions:[], nativeToUS:true, nativeNorthAmerica:false, nativeAmericas:false,
-    invasiveStates:[], invasiveEverywhere:false, decPriority:false, nf:false, pol:false,
+    invasiveStates:[], invasiveEverywhere:false, decPriority:false, nyProtected:"", nf:false, pol:false,
     s:Object.fromEntries(SCORE_KEYS.map(([k])=>[k,[0,"N"]])), sources:[], images:[], humanVerified:false,
     hardinessZones:"", deerResistant:false, minPlantsFruit:null, yearsToFruit:"",
     soilPh:"", soilN:"", soilP:"", soilK:"", soilTexture:[], soilDrainage:[],
@@ -3202,6 +3205,7 @@ function PlantEditor({p, onSave, onCancel, isNew}){
       {MSrow("Native states","native_states",STATES)}
       <div className="frow"><label>Native regions (auto)</label><span style={{fontFamily:"'Space Mono'",fontSize:12,color:"var(--ink2)"}}>{deriveRegions(f.native_states).join(" · ")||"—"}</span></div>
       {MSrow("Invasive states","invasive_states",STATES)}
+      <div className="frow"><label>NY protected (6 NYCRR 193.3)</label>{Sel("ny_protected_status",["Endangered","Threatened","Rare","Exploitably vulnerable"],true)}</div>
 
       <h5>Soil</h5>
       <div className="frow"><label>Soil pH</label>{I("soil_ph")}</div>
