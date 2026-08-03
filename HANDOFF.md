@@ -1,7 +1,7 @@
 # Native Food Forest Planner — Project Handoff
 
 A self-contained brief so a new session can make edits confidently. Last updated
-Jul 2026 at **1000 plants** (batches 1–9). Read this top-to-bottom, then verify
+Aug 2026 at **1565 plants** (batches 1–9 + 570 NY-protected natives). Read this top-to-bottom, then verify
 specifics against the live code/DB before asserting them as fact.
 
 ---
@@ -259,7 +259,8 @@ Verify work · GitHub Actions Pages deploy.
 
 ## 11. Current state & likely next work
 
-- **1000 plants**, batches 1–9. Coverage: NY-native edibles comprehensive; DEC
+- **1565 plants**: batches 1–9 (1000) + 570 NY-protected natives (6 NYCRR 193.3).
+  App `getPlants` PAGES past PostgREST's 1000-row cap — keep any new bulk reads paged. Coverage: NY-native edibles comprehensive; DEC
   S794 list fully covered; strong pollinator forbs; 275 lower-Midwest (Grow
   Native!); 100 nationwide top edibles; 100 keystone/habitat (sedges, ferns,
   grasses, willows, ericaceous shrubs, bog/carnivorous, woodland wildflowers).
@@ -269,3 +270,28 @@ Verify work · GitHub Actions Pages deploy.
   first pass but imperfect on 1000 plants — spot-check on the Verify page; a flag
   report (material tag w/o prose, edible-but-no-food-type, thin eco, food-on-toxic)
   was generated to `~/Downloads/plant_review_flags.json`.
+
+
+## 12. Aug 2026 additions (My Plan overhaul + protected natives)
+
+- **New plants columns:** `propagation` (how-to text; `populate_propagation.py`,
+  curated genera + family/type rules) and `ny_protected_status`
+  (Endangered/Threatened/Rare/Exploitably vulnerable, from 6 CRR-NY 193.3).
+  Both surfaced on the card + Verify editor; mapped in `rowToPlant`/`plantToForm`/
+  `formToPatch`/`emptyPlant`.
+- **Admin INSERT** on plants (RLS) powers the Verify "+ Add new plant" flow
+  (`importer/sql/admin_insert_plants.sql`).
+- **New table `plan_projects`** (RLS per user, like plan_layouts) stores the
+  Project Plan settings blob; `dataProvider.loadProject/saveProject`.
+- **Planting phases:** per-plan `phases` map lives in the plan_layouts blob
+  (written only by Planting Plan → Plants tab). MyPlan reads it for the Forest
+  Layers phase filter; PlanMiniCard shows a P# badge.
+- **My Plan tabs now:** Forest Layers · Planting Plan · Harvest · Maintenance ·
+  Project Plan · Soil Examination · Risk Register. Maintenance =
+  `plantTasks(p)` (reused by Project Plan). Project Plan = `computeProject(...)`
+  → Scope / Schedule / Budget / Summary / Assumptions.
+- **570 protected natives** added via `add_protected.py` (genus-map family/type,
+  USDA fallback); rare non-food natives carry 0/"N" use-scores by design.
+- **My Plan runs near-full-bleed on desktop** (`.wrap.wide` when page==="plan").
+- **Gotcha:** `populate_traits.py` (and any no-`limit` PostgREST read) defaults to
+  1000 rows — set `limit` when the table exceeds it (fixed there; watch others).
