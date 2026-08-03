@@ -56,7 +56,7 @@ def deer_resistant(sci, family, typ):
 def main():
     env = ff.load_env()
     rows = ff.supabase_request(env, "GET",
-        "plants?select=id,common,sci,family,type,native_states,invasive_states&order=id") or []
+        "plants?select=id,common,sci,family,type,native_states,invasive_states&order=id&limit=5000") or []
     n_deer = 0
     for r in rows:
         states = r.get("native_states") or r.get("invasive_states") or []

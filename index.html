@@ -652,9 +652,17 @@ const auth = {
 };
 const dataProvider = {
   async getPlants(){
-    const { data, error } = await sb.from('plants').select('*').order('id');
-    if(error) throw error;
-    return data.map(rowToPlant);
+    // PostgREST caps a response at 1000 rows, so page through in blocks to get
+    // the full catalog (now ~1,570 plants incl. the NY-protected additions).
+    const PAGE=1000; let from=0, all=[];
+    for(;;){
+      const { data, error } = await sb.from('plants').select('*').order('id').range(from, from+PAGE-1);
+      if(error) throw error;
+      all=all.concat(data);
+      if(!data || data.length<PAGE) break;
+      from+=PAGE;
+    }
+    return all.map(rowToPlant);
   },
   async loadPlans(){
     const { data, error } = await sb.from('plans').select('id,name,color,created_at').order('created_at');
