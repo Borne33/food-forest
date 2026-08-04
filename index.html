@@ -467,7 +467,7 @@
   .pplsum .b span{font-family:'Space Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
   /* overflow:clip (not hidden) keeps the rounded corners AND lets the header stick to the page scroll */
   .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;overflow:clip;background:#fbf9f2}
-  .pplhead,.pplrow{display:grid;grid-template-columns:minmax(160px,2fr) 70px 96px minmax(120px,1.3fr) 132px 74px 120px;gap:12px;align-items:center;padding:12px 14px}
+  .pplhead,.pplrow{display:grid;grid-template-columns:minmax(150px,1.8fr) 92px 60px 88px 74px minmax(110px,1.2fr) 118px 68px 116px;gap:11px;align-items:center;padding:12px 14px}
   .ppphase{width:100%;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff;color:var(--ink)}
   .pplhead{position:sticky;top:63px;z-index:3;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
   .pplhead>div:last-child{text-align:center}
@@ -1807,7 +1807,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
           </div>
           <div className="pplist">
             <div className="pplhead">
-              <div>Common name</div><div>Score</div><div>Min→fruit</div><div>Harvest</div><div>Ecology</div><div>Phase</div><div>Quantity</div>
+              <div>Common name</div><div>Layer</div><div>Score</div><div>Min→fruit</div><div>Yrs→fruit</div><div>Harvest</div><div>Ecology</div><div>Phase</div><div>Quantity</div>
             </div>
             {qtyRows.length===0 && <div className="pplrow" style={{gridTemplateColumns:"1fr",cursor:"default"}}><div className="pphint">No plants match that filter.</div></div>}
             {qtyRows.map((p,i)=>{
@@ -1815,8 +1815,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
               return (
                 <div className={"pplrow"+(n?" has":(i%2?" alt":""))} key={p.id} onClick={()=>openDetail(p)}>
                   <div className="cn">{p.common}<i>{p.sci}</i></div>
+                  <div className="fr" data-l="Layer">{(PP_LAYER[p.type]||{}).layer||p.type}</div>
                   <div data-l="Score"><span className="sc" style={{background:bandColor(sc),color:bandText(sc)}}>{sc}</span></div>
                   <div className="fr" data-l="Min → fruit">{p.minPlantsFruit?(p.minPlantsFruit>=2?p.minPlantsFruit+" plants":"Self‑fruitful"):"—"}</div>
+                  <div className="fr" data-l="Yrs → fruit">{p.yearsToFruit?p.yearsToFruit:"—"}</div>
                   <div className="fr" data-l="Harvest">{nd(p.harvest)}</div>
                   <div className="eco" data-l="Ecology">{p.nf&&<span className="ecopill nf">N‑fixer</span>}{p.pol&&<span className="ecopill">Pollinator</span>}{!p.nf&&!p.pol&&<span style={{color:"var(--faint)",fontSize:12}}>—</span>}</div>
                   <div data-l="Phase" onClick={e=>e.stopPropagation()}>
