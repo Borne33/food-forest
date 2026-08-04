@@ -1,0 +1,81 @@
+{
+  "common": "Shrub Yellowroot",
+  "sci": "Xanthorhiza simplicissima",
+  "family": "Ranunculaceae",
+  "type": "Shrub",
+  "life": "Low, colony-forming woody shrub (spreads by rhizome)",
+  "edible_parts": "",
+  "other_uses": "",
+  "prep": "",
+  "harvest": "",
+  "sun": "Part shade to shade (sun with moisture)",
+  "soil": "Moist to wet, acidic; streambanks",
+  "risks": "",
+  "buy": "",
+  "native_states": [
+    "NY",
+    "NJ",
+    "PA",
+    "WV",
+    "VA",
+    "MD",
+    "KY",
+    "TN",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "LA"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      10,
+      "A"
+    ],
+    "eco": [
+      4,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wild Seed Project \u2014 Native Ground Covers",
+      "https://wildseedproject.net/blog/native-ground-covers-for-beauty-and-biodiversity-at-the-ground-level"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/"
+    ]
+  ],
+  "hardiness_zones": "",
+  "deer_resistant": false,
+  "native_north_america": true,
+  "native_americas": false,
+  "eco_uses": "Rhizomatous woody groundcover for shaded, moist banks; stabilizes streambanks and slopes.",
+  "material_uses": "Roots and inner bark yield a traditional yellow dye."
+}

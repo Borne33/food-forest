@@ -1,0 +1,77 @@
+{
+  "common": "Wild Bleeding-heart",
+  "sci": "Dicentra eximia",
+  "family": "Papaveraceae",
+  "type": "Herb",
+  "life": "Clumping woodland perennial",
+  "edible_parts": "",
+  "other_uses": "",
+  "prep": "",
+  "harvest": "",
+  "sun": "Part shade",
+  "soil": "Moist, humus-rich, rocky, well-drained",
+  "risks": "",
+  "buy": "",
+  "native_states": [
+    "NY",
+    "NJ",
+    "PA",
+    "WV",
+    "VA",
+    "MD",
+    "NC",
+    "SC",
+    "GA",
+    "TN",
+    "KY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      6,
+      "A"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wild Seed Project \u2014 Native Ground Covers",
+      "https://wildseedproject.net/blog/native-ground-covers-for-beauty-and-biodiversity-at-the-ground-level"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/"
+    ]
+  ],
+  "hardiness_zones": "",
+  "deer_resistant": false,
+  "native_north_america": true,
+  "native_americas": false,
+  "eco_uses": "Spring-to-fall bloom; nectar for bumblebees and hummingbirds; native to Appalachian woodlands.",
+  "material_uses": ""
+}

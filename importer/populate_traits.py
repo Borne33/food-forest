@@ -55,8 +55,17 @@ def deer_resistant(sci, family, typ):
 
 def main():
     env = ff.load_env()
-    rows = ff.supabase_request(env, "GET",
-        "plants?select=id,common,sci,family,type,native_states,invasive_states&order=id&limit=5000") or []
+    # PostgREST caps a response at 1000 rows regardless of &limit, so page through
+    # with offset — otherwise high-id rows (new batches) never get traits set.
+    rows = []
+    off = 0
+    while True:
+        page = ff.supabase_request(env, "GET",
+            "plants?select=id,common,sci,family,type,native_states,invasive_states&order=id&limit=1000&offset=%d" % off) or []
+        rows += page
+        if len(page) < 1000:
+            break
+        off += 1000
     n_deer = 0
     for r in rows:
         states = r.get("native_states") or r.get("invasive_states") or []
