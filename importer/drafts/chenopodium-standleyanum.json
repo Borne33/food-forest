@@ -1,0 +1,69 @@
+{
+  "common": "Standley’s goosefoot",
+  "sci": "Chenopodium standleyanum",
+  "family": "Amaranthaceae",
+  "type": "Herb",
+  "life": "Annual herb",
+  "edible_parts": "",
+  "other_uses": "> Special Uses <span",
+  "prep": "> References More on Edible Uses Medicinal Uses <span",
+  "harvest": "",
+  "sun": "",
+  "soil": "",
+  "risks": "class=\"txtbox\" style=\"font-family:Arial;\"> Habitats <span",
+  "buy": "",
+  "native_states": [
+    "NY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      0,
+      "A"
+    ],
+    "eco": [
+      4,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Chenopodium%20standleyanum"
+    ],
+    [
+      "New York Flora Atlas",
+      "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CHST2"
+    ]
+  ],
+  "hardiness_zones": "",
+  "deer_resistant": false,
+  "native_north_america": true,
+  "native_americas": false
+}

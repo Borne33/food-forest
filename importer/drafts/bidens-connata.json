@@ -1,0 +1,69 @@
+{
+  "common": "purple-stemmed beggar ticks",
+  "sci": "Bidens connata",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Annual herb",
+  "edible_parts": "",
+  "other_uses": "",
+  "prep": "",
+  "harvest": "",
+  "sun": "",
+  "soil": "",
+  "risks": "",
+  "buy": "",
+  "native_states": [
+    "NY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      0,
+      "A"
+    ],
+    "eco": [
+      4,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Bidens_connata"
+    ],
+    [
+      "New York Flora Atlas",
+      "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/BICO5"
+    ]
+  ],
+  "hardiness_zones": "",
+  "deer_resistant": false,
+  "native_north_america": true,
+  "native_americas": false
+}
