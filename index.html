@@ -471,6 +471,11 @@
   .ppphase{width:100%;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff;color:var(--ink)}
   .pplhead{position:sticky;top:63px;z-index:3;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
   .pplhead>div:last-child{text-align:center}
+  .pplsort{cursor:pointer;user-select:none;display:flex;align-items:center;gap:4px}
+  .pplsort .ar{color:var(--faint);font-size:9px}
+  .pplsort:hover{color:var(--ink)}
+  .pplsort.on{color:var(--ink)}
+  .pplsort.on .ar{color:var(--sage-d)}
   .pplrow{border-bottom:1px solid var(--line);cursor:pointer;background:#fbf9f2}
   .pplrow.alt{background:#f7f2e4}
   .pplrow:last-child{border-bottom:0}
@@ -1403,6 +1408,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   const [growthYear,setGrowthYear]=useState(20); // growth-over-time slider (20 = mature)
   const [qtyQ,setQtyQ]=useState("");             // Step 1 name filter
   const [onlyChosen,setOnlyChosen]=useState(false);
+  const [qSort,setQSort]=useState({key:null,dir:1}); // Step 1 table sort
   // Step 3 soil map
   const [soilMap,setSoilMap]=useState(null);   // {grid:{cols,rows,b:[[s,w],[n,e]]}, data:{texture:rle,drainage:rle,ph:rle}} (persisted)
   const [soilCat,setSoilCat]=useState("texture");
@@ -1736,11 +1742,32 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   const fmt=n=>Math.round(n).toLocaleString();
   const totalToPlace=chosen.reduce((a,p)=>a+(counts[p.id]||0),0);
   const speciesChosen=chosen.filter(p=>(counts[p.id]||0)>0).length;
-  const qtyRows=chosen.filter(p=>{
+  const qtyRowsRaw=chosen.filter(p=>{
     if(onlyChosen && !(counts[p.id]||0)) return false;
     if(qtyQ.trim()){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(qtyQ.trim().toLowerCase())) return false; }
     return true;
   });
+  // Step 1 table sort: one value accessor per column
+  const QCOLS=[["name","Common name"],["layer","Layer"],["score","Score"],["minfruit","Min→fruit"],
+    ["yrsfruit","Yrs→fruit"],["harvest","Harvest"],["eco","Ecology"],["phase","Phase"],["qty","Quantity"]];
+  const qSortVal=(p,key)=>{ switch(key){
+    case "name": return p.common.toLowerCase();
+    case "layer": return ["Canopy","Shrub","Herbaceous","Groundcover","Vine"].indexOf((PP_LAYER[p.type]||{}).layer);
+    case "score": return overall(p,state);
+    case "minfruit": return p.minPlantsFruit||0;
+    case "yrsfruit": { const y=firstFruitYear(p); return y==null?9999:y; }
+    case "harvest": return (p.harvest||"").toLowerCase();
+    case "eco": return (p.nf?2:0)+(p.pol?1:0);
+    case "phase": return (phases&&phases[p.id])||99;
+    case "qty": return counts[p.id]||0;
+    default: return 0; } };
+  const qtyRows = qSort.key
+    ? [...qtyRowsRaw].sort((a,b)=>{ const x=qSortVal(a,qSort.key),y=qSortVal(b,qSort.key);
+        return (x<y?-1:x>y?1:0)*qSort.dir; })
+    : qtyRowsRaw;
+  // default direction per column: text ascending, numbers descending
+  const qSortDefault=k=>(k==="name"||k==="harvest")?1:-1;
+  const qSortBy=k=>setQSort(s=>s.key===k?{key:k,dir:-s.dir}:{key:k,dir:qSortDefault(k)});
   const treeCanopyM2=places.reduce((a,pl)=>{ const p=byId[pl.plantId]; if(p&&p.type==="Tree"){ const r=CANOPY_FT.Tree*0.3048/2; return a+Math.PI*r*r; } return a; },0);
   const treePct=areaM2?Math.round(treeCanopyM2/areaM2*100):0;
   const placedPlants=places.map(pl=>byId[pl.plantId]).filter(Boolean);
@@ -1807,7 +1834,11 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
           </div>
           <div className="pplist">
             <div className="pplhead">
-              <div>Common name</div><div>Layer</div><div>Score</div><div>Min→fruit</div><div>Yrs→fruit</div><div>Harvest</div><div>Ecology</div><div>Phase</div><div>Quantity</div>
+              {QCOLS.map(([k,label])=>(
+                <div key={k} className={"pplsort"+(qSort.key===k?" on":"")} onClick={()=>qSortBy(k)} title={"Sort by "+label}>
+                  {label}<span className="ar">{qSort.key===k?(qSort.dir===1?"▲":"▼"):"⇅"}</span>
+                </div>
+              ))}
             </div>
             {qtyRows.length===0 && <div className="pplrow" style={{gridTemplateColumns:"1fr",cursor:"default"}}><div className="pphint">No plants match that filter.</div></div>}
             {qtyRows.map((p,i)=>{
