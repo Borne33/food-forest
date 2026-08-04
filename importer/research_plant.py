@@ -19,6 +19,7 @@ UA = {"User-Agent": "Mozilla/5.0 (native-food-forest research; abornemann33@gmai
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "cache")
 PFAF_DELAY = 3.0   # seconds between real PFAF network fetches (cache hits are free)
+NAEB_DELAY = 3.0   # seconds between NAEB fetches
 WIKI_DELAY = 0.3
 PFAF_NETWORK = True   # bulk build sets this False (cache-only); the slow trickle sets it True
 
@@ -116,6 +117,36 @@ def wiki(sci):
         return dict(url="https://en.wikipedia.org/wiki/" + urllib.parse.quote(title.replace(" ", "_")),
                     extract=ex, title=title)
     return None
+
+# ---------------- NAEB (Native American Ethnobotany DB) ----------------
+def naeb(sci):
+    url = "http://naeb.brit.org/uses/search/?string=" + urllib.parse.quote(sci)
+    h = _get_cached("naeb", sci, url, delay=NAEB_DELAY)
+    if not h:
+        return None
+    gs = " ".join(sci.split()[:2]).lower()
+    food, drug, mat = [], [], []
+    parts = set()
+    for row in re.findall(r"<tr[^>]*>(.*?)</tr>", h, re.S):
+        cells = [re.sub(r"\s+", " ", _clean(c)) for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, re.S)]
+        if len(cells) < 2:
+            continue
+        if not cells[0].lower().startswith(gs):     # only rows for THIS species
+            continue
+        u = cells[1]
+        low = u.lower()
+        if "food" in low:
+            food.append(u)
+            for p in ("fruit", "seed", "nut", "leaf", "leaves", "root", "tuber", "bulb", "shoot",
+                      "stem", "flower", "sap", "bark", "green"):
+                if p in low: parts.add(p)
+        if "drug" in low or "medicine" in low:
+            drug.append(u)
+        if any(w in low for w in ("fiber", "cordage", "basketry", "dye", "weaving", "soap", "wax", "cordage")):
+            mat.append(u)
+    if not (food or drug or mat):
+        return None
+    return dict(url=url, food=food, drug=drug, mat=mat, parts=sorted(parts))
 
 # ---------------- score mapping (evidence -> 0-10 + tier) ----------------
 WOODY = {"Tree", "Shrub", "Vine"}

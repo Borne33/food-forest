@@ -194,6 +194,7 @@
     display:flex;align-items:center;justify-content:center;padding:0}
   .vbar .vrow{justify-content:space-between}
   .editbtn{border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);border-radius:4px;padding:5px 11px;font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+  .lowflag{font-family:'Space Mono';font-size:10.5px;color:#8a4b00;background:#fbeccb;border:1px solid #e2c079;border-radius:99px;padding:3px 10px}
   .peditor{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:14px 16px;margin:10px 0 16px}
   .peditor h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);margin:15px 0 7px;border-bottom:1px solid var(--line);padding-bottom:4px}
   .peditor h5:first-child{margin-top:0}
@@ -867,6 +868,19 @@ function fruitLabel(p){
 }
 /* show "No Data Found" for empty fields (matters most for lesser-known plants) */
 function nd(v){ return (v!=null && String(v).trim()!=="") ? v : "No Data Found"; }
+/* Data-completeness check for the Verify page: which key fields are still thin.
+   A plant is "low data" if it has few sources or no documented use at all. */
+function dataGaps(p){
+  const g=[];
+  if((p.sources||[]).length<=2) g.push("thin sources");
+  if(Math.max(p.s.raw[0],p.s.cooked[0],p.s.med[0],p.s.materials[0])===0) g.push("no documented uses");
+  if(!(p.sun||"").trim() || !(p.soil||"").trim()) g.push("no growing info");
+  if(!(p.propagation||"").trim()) g.push("no propagation");
+  return g;
+}
+function isLowData(p){
+  return (p.sources||[]).length<=2 || Math.max(p.s.raw[0],p.s.cooked[0],p.s.med[0],p.s.materials[0])===0;
+}
 
 /* ---- Soil Exam: fit model ---- */
 const TEXTURES=["Sandy","Loam","Clay","Silt"];
@@ -3298,6 +3312,7 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
   const [newKey,setNewKey]=useState(0);   // bump to reset the blank form
   const [added,setAdded]=useState(null);  // the plant just inserted
   const nver=plants.filter(p=>p.humanVerified).length;
+  const nlow=plants.filter(isLowData).length;
   const dupe=(sci)=>plants.find(p=>(p.sci||"").trim().toLowerCase()===(sci||"").trim().toLowerCase());
   const addNew=async(_id,patch)=>{
     const d=dupe(patch.sci);
@@ -3310,15 +3325,16 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
   const view=plants.filter(p=>{
     if(filt==="yes" && !p.humanVerified) return false;
     if(filt==="no" && p.humanVerified) return false;
+    if(filt==="low" && !isLowData(p)) return false;
     if(q){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(q.toLowerCase())) return false; }
     return true;
   });
   return (
     <div>
       <div className="pagehead">
-        <div className="eye">Human Verify · {nver}/{plants.length} verified</div>
+        <div className="eye">Human Verify · {nver}/{plants.length} verified · {nlow} low-data</div>
         <h2>Verify plant data</h2>
-        <p>Review each plant against its sources, then mark it <b>Human Verified</b>. Verified plants show a check in the Database. Only your account can see this page.</p>
+        <p>Review each plant against its sources, then mark it <b>Human Verified</b>. Verified plants show a check in the Database. <b>{nlow}</b> plants are flagged <b>low-data</b> (thin sources or no documented use) — use the Low-data filter to prioritize them. Only your account can see this page.</p>
       </div>
 
       {added && (
@@ -3353,6 +3369,7 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
         <button className={"chip"+(filt==="all"?" on":"")} onClick={()=>setFilt("all")}>All</button>
         <button className={"chip"+(filt==="yes"?" on":"")} onClick={()=>setFilt("yes")}>Verified</button>
         <button className={"chip"+(filt==="no"?" on":"")} onClick={()=>setFilt("no")}>Unverified</button>
+        <button className={"chip"+(filt==="low"?" on":"")} onClick={()=>setFilt("low")}>⚠ Low data ({nlow})</button>
       </div>
       <div className="count">{view.length} shown</div>
       {view.map(p=>(
@@ -3367,6 +3384,7 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
               </label>
               <button className="editbtn" onClick={()=>setEditingId(editingId===p.id?null:p.id)}>
                 {editingId===p.id?"Close editor":"✎ Edit data"}</button>
+              {isLowData(p) && <span className="lowflag" title="Sparse record — worth enriching/verifying">⚠ Low data: {dataGaps(p).join(" · ")}</span>}
             </div>
             {editingId===p.id && <PlantEditor p={p} onSave={updatePlant} onCancel={()=>setEditingId(null)} />}
             {(p.images||[]).length>0 && (

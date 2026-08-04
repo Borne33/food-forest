@@ -1,0 +1,65 @@
+{
+  "common": "Vasey\u2019s pondweed",
+  "sci": "Potamogeton vaseyi",
+  "family": "Potamogetonaceae",
+  "type": "Herb",
+  "life": "Perennial herb",
+  "edible_parts": "",
+  "other_uses": "",
+  "prep": "",
+  "harvest": "",
+  "sun": "",
+  "soil": "",
+  "risks": "",
+  "buy": "",
+  "native_states": [
+    "NY"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      0,
+      "N"
+    ],
+    "life": [
+      8,
+      "A"
+    ],
+    "eco": [
+      4,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia",
+      "https://en.wikipedia.org/wiki/Potamogeton_vaseyi"
+    ],
+    [
+      "New York Flora Atlas",
+      "https://newyork.plantatlas.usf.edu/"
+    ]
+  ],
+  "hardiness_zones": "",
+  "deer_resistant": false,
+  "native_north_america": true,
+  "native_americas": false
+}

@@ -108,8 +108,13 @@ def main():
     ap.add_argument("--only", default=None, help="single scientific name")
     a = ap.parse_args()
     env = ff.load_env()
-    rows = ff.supabase_request(env, "GET",
-        "plants?select=id,sci,family,type,lifecycle,propagation&limit=2000") or []
+    rows = []; _off = 0   # paginate past PostgREST's 1000-row cap
+    while True:
+        _pg = ff.supabase_request(env, "GET",
+            "plants?select=id,sci,family,type,lifecycle,propagation&order=id&limit=1000&offset=%d" % _off) or []
+        rows += _pg
+        if len(_pg) < 1000: break
+        _off += 1000
     from collections import Counter
     tier = Counter()
     n = 0

@@ -94,8 +94,13 @@ def split_uses(other, prep, nf, pol, eco_score):
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--force",action="store_true"); a=ap.parse_args()
     env=ff.load_env()
-    rows=ff.supabase_request(env,"GET",
-      "plants?select=id,sci,type,life,edible_parts,prep,other_uses,risks,scores,nf,pol,lifecycle&limit=2000") or []
+    rows=[]; _off=0   # paginate past PostgREST's 1000-row cap
+    while True:
+        _pg=ff.supabase_request(env,"GET",
+          "plants?select=id,sci,type,life,edible_parts,prep,other_uses,risks,scores,nf,pol,lifecycle&order=id&limit=1000&offset=%d"%_off) or []
+        rows+=_pg
+        if len(_pg)<1000: break
+        _off+=1000
     todo=[r for r in rows if a.force or not r.get("lifecycle")]
     n=0
     from collections import Counter
