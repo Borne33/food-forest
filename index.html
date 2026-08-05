@@ -215,6 +215,13 @@
   .fpitem .v{font-family:'Space Mono';font-size:24px;font-weight:700;color:#4a5a86}
   .fpitem .l{font-family:'Space Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-top:4px}
   @media(max-width:560px){.footprint{grid-template-columns:1fr}}
+  .landack{border:1.5px solid var(--sage-d);border-left:5px solid var(--sage-d);border-radius:8px;background:#f1f5ec;padding:18px 22px;margin:0 0 20px}
+  .landack p{line-height:1.6;margin:8px 0}
+  .landack .nations{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:12px 0}
+  .landack .nation{border:1px solid var(--line);border-radius:6px;background:#fff;padding:8px 11px}
+  .landack .nation b{display:block;font-size:16px;color:var(--sage-d)}
+  .landack .nation span{display:block;font-size:12.5px;color:var(--ink2);margin-top:2px}
+  .landack .deference{font-size:13px;color:var(--ink2);font-style:italic}
   .peditor{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:14px 16px;margin:10px 0 16px}
   .peditor h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);margin:15px 0 7px;border-bottom:1px solid var(--line);padding-bottom:4px}
   .peditor h5:first-child{margin-top:0}
@@ -3672,6 +3679,14 @@ const SUSTAIN_AI={
     ["Sierra Club","https://www.sierraclub.org","National environmental organization engaged on data-center pollution and siting."],
   ],
 };
+const SIX_NATIONS=[
+  ["Kanien'kehá:ka","Mohawk","People of the Flint"],
+  ["Onʌyoteʔa·ká","Oneida","People of the Standing Stone"],
+  ["Onöñda'gega'","Onondaga","People of the Hills — keepers of the central fire"],
+  ["Gayogo̱hó:nǫʔ","Cayuga","People of the Great Swamp"],
+  ["Onöndowa'ga:'","Seneca","People of the Great Hill"],
+  ["Skarù:rę'","Tuscarora","People of the Shirt"],
+];
 function About(){
   const [tokens,setTokens]=useState(0);
   useEffect(()=>{ dataProvider.getBuildStats().then(s=>setTokens(s.tokens||0)).catch(()=>{}); },[]);
@@ -3680,6 +3695,23 @@ function About(){
   const fmt=(n,d=0)=>n.toLocaleString(undefined,{maximumFractionDigits:d});
   return (
     <div>
+      <div className="landack">
+        <div className="eye">Land acknowledgment</div>
+        <p>This project is created on the homelands of the <b>Haudenosaunee</b> (Rotinonhsión:ni) — “People of the
+        Longhouse” — the confederacy of Six Nations, on whose land I live and grow. We offer our respect and gratitude
+        to them as the original and continuing stewards of this land. The Six Nations, by their own names:</p>
+        <div className="nations">
+          {SIX_NATIONS.map(([endo,en,mean])=>(
+            <div className="nation" key={en}><b>{endo}</b><span>{en} · {mean}</span></div>
+          ))}
+        </div>
+        <p>Much of the food and medicine knowledge gathered here comes directly from Indigenous peoples across North
+        America. The Native American Ethnobotany Database we draw on — and cite on each plant — records uses from more
+        than 140 nations, including the Haudenosaunee, the <b>Cherokee</b> (ᏣᎳᎩ, Tsalagi), the <b>Anishinaabe</b>
+        (Ojibwe/Chippewa), the Menominee, the Meskwaki, and many others. This knowledge is theirs. We aggregate it with
+        gratitude, we name its source wherever we can, and we encourage you to learn from and support these nations directly.</p>
+        <p className="deference">We defer to each nation's own name and spelling; any error here is ours to correct — please tell us.</p>
+      </div>
       <div className="pagehead">
         <div className="eye">About</div>
         <h2>Aggregating native food-forest knowledge — for everyone</h2>

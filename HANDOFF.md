@@ -313,6 +313,11 @@ Verify work · GitHub Actions Pages deploy.
   model cannot read its own usage), ADD it to the stored figure:
   `update public.build_stats set tokens = <old + session tokens>, updated_at = now() where id = 1;`
   The seed value was the sum of `/cost` across all build sessions to date.
+- **Land acknowledgment** sits at the top of the About page (`SIX_NATIONS` +
+  `.landack`): the Haudenosaunee Six Nations by endonym, plus the Indigenous
+  nations whose ethnobotanical knowledge (via NAEB, 144 nations cited) we use.
+  Endonym spellings/orthographies vary by community — verify against each
+  nation's own sources before changing, and defer to them.
 - **Keep the sources current:** when a new data source is added anywhere in the
   app, add it to `ABOUT_SOURCES` on the About page (and cite it per-plant in
   `sources`). Current sources: PFAF, Native American Ethnobotany DB, USDA PLANTS,
