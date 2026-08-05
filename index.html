@@ -3651,6 +3651,27 @@ const ABOUT_SOURCES={
     ["Leaflet","https://leafletjs.com","The open-source mapping library the planner is built on."],
   ],
 };
+const SUSTAIN_AI={
+  "Greener digital & AI infrastructure":[
+    ["Green Software Foundation","https://greensoftware.foundation","Standards and tools for low-carbon software, including AI (the Software Carbon Intensity spec and “SCI for AI”)."],
+    ["Sustainable Digital Infrastructure Alliance","https://sdialliance.org","Nonprofit working to decarbonize digital infrastructure."],
+    ["The Green Web Foundation","https://www.thegreenwebfoundation.org","A fossil-free internet — keeps a public directory of verified green (renewable-powered) hosting providers you can choose."],
+    ["iMasons Climate Accord","https://climateaccord.org","Data-center industry coalition standardizing carbon accounting and reduction across power, materials and products."],
+  ],
+  "Clean & carbon-free energy for data centers":[
+    ["Clean Energy Buyers Association","https://cleanenergybuyers.org","Coalition driving a 90% carbon-free U.S. grid by 2030 and helping large buyers procure clean power."],
+    ["RE100 (Climate Group)","https://www.there100.org","Global businesses committed to 100% renewable electricity."],
+    ["World Resources Institute","https://www.wri.org","Helps big energy users move to 24/7 carbon-free energy — hourly-matched, not just annual offsets."],
+  ],
+  "Water — stewardship, quality & return":[
+    ["Alliance for Water Stewardship","https://a4ws.org","The international water-stewardship standard for responsible use, watershed health and water quality/return that facilities (incl. data centers) can be certified against."],
+    ["Ceres","https://www.ceres.org","Nonprofit pressing companies and investors to take water risk and sustainability seriously."],
+  ],
+  "Community, health, noise & local impact":[
+    ["Piedmont Environmental Council","https://www.pecva.org","A leading voice on data-center reform and on the noise, generator pollution and health impacts on neighboring communities — a model for local advocacy anywhere."],
+    ["Sierra Club","https://www.sierraclub.org","National environmental organization engaged on data-center pollution and siting."],
+  ],
+};
 function About(){
   const [tokens,setTokens]=useState(0);
   useEffect(()=>{ dataProvider.getBuildStats().then(s=>setTokens(s.tokens||0)).catch(()=>{}); },[]);
@@ -3723,6 +3744,26 @@ function About(){
           (~{FP_WH_PER_1K} Wh per 1,000 tokens; ~{FP_L_PER_KWH} L water per kWh of data-centre electricity) and should be
           read as rough order-of-magnitude only. Methodology: UC Riverside <i>“Making AI Less Thirsty”</i> (Li et al., 2023)
           and the IEA on data-centre energy.</p>
+        </div>
+
+        <div className="acard shoulders">
+          <h3>Toward more sustainable AI</h3>
+          <p>Running AI has real energy, water and community costs. We support the push for AI infrastructure that's
+          powered by clean energy, returns the water it uses, and respects the places and people around it. Here are
+          organizations doing that work — <b>support them, learn from them, or use their tools</b>.</p>
+          {Object.entries(SUSTAIN_AI).map(([grp,items])=>(
+            <React.Fragment key={grp}>
+              <h4>{grp}</h4>
+              <div className="srcgrid">
+                {items.map(([name,url,desc])=>(
+                  <a className="srcitem" key={name} href={url} target="_blank" rel="noreferrer"><b>{name}</b><span>{desc}</span></a>
+                ))}
+              </div>
+            </React.Fragment>
+          ))}
+          <p className="anote">There isn't a single national group devoted only to data-center noise or water treatment —
+          those fights are usually led locally (the Piedmont Environmental Council is a strong template), and water
+          quality &amp; return is carried by the stewardship standards above.</p>
         </div>
       </div>
     </div>
