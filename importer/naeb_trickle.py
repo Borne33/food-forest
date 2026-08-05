@@ -45,9 +45,9 @@ def main():
     fetched = updated = 0
     for r in todo:
         if fetched >= a.limit: break
-        cached = os.path.exists(rp._cache_path("naeb", r["sci"]))
+        if os.path.exists(rp._cache_path("naeb", r["sci"])): continue  # already attempted — skip (converges)
         nb = rp.naeb(r["sci"])
-        if not cached: fetched += 1
+        fetched += 1
         if not nb: continue
         sc = r.get("scores") or {}
         patch = {}

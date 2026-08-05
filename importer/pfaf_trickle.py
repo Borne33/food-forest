@@ -41,13 +41,13 @@ def main():
     todo = targets(env)
     print("%d plants still lacking edible-parts data; PFAF delay %.0fs, cap %d/run"
           % (len(todo), rp.PFAF_DELAY, a.limit))
+    import os
     fetched = updated = 0
     for r in todo:
         if fetched >= a.limit: break
-        import os
-        cached = os.path.exists(rp._cache_path("pfaf", r["sci"]))
-        pf = rp.pfaf(r["sci"])          # paced network fetch unless already cached
-        if not cached: fetched += 1
+        if os.path.exists(rp._cache_path("pfaf", r["sci"])): continue  # already attempted — skip (converges)
+        pf = rp.pfaf(r["sci"])          # paced network fetch (+cache)
+        fetched += 1
         if not pf: continue
         sc = r.get("scores") or {}
         patch = {}
