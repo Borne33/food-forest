@@ -195,6 +195,26 @@
   .vbar .vrow{justify-content:space-between}
   .editbtn{border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);border-radius:4px;padding:5px 11px;font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase}
   .lowflag{font-family:'Space Mono';font-size:10.5px;color:#8a4b00;background:#fbeccb;border:1px solid #e2c079;border-radius:99px;padding:3px 10px}
+  /* About page */
+  .aboutgrid{display:flex;flex-direction:column;gap:16px}
+  .acard{border:1.5px solid var(--line);border-radius:8px;background:#fbf9f2;padding:18px 20px}
+  .acard h3{margin:0 0 10px;font-size:19px;font-weight:800}
+  .acard h4{margin:16px 0 8px;font-family:'Space Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .abullets{margin:0;padding-left:20px;line-height:1.6}.abullets li{margin-bottom:7px}
+  .anote{font-size:13px;color:var(--ink2);line-height:1.55;margin:10px 0 0}
+  .acard.shoulders{background:#f4f7ee;border-color:var(--sage-d)}
+  .srcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+  .srcitem{display:block;border:1px solid var(--line);border-radius:6px;background:#fff;padding:9px 11px;text-decoration:none;color:var(--ink)}
+  .srcitem:hover{border-color:var(--sage-d);background:#eef4e5}
+  .srcitem b{display:block;font-size:14px;color:var(--sage-d)}
+  .srcitem span{display:block;font-size:12px;color:var(--ink2);line-height:1.4;margin-top:2px}
+  .acard.warn{background:#f6ead6;border-color:var(--orange)}
+  .acard.ai{background:#eef1f6;border-color:#8794ad}
+  .footprint{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 4px}
+  .fpitem{text-align:center;border:1.5px solid var(--line);border-radius:6px;background:#fff;padding:12px 8px}
+  .fpitem .v{font-family:'Space Mono';font-size:24px;font-weight:700;color:#4a5a86}
+  .fpitem .l{font-family:'Space Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-top:4px}
+  @media(max-width:560px){.footprint{grid-template-columns:1fr}}
   .peditor{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:14px 16px;margin:10px 0 16px}
   .peditor h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);margin:15px 0 7px;border-bottom:1px solid var(--line);padding-bottom:4px}
   .peditor h5:first-child{margin-top:0}
@@ -739,6 +759,12 @@ const dataProvider = {
     const { error } = await sb.from('plan_layouts')
       .upsert({ plan_id:planId, data:layout, updated_at:new Date().toISOString() }, { onConflict:'plan_id' });
     if(error) throw error;
+  },
+  async getBuildStats(){
+    // public read of the maintained AI-token figure (About page footprint)
+    const { data, error } = await sb.from('build_stats').select('tokens,updated_at').eq('id',1).maybeSingle();
+    if(error) throw error;
+    return data || {tokens:0, updated_at:null};
   },
   async loadProject(planId){
     // Project Plan settings for one plan (Budget/Scope/Schedule); null if unset
@@ -3587,7 +3613,122 @@ function SoilExam({plants, state, plan, toggle, soil, setSoil, soilDerived, open
 }
 
 /* ---------- Menu + App shell ---------- */
-const PAGES=[["db","Database"],["plan","My Plans"],["guide","Scoring Guide"],["data","Raw Data"]];
+/* =====================================================================
+   ABOUT PAGE — mission, source acknowledgments, safety, and an honest
+   AI-footprint counter. The token figure is a maintained estimate stored
+   in build_stats (updated each session — see HANDOFF); energy & water are
+   derived with published industry averages and labelled as rough.
+   ===================================================================== */
+const FP_WH_PER_1K=0.4;   // ~0.4 Wh per 1,000 tokens (rough industry estimate)
+const FP_L_PER_KWH=1.8;   // ~1.8 L water per kWh of data-centre electricity (rough)
+function useCountUp(target, dur=1400){
+  const [v,setV]=useState(0);
+  useEffect(()=>{ let raf, t0; const step=ts=>{ if(!t0)t0=ts; const p=Math.min(1,(ts-t0)/dur);
+    setV(target*(1-Math.pow(1-p,3))); if(p<1) raf=requestAnimationFrame(step); };
+    raf=requestAnimationFrame(step); return ()=>cancelAnimationFrame(raf); },[target,dur]);
+  return v;
+}
+const ABOUT_SOURCES={
+  "Plant uses, edibility & ethnobotany":[
+    ["Plants For A Future (PFAF)","https://pfaf.org","Edibility & medicinal ratings, uses and cultivation for thousands of plants — a decades-long labour of love."],
+    ["Native American Ethnobotany Database","http://naeb.brit.org","Dan Moerman & BRIT — documented Indigenous food, medicine and material uses, with citations."],
+    ["USDA PLANTS Database","https://plants.usda.gov","Authoritative taxonomy, growth habit, distribution and traits (public domain)."],
+    ["Wikipedia & Wikimedia Commons","https://en.wikipedia.org","Species descriptions and freely-licensed photographs, written by countless volunteers."],
+    ["GBIF","https://www.gbif.org","Global Biodiversity Information Facility — occurrence and taxonomy data."],
+    ["iNaturalist","https://www.inaturalist.org","Community naturalist observations and images."],
+  ],
+  "Native flora & conservation":[
+    ["New York Flora Atlas","https://newyork.plantatlas.usf.edu","NY Flora Association & USF Water Institute — the definitive checklist of New York's native flora."],
+    ["NYSDEC","https://dec.ny.gov","New York's protected-native-plant (6 NYCRR 193.3) and regulated invasive-species lists."],
+    ["U.S. Fish & Wildlife Service","https://www.fws.gov/program/endangered-species","Federal Endangered Species Act listings."],
+    ["Wild Seed Project","https://wildseedproject.net","Growing native plants from seed, and superb regional guidance."],
+    ["Grow Native! (Missouri Botanical Garden)","https://grownative.org","Regional native-plant guidance for the lower Midwest."],
+  ],
+  "Maps, imagery & infrastructure":[
+    ["OpenStreetMap & Nominatim","https://www.openstreetmap.org","Base maps and address search, by an open community of mappers."],
+    ["Esri World Imagery","https://www.esri.com","Satellite imagery for the site-planning map."],
+    ["OpenTopoMap","https://opentopomap.org","Topographic base map."],
+    ["Leaflet","https://leafletjs.com","The open-source mapping library the planner is built on."],
+  ],
+};
+function About(){
+  const [tokens,setTokens]=useState(0);
+  useEffect(()=>{ dataProvider.getBuildStats().then(s=>setTokens(s.tokens||0)).catch(()=>{}); },[]);
+  const kwh=(tokens/1000)*FP_WH_PER_1K/1000, liters=kwh*FP_L_PER_KWH;
+  const tA=useCountUp(tokens), kA=useCountUp(kwh), lA=useCountUp(liters);
+  const fmt=(n,d=0)=>n.toLocaleString(undefined,{maximumFractionDigits:d});
+  return (
+    <div>
+      <div className="pagehead">
+        <div className="eye">About</div>
+        <h2>Aggregating native food-forest knowledge — for everyone</h2>
+        <p>This is a free, non-commercial project that gathers scattered information about North American
+        native edible &amp; useful plants into one searchable place, and pairs it with practical tools for
+        designing a food forest. It creates no new botanical research — its whole purpose is to
+        <b> aggregate the excellent work of others and make it easier to reach</b>.</p>
+      </div>
+      <div className="aboutgrid">
+        <div className="acard">
+          <h3>What we're trying to do</h3>
+          <ul className="abullets">
+            <li><b>Share knowledge about native edible plants</b> — what's edible, how it's used, how to grow and propagate it, and how it fits an ecosystem.</li>
+            <li><b>Give you tools to build a food forest</b> — score and compare species for your state, then plan layers, phases, a maintenance schedule and a full project budget on a real map of your site.</li>
+            <li><b>Help you find where to buy</b> — links to sources for plants and seed, so a plan becomes a planting.</li>
+            <li><b>Point you to deeper databases</b> — we surface a summary and always send you to the authoritative sources below for the full picture.</li>
+          </ul>
+          <p className="anote">The goal is accessibility: one place to start, with clear paths onward to the people who know far more.</p>
+        </div>
+
+        <div className="acard shoulders">
+          <h3>We stand on the shoulders of others</h3>
+          <p>Nearly everything here is drawn from the generous, painstaking work of botanists, ethnobotanists,
+          foragers, conservationists and volunteers who built and maintain the databases below — much of it free
+          and open. Please <b>visit them, use them, and support them</b>. They did the hard work; we just gathered it up.</p>
+          {Object.entries(ABOUT_SOURCES).map(([grp,items])=>(
+            <React.Fragment key={grp}>
+              <h4>{grp}</h4>
+              <div className="srcgrid">
+                {items.map(([name,url,desc])=>(
+                  <a className="srcitem" key={name} href={url} target="_blank" rel="noreferrer"><b>{name}</b><span>{desc}</span></a>
+                ))}
+              </div>
+            </React.Fragment>
+          ))}
+          <p className="anote">Every plant page also lists its own specific sources. If we've drawn on your work and you'd
+          like different credit — or would prefer we not aggregate it — please get in touch and we'll fix it right away.</p>
+        </div>
+
+        <div className="acard warn">
+          <h3>Please forage &amp; plant responsibly</h3>
+          <p>Edibility information here is aggregated and can contain errors — <b>never eat any wild plant unless you
+          have positively identified it and confirmed it is safe from multiple trusted sources.</b> Many plants have
+          toxic look-alikes. Favour nursery-propagated stock, never harvest protected or rare species from the wild,
+          and respect the law and the land.</p>
+        </div>
+
+        <div className="acard ai">
+          <h3>Built with AI — in the open</h3>
+          <p>Full transparency: this website — its code, its plant records, and the pipelines that gather and score
+          them — was created with substantial help from an <b>AI assistant (Anthropic's Claude)</b>, working alongside
+          a human who directs the project, reviews the work, and is responsible for it. AI was used to write software,
+          aggregate and structure public data, and draft text (including this page). It is a tool for making existing
+          knowledge more accessible — not a source of new botanical fact.</p>
+          <div className="footprint">
+            <div className="fpitem"><div className="v">{fmt(tA)}</div><div className="l">est. AI tokens used</div></div>
+            <div className="fpitem"><div className="v">{fmt(kA,1)}</div><div className="l">est. energy (kWh)</div></div>
+            <div className="fpitem"><div className="v">{fmt(lA)}</div><div className="l">est. water (liters)</div></div>
+          </div>
+          <p className="anote">A good-faith estimate, not a precise measurement. The token count is a maintained figure
+          updated as work on the site continues; energy and water are derived using published industry averages
+          (~{FP_WH_PER_1K} Wh per 1,000 tokens; ~{FP_L_PER_KWH} L water per kWh of data-centre electricity) and should be
+          read as rough order-of-magnitude only. Methodology: UC Riverside <i>“Making AI Less Thirsty”</i> (Li et al., 2023)
+          and the IEA on data-centre energy.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+const PAGES=[["db","Database"],["plan","My Plans"],["guide","Scoring Guide"],["data","Raw Data"],["about","About"]];
 // palette for plan pills; new plans cycle through these
 const PLAN_COLORS=["#6b8f5a","#b5651d","#4a7a96","#9c6b9e","#c99a2e","#7a8b3f","#a5504d","#4f8a7b"];
 // readable text color (dark/light) for a given hex background
@@ -3749,6 +3890,7 @@ function App(){
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
+          page==="about" ? <About /> :
           (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} createPlant={createPlant} /> :
           <RawData plants={plants} state={state} />
         )}

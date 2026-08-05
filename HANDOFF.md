@@ -295,3 +295,31 @@ Verify work · GitHub Actions Pages deploy.
 - **My Plan runs near-full-bleed on desktop** (`.wrap.wide` when page==="plan").
 - **Gotcha:** `populate_traits.py` (and any no-`limit` PostgREST read) defaults to
   1000 rows — set `limit` when the table exceeds it (fixed there; watch others).
+
+
+## 13. About page + AI-footprint token counter (Aug 2026)
+
+- **About page** (`About` component; nav item "About"): mission, goals, a
+  grateful **source-acknowledgment** section (grouped links in `ABOUT_SOURCES`),
+  a forage-responsibly safety note, and an **AI-use disclaimer** with a live
+  footprint counter.
+- **Token counter is a MAINTAINED figure**, not self-measured. It lives in the
+  `build_stats` table (single row, public read / admin update;
+  `importer/sql/build_stats.sql`) and the About page reads it live and animates
+  it; energy & water are derived client-side (`FP_WH_PER_1K`=0.4 Wh/1k tokens,
+  `FP_L_PER_KWH`=1.8 L/kWh — rough, labelled).
+- **AFTER EVERY Claude session that changes the site:** get that session's token
+  total (run **`/cost`** in Claude Code, or the Anthropic Console usage view — the
+  model cannot read its own usage), ADD it to the stored figure:
+  `update public.build_stats set tokens = <old + session tokens>, updated_at = now() where id = 1;`
+  The seed value was the sum of `/cost` across all build sessions to date.
+- **Keep the sources current:** when a new data source is added anywhere in the
+  app, add it to `ABOUT_SOURCES` on the About page (and cite it per-plant in
+  `sources`). Current sources: PFAF, Native American Ethnobotany DB, USDA PLANTS,
+  Wikipedia/Wikimedia, GBIF, iNaturalist, New York Flora Atlas, NYSDEC, USFWS,
+  Wild Seed Project, Grow Native!, OpenStreetMap/Nominatim, Esri, OpenTopoMap,
+  Leaflet.
+- **Enrichment trickle:** `trickle_loop.sh` (detached; cron/launchd are TCC-
+  blocked on this Mac) runs ~25 PFAF + 50 NAEB fetches/hour, auto-stops 2026-08-09.
+  Start: `nohup bash importer/trickle_loop.sh & disown`; stop: `pkill -f trickle_loop.sh`;
+  watch: `tail -f importer/trickle.log`. All fetches cached under `importer/cache/`.
