@@ -495,7 +495,17 @@
   .pplsum .b span{font-family:'Space Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
   /* overflow:clip (not hidden) keeps the rounded corners AND lets the header stick to the page scroll */
   .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;overflow:clip;background:#fbf9f2}
-  .pplhead,.pplrow{display:grid;grid-template-columns:minmax(150px,1.8fr) 92px 60px 88px 74px minmax(110px,1.2fr) 118px 68px 116px;gap:11px;align-items:center;padding:12px 14px}
+  .pplhead,.pplrow,.pplfilter{display:grid;grid-template-columns:34px minmax(150px,1.7fr) 92px 60px 88px 74px minmax(110px,1.2fr) 118px 68px 116px;gap:11px;align-items:center;padding:12px 14px}
+  .pplcheck{display:flex;align-items:center;justify-content:center}
+  .pplcheck input{width:16px;height:16px;accent-color:var(--sage-d);cursor:pointer}
+  .pplcheck .fx{border:0;background:none;color:var(--red);font-size:12px;cursor:pointer;padding:0}
+  .pplfilter{padding:8px 14px;background:#f4efe0;border-bottom:1.5px solid var(--line)}
+  .pplfilter input,.pplfilter select{width:100%;min-width:0;font-family:'Space Mono';font-size:11.5px;border:1.5px solid var(--line);border-radius:4px;padding:5px 4px;background:#fff;color:var(--ink)}
+  .pplbulk{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#eef4e5;border:1.5px solid var(--sage-d);border-radius:6px;padding:8px 12px;margin:0 0 10px}
+  .pplbulk .sep{font-family:'Space Mono';font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint)}
+  .pplbulk select,.pplbulk input{font-family:'Space Mono';font-size:12px;border:1.5px solid var(--line);border-radius:4px;padding:5px 6px;background:#fff;color:var(--ink)}
+  .pplbulk input[type=number]{width:60px}
+  .pplrow.selrow{outline:2px solid var(--sage-d);outline-offset:-2px}
   .ppphase{width:100%;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff;color:var(--ink)}
   .pplhead{position:sticky;top:63px;z-index:3;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
   .pplhead>div:last-child{text-align:center}
@@ -528,6 +538,8 @@
     .pplrow>div[data-l]::before{content:attr(data-l);align-self:center;font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:7px}
     .pplrow>div[data-l]{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
     .ppqty{justify-content:flex-start}
+    .pplfilter{grid-template-columns:repeat(2,1fr);gap:6px}
+    .pplrow .pplcheck{justify-content:flex-start}
   }
   /* Map + tool cards (tools sit BELOW the map, full width) */
   .ppmapwrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:14px}
@@ -1456,6 +1468,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   const [qtyQ,setQtyQ]=useState("");             // Step 1 name filter
   const [onlyChosen,setOnlyChosen]=useState(false);
   const [qSort,setQSort]=useState({key:null,dir:1}); // Step 1 table sort
+  const [showFilters,setShowFilters]=useState(false); // Step 1 per-column filter row
+  const [colF,setColF]=useState({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""});
+  const [sel,setSel]=useState(()=>new Set());    // selected plant ids for bulk edit
+  const [bulkQty,setBulkQty]=useState(1);        // quantity to apply in a bulk edit
   // Step 3 soil map
   const [soilMap,setSoilMap]=useState(null);   // {grid:{cols,rows,b:[[s,w],[n,e]]}, data:{texture:rle,drainage:rle,ph:rle}} (persisted)
   const [soilCat,setSoilCat]=useState("texture");
@@ -1789,11 +1805,39 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   const fmt=n=>Math.round(n).toLocaleString();
   const totalToPlace=chosen.reduce((a,p)=>a+(counts[p.id]||0),0);
   const speciesChosen=chosen.filter(p=>(counts[p.id]||0)>0).length;
+  // per-column filter: returns false if a plant fails any active column filter
+  const passCol=(p)=>{
+    if(colF.layer){ const l=(PP_LAYER[p.type]||{}).layer||p.type; if(l!==colF.layer) return false; }
+    if(colF.score){ const sc=overall(p,state);
+      if(colF.score==="80"&&sc<80) return false; if(colF.score==="60"&&(sc<60||sc>=80)) return false;
+      if(colF.score==="40"&&(sc<40||sc>=60)) return false; if(colF.score==="lt40"&&sc>=40) return false; }
+    if(colF.minfruit){ const mp=p.minPlantsFruit;
+      if(colF.minfruit==="self"&&mp!==1) return false; if(colF.minfruit==="partner"&&!(mp>=2)) return false;
+      if(colF.minfruit==="unknown"&&mp) return false; }
+    if(colF.yrs){ const y=firstFruitYear(p);
+      if(colF.yrs==="le2"&&!(y!=null&&y<=2)) return false; if(colF.yrs==="3to5"&&!(y!=null&&y>=3&&y<=5)) return false;
+      if(colF.yrs==="6plus"&&!(y!=null&&y>=6)) return false; if(colF.yrs==="unknown"&&y!=null) return false; }
+    if(colF.harvest.trim()){ if(!(p.harvest||"").toLowerCase().includes(colF.harvest.trim().toLowerCase())) return false; }
+    if(colF.eco){ if(colF.eco==="nf"&&!p.nf) return false; if(colF.eco==="pol"&&!p.pol) return false;
+      if(colF.eco==="either"&&!(p.nf||p.pol)) return false; if(colF.eco==="neither"&&(p.nf||p.pol)) return false; }
+    if(colF.phase){ const ph=phases&&phases[p.id];
+      if(colF.phase==="none"&&ph) return false; if(colF.phase!=="none"&&String(ph||"")!==colF.phase) return false; }
+    if(colF.qty){ const n=counts[p.id]||0; if(colF.qty==="has"&&!n) return false; if(colF.qty==="none"&&n) return false; }
+    return true;
+  };
   const qtyRowsRaw=chosen.filter(p=>{
     if(onlyChosen && !(counts[p.id]||0)) return false;
     if(qtyQ.trim()){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(qtyQ.trim().toLowerCase())) return false; }
-    return true;
+    return passCol(p);
   });
+  const colFActive=Object.values(colF).filter(v=>v!=="").length;
+  const setCF=(k,v)=>setColF(o=>({...o,[k]:v}));
+  // ---- bulk edit over selected rows ----
+  const bulkSetPhase=(ph)=>setPhases&&setPhases(prev=>{ const np={...prev};
+    sel.forEach(id=>{ if(ph>=1&&ph<=PHASE_MAX) np[id]=ph; else delete np[id]; }); return np; });
+  const bulkSetQty=(n)=>{ n=Math.max(0,Math.min(999,n|0)); setCounts(prev=>{ const nc={...prev};
+    sel.forEach(id=>{ if(n) nc[id]=n; else delete nc[id]; }); return nc; }); };
+  const toggleSel=(id)=>setSel(s=>{ const n=new Set(s); n.has(id)?n.delete(id):n.add(id); return n; });
   // Step 1 table sort: one value accessor per column
   const QCOLS=[["name","Common name"],["layer","Layer"],["score","Score"],["minfruit","Min→fruit"],
     ["yrsfruit","Yrs→fruit"],["harvest","Harvest"],["eco","Ecology"],["phase","Phase"],["qty","Quantity"]];
@@ -1815,6 +1859,9 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   // default direction per column: text ascending, numbers descending
   const qSortDefault=k=>(k==="name"||k==="harvest")?1:-1;
   const qSortBy=k=>setQSort(s=>s.key===k?{key:k,dir:-s.dir}:{key:k,dir:qSortDefault(k)});
+  const selInView=qtyRows.reduce((a,p)=>a+(sel.has(p.id)?1:0),0);
+  const allInView=qtyRows.length>0 && selInView===qtyRows.length;
+  const toggleAll=()=>setSel(s=>{ const n=new Set(s); if(allInView) qtyRows.forEach(p=>n.delete(p.id)); else qtyRows.forEach(p=>n.add(p.id)); return n; });
   const treeCanopyM2=places.reduce((a,pl)=>{ const p=byId[pl.plantId]; if(p&&p.type==="Tree"){ const r=CANOPY_FT.Tree*0.3048/2; return a+Math.PI*r*r; } return a; },0);
   const treePct=areaM2?Math.round(treeCanopyM2/areaM2*100):0;
   const placedPlants=places.map(pl=>byId[pl.plantId]).filter(Boolean);
@@ -1873,25 +1920,60 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
           </div>
           <div className="pphint" style={{margin:"0 0 12px"}}><b>Phase</b> sets the planting order (1 = plant first). Phases group your plan into waves — e.g. nitrogen‑fixers and overstory trees first, understory later. Filter Forest Layers by phase to see each wave. Leave blank for unphased.</div>
           <div className="pplbar">
-            <input className="q" placeholder="Filter this plan…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} />
+            <button className={"ppbtn"+(showFilters||colFActive?" primary":" ghost")} onClick={()=>setShowFilters(v=>!v)}>
+              ⚲ Filters{colFActive?" ("+colFActive+")":""}</button>
             <button className={"ppbtn"+(onlyChosen?" primary":" ghost")} onClick={()=>setOnlyChosen(v=>!v)}>
               {onlyChosen?"✓ Only with a quantity":"Only with a quantity"}</button>
+            {(colFActive>0||qtyQ) && <button className="ppbtn ghost" onClick={()=>{ setColF({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""}); setQtyQ(""); }}>Clear filters</button>}
+            <span className="grow"></span>
             {totalToPlace>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every quantity in this plan?")) setCounts({}); }}>Clear quantities</button>}
             {Object.keys(phases||{}).length>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every phase assignment in this plan?")) setPhases&&setPhases({}); }}>Clear phases</button>}
           </div>
+          {sel.size>0 && (
+            <div className="pplbulk">
+              <b>{sel.size} selected</b>
+              <span className="sep">Bulk set phase</span>
+              <select value="" onChange={e=>{ const v=e.target.value; if(v!=="") bulkSetPhase(v==="clear"?0:parseInt(v,10)); e.target.value=""; }}>
+                <option value="">—</option>
+                {Array.from({length:PHASE_MAX},(_,k)=>k+1).map(ph=><option key={ph} value={ph}>Phase {ph}</option>)}
+                <option value="clear">Clear phase</option>
+              </select>
+              <span className="sep">quantity</span>
+              <input type="number" min="0" value={bulkQty} onChange={e=>setBulkQty(parseInt(e.target.value||"0",10))} />
+              <button className="ppbtn primary" onClick={()=>bulkSetQty(bulkQty)}>Apply qty</button>
+              <span className="grow"></span>
+              <button className="ppbtn ghost" onClick={()=>setSel(new Set())}>Deselect all</button>
+            </div>
+          )}
           <div className="pplist">
             <div className="pplhead">
+              <div className="pplcheck"><input type="checkbox" checked={allInView} onChange={toggleAll} title="Select all shown" /></div>
               {QCOLS.map(([k,label])=>(
                 <div key={k} className={"pplsort"+(qSort.key===k?" on":"")} onClick={()=>qSortBy(k)} title={"Sort by "+label}>
                   {label}<span className="ar">{qSort.key===k?(qSort.dir===1?"▲":"▼"):"⇅"}</span>
                 </div>
               ))}
             </div>
+            {showFilters && (
+              <div className="pplfilter">
+                <div className="pplcheck">{colFActive>0 && <button className="fx" title="Clear column filters" onClick={()=>setColF({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""})}>✕</button>}</div>
+                <input placeholder="name…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} />
+                <select value={colF.layer} onChange={e=>setCF("layer",e.target.value)}><option value="">Layer</option>{["Canopy","Shrub","Herbaceous","Groundcover","Vine"].map(l=><option key={l} value={l}>{l}</option>)}</select>
+                <select value={colF.score} onChange={e=>setCF("score",e.target.value)}><option value="">Score</option><option value="80">80+</option><option value="60">60–79</option><option value="40">40–59</option><option value="lt40">&lt;40</option></select>
+                <select value={colF.minfruit} onChange={e=>setCF("minfruit",e.target.value)}><option value="">Min→fruit</option><option value="self">Self‑fruitful</option><option value="partner">Needs 2+</option><option value="unknown">Unknown</option></select>
+                <select value={colF.yrs} onChange={e=>setCF("yrs",e.target.value)}><option value="">Yrs→fruit</option><option value="le2">≤2</option><option value="3to5">3–5</option><option value="6plus">6+</option><option value="unknown">Unknown</option></select>
+                <input placeholder="harvest…" value={colF.harvest} onChange={e=>setCF("harvest",e.target.value)} />
+                <select value={colF.eco} onChange={e=>setCF("eco",e.target.value)}><option value="">Ecology</option><option value="nf">N‑fixer</option><option value="pol">Pollinator</option><option value="either">Either</option><option value="neither">Neither</option></select>
+                <select value={colF.phase} onChange={e=>setCF("phase",e.target.value)}><option value="">Phase</option>{Array.from({length:PHASE_MAX},(_,k)=>k+1).map(ph=><option key={ph} value={String(ph)}>{ph}</option>)}<option value="none">Unphased</option></select>
+                <select value={colF.qty} onChange={e=>setCF("qty",e.target.value)}><option value="">Qty</option><option value="has">Has qty</option><option value="none">None</option></select>
+              </div>
+            )}
             {qtyRows.length===0 && <div className="pplrow" style={{gridTemplateColumns:"1fr",cursor:"default"}}><div className="pphint">No plants match that filter.</div></div>}
             {qtyRows.map((p,i)=>{
-              const sc=overall(p,state), n=counts[p.id]||0;
+              const sc=overall(p,state), n=counts[p.id]||0, isSel=sel.has(p.id);
               return (
-                <div className={"pplrow"+(n?" has":(i%2?" alt":""))} key={p.id} onClick={()=>openDetail(p)}>
+                <div className={"pplrow"+(isSel?" selrow":"")+(n?" has":(i%2?" alt":""))} key={p.id} onClick={()=>openDetail(p)}>
+                  <div className="pplcheck" onClick={e=>e.stopPropagation()}><input type="checkbox" checked={isSel} onChange={()=>toggleSel(p.id)} /></div>
                   <div className="cn">{p.common}<i>{p.sci}</i></div>
                   <div className="fr" data-l="Layer">{(PP_LAYER[p.type]||{}).layer||p.type}</div>
                   <div data-l="Score"><span className="sc" style={{background:bandColor(sc),color:bandText(sc)}}>{sc}</span></div>
