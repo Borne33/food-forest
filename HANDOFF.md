@@ -1,7 +1,8 @@
 # Native Food Forest Planner — Project Handoff
 
 A self-contained brief so a new session can make edits confidently. Last updated
-Aug 2026 at **1565 plants** (batches 1–9 + 570 NY-protected natives). Read this top-to-bottom, then verify
+Aug 2026 at **~2457 plants** (batches 1–9 + 570 NY-protected natives + ~892 NYFA
+NY-native influx). Read this top-to-bottom, then verify
 specifics against the live code/DB before asserting them as fact.
 
 ---
@@ -259,13 +260,15 @@ Verify work · GitHub Actions Pages deploy.
 
 ## 11. Current state & likely next work
 
-- **1565 plants**: batches 1–9 (1000) + 570 NY-protected natives (6 NYCRR 193.3).
-  App `getPlants` PAGES past PostgREST's 1000-row cap — keep any new bulk reads paged. Coverage: NY-native edibles comprehensive; DEC
-  S794 list fully covered; strong pollinator forbs; 275 lower-Midwest (Grow
-  Native!); 100 nationwide top edibles; 100 keystone/habitat (sedges, ferns,
-  grasses, willows, ericaceous shrubs, bog/carnivorous, woodland wildflowers).
-- **Gaps for future batches:** more Carex, more grasses/rushes, lycophytes,
-  submersed aquatics, remaining woodland wildflowers, rare/endangered NY natives.
+- **~2457 plants**: batches 1–9 (1000) + 570 NY-protected natives (6 NYCRR 193.3)
+  + ~892 NYFA NY-native influx (batches 1–5, ground-cover→canopy). App `getPlants`
+  PAGES past PostgREST's 1000-row cap — keep any new bulk reads paged (this bit
+  `populate_traits/uses/propagation` too — all now paginate). Coverage: NY-native
+  flora now broad (forbs, sedges/grasses, ferns, woody); the NYFA influx is
+  essentially the full NY native checklist.
+- **Gaps / next:** the NYFA influx records are data-sparse on use-scores until the
+  PFAF+NAEB enrichment trickle finishes (see §14); ~145 unknown-habit rows
+  defaulted to type Herb (verify); non-NY natives (western/southern) still thin.
 - **Open review item:** the food/material/lifecycle auto-classification is a solid
   first pass but imperfect on 1000 plants — spot-check on the Verify page; a flag
   report (material tag w/o prose, edible-but-no-food-type, thin eco, food-on-toxic)
@@ -328,3 +331,34 @@ Verify work · GitHub Actions Pages deploy.
   blocked on this Mac) runs ~25 PFAF + 50 NAEB fetches/hour, auto-stops 2026-08-09.
   Start: `nohup bash importer/trickle_loop.sh & disown`; stop: `pkill -f trickle_loop.sh`;
   watch: `tail -f importer/trickle.log`. All fetches cached under `importer/cache/`.
+
+## 14. Aug 2026 (cont.) — NYFA influx, research pipeline, table UX
+
+- **NYFA native influx (~892 plants, batches 1–5, ground-cover→canopy):** driven
+  by `batch_research.py N` (layer-ordered list in `nyfa_ordered.json`). Records
+  are built from **friendly sources only** — Wikipedia full-text (redirect/synonym
+  aware) + the NYFA CSV row — via `research_plant.py`; PFAF is read CACHE-ONLY
+  during bulk builds (zero pfaf.org load). Edibility is credited only on explicit,
+  non-toxic Wikipedia phrasing (tier A); everything else stays 0/"N" for the
+  trickle to fill. Flow per batch: `batch_research.py N` → `backfill.py`.
+- **Enrichment trickle** (`research_plant.py` cache in `importer/cache/`, gitignored):
+  `pfaf_trickle.py` (25/run) + `naeb_trickle.py` (50/run) fill use-scores from
+  PFAF star ratings and the **Native American Ethnobotany Database** (naeb.brit.org)
+  respectively — tier E, non-clobbering, each species fetched at most once, and
+  they SKIP already-attempted (cached) species so they converge. Driven by
+  `trickle_loop.sh` (see §13). Every source is cited per-plant in `sources`.
+- **US federal protected status:** `plants.us_protected_status` (ESA
+  Endangered/Threatened, from the USFWS listings CSV; `importer/sql/us_protected.sql`).
+  Card badge (magenta) + Verify dropdown + a **Database "US protected" filter chip**
+  (alongside a new **"NY protected"** chip). Mapped like the NY field.
+- **Planting Plan → Plants tab** is now a full data table: columns Common name ·
+  **Layer** · Score · Min→fruit · **Yrs→fruit** · Harvest · Ecology · **Phase** ·
+  Quantity; **click-any-header sort** (`QCOLS`/`qSortVal`); a toggleable
+  **per-column filter row** (`colF`/`passCol`); and **bulk edit** — a checkbox
+  column (`sel` set) with select-all-shown and a bulk bar to set Phase/Quantity
+  across all selected plants (`bulkSetPhase`/`bulkSetQty`, single state update).
+- **Verify "low-data" flag:** `isLowData(p)`/`dataGaps(p)` badge + header count +
+  a "⚠ Low data" filter, to prioritise sparse records for enrichment.
+- **About page** also has a **"Toward more sustainable AI"** org directory
+  (`SUSTAIN_AI`) — vetted groups on green infrastructure, clean energy, water
+  stewardship, and community/noise impact.
