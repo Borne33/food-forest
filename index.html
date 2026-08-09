@@ -195,6 +195,8 @@
   .vbar .vrow{justify-content:space-between}
   .editbtn{border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);border-radius:4px;padding:5px 11px;font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase}
   .lowflag{font-family:'Space Mono';font-size:10.5px;color:#8a4b00;background:#fbeccb;border:1px solid #e2c079;border-radius:99px;padding:3px 10px}
+  /* Grant Finder (embedded companion app) */
+  .grantframe{width:100%;height:calc(100vh - 150px);min-height:600px;border:1.5px solid var(--line);border-radius:8px;background:#fff;display:block}
   /* About page */
   .aboutgrid{display:flex;flex-direction:column;gap:16px}
   .acard{border:1.5px solid var(--line);border-radius:8px;background:#fbf9f2;padding:18px 20px}
@@ -3883,7 +3885,24 @@ function About(){
     </div>
   );
 }
-const PAGES=[["db","Database"],["plan","My Plans"],["guide","Scoring Guide"],["data","Raw Data"],["about","About"]];
+/* Grant Finder — embeds the standalone "Horizon" grant-finder app (grants.html,
+   self-contained w/ its own inlined catalog) in an iframe so it runs exactly as
+   built while living inside the site's nav & shell. */
+function GrantFinder(){
+  return (
+    <div>
+      <div className="pagehead" style={{margin:"0 0 10px"}}>
+        <div className="eye">Companion tool</div>
+        <h2>Grant Finder — Finger Lakes &amp; Western NY</h2>
+        <p>Sustainability grant programmes (federal, state, county, foundation) scored against your project and
+        applicant type, with a best-path comparison. A companion tool — figures carry their source and last-verified
+        date; always confirm against the funder before applying. <a href="grants.html" target="_blank" rel="noopener">Open full-screen ↗</a></p>
+      </div>
+      <iframe src="grants.html" title="Horizon grant finder" className="grantframe"></iframe>
+    </div>
+  );
+}
+const PAGES=[["db","Database"],["plan","My Plans"],["guide","Scoring Guide"],["data","Raw Data"],["grants","Grant Finder"],["about","About"]];
 // palette for plan pills; new plans cycle through these
 const PLAN_COLORS=["#6b8f5a","#b5651d","#4a7a96","#9c6b9e","#c99a2e","#7a8b3f","#a5504d","#4f8a7b"];
 // readable text color (dark/light) for a given hex background
@@ -4033,7 +4052,7 @@ function App(){
         </div>
       </div>
 
-      <div className={"wrap"+(page==="plan"?" wide":"")}>
+      <div className={"wrap"+(page==="plan"||page==="grants"?" wide":"")}>
         {loadErr ? (
           <div className="empty" style={{borderColor:"var(--red)",color:"var(--ink)"}}>
             <b>Couldn't reach Supabase.</b>
@@ -4046,6 +4065,7 @@ function App(){
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
           page==="about" ? <About /> :
+          page==="grants" ? <GrantFinder /> :
           (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} createPlant={createPlant} /> :
           <RawData plants={plants} state={state} />
         )}

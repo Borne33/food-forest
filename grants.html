@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horizon — Finger Lakes + Western NY grant finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bedrock:#12100C; --loam:#1A1712; --strata:#252017; --seam:#3A3226;
+  --bone:#EFE9DC; --dust:#9C9484;
+  --amber:#E9B84C; --aurora:#5FD6C0; --moss:#A9C948; --iris:#A98BE0;
+  --ember:#E56A6A; --volt:#5CF7A0; --copper:#D9814E; --r:4px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:#12100C;color-scheme:dark}
+html,body{margin:0;padding:0}
+body{background:var(--bedrock);
+  background-image:radial-gradient(1200px 500px at 80% -10%,rgba(95,214,192,.07),transparent 60%),
+    radial-gradient(900px 420px at 5% 5%,rgba(233,184,76,.06),transparent 60%),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.018) 0 1px,transparent 1px 46px);
+  color:var(--bone);font-family:"Public Sans",system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Archivo",system-ui,sans-serif;letter-spacing:-.02em;margin:0;color:var(--bone)}
+input,textarea,button,select{color-scheme:dark;font:inherit}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.horizon{display:flex;height:5px;width:100%}
+.horizon i{flex:1;display:block}
+.horizon i:nth-child(1){background:var(--amber)}.horizon i:nth-child(2){background:var(--aurora)}
+.horizon i:nth-child(3){background:var(--moss)}.horizon i:nth-child(4){background:var(--iris)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 90px}
+.mast{padding:24px 0 16px;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--seam)}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:27px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--volt);text-shadow:0 0 22px rgba(92,247,160,.45)}
+.brand span{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--aurora)}
+.stamp{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(233,184,76,.4);padding:5px 9px;border-radius:99px;background:rgba(233,184,76,.06)}
+nav.tabs{display:flex;flex-wrap:wrap;margin:20px 0 28px;border:1px solid var(--seam);border-radius:var(--r);overflow:hidden;background:var(--loam)}
+nav.tabs button{flex:1 1 auto;min-width:132px;background:transparent;border:0;border-right:1px solid var(--seam);padding:12px 13px;
+  cursor:pointer;text-align:left;font-family:"Archivo",sans-serif;font-weight:600;font-size:13.5px;color:var(--dust)}
+nav.tabs button:last-child{border-right:0}
+nav.tabs button b{display:block;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:9.5px;letter-spacing:.16em;color:var(--seam);margin-bottom:4px}
+nav.tabs button:hover{color:var(--bone);background:rgba(255,255,255,.03)}
+nav.tabs button[aria-selected=true]{background:var(--strata);color:var(--bone);box-shadow:inset 0 -2px 0 var(--aurora)}
+nav.tabs button[aria-selected=true] b{color:var(--aurora)}
+nav.tabs button:focus-visible{outline:2px solid var(--aurora);outline-offset:-3px}
+nav.tabs .badge{display:inline-block;background:var(--volt);color:var(--bedrock);border-radius:99px;padding:0 6px;font-size:10px;font-weight:700;margin-left:6px}
+.screen{display:none;animation:rise .3s ease}.screen.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}}
+.screen-head{margin-bottom:22px}
+.screen-head h2{font-size:31px;font-weight:800;line-height:1.05;color:var(--volt);text-shadow:0 0 26px rgba(92,247,160,.3)}
+.screen-head p{margin:8px 0 0;color:var(--dust);max-width:64ch;font-size:14.5px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--aurora);display:block;margin-bottom:8px}
+.card{background:var(--loam);border:1px solid var(--seam);border-radius:var(--r)}
+.pad{padding:17px 19px}
+.grid2{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+.stack{display:flex;flex-direction:column;gap:13px}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.between{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+label.f{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dust);margin:0 0 8px}
+hr.hair{border:0;border-top:1px solid var(--seam);margin:15px 0}
+.groupname{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:13px 0 7px;display:flex;align-items:center;gap:7px}
+.groupname i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.chip{display:inline-flex;align-items:center;border:1px solid var(--seam);background:transparent;color:var(--dust);
+  padding:4px 10px;border-radius:99px;font-size:12.5px;cursor:pointer;transition:.15s}
+.chip:hover{color:var(--bone);border-color:var(--dust)}
+.chip[aria-pressed=true]{background:rgba(95,214,192,.14);border-color:var(--aurora);color:var(--aurora)}
+.chip[aria-pressed=true][data-fam=energy_climate]{background:rgba(233,184,76,.14);border-color:var(--amber);color:var(--amber)}
+.chip[aria-pressed=true][data-fam=water]{background:rgba(95,214,192,.14);border-color:var(--aurora);color:var(--aurora)}
+.chip[aria-pressed=true][data-fam=land]{background:rgba(169,201,72,.14);border-color:var(--moss);color:var(--moss)}
+.chip[aria-pressed=true][data-fam=waste_circular]{background:rgba(217,129,78,.16);border-color:var(--copper);color:var(--copper)}
+.chip[aria-pressed=true][data-fam=community_operational]{background:rgba(169,139,224,.16);border-color:var(--iris);color:var(--iris)}
+.chip[aria-pressed=true][data-fam=other]{background:rgba(156,148,132,.18);border-color:var(--dust);color:var(--bone)}
+.chk{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:14px;cursor:pointer;color:var(--dust);background:none;border:0;width:100%;text-align:left}
+.chk i{width:15px;height:15px;border:1.5px solid var(--seam);border-radius:2px;flex:0 0 auto}
+.chk[aria-pressed=true]{color:var(--bone)}
+.chk[aria-pressed=true] i{background:var(--aurora);border-color:var(--aurora);position:relative}
+.chk[aria-pressed=true] i::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid var(--bedrock);border-width:0 2px 2px 0;transform:rotate(42deg)}
+.chk small{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dust)}
+.btn{font-family:"Archivo",sans-serif;font-weight:600;font-size:13.5px;border-radius:var(--r);padding:10px 16px;cursor:pointer;
+  border:1px solid var(--aurora);background:var(--aurora);color:var(--bedrock)}
+.btn.ghost{background:transparent;color:var(--bone);border-color:var(--seam)}
+.btn.ghost:hover{border-color:var(--dust)}
+.btn:focus-visible,.chip:focus-visible,.chk:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.field{width:100%;border:1px solid var(--seam);border-radius:var(--r);padding:10px 12px;background:var(--bedrock);color:var(--bone)}
+textarea.field{min-height:92px;resize:vertical}
+.sub{font-size:12.5px;color:var(--dust);margin-top:6px}
+.match{display:flex;align-items:center;gap:9px}
+.match .num{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:20px;color:var(--aurora)}
+.meter{width:76px;height:5px;background:var(--seam);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--aurora);box-shadow:0 0 10px rgba(95,214,192,.6)}
+.match.mid .num{color:var(--amber)}.match.mid .meter i{background:var(--amber);box-shadow:0 0 10px rgba(233,184,76,.5)}
+.match.low .num{color:var(--dust)}.match.low .meter i{background:var(--dust);box-shadow:none}
+.res{display:block;width:100%;border-bottom:1px solid var(--seam);padding:17px 19px;transition:background .15s}
+.restitle{background:none;border:0;padding:0;text-align:left;color:inherit;cursor:pointer;min-width:0;flex:1}
+.restitle:hover h3{color:var(--volt)}
+.restitle:focus-visible{outline:2px solid var(--aurora);outline-offset:3px}
+.res:last-child{border-bottom:0}
+.res:hover{background:rgba(255,255,255,.025)}
+.res h3{font-size:17.5px;font-weight:700;line-height:1.22;max-width:47ch}
+.funder{font-size:12.5px;color:var(--dust);margin-top:4px}
+.facts{display:flex;gap:24px;flex-wrap:wrap;margin-top:13px}
+.fact b{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dust);font-weight:500}
+.fact span{font-family:"IBM Plex Mono",monospace;font-size:14.5px;font-weight:500}
+.fact span.urgent{color:var(--ember)}
+.fact span.muted{color:var(--dust)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
+.tag{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace;
+  border:1px solid var(--seam);padding:3px 8px;border-radius:2px;color:var(--dust)}
+.tag.who{border-color:rgba(239,233,220,.35);color:var(--bone)}
+.tag.flag{border-color:rgba(233,184,76,.6);color:var(--amber)}
+.tag.closed{border-color:rgba(229,106,106,.6);color:var(--ember)}
+.sortbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 19px;border-bottom:1px solid var(--seam);background:var(--strata)}
+.count{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--dust)}
+.tl .track{position:relative;height:2px;background:var(--seam);margin:30px 0 12px}
+.tl .pin{position:absolute;top:-6px;width:14px;height:14px;border-radius:50%;background:var(--loam);border:2px solid var(--seam);transform:translateX(-50%)}
+.tl .pin.done{background:var(--aurora);border-color:var(--aurora)}
+.tl .pin.due{border-color:var(--ember);box-shadow:0 0 12px rgba(229,106,106,.5)}
+.tl .pin.pay{border-color:var(--moss)}
+.tl .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--aurora),var(--amber))}
+.tl .lbls{display:flex;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dust)}
+.tl .lbls div{text-align:center;flex:1}
+.tl .lbls b{display:block;color:var(--bone);font-size:12.5px;font-weight:600}
+table.elig{width:100%;border-collapse:collapse;font-size:13.5px}
+table.elig th,table.elig td{text-align:left;padding:10px;border-bottom:1px solid var(--seam)}
+table.elig th{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dust);font-weight:500}
+table.elig td.y{color:var(--aurora);font-weight:600}
+table.elig td.n{color:var(--dust)}
+.path{border:1px solid var(--seam);border-radius:var(--r);background:var(--loam);padding:17px 19px;margin-bottom:13px}
+.path.best{border-color:var(--aurora);box-shadow:0 0 0 1px rgba(95,214,192,.25),0 0 40px rgba(95,214,192,.09)}
+.path .ph{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.path h4{font-size:17px;font-weight:700}
+.path .tot{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;color:var(--amber)}
+.strata{display:flex;height:48px;margin:15px 0 9px;border-radius:3px;overflow:hidden;border:1px solid var(--seam);background:var(--bedrock)}
+.strata span{display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  color:var(--bedrock);overflow:hidden;white-space:nowrap;min-width:0}
+.legend{display:flex;flex-wrap:wrap;gap:15px;font-size:12.5px;color:var(--dust)}
+.legend em{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:2px}
+.note{font-size:13px;color:var(--dust);margin-top:11px;border-left:2px solid var(--seam);padding-left:12px}
+.alert{display:flex;gap:14px;padding:16px 19px;border-bottom:1px solid var(--seam)}
+.alert:last-child{border-bottom:0}
+.alert .dot{flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:var(--moss);margin-top:8px;box-shadow:0 0 10px rgba(169,201,72,.7)}
+.alert.read .dot{background:var(--seam);box-shadow:none}
+.alert.change .dot{background:var(--ember);box-shadow:0 0 10px rgba(229,106,106,.6)}
+.alert h4{font-size:15.5px;font-weight:700;line-height:1.28}
+.alert p{margin:4px 0 0;font-size:13.5px;color:var(--dust)}
+.alert time{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dust);white-space:nowrap;margin-left:auto}
+.daybar{padding:8px 19px;background:var(--strata);color:var(--dust);font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid var(--seam)}
+.pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:99px;border:1px solid var(--seam);color:var(--dust)}
+.pill.seed{color:var(--amber);border-color:rgba(233,184,76,.5)}
+.pill.ok{color:var(--moss);border-color:rgba(169,201,72,.5)}
+.empty{padding:34px 19px;color:var(--dust);text-align:center}
+.empty b{display:block;color:var(--bone);font-family:"Archivo",sans-serif;font-size:16px;margin-bottom:6px}
+.railwrap{overflow-x:auto;border:1px solid var(--seam);border-radius:var(--r);background:var(--loam)}
+.rail{display:flex;min-width:760px}
+.railcell{flex:1;background:transparent;border:0;border-right:1px solid var(--seam);padding:11px 10px 12px;
+  cursor:pointer;text-align:left;color:var(--dust);position:relative}
+.railcell:last-child{border-right:0}
+.railcell:hover{background:rgba(255,255,255,.03)}
+.railcell[aria-pressed=true]{background:var(--strata)}
+.railcell i{display:block;height:3px;border-radius:2px;margin-bottom:8px;opacity:.55}
+.railcell[aria-pressed=true] i{opacity:1}
+.railcell b{display:block;font-family:"Archivo",sans-serif;font-size:12px;color:var(--bone);font-weight:600}
+.railcell span{display:block;font-size:19px;font-weight:600;color:var(--bone);margin-top:3px}
+.railcell em{display:block;font-style:normal;font-size:10.5px;color:var(--dust);margin-top:1px}
+.phasetag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 9px;border-radius:99px;color:var(--bedrock);font-weight:700}
+.trackcard{overflow:hidden}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px;margin-top:14px}
+.tgrid label{display:block}
+.tgrid label span{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dust);margin-bottom:5px}
+.tgrid .field{padding:8px 10px;font-size:13.5px}
+.tsec{margin-top:12px;border-top:1px solid var(--seam);padding-top:10px}
+.tsec>summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dust);list-style:none}
+.tsec>summary:hover{color:var(--bone)}
+.tsec[open]>summary{color:var(--aurora)}
+.cashbox{margin-top:13px;padding:11px 13px;border:1px solid var(--seam);border-left:2px solid var(--amber);border-radius:3px;background:rgba(233,184,76,.05)}
+.readout{display:block;padding:8px 10px;font-size:15px;font-weight:600;color:var(--moss)}
+.tgrid select.field{padding:8px 10px;font-size:13.5px}
+.flags{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.flag{font-size:12.8px;padding:7px 11px;border-radius:3px;border-left:2px solid}
+.flag.warn{background:rgba(233,184,76,.08);border-color:var(--amber);color:var(--amber)}
+.flag.bad{background:rgba(229,106,106,.1);border-color:var(--ember);color:var(--ember)}
+details summary::-webkit-details-marker{color:var(--dust)}
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--seam);font-size:12.8px;color:var(--dust);max-width:78ch}
+a{color:var(--aurora)}
+@media(max-width:860px){.grid2{grid-template-columns:1fr!important}.screen-head h2{font-size:25px}nav.tabs button{min-width:112px;font-size:12.5px;padding:10px}}
+</style>
+</head>
+<body>
+<div class="horizon"><i></i><i></i><i></i><i></i></div>
+<div class="wrap">
+  <header class="mast">
+    <div class="brand"><h1>Horizon</h1><span>Finger Lakes + Western NY</span></div>
+    <div class="stamp" id="stamp">Loading catalog…</div>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="screens"></main>
+  <p class="foot" id="foot"></p>
+</div>
+
+<script>window.__GRANTS__ = {"version":1,"generated_at":"2026-08-01","region_scope":"Finger Lakes + Western New York (Monroe County included)","provenance_note":"Every record was checked against a primary or named secondary source on 2026-08-01. Fields that the source did not state are null, not estimated. Records with needs_verification=true have at least one figure taken from a secondary aggregator or an older round and must be confirmed against the funder notice before you rely on the number.","grants":[{"id":"nysdec-ucf-round17-2026","title":"Urban and Community Forestry Grant Program, Round 17 \u2014 tree inventories and management plans","funder":"NYS Department of Environmental Conservation","funder_level":"state","program_url":"https://dec.ny.gov/nature/forests-trees/urban-and-community-forestry","source_url":"https://www.governor.ny.gov/news/governor-hochul-announces-10-million-available-urban-forest-inventory-and-assessment-grants","summary":"Ten million dollars statewide for street and park tree inventories, assessments, and community forest management plans. Projects must sit on public property, private land open to the public, or recognized Tribal reservation land. Applications go through the Statewide Financial System; nonprofits must prequalify before the deadline.","eligible_applicants":["town","county","nonprofit"],"applicant_notes":{"state_agency":"Not named in the eligibility list for this round.","for_profit":"Not eligible as applicant; may be retained as a contractor.","individual":"Not eligible."},"project_types":["habitat_restoration","carbon_offsetting","community_education"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Statewide, subject to the eligible geographic boundaries defined in the Request for Applications."},"award_min":null,"award_max":null,"cost_share_pct":null,"expected_awards":null,"status":"open","opens_on":"2026-05-15","deadline":"2026-08-12T14:00:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":null,"requirements":["Applicant must be registered in the Statewide Financial System (SFS)","Not-for-profits must complete NYS prequalification before the deadline","Project site must be public property, private land open to the public, or recognized Tribal reservation land","One application per applicant"],"tags":["epf","sfs","25-million-trees"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Total pool ($10M) and deadline confirmed. Per-project award floor and ceiling were not stated in the sources checked \u2014 read the RFA before entering numbers.","raw_hash":null},{"id":"nysdec-advancing-forest-markets-2026","title":"Advancing Forest Markets \u2014 Tree Market Boost and Revitalization","funder":"NYS Department of Environmental Conservation","funder_level":"state","program_url":"https://dec.ny.gov/nature/forests-trees","source_url":"https://dec.ny.gov/news/press-releases/2026/4/on-arbor-day-dec-announces-46-million-now-available-through-new-advancing-forest-markets-grant-program","summary":"New program with $46 million available to expand seedling supply and forest-product capacity. The Tree Market Boost track funds forestry and forest-product businesses and other entities working on reforestation, forest management, low-grade wood products, timber and maple. No match required, and awards carry a participation incentive payment on contract execution. Funding cannot be used to break ground or disturb site vegetation.","eligible_applicants":["town","county","nonprofit","for_profit","individual"],"applicant_notes":{"individual":"Individual private landowners are named as eligible, subject to USDA enrollment requirements.","for_profit":"Forestry and forest-product businesses are a primary target of this track."},"project_types":["carbon_offsetting","supply_chain_audits","other","native_plants"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Statewide."},"award_min":100000,"award_max":12000000,"cost_share_pct":0,"expected_awards":null,"status":"open","opens_on":"2026-04-24","deadline":"2026-08-05T14:00:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":"milestone","requirements":["Applications submitted through the Statewide Financial System (SFS)","All funded work must be completed before January 2028","Funds may not be used for direct implementation that breaks ground or disturbs site vegetation","Participation incentive payment of $2,000-$10,000 depending on project size"],"tags":["25-million-trees","sfs"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Tagged native_plants on the basis of the programme's stated aim of increasing access to high-quality, locally grown seedlings for reforestation, afforestation and climate resilience. The notice does not use the word \"native\" \u2014 confirm species requirements in the guidelines.","raw_hash":null},{"id":"nysdec-climate-smart-communities-2026","title":"Climate Smart Communities Grant Program \u2014 2026 round","funder":"NYS Department of Environmental Conservation","funder_level":"state","program_url":"https://dec.ny.gov/environmental-protection/climate-change/resources-for-local-governments/grants-for-climate-action","source_url":"https://dec.ny.gov/news/press-releases/2026/6/dec-announces-18-million-for-climate-smart-communities-grants-now-available","summary":"Eighteen million dollars for municipal climate mitigation and adaptation. About $17 million funds implementation projects from $35,000 to $2 million; a separate $1 million funds planning, inventory and assessment projects from $10,000 to $200,000. Named eligible topics include reducing emissions from food waste, flood risk reduction, refrigerant management and smart growth analysis. The 2026 round closed on 31 July; the CFA cycle historically runs May to July each year.","eligible_applicants":["town","county"],"applicant_notes":{"state_agency":"Not eligible. Program is for local governments.","nonprofit":"Not eligible as lead applicant; can participate as a project partner.","for_profit":"Not eligible as applicant; may be retained as a vendor.","individual":"Not eligible."},"project_types":["organic_composting","zero_waste","rain_gardens_bioretention","habitat_restoration","fleet_electrification","energy_efficiency","active_transportation"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Statewide. Eligibility expanded effective April 2026 to include local public authorities, public benefit corporations and Indian Nations."},"award_min":35000,"award_max":2000000,"cost_share_pct":50,"expected_awards":null,"status":"closed","opens_on":"2026-06-05","deadline":"2026-07-31T16:00:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":"reimbursement","requirements":["Applications accepted only through the NYS Consolidated Funding Application (CFA)","Local match of 50% of total project cost for most projects","Match may drop to 20% for financial-hardship communities or projects in disadvantaged communities","Applicant must be registered in the SFS Grants Management System","Grantee must own the project site or hold a climate change mitigation easement"],"tags":["cfa","epf","bond-act","exclusive:cfa-2026"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":false,"verification_note":"Next round expected to open in the May-July 2027 CFA cycle; dates not yet published.","raw_hash":null},{"id":"nys-consolidated-funding-application-2026","title":"NYS Consolidated Funding Application \u2014 2026 round","funder":"Empire State Development / Regional Economic Development Councils","funder_level":"state","program_url":"https://apps.cio.ny.gov/apps/cfa/","source_url":"https://www.governor.ny.gov/news/governor-hochul-announces-launch-2026-regional-economic-development-council-initiative","summary":"The single application portal for more than 20 state programs across eight agencies, including most DEC and EFC environmental grants. Up to $60 million in Regional Council Capital Funds plus program-specific money. Deadline-enforced programs closed 31 July 2026 at 4pm; open-enrollment programs inside the CFA keep accepting applications until their funds run out.","eligible_applicants":["town","county","nonprofit","for_profit"],"applicant_notes":{"individual":"Not an applicant category; individual projects must go through an eligible entity.","state_agency":"State agencies administer rather than apply."},"project_types":["other"],"geography":{"regions":["finger_lakes","western_ny","statewide_ny"],"counties":[],"notes":"The Finger Lakes REDC covers Genesee, Livingston, Monroe, Ontario, Orleans, Seneca, Wayne, Wyoming and Yates. The Western New York REDC covers Allegany, Cattaraugus, Chautauqua, Erie and Niagara."},"award_min":null,"award_max":null,"cost_share_pct":null,"expected_awards":null,"status":"closed","opens_on":"2026-06-01","deadline":"2026-07-31T16:00:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":null,"requirements":["Regional Councils score projects on alignment with the regional strategic plan","Open-enrollment programs within the CFA are not subject to the July deadline"],"tags":["cfa","portal","exclusive:cfa-2026"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":false,"verification_note":"This is a portal record, not a grant. It exists so the app can explain why a cluster of state deadlines all land on the same date.","raw_hash":null},{"id":"nyserda-clean-energy-communities-3","title":"Clean Energy Communities Program, Round 3.0 \u2014 action and designation grants","funder":"NYSERDA","funder_level":"state","program_url":"https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities","source_url":"https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities/High-Impact-Actions","summary":"Municipalities earn points by completing high-impact clean energy actions, then draw grant funding to implement further projects. Action grants run up to $290,000 for large municipalities and up to $97,500 for small and medium ones. Submissions of new high-impact actions have been paused since November 2024, but designated communities can still submit grant project applications on a rolling basis.","eligible_applicants":["town","county"],"applicant_notes":{"nonprofit":"Not an applicant; municipalities apply.","for_profit":"Not an applicant.","individual":"Not an applicant."},"project_types":["energy_efficiency","solar_renewables","fleet_electrification","smart_grid_metering","community_education"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Any New York county, city, town or village. Additional support for projects in disadvantaged communities."},"award_min":null,"award_max":290000,"cost_share_pct":null,"expected_awards":null,"status":"rolling","opens_on":null,"deadline":null,"award_notice_est":null,"funds_available_est":null,"disbursement":null,"requirements":["Municipality must hold Clean Energy Communities designation to access action grants","High-impact action submissions have been closed since 7 November 2024","Custom, pre-approved and direct-to-voucher proposal routes are available"],"tags":["nyserda","rolling"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"The $290,000 / $97,500 tiers were published before the October 2024 step-down in funding levels. Confirm current tier amounts with a NYSERDA CEC coordinator before budgeting.","raw_hash":null},{"id":"monroe-community-climate-action-fund-2026","title":"Community Climate Action Fund Pilot Program","funder":"Monroe County Department of Environmental Services","funder_level":"county","program_url":"https://www.monroecounty.gov/des-caf-program","source_url":"https://www.monroecounty.gov/news-2026-06-05-climate-fund","summary":"Monroe County's first direct climate grant to its own municipalities. Individual municipalities can receive up to $10,000 in matching funds for new or expanded initiatives drawn from the roughly 100 actions in Phase II of the County Climate Action Plan, spanning transportation, buildings and housing, energy use, and sustainable materials management. Applicants are encouraged to partner with neighbouring municipalities. The pilot round closed 17 June 2026.","eligible_applicants":["town"],"applicant_notes":{"county":"Monroe County is the funder, not an applicant.","nonprofit":"Not named as an eligible applicant; partner through a municipality.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["fleet_electrification","energy_efficiency","zero_waste","organic_composting","active_transportation","green_building_design","community_education"],"geography":{"regions":["finger_lakes"],"counties":["monroe"],"notes":"Municipalities located within Monroe County only."},"award_min":null,"award_max":10000,"cost_share_pct":50,"expected_awards":null,"status":"closed","opens_on":"2026-06-05","deadline":"2026-06-17T16:00:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":null,"requirements":["Project must map to an action in Monroe County Climate Action Plan Phase II","Matching funds required","Joint applications with neighbouring municipalities encouraged"],"tags":["monroe","pilot"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Described as matching funds; the exact match ratio was not stated in the press release. 50% is an assumption flagged for correction. Pilot status means a second round is likely but unannounced.","raw_hash":null},{"id":"usda-reap-grants-fy2026","title":"Rural Energy for America Program (REAP) \u2014 grant component","funder":"USDA Rural Business-Cooperative Service","funder_level":"federal","program_url":"https://www.rd.usda.gov/programs-services/energy-programs/rural-energy-america-program-renewable-energy-systems-energy-efficiency-improvement-guaranteed-loans","source_url":"https://www.federalregister.gov/documents/2024/10/16/2024-23854/notice-of-funding-opportunity-for-the-rural-energy-for-america-program-for-fiscal-years-2025-2026","summary":"Renewable energy systems and energy efficiency improvements for agricultural producers and rural small businesses. Renewable energy grants are capped at $1 million per project and efficiency grants at $500,000. Cost share runs up to 25% of eligible costs on Farm Bill money and up to 50% on Inflation Reduction Act money. USDA paused acceptance of grant applications and announced in March 2026 that it will issue new regulations for the grant component; the guaranteed loan program remains open.","eligible_applicants":["for_profit","individual"],"applicant_notes":{"individual":"Agricultural producers with at least 50% of gross income from agriculture, including sole proprietors.","for_profit":"Rural small businesses meeting SBA size standards in an eligible rural area.","town":"Not eligible.","county":"Not eligible.","nonprofit":"Not eligible under this program."},"project_types":["solar_renewables","energy_efficiency"],"geography":{"regions":["federal"],"counties":[],"notes":"Rural areas as defined by USDA. Agricultural producers may apply regardless of location; rural small businesses must be in an area under 50,000 population, which excludes the Rochester urbanized core."},"award_min":2500,"award_max":1000000,"cost_share_pct":50,"expected_awards":null,"status":"closed","opens_on":null,"deadline":null,"award_notice_est":null,"funds_available_est":null,"disbursement":"reimbursement","requirements":["Grant applications are not being accepted pending new regulations announced 31 March 2026","Guaranteed loan applications remain open","Applicants with a pending grant application may have to reapply","USDA has signalled tighter treatment of ground-mounted solar on productive farmland"],"tags":["reap","paused","farm-bill","ira"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"The $2,500 floor comes from a secondary source. Award floor and the reopening date must be confirmed with the NY Rural Development State Energy Coordinator.","raw_hash":null},{"id":"nfwf-five-star-urban-waters-2026","title":"Five Star and Urban Waters Restoration Grant Program","funder":"National Fish and Wildlife Foundation","funder_level":"private","program_url":"https://www.nfwf.org/programs/five-star-and-urban-waters-restoration-grant-program","source_url":"https://floodcoalition.org/fff-resource/five-star-and-urban-waters/","summary":"Modest grants to local partnerships improving water quality and the habitats that depend on it. Eligible work includes community tree canopy, community gardens, wetland, riparian and forest habitat restoration, and stormwater management, each paired with community outreach and stewardship. Roughly $2.5 million is distributed across 30 to 50 grants a year. The 2026 round closed in May with awards expected mid-to-late November 2026.","eligible_applicants":["nonprofit","town","county","state_agency","for_profit"],"applicant_notes":{"individual":"Not eligible; partner with a nonprofit or municipality."},"project_types":["habitat_restoration","rain_gardens_bioretention","community_gardens","community_education","carbon_offsetting","native_plants"],"geography":{"regions":["federal"],"counties":[],"notes":"National program. Great Lakes and urban watershed projects are competitive; the Genesee River and Irondequoit Creek watersheds fit the profile."},"award_min":25000,"award_max":60000,"cost_share_pct":50,"expected_awards":40,"status":"closed","opens_on":null,"deadline":null,"award_notice_est":"2026-11","funds_available_est":null,"disbursement":null,"requirements":["Minimum 1:1 match; matching contributions must be non-federal","Proposals must address at least one bullet under each of the five program priorities","Grants span roughly 12 to 18 months"],"tags":["nfwf","annual-spring-deadline"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Sources disagree on the award band: one reports $25,000-$50,000 with a $40,000 average, another $30,000-$60,000 averaging $45,000. The stored range is the union of both. One aggregator lists the next deadline as 16 May 2027 \u2014 confirm against the NFWF RFP when it posts. Tagged native_plants on the basis of the programme's pollinator and migratory bird habitat priority and its riparian/wetland restoration categories. Not an explicit native-species mandate.","raw_hash":null},{"id":"usda-cfwr-composting","title":"Composting and Food Waste Reduction (CFWR) Cooperative Agreements","funder":"USDA Office of Urban Agriculture and Innovative Production","funder_level":"federal","program_url":"https://www.usda.gov/farming-and-ranching/agricultural-education-and-outreach/urban-agriculture-and-innovative-production/composting-and-food-waste-reduction-cfwr-cooperative-agreements","source_url":"https://www.usda.gov/farming-and-ranching/agricultural-education-and-outreach/urban-agriculture-and-innovative-production/composting-and-food-waste-reduction-cfwr-cooperative-agreements","summary":"Two-year cooperative agreements helping local and tribal governments and schools plan and implement municipal compost and food waste reduction programs. Priority goes to projects that make compost accessible to farmers and community gardeners, fold in food recovery, show economic benefit, and involve multiple partners. The programme has run on American Rescue Plan money since 2020; no FY2026 application round had been announced as of 1 August 2026.","eligible_applicants":["town","county"],"applicant_notes":{"nonprofit":"Eligibility for nonprofits varies by round; school districts and tribal governments have been named in past notices.","state_agency":"States have not been eligible recipients; advocacy groups have asked USDA to add them.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["organic_composting","zero_waste","community_gardens","food_forest"],"geography":{"regions":["federal"],"counties":[],"notes":"National."},"award_min":null,"award_max":null,"cost_share_pct":null,"expected_awards":null,"status":"forecast","opens_on":null,"deadline":null,"award_notice_est":null,"funds_available_est":null,"disbursement":null,"requirements":["Projects must run two years","Multiple named project partners are expected"],"tags":["arpa","compost"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Last confirmed round was FY2024, which closed 4 September 2024. The programme depends on remaining ARPA funds and may not recur. Award range not published on the landing page \u2014 pull it from the Grants.gov notice if a new round posts. Tagged food_forest on the basis of the programme's stated interest in encouraging permaculture business development alongside composting. This is the only hook for perennial food systems anywhere in the current catalog.","raw_hash":null},{"id":"nysdec-wqip","title":"Water Quality Improvement Project (WQIP) Program","funder":"NYS Department of Environmental Conservation","funder_level":"state","program_url":"https://dec.ny.gov/environmental-protection/water/water-quality/grants","source_url":"https://dec.ny.gov/news/press-releases/2026/1/icymi-new-york-state-awards-more-than-20-million-for-water-quality-and-climate-resiliency-projects-in-genesee-livingston-monroe-ontario-steuben-and-wayne-counties","summary":"The state's main competitive grant for projects that directly cut water pollution \u2014 non-agricultural nonpoint source abatement, green infrastructure, salt storage, aquatic habitat restoration and municipal wastewater work. Runs through the Consolidated Funding Application, so it closed with the rest of the 2026 CFA round on 31 July. Awarded alongside the Non-Agricultural Nonpoint Source Planning grant and the newer Resilient Watersheds Grant, which together sent over $20 million to Genesee, Livingston, Monroe, Ontario, Steuben and Wayne counties in January 2026.","eligible_applicants":["town","county","state_agency"],"applicant_notes":{"nonprofit":"Eligible for certain project categories in some rounds; confirm against the current RFA.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["rain_gardens_bioretention","habitat_restoration","water_fixture_retrofits"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Statewide. Finger Lakes and Western New York projects have been consistently funded; Monroe, Ontario and Wayne counties all received awards in the January 2026 announcement."},"award_min":null,"award_max":null,"cost_share_pct":null,"expected_awards":null,"status":"closed","opens_on":"2026-06-01","deadline":"2026-07-31T16:00:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":"reimbursement","requirements":["Applications accepted only through the Consolidated Funding Application"],"tags":["cfa","epf","bond-act","exclusive:cfa-2026"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Programme existence, CFA routing and regional award history confirmed. Award range, match requirement and the 2026 category list were not confirmed \u2014 pull them from the WQIP RFA before entering figures.","raw_hash":null},{"id":"nysdec-ej-community-impact-grants","title":"Environmental Justice Community Impact Grants","funder":"NYS Department of Environmental Conservation","funder_level":"state","program_url":"https://dec.ny.gov/environmental-protection/environmental-justice","source_url":"https://dec.ny.gov/news/press-releases/2026/4/dec-announces-6-million-in-environmental-justice-community-impact-grants-awarded-to-32-community-based-organizations","summary":"Grants of up to $200,000 to community-based organisations working on environmental and public health problems in their own neighbourhoods. Funded projects have included urban climate resilience and land-tending programmes, biodiversity restoration on vacant lots, and community-first environmental education. Six million dollars went to 32 organisations in April 2026; the next round has not been announced.","eligible_applicants":["nonprofit"],"applicant_notes":{"town":"Not eligible; the programme funds community-based organisations.","county":"Not eligible.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["habitat_restoration","community_education","community_gardens","other","native_plants"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Statewide, targeted at designated disadvantaged and environmental justice communities. Parts of the City of Rochester in Monroe County carry that designation."},"award_min":null,"award_max":200000,"cost_share_pct":null,"expected_awards":32,"status":"forecast","opens_on":null,"deadline":null,"award_notice_est":null,"funds_available_est":null,"disbursement":null,"requirements":["Applicant must be a community-based organisation","Project must serve an environmental justice or disadvantaged community"],"tags":["epf","environmental-justice"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Award ceiling inferred from the April 2026 award list, where multiple grants landed at exactly $200,000. Confirm the published ceiling and the next application window with DEC. Tagged native_plants because funded projects in the April 2026 round included biodiversity and biocultural diversity restoration on vacant land, and community land-tending work.","raw_hash":null},{"id":"nysdec-municipal-zev-2026","title":"Municipal Zero-Emission Vehicle Rebate and Infrastructure Grants","funder":"NYS Department of Environmental Conservation","funder_level":"state","program_url":"https://dec.ny.gov/environmental-protection/climate-change/resources-for-local-governments/grants-for-climate-action","source_url":"https://dec.ny.gov/news/press-releases/2026/6/dec-announces-18-million-for-climate-smart-communities-grants-now-available","summary":"Two linked municipal programmes: rebates toward electric or hybrid municipal vehicles, and infrastructure grants to install Level 2 and DC fast charging or hydrogen filling components for public use. The 2026-27 enacted budget raised the per-vehicle rebate cap to $30,000. Five million dollars was allocated for chargers and $585,000 for vehicles, with awards expected in late summer 2026. The most recent infrastructure round closed 27 February 2026.","eligible_applicants":["town","county"],"applicant_notes":{"state_agency":"Not eligible.","nonprofit":"Not eligible. School districts, fire districts, public benefit corporations and IDAs are explicitly excluded from the rebate programme.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["fleet_electrification","smart_grid_metering"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Any New York county, city, town or village."},"award_min":null,"award_max":30000,"cost_share_pct":null,"expected_awards":null,"status":"closed","opens_on":null,"deadline":"2026-02-27T15:00:00-05:00","award_notice_est":"2026-09","funds_available_est":null,"disbursement":null,"requirements":["Applications go through the NYS Statewide Financial System Grants Management System, not the CFA","A facility funded by the NYSERDA Charge Ready programme cannot receive ZEV infrastructure funds for the same equipment","Utility Make Ready funds may be combined with this programme"],"tags":["zev","sfs"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"The $30,000 figure is the per-vehicle rebate cap, not an infrastructure award ceiling \u2014 the two tracks have different limits and should probably be split into two records once the next RFA posts.","raw_hash":null},{"id":"nysufc-tree-city-usa-reward-2026","title":"Tree City USA Reward Grant","funder":"New York State Urban Forestry Council","funder_level":"private","program_url":"https://nysufc.org/grants/","source_url":"https://nysufc.org/grants/","summary":"A small in-kind award of up to $1,000 toward one large notable tree, or a small grove, for communities that have held Tree City USA status for at least five years. Applications for 2026 are open and due postmarked by 2 October.","eligible_applicants":["town","county"],"applicant_notes":{"nonprofit":"Not the applicant; the designated Tree City community applies.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["carbon_offsetting","habitat_restoration","community_education"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"New York communities with Tree City USA designation."},"award_min":null,"award_max":1000,"cost_share_pct":0,"expected_awards":null,"status":"open","opens_on":null,"deadline":"2026-10-02T23:59:00-04:00","award_notice_est":null,"funds_available_est":null,"disbursement":"on_award","requirements":["Community must have been a Tree City USA for five years","Award is in-kind \u2014 trees and planting materials, not cash","Application must be postmarked by the deadline"],"tags":["in-kind","small-award","us-forest-service"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":false,"verification_note":null,"raw_hash":null},{"id":"nysufc-quick-start-grant","title":"Quick Start Grant \u2014 Tree City USA pursuit","funder":"New York State Urban Forestry Council","funder_level":"private","program_url":"https://nysufc.org/grants/","source_url":"https://nysufc.org/grants/","summary":"Competitive grants of up to $1,000 for small communities that want to pursue Tree City USA status, anchored on an inaugural Arbor Day tree planting celebration in the spring. Funded through the US Forest Service.","eligible_applicants":["town"],"applicant_notes":{"county":"Aimed at small communities rather than counties.","nonprofit":"Not the applicant.","for_profit":"Not eligible.","individual":"Not eligible."},"project_types":["carbon_offsetting","community_education"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Small New York communities not yet designated Tree City USA."},"award_min":null,"award_max":1000,"cost_share_pct":0,"expected_awards":null,"status":"forecast","opens_on":null,"deadline":null,"award_notice_est":null,"funds_available_est":null,"disbursement":"on_award","requirements":["Community must intend to achieve Tree City USA status in the award year","Inaugural Arbor Day planting celebration expected in spring"],"tags":["in-kind","small-award","us-forest-service"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"No application window stated on the grants page. Check with the Council for the current cycle.","raw_hash":null},{"id":"nysefc-green-innovation-grant-program","title":"Green Innovation Grant Program (GIGP)","funder":"NYS Environmental Facilities Corporation","funder_level":"state","program_url":"https://efc.ny.gov/gigp","source_url":"https://www.westchestercountyny.gov/trees/municipal-resources","summary":"Green infrastructure grants for projects that reduce and treat stormwater at the source through infiltration or evapotranspiration, including a stormwater street tree and urban forestry track. Municipalities, private entities, state agencies and soil and water conservation districts are eligible.","eligible_applicants":["town","county","state_agency","for_profit"],"applicant_notes":{"nonprofit":"Not confirmed in the source checked; verify against the current RFA.","individual":"Not eligible."},"project_types":["rain_gardens_bioretention","rainwater_harvesting","habitat_restoration","green_building_design"],"geography":{"regions":["statewide_ny"],"counties":[],"notes":"Statewide."},"award_min":null,"award_max":90000,"cost_share_pct":10,"expected_awards":null,"status":"forecast","opens_on":null,"deadline":null,"award_notice_est":null,"funds_available_est":null,"disbursement":"reimbursement","requirements":["Project must reduce or treat stormwater at the source"],"tags":["efc","green-infrastructure"],"last_verified":"2026-08-01","verified_by":"seed","needs_verification":true,"verification_note":"Award ceiling and 10% cost share come from a county government summary page, not from EFC directly, and the figure may be stale. GIGP has historically run through the CFA. Verify with EFC before use.","raw_hash":null}],"taxonomy_note":"Water and Land are separate project families. Water covers rainwater harvesting, fixture retrofits and rain gardens/bioretention. Land covers habitat restoration, native plants, food forest and community gardens."};</script>
+<script type="module">
+// ===================================================================
+// Horizon standalone app. Mirrors src/grants/{taxonomy,scoring}.ts —
+// the TypeScript in src/ is canonical; this is the vanilla build.
+// No browser storage: all state is in memory for the session.
+// ===================================================================
+
+// ---------- taxonomy ----------
+const APPLICANT_TYPES = ['town','county','state_agency','nonprofit','individual','for_profit'];
+const APPLICANT_LABELS = {town:'Town / village',county:'County',state_agency:'State agency',
+  nonprofit:'Nonprofit',individual:'Individual / landowner',for_profit:'For-profit / farm business'};
+const PROJECT_FAMILIES = {
+  energy_climate:['solar_renewables','energy_efficiency','smart_grid_metering','carbon_offsetting','fleet_electrification'],
+  water:['rainwater_harvesting','water_fixture_retrofits','rain_gardens_bioretention'],
+  land:['habitat_restoration','native_plants','food_forest','community_gardens'],
+  waste_circular:['organic_composting','zero_waste','ewaste_collection','upcycling_repair','eco_packaging'],
+  community_operational:['green_building_design','active_transportation','paperless_operations','supply_chain_audits','community_education'],
+  other:['other'],
+};
+const FAMILY_LABELS = {energy_climate:'Energy & climate',water:'Water',land:'Land',
+  waste_circular:'Waste & circular economy',community_operational:'Community & operational',other:'Other'};
+const FAMILY_COLORS = {energy_climate:'#E9B84C',water:'#5FD6C0',land:'#A9C948',waste_circular:'#D9814E',
+  community_operational:'#A98BE0',other:'#9C9484'};
+const PROJECT_LABELS = {solar_renewables:'Solar & renewables',energy_efficiency:'Energy efficiency',
+  smart_grid_metering:'Smart grid & metering',carbon_offsetting:'Carbon offsetting',fleet_electrification:'Fleet electrification',
+  rainwater_harvesting:'Rainwater harvesting',water_fixture_retrofits:'Water fixture retrofits',
+  rain_gardens_bioretention:'Rain gardens & bioretention',habitat_restoration:'Habitat restoration',native_plants:'Native plants & pollinators',food_forest:'Food forest & perennial edibles',
+  community_gardens:'Community gardens',organic_composting:'Organic composting',zero_waste:'Zero-waste programs',
+  ewaste_collection:'E-waste collection',upcycling_repair:'Upcycling & repair cafés',eco_packaging:'Eco packaging',
+  green_building_design:'Green building design',active_transportation:'Active transportation',
+  paperless_operations:'Paperless operations',supply_chain_audits:'Supply chain audits',
+  community_education:'Community education',other:'Other / write-in'};
+const REGION_COUNTIES = {
+  finger_lakes:['monroe','ontario','wayne','seneca','yates','livingston','orleans','genesee','wyoming',
+    'cayuga','tompkins','schuyler','steuben','chemung','cortland'],
+  western_ny:['erie','niagara','allegany','cattaraugus','chautauqua'],
+};
+const COUNTIES = [...REGION_COUNTIES.finger_lakes, ...REGION_COUNTIES.western_ny];
+const famOf = t => Object.entries(PROJECT_FAMILIES).find(([,v])=>v.includes(t))?.[0] ?? 'other';
+const titleCase = s => s.split('_').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+const money = n => n==null ? null : '$'+n.toLocaleString();
+
+// ---------- scoring (mirror of scoring/rules.ts) ----------
+const WEIGHTS = {applicant:35, projectOverlap:30, budgetFit:15, geography:12, burden:8};
+const INELIGIBLE_CAP = 25;
+const NO_TOPIC_CAP = 45;
+
+function scoreGrant(g, p){
+  const reasons=[]; let score=0, eligible=true, offTopic=false;
+  if(!p.applicant){ reasons.push({label:'No applicant type set — eligibility not assessed',delta:0}); }
+  else if(g.eligible_applicants.includes(p.applicant)){
+    score+=WEIGHTS.applicant; reasons.push({label:'Your applicant type is named as eligible',delta:WEIGHTS.applicant});
+  } else {
+    eligible=false; const note=g.applicant_notes?.[p.applicant];
+    reasons.push({label:note?`Not eligible as lead applicant — ${note}`:"Your applicant type isn't eligible",delta:0});
+  }
+  if(p.projectTypes.length){
+    const exact=p.projectTypes.filter(t=>g.project_types.includes(t));
+    const fams=new Set(g.project_types.map(famOf));
+    const near=p.projectTypes.filter(t=>!exact.includes(t)&&fams.has(famOf(t)));
+    const raw=(exact.length+near.length*0.5)/p.projectTypes.length;
+    let pts=Math.round(WEIGHTS.projectOverlap*raw);
+    if(exact.length>0) pts=Math.max(pts,10);
+    if(pts>0){ score+=pts;
+      const bits=[`${exact.length} exact`]; if(near.length) bits.push(`${near.length} same-family`);
+      reasons.push({label:`Project type overlap (${bits.join(', ')})`,delta:pts});
+    } else reasons.push({label:'No overlap with the funded project types',delta:0});
+    if(exact.length===0) offTopic=true;
+  }
+  if(p.budget!=null && (g.award_min!=null||g.award_max!=null)){
+    const min=g.award_min??0, max=g.award_max??Infinity;
+    if(p.budget>=min&&p.budget<=max){score+=WEIGHTS.budgetFit;reasons.push({label:'Your budget sits inside the award range',delta:WEIGHTS.budgetFit});}
+    else if(p.budget>max){const pts=Math.round(WEIGHTS.budgetFit/2);score+=pts;reasons.push({label:'Budget exceeds the ceiling — partial funding only',delta:pts});}
+    else reasons.push({label:'Budget is below the award floor',delta:0});
+  } else if(g.award_min==null&&g.award_max==null){
+    const pts=Math.round(WEIGHTS.budgetFit/2); score+=pts;
+    reasons.push({label:'Award range not published by the funder',delta:pts});
+  }
+  const geo=g.geography, national=geo.regions.includes('federal')||geo.regions.includes('statewide_ny');
+  if(p.county&&geo.counties.length){
+    if(geo.counties.includes(p.county)){score+=WEIGHTS.geography;reasons.push({label:'Your county is explicitly in scope',delta:WEIGHTS.geography});}
+    else {eligible=false;reasons.push({label:'Your county is outside the eligible geography',delta:0});}
+  } else if(national||geo.regions.length===0){
+    const pts=Math.round(WEIGHTS.geography*0.67); score+=pts; reasons.push({label:'Open to your region',delta:pts});
+  } else {score+=WEIGHTS.geography;reasons.push({label:'Your region is in scope',delta:WEIGHTS.geography});}
+  let burden=WEIGHTS.burden, cs=g.cost_share_pct;
+  if(cs!=null&&cs>=50){burden-=4;reasons.push({label:`${cs}% cost share required`,delta:-4});}
+  else if(cs!=null&&cs>=15){burden-=2;reasons.push({label:`${cs}% cost share required`,delta:-2});}
+  if(g.disbursement==='reimbursement'){burden-=2;reasons.push({label:'Reimbursement basis — you spend first',delta:-2});}
+  if(g.requirements.length>3){burden-=2;reasons.push({label:`${g.requirements.length} eligibility requirements to clear`,delta:-2});}
+  if(g.status==='forecast'){burden-=3;reasons.push({label:'No open application round announced',delta:-3});}
+  score+=Math.max(0,burden);
+  if(offTopic){score=Math.min(score,NO_TOPIC_CAP);
+    reasons.push({label:`Capped at ${NO_TOPIC_CAP} — funds none of your project types exactly`,delta:0});}
+  if(!eligible) score=Math.min(score,INELIGIBLE_CAP);
+  return {score:Math.max(0,Math.min(100,Math.round(score))),eligible,reasons};
+}
+
+const daysUntil = (d, now=new Date()) => d==null?null:Math.ceil((new Date(d)-now)/864e5);
+function monthsToFunds(g, now=new Date()){
+  if(g.funds_available_est){const [y,m]=g.funds_available_est.split('-').map(Number);
+    if(y) return (y-now.getFullYear())*12+((m||1)-(now.getMonth()+1));}
+  const d=daysUntil(g.deadline,now); if(d==null) return null;
+  return Math.round(Math.max(0,d)/30 + (g.disbursement==='on_award'?2:5));
+}
+const DEFAULT_SORT=['match','deadline','award','speed'];
+function sortRows(rows, order=DEFAULT_SORT, now=new Date()){
+  const norm=v=>v==null?9999:v<0?9998:v;
+  const cmp={
+    match:(a,b)=>b.match.score-a.match.score,
+    deadline:(a,b)=>norm(daysUntil(a.grant.deadline,now))-norm(daysUntil(b.grant.deadline,now)),
+    award:(a,b)=>(b.grant.award_max??0)-(a.grant.award_max??0),
+    speed:(a,b)=>(monthsToFunds(a.grant,now)??99)-(monthsToFunds(b.grant,now)??99),
+  };
+  return [...rows].sort((a,b)=>{for(const k of order){const r=cmp[k](a,b);if(r) return r;}
+    return a.grant.title.localeCompare(b.grant.title);});
+}
+function applyFilter(gs, f, now=new Date()){
+  return gs.filter(g=>{
+    if(!f.includeClosed && g.status==='closed') return false;
+    if(f.regions?.length){
+      const wide=g.geography.regions.some(r=>['federal','statewide_ny'].includes(r));
+      if(!wide && !g.geography.regions.some(r=>f.regions.includes(r))) return false;
+    }
+    if(f.counties?.length && g.geography.counties.length &&
+       !g.geography.counties.some(c=>f.counties.includes(c))) return false;
+    if(f.applicants?.length && !g.eligible_applicants.some(a=>f.applicants.includes(a))) return false;
+    if(f.projectTypes?.length && !g.project_types.some(t=>f.projectTypes.includes(t))) return false;
+    if(f.awardMin!=null && g.award_max!=null && g.award_max<f.awardMin) return false;
+    const d=daysUntil(g.deadline,now);
+    if(f.deadlineWithinDays!=null && d!=null && d>f.deadlineWithinDays) return false;
+    if(f.deadlineNoSoonerThanDays!=null && d!=null && d>=0 && d<f.deadlineNoSoonerThanDays) return false;
+    if(f.fundsWithinMonths!=null){const m=monthsToFunds(g,now); if(m!=null&&m>f.fundsWithinMonths) return false;}
+    return true;
+  });
+}
+function search(gs, profile, filter, order=DEFAULT_SORT){
+  let rows=applyFilter(gs,filter).map(g=>({grant:g,match:scoreGrant(g,profile)}));
+  if(filter.minScore!=null) rows=rows.filter(r=>r.match.score>=filter.minScore);
+  return sortRows(rows,order);
+}
+
+// ---------- best path (mirror of scoring/paths.ts) ----------
+const ceilingOf = g => g.award_max ?? g.award_min ?? 0;
+function conflicts(a,b){
+  const ex=a.tags.filter(t=>t.startsWith('exclusive:')&&b.tags.includes(t));
+  if(ex.length) return `shares ${ex[0].replace('exclusive:','')} with ${b.title}`;
+  return null;
+}
+const STACK_SCORE_FLOOR=50;
+function greedyStack(cands,budget){
+  const sorted=[...cands].sort((a,b)=>ceilingOf(b.grant)-ceilingOf(a.grant));
+  const stack=[],blockers=[]; let running=0;
+  for(const c of sorted){
+    if(c.match.score<STACK_SCORE_FLOOR){blockers.push(`${c.grant.title}: match ${c.match.score}, below the ${STACK_SCORE_FLOOR} floor`);continue;}
+    const clash=stack.map(s=>conflicts(c.grant,s.grant)).find(Boolean);
+    if(clash){blockers.push(`${c.grant.title}: ${clash}`);continue;}
+    if(budget!=null&&running>=budget){blockers.push(`${c.grant.title}: project already fully funded by earlier awards`);continue;}
+    const headroom=budget!=null?budget-running:Infinity;
+    const contribution=Math.min(ceilingOf(c.grant),headroom);
+    if(contribution<=0){blockers.push(`${c.grant.title}: no published award amount`);continue;}
+    stack.push({grant:c.grant,contribution,match:c.match}); running+=contribution;
+  }
+  return {stack,blockers};
+}
+const LEVEL_COLOR = {state:'#5FD6C0',federal:'#A9C948',utility:'#E9B84C',county:'#E9B84C',municipal:'#E9B84C',private:'#A98BE0'};
+function evaluatePath(gs,profile,applicants){
+  const seen=new Map();
+  for(const applicant of applicants) for(const g of gs){
+    if(g.status==='closed') continue;
+    const match=scoreGrant(g,{...profile,applicant});
+    if(!match.eligible) continue;
+    const prev=seen.get(g.id);
+    if(!prev||match.score>prev.match.score) seen.set(g.id,{grant:g,match});
+  }
+  const {stack,blockers}=greedyStack([...seen.values()],profile.budget);
+  const total=stack.reduce((n,s)=>n+s.contribution,0);
+  const matchRequired=Math.round(stack.reduce((n,s)=>n+(s.grant.cost_share_pct?s.contribution*s.grant.cost_share_pct/100:0),0));
+  const months=stack.map(s=>monthsToFunds(s.grant)).filter(m=>m!=null);
+  return {key:applicants.join('+'),applicants,total,matchRequired,stack,blockers,
+    earliestFundsMonths:months.length?Math.max(...months):null,
+    label:applicants.length===1?`${APPLICANT_LABELS[applicants[0]]} applies`
+      :`${APPLICANT_LABELS[applicants[0]]} applies, ${APPLICANT_LABELS[applicants[1]].toLowerCase()} as named partner`};
+}
+function partnerPairs(gs){
+  const s=new Set();
+  for(const g of gs) for(const [who,note] of Object.entries(g.applicant_notes??{})){
+    if(!/(?:as an?|as a named|as a project|participate as)[^.]*partner|partner only/i.test(note)) continue;
+    for(const lead of g.eligible_applicants) if(lead!==who) s.add(`${lead}|${who}`);
+  }
+  return [...s].map(p=>p.split('|'));
+}
+function comparePaths(gs,profile){
+  const solo=APPLICANT_TYPES.map(a=>evaluatePath(gs,profile,[a]));
+  const paired=partnerPairs(gs).map(([l,p])=>evaluatePath(gs,profile,[l,p]))
+    .filter(p=>p.total>(solo.find(s=>s.key===p.applicants[0])?.total??0));
+  return [...paired,...solo].sort((a,b)=>b.total-a.total
+    ||a.matchRequired-b.matchRequired
+    ||(a.earliestFundsMonths??99)-(b.earliestFundsMonths??99)
+    ||a.stack.length-b.stack.length);
+}
+
+// ---------- tracker phases ----------
+// Order is the user's. `denied` is a terminal branch off `applied`, not a step you
+// pass through on the way to `accepted` — the stepper forks there.
+const PHASES = [
+  {key:'target',      label:'Target',      kind:'pre',    color:'#9C9484', hint:'Identified as worth pursuing. Nothing committed yet.'},
+  {key:'pre_req',     label:'Pre-Req',     kind:'pre',    color:'#A98BE0', hint:'Registrations, prequalification, resolutions, match commitments.'},
+  {key:'application', label:'Application', kind:'pre',    color:'#5FD6C0', hint:'Actively writing. Deadline is now a hard constraint.'},
+  {key:'applied',     label:'Applied',     kind:'wait',   color:'#4FA8E0', hint:'Submitted. Waiting on the funder.'},
+  {key:'denied',      label:'Denied',      kind:'closed', color:'#E56A6A', hint:'Not awarded. Capture the reviewer feedback before you close it.'},
+  {key:'accepted',    label:'Accepted',    kind:'live',   color:'#A9C948', hint:'Awarded. Contract execution is the next hurdle.'},
+  {key:'received',    label:'Received',    kind:'live',   color:'#8FC93A', hint:'Contract executed, funds or authority in hand.'},
+  {key:'spending',    label:'Spending',    kind:'live',   color:'#E9B84C', hint:'Period of performance. Track drawdowns against budget.'},
+  {key:'reporting',   label:'Reporting',   kind:'live',   color:'#D9814E', hint:'Interim and final reports owed to the funder.'},
+  {key:'closed',      label:'Closed',      kind:'closed', color:'#5F6B5C', hint:'Closed out. Retain records for the audit window.'},
+];
+const PHASE = Object.fromEntries(PHASES.map(p=>[p.key,p]));
+const phaseIndex = k => PHASES.findIndex(p=>p.key===k);
+// what you can move to from here
+function nextPhases(k){
+  if(k==='applied') return ['accepted','denied'];
+  if(k==='denied'||k==='closed') return [];
+  if(k==='reporting') return ['closed'];
+  const i=phaseIndex(k);
+  return [PHASES[i+1].key==='denied'?'applied':PHASES[i+1].key];
+}
+function prevPhase(k){
+  if(k==='accepted'||k==='denied') return 'applied';
+  const i=phaseIndex(k);
+  return i>0?(PHASES[i-1].key==='denied'?'applied':PHASES[i-1].key):null;
+}
+// 15. Standard packet plus anything the funder's own requirements imply.
+const BASE_ATTACHMENTS = [
+  ['narrative','Project narrative'],
+  ['budget','Budget and budget justification'],
+  ['workplan','Workplan / timeline'],
+  ['support','Letters of support or commitment'],
+  ['w9','W-9 or vendor form'],
+  ['maps','Site plan or maps'],
+];
+const DERIVED_ATTACHMENTS = [
+  [/prequalif/i,       'prequal_doc',  'NYS prequalification documents'],
+  [/SFS|Statewide Financial|Grants\.gov/i, 'registration', 'Registration confirmation (SFS / Grants.gov)'],
+  [/resolution/i,      'resolution_doc','Signed board or municipal resolution'],
+  [/match|cost share/i,'match_letter', 'Match commitment letter'],
+  [/own the project site|easement|site/i,'site_doc','Site control or easement documentation'],
+  [/partner/i,         'partner_mou',  'Partner MOU or letter of participation'],
+  [/postmark/i,        'mailing',      'Hard copy prepared for postmark'],
+  [/incentive|milestone/i,'milestone_sched','Milestone schedule'],
+];
+function attachmentsFor(g){
+  const seen=new Set(), out=BASE_ATTACHMENTS.map(([k,l])=>({k,l,src:'standard'}));
+  const hay=[...g.requirements, g.summary??''].join(' ');
+  for(const [re,k,l] of DERIVED_ATTACHMENTS){
+    if(re.test(hay) && !seen.has(k)){ seen.add(k); out.push({k,l,src:'from this funder\u2019s requirements'}); }
+  }
+  return out;
+}
+
+const READINESS = [
+  ['sfs','Registered in SFS / Grants.gov'],
+  ['prequal','Nonprofit prequalification current'],
+  ['resolution','Board or municipal resolution passed'],
+  ['match','Match funds identified and committed'],
+  ['site','Site control or easement in hand'],
+];
+
+// ---------- state ----------
+const state = {
+  grants: [],
+  tab: 'explore',
+  detailId: null,
+  filter: {regions:['finger_lakes','western_ny'], counties:[], applicants:['town','nonprofit'],
+    projectTypes:[], awardMin:null, deadlineWithinDays:null, deadlineNoSoonerThanDays:null,
+    fundsWithinMonths:null, minScore:null, includeClosed:false},
+  sort: [...DEFAULT_SORT],
+  profile: {applicant:'town', projectTypes:['solar_renewables','organic_composting','rain_gardens_bioretention'],
+    budget:640000, county:'monroe',
+    description:'Village-owned parcel in Monroe County. Rooftop solar on the DPW garage, a community compost hub, and a rain garden with native pollinator plantings along the drainage edge. Village owns the land; a local watershed nonprofit would run education programming.'},
+  savedFilters: [],
+  tracked: new Map(),   // grant id -> tracker record
+  trackerPhaseFilter: null,
+  readAlerts: new Set(),
+  draft: {name:'Village solar + compost + rain garden'},
+};
+
+// ---------- alerts, derived from the catalog ----------
+function buildAlerts(){
+  const out=[], now=new Date();
+  for(const g of state.grants){
+    const d=daysUntil(g.deadline,now);
+    if(g.status==='open'&&d!=null&&d>=0&&d<=30)
+      out.push({id:'close-'+g.id,kind:'closing_soon',grant:g,when:d,
+        title:`Closing in ${d} day${d===1?'':'s'}: ${g.title}`,
+        body:`${g.funder} · ${money(g.award_max)?`ceiling ${money(g.award_max)}`:'award range not published'}`});
+    if(g.status==='open'&&(d==null||d>30))
+      out.push({id:'open-'+g.id,kind:'new_match',grant:g,when:90,
+        title:`Open now: ${g.title}`,body:`${g.funder} · ${g.geography.notes??''}`});
+    if(g.status==='rolling')
+      out.push({id:'roll-'+g.id,kind:'new_match',grant:g,when:120,
+        title:`Rolling intake: ${g.title}`,body:`${g.funder} · no fixed deadline`});
+    if(g.status==='closed'&&d!=null&&d<0&&d>-45)
+      out.push({id:'closed-'+g.id,kind:'changed',grant:g,when:200,
+        title:`Closed ${Math.abs(d)} days ago: ${g.title}`,
+        body:g.verification_note??'Watch for the next round.'});
+    if(g.status==='forecast')
+      out.push({id:'fc-'+g.id,kind:'changed',grant:g,when:300,
+        title:`No open round: ${g.title}`,body:g.verification_note??'Round not announced.'});
+  }
+  return out.sort((a,b)=>a.when-b.when);
+}
+
+function trackRecord(g){
+  return {phase:'target', owner:'', requested:g.award_max??g.award_min??null, awarded:null,
+    matchSource:'', matchAmount:null, nextAction:'', nextDate:'', readiness:{}, log:[],
+    signatory:'', programOfficer:'', partners:'',            // 7, 8, 9
+    submittedOn:'', awardNoticeOn:'', contractOn:'',          // 10
+    popStart:'', popEnd:'',                                   // 11
+    attachments:{},                                           // 15
+    probability:50, writingHours:null,                        // 18
+    addedAt:new Date().toISOString()};
+}
+function track(id){
+  if(state.tracked.has(id)) return;
+  const g=state.grants.find(x=>x.id===id); if(!g) return;
+  const r=trackRecord(g); r.log.push({at:new Date().toISOString(),text:'Added to tracker as Target'});
+  state.tracked.set(id,r);
+}
+const today = () => new Date().toISOString().slice(0,10);
+function setPhase(id,phase){
+  const r=state.tracked.get(id); if(!r||r.phase===phase) return;
+  r.log.push({at:new Date().toISOString(),text:`${PHASE[r.phase].label} → ${PHASE[phase].label}`});
+  r.phase=phase;
+  // stamp the milestone dates as they happen; still editable afterwards
+  if(phase==='applied'  && !r.submittedOn)    r.submittedOn=today();
+  if((phase==='accepted'||phase==='denied') && !r.awardNoticeOn) r.awardNoticeOn=today();
+  if(phase==='received' && !r.contractOn)     r.contractOn=today();
+  if(phase==='spending' && !r.popStart)       r.popStart=today();
+}
+/** 5. What you have to carry before a reimbursement funder pays you back. */
+function exposure(g,r){
+  const award=r.awarded??r.requested??0;
+  if(!award) return null;
+  const match=r.matchAmount ?? (g.cost_share_pct?Math.round(award*g.cost_share_pct/100):0);
+  const reimbursed=g.disbursement==='reimbursement';
+  return {award, match, reimbursed,
+    front: reimbursed ? award+match : match,
+    note: reimbursed
+      ? 'Award is paid only after you spend, and match is never reimbursed.'
+      : g.disbursement==='milestone' ? 'Paid at milestones — you carry each milestone until it clears.'
+      : g.disbursement==='on_award' ? 'Paid on award; only the match comes out of your own funds.'
+      : 'Disbursement basis not stated by the funder — assume you carry the cost until confirmed.'};
+}
+
+/** Things the tracker should say out loud rather than leave you to notice. */
+function trackerFlags(g,r){
+  const out=[]; const d=daysUntil(g.deadline);
+  const pre=['target','pre_req','application'].includes(r.phase);
+  if(pre && d!=null && d<0 && g.status!=='rolling')
+    out.push({level:'bad',text:`Deadline passed ${Math.abs(d)} days ago while still in ${PHASE[r.phase].label}`});
+  else if(pre && d!=null && d>=0 && d<=14)
+    out.push({level:'warn',text:`${d} days to deadline and not submitted`});
+  if(r.phase==='pre_req'){
+    const missing=READINESS.filter(([k])=>!r.readiness[k]).length;
+    if(missing) out.push({level:'warn',text:`${missing} readiness item${missing===1?'':'s'} outstanding`});
+  }
+  if(g.cost_share_pct && ['pre_req','application'].includes(r.phase) && !r.matchSource)
+    out.push({level:'warn',text:`${g.cost_share_pct}% cost share required, no match source recorded`});
+  const ex=exposure(g,r);
+  if(ex && ex.front>0 && ['pre_req','application','applied','accepted','received','spending'].includes(r.phase))
+    out.push({level:ex.reimbursed?'warn':'warn',text:`Cash to front: ${money(ex.front)} before the funder pays anything back`});
+  if(r.writingHours && r.requested){
+    const perHour=Math.round(r.requested*(r.probability/100)/r.writingHours);
+    if(perHour<500) out.push({level:'warn',text:`Expected value ${money(perHour)}/hour of writing — check this is worth the effort`});
+  }
+  if(r.nextDate){
+    const nd=daysUntil(r.nextDate);
+    if(nd!=null && nd<0) out.push({level:'bad',text:`Next action overdue by ${Math.abs(nd)} days`});
+  }
+  if(g.needs_verification && pre)
+    out.push({level:'warn',text:'Figures on this record still need confirming against the funder notice'});
+  return out;
+}
+
+// ---------- tiny render helpers ----------
+const h = (html) => { const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content; };
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function chip(label,on,attrs=''){return `<button class="chip" aria-pressed="${on}" ${attrs}>${esc(label)}</button>`;}
+function matchCls(s){return s>=80?'':s>=60?'mid':'low';}
+function deadlineCell(g){
+  const d=daysUntil(g.deadline);
+  if(g.status==='rolling') return '<span class="muted">Rolling</span>';
+  if(g.status==='forecast') return '<span class="muted">Not open</span>';
+  if(d==null) return '<span class="muted">Not stated</span>';
+  if(d<0) return `<span class="muted">Closed ${Math.abs(d)}d ago</span>`;
+  return `<span class="${d<=30?'urgent':''}">${d} days</span>`;
+}
+function awardCell(g){
+  if(g.award_min==null&&g.award_max==null) return '<span class="muted">Not stated</span>';
+  if(g.award_min!=null&&g.award_max!=null) return `${money(g.award_min)}–${money(g.award_max)}`;
+  return g.award_max!=null?`up to ${money(g.award_max)}`:`from ${money(g.award_min)}`;
+}
+
+// ---------- screens ----------
+const SCREENS = [
+  {id:'explore', tab:'Explore grants', eyebrow:'Screen A', render:renderExplore},
+  {id:'detail',  tab:'Grant record',   eyebrow:'Screen B', render:renderDetail},
+  {id:'path',    tab:'Best path',      eyebrow:'Screen C', render:renderPath},
+  {id:'tracker', tab:'Tracker',        eyebrow:'Screen D', render:renderTracker},
+  {id:'alerts',  tab:'Alert center',   eyebrow:'Screen E', render:renderAlerts},
+  {id:'setup',   tab:'Filters & alerts',eyebrow:'Screen F',render:renderSetup},
+];
+
+function filterRail(){
+  const f=state.filter;
+  const counts = t => state.grants.filter(g=>g.eligible_applicants.includes(t)).length;
+  return `<aside class="card pad stack">
+    <div><label class="f">Where</label><div class="row" data-group="regions">
+      ${chip('Finger Lakes',f.regions.includes('finger_lakes'),'data-v="finger_lakes"')}
+      ${chip('Western NY',f.regions.includes('western_ny'),'data-v="western_ny"')}
+      ${chip('Statewide NY',f.regions.includes('statewide_ny'),'data-v="statewide_ny"')}
+      ${chip('Federal',f.regions.includes('federal'),'data-v="federal"')}
+    </div>
+    <div class="sub">County filter: ${f.counties.length?f.counties.map(titleCase).join(', '):'all 20 in scope'}</div>
+    <div class="row" data-group="counties" style="margin-top:8px">
+      ${['monroe','ontario','wayne','erie','tompkins'].map(c=>chip(titleCase(c),f.counties.includes(c),`data-v="${c}"`)).join('')}
+    </div></div>
+    <hr class="hair">
+    <div><label class="f">Who is applying</label>
+      ${APPLICANT_TYPES.map(t=>`<button class="chk" aria-pressed="${f.applicants.includes(t)}" data-group="applicants" data-v="${t}"><i></i>${APPLICANT_LABELS[t]}<small>${counts(t)}</small></button>`).join('')}
+    </div>
+    <hr class="hair">
+    <div><label class="f">Project type</label>
+      ${Object.entries(PROJECT_FAMILIES).map(([fam,types])=>`
+        <div class="groupname" style="color:${FAMILY_COLORS[fam]}"><i style="background:${FAMILY_COLORS[fam]}"></i>${FAMILY_LABELS[fam]}</div>
+        <div class="row" data-group="projectTypes">
+          ${types.map(t=>chip(PROJECT_LABELS[t],f.projectTypes.includes(t),`data-v="${t}" data-fam="${fam}"`)).join('')}
+        </div>`).join('')}
+    </div>
+    <hr class="hair">
+    <div><label class="f">Minimum award</label>
+      <div class="row" data-group="awardMin">
+        ${[[null,'Any'],[25000,'$25k+'],[100000,'$100k+'],[500000,'$500k+']].map(([v,l])=>chip(l,f.awardMin===v,`data-v="${v}"`)).join('')}
+      </div></div>
+    <div><label class="f">Application due within</label>
+      <div class="row" data-group="deadlineWithinDays">
+        ${[[30,'30d'],[90,'90d'],[180,'180d'],[null,'Any']].map(([v,l])=>chip(l,f.deadlineWithinDays===v,`data-v="${v}"`)).join('')}
+      </div></div>
+    <div><label class="f">Money in hand within</label>
+      <div class="row" data-group="fundsWithinMonths">
+        ${[[3,'3 mo'],[6,'6 mo'],[12,'12 mo'],[null,'Any']].map(([v,l])=>chip(l,f.fundsWithinMonths===v,`data-v="${v}"`)).join('')}
+      </div></div>
+    <hr class="hair">
+    <div><button class="chk" aria-pressed="${f.includeClosed}" data-group="includeClosed" data-v="1"><i></i>Include closed rounds</button>
+      <div class="sub">Closed programmes usually recur. Keep them visible when you're planning next year.</div></div>
+    <div class="row"><button class="btn" data-act="save-filter">Save as alert</button><button class="btn ghost" data-act="reset">Reset</button></div>
+  </aside>`;
+}
+
+function renderExplore(){
+  const rows=search(state.grants,state.profile,state.filter,state.sort);
+  const reachable=rows.reduce((n,r)=>n+(r.grant.award_max??0),0);
+  return `<div class="grid2">${filterRail()}
+    <div class="card">
+      <div class="sortbar">
+        <span class="count">${rows.length} grants · ${money(reachable)} ceiling total</span>
+        <div class="row" data-group="sort">
+          ${[['match','Match'],['deadline','Deadline'],['award','Award'],['speed','Speed to funds']]
+            .map(([v,l])=>chip(l,state.sort[0]===v,`data-v="${v}"`)).join('')}
+        </div>
+      </div>
+      ${rows.length?rows.map(r=>resultCard(r)).join(''):
+        `<div class="empty"><b>Nothing matches those filters</b>Widen the region, drop a project type, or switch on closed rounds to see programmes that will reopen.</div>`}
+    </div></div>`;
+}
+
+function resultCard({grant:g,match:m}){
+  const tr=state.tracked.get(g.id);
+  return `<div class="res">
+    <div class="between">
+      <button class="restitle" data-open="${g.id}"><h3>${esc(g.title)}</h3>
+        <div class="funder">${esc(g.funder)} · ${g.funder_level} · ${g.status}</div></button>
+      <div class="row" style="flex-shrink:0;gap:10px">
+        <div class="match ${matchCls(m.score)}"><span class="num">${m.score}</span>
+          <span class="meter"><i style="width:${m.score}%"></i></span></div>
+        ${tr?`<button class="chip" data-tab="tracker" style="border-color:${PHASE[tr.phase].color};color:${PHASE[tr.phase].color}">Tracking · ${PHASE[tr.phase].label}</button>`
+            :`<button class="chip" data-track="${g.id}">+ Track this grant</button>`}
+      </div>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>Award</b><span>${awardCell(g)}</span></div>
+      <div class="fact"><b>Due</b><span>${deadlineCell(g)}</span></div>
+      <div class="fact"><b>Funds by</b><span>${monthsToFunds(g)!=null?`~${monthsToFunds(g)} mo`:'<span class="muted">—</span>'}</span></div>
+      <div class="fact"><b>Cost share</b><span>${g.cost_share_pct==null?'<span class="muted">Not stated</span>':g.cost_share_pct===0?'None':g.cost_share_pct+'%'}</span></div>
+    </div>
+    <div class="tags">
+      ${!m.eligible?'<span class="tag closed">Ineligible as set</span>':''}
+      ${g.status==='closed'?'<span class="tag closed">Closed</span>':''}
+      ${g.needs_verification?'<span class="tag flag">Verify figures</span>':''}
+      ${g.eligible_applicants.map(a=>`<span class="tag who">${APPLICANT_LABELS[a]}</span>`).join('')}
+      ${g.project_types.slice(0,4).map(t=>`<span class="tag" style="border-color:${FAMILY_COLORS[famOf(t)]}88;color:${FAMILY_COLORS[famOf(t)]}">${PROJECT_LABELS[t]}</span>`).join('')}
+    </div></div>`;
+}
+
+function renderDetail(){
+  const g=state.grants.find(x=>x.id===state.detailId)||state.grants[0];
+  if(!g) return '<div class="card empty">No record selected.</div>';
+  const m=scoreGrant(g,state.profile);
+  const d=daysUntil(g.deadline);
+  const pct=(()=>{ if(!g.opens_on||!g.deadline) return 34;
+    const a=new Date(g.opens_on),b=new Date(g.deadline),n=new Date();
+    return Math.max(0,Math.min(100,Math.round((n-a)/(b-a)*100)));})();
+  return `<div class="grid2" style="grid-template-columns:1fr 306px">
+    <div class="card pad">
+      <div class="between">
+        <div><div class="funder mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase">${esc(g.funder)} · ${g.funder_level}</div>
+          <h2 style="font-size:26px;margin-top:7px;max-width:26ch">${esc(g.title)}</h2></div>
+        <div class="match ${matchCls(m.score)}"><span class="num">${m.score}</span><span class="meter"><i style="width:${m.score}%"></i></span></div>
+      </div>
+      <p style="color:var(--dust);font-size:14.5px">${esc(g.summary)}</p>
+      <div class="tl"><div class="track">
+        <div class="fill" style="width:${pct}%"></div>
+        <div class="pin done" style="left:0"></div>
+        <div class="pin due" style="left:${pct}%"></div>
+        <div class="pin" style="left:70%"></div>
+        <div class="pin pay" style="left:99%"></div></div>
+        <div class="lbls">
+          <div><b>Opened</b>${g.opens_on??'—'}</div>
+          <div><b>Due</b>${g.deadline?new Date(g.deadline).toLocaleDateString():(g.status==='rolling'?'Rolling':'—')}</div>
+          <div><b>Award notice</b>${g.award_notice_est??'—'}</div>
+          <div><b>Funds available</b>${g.funds_available_est??'—'}</div>
+        </div></div>
+      <hr class="hair"><label class="f">Who can apply</label>
+      <table class="elig"><tr><th>Applicant</th><th>Eligible</th><th>Note</th></tr>
+        ${APPLICANT_TYPES.map(a=>{const ok=g.eligible_applicants.includes(a);
+          return `<tr><td>${APPLICANT_LABELS[a]}</td><td class="${ok?'y':'n'}">${ok?'Yes':'No'}</td>
+          <td class="n">${esc(g.applicant_notes?.[a]??(ok?'—':'Not named in the eligibility list'))}</td></tr>`;}).join('')}
+      </table>
+      <hr class="hair"><label class="f">Eligible project types</label>
+      <div class="tags" style="margin-top:0">${g.project_types.map(t=>
+        `<span class="tag" style="border-color:${FAMILY_COLORS[famOf(t)]}88;color:${FAMILY_COLORS[famOf(t)]}">${PROJECT_LABELS[t]}</span>`).join('')}</div>
+      ${g.requirements.length?`<hr class="hair"><label class="f">Requirements</label>
+        <ul style="margin:0;padding-left:18px;color:var(--dust);font-size:13.5px">${g.requirements.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:''}
+      <hr class="hair"><label class="f">Why this scored ${m.score}</label>
+      <div class="stack" style="gap:8px;font-size:14px">
+        ${m.reasons.map(r=>`<div class="row"><span class="mono" style="width:40px;font-weight:600;color:${r.delta>0?'var(--moss)':r.delta<0?'var(--ember)':'var(--dust)'}">${r.delta>0?'+':''}${r.delta}</span>${esc(r.label)}</div>`).join('')}
+      </div>
+    </div>
+    <aside class="stack">
+      <div class="card pad">
+        <label class="f">Award</label>
+        <div class="mono" style="font-size:24px;font-weight:600;color:var(--amber)">${awardCell(g).replace(/<[^>]+>/g,'')}</div>
+        <hr class="hair"><label class="f">Due</label>
+        <div class="mono" style="font-size:20px;font-weight:600;color:${d!=null&&d>=0&&d<=30?'var(--ember)':'var(--bone)'}">
+          ${g.status==='rolling'?'Rolling':d==null?'Not stated':d<0?`Closed ${Math.abs(d)}d ago`:`${d} days`}</div>
+        <div class="sub">${g.deadline?new Date(g.deadline).toLocaleString():'—'}</div>
+        <hr class="hair"><label class="f">Money in hand</label>
+        <div class="mono" style="font-size:20px;font-weight:600">${monthsToFunds(g)!=null?`~${monthsToFunds(g)} months`:'—'}</div>
+        <div class="sub">${g.disbursement==='reimbursement'?'Reimbursement basis — you spend first':g.disbursement==='on_award'?'Paid on award':g.disbursement==='milestone'?'Milestone payments':'Disbursement basis not stated'}</div>
+      </div>
+      <div class="card pad">
+        <label class="f">Provenance</label>
+        <div class="row"><span class="pill seed">${g.verified_by}</span>
+          <span class="pill ${g.needs_verification?'':'ok'}">${g.needs_verification?'Verify figures':'Confirmed'}</span></div>
+        <div class="sub">Last verified ${g.last_verified}</div>
+        ${g.verification_note?`<div class="note">${esc(g.verification_note)}</div>`:''}
+        <hr class="hair">
+        <a href="${g.source_url}" target="_blank" rel="noopener">Open the funder notice →</a>
+      </div>
+      <div class="card pad">
+        <label class="f">Tracker</label>
+        ${state.tracked.has(g.id)
+          ? `<div class="row"><span class="phasetag" style="background:${PHASE[state.tracked.get(g.id).phase].color}">${PHASE[state.tracked.get(g.id).phase].label}</span>
+             <button class="btn ghost" data-tab="tracker">Open tracker</button></div>`
+          : `<button class="btn" data-track="${g.id}" style="width:100%">Track this grant</button>
+             <div class="sub">Lands in Target. Move it along the pipeline from the tracker.</div>`}
+      </div>
+    </aside></div>`;
+}
+
+function renderPath(){
+  const paths=comparePaths(state.grants,state.profile).slice(0,6);
+  const best=paths[0];
+  const mine=paths.find(p=>p.key===state.profile.applicant);
+  const gap=best&&mine&&best.key!==mine.key?best.total-mine.total:0;
+  const maxTotal=Math.max(1,...paths.map(p=>p.total));
+  return `<div class="card pad" style="margin-bottom:22px">
+    <label class="f">Your project</label>
+    <textarea class="field" id="desc">${esc(state.profile.description)}</textarea>
+    <div class="sub">Rules-first: the chips below drive scoring. An optional model pass can pre-fill them from this text, but it never produces the score.</div>
+    <div class="groupname" style="color:var(--dust);margin-top:14px"><i style="background:var(--dust)"></i>Project types</div>
+    <div class="row" data-group="profileTypes">
+      ${Object.entries(PROJECT_FAMILIES).flatMap(([fam,ts])=>ts.map(t=>
+        chip(PROJECT_LABELS[t],state.profile.projectTypes.includes(t),`data-v="${t}" data-fam="${fam}"`))).join('')}
+    </div>
+    <div class="row" style="margin-top:14px">
+      <label class="f" style="margin:0">Applying as</label>
+      <div class="row" data-group="profileApplicant">
+        ${APPLICANT_TYPES.map(a=>chip(APPLICANT_LABELS[a],state.profile.applicant===a,`data-v="${a}"`)).join('')}
+      </div></div>
+    <div class="row" style="margin-top:10px">
+      <label class="f" style="margin:0">County</label>
+      <div class="row" data-group="profileCounty">
+        ${['monroe','ontario','wayne','erie',null].map(c=>chip(c?titleCase(c):'Anywhere in scope',state.profile.county===c,`data-v="${c}"`)).join('')}
+      </div></div>
+    <div class="row" style="margin-top:10px">
+      <label class="f" style="margin:0">Budget</label>
+      <div class="row" data-group="profileBudget">
+        ${[50000,150000,640000,2000000].map(b=>chip(money(b),state.profile.budget===b,`data-v="${b}"`)).join('')}
+      </div></div>
+  </div>
+  ${gap>0?`<div class="note" style="margin-bottom:16px;border-color:var(--volt);color:var(--bone)">
+    Moving from "${esc(mine.label)}" to "${esc(best.label)}" raises the reachable ceiling by about <b class="mono">${money(gap)}</b>.</div>`:''}
+  ${paths.map((p,i)=>pathCard(p,i===0,maxTotal)).join('')}`;
+}
+
+function pathCard(p,best,maxTotal){
+  const width = p.total/maxTotal*100;
+  return `<div class="path${best?' best':''}">
+    <div class="ph"><div><h4>${esc(p.label)}</h4>
+      <div class="funder">${p.stack.length} programme${p.stack.length===1?'':'s'} stack${p.stack.length===1?'s':''} without conflict${p.matchRequired?` · ${money(p.matchRequired)} of match to find`:' · no match required'}${p.earliestFundsMonths!=null?` · funds in ~${p.earliestFundsMonths} mo`:''}</div></div>
+      <div class="tot">${money(p.total)}</div></div>
+    ${p.stack.length?`<div class="strata" style="width:${Math.max(12,width)}%">
+      ${p.stack.map(s=>`<span title="${esc(s.grant.title)}" style="flex:${s.contribution};background:${LEVEL_COLOR[s.grant.funder_level]??'#9C9484'}">${s.contribution/p.total>0.16?money(s.contribution):''}</span>`).join('')}
+    </div>
+    <div class="legend">${[...new Set(p.stack.map(s=>s.grant.funder_level))].map(l=>
+      `<em><i style="background:${LEVEL_COLOR[l]??'#9C9484'}"></i>${titleCase(l)}</em>`).join('')}</div>`
+    :`<div class="note">No open programme in the catalog accepts this applicant type for this project.</div>`}
+    ${p.blockers.length?`<div class="note">Dropped: ${esc(p.blockers[0])}${p.blockers.length>1?` (+${p.blockers.length-1} more)`:''}</div>`:''}
+  </div>`;
+}
+
+function phaseRail(){
+  const counts={}, sums={};
+  for(const [id,r] of state.tracked){
+    counts[r.phase]=(counts[r.phase]??0)+1;
+    sums[r.phase]=(sums[r.phase]??0)+(r.awarded??r.requested??0);
+  }
+  return `<div class="railwrap"><div class="rail" data-group="phaseFilter">
+    ${PHASES.map(ph=>`<button class="railcell" data-v="${ph.key}" aria-pressed="${state.trackerPhaseFilter===ph.key}" title="${esc(ph.hint)}">
+      <i style="background:${ph.color}"></i>
+      <b>${ph.label}</b>
+      <span class="mono">${counts[ph.key]??0}</span>
+      <em class="mono">${sums[ph.key]?money(sums[ph.key]):'—'}</em>
+    </button>`).join('')}
+  </div></div>`;
+}
+
+function renderTracker(){
+  if(!state.tracked.size) return `${phaseRail()}
+    <div class="card empty" style="margin-top:16px"><b>Nothing tracked yet</b>
+      Open a grant from Explore and hit "Track this grant". It lands in Target, and you move it
+      along the pipeline from here.
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn" data-act="goto-explore">Go to Explore</button>
+        <button class="btn ghost" data-act="demo-track">Track the three open programmes</button>
+      </div></div>`;
+
+  let rows=[...state.tracked].map(([id,r])=>({g:state.grants.find(x=>x.id===id),r,id})).filter(x=>x.g);
+  if(state.trackerPhaseFilter) rows=rows.filter(x=>x.r.phase===state.trackerPhaseFilter);
+  rows.sort((a,b)=>phaseIndex(a.r.phase)-phaseIndex(b.r.phase)
+    || (daysUntil(a.g.deadline)??9999)-(daysUntil(b.g.deadline)??9999));
+
+  const live=[...state.tracked.values()];
+  const pipeline=live.filter(r=>!['denied','closed'].includes(r.phase))
+    .reduce((n,r)=>n+(r.awarded??r.requested??0),0);
+  const won=live.filter(r=>['accepted','received','spending','reporting','closed'].includes(r.phase))
+    .reduce((n,r)=>n+(r.awarded??0),0);
+  const decided=live.filter(r=>['denied','accepted','received','spending','reporting','closed'].includes(r.phase));
+  const winRate=decided.length?Math.round(decided.filter(r=>r.phase!=='denied').length/decided.length*100):null;
+
+  return `${phaseRail()}
+  <div class="row" style="margin:16px 0 6px;gap:22px">
+    <div class="fact"><b>In pipeline</b><span class="mono" style="font-size:19px">${money(pipeline)}</span></div>
+    <div class="fact"><b>Awarded</b><span class="mono" style="font-size:19px;color:var(--moss)">${money(won)}</span></div>
+    <div class="fact"><b>Win rate</b><span class="mono" style="font-size:19px">${winRate==null?'—':winRate+'%'}</span></div>
+    <div class="fact"><b>Tracked</b><span class="mono" style="font-size:19px">${state.tracked.size}</span></div>
+    ${state.trackerPhaseFilter?`<button class="chip" data-act="clear-phase-filter">Showing ${PHASE[state.trackerPhaseFilter].label} only ✕</button>`:''}
+  </div>
+  <div class="stack">${rows.length?rows.map(trackerCard).join(''):'<div class="card empty">Nothing in that phase.</div>'}</div>`;
+}
+
+function trackerCard({g,r,id}){
+  const ph=PHASE[r.phase], flags=trackerFlags(g,r), nexts=nextPhases(r.phase), back=prevPhase(r.phase);
+  const d=daysUntil(g.deadline);
+  return `<div class="card trackcard" style="border-left:3px solid ${ph.color}">
+    <div class="pad">
+      <div class="between">
+        <div style="min-width:0">
+          <div class="row" style="gap:8px">
+            <span class="phasetag" style="background:${ph.color}">${ph.label}</span>
+            <span class="funder">${esc(g.funder)}</span>
+          </div>
+          <h3 style="font-size:16.5px;margin-top:6px;max-width:52ch">${esc(g.title)}</h3>
+          <div class="funder">${g.status==='rolling'?'Rolling intake':d==null?'No stated deadline':d<0?`Closed ${Math.abs(d)} days ago`:`${d} days to deadline`} · ${awardCell(g).replace(/<[^>]+>/g,'')}</div>
+        </div>
+        <div class="row" style="flex-shrink:0">
+          ${back?`<button class="chip" data-phase="${id}:${back}" title="Back to ${PHASE[back].label}">◀</button>`:''}
+          ${nexts.map(n=>`<button class="chip" data-phase="${id}:${n}" style="border-color:${PHASE[n].color};color:${PHASE[n].color}">${PHASE[n].label} ▶</button>`).join('')}
+          <button class="chip" data-untrack="${id}" title="Stop tracking">✕</button>
+        </div>
+      </div>
+
+      ${flags.length?`<div class="flags">${flags.map(f=>`<div class="flag ${f.level}">${esc(f.text)}</div>`).join('')}</div>`:''}
+
+      <div class="tgrid">
+        <label><span>Internal owner</span><input class="field" data-t="${id}:owner" value="${esc(r.owner)}" placeholder="Who is writing this"></label>
+        <label><span>Amount requested</span><input class="field mono" data-t="${id}:requested" value="${r.requested??''}" placeholder="—"></label>
+        <label><span>Amount awarded</span><input class="field mono" data-t="${id}:awarded" value="${r.awarded??''}" placeholder="—"></label>
+        <label><span>Match source${g.cost_share_pct?` (${g.cost_share_pct}% needed${r.requested?` ≈ ${money(Math.round(r.requested*g.cost_share_pct/100))}`:''})`:''}</span>
+          <input class="field" data-t="${id}:matchSource" value="${esc(r.matchSource)}" placeholder="Where the match comes from"></label>
+        <label><span>Next action</span><input class="field" data-t="${id}:nextAction" value="${esc(r.nextAction)}" placeholder="The single next thing"></label>
+        <label><span>Next action due</span><input class="field mono" type="date" data-t="${id}:nextDate" value="${r.nextDate}"></label>
+      </div>
+
+      ${(()=>{ const ex=exposure(g,r); if(!ex||!ex.front) return '';
+        return `<div class="cashbox">
+          <div class="row" style="gap:20px">
+            <div class="fact"><b>Cash to front</b><span class="mono" style="font-size:17px;color:var(--amber)">${money(ex.front)}</span></div>
+            <div class="fact"><b>Award</b><span class="mono">${money(ex.award)}</span></div>
+            <div class="fact"><b>Match</b><span class="mono">${money(ex.match)}</span></div>
+          </div>
+          <div class="sub">${esc(ex.note)}</div></div>`; })()}
+
+      <details class="tsec"><summary>Contacts &amp; partners</summary>
+        <div class="tgrid">
+          <label><span>Authorizing signatory</span><input class="field" data-t="${id}:signatory" value="${esc(r.signatory)}" placeholder="Who can legally bind the applicant"></label>
+          <label><span>Funder program officer</span><input class="field" data-t="${id}:programOfficer" value="${esc(r.programOfficer)}" placeholder="Name, email, phone"></label>
+          <label style="grid-column:1/-1"><span>Partner organizations and committed role</span>
+            <textarea class="field" data-t="${id}:partners" placeholder="Who else is named, and what each has agreed to do">${esc(r.partners)}</textarea></label>
+        </div></details>
+
+      <details class="tsec"><summary>Milestone dates &amp; period of performance</summary>
+        <div class="tgrid">
+          <label><span>Submitted</span><input class="field mono" type="date" data-t="${id}:submittedOn" value="${r.submittedOn}"></label>
+          <label><span>Award notice</span><input class="field mono" type="date" data-t="${id}:awardNoticeOn" value="${r.awardNoticeOn}"></label>
+          <label><span>Contract executed</span><input class="field mono" type="date" data-t="${id}:contractOn" value="${r.contractOn}"></label>
+          <label><span>Performance starts</span><input class="field mono" type="date" data-t="${id}:popStart" value="${r.popStart}"></label>
+          <label><span>Performance ends</span><input class="field mono" type="date" data-t="${id}:popEnd" value="${r.popEnd}"></label>
+          <label><span>Match committed ($)</span><input class="field mono" data-t="${id}:matchAmount" value="${r.matchAmount??''}" placeholder="${g.cost_share_pct&&r.requested?Math.round(r.requested*g.cost_share_pct/100):'—'}"></label>
+        </div>
+        ${r.popStart&&r.popEnd?`<div class="sub">Period of performance: ${Math.max(0,Math.round((new Date(r.popEnd)-new Date(r.popStart))/2629800000))} months.</div>`:''}
+      </details>
+
+      ${['target','pre_req','application'].includes(r.phase)?`
+      <details class="tsec" open><summary>Worth-it check</summary>
+        <div class="tgrid">
+          <label><span>Probability of award</span>
+            <select class="field" data-t="${id}:probability">
+              ${[10,25,50,75,90].map(v=>`<option value="${v}"${r.probability==v?' selected':''}>${v}%</option>`).join('')}
+            </select></label>
+          <label><span>Estimated writing hours</span><input class="field mono" data-t="${id}:writingHours" value="${r.writingHours??''}" placeholder="e.g. 40"></label>
+          <label><span>Expected value per hour</span><span class="readout mono">${
+            r.writingHours&&r.requested?money(Math.round(r.requested*(r.probability/100)/r.writingHours))+' / hr':'—'}</span></label>
+        </div>
+      </details>`:''}
+
+      ${['pre_req','application'].includes(r.phase)?(()=>{ const list=attachmentsFor(g);
+        const missing=list.filter(a=>!r.attachments[a.k]).length;
+        return `<details class="tsec" open><summary>Attachment packet — ${missing} of ${list.length} outstanding</summary>
+          ${list.map(a=>`<button class="chk" aria-pressed="${!!r.attachments[a.k]}" data-attach="${id}:${a.k}"><i></i>${a.l}<small>${a.src}</small></button>`).join('')}
+        </details>`; })():''}
+
+      ${r.phase==='pre_req'?`<div style="margin-top:12px"><label class="f">Readiness</label>
+        ${READINESS.map(([k,l])=>`<button class="chk" aria-pressed="${!!r.readiness[k]}" data-ready="${id}:${k}"><i></i>${l}</button>`).join('')}
+      </div>`:''}
+
+      ${r.phase==='denied'?`<div style="margin-top:12px">
+        <label class="f">Reviewer feedback — capture it now, it is the cheapest input to next year's application</label>
+        <textarea class="field" data-t="${id}:notes" placeholder="Score sheet, debrief notes, what the funder said">${esc(r.notes??'')}</textarea></div>`:''}
+
+      <details style="margin-top:12px"><summary class="sub" style="cursor:pointer">Phase history (${r.log.length})</summary>
+        <div class="stack" style="gap:4px;margin-top:8px">
+          ${r.log.slice().reverse().map(l=>`<div class="sub mono">${new Date(l.at).toLocaleString()} — ${esc(l.text)}</div>`).join('')}
+        </div></details>
+    </div></div>`;
+}
+
+function renderAlerts(){
+  const alerts=buildAlerts();
+  const unread=alerts.filter(a=>!state.readAlerts.has(a.id));
+  const group=(t,list)=>list.length?`<div class="daybar">${t}</div>`+list.map(a=>`
+    <div class="alert ${a.kind==='changed'?'change':''} ${state.readAlerts.has(a.id)?'read':''}">
+      <span class="dot"></span>
+      <div><h4>${esc(a.title)}</h4><p>${esc(a.body)}</p></div>
+      <time><button class="chip" data-read="${a.id}" data-open2="${a.grant.id}">${state.readAlerts.has(a.id)?'Open':'Read'}</button></time>
+    </div>`).join(''):'';
+  return `<div class="grid2" style="grid-template-columns:1fr 292px">
+    <div class="card">
+      <div class="sortbar"><span class="count">${unread.length} unread · ${state.savedFilters.length} saved filter${state.savedFilters.length===1?'':'s'} running</span></div>
+      ${group('Act now — closing within 30 days',alerts.filter(a=>a.kind==='closing_soon'))}
+      ${group('Open and rolling',alerts.filter(a=>a.kind==='new_match'))}
+      ${group('Status changes',alerts.filter(a=>a.kind==='changed'))}
+      ${alerts.length?'':'<div class="empty"><b>Nothing to report</b>Alerts appear here when a programme opens, moves its deadline, or reopens.</div>'}
+    </div>
+    <aside class="stack">
+      <div class="card pad"><label class="f">Saved filters</label>
+        ${state.savedFilters.length?state.savedFilters.map(f=>{
+          const n=search(state.grants,state.profile,f.criteria,state.sort).length;
+          return `<div class="between" style="font-size:14px;margin-bottom:9px"><span>${esc(f.name)}</span>
+            <span class="mono" style="color:${n?'var(--moss)':'var(--dust)'};font-weight:600">${n}</span></div>`;}).join('')
+          :'<div class="sub">None yet. Build one on the Filters &amp; alerts screen, or hit "Save as alert" from Explore.</div>'}
+      </div>
+      <div class="card pad"><label class="f">Catalog status</label>
+        <div class="mono" style="font-size:14px">${state.grants.length} records</div>
+        <div class="sub">Seed catalog, verified ${state.grants[0]?.last_verified??'—'}. The daily sweep is not connected in this standalone build.</div>
+        <hr class="hair">
+        <div class="row"><span class="pill seed">${state.grants.filter(g=>g.needs_verification).length} need figure checks</span>
+        <span class="pill ok">${state.grants.filter(g=>g.status==='open'||g.status==='rolling').length} accepting</span></div>
+      </div>
+    </aside></div>`;
+}
+
+function renderSetup(){
+  const f=state.filter;
+  return `<div class="grid2" style="grid-template-columns:1fr 326px">
+    <div class="card pad stack">
+      <div><label class="f">Name this filter</label>
+        <input class="field" id="fname" value="${esc(state.draft.name)}"></div>
+      <div class="sub">A saved filter and an alert are the same object: anything new that matches shows up in the alert center.</div>
+      <hr class="hair">
+      <div><label class="f">Currently set</label>
+        <div class="stack" style="gap:7px;font-size:14px;color:var(--dust)">
+          <div><b style="color:var(--bone)">Region</b> — ${f.regions.map(titleCase).join(', ')||'any'}${f.counties.length?` (${f.counties.map(titleCase).join(', ')})`:''}</div>
+          <div><b style="color:var(--bone)">Applicants</b> — ${f.applicants.map(a=>APPLICANT_LABELS[a]).join(', ')||'any'}</div>
+          <div><b style="color:var(--bone)">Project types</b> — ${f.projectTypes.map(t=>PROJECT_LABELS[t]).join(', ')||'any'}</div>
+          <div><b style="color:var(--bone)">Minimum award</b> — ${f.awardMin?money(f.awardMin):'any'}</div>
+          <div><b style="color:var(--bone)">Due within</b> — ${f.deadlineWithinDays?f.deadlineWithinDays+' days':'any'}</div>
+          <div><b style="color:var(--bone)">Funds within</b> — ${f.fundsWithinMonths?f.fundsWithinMonths+' months':'any'}</div>
+          <div><b style="color:var(--bone)">Closed rounds</b> — ${f.includeClosed?'included':'hidden'}</div>
+        </div>
+        <div class="sub">Edit these on the Explore screen; the rail and this filter are the same object.</div>
+      </div>
+      <hr class="hair">
+      <div><label class="f">Minimum match score</label>
+        <div class="row" data-group="minScore">
+          ${[[null,'Any'],[50,'50+'],[70,'70+'],[85,'85+']].map(([v,l])=>chip(l,f.minScore===v,`data-v="${v}"`)).join('')}
+        </div></div>
+      <div><label class="f">Skip anything I couldn't write in time</label>
+        <div class="row" data-group="deadlineNoSoonerThanDays">
+          ${[[null,'Off'],[14,'14 days'],[21,'21 days'],[30,'30 days']].map(([v,l])=>chip(l,f.deadlineNoSoonerThanDays===v,`data-v="${v}"`)).join('')}
+        </div></div>
+      <div class="row"><button class="btn" data-act="save-filter">Save filter</button>
+        <button class="btn ghost" data-act="goto-explore">Preview ${search(state.grants,state.profile,state.filter,state.sort).length} matches</button></div>
+    </div>
+    <aside class="stack">
+      <div class="card pad"><label class="f">Sort order</label>
+        <p class="sub" style="margin-top:0">Click to promote a key to first. This decides the top of your results.</p>
+        <div class="stack" style="gap:8px;font-size:14px" data-group="sortOrder">
+          ${state.sort.map((k,i)=>`<button class="chk" aria-pressed="false" data-v="${k}" style="border:1px solid var(--seam);border-radius:4px;padding:9px 12px">
+            <span class="mono" style="color:${i===0?'var(--aurora)':'var(--dust)'};margin-right:10px">${i+1}</span>
+            ${{match:'Eligibility match',deadline:'Deadline urgency',award:'Award size',speed:'Time to funds'}[k]}</button>`).join('')}
+        </div></div>
+      <div class="card pad"><label class="f">Where records come from</label>
+        <div class="chk" aria-pressed="true"><i></i>Seed catalog<small>${state.grants.length}</small></div>
+        <div class="chk" aria-pressed="false"><i></i>Grants.gov (federal)<small>sweep</small></div>
+        <div class="chk" aria-pressed="false"><i></i>NYS CFA · DEC · NYSERDA<small>sweep</small></div>
+        <div class="chk" aria-pressed="false"><i></i>Monroe County DES<small>sweep</small></div>
+        <div class="chk" aria-pressed="false"><i></i>Regional foundations<small>manual</small></div>
+        <div class="sub">Sweep sources light up once the Supabase Edge Function is deployed.</div>
+      </div>
+    </aside></div>`;
+}
+
+// ---------- shell ----------
+function render(){
+  document.getElementById('tabs').innerHTML = SCREENS.map(s=>{
+    let badge='';
+    if(s.id==='alerts') badge=`<span class="badge">${buildAlerts().filter(a=>!state.readAlerts.has(a.id)).length}</span>`;
+    if(s.id==='tracker'&&state.tracked.size) badge=`<span class="badge" style="background:var(--amber)">${state.tracked.size}</span>`;
+    return `<button role="tab" aria-selected="${state.tab===s.id}" data-tab="${s.id}"><b>${s.eyebrow.toUpperCase()}</b>${s.tab}${badge}</button>`;
+  }).join('');
+  const s = SCREENS.find(x=>x.id===state.tab);
+  const heads = {
+    explore:['Explore grants','Federal, New York State, regional and county programmes that reach the Finger Lakes and Western New York. Ordered by eligibility match, then deadline, then award size, then how fast the money lands.'],
+    detail:['Grant record','Can we apply, how much, by when, and when does the money actually show up — plus where every figure came from.'],
+    path:['Which path gets you the most money','Describe the project once. Horizon re-scores eligibility as if you were each kind of applicant, then stacks the programmes you could realistically win under each route.'],
+    tracker:['Grant tracker','Ten phases from Target to Closed. Denied forks off Applied rather than sitting between it and Accepted, because a rejection is an end state you learn from, not a step on the way to an award.'],
+    alerts:['Alert center','Everything lands here — no email, no push. Openings, closings, rolling intakes and status changes.'],
+    setup:['Filters & alerts','A saved filter and an alert are the same object. Name a search and anything new that matches shows up in the alert center.'],
+  }[state.tab];
+  document.getElementById('screens').innerHTML =
+    `<section class="screen on"><div class="screen-head"><span class="eyebrow">${s.eyebrow}</span>
+      <h2>${heads[0]}</h2><p>${heads[1]}</p></div>${s.render()}</section>`;
+}
+
+// toggle helpers
+const toggleArr=(arr,v)=>arr.includes(v)?arr.filter(x=>x!==v):[...arr,v];
+const parseV=v=>v==='null'?null:isNaN(Number(v))?v:Number(v);
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tab],[data-open],[data-open2],[data-act],[data-v],[data-read],[data-track],[data-untrack],[data-phase],[data-ready],[data-attach]');
+  if(!t) return;
+  const groupEl = t.closest('[data-group]');
+  const group = groupEl?.dataset.group;
+
+  if(t.dataset.tab){ state.tab=t.dataset.tab; render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  if(t.dataset.open){ state.detailId=t.dataset.open; state.tab='detail'; render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  if(t.dataset.read){ state.readAlerts.add(t.dataset.read); state.detailId=t.dataset.open2; state.tab='detail'; render(); window.scrollTo({top:0}); return; }
+  if(t.dataset.act==='reset'){ state.filter={...state.filter,applicants:[],projectTypes:[],counties:[],awardMin:null,
+      deadlineWithinDays:null,fundsWithinMonths:null,minScore:null,includeClosed:false}; render(); return; }
+  if(t.dataset.act==='goto-explore'){ state.tab='explore'; render(); return; }
+  if(t.dataset.act==='clear-phase-filter'){ state.trackerPhaseFilter=null; render(); return; }
+  if(t.dataset.act==='demo-track'){
+    state.grants.filter(g=>g.status==='open'||g.status==='rolling').forEach(g=>track(g.id));
+    render(); return; }
+  if(t.dataset.track){ track(t.dataset.track); state.tab='tracker'; render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  if(t.dataset.untrack){ state.tracked.delete(t.dataset.untrack); render(); return; }
+  if(t.dataset.phase){ const [id,ph]=t.dataset.phase.split(':'); setPhase(id,ph);
+    const sc=window.scrollY; render(); window.scrollTo({top:sc}); return; }
+  if(t.dataset.ready){ const [id,k]=t.dataset.ready.split(':'); const r=state.tracked.get(id);
+    r.readiness[k]=!r.readiness[k]; const sc=window.scrollY; render(); window.scrollTo({top:sc}); return; }
+  if(t.dataset.attach){ const [id,k]=t.dataset.attach.split(':'); const r=state.tracked.get(id);
+    r.attachments[k]=!r.attachments[k]; const sc=window.scrollY; render(); window.scrollTo({top:sc}); return; }
+  if(t.dataset.act==='save-filter'){
+    const nameEl=document.getElementById('fname');
+    const name=(nameEl?.value||state.draft.name||'Untitled filter').trim();
+    state.savedFilters=[...state.savedFilters.filter(f=>f.name!==name),{name,criteria:structuredClone(state.filter)}];
+    state.tab='alerts'; render(); window.scrollTo({top:0,behavior:'smooth'}); return;
+  }
+
+  const v = parseV(t.dataset.v);
+  switch(group){
+    case 'regions': case 'counties': case 'applicants': case 'projectTypes':
+      state.filter[group]=toggleArr(state.filter[group],v); break;
+    case 'awardMin': case 'deadlineWithinDays': case 'fundsWithinMonths':
+    case 'minScore': case 'deadlineNoSoonerThanDays':
+      state.filter[group]=v; break;
+    case 'includeClosed': state.filter.includeClosed=!state.filter.includeClosed; break;
+    case 'sort': state.sort=[v,...DEFAULT_SORT.filter(k=>k!==v)]; break;
+    case 'sortOrder': state.sort=[v,...state.sort.filter(k=>k!==v)]; break;
+    case 'profileTypes': state.profile.projectTypes=toggleArr(state.profile.projectTypes,v); break;
+    case 'profileApplicant': state.profile.applicant=v; break;
+    case 'profileCounty': state.profile.county=v; break;
+    case 'profileBudget': state.profile.budget=v; break;
+    case 'phaseFilter': state.trackerPhaseFilter=state.trackerPhaseFilter===v?null:v; break;
+    default: return;
+  }
+  const scroll=window.scrollY; render(); window.scrollTo({top:scroll});
+});
+
+document.addEventListener('change', e => handleFieldEdit(e));
+document.addEventListener('input', e => handleFieldEdit(e));
+function handleFieldEdit(e){
+  if(e.target.id==='desc') state.profile.description=e.target.value;
+  if(e.target.id==='fname') state.draft.name=e.target.value;
+  const t=e.target.dataset?.t;
+  if(t){
+    const [id,field]=t.split(':'); const r=state.tracked.get(id); if(!r) return;
+    const raw=e.target.value;
+    r[field]=['requested','awarded','matchAmount','writingHours','probability'].includes(field)
+      ? (raw.replace(/[^0-9]/g,'')===''?null:Number(raw.replace(/[^0-9]/g,'')))
+      : raw;
+    if(['writingHours','probability','matchAmount'].includes(field)){
+      const sc=window.scrollY; render(); window.scrollTo({top:sc});
+    }
+  }
+}
+
+// ---------- boot ----------
+async function boot(){
+  let file;
+  if (window.__GRANTS__) file = window.__GRANTS__;           // inlined standalone build
+  else file = await (await fetch('./grants.json')).json();   // served build
+  state.grants = file.grants;
+  document.getElementById('stamp').textContent =
+    `${file.grants.length} records · verified ${file.generated_at}`;
+  document.getElementById('foot').textContent = file.provenance_note;
+  render();
+}
+boot().catch(err=>{
+  document.getElementById('screens').innerHTML =
+    `<div class="card empty"><b>Couldn't load the catalog</b>${esc(err.message)}. Serve this folder over HTTP (<code>npx serve app</code>) so grants.json can be fetched, or open the inlined build in dist/.</div>`;
+  document.getElementById('stamp').textContent='Catalog unavailable';
+});
+</script>
+</body>
+</html>

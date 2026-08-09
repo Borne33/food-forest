@@ -362,3 +362,17 @@ Verify work · GitHub Actions Pages deploy.
 - **About page** also has a **"Toward more sustainable AI"** org directory
   (`SUSTAIN_AI`) — vetted groups on green infrastructure, clean energy, water
   stewardship, and community/noise impact.
+
+## 15. Grant Finder page (Aug 2026)
+
+- **`grants.html`** at repo root is the self-contained "Horizon" grant-finder
+  standalone build (vanilla JS, own inlined catalog via `window.__GRANTS__`, 15
+  records; from Downloads/horizon-standalone_5.html). It runs offline; the
+  app-build variant that fetches `./grants.json` was NOT used (no data file).
+- **Surfaced as the "Grant Finder" nav page** (`GrantFinder` component): a
+  `pagehead` + an iframe (`.grantframe`, src="grants.html") so it runs exactly as
+  built inside the site shell; `page==="grants"` also gets the wide layout. No
+  Supabase/build integration (avoids the README-noted `grants` table collision).
+- **To update the grant catalog:** replace `grants.html` with a newer standalone
+  build (or, if switching to a live data build, add `grants.json` beside it and
+  point the iframe at the app build). Add its funder as needed to the About sources.
