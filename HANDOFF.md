@@ -376,3 +376,29 @@ Verify work · GitHub Actions Pages deploy.
 - **To update the grant catalog:** replace `grants.html` with a newer standalone
   build (or, if switching to a live data build, add `grants.json` beside it and
   point the iframe at the app build). Add its funder as needed to the About sources.
+
+## 16. Grant Finder — Supabase integration (Aug 2026)
+
+- **Tables** (`importer/sql/grants.sql`): `grants` (catalog, one JSONB row per grant;
+  authenticated-read, admin-write), `grant_tracked` / `grant_saved_filters` /
+  `grant_settings` (all per-user, own-row RLS). Everything is behind sign-in.
+- **`grants.html`** now talks to Supabase with its OWN client (same URL + anon key
+  → shares the host app's auth session via same-origin localStorage; works both
+  embedded and standalone). On boot it loads the catalog from `grants` (falls back
+  to the inlined `window.__GRANTS__` when signed-out/offline) and the user's
+  tracker/saved-filters/profile. Mutations persist debounced (`schedulePersist`
+  from render() + handleFieldEdit; `persistUser` replaces the small per-user sets).
+- **Admin catalog editor:** floating "✎ Edit catalog" button (admin uid only) →
+  overlay to add/edit/delete grant records as JSON, saved straight to the `grants`
+  table. Keep `needs_verification` true until every figure is confirmed.
+- **Keeping grants current (chosen: importer + in-app admin editor):** edit
+  `importer/grants/grants_catalog.json` (source of truth, the finder's record
+  shape) and run `python3 grant_import.py` to upsert; OR use the in-app admin
+  editor. No scraper/edge-function. Catalog is point-in-time — deadlines move fast.
+- **Prefill:** the host `GrantFinder` (index.html) reverse-geocodes the current
+  plan's mapped-area centroid (Nominatim) and passes `?county=&types=` to the
+  iframe; the finder applies them for first-time users (saved settings win after).
+  Only counties the finder knows (monroe/ontario/wayne/erie) are passed.
+- **Not yet live-tested:** the authenticated path (DB catalog load, per-user
+  persistence, admin editor) is auth-gated — verified statically + fallback/prefill
+  paths in preview; click-test when signed in.

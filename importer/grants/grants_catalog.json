@@ -1,0 +1,855 @@
+{
+ "version": 1,
+ "generated_at": "2026-08-01",
+ "region_scope": "Finger Lakes + Western New York (Monroe County included)",
+ "provenance_note": "Every record was checked against a primary or named secondary source on 2026-08-01. Fields that the source did not state are null, not estimated. Records with needs_verification=true have at least one figure taken from a secondary aggregator or an older round and must be confirmed against the funder notice before you rely on the number.",
+ "grants": [
+  {
+   "id": "nysdec-ucf-round17-2026",
+   "title": "Urban and Community Forestry Grant Program, Round 17 \u2014 tree inventories and management plans",
+   "funder": "NYS Department of Environmental Conservation",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/nature/forests-trees/urban-and-community-forestry",
+   "source_url": "https://www.governor.ny.gov/news/governor-hochul-announces-10-million-available-urban-forest-inventory-and-assessment-grants",
+   "summary": "Ten million dollars statewide for street and park tree inventories, assessments, and community forest management plans. Projects must sit on public property, private land open to the public, or recognized Tribal reservation land. Applications go through the Statewide Financial System; nonprofits must prequalify before the deadline.",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "nonprofit"
+   ],
+   "applicant_notes": {
+    "state_agency": "Not named in the eligibility list for this round.",
+    "for_profit": "Not eligible as applicant; may be retained as a contractor.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "habitat_restoration",
+    "carbon_offsetting",
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide, subject to the eligible geographic boundaries defined in the Request for Applications."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": "2026-05-15",
+   "deadline": "2026-08-12T14:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Applicant must be registered in the Statewide Financial System (SFS)",
+    "Not-for-profits must complete NYS prequalification before the deadline",
+    "Project site must be public property, private land open to the public, or recognized Tribal reservation land",
+    "One application per applicant"
+   ],
+   "tags": [
+    "epf",
+    "sfs",
+    "25-million-trees"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Total pool ($10M) and deadline confirmed. Per-project award floor and ceiling were not stated in the sources checked \u2014 read the RFA before entering numbers.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysdec-advancing-forest-markets-2026",
+   "title": "Advancing Forest Markets \u2014 Tree Market Boost and Revitalization",
+   "funder": "NYS Department of Environmental Conservation",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/nature/forests-trees",
+   "source_url": "https://dec.ny.gov/news/press-releases/2026/4/on-arbor-day-dec-announces-46-million-now-available-through-new-advancing-forest-markets-grant-program",
+   "summary": "New program with $46 million available to expand seedling supply and forest-product capacity. The Tree Market Boost track funds forestry and forest-product businesses and other entities working on reforestation, forest management, low-grade wood products, timber and maple. No match required, and awards carry a participation incentive payment on contract execution. Funding cannot be used to break ground or disturb site vegetation.",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "nonprofit",
+    "for_profit",
+    "individual"
+   ],
+   "applicant_notes": {
+    "individual": "Individual private landowners are named as eligible, subject to USDA enrollment requirements.",
+    "for_profit": "Forestry and forest-product businesses are a primary target of this track."
+   },
+   "project_types": [
+    "carbon_offsetting",
+    "supply_chain_audits",
+    "other",
+    "native_plants"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": 100000,
+   "award_max": 12000000,
+   "cost_share_pct": 0,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": "2026-04-24",
+   "deadline": "2026-08-05T14:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "milestone",
+   "requirements": [
+    "Applications submitted through the Statewide Financial System (SFS)",
+    "All funded work must be completed before January 2028",
+    "Funds may not be used for direct implementation that breaks ground or disturbs site vegetation",
+    "Participation incentive payment of $2,000-$10,000 depending on project size"
+   ],
+   "tags": [
+    "25-million-trees",
+    "sfs"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Tagged native_plants on the basis of the programme's stated aim of increasing access to high-quality, locally grown seedlings for reforestation, afforestation and climate resilience. The notice does not use the word \"native\" \u2014 confirm species requirements in the guidelines.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysdec-climate-smart-communities-2026",
+   "title": "Climate Smart Communities Grant Program \u2014 2026 round",
+   "funder": "NYS Department of Environmental Conservation",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/environmental-protection/climate-change/resources-for-local-governments/grants-for-climate-action",
+   "source_url": "https://dec.ny.gov/news/press-releases/2026/6/dec-announces-18-million-for-climate-smart-communities-grants-now-available",
+   "summary": "Eighteen million dollars for municipal climate mitigation and adaptation. About $17 million funds implementation projects from $35,000 to $2 million; a separate $1 million funds planning, inventory and assessment projects from $10,000 to $200,000. Named eligible topics include reducing emissions from food waste, flood risk reduction, refrigerant management and smart growth analysis. The 2026 round closed on 31 July; the CFA cycle historically runs May to July each year.",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "state_agency": "Not eligible. Program is for local governments.",
+    "nonprofit": "Not eligible as lead applicant; can participate as a project partner.",
+    "for_profit": "Not eligible as applicant; may be retained as a vendor.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "organic_composting",
+    "zero_waste",
+    "rain_gardens_bioretention",
+    "habitat_restoration",
+    "fleet_electrification",
+    "energy_efficiency",
+    "active_transportation"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide. Eligibility expanded effective April 2026 to include local public authorities, public benefit corporations and Indian Nations."
+   },
+   "award_min": 35000,
+   "award_max": 2000000,
+   "cost_share_pct": 50,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": "2026-06-05",
+   "deadline": "2026-07-31T16:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "reimbursement",
+   "requirements": [
+    "Applications accepted only through the NYS Consolidated Funding Application (CFA)",
+    "Local match of 50% of total project cost for most projects",
+    "Match may drop to 20% for financial-hardship communities or projects in disadvantaged communities",
+    "Applicant must be registered in the SFS Grants Management System",
+    "Grantee must own the project site or hold a climate change mitigation easement"
+   ],
+   "tags": [
+    "cfa",
+    "epf",
+    "bond-act",
+    "exclusive:cfa-2026"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": false,
+   "verification_note": "Next round expected to open in the May-July 2027 CFA cycle; dates not yet published.",
+   "raw_hash": null
+  },
+  {
+   "id": "nys-consolidated-funding-application-2026",
+   "title": "NYS Consolidated Funding Application \u2014 2026 round",
+   "funder": "Empire State Development / Regional Economic Development Councils",
+   "funder_level": "state",
+   "program_url": "https://apps.cio.ny.gov/apps/cfa/",
+   "source_url": "https://www.governor.ny.gov/news/governor-hochul-announces-launch-2026-regional-economic-development-council-initiative",
+   "summary": "The single application portal for more than 20 state programs across eight agencies, including most DEC and EFC environmental grants. Up to $60 million in Regional Council Capital Funds plus program-specific money. Deadline-enforced programs closed 31 July 2026 at 4pm; open-enrollment programs inside the CFA keep accepting applications until their funds run out.",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "nonprofit",
+    "for_profit"
+   ],
+   "applicant_notes": {
+    "individual": "Not an applicant category; individual projects must go through an eligible entity.",
+    "state_agency": "State agencies administer rather than apply."
+   },
+   "project_types": [
+    "other"
+   ],
+   "geography": {
+    "regions": [
+     "finger_lakes",
+     "western_ny",
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "The Finger Lakes REDC covers Genesee, Livingston, Monroe, Ontario, Orleans, Seneca, Wayne, Wyoming and Yates. The Western New York REDC covers Allegany, Cattaraugus, Chautauqua, Erie and Niagara."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": "2026-06-01",
+   "deadline": "2026-07-31T16:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Regional Councils score projects on alignment with the regional strategic plan",
+    "Open-enrollment programs within the CFA are not subject to the July deadline"
+   ],
+   "tags": [
+    "cfa",
+    "portal",
+    "exclusive:cfa-2026"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": false,
+   "verification_note": "This is a portal record, not a grant. It exists so the app can explain why a cluster of state deadlines all land on the same date.",
+   "raw_hash": null
+  },
+  {
+   "id": "nyserda-clean-energy-communities-3",
+   "title": "Clean Energy Communities Program, Round 3.0 \u2014 action and designation grants",
+   "funder": "NYSERDA",
+   "funder_level": "state",
+   "program_url": "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities",
+   "source_url": "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities/High-Impact-Actions",
+   "summary": "Municipalities earn points by completing high-impact clean energy actions, then draw grant funding to implement further projects. Action grants run up to $290,000 for large municipalities and up to $97,500 for small and medium ones. Submissions of new high-impact actions have been paused since November 2024, but designated communities can still submit grant project applications on a rolling basis.",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not an applicant; municipalities apply.",
+    "for_profit": "Not an applicant.",
+    "individual": "Not an applicant."
+   },
+   "project_types": [
+    "energy_efficiency",
+    "solar_renewables",
+    "fleet_electrification",
+    "smart_grid_metering",
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Any New York county, city, town or village. Additional support for projects in disadvantaged communities."
+   },
+   "award_min": null,
+   "award_max": 290000,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Municipality must hold Clean Energy Communities designation to access action grants",
+    "High-impact action submissions have been closed since 7 November 2024",
+    "Custom, pre-approved and direct-to-voucher proposal routes are available"
+   ],
+   "tags": [
+    "nyserda",
+    "rolling"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "The $290,000 / $97,500 tiers were published before the October 2024 step-down in funding levels. Confirm current tier amounts with a NYSERDA CEC coordinator before budgeting.",
+   "raw_hash": null
+  },
+  {
+   "id": "monroe-community-climate-action-fund-2026",
+   "title": "Community Climate Action Fund Pilot Program",
+   "funder": "Monroe County Department of Environmental Services",
+   "funder_level": "county",
+   "program_url": "https://www.monroecounty.gov/des-caf-program",
+   "source_url": "https://www.monroecounty.gov/news-2026-06-05-climate-fund",
+   "summary": "Monroe County's first direct climate grant to its own municipalities. Individual municipalities can receive up to $10,000 in matching funds for new or expanded initiatives drawn from the roughly 100 actions in Phase II of the County Climate Action Plan, spanning transportation, buildings and housing, energy use, and sustainable materials management. Applicants are encouraged to partner with neighbouring municipalities. The pilot round closed 17 June 2026.",
+   "eligible_applicants": [
+    "town"
+   ],
+   "applicant_notes": {
+    "county": "Monroe County is the funder, not an applicant.",
+    "nonprofit": "Not named as an eligible applicant; partner through a municipality.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "fleet_electrification",
+    "energy_efficiency",
+    "zero_waste",
+    "organic_composting",
+    "active_transportation",
+    "green_building_design",
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "finger_lakes"
+    ],
+    "counties": [
+     "monroe"
+    ],
+    "notes": "Municipalities located within Monroe County only."
+   },
+   "award_min": null,
+   "award_max": 10000,
+   "cost_share_pct": 50,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": "2026-06-05",
+   "deadline": "2026-06-17T16:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Project must map to an action in Monroe County Climate Action Plan Phase II",
+    "Matching funds required",
+    "Joint applications with neighbouring municipalities encouraged"
+   ],
+   "tags": [
+    "monroe",
+    "pilot"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Described as matching funds; the exact match ratio was not stated in the press release. 50% is an assumption flagged for correction. Pilot status means a second round is likely but unannounced.",
+   "raw_hash": null
+  },
+  {
+   "id": "usda-reap-grants-fy2026",
+   "title": "Rural Energy for America Program (REAP) \u2014 grant component",
+   "funder": "USDA Rural Business-Cooperative Service",
+   "funder_level": "federal",
+   "program_url": "https://www.rd.usda.gov/programs-services/energy-programs/rural-energy-america-program-renewable-energy-systems-energy-efficiency-improvement-guaranteed-loans",
+   "source_url": "https://www.federalregister.gov/documents/2024/10/16/2024-23854/notice-of-funding-opportunity-for-the-rural-energy-for-america-program-for-fiscal-years-2025-2026",
+   "summary": "Renewable energy systems and energy efficiency improvements for agricultural producers and rural small businesses. Renewable energy grants are capped at $1 million per project and efficiency grants at $500,000. Cost share runs up to 25% of eligible costs on Farm Bill money and up to 50% on Inflation Reduction Act money. USDA paused acceptance of grant applications and announced in March 2026 that it will issue new regulations for the grant component; the guaranteed loan program remains open.",
+   "eligible_applicants": [
+    "for_profit",
+    "individual"
+   ],
+   "applicant_notes": {
+    "individual": "Agricultural producers with at least 50% of gross income from agriculture, including sole proprietors.",
+    "for_profit": "Rural small businesses meeting SBA size standards in an eligible rural area.",
+    "town": "Not eligible.",
+    "county": "Not eligible.",
+    "nonprofit": "Not eligible under this program."
+   },
+   "project_types": [
+    "solar_renewables",
+    "energy_efficiency"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "Rural areas as defined by USDA. Agricultural producers may apply regardless of location; rural small businesses must be in an area under 50,000 population, which excludes the Rochester urbanized core."
+   },
+   "award_min": 2500,
+   "award_max": 1000000,
+   "cost_share_pct": 50,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "reimbursement",
+   "requirements": [
+    "Grant applications are not being accepted pending new regulations announced 31 March 2026",
+    "Guaranteed loan applications remain open",
+    "Applicants with a pending grant application may have to reapply",
+    "USDA has signalled tighter treatment of ground-mounted solar on productive farmland"
+   ],
+   "tags": [
+    "reap",
+    "paused",
+    "farm-bill",
+    "ira"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "The $2,500 floor comes from a secondary source. Award floor and the reopening date must be confirmed with the NY Rural Development State Energy Coordinator.",
+   "raw_hash": null
+  },
+  {
+   "id": "nfwf-five-star-urban-waters-2026",
+   "title": "Five Star and Urban Waters Restoration Grant Program",
+   "funder": "National Fish and Wildlife Foundation",
+   "funder_level": "private",
+   "program_url": "https://www.nfwf.org/programs/five-star-and-urban-waters-restoration-grant-program",
+   "source_url": "https://floodcoalition.org/fff-resource/five-star-and-urban-waters/",
+   "summary": "Modest grants to local partnerships improving water quality and the habitats that depend on it. Eligible work includes community tree canopy, community gardens, wetland, riparian and forest habitat restoration, and stormwater management, each paired with community outreach and stewardship. Roughly $2.5 million is distributed across 30 to 50 grants a year. The 2026 round closed in May with awards expected mid-to-late November 2026.",
+   "eligible_applicants": [
+    "nonprofit",
+    "town",
+    "county",
+    "state_agency",
+    "for_profit"
+   ],
+   "applicant_notes": {
+    "individual": "Not eligible; partner with a nonprofit or municipality."
+   },
+   "project_types": [
+    "habitat_restoration",
+    "rain_gardens_bioretention",
+    "community_gardens",
+    "community_education",
+    "carbon_offsetting",
+    "native_plants"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "National program. Great Lakes and urban watershed projects are competitive; the Genesee River and Irondequoit Creek watersheds fit the profile."
+   },
+   "award_min": 25000,
+   "award_max": 60000,
+   "cost_share_pct": 50,
+   "expected_awards": 40,
+   "status": "closed",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": "2026-11",
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Minimum 1:1 match; matching contributions must be non-federal",
+    "Proposals must address at least one bullet under each of the five program priorities",
+    "Grants span roughly 12 to 18 months"
+   ],
+   "tags": [
+    "nfwf",
+    "annual-spring-deadline"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Sources disagree on the award band: one reports $25,000-$50,000 with a $40,000 average, another $30,000-$60,000 averaging $45,000. The stored range is the union of both. One aggregator lists the next deadline as 16 May 2027 \u2014 confirm against the NFWF RFP when it posts. Tagged native_plants on the basis of the programme's pollinator and migratory bird habitat priority and its riparian/wetland restoration categories. Not an explicit native-species mandate.",
+   "raw_hash": null
+  },
+  {
+   "id": "usda-cfwr-composting",
+   "title": "Composting and Food Waste Reduction (CFWR) Cooperative Agreements",
+   "funder": "USDA Office of Urban Agriculture and Innovative Production",
+   "funder_level": "federal",
+   "program_url": "https://www.usda.gov/farming-and-ranching/agricultural-education-and-outreach/urban-agriculture-and-innovative-production/composting-and-food-waste-reduction-cfwr-cooperative-agreements",
+   "source_url": "https://www.usda.gov/farming-and-ranching/agricultural-education-and-outreach/urban-agriculture-and-innovative-production/composting-and-food-waste-reduction-cfwr-cooperative-agreements",
+   "summary": "Two-year cooperative agreements helping local and tribal governments and schools plan and implement municipal compost and food waste reduction programs. Priority goes to projects that make compost accessible to farmers and community gardeners, fold in food recovery, show economic benefit, and involve multiple partners. The programme has run on American Rescue Plan money since 2020; no FY2026 application round had been announced as of 1 August 2026.",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Eligibility for nonprofits varies by round; school districts and tribal governments have been named in past notices.",
+    "state_agency": "States have not been eligible recipients; advocacy groups have asked USDA to add them.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "organic_composting",
+    "zero_waste",
+    "community_gardens",
+    "food_forest"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "National."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "forecast",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Projects must run two years",
+    "Multiple named project partners are expected"
+   ],
+   "tags": [
+    "arpa",
+    "compost"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Last confirmed round was FY2024, which closed 4 September 2024. The programme depends on remaining ARPA funds and may not recur. Award range not published on the landing page \u2014 pull it from the Grants.gov notice if a new round posts. Tagged food_forest on the basis of the programme's stated interest in encouraging permaculture business development alongside composting. This is the only hook for perennial food systems anywhere in the current catalog.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysdec-wqip",
+   "title": "Water Quality Improvement Project (WQIP) Program",
+   "funder": "NYS Department of Environmental Conservation",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/environmental-protection/water/water-quality/grants",
+   "source_url": "https://dec.ny.gov/news/press-releases/2026/1/icymi-new-york-state-awards-more-than-20-million-for-water-quality-and-climate-resiliency-projects-in-genesee-livingston-monroe-ontario-steuben-and-wayne-counties",
+   "summary": "The state's main competitive grant for projects that directly cut water pollution \u2014 non-agricultural nonpoint source abatement, green infrastructure, salt storage, aquatic habitat restoration and municipal wastewater work. Runs through the Consolidated Funding Application, so it closed with the rest of the 2026 CFA round on 31 July. Awarded alongside the Non-Agricultural Nonpoint Source Planning grant and the newer Resilient Watersheds Grant, which together sent over $20 million to Genesee, Livingston, Monroe, Ontario, Steuben and Wayne counties in January 2026.",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "state_agency"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Eligible for certain project categories in some rounds; confirm against the current RFA.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "rain_gardens_bioretention",
+    "habitat_restoration",
+    "water_fixture_retrofits"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide. Finger Lakes and Western New York projects have been consistently funded; Monroe, Ontario and Wayne counties all received awards in the January 2026 announcement."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": "2026-06-01",
+   "deadline": "2026-07-31T16:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "reimbursement",
+   "requirements": [
+    "Applications accepted only through the Consolidated Funding Application"
+   ],
+   "tags": [
+    "cfa",
+    "epf",
+    "bond-act",
+    "exclusive:cfa-2026"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Programme existence, CFA routing and regional award history confirmed. Award range, match requirement and the 2026 category list were not confirmed \u2014 pull them from the WQIP RFA before entering figures.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysdec-ej-community-impact-grants",
+   "title": "Environmental Justice Community Impact Grants",
+   "funder": "NYS Department of Environmental Conservation",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/environmental-protection/environmental-justice",
+   "source_url": "https://dec.ny.gov/news/press-releases/2026/4/dec-announces-6-million-in-environmental-justice-community-impact-grants-awarded-to-32-community-based-organizations",
+   "summary": "Grants of up to $200,000 to community-based organisations working on environmental and public health problems in their own neighbourhoods. Funded projects have included urban climate resilience and land-tending programmes, biodiversity restoration on vacant lots, and community-first environmental education. Six million dollars went to 32 organisations in April 2026; the next round has not been announced.",
+   "eligible_applicants": [
+    "nonprofit"
+   ],
+   "applicant_notes": {
+    "town": "Not eligible; the programme funds community-based organisations.",
+    "county": "Not eligible.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "habitat_restoration",
+    "community_education",
+    "community_gardens",
+    "other",
+    "native_plants"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide, targeted at designated disadvantaged and environmental justice communities. Parts of the City of Rochester in Monroe County carry that designation."
+   },
+   "award_min": null,
+   "award_max": 200000,
+   "cost_share_pct": null,
+   "expected_awards": 32,
+   "status": "forecast",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Applicant must be a community-based organisation",
+    "Project must serve an environmental justice or disadvantaged community"
+   ],
+   "tags": [
+    "epf",
+    "environmental-justice"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Award ceiling inferred from the April 2026 award list, where multiple grants landed at exactly $200,000. Confirm the published ceiling and the next application window with DEC. Tagged native_plants because funded projects in the April 2026 round included biodiversity and biocultural diversity restoration on vacant land, and community land-tending work.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysdec-municipal-zev-2026",
+   "title": "Municipal Zero-Emission Vehicle Rebate and Infrastructure Grants",
+   "funder": "NYS Department of Environmental Conservation",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/environmental-protection/climate-change/resources-for-local-governments/grants-for-climate-action",
+   "source_url": "https://dec.ny.gov/news/press-releases/2026/6/dec-announces-18-million-for-climate-smart-communities-grants-now-available",
+   "summary": "Two linked municipal programmes: rebates toward electric or hybrid municipal vehicles, and infrastructure grants to install Level 2 and DC fast charging or hydrogen filling components for public use. The 2026-27 enacted budget raised the per-vehicle rebate cap to $30,000. Five million dollars was allocated for chargers and $585,000 for vehicles, with awards expected in late summer 2026. The most recent infrastructure round closed 27 February 2026.",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "state_agency": "Not eligible.",
+    "nonprofit": "Not eligible. School districts, fire districts, public benefit corporations and IDAs are explicitly excluded from the rebate programme.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "fleet_electrification",
+    "smart_grid_metering"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Any New York county, city, town or village."
+   },
+   "award_min": null,
+   "award_max": 30000,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": null,
+   "deadline": "2026-02-27T15:00:00-05:00",
+   "award_notice_est": "2026-09",
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Applications go through the NYS Statewide Financial System Grants Management System, not the CFA",
+    "A facility funded by the NYSERDA Charge Ready programme cannot receive ZEV infrastructure funds for the same equipment",
+    "Utility Make Ready funds may be combined with this programme"
+   ],
+   "tags": [
+    "zev",
+    "sfs"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "The $30,000 figure is the per-vehicle rebate cap, not an infrastructure award ceiling \u2014 the two tracks have different limits and should probably be split into two records once the next RFA posts.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysufc-tree-city-usa-reward-2026",
+   "title": "Tree City USA Reward Grant",
+   "funder": "New York State Urban Forestry Council",
+   "funder_level": "private",
+   "program_url": "https://nysufc.org/grants/",
+   "source_url": "https://nysufc.org/grants/",
+   "summary": "A small in-kind award of up to $1,000 toward one large notable tree, or a small grove, for communities that have held Tree City USA status for at least five years. Applications for 2026 are open and due postmarked by 2 October.",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not the applicant; the designated Tree City community applies.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "carbon_offsetting",
+    "habitat_restoration",
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "New York communities with Tree City USA designation."
+   },
+   "award_min": null,
+   "award_max": 1000,
+   "cost_share_pct": 0,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": null,
+   "deadline": "2026-10-02T23:59:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "on_award",
+   "requirements": [
+    "Community must have been a Tree City USA for five years",
+    "Award is in-kind \u2014 trees and planting materials, not cash",
+    "Application must be postmarked by the deadline"
+   ],
+   "tags": [
+    "in-kind",
+    "small-award",
+    "us-forest-service"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": false,
+   "verification_note": null,
+   "raw_hash": null
+  },
+  {
+   "id": "nysufc-quick-start-grant",
+   "title": "Quick Start Grant \u2014 Tree City USA pursuit",
+   "funder": "New York State Urban Forestry Council",
+   "funder_level": "private",
+   "program_url": "https://nysufc.org/grants/",
+   "source_url": "https://nysufc.org/grants/",
+   "summary": "Competitive grants of up to $1,000 for small communities that want to pursue Tree City USA status, anchored on an inaugural Arbor Day tree planting celebration in the spring. Funded through the US Forest Service.",
+   "eligible_applicants": [
+    "town"
+   ],
+   "applicant_notes": {
+    "county": "Aimed at small communities rather than counties.",
+    "nonprofit": "Not the applicant.",
+    "for_profit": "Not eligible.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "carbon_offsetting",
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Small New York communities not yet designated Tree City USA."
+   },
+   "award_min": null,
+   "award_max": 1000,
+   "cost_share_pct": 0,
+   "expected_awards": null,
+   "status": "forecast",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "on_award",
+   "requirements": [
+    "Community must intend to achieve Tree City USA status in the award year",
+    "Inaugural Arbor Day planting celebration expected in spring"
+   ],
+   "tags": [
+    "in-kind",
+    "small-award",
+    "us-forest-service"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "No application window stated on the grants page. Check with the Council for the current cycle.",
+   "raw_hash": null
+  },
+  {
+   "id": "nysefc-green-innovation-grant-program",
+   "title": "Green Innovation Grant Program (GIGP)",
+   "funder": "NYS Environmental Facilities Corporation",
+   "funder_level": "state",
+   "program_url": "https://efc.ny.gov/gigp",
+   "source_url": "https://www.westchestercountyny.gov/trees/municipal-resources",
+   "summary": "Green infrastructure grants for projects that reduce and treat stormwater at the source through infiltration or evapotranspiration, including a stormwater street tree and urban forestry track. Municipalities, private entities, state agencies and soil and water conservation districts are eligible.",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "state_agency",
+    "for_profit"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not confirmed in the source checked; verify against the current RFA.",
+    "individual": "Not eligible."
+   },
+   "project_types": [
+    "rain_gardens_bioretention",
+    "rainwater_harvesting",
+    "habitat_restoration",
+    "green_building_design"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": 90000,
+   "cost_share_pct": 10,
+   "expected_awards": null,
+   "status": "forecast",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": "reimbursement",
+   "requirements": [
+    "Project must reduce or treat stormwater at the source"
+   ],
+   "tags": [
+    "efc",
+    "green-infrastructure"
+   ],
+   "last_verified": "2026-08-01",
+   "verified_by": "seed",
+   "needs_verification": true,
+   "verification_note": "Award ceiling and 10% cost share come from a county government summary page, not from EFC directly, and the figure may be stale. GIGP has historically run through the CFA. Verify with EFC before use.",
+   "raw_hash": null
+  }
+ ],
+ "taxonomy_note": "Water and Land are separate project families. Water covers rainwater harvesting, fixture retrofits and rain gardens/bioretention. Land covers habitat restoration, native plants, food forest and community gardens."
+}

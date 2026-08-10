@@ -3888,17 +3888,40 @@ function About(){
 /* Grant Finder — embeds the standalone "Horizon" grant-finder app (grants.html,
    self-contained w/ its own inlined catalog) in an iframe so it runs exactly as
    built while living inside the site's nav & shell. */
-function GrantFinder(){
+function GrantFinder({curPlan}){
+  // prefill the finder's best-path form from the plan: food-forest project types
+  // + the county reverse-geocoded from the mapped area (when it's one the finder
+  // knows). Resolved once before the iframe loads so it isn't reloaded.
+  const [src,setSrc]=useState(null);
+  useEffect(()=>{ let done=false;
+    const base="grants.html?types=habitat_restoration,carbon_offsetting,community_education";
+    const finish=c=>{ if(done) return; done=true; setSrc(base+(c?"&county="+c:"")); };
+    const to=setTimeout(()=>finish(null),2800);  // never block on geocoding
+    (async()=>{
+      try{
+        const L=await dataProvider.loadLayout(curPlan); const polys=(L&&L.polys)||[];
+        let la=0,ln=0,n=0; polys.forEach(r=>r.forEach(([a,b])=>{la+=a;ln+=b;n++;}));
+        if(!n){ clearTimeout(to); return finish(null); }
+        const r=await fetch("https://nominatim.openstreetmap.org/reverse?format=json&zoom=8&lat="+(la/n)+"&lon="+(ln/n));
+        const j=await r.json();
+        const cc=(((j.address||{}).county)||"").toLowerCase().replace(/\s+county$/,"").trim();
+        clearTimeout(to); finish(["monroe","ontario","wayne","erie"].includes(cc)?cc:null);
+      }catch(e){ clearTimeout(to); finish(null); }
+    })();
+    return ()=>{ done=true; clearTimeout(to); };
+  },[curPlan]);
   return (
     <div>
       <div className="pagehead" style={{margin:"0 0 10px"}}>
         <div className="eye">Companion tool</div>
         <h2>Grant Finder — Finger Lakes &amp; Western NY</h2>
         <p>Sustainability grant programmes (federal, state, county, foundation) scored against your project and
-        applicant type, with a best-path comparison. A companion tool — figures carry their source and last-verified
-        date; always confirm against the funder before applying. <a href="grants.html" target="_blank" rel="noopener">Open full-screen ↗</a></p>
+        applicant type, with a best-path comparison. Your tracker, saved filters and best-path form are saved to your
+        account. Figures carry their source and last-verified date; always confirm against the funder before applying.
+        {" "}<a href={src||"grants.html"} target="_blank" rel="noopener">Open full-screen ↗</a></p>
       </div>
-      <iframe src="grants.html" title="Horizon grant finder" className="grantframe"></iframe>
+      {src ? <iframe src={src} title="Horizon grant finder" className="grantframe"></iframe>
+           : <div className="empty">Preparing the grant finder…</div>}
     </div>
   );
 }
@@ -4065,7 +4088,7 @@ function App(){
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="guide" ? <ScoringGuide /> :
           page==="about" ? <About /> :
-          page==="grants" ? <GrantFinder /> :
+          page==="grants" ? <GrantFinder curPlan={curPlan} /> :
           (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} createPlant={createPlant} /> :
           <RawData plants={plants} state={state} />
         )}
