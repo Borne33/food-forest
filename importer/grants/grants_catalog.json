@@ -1,12 +1,12 @@
 {
  "version": 1,
- "generated_at": "2026-08-01",
+ "generated_at": "2026-08-10",
  "region_scope": "Finger Lakes + Western New York (Monroe County included)",
- "provenance_note": "Every record was checked against a primary or named secondary source on 2026-08-01. Fields that the source did not state are null, not estimated. Records with needs_verification=true have at least one figure taken from a secondary aggregator or an older round and must be confirmed against the funder notice before you rely on the number.",
+ "provenance_note": "Every record was checked against a primary or named secondary source on 2026-08-01. Fields that the source did not state are null, not estimated. Records with needs_verification=true have at least one figure taken from a secondary aggregator or an older round and must be confirmed against the funder notice before you rely on the number. Records sourced from the Grants.gov API (verified_by=\"grants_gov_api\") are machine-imported: their figures come from the Grants.gov record rather than the funder's own notice, and their project-type tags are keyword-assigned, so they stay needs_verification=true until a human confirms them.",
  "grants": [
   {
    "id": "nysdec-ucf-round17-2026",
-   "title": "Urban and Community Forestry Grant Program, Round 17 \u2014 tree inventories and management plans",
+   "title": "Urban and Community Forestry Grant Program, Round 17 — tree inventories and management plans",
    "funder": "NYS Department of Environmental Conservation",
    "funder_level": "state",
    "program_url": "https://dec.ny.gov/nature/forests-trees/urban-and-community-forestry",
@@ -58,12 +58,12 @@
    "last_verified": "2026-08-01",
    "verified_by": "seed",
    "needs_verification": true,
-   "verification_note": "Total pool ($10M) and deadline confirmed. Per-project award floor and ceiling were not stated in the sources checked \u2014 read the RFA before entering numbers.",
+   "verification_note": "Total pool ($10M) and deadline confirmed. Per-project award floor and ceiling were not stated in the sources checked — read the RFA before entering numbers.",
    "raw_hash": null
   },
   {
    "id": "nysdec-advancing-forest-markets-2026",
-   "title": "Advancing Forest Markets \u2014 Tree Market Boost and Revitalization",
+   "title": "Advancing Forest Markets — Tree Market Boost and Revitalization",
    "funder": "NYS Department of Environmental Conservation",
    "funder_level": "state",
    "program_url": "https://dec.ny.gov/nature/forests-trees",
@@ -97,7 +97,7 @@
    "award_max": 12000000,
    "cost_share_pct": 0,
    "expected_awards": null,
-   "status": "open",
+   "status": "closed",
    "opens_on": "2026-04-24",
    "deadline": "2026-08-05T14:00:00-04:00",
    "award_notice_est": null,
@@ -116,12 +116,12 @@
    "last_verified": "2026-08-01",
    "verified_by": "seed",
    "needs_verification": true,
-   "verification_note": "Tagged native_plants on the basis of the programme's stated aim of increasing access to high-quality, locally grown seedlings for reforestation, afforestation and climate resilience. The notice does not use the word \"native\" \u2014 confirm species requirements in the guidelines.",
+   "verification_note": "Tagged native_plants on the basis of the programme's stated aim of increasing access to high-quality, locally grown seedlings for reforestation, afforestation and climate resilience. The notice does not use the word \"native\" — confirm species requirements in the guidelines.",
    "raw_hash": null
   },
   {
    "id": "nysdec-climate-smart-communities-2026",
-   "title": "Climate Smart Communities Grant Program \u2014 2026 round",
+   "title": "Climate Smart Communities Grant Program — 2026 round",
    "funder": "NYS Department of Environmental Conservation",
    "funder_level": "state",
    "program_url": "https://dec.ny.gov/environmental-protection/climate-change/resources-for-local-governments/grants-for-climate-action",
@@ -184,7 +184,7 @@
   },
   {
    "id": "nys-consolidated-funding-application-2026",
-   "title": "NYS Consolidated Funding Application \u2014 2026 round",
+   "title": "NYS Consolidated Funding Application — 2026 round",
    "funder": "Empire State Development / Regional Economic Development Councils",
    "funder_level": "state",
    "program_url": "https://apps.cio.ny.gov/apps/cfa/",
@@ -239,7 +239,7 @@
   },
   {
    "id": "nyserda-clean-energy-communities-3",
-   "title": "Clean Energy Communities Program, Round 3.0 \u2014 action and designation grants",
+   "title": "Clean Energy Communities Program, Round 3.0 — action and designation grants",
    "funder": "NYSERDA",
    "funder_level": "state",
    "program_url": "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Communities",
@@ -355,7 +355,7 @@
   },
   {
    "id": "usda-reap-grants-fy2026",
-   "title": "Rural Energy for America Program (REAP) \u2014 grant component",
+   "title": "Rural Energy for America Program (REAP) — grant component",
    "funder": "USDA Rural Business-Cooperative Service",
    "funder_level": "federal",
    "program_url": "https://www.rd.usda.gov/programs-services/energy-programs/rural-energy-america-program-renewable-energy-systems-energy-efficiency-improvement-guaranteed-loans",
@@ -466,7 +466,7 @@
    "last_verified": "2026-08-01",
    "verified_by": "seed",
    "needs_verification": true,
-   "verification_note": "Sources disagree on the award band: one reports $25,000-$50,000 with a $40,000 average, another $30,000-$60,000 averaging $45,000. The stored range is the union of both. One aggregator lists the next deadline as 16 May 2027 \u2014 confirm against the NFWF RFP when it posts. Tagged native_plants on the basis of the programme's pollinator and migratory bird habitat priority and its riparian/wetland restoration categories. Not an explicit native-species mandate.",
+   "verification_note": "Sources disagree on the award band: one reports $25,000-$50,000 with a $40,000 average, another $30,000-$60,000 averaging $45,000. The stored range is the union of both. One aggregator lists the next deadline as 16 May 2027 — confirm against the NFWF RFP when it posts. Tagged native_plants on the basis of the programme's pollinator and migratory bird habitat priority and its riparian/wetland restoration categories. Not an explicit native-species mandate.",
    "raw_hash": null
   },
   {
@@ -521,7 +521,7 @@
    "last_verified": "2026-08-01",
    "verified_by": "seed",
    "needs_verification": true,
-   "verification_note": "Last confirmed round was FY2024, which closed 4 September 2024. The programme depends on remaining ARPA funds and may not recur. Award range not published on the landing page \u2014 pull it from the Grants.gov notice if a new round posts. Tagged food_forest on the basis of the programme's stated interest in encouraging permaculture business development alongside composting. This is the only hook for perennial food systems anywhere in the current catalog.",
+   "verification_note": "Last confirmed round was FY2024, which closed 4 September 2024. The programme depends on remaining ARPA funds and may not recur. Award range not published on the landing page — pull it from the Grants.gov notice if a new round posts. Tagged food_forest on the basis of the programme's stated interest in encouraging permaculture business development alongside composting. This is the only hook for perennial food systems anywhere in the current catalog.",
    "raw_hash": null
   },
   {
@@ -531,7 +531,7 @@
    "funder_level": "state",
    "program_url": "https://dec.ny.gov/environmental-protection/water/water-quality/grants",
    "source_url": "https://dec.ny.gov/news/press-releases/2026/1/icymi-new-york-state-awards-more-than-20-million-for-water-quality-and-climate-resiliency-projects-in-genesee-livingston-monroe-ontario-steuben-and-wayne-counties",
-   "summary": "The state's main competitive grant for projects that directly cut water pollution \u2014 non-agricultural nonpoint source abatement, green infrastructure, salt storage, aquatic habitat restoration and municipal wastewater work. Runs through the Consolidated Funding Application, so it closed with the rest of the 2026 CFA round on 31 July. Awarded alongside the Non-Agricultural Nonpoint Source Planning grant and the newer Resilient Watersheds Grant, which together sent over $20 million to Genesee, Livingston, Monroe, Ontario, Steuben and Wayne counties in January 2026.",
+   "summary": "The state's main competitive grant for projects that directly cut water pollution — non-agricultural nonpoint source abatement, green infrastructure, salt storage, aquatic habitat restoration and municipal wastewater work. Runs through the Consolidated Funding Application, so it closed with the rest of the 2026 CFA round on 31 July. Awarded alongside the Non-Agricultural Nonpoint Source Planning grant and the newer Resilient Watersheds Grant, which together sent over $20 million to Genesee, Livingston, Monroe, Ontario, Steuben and Wayne counties in January 2026.",
    "eligible_applicants": [
     "town",
     "county",
@@ -576,7 +576,7 @@
    "last_verified": "2026-08-01",
    "verified_by": "seed",
    "needs_verification": true,
-   "verification_note": "Programme existence, CFA routing and regional award history confirmed. Award range, match requirement and the 2026 category list were not confirmed \u2014 pull them from the WQIP RFA before entering figures.",
+   "verification_note": "Programme existence, CFA routing and regional award history confirmed. Award range, match requirement and the 2026 category list were not confirmed — pull them from the WQIP RFA before entering figures.",
    "raw_hash": null
   },
   {
@@ -685,7 +685,7 @@
    "last_verified": "2026-08-01",
    "verified_by": "seed",
    "needs_verification": true,
-   "verification_note": "The $30,000 figure is the per-vehicle rebate cap, not an infrastructure award ceiling \u2014 the two tracks have different limits and should probably be split into two records once the next RFA posts.",
+   "verification_note": "The $30,000 figure is the per-vehicle rebate cap, not an infrastructure award ceiling — the two tracks have different limits and should probably be split into two records once the next RFA posts.",
    "raw_hash": null
   },
   {
@@ -729,7 +729,7 @@
    "disbursement": "on_award",
    "requirements": [
     "Community must have been a Tree City USA for five years",
-    "Award is in-kind \u2014 trees and planting materials, not cash",
+    "Award is in-kind — trees and planting materials, not cash",
     "Application must be postmarked by the deadline"
    ],
    "tags": [
@@ -745,7 +745,7 @@
   },
   {
    "id": "nysufc-quick-start-grant",
-   "title": "Quick Start Grant \u2014 Tree City USA pursuit",
+   "title": "Quick Start Grant — Tree City USA pursuit",
    "funder": "New York State Urban Forestry Council",
    "funder_level": "private",
    "program_url": "https://nysufc.org/grants/",
@@ -849,6 +849,248 @@
    "needs_verification": true,
    "verification_note": "Award ceiling and 10% cost share come from a county government summary page, not from EFC directly, and the figure may be stale. GIGP has historically run through the CFA. Verify with EFC before use.",
    "raw_hash": null
+  },
+  {
+   "id": "grantsgov-usda-fs-2028-flp",
+   "title": "Forest Legacy Program - FY2028 Funding",
+   "funder": "Department of Agriculture — Forest Service",
+   "funder_level": "federal",
+   "program_url": "https://www.fs.usda.gov/managing-land/private-land/forest-legacy/program",
+   "source_url": "https://www.grants.gov/search-results-detail/363363",
+   "summary": "The USDA Forest Service is requesting applications for the Forest Legacy Program (FLP), authorized by the Cooperative Forestry Assistance Act of 1978, as amended ( 16 U.S.C. 2103 ) and funded through the Land and Water Conservation Fund (LWCF). The Forest Legacy Program is a competitive grant program that is administered by the Forest Service in partnership with State agencies to encourage the permanent protection of privately owned forest lands through conservation easements or land purchases in support of state priorities, as described in each State Forest Action Plan. USDA Forest Service and States also cooperate with tribal and local governments, other Federal agencies, forest landowners, land trust organizations, and other partners to implement FLP.",
+   "eligible_applicants": [],
+   "applicant_notes": {
+    "town": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "county": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "state_agency": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "nonprofit": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "individual": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "for_profit": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "_other": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)"
+   },
+   "project_types": [
+    "water_fixture_retrofits"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "Listed on Grants.gov as a federal opportunity. Confirm the eligible geography in the notice — some federal programs are limited to named states, basins, or designated areas."
+   },
+   "award_min": 5000,
+   "award_max": 20000000,
+   "cost_share_pct": null,
+   "expected_awards": 12,
+   "status": "open",
+   "opens_on": "2026-08-05",
+   "deadline": "2026-09-11T00:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Cost sharing or matching is required (see the notice for the ratio)",
+    "State Lead Agencies are the only eligible applicants. A State Lead Agency is designated by the Governor and responsible for overseeing FLP administration and can hold land or interests in land acquired through FLP.",
+    "Applicant must have an active SAM.gov registration and UEI to apply on Grants.gov"
+   ],
+   "tags": [
+    "grants-gov",
+    "usda-fs-2028-flp",
+    "cfda-10.676"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "grants_gov_api",
+   "needs_verification": true,
+   "verification_note": "Imported from the Grants.gov API on 2026-08-10. Award figures, eligibility and cost share come from the Grants.gov record, not the funder's own notice — read the NOFO before relying on a number. Project-type tags are keyword-assigned and worth a look.",
+   "source_ref": {
+    "api": "grants.gov",
+    "opportunity_id": "363363",
+    "opportunity_number": "USDA-FS-2028-FLP",
+    "doc_type": "synopsis"
+   },
+   "raw_hash": "fe8ce116a7ba66b9"
+  },
+  {
+   "id": "grantsgov-f25as00332",
+   "title": "F25AS00332 Highlands Conservation Act – Competitive Funding Round",
+   "funder": "Department of the Interior — Fish and Wildlife Service",
+   "funder_level": "federal",
+   "program_url": "https://www.grants.gov/search-results-detail/362484",
+   "source_url": "https://www.grants.gov/search-results-detail/362484",
+   "summary": "The Highlands Conservation Act Program (HCA) is administered by the US Fish and Wildlife Service (Service) to assist Connecticut, New Jersey, New York, and Pennsylvania in the protection of land and natural resources in the Highlands Region. HCA grants support land conservation projects in which a State, County, or Municipal entity acquires land or an interest in land from a willing seller to conserve resources of high conservation value.Governors of the four Highlands States may submit proposals for up to 50% of the total cost of land conservation projects in the Highlands Region.Funding appropriated under the HCA is typically divided into two separate categories – Base and Competitive.",
+   "eligible_applicants": [
+    "state_agency"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "county": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "nonprofit": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "individual": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "for_profit": "Not listed in the Grants.gov eligibility for this opportunity."
+   },
+   "project_types": [
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "Listed on Grants.gov as a federal opportunity. Confirm the eligible geography in the notice — some federal programs are limited to named states, basins, or designated areas."
+   },
+   "award_min": 25000,
+   "award_max": 3850000,
+   "cost_share_pct": null,
+   "expected_awards": 4,
+   "status": "open",
+   "opens_on": "2026-05-19",
+   "deadline": "2026-10-31T00:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": 3850000,
+   "disbursement": null,
+   "requirements": [
+    "Cost sharing or matching is required (see the notice for the ratio)",
+    "Electronically submitted applications must be submitted no later than 11:59 PM, ET, on the listed application due date.",
+    "Only the Lead State Agency (or Agencies) as determined by the Governor of each Highlands State may be the applicant for funding under the Highlands Conservation Act Grant Program.",
+    "Applicant must have an active SAM.gov registration and UEI to apply on Grants.gov"
+   ],
+   "tags": [
+    "grants-gov",
+    "f25as00332",
+    "cfda-15.667"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "grants_gov_api",
+   "needs_verification": true,
+   "verification_note": "Imported from the Grants.gov API on 2026-08-10. Award figures, eligibility and cost share come from the Grants.gov record, not the funder's own notice — read the NOFO before relying on a number. Project-type tags are keyword-assigned and worth a look.",
+   "source_ref": {
+    "api": "grants.gov",
+    "opportunity_id": "362484",
+    "opportunity_number": "F25AS00332",
+    "doc_type": "synopsis"
+   },
+   "raw_hash": "54707cbd2adcef27"
+  },
+  {
+   "id": "grantsgov-f25as00379",
+   "title": "F25AS00379 Highlands Conservation Act - Base Funding Round",
+   "funder": "Department of the Interior — Fish and Wildlife Service",
+   "funder_level": "federal",
+   "program_url": "https://www.grants.gov/search-results-detail/362480",
+   "source_url": "https://www.grants.gov/search-results-detail/362480",
+   "summary": "The Highlands Conservation Act Program (HCA) is administered by the US Fish and Wildlife Service (Service) to assist Connecticut, New Jersey, New York, and Pennsylvania in the protection of land and natural resources in the Highlands Region. HCA grants support land conservation projects in which a State, County, or Municipal entity acquires land or an interest in land from a willing seller to conserve resources of high conservation value.Governors of the four Highlands States may submit proposals for up to 50% of the total cost of land conservation projects in the Highlands Region.Funding appropriated under the HCA is typically divided into two separate categories – Base and Competitive.",
+   "eligible_applicants": [
+    "state_agency"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "county": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "nonprofit": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "individual": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "for_profit": "Not listed in the Grants.gov eligibility for this opportunity."
+   },
+   "project_types": [
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "Listed on Grants.gov as a federal opportunity. Confirm the eligible geography in the notice — some federal programs are limited to named states, basins, or designated areas."
+   },
+   "award_min": 25000,
+   "award_max": 2293362,
+   "cost_share_pct": null,
+   "expected_awards": 4,
+   "status": "open",
+   "opens_on": "2026-05-19",
+   "deadline": "2026-10-31T00:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": 9173450,
+   "disbursement": null,
+   "requirements": [
+    "Cost sharing or matching is required (see the notice for the ratio)",
+    "Electronically submitted applications must be submitted no later than 11:59 PM, ET, on the listed application due date.",
+    "Only the Lead State Agency (or Agencies) as determined by the Governor of each Highlands State may be the applicant for funding under the Highlands Conservation Act Grant Program.",
+    "Applicant must have an active SAM.gov registration and UEI to apply on Grants.gov"
+   ],
+   "tags": [
+    "grants-gov",
+    "f25as00379",
+    "cfda-15.667"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "grants_gov_api",
+   "needs_verification": true,
+   "verification_note": "Imported from the Grants.gov API on 2026-08-10. Award figures, eligibility and cost share come from the Grants.gov record, not the funder's own notice — read the NOFO before relying on a number. Project-type tags are keyword-assigned and worth a look.",
+   "source_ref": {
+    "api": "grants.gov",
+    "opportunity_id": "362480",
+    "opportunity_number": "F25AS00379",
+    "doc_type": "synopsis"
+   },
+   "raw_hash": "8c0ab1f4fb4e8b0a"
+  },
+  {
+   "id": "grantsgov-g26as00151",
+   "title": "Cooperative Agreement for Affiliated Partner with the Great Lakes Northern Forest Cooperative Ecosystem Studies Unit (CESU)",
+   "funder": "Department of the Interior — Geological Survey",
+   "funder_level": "federal",
+   "program_url": "https://www.grants.gov/search-results-detail/363172",
+   "source_url": "https://www.grants.gov/search-results-detail/363172",
+   "summary": "The U.S. Geological Survey's (USGS) Fort Collins Science Center is offering a cooperative-agreement funding opportunity to a CESU partner having capability to conduct research and studies related to the long-term demography of bumble bees, with a focus on imperiled species. The research will focus on Bombus affinis (rusty patched bumble bee), the previously-widespread bumble bee species whose populations have declined precipitously over the past two decades. This project will leverage collaborations to incorporate expertise in bumble bee ecology into a large existing project supporting the recovery of endangered and imperiled bumble bees.",
+   "eligible_applicants": [],
+   "applicant_notes": {
+    "town": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "county": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "state_agency": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "nonprofit": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "individual": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "for_profit": "Not listed in the Grants.gov eligibility for this opportunity.",
+    "_other": "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)"
+   },
+   "project_types": [
+    "other"
+   ],
+   "geography": {
+    "regions": [
+     "federal"
+    ],
+    "counties": [],
+    "notes": "Listed on Grants.gov as a federal opportunity. Confirm the eligible geography in the notice — some federal programs are limited to named states, basins, or designated areas."
+   },
+   "award_min": 1,
+   "award_max": 399000,
+   "cost_share_pct": null,
+   "expected_awards": 1,
+   "status": "open",
+   "opens_on": "2026-07-14",
+   "deadline": "2026-08-14T00:00:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": 399000,
+   "disbursement": null,
+   "requirements": [
+    "Electronically submitted applications must be submitted no later than 11:59 PM, ET, on the listed application due date",
+    "This financial assistance opportunity is being issued under a Cooperative Ecosystem Studies Units (CESU) Program. CESUs are partnerships that provide research, technical assistance, and education.",
+    "Applicant must have an active SAM.gov registration and UEI to apply on Grants.gov"
+   ],
+   "tags": [
+    "grants-gov",
+    "g26as00151",
+    "cfda-15.808"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "grants_gov_api",
+   "needs_verification": true,
+   "verification_note": "Imported from the Grants.gov API on 2026-08-10. Award figures, eligibility and cost share come from the Grants.gov record, not the funder's own notice — read the NOFO before relying on a number. Project-type tags are keyword-assigned and worth a look.",
+   "source_ref": {
+    "api": "grants.gov",
+    "opportunity_id": "363172",
+    "opportunity_number": "G26AS00151",
+    "doc_type": "synopsis"
+   },
+   "raw_hash": "6290dd2cf87029ee"
   }
  ],
  "taxonomy_note": "Water and Land are separate project families. Water covers rainwater harvesting, fixture retrofits and rain gardens/bioretention. Land covers habitat restoration, native plants, food forest and community gardens."

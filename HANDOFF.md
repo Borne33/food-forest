@@ -391,10 +391,50 @@ Verify work · GitHub Actions Pages deploy.
 - **Admin catalog editor:** floating "✎ Edit catalog" button (admin uid only) →
   overlay to add/edit/delete grant records as JSON, saved straight to the `grants`
   table. Keep `needs_verification` true until every figure is confirmed.
-- **Keeping grants current (chosen: importer + in-app admin editor):** edit
-  `importer/grants/grants_catalog.json` (source of truth, the finder's record
-  shape) and run `python3 grant_import.py` to upsert; OR use the in-app admin
-  editor. No scraper/edge-function. Catalog is point-in-time — deadlines move fast.
+- **Keeping grants current:** `importer/grants/grants_catalog.json` is the source of
+  truth (the finder's record shape). Refresh it, then `python3 grant_import.py` to
+  upsert. Hand edits and the in-app admin editor still work; there is no
+  edge-function/scraper. Catalog is point-in-time — deadlines move fast.
+
+## 17. Grant catalog auto-refresh — `grant_fetch.py` (Aug 2026)
+
+`importer/grant_fetch.py` refreshes the catalog from the **Grants.gov public API**
+(no key: `POST /v1/api/search2` + `/v1/api/fetchOpportunity`). Two passes inside one
+budget, default **25 records/run** (`--limit`):
+
+1. **Refresh** — re-fetches records carrying `source_ref.api == "grants.gov"`,
+   oldest `last_verified` first, and updates status/deadline/award figures. It also
+   flips ANY record (seeded ones included) from open/forecast → `closed` once its
+   deadline is past — that needs no source. Hand-seeded NY records are otherwise
+   left alone: **there is no NY-state grants API, so those still need a human.**
+2. **Capture** — sweeps all of Grants.gov funding categories `AG|CD|ENV|FN|NR|RD`
+   (~650 open+forecast opportunities) plus 14 keyword queries, screens them, and
+   adds the **best-scoring** new ones up to the remaining budget.
+
+Screening (all in `relevant()` — tune here): agency blocklist (HHS/DOD/NSF/…) and
+sub-agency blocklist (BLM/BOR/BIA — western public land only) · `GEO_BLOCK` and
+`NEGATIVE` phrase lists, matched against the **title + first 400 chars only**
+(nationwide notices name Alaska/Puerto Rico/"marine" deep in the body — matching the
+whole text rejected almost everything) · a **state-scope test**: if the opening text
+names ≥2 states, none of them New York, and carries no nationwide marker, it is a
+basin/state program, not a NY opportunity · a weighted keyword score
+(`STRONG`=3, `WEAK`=1, `SCORE_MIN`=3, i.e. one strong hit) — candidates are sorted by
+score so the budget takes the best first.
+
+- Detail fetches are cached under `importer/cache/grantsgov/` (24 h, gitignored), so
+  re-runs are cheap. `--dry-run` prints the plan and a reject histogram.
+- Imported records get `verified_by="grants_gov_api"`, `needs_verification=true`, a
+  `raw_hash` (change detection on refresh) and `source_ref`. Refresh preserves a
+  human's `project_types`/`cost_share_pct`/`disbursement`/`geography` edits and keeps
+  `needs_verification=false` when the hash is unchanged.
+- **The 25 is a ceiling, not a quota.** The genuinely on-topic open federal pool is
+  small (the first run added 4 from 659 candidates). Do not loosen the filter to hit
+  a number — check the `score N` rejects in `--dry-run` first.
+- Flags: `--limit N`, `--refresh-only`, `--new-only`, `--stale-days N` (default 14),
+  `--include-closed`, `--dry-run`.
+- Run: `python3 grant_fetch.py` → review the diff → `python3 grant_import.py`.
+- **Keep in sync with `grants.html`:** `APPLICANT_TYPES`, `PROJECT_RULES` keys and the
+  region vocab mirror the finder's taxonomy constants (grants.html ~line 225).
 - **Prefill:** the host `GrantFinder` (index.html) reverse-geocodes the current
   plan's mapped-area centroid (Nominatim) and passes `?county=&types=` to the
   iframe; the finder applies them for first-time users (saved settings win after).
