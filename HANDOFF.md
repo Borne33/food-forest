@@ -435,6 +435,62 @@ score so the budget takes the best first.
 - Run: `python3 grant_fetch.py` → review the diff → `python3 grant_import.py`.
 - **Keep in sync with `grants.html`:** `APPLICANT_TYPES`, `PROJECT_RULES` keys and the
   region vocab mirror the finder's taxonomy constants (grants.html ~line 225).
+
+## 18. NY-state grant refresh — `ny_fetch.py` (Aug 2026)
+
+Grants.gov carries **no NY-state programs**, so NY needs its own importer.
+`importer/ny_fetch.py` reads the **NYS Funding Finder** — the public ArcGIS feature
+layer behind DEC's "Funding Finder Tool" (dec.ny.gov → environmentalbondact.ny.gov).
+No key, no session, one GET, 141 rows:
+
+```
+https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0/query?where=1=1&outFields=*&f=json
+```
+
+Same interface as `grant_fetch.py` (`--limit` 25/run, `--dry-run`, `--refresh-only`,
+`--new-only`), writing the same catalog. Extra flags: `--all-regions`,
+`--include-closed`. Records get `verified_by="nys_funding_finder"` and a
+`source_ref.object_id` for refresh.
+
+Source fields map nearly 1:1 (`Funding_Program`/`Funding_Source`/`Eligible_Applicants`/
+`Project_Type`/`Regional_Coverage`/`Status`/`OpenDate2`/`CloseDate2`/`Links`).
+The NY→catalog vocab tables are `APPLICANTS` (26 terms) and `PROJECTS` (92 terms);
+unmapped source terms are preserved as `src:*` tags so nothing is silently lost.
+
+**Gotchas, all handled — don't re-discover them:**
+- **`CloseDate2` year 2100 is the source's "rolling/continuous" sentinel**, not a real
+  date → `status:"rolling"`, `deadline:null` (`ROLLING_YEAR`).
+- **`ShowHide == "Hide"`** rows (10) are drafts/retired — always filter them out.
+- **`Status` is stale on some rows** — "Open" with a past `CloseDate2` is closed.
+- The source publishes **no award floor/ceiling, cost share, or award count**. Those
+  stay `null`; refresh preserves any figure a human filled in.
+- **Only a closing DATE is published, no time** → deadline is emitted at 23:59 ET and
+  `requirements` says to confirm the real cut-off in the RFP.
+- `Regional_Coverage` is sometimes **unseparated** ("…Inland WaterwaysNew York Coastal
+  Areas…") — match by substring, never `split(",")` alone.
+- **Out-of-scope regions** (Long Island/Suffolk/Nassau/NYC/Hudson Estuary/Lake
+  Champlain/Chesapeake) are dropped; `--all-regions` keeps them.
+- **Dedupe against seeded records is essential** — the source words programs
+  differently ("Urban and Community Development Forestry Grants" IS
+  `nysdec-ucf-round17-2026`). `dup_of()` uses title ratio + keyword Jaccard + a
+  **same-deadline + shared-wording** rule that catches exactly that case.
+
+First run: 141 rows → 33 after filters → **+22 records** (2 dups skipped), catalog
+15 → 41. Highlights: Regenerate New York Forestry Cost Share, Community
+Reforestation (CoRe), Forest Conservation Easements for Land Trusts, Farmland
+Protection Implementation, NRCS Healthy Forests Reserve.
+
+**Sources checked and rejected (don't redo this):** `data.ny.gov` has only
+backward-looking award/disbursement data, no open solicitations · Grants Gateway
+moved into **SFS eSupplier** (PeopleSoft — errors without a session, not scrapeable)
+· **NYSCR** is POST-form HTML and mostly procurement bids · **email** (Gmail API /
+local Mail) needs OAuth or TCC grants and yields unstructured prose for programs you
+already subscribed to — strictly worse than this layer. Two usable secondaries if
+coverage gaps appear: DEC's `/get-involved/grant-applications` page (8 clean HTML
+tables, 33 rows) and the live NY press-release RSS at
+`apps.cio.ny.gov/apps/mediaContact/public/rss.cfm` (good lead detector for
+"Governor Announces $X Available For…"). **Note `dec.ny.gov` 403s plain `urllib`** but
+loads fine in a real browser — use the browser pane or full browser headers.
 - **Prefill:** the host `GrantFinder` (index.html) reverse-geocodes the current
   plan's mapped-area centroid (Nominatim) and passes `?county=&types=` to the
   iframe; the finder applies them for first-time users (saved settings win after).

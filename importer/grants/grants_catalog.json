@@ -1091,6 +1091,1373 @@
     "doc_type": "synopsis"
    },
    "raw_hash": "6290dd2cf87029ee"
+  },
+  {
+   "id": "nysff-farmland-protection-implementation-grants-agricultural-conse",
+   "title": "Farmland Protection Implementation Grants - Agricultural Conservation Easement Projects",
+   "funder": "NYS Department of Agriculture and Markets (AGM)",
+   "funder_level": "state",
+   "program_url": "https://agriculture.ny.gov/land-and-water/rfa-0294-farmland-protection-implementation-grants-round-19-agricultural",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Farmland Protection Implementation Grants - Agricultural Conservation Easement Projects, offered by NYS Department of Agriculture and Markets (AGM). Source project types: Agriculture, Conservation Easements. Eligible applicants per the source: Local Government Entity, Soil and Water Conservation Districts, Non-Profit 501c3 Organizations, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "nonprofit"
+   ],
+   "applicant_notes": {
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Other"
+   },
+   "project_types": [
+    "food_forest",
+    "community_gardens",
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": "2025-12-19",
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Implementation , Technical Assistance",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 511,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "cfbb7fdc579c8ccf"
+  },
+  {
+   "id": "nysff-clean-water-state-revolving-fund",
+   "title": "Clean Water State Revolving Fund",
+   "funder": "NYS Environmental Facilities Corporation (EFC)",
+   "funder_level": "state",
+   "program_url": "https://efc.ny.gov/cwsrf",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Clean Water State Revolving Fund, offered by NYS Environmental Facilities Corporation (EFC). Source project types: Wastewater, Nonpoint Source, Green Infrastructure, Nature-Based Solutions, Water Quality. Eligible applicants per the source: State Government Entity, Academic Institutions, Indian Nations, Water Authority, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "state_agency",
+    "nonprofit",
+    "town"
+   ],
+   "applicant_notes": {
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations, Other"
+   },
+   "project_types": [
+    "rain_gardens_bioretention"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design, Construction and Implementation",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:wastewater",
+    "src:water-quality"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 520,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "f332c35f0e06fd86"
+  },
+  {
+   "id": "nysff-clean-green-schools-initiative",
+   "title": "Clean Green Schools Initiative",
+   "funder": "NYS Energy Research and Development Authority (NYSERDA)",
+   "funder_level": "state",
+   "program_url": "https://www.nyserda.ny.gov/All-Programs/Clean-Green-Schools-Initiative",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Clean Green Schools Initiative, offered by NYS Energy Research and Development Authority (NYSERDA). Source project types: Energy Efficiency, Decarbonization. Eligible applicants per the source: Public School Districts Serving Disadvantaged Communities, High Needs Public Schools. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town"
+   ],
+   "applicant_notes": {
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program."
+   },
+   "project_types": [
+    "energy_efficiency",
+    "carbon_offsetting"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": null,
+   "deadline": "2026-08-18T23:59:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation, Technical Assistance",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 525,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "85d6fc0916ded049"
+  },
+  {
+   "id": "nysff-regenerate-new-york-forestry-cost-share-grant-program",
+   "title": "Regenerate New York Forestry Cost Share Grant Program",
+   "funder": "NYS Department of Environmental Conservation (DEC)",
+   "funder_level": "state",
+   "program_url": "https://www.dec.ny.gov/lands/119950.html",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Regenerate New York Forestry Cost Share Grant Program, offered by NYS Department of Environmental Conservation (DEC). Source project types: Forestry, Plans, Trees, Habitat Restoration, Wildlife. Eligible applicants per the source: Any Organization/Partnership, Non-Profit 501c3 Organizations, Private Entities, Soil and Water Conservation Districts, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "state_agency",
+    "nonprofit",
+    "individual",
+    "for_profit"
+   ],
+   "applicant_notes": {
+    "_other": "Also eligible per the source: Other"
+   },
+   "project_types": [
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": null,
+   "deadline": "2026-08-31T23:59:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "src:plans"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 551,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "c8b43dd0688643a5"
+  },
+  {
+   "id": "nysff-sustain-our-great-lakes",
+   "title": "Sustain our Great Lakes",
+   "funder": "National Fish and Wildlife Foundation (NFWF)",
+   "funder_level": "private",
+   "program_url": "https://www.nfwf.org/programs/sustain-our-great-lakes-program/sustain-our-great-lakes-2026-request-proposals",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Sustain our Great Lakes, offered by National Fish and Wildlife Foundation (NFWF). Source project types: Aquatic Connectivity, Buffer Restoration, Conservation, Culverts, Dam Removal, Erosion, Fish, Fish Passage, Flooding, Forestry, Green Infrastructure, Habitat Connectivity, Habitat Restoration, Invasive Species, Nonpoint Source, Outreach, Water Quality, Wetlands, Wildlife. Eligible applicants per the source: Academic Institutions, State Government Entity, Local Government Entity, Non-Profit 501c3 Organizations, Indian Nations. Regional coverage: Great Lakes Basin.",
+   "eligible_applicants": [
+    "nonprofit",
+    "state_agency",
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "habitat_restoration",
+    "rain_gardens_bioretention",
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "finger_lakes",
+     "western_ny"
+    ],
+    "counties": [],
+    "notes": "Great Lakes Basin"
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "closed",
+   "opens_on": "2024-01-17",
+   "deadline": "2026-08-08T23:59:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "src:culverts",
+    "src:erosion",
+    "src:fish",
+    "src:flooding",
+    "src:water-quality"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 559,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "6fd605143691be2e"
+  },
+  {
+   "id": "nysff-emergency-watershed-protection-program",
+   "title": "Emergency Watershed Protection Program",
+   "funder": "U.S. Department of Agriculture (USDA) Natural Resources Conservation Science (NRCS)",
+   "funder_level": "federal",
+   "program_url": "https://www.nrcs.usda.gov/getting-assistance/how-to-apply",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Emergency Watershed Protection Program, offered by U.S. Department of Agriculture (USDA) Natural Resources Conservation Science (NRCS). Source project types: Climate Change, Community Development, Conservation, Ecological Restoration, Erosion, Flooding, Hazard Mitigation. Eligible applicants per the source: State Government Entity, Local Government Entity, Indian Nations. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "state_agency",
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "carbon_offsetting",
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design, Construction and Implementation, Technical Assistance"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:community-development",
+    "src:erosion",
+    "src:flooding",
+    "src:hazard-mitigation"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 570,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "4ea38c4a6288ff59"
+  },
+  {
+   "id": "nysff-great-lakes-protection-fund",
+   "title": "Great Lakes Protection Fund",
+   "funder": "Great Lakes Protection Fund (GLPF)",
+   "funder_level": "private",
+   "program_url": "https://glpf.org/for-innovators/start-here/",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Great Lakes Protection Fund, offered by Great Lakes Protection Fund (GLPF). Source project types: Research, Water Quality, Ecological Restoration, Water Infrastructure, Nature-Based Solutions, Nonpoint Source, Economic Benefit, Soils, Harmful Algal Blooms, Management, Invasive Species, Habitat Restoration. Eligible applicants per the source: Any Organization/Partnership. Regional coverage: Great Lakes Basin.",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "state_agency",
+    "nonprofit",
+    "individual",
+    "for_profit"
+   ],
+   "applicant_notes": {},
+   "project_types": [
+    "community_education",
+    "habitat_restoration",
+    "rain_gardens_bioretention",
+    "community_gardens"
+   ],
+   "geography": {
+    "regions": [
+     "finger_lakes",
+     "western_ny"
+    ],
+    "counties": [],
+    "notes": "Great Lakes Basin"
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design, Construction and Implementation, Monitoring and Research"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:water-quality",
+    "src:water-infrastructure",
+    "src:economic-benefit",
+    "src:harmful-algal-blooms",
+    "src:management"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 572,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "b74cde4f29b76b63"
+  },
+  {
+   "id": "nysff-nrcs-agricultural-conservation-easement-program",
+   "title": "NRCS Agricultural Conservation Easement Program",
+   "funder": "United States Department of Agriculture (USDA)",
+   "funder_level": "federal",
+   "program_url": "https://www.nrcs.usda.gov/programs-initiatives/ale-agricultural-land-easements/new-york/agricultural-land-easements",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "NRCS Agricultural Conservation Easement Program, offered by United States Department of Agriculture (USDA). Source project types: Conservation Easements, Agriculture. Eligible applicants per the source: Landowners, Land Trusts. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "individual",
+    "nonprofit"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program."
+   },
+   "project_types": [
+    "habitat_restoration",
+    "community_gardens"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 577,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "c38db06becaaae29"
+  },
+  {
+   "id": "nysff-nrcs-healthy-forests-reserve-program",
+   "title": "NRCS Healthy Forests Reserve Program",
+   "funder": "United States Department of Agriculture (USDA)",
+   "funder_level": "federal",
+   "program_url": "https://www.nrcs.usda.gov/programs-initiatives/hfrp-healthy-forests-reserve-program/healthy-forests-reserve-program-how-to",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "NRCS Healthy Forests Reserve Program, offered by United States Department of Agriculture (USDA). Source project types: Ecological Restoration, Land Stewardship. Eligible applicants per the source: Landowners, Indian Nations. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "individual"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 579,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "0353294943db6488"
+  },
+  {
+   "id": "nysff-ny-school-bus-incentive-program",
+   "title": "NY School Bus Incentive Program",
+   "funder": "NYS Energy Research and Development Authority (NYSERDA)",
+   "funder_level": "state",
+   "program_url": "https://www.nyserda.ny.gov/All-Programs/Electric-School-Buses/NY-School-Bus-Incentive-Program-Overview",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "NY School Bus Incentive Program, offered by NYS Energy Research and Development Authority (NYSERDA). Source project types: Electric Vehicle, EV charging infrastructure. Eligible applicants per the source: Public School District, Public Entities that Provide Pupil Transportation Services, Third-Party Bus Operators. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "for_profit"
+   ],
+   "applicant_notes": {
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program."
+   },
+   "project_types": [
+    "fleet_electrification"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation, Captial Purchase",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 580,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "d7d61f3312189d51"
+  },
+  {
+   "id": "nysff-safeguarding-tomorrow-revolving-loan-fund-program",
+   "title": "Safeguarding Tomorrow Revolving Loan Fund Program",
+   "funder": "Federal Emergency Management Agency (FEMA)",
+   "funder_level": "federal",
+   "program_url": "https://www.fema.gov/grants/mitigation/learn/storm-rlf",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Safeguarding Tomorrow Revolving Loan Fund Program, offered by Federal Emergency Management Agency (FEMA). Source project types: Hazard Mitigation, Resilience, Environmental Justice. Eligible applicants per the source: State Government Entity, Local Government Entity, Indian Nations. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "state_agency",
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:hazard-mitigation",
+    "src:resilience"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 582,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "c27eec69e2ca182b"
+  },
+  {
+   "id": "nysff-special-evaluation-assistance-for-rural-communities-search",
+   "title": "Special Evaluation Assistance for Rural Communities (SEARCH)",
+   "funder": "United States Department of Agriculture (USDA)",
+   "funder_level": "federal",
+   "program_url": "https://www.rd.usda.gov/programs-services/water-environmental-programs/search-special-evaluation-assistance-rural-communities-and-households-grant",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Special Evaluation Assistance for Rural Communities (SEARCH), offered by United States Department of Agriculture (USDA). Source project types: Wastewater, Water Infrastructure, Environmental Justice, Plans. Eligible applicants per the source: Non-Profit 501c3 Organizations, State Government Entity, Local Government Entity, Indian Nations, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "nonprofit",
+    "state_agency",
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations, Other"
+   },
+   "project_types": [
+    "community_education"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design, Technical Assistance"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:wastewater",
+    "src:water-infrastructure",
+    "src:plans"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 585,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "6332ce662639c76d"
+  },
+  {
+   "id": "nysff-water-infrastructure-finance-and-innovation-act-program",
+   "title": "Water Infrastructure Finance and Innovation Act Program",
+   "funder": "United States Environmental Protection Agency (EPA)",
+   "funder_level": "federal",
+   "program_url": "https://www.epa.gov/wifia",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Water Infrastructure Finance and Innovation Act Program, offered by United States Environmental Protection Agency (EPA). Source project types: Sustainability, Wastewater, Infrastructure, Drinking Water. Eligible applicants per the source: State Government Entity, Local Government Entity, Indian Nations, Private Entities, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "state_agency",
+    "town",
+    "county",
+    "for_profit"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations, Other"
+   },
+   "project_types": [
+    "green_building_design"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:wastewater",
+    "src:infrastructure",
+    "src:drinking-water"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 588,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "4c7a60dd1d84ad78"
+  },
+  {
+   "id": "nysff-watershed-protection-and-flood-prevention-program",
+   "title": "Watershed Protection and Flood Prevention Program",
+   "funder": "U.S. Department of Agriculture (USDA) Natural Resources Conservation Science (NRCS)",
+   "funder_level": "federal",
+   "program_url": "https://www.nrcs.usda.gov/programs-initiatives/watershed-protection-and-flood-prevention-operations-wfpo-program",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Watershed Protection and Flood Prevention Program, offered by U.S. Department of Agriculture (USDA) Natural Resources Conservation Science (NRCS). Source project types: Aquatic Connectivity, Buffer Restoration, Climate Change, Community Development, Conservation, Ecological Restoration, Erosion, Flooding, Hazard Mitigation, Nature-Based Solutions, Emergency Preparedness. Eligible applicants per the source: State Government Entity, Local Government Entity, Indian Nations. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "state_agency",
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "habitat_restoration",
+    "carbon_offsetting",
+    "rain_gardens_bioretention"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design, Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:community-development",
+    "src:erosion",
+    "src:flooding",
+    "src:hazard-mitigation",
+    "src:emergency-preparedness"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 590,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "b248d7984f91fb23"
+  },
+  {
+   "id": "nysff-watershed-rehabilitation-program",
+   "title": "Watershed Rehabilitation Program",
+   "funder": "U.S. Department of Agriculture (USDA) Natural Resources Conservation Science (NRCS)",
+   "funder_level": "federal",
+   "program_url": "https://www.nrcs.usda.gov/programs-initiatives/watershed-rehabilitation",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Watershed Rehabilitation Program, offered by U.S. Department of Agriculture (USDA) Natural Resources Conservation Science (NRCS). Source project types: Climate Change, Community Development, Conservation, Ecological Restoration, Erosion, Flooding, Hazard Mitigation, Nature-Based Solutions, Emergency Preparedness. Eligible applicants per the source: Local Government Entity, Indian Nations. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "carbon_offsetting",
+    "habitat_restoration",
+    "rain_gardens_bioretention"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design, Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:community-development",
+    "src:erosion",
+    "src:flooding",
+    "src:hazard-mitigation",
+    "src:emergency-preparedness"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 591,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "9510e2d982badb9e"
+  },
+  {
+   "id": "nysff-forest-conservation-easements-for-land-trusts-program",
+   "title": "Forest Conservation Easements for Land Trusts Program",
+   "funder": "Land Trust Alliance",
+   "funder_level": "private",
+   "program_url": "https://landtrustalliance.org/resources/connect/field-services/new-york/forest-conservation-easements-for-land-trusts-program",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Forest Conservation Easements for Land Trusts Program, offered by Land Trust Alliance. Source project types: Conservation, Conservation Easements, Flooding, Erosion, Wildlife, Habitat Restoration, Water Quality, Climate Change. Eligible applicants per the source: Land Trusts. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "nonprofit"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program."
+   },
+   "project_types": [
+    "habitat_restoration",
+    "carbon_offsetting"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": null,
+   "deadline": "2026-08-13T23:59:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "src:flooding",
+    "src:erosion",
+    "src:water-quality"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 602,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "5b2961892d3a5647"
+  },
+  {
+   "id": "nysff-affordable-solar-and-storage-predevelopment-and-technical-as",
+   "title": "Affordable Solar and Storage Predevelopment and Technical Assistance",
+   "funder": "NYS Energy Research and Development Authority (NYSERDA)",
+   "funder_level": "state",
+   "program_url": "https://portal.nyserda.ny.gov/CORE_Solicitation_Detail_Page?SolicitationId=a0rt0000000QnFIAA0&_gl=1*1mz70uo*_gcl_au*NjI5NzQzMjYyLjE3NDM2MDQ4MzE.*_ga*NTgyMjEyOTkyLjE3MzQ5NjYyMzY.*_ga_DRYJB34TXH*MTc0NDIwOTA0Mi4yOC4xLjE3NDQyMDkxMzQuMzQuMC4w",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Affordable Solar and Storage Predevelopment and Technical Assistance, offered by NYS Energy Research and Development Authority (NYSERDA). Source project types: Renewable Energy, Sustainability, Emissions Reductions. Eligible applicants per the source: Citizen of the United States, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "individual"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Other"
+   },
+   "project_types": [
+    "solar_renewables",
+    "green_building_design",
+    "carbon_offsetting"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Construction and Implementation",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 607,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "3a2586e1a205a612"
+  },
+  {
+   "id": "nysff-municipal-agriculture-and-farmland-protection-planning-grant",
+   "title": "Municipal Agriculture and Farmland Protection Planning Grants",
+   "funder": "NYS Department of Agriculture and Markets (AGM)",
+   "funder_level": "state",
+   "program_url": "https://agriculture.ny.gov/land-and-water/rfa-0263-municipal-agriculture-and-farmland-protection-planning-grants",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Municipal Agriculture and Farmland Protection Planning Grants, offered by NYS Department of Agriculture and Markets (AGM). Source project types: Agriculture, Conservation. Eligible applicants per the source: Local Government Entity. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "county"
+   ],
+   "applicant_notes": {
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program."
+   },
+   "project_types": [
+    "food_forest",
+    "community_gardens",
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 618,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "16635d719cd44d60"
+  },
+  {
+   "id": "nysff-connect-kids",
+   "title": "Connect Kids",
+   "funder": "NYS Office of Parks, Recreation and Historic Preservation (OPRHP)",
+   "funder_level": "state",
+   "program_url": "https://parks.ny.gov/environment/connect-kids/grant-program.aspx",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Connect Kids, offered by NYS Office of Parks, Recreation and Historic Preservation (OPRHP). Source project types: Education, Other, Public Access, Transportation. Eligible applicants per the source: Public School District, High Needs Public Schools, Public School Districts Serving Disadvantaged Communities, Non-Profit 501c3 Organizations, Other. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "nonprofit"
+   ],
+   "applicant_notes": {
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "state_agency": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Other"
+   },
+   "project_types": [
+    "community_education",
+    "active_transportation"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "rolling",
+   "opens_on": null,
+   "deadline": null,
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Implementation ",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "rolling",
+    "src:other",
+    "src:public-access"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 627,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "cb125f6a8bc31e58"
+  },
+  {
+   "id": "nysff-great-lakes-fish-habitat-restoration-partnership-grants",
+   "title": "Great Lakes Fish Habitat Restoration Partnership Grants",
+   "funder": "National Oceanic and Atmospheric Association (NOAA)",
+   "funder_level": "federal",
+   "program_url": "https://www.fisheries.noaa.gov/grant/noaa-great-lakes-fish-habitat-restoration-partnership-grants",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Great Lakes Fish Habitat Restoration Partnership Grants, offered by National Oceanic and Atmospheric Association (NOAA). Source project types: Habitat Restoration, Fish, Sustainability, Aquatic Connectivity, Conservation, Ecological Restoration, Fishery management, Water Quality, Wildlife, Wetlands, Resilience. Eligible applicants per the source: Academic Institutions, Indian Nations, Non-Profit 501c3 Organizations, Private Entities, Other, Local Government Entity, State Government Entity. Regional coverage: Great Lakes Basin.",
+   "eligible_applicants": [
+    "nonprofit",
+    "for_profit",
+    "town",
+    "county",
+    "state_agency"
+   ],
+   "applicant_notes": {
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations, Other"
+   },
+   "project_types": [
+    "habitat_restoration",
+    "green_building_design"
+   ],
+   "geography": {
+    "regions": [
+     "finger_lakes",
+     "western_ny"
+    ],
+    "counties": [],
+    "notes": "Great Lakes Basin"
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": "2024-08-27",
+   "deadline": "2026-09-04T23:59:00-04:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: 0"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "src:fish",
+    "src:fishery-management",
+    "src:water-quality",
+    "src:resilience"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 634,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "50fbe2c2e1a3eba8"
+  },
+  {
+   "id": "nysff-aquatic-invasive-species-interjurisdictional-grants-to-the-g",
+   "title": "Aquatic Invasive Species Interjurisdictional Grants to the Great Lakes States and Tribes",
+   "funder": "United States Fish and Wildlife Service (USFWS)",
+   "funder_level": "federal",
+   "program_url": "https://simpler.grants.gov/opportunity/560f93a2-b89b-4f91-b7cc-90076bf41cc5",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Aquatic Invasive Species Interjurisdictional Grants to the Great Lakes States and Tribes, offered by United States Fish and Wildlife Service (USFWS). Source project types: Invasive Species, Management. Eligible applicants per the source: State Government Entity, Indian Nations, Other. Regional coverage: Great Lakes Basin.",
+   "eligible_applicants": [
+    "state_agency"
+   ],
+   "applicant_notes": {
+    "town": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "county": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "nonprofit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations, Other"
+   },
+   "project_types": [
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "finger_lakes",
+     "western_ny"
+    ],
+    "counties": [],
+    "notes": "Great Lakes Basin"
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": null,
+   "deadline": "2026-12-31T23:59:00-05:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Planning and Design"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "src:management"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 642,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "6b7ad233c7599869"
+  },
+  {
+   "id": "nysff-community-reforestation-core-grant",
+   "title": "Community Reforestation (CoRe) Grant",
+   "funder": "NYS Department of Environmental Conservation (DEC)",
+   "funder_level": "state",
+   "program_url": "https://dec.ny.gov/nature/forests-trees/urban-and-community-forestry/managing-your-community-forest/urban-community-forestry-grants",
+   "source_url": "https://environmentalbondact.ny.gov/pages/funding-opportunities",
+   "summary": "Community Reforestation (CoRe) Grant, offered by NYS Department of Environmental Conservation (DEC). Source project types: Resilience, Climate Change, Trees, Reforestation, Community Development, Public Access. Eligible applicants per the source: Local Government Entity, Indian Nations, Non-Profit 501c3 Organizations, State Government Entity, Soil and Water Conservation Districts. Regional coverage: Statewide..",
+   "eligible_applicants": [
+    "town",
+    "county",
+    "nonprofit",
+    "state_agency"
+   ],
+   "applicant_notes": {
+    "individual": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "for_profit": "Not listed in the NYS Funding Finder eligibility for this program.",
+    "_other": "Also eligible per the source: Indian Nations"
+   },
+   "project_types": [
+    "carbon_offsetting",
+    "habitat_restoration"
+   ],
+   "geography": {
+    "regions": [
+     "statewide_ny"
+    ],
+    "counties": [],
+    "notes": "Statewide."
+   },
+   "award_min": null,
+   "award_max": null,
+   "cost_share_pct": null,
+   "expected_awards": null,
+   "status": "open",
+   "opens_on": null,
+   "deadline": "2026-11-04T23:59:00-05:00",
+   "award_notice_est": null,
+   "funds_available_est": null,
+   "disbursement": null,
+   "requirements": [
+    "Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day",
+    "Eligible project phases: Implementation ",
+    "NYS grants generally require SFS registration, and prequalification for not-for-profits — check the RFP"
+   ],
+   "tags": [
+    "nys-funding-finder",
+    "bond-act-tool",
+    "src:resilience",
+    "src:community-development",
+    "src:public-access"
+   ],
+   "last_verified": "2026-08-10",
+   "verified_by": "nys_funding_finder",
+   "needs_verification": true,
+   "verification_note": "Imported from the NYS Funding Finder (ArcGIS layer behind DEC's Funding Finder Tool) on 2026-08-10. The source publishes no award floor/ceiling, cost share, or number of awards — those stay null rather than being estimated. Deadline is the source's closing DATE at 23:59 ET; the real cut-off time is in the RFP. Project-type tags are mapped from the source's own taxonomy.",
+   "source_ref": {
+    "api": "nys_funding_finder",
+    "object_id": 648,
+    "layer": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0"
+   },
+   "raw_hash": "e597b63d2420a1e3"
   }
  ],
  "taxonomy_note": "Water and Land are separate project families. Water covers rainwater harvesting, fixture retrofits and rain gardens/bioretention. Land covers habitat restoration, native plants, food forest and community gardens."
