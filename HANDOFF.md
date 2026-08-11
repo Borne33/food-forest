@@ -550,3 +550,31 @@ nothing. To exercise it, fetch the page, extract the module source, neutralise t
 `boot()` call, append a `window.__T={…}` export, and `import()` it from a blob URL.
 That runs the real shipped code. The admin UI itself is uid-gated, so the *signed-in*
 path (Supabase save/delete) still needs a human click-test.
+
+## 20. Grant Finder paper theme (Aug 2026)
+
+`grants.html` now uses the **same paper/ink system as index.html**, so the iframe
+reads as part of the site instead of a dark panel dropped into it. The whole
+re-skin is tokens — no markup changed:
+
+- `:root` remaps the Horizon tokens onto the paper palette: `--bedrock` #f3efe3,
+  `--loam` #f7f4ea (cards), `--strata` #ece7d7, `--seam` #c9c2ab, `--bone` #2b2a22
+  (text), `--dust` #6c6750, plus `--field` #fbf9f2 for inputs. `color-scheme:light`.
+- Fonts follow index.html: **Spectral** (body + headings, 800 for h1–h4) and
+  **Space Mono**. The Google Fonts href is the same one index.html loads.
+- The dark glow gradients on `body` are replaced by the paper's 46px rule lines.
+- Accents darkened for a light backdrop: `--aurora` #42603a, `--moss` #6f8a5f,
+  `--amber` #87610d, `--ember` #c0392c, `--copper` #a15b23, `--iris` #75568c.
+- `FAMILY_COLORS` (JS) re-picked to match. **All six were contrast-checked against
+  `--loam`** — project-type tags are 10.5px uppercase, so they need 4.5:1. The first
+  pass left 10 of 56 tags under AA; amber, land and copper were darkened until every
+  tag passed. **Minimum is now 4.73:1 — re-check if you ever touch these.**
+
+**The admin editor's CSS is injected into `<head>` at runtime** by `initAdminEditor`,
+so it lands *after* the page stylesheet and wins on source order — a theme override
+block in `<style>` cannot touch it. Its colours are therefore `var()` references to
+the same tokens (commit `080c700`), which is the only reason the editor follows the
+theme. **If you add rules there, use the tokens, never hex.**
+
+Still an iframe with its own Supabase client — this makes it *look* native; folding
+it into `index.html` as a React page is a separate, much larger job.
