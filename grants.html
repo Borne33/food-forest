@@ -1271,6 +1271,145 @@ async function deleteGrant(id){
   const {error}=await sb.from('grants').delete().eq('id',id); if(error) throw error;
   state.grants=state.grants.filter(g=>g.id!==id);
 }
+
+// ---------- editor vocab ----------
+const STATUSES=['open','rolling','forecast','closed'];
+const FUNDER_LEVELS=['state','federal','county','private'];
+const DISBURSEMENTS=[['','Not stated'],['reimbursement','Reimbursement'],['milestone','Milestones'],['on_award','On award']];
+const EDIT_REGIONS=['finger_lakes','western_ny','statewide_ny','federal'];
+const gslug=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);
+const etOffset=d=>{const m=Number(String(d).slice(5,7))||1; return (m>=3&&m<=10)?'-04:00':'-05:00';};
+
+// NYS Funding Finder — the one source that allows cross-origin reads from this page.
+// (Grants.gov and dec.ny.gov both block CORS; see the link-import notes below.)
+// Vocab mirrors importer/ny_fetch.py — keep the two in sync.
+const NYFF_LAYER="https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/NYS_Funding_Finder/FeatureServer/0";
+const NYFF_APPLICANTS={"local government entity":["town","county"],"non-profit 501c3 organizations":["nonprofit"],
+  "state government entity":["state_agency"],"academic institutions":["nonprofit"],"private entities":["for_profit"],
+  "agriculture producer":["for_profit","individual"],"landowners":["individual"],"citizen of the united states":["individual"],
+  "any organization/partnership":["town","county","state_agency","nonprofit","individual","for_profit"],
+  "public school district":["town"],"public school districts serving disadvantaged communities":["town"],
+  "high needs public schools":["town"],"soil and water conservation districts":["county"],"water authority":["town"],
+  "regional water pollution control agencies and entities":["town"],"land trusts":["nonprofit"],
+  "regional planning organizations":["nonprofit"],"interstate organizations":["nonprofit"],
+  "public benefit corporation":["state_agency"],"state coastal zone management agencies":["state_agency"],
+  "public entities that provide pupil transportation services":["town"],"third-party bus operators":["for_profit"]};
+const NYFF_PROJECTS={"habitat restoration":"habitat_restoration","ecological restoration":"habitat_restoration",
+  "restoration":"habitat_restoration","coastal restoration":"habitat_restoration","buffer restoration":"habitat_restoration",
+  "riparian buffers":"habitat_restoration","wetlands":"habitat_restoration","wildlife":"habitat_restoration",
+  "habitat connectivity":"habitat_restoration","habitat loss":"habitat_restoration","aquatic connectivity":"habitat_restoration",
+  "fish passage":"habitat_restoration","dam removal":"habitat_restoration","invasive species":"habitat_restoration",
+  "conservation":"habitat_restoration","conservation easements":"habitat_restoration","land acquisition":"habitat_restoration",
+  "preservation":"habitat_restoration","land stewardship":"habitat_restoration","forestry":"habitat_restoration",
+  "trees":"habitat_restoration","reforestation":"habitat_restoration","plants":"native_plants",
+  "agriculture":"community_gardens","crops":"community_gardens","soils":"community_gardens",
+  "green infrastructure":"rain_gardens_bioretention","stormwater":"rain_gardens_bioretention",
+  "runoff reduction":"rain_gardens_bioretention","nonpoint source":"rain_gardens_bioretention",
+  "nature-based solutions":"rain_gardens_bioretention","food diversion or composting":"organic_composting",
+  "waste reduction":"zero_waste","hazardous waste":"zero_waste","carbon sequestration":"carbon_offsetting",
+  "emissions reductions":"carbon_offsetting","decarbonization":"carbon_offsetting","climate change":"carbon_offsetting",
+  "renewable energy":"solar_renewables","energy efficiency":"energy_efficiency","retrofitting":"energy_efficiency",
+  "ev charging infrastructure":"fleet_electrification","electric vehicle":"fleet_electrification",
+  "transportation":"active_transportation","education":"community_education","education and outreach":"community_education",
+  "outreach":"community_education","training":"community_education","capacity building":"community_education",
+  "environmental justice":"community_education","grant writing":"community_education","research":"community_education",
+  "sustainability":"green_building_design"};
+let NYFF_CACHE=null;
+async function nyffRows(){
+  if(NYFF_CACHE) return NYFF_CACHE;
+  const r=await fetch(NYFF_LAYER+'/query?where=1%3D1&outFields=*&f=json&resultRecordCount=2000');
+  const j=await r.json();
+  NYFF_CACHE=(j.features||[]).map(f=>f.attributes);
+  return NYFF_CACHE;
+}
+function nyffToRecord(a){
+  const parts=s=>String(s||'').split(',').map(t=>t.trim()).filter(Boolean);
+  const types=[],elig=[],notes={};
+  parts(a.Project_Type).forEach(t=>{const v=NYFF_PROJECTS[t.toLowerCase()]; if(v&&!types.includes(v)) types.push(v);});
+  parts(a.Eligible_Applicants).forEach(t=>(NYFF_APPLICANTS[t.toLowerCase()]||[]).forEach(v=>{if(!elig.includes(v)) elig.push(v);}));
+  APPLICANT_TYPES.forEach(v=>{ if(!elig.includes(v)) notes[v]='Not listed in the NYS Funding Finder eligibility for this program.'; });
+  const close=a.CloseDate2?new Date(a.CloseDate2):null, open=a.OpenDate2?new Date(a.OpenDate2):null;
+  const rolling=!!(close&&close.getUTCFullYear()>=2099);
+  const cd=close&&!rolling?close.toISOString().slice(0,10):null;
+  let status=String(a.Status||'').toLowerCase()==='open' ? (rolling?'rolling':'open') : 'closed';
+  if(cd && status==='open' && cd < new Date().toISOString().slice(0,10)) status='closed';
+  const cov=String(a.Regional_Coverage||a.RegionalFilters||''), low=cov.toLowerCase();
+  let regions=[];
+  if(String(a.Statewide||'').toLowerCase()==='yes') regions=['statewide_ny'];
+  else{ if(low.includes('finger lakes')) regions.push('finger_lakes');
+        if(low.includes('western ny')) regions.push('western_ny');
+        if(!regions.length && (low.includes('great lakes basin')||low.includes('inland waterways'))) regions=['finger_lakes','western_ny']; }
+  const lvl=/^nys|new york state|^ny /i.test(a.Funding_Source||'')?'state'
+    :/united states|u\.s\. |usda|environmental protection agency|noaa|national oceanic/i.test(a.Funding_Source||'')?'federal':'private';
+  return {...JSON.parse(JSON.stringify(NEW_GRANT_TEMPLATE)),
+    id:'nysff-'+gslug(a.Funding_Program), title:(a.Funding_Program||'').trim(),
+    funder:(a.Funding_Source||'').replace(/\s+/g,' ').trim(), funder_level:lvl,
+    program_url:(a.Links||'').trim()||null, source_url:'https://environmentalbondact.ny.gov/pages/funding-opportunities',
+    summary:`${a.Funding_Program||''}, offered by ${a.Funding_Source||'the funding agency'}. Source project types: ${a.Project_Type||'not stated'}. Eligible applicants per the source: ${a.Eligible_Applicants||'not stated'}.${cov?' Regional coverage: '+cov+'.':''}`,
+    eligible_applicants:elig, applicant_notes:notes, project_types:types.length?types:['other'],
+    geography:{regions,counties:[],notes:cov||'Regional coverage not stated in the source.'},
+    status, opens_on:open&&open.getUTCFullYear()<2099?open.toISOString().slice(0,10):null,
+    deadline:cd?cd+'T23:59:00'+etOffset(cd):null,
+    requirements:['Confirm the exact closing time in the RFP — the NYS Funding Finder publishes a closing date but not a time of day']
+      .concat(a.Project_Phase?['Eligible project phases: '+a.Project_Phase]:[]),
+    tags:['nys-funding-finder','bond-act-tool'].concat(rolling?['rolling']:[]),
+    verified_by:'nys_funding_finder',
+    verification_note:'Pre-filled from the live NYS Funding Finder layer. The source publishes no award floor/ceiling, cost share or award count — fill those from the RFP rather than estimating. Deadline is the source closing DATE at 23:59 ET; the real cut-off is in the RFP.',
+    source_ref:{api:'nys_funding_finder',object_id:a.ObjectId,layer:NYFF_LAYER}};
+}
+
+// Resolve a pasted link into a pre-filled record. Returns {rec, note, dup}.
+async function resolveLink(raw){
+  const url=String(raw||'').trim();
+  if(!/^https?:\/\//i.test(url)) throw new Error('Enter a full URL starting with http:// or https://');
+  const norm=u=>String(u||'').replace(/\/+$/,'').toLowerCase();
+  const hit=state.grants.find(g=>norm(g.program_url)===norm(url)||norm(g.source_url)===norm(url));
+  if(hit) return {rec:JSON.parse(JSON.stringify(hit)),dup:hit.id,
+    note:`This link is already in the catalog as “${hit.title}”. Loaded that record — edit it, or change the id to save a copy as a new round.`};
+
+  // NYS Funding Finder — live, CORS-friendly.
+  // Match on the URL PATH, not a bare substring: several programs share a funder
+  // domain, so "https://www.nfwf.org" alone must never resolve to one of them.
+  let ambiguous=null;
+  try{
+    const rows=await nyffRows();
+    const pathOf=u=>{ try{ const x=new URL(u); return (x.pathname+x.search).replace(/\/+$/,''); }catch(e){ return ''; } };
+    const pu=pathOf(url);
+    const exact=rows.filter(a=>a.Links&&norm(a.Links)===norm(url));
+    let near=[];
+    if(!exact.length && pu.length>=8){
+      near=rows.filter(a=>{ if(!a.Links) return false;
+        const A=norm(a.Links), U=norm(url), pa=pathOf(a.Links);
+        if(pa.length<8) return false;
+        const edge=(l,s)=>l.startsWith(s)&&/^[/?#]?$/.test(l.slice(s.length,s.length+1));
+        return edge(U,A)||edge(A,U); });
+    }
+    const m=exact[0]||(near.length===1?near[0]:null);
+    if(m) return {rec:nyffToRecord(m),note:'Pre-filled from the live NYS Funding Finder. Award figures and cost share are not published there — add them from the RFP.'};
+    if(near.length>1) ambiguous=near.map(a=>a.Funding_Program);
+  }catch(e){ /* fall through to the generic path */ }
+  if(ambiguous) throw new Error('That link matches '+ambiguous.length+' programs in the NYS Funding Finder ('
+    +ambiguous.slice(0,4).join('; ')+(ambiguous.length>4?'; …':'')+'). Paste the URL of the specific program page.');
+
+  // Grants.gov — its API blocks cross-origin reads, so fill what the URL itself tells us
+  const gg=url.match(/search-results-detail\/(\d+)/)||url.match(/[?&]oppId=(\d+)/);
+  if(gg||/grants\.gov/i.test(url)){
+    const rec=JSON.parse(JSON.stringify(NEW_GRANT_TEMPLATE));
+    Object.assign(rec,{id:gg?'grantsgov-'+gg[1]:'grantsgov-new',funder_level:'federal',funder:'',
+      program_url:url,source_url:url,geography:{regions:['federal'],counties:[],notes:'Confirm the eligible geography in the notice — some federal programs are limited to named states or basins.'},
+      tags:['grants-gov'],requirements:['Applicant must have an active SAM.gov registration and UEI to apply on Grants.gov'],
+      verification_note:'Started from a Grants.gov link. Fill the fields from the notice.'});
+    return {rec,note:'Grants.gov blocks cross-origin reads, so only the link could be captured. Fill the rest in by hand — or run `python3 grant_fetch.py` in the importer, which pulls the full record through the API.'};
+  }
+
+  // Anything else: seed the URLs and guess the funder from the host
+  const host=new URL(url).hostname.replace(/^www\./,'');
+  const rec=JSON.parse(JSON.stringify(NEW_GRANT_TEMPLATE));
+  Object.assign(rec,{id:gslug(host.split('.')[0])+'-'+new Date().getFullYear(),program_url:url,source_url:url,
+    funder_level:/\.ny\.gov$/.test(host)?'state':/\.gov$/.test(host)?'federal':'private',
+    verification_note:'Started from a link. Every field still needs filling from the funder notice.'});
+  return {rec,note:`The browser can only read pages that allow cross-origin requests, and ${esc(host)} does not. The link is saved in program_url and source_url — fill the rest in below.`};
+}
 function initAdminEditor(){
   const st=document.createElement('style'); st.textContent=`
     #gae-btn{position:fixed;right:18px;bottom:18px;z-index:9998;background:var(--moss,#a9c948);color:#12160c;
@@ -1281,14 +1420,35 @@ function initAdminEditor(){
     #gae-panel h3{margin:0 0 4px;font-size:20px} #gae-panel .muted{color:#9aa088;font-size:13px}
     #gae-list{margin:14px 0;max-height:40vh;overflow:auto;border:1px solid #2a2f22;border-radius:8px}
     .gae-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid #2a2f22}
-    .gae-row:last-child{border-bottom:0} .gae-row b{flex:1;font-weight:600;font-size:13.5px}
-    .gae-row small{color:#9aa088;font-family:'IBM Plex Mono',monospace;font-size:11px}
-    #gae-ov textarea{width:100%;min-height:300px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+    .gae-row:last-child{border-bottom:0} .gae-row b{flex:1 1 auto;min-width:0;font-weight:600;font-size:13.5px}
+    .gae-row small{color:#9aa088;font-family:'IBM Plex Mono',monospace;font-size:11px;
+      flex:0 1 auto;min-width:0;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .gae-row button{flex:0 0 auto}
+    #gae-json{width:100%;min-height:300px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
       background:#0e120a;color:#dfe3d2;border:1px solid #333;border-radius:8px;padding:12px;box-sizing:border-box}
     #gae-ov button.b{background:#a9c948;color:#12160c;border:0;border-radius:7px;padding:9px 15px;font-weight:700;cursor:pointer;margin-right:8px}
     #gae-ov button.g{background:transparent;color:#e8ead8;border:1px solid #444;border-radius:7px;padding:9px 15px;cursor:pointer;margin-right:8px}
     #gae-ov button.d{background:transparent;color:#e56a6a;border:1px solid #6a2a2a;border-radius:7px;padding:9px 15px;cursor:pointer;float:right}
-    #gae-msg{margin:10px 0;color:#e56a6a;font-size:13px;white-space:pre-wrap}`;
+    #gae-msg{margin:10px 0;color:#e56a6a;font-size:13px;white-space:pre-wrap}
+    #gae-note{margin:10px 0;color:#c9d3a8;font-size:13px;line-height:1.45;background:#1b2113;border:1px solid #2f3a22;border-radius:8px;padding:10px 12px;display:none}
+    .gae-modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+    .gae-mode{text-align:left;background:#1a1f12;border:1px solid #333c26;border-radius:10px;padding:14px;cursor:pointer;color:#e8ead8;font-family:inherit}
+    .gae-mode:hover{border-color:#a9c948}
+    .gae-mode b{display:block;font-size:14.5px;margin-bottom:5px} .gae-mode span{font-size:12.5px;color:#9aa088;line-height:1.4}
+    #gae-form{margin-top:6px} .gae-sec{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8d9678}
+    .gae-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+    .gae-f{display:flex;flex-direction:column;gap:4px} .gae-f>label{font-size:12px;color:#9aa088}
+    .gae-f input,.gae-f select,.gae-f textarea{background:#0e120a;color:#dfe3d2;border:1px solid #333;border-radius:7px;
+      padding:8px 9px;font-family:inherit;font-size:13px;box-sizing:border-box;width:100%}
+    .gae-f textarea{min-height:74px;line-height:1.45;resize:vertical}
+    .gae-f.wide{grid-column:1/-1}
+    .gae-checks{display:flex;flex-wrap:wrap;gap:7px}
+    .gae-checks label{display:inline-flex;align-items:center;gap:6px;background:#12170d;border:1px solid #2f3524;
+      border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;white-space:nowrap}
+    .gae-checks label:has(input:checked){background:#2c3a17;border-color:#a9c948;color:#e9f3cd}
+    .gae-checks input{accent-color:#a9c948;margin:0}
+    #gae-search{width:100%;margin-bottom:8px}
+    #gae-json{display:none}`;
   document.head.appendChild(st);
   const btn=document.createElement('button'); btn.id='gae-btn'; btn.textContent='✎ Edit catalog';
   const ov=document.createElement('div'); ov.id='gae-ov';
@@ -1297,40 +1457,215 @@ function initAdminEditor(){
     <div id="gae-list"></div>
     <button class="b" id="gae-add">+ Add new grant</button>
     <button class="g" id="gae-close">Close</button>
+    <div id="gae-pick" style="display:none">
+      <div class="muted">How do you want to start?</div>
+      <div class="gae-modes">
+        <button class="gae-mode" data-mode="dup"><b>Duplicate an existing grant</b>
+          <span>Copy any record — including closed ones — as the starting point for a new round, then edit it.</span></button>
+        <button class="gae-mode" data-mode="blank"><b>Fill in a blank form</b>
+          <span>Start from an empty record and type every field yourself.</span></button>
+        <button class="gae-mode" data-mode="link"><b>Import from a link</b>
+          <span>Paste a funder URL. Anything readable is pulled in and the form opens pre-filled.</span></button>
+      </div>
+      <div id="gae-dup" style="display:none">
+        <input id="gae-search" placeholder="Search all grants, open and closed…">
+        <div id="gae-duplist" style="max-height:38vh;overflow:auto;border:1px solid #2a2f22;border-radius:8px"></div>
+      </div>
+      <div id="gae-linkbox" style="display:none">
+        <div class="gae-f"><label>Funder URL</label><input id="gae-url" placeholder="https://…"></div>
+        <div style="margin-top:10px"><button class="b" id="gae-resolve">Fetch &amp; pre-fill</button></div>
+      </div>
+      <div id="gae-picknote" class="muted" style="margin-top:12px"></div>
+      <div style="margin-top:12px"><button class="g" id="gae-pickback">Back to list</button></div>
+    </div>
     <div id="gae-edit" style="display:none;margin-top:16px">
-      <div class="muted">Edit the record as JSON, then Save.</div>
+      <div id="gae-note"></div>
       <div id="gae-msg"></div>
+      <div id="gae-form"></div>
       <textarea id="gae-json"></textarea>
-      <div style="margin-top:12px"><button class="b" id="gae-save">Save</button>
+      <div style="margin-top:14px"><button class="b" id="gae-save">Save</button>
         <button class="g" id="gae-back">Back to list</button>
+        <button class="g" id="gae-toggle">JSON view</button>
         <button class="d" id="gae-del">Delete</button></div>
     </div></div>`;
   document.body.appendChild(btn); document.body.appendChild(ov);
-  const listEl=ov.querySelector('#gae-list'), editEl=ov.querySelector('#gae-edit'),
-        jsonEl=ov.querySelector('#gae-json'), msgEl=ov.querySelector('#gae-msg');
-  let editingId=null;
-  const showList=()=>{ editEl.style.display='none'; listEl.style.display='';
+  const $=s=>ov.querySelector(s);
+  const listEl=$('#gae-list'), pickEl=$('#gae-pick'), editEl=$('#gae-edit'),
+        formEl=$('#gae-form'), jsonEl=$('#gae-json'), msgEl=$('#gae-msg'), noteEl=$('#gae-note'),
+        addBtn=$('#gae-add'), toggleBtn=$('#gae-toggle');
+  let editingId=null, baseRec=null, jsonMode=false;
+
+  // ---- form <-> record ----
+  const dtLocal=iso=>iso?String(iso).slice(0,16):'';           // "2026-08-12T14:00:00-04:00" -> "2026-08-12T14:00"
+  const f=(label,name,val,type='text',extra='')=>`<div class="gae-f"><label>${label}</label>
+    <input name="${name}" type="${type}" value="${esc(val??'')}" ${extra}></div>`;
+  const sel=(label,name,val,opts)=>`<div class="gae-f"><label>${label}</label><select name="${name}">
+    ${opts.map(o=>{const[v,t]=Array.isArray(o)?o:[o,titleCase(o)];
+      return `<option value="${esc(v)}"${String(val??'')===String(v)?' selected':''}>${esc(t)}</option>`;}).join('')}
+    </select></div>`;
+  const ta=(label,name,val)=>`<div class="gae-f wide"><label>${label}</label><textarea name="${name}">${esc(val??'')}</textarea></div>`;
+  const checks=(label,name,vals,opts)=>`<div class="gae-f wide"><label>${label}</label><div class="gae-checks">
+    ${opts.map(([v,t])=>`<label><input type="checkbox" name="${name}" value="${esc(v)}"${vals.includes(v)?' checked':''}>${esc(t)}</label>`).join('')}
+    </div></div>`;
+
+  function buildForm(r){
+    const geo=r.geography||{regions:[],counties:[],notes:''};
+    const ptOpts=Object.entries(PROJECT_FAMILIES).flatMap(([fam,ts])=>ts.map(t=>[t,PROJECT_LABELS[t]||titleCase(t)]));
+    formEl.innerHTML=`
+      <div class="gae-sec">Identity</div>
+      <div class="gae-grid">
+        ${f('Record id (unique, kebab-case)','id',r.id)}
+        ${f('Funder','funder',r.funder)}
+        ${sel('Funder level','funder_level',r.funder_level,FUNDER_LEVELS)}
+        <div class="gae-f wide"><label>Title</label><input name="title" value="${esc(r.title??'')}"></div>
+        ${f('Program URL','program_url',r.program_url,'url')}
+        ${f('Source URL (where you verified it)','source_url',r.source_url,'url')}
+        ${ta('Summary','summary',r.summary)}
+      </div>
+      <div class="gae-sec">Who can apply</div>
+      <div class="gae-grid">
+        ${checks('Eligible applicants','ea',r.eligible_applicants||[],APPLICANT_TYPES.map(a=>[a,APPLICANT_LABELS[a]]))}
+        ${APPLICANT_TYPES.map(a=>f('Note — '+APPLICANT_LABELS[a],'an_'+a,(r.applicant_notes||{})[a])).join('')}
+      </div>
+      <div class="gae-sec">What it funds</div>
+      <div class="gae-grid">${checks('Project types','pt',r.project_types||[],ptOpts)}</div>
+      <div class="gae-sec">Where</div>
+      <div class="gae-grid">
+        ${checks('Regions','rg',geo.regions||[],EDIT_REGIONS.map(x=>[x,titleCase(x)]))}
+        ${checks('Counties (leave empty for the whole region)','cty',geo.counties||[],COUNTIES.map(c=>[c,titleCase(c)]))}
+        ${ta('Geography notes','geo_notes',geo.notes)}
+      </div>
+      <div class="gae-sec">Money — leave blank when the funder does not state a figure</div>
+      <div class="gae-grid">
+        ${f('Award minimum ($)','award_min',r.award_min,'number')}
+        ${f('Award maximum ($)','award_max',r.award_max,'number')}
+        ${f('Cost share (%)','cost_share_pct',r.cost_share_pct,'number')}
+        ${f('Expected number of awards','expected_awards',r.expected_awards,'number')}
+        ${f('Total funds available ($)','funds_available_est',r.funds_available_est,'number')}
+        ${sel('Disbursement','disbursement',r.disbursement||'',DISBURSEMENTS)}
+      </div>
+      <div class="gae-sec">Timing</div>
+      <div class="gae-grid">
+        ${sel('Status','status',r.status,STATUSES)}
+        ${f('Opens on','opens_on',r.opens_on,'date')}
+        ${f('Deadline','deadline',dtLocal(r.deadline),'datetime-local')}
+        ${f('Award notice (YYYY-MM)','award_notice_est',r.award_notice_est,'text','placeholder="2026-11"')}
+      </div>
+      <div class="gae-sec">Detail</div>
+      <div class="gae-grid">
+        ${ta('Requirements — one per line','requirements',(r.requirements||[]).join('\n'))}
+        ${ta('Tags — comma separated','tags',(r.tags||[]).join(', '))}
+      </div>
+      <div class="gae-sec">Provenance</div>
+      <div class="gae-grid">
+        ${f('Last verified','last_verified',r.last_verified,'date')}
+        ${f('Verified by','verified_by',r.verified_by)}
+        <div class="gae-f"><label>Needs verification</label><div class="gae-checks">
+          <label><input type="checkbox" name="needs_verification"${r.needs_verification?' checked':''}>Figures still unconfirmed</label></div></div>
+        ${ta('Verification note','verification_note',r.verification_note)}
+      </div>`;
+  }
+
+  function readForm(){
+    const g=n=>{const el=formEl.querySelector(`[name="${n}"]`); return el?el.value.trim():'';};
+    const nOr=n=>{const v=g(n); return v===''?null:Number(v);};
+    const many=n=>[...formEl.querySelectorAll(`[name="${n}"]:checked`)].map(el=>el.value);
+    const notes={}; APPLICANT_TYPES.forEach(a=>{ const v=g('an_'+a); if(v) notes[a]=v; });
+    let deadline=g('deadline')||null;
+    // keep the original string when the minute-precision input round-trips unchanged
+    if(deadline && baseRec && dtLocal(baseRec.deadline)===deadline) deadline=baseRec.deadline;
+    else if(deadline) deadline=deadline+':00'+etOffset(deadline);
+    return {...(baseRec||{}), id:g('id'), title:g('title'), funder:g('funder'), funder_level:g('funder_level'),
+      program_url:g('program_url')||null, source_url:g('source_url')||null, summary:g('summary'),
+      eligible_applicants:many('ea'), applicant_notes:notes, project_types:many('pt'),
+      geography:{regions:many('rg'),counties:many('cty'),notes:g('geo_notes')},
+      award_min:nOr('award_min'), award_max:nOr('award_max'), cost_share_pct:nOr('cost_share_pct'),
+      expected_awards:nOr('expected_awards'), funds_available_est:nOr('funds_available_est'),
+      disbursement:g('disbursement')||null, status:g('status'), opens_on:g('opens_on')||null, deadline,
+      award_notice_est:g('award_notice_est')||null,
+      requirements:g('requirements').split('\n').map(s=>s.trim()).filter(Boolean),
+      tags:g('tags').split(',').map(s=>s.trim()).filter(Boolean),
+      last_verified:g('last_verified')||null, verified_by:g('verified_by')||null,
+      needs_verification:!!formEl.querySelector('[name="needs_verification"]:checked'),
+      verification_note:g('verification_note')};
+  }
+  const current=()=>{ if(!jsonMode) return readForm(); return JSON.parse(jsonEl.value); };
+
+  // ---- views ----
+  const showList=()=>{ editEl.style.display='none'; pickEl.style.display='none'; listEl.style.display=''; addBtn.style.display='';
     listEl.innerHTML=[...state.grants].sort((a,b)=>a.title.localeCompare(b.title)).map(g=>
       `<div class="gae-row"><b>${esc(g.title||'(untitled)')}</b><small>${esc(g.status||'')}</small>
        <button class="g" data-edit="${esc(g.id)}">Edit</button></div>`).join('')||'<div class="gae-row muted">No grants yet.</div>'; };
-  const openEditor=(rec)=>{ editingId=rec.id; msgEl.textContent=''; jsonEl.value=JSON.stringify(rec,null,2);
-    listEl.style.display='none'; ov.querySelector('#gae-add').style.display='none';
-    editEl.style.display=''; ov.querySelector('#gae-del').style.display = state.grants.some(g=>g.id===rec.id)?'':'none'; };
-  btn.onclick=()=>{ showList(); ov.querySelector('#gae-add').style.display=''; ov.classList.add('on'); };
-  ov.querySelector('#gae-close').onclick=()=>ov.classList.remove('on');
-  ov.querySelector('#gae-add').onclick=()=>openEditor(JSON.parse(JSON.stringify(NEW_GRANT_TEMPLATE)));
-  ov.querySelector('#gae-back').onclick=()=>{ showList(); ov.querySelector('#gae-add').style.display=''; };
+  const openEditor=(rec,note)=>{ editingId=rec.id; baseRec=JSON.parse(JSON.stringify(rec));
+    msgEl.textContent=''; jsonMode=false; jsonEl.style.display='none'; formEl.style.display='';
+    toggleBtn.textContent='JSON view'; buildForm(rec); jsonEl.value=JSON.stringify(rec,null,2);
+    noteEl.style.display=note?'block':'none'; noteEl.innerHTML=note||'';
+    listEl.style.display='none'; pickEl.style.display='none'; addBtn.style.display='none'; editEl.style.display='';
+    $('#gae-del').style.display=state.grants.some(g=>g.id===rec.id)?'':'none'; };
+  const showPick=()=>{ listEl.style.display='none'; editEl.style.display='none'; addBtn.style.display='none';
+    pickEl.style.display=''; $('#gae-dup').style.display='none'; $('#gae-linkbox').style.display='none';
+    $('#gae-picknote').textContent=''; $('#gae-url').value=''; };
+  const dupList=(q)=>{ const s=(q||'').toLowerCase();
+    const rows=[...state.grants].filter(g=>!s||(g.title+' '+g.funder+' '+g.id).toLowerCase().includes(s))
+      .sort((a,b)=>a.title.localeCompare(b.title));
+    $('#gae-duplist').innerHTML=rows.map(g=>`<div class="gae-row"><b>${esc(g.title||'(untitled)')}</b>
+      <small>${esc(g.status||'')} · ${esc(g.funder||'')}</small>
+      <button class="g" data-dup="${esc(g.id)}">Duplicate</button></div>`).join('')
+      ||'<div class="gae-row muted">Nothing matches.</div>'; };
+
+  // ---- wiring ----
+  btn.onclick=()=>{ showList(); ov.classList.add('on'); };
+  $('#gae-close').onclick=()=>ov.classList.remove('on');
+  addBtn.onclick=showPick;
+  $('#gae-pickback').onclick=showList;
+  $('#gae-back').onclick=showList;
+  pickEl.onclick=(e)=>{
+    const m=e.target.closest('[data-mode]');
+    if(m){ const mode=m.dataset.mode;
+      if(mode==='blank') return openEditor(JSON.parse(JSON.stringify(NEW_GRANT_TEMPLATE)),
+        'Blank record. Fill what the funder actually states and leave the rest empty — a null reads as “not stated”, a guess reads as fact.');
+      $('#gae-dup').style.display = mode==='dup'?'':'none';
+      $('#gae-linkbox').style.display = mode==='link'?'':'none';
+      if(mode==='dup'){ $('#gae-search').value=''; dupList(''); $('#gae-search').focus(); } else $('#gae-url').focus();
+      return; }
+    const d=e.target.closest('[data-dup]');
+    if(d){ const src=state.grants.find(g=>g.id===d.dataset.dup); if(!src) return;
+      const rec=JSON.parse(JSON.stringify(src));
+      rec.id=(src.id||'grant').replace(/-copy\d*$/,'')+'-copy';
+      let n=2; while(state.grants.some(g=>g.id===rec.id)) rec.id=rec.id.replace(/-copy\d*$/,'')+'-copy'+(n++);
+      rec.last_verified=new Date().toISOString().slice(0,10); rec.verified_by='admin';
+      rec.needs_verification=true;
+      rec.verification_note='Duplicated from “'+(src.title||src.id)+'”. Every figure, date and eligibility line still needs checking against the new notice.';
+      delete rec.source_ref; delete rec.raw_hash;
+      openEditor(rec,`Copied from <b>${esc(src.title||src.id)}</b>${src.status==='closed'?' (a closed round)':''}. Give it a new id, then update the dates and figures for this round — nothing was carried over as verified.`); } };
+  $('#gae-search').oninput=e=>dupList(e.target.value);
+  $('#gae-resolve').onclick=async()=>{
+    const note=$('#gae-picknote'); note.textContent='Fetching…';
+    try{ const {rec,note:n}=await resolveLink($('#gae-url').value); note.textContent=''; openEditor(rec,n); }
+    catch(err){ note.textContent=err.message||String(err); } };
+  $('#gae-url').onkeydown=e=>{ if(e.key==='Enter') $('#gae-resolve').click(); };
   listEl.onclick=(e)=>{ const b=e.target.closest('[data-edit]'); if(!b) return;
-    const rec=state.grants.find(g=>g.id===b.dataset.edit); if(rec) openEditor(rec); };
-  ov.querySelector('#gae-save').onclick=async()=>{ msgEl.textContent='';
-    let rec; try{ rec=JSON.parse(jsonEl.value); }catch(err){ msgEl.textContent='Invalid JSON: '+err.message; return; }
+    const rec=state.grants.find(g=>g.id===b.dataset.edit);
+    if(rec) openEditor(rec,'Editing a record everyone sees. Keep <code>needs_verification</code> ticked until every figure is confirmed against the funder notice.'); };
+  toggleBtn.onclick=()=>{ msgEl.textContent='';
+    if(!jsonMode){ let r; try{ r=readForm(); }catch(err){ msgEl.textContent=String(err); return; }
+      jsonEl.value=JSON.stringify(r,null,2); jsonMode=true; formEl.style.display='none'; jsonEl.style.display='block';
+      toggleBtn.textContent='Form view'; }
+    else{ let r; try{ r=JSON.parse(jsonEl.value); }catch(err){ msgEl.textContent='Invalid JSON: '+err.message; return; }
+      baseRec=r; buildForm(r); jsonMode=false; jsonEl.style.display='none'; formEl.style.display='';
+      toggleBtn.textContent='JSON view'; } };
+  $('#gae-save').onclick=async()=>{ msgEl.textContent='';
+    let rec; try{ rec=current(); }catch(err){ msgEl.textContent='Invalid JSON: '+err.message; return; }
     if(!rec.id||!rec.title){ msgEl.textContent='id and title are required.'; return; }
-    try{ await upsertGrant(rec); render(); showList(); ov.querySelector('#gae-add').style.display=''; }
+    if(!/^[a-z0-9][a-z0-9-]*$/.test(rec.id)){ msgEl.textContent='id must be lower-case letters, numbers and hyphens.'; return; }
+    if(rec.id!==editingId && state.grants.some(g=>g.id===rec.id)){
+      msgEl.textContent='That id already exists — change it, or go back and edit that record instead.'; return; }
+    try{ await upsertGrant(rec); render(); showList(); }
     catch(err){ msgEl.textContent='Save failed: '+(err.message||err); }
   };
-  ov.querySelector('#gae-del').onclick=async()=>{ if(!editingId) return;
+  $('#gae-del').onclick=async()=>{ if(!editingId) return;
     if(!confirm('Delete this grant from the shared catalog?')) return;
-    try{ await deleteGrant(editingId); render(); showList(); ov.querySelector('#gae-add').style.display=''; }
+    try{ await deleteGrant(editingId); render(); showList(); }
     catch(err){ msgEl.textContent='Delete failed: '+(err.message||err); } };
 }
 </script>

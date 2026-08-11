@@ -389,8 +389,9 @@ Verify work · GitHub Actions Pages deploy.
   tracker/saved-filters/profile. Mutations persist debounced (`schedulePersist`
   from render() + handleFieldEdit; `persistUser` replaces the small per-user sets).
 - **Admin catalog editor:** floating "✎ Edit catalog" button (admin uid only) →
-  overlay to add/edit/delete grant records as JSON, saved straight to the `grants`
-  table. Keep `needs_verification` true until every figure is confirmed.
+  overlay to add/edit/delete grant records, saved straight to the `grants` table.
+  Keep `needs_verification` true until every figure is confirmed. See §19 for the
+  three add-flows and the structured form.
 - **Keeping grants current:** `importer/grants/grants_catalog.json` is the source of
   truth (the finder's record shape). Refresh it, then `python3 grant_import.py` to
   upsert. Hand edits and the in-app admin editor still work; there is no
@@ -498,3 +499,54 @@ loads fine in a real browser — use the browser pane or full browser headers.
 - **Not yet live-tested:** the authenticated path (DB catalog load, per-user
   persistence, admin editor) is auth-gated — verified statically + fallback/prefill
   paths in preview; click-test when signed in.
+
+## 19. Grant catalog editor — add flows + structured form (Aug 2026)
+
+The admin editor (`initAdminEditor` in `grants.html`) no longer opens a raw JSON box.
+"+ Add new grant" now shows a **mode chooser**, and all three modes land in the same
+**structured form**:
+
+1. **Duplicate an existing grant** — searchable list of every record, *including
+   closed ones* (closed rounds are the usual starting point for the next round).
+   The copy gets `id`+`-copy` (`-copy2`, … if taken), `last_verified`=today,
+   `verified_by`="admin", `needs_verification`=true, and **`source_ref`/`raw_hash`
+   are deleted** so the importers don't later treat the copy as their own row.
+2. **Fill in a blank form** — `NEW_GRANT_TEMPLATE`.
+3. **Import from a link** — `resolveLink(url)`, see below.
+
+**The form** (`buildForm`/`readForm`) covers every catalog field, grouped Identity /
+Who can apply / What it funds / Where / Money / Timing / Detail / Provenance.
+Finite fields are selects or checkbox chips driven by the page's own taxonomy
+constants (`APPLICANT_TYPES`, `PROJECT_FAMILIES`, `EDIT_REGIONS`, `COUNTIES`), so the
+form cannot produce a value the filters don't understand. Empty number inputs read
+back as **`null`, not 0** — "not stated" must stay distinguishable from "zero".
+`readForm` spreads over `baseRec`, so unknown keys (`source_ref`, `raw_hash`) survive
+a round-trip. **"JSON view" toggles to the old raw editor** and back, for anything the
+form doesn't cover. Save validates the id shape and blocks collisions.
+
+**`resolveLink(url)` — what can actually be fetched from the browser:**
+- Already in the catalog (exact `program_url`/`source_url`) → loads that record.
+- **NYS Funding Finder** — the ArcGIS layer sends CORS headers, so this is a *live*
+  pull; `nyffToRecord` mirrors `importer/ny_fetch.py` (**keep the two in sync**).
+- **Grants.gov and dec.ny.gov both block CORS** — verified, don't retry. A Grants.gov
+  link yields id/urls/federal defaults only, and the note points at `grant_fetch.py`.
+- Anything else → seeds `program_url`/`source_url` + guesses `funder_level` from the TLD.
+
+**Gotchas hit while building this (all fixed — don't reintroduce):**
+- **`el.style.display=''` does NOT show an element whose CSS default is
+  `display:none`.** It clears the inline style and the rule wins. Bit both the note
+  banner and the JSON textarea; use an explicit `'block'`.
+- The old `#gae-ov textarea{min-height:300px;font-family:mono}` rule outranked
+  `.gae-f textarea` on specificity and made every form textarea a 300px mono box.
+  It is now scoped to `#gae-json`.
+- **URL matching against the ArcGIS layer must compare PATHS, not substrings.**
+  Six programs share `nfwf.org`, so a bare domain silently pre-filled the wrong
+  grant. Now: exact match wins; otherwise a prefix match at a `/?#` boundary with
+  ≥8 chars of path; more than one match raises an "ambiguous" error listing them.
+
+**Testing note:** `grants.html` is `<script type="module">`, so **nothing lands on
+`window`** — `typeof someFn` from an injected script is always `undefined` and proves
+nothing. To exercise it, fetch the page, extract the module source, neutralise the
+`boot()` call, append a `window.__T={…}` export, and `import()` it from a blob URL.
+That runs the real shipped code. The admin UI itself is uid-gated, so the *signed-in*
+path (Supabase save/delete) still needs a human click-test.
