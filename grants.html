@@ -1412,41 +1412,41 @@ async function resolveLink(raw){
 }
 function initAdminEditor(){
   const st=document.createElement('style'); st.textContent=`
-    #gae-btn{position:fixed;right:18px;bottom:18px;z-index:9998;background:var(--moss,#a9c948);color:#12160c;
+    #gae-btn{position:fixed;right:18px;bottom:18px;z-index:9998;background:var(--moss);color:var(--bedrock);
       border:0;border-radius:999px;padding:11px 16px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4)}
     #gae-ov{position:fixed;inset:0;z-index:9999;background:rgba(8,10,7,.72);display:none;padding:24px;overflow:auto}
     #gae-ov.on{display:block}
-    #gae-panel{max-width:860px;margin:0 auto;background:#14180f;border:1px solid #333;border-radius:12px;padding:20px 22px;color:#e8ead8}
-    #gae-panel h3{margin:0 0 4px;font-size:20px} #gae-panel .muted{color:#9aa088;font-size:13px}
-    #gae-list{margin:14px 0;max-height:40vh;overflow:auto;border:1px solid #2a2f22;border-radius:8px}
-    .gae-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid #2a2f22}
+    #gae-panel{max-width:860px;margin:0 auto;background:var(--loam);border:1px solid var(--seam);border-radius:12px;padding:20px 22px;color:var(--bone)}
+    #gae-panel h3{margin:0 0 4px;font-size:20px} #gae-panel .muted{color:var(--dust);font-size:13px}
+    #gae-list{margin:14px 0;max-height:40vh;overflow:auto;border:1px solid var(--seam);border-radius:8px}
+    .gae-row{display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--seam)}
     .gae-row:last-child{border-bottom:0} .gae-row b{flex:1 1 auto;min-width:0;font-weight:600;font-size:13.5px}
-    .gae-row small{color:#9aa088;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    .gae-row small{color:var(--dust);font-family:'IBM Plex Mono',monospace;font-size:11px;
       flex:0 1 auto;min-width:0;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .gae-row button{flex:0 0 auto}
     #gae-json{width:100%;min-height:300px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
-      background:#0e120a;color:#dfe3d2;border:1px solid #333;border-radius:8px;padding:12px;box-sizing:border-box}
-    #gae-ov button.b{background:#a9c948;color:#12160c;border:0;border-radius:7px;padding:9px 15px;font-weight:700;cursor:pointer;margin-right:8px}
-    #gae-ov button.g{background:transparent;color:#e8ead8;border:1px solid #444;border-radius:7px;padding:9px 15px;cursor:pointer;margin-right:8px}
-    #gae-ov button.d{background:transparent;color:#e56a6a;border:1px solid #6a2a2a;border-radius:7px;padding:9px 15px;cursor:pointer;float:right}
-    #gae-msg{margin:10px 0;color:#e56a6a;font-size:13px;white-space:pre-wrap}
-    #gae-note{margin:10px 0;color:#c9d3a8;font-size:13px;line-height:1.45;background:#1b2113;border:1px solid #2f3a22;border-radius:8px;padding:10px 12px;display:none}
+      background:var(--bedrock);color:var(--bone);border:1px solid var(--seam);border-radius:8px;padding:12px;box-sizing:border-box}
+    #gae-ov button.b{background:var(--moss);color:var(--bedrock);border:0;border-radius:7px;padding:9px 15px;font-weight:700;cursor:pointer;margin-right:8px}
+    #gae-ov button.g{background:transparent;color:var(--bone);border:1px solid var(--seam);border-radius:7px;padding:9px 15px;cursor:pointer;margin-right:8px}
+    #gae-ov button.d{background:transparent;color:var(--ember);border:1px solid var(--ember);border-radius:7px;padding:9px 15px;cursor:pointer;float:right}
+    #gae-msg{margin:10px 0;color:var(--ember);font-size:13px;white-space:pre-wrap}
+    #gae-note{margin:10px 0;color:var(--bone);font-size:13px;line-height:1.45;background:var(--strata);border:1px solid var(--seam);border-radius:8px;padding:10px 12px;display:none}
     .gae-modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
-    .gae-mode{text-align:left;background:#1a1f12;border:1px solid #333c26;border-radius:10px;padding:14px;cursor:pointer;color:#e8ead8;font-family:inherit}
-    .gae-mode:hover{border-color:#a9c948}
-    .gae-mode b{display:block;font-size:14.5px;margin-bottom:5px} .gae-mode span{font-size:12.5px;color:#9aa088;line-height:1.4}
-    #gae-form{margin-top:6px} .gae-sec{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8d9678}
+    .gae-mode{text-align:left;background:var(--strata);border:1px solid var(--seam);border-radius:10px;padding:14px;cursor:pointer;color:var(--bone);font-family:inherit}
+    .gae-mode:hover{border-color:var(--moss)}
+    .gae-mode b{display:block;font-size:14.5px;margin-bottom:5px} .gae-mode span{font-size:12.5px;color:var(--dust);line-height:1.4}
+    #gae-form{margin-top:6px} .gae-sec{margin:16px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dust)}
     .gae-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
-    .gae-f{display:flex;flex-direction:column;gap:4px} .gae-f>label{font-size:12px;color:#9aa088}
-    .gae-f input,.gae-f select,.gae-f textarea{background:#0e120a;color:#dfe3d2;border:1px solid #333;border-radius:7px;
+    .gae-f{display:flex;flex-direction:column;gap:4px} .gae-f>label{font-size:12px;color:var(--dust)}
+    .gae-f input,.gae-f select,.gae-f textarea{background:var(--bedrock);color:var(--bone);border:1px solid var(--seam);border-radius:7px;
       padding:8px 9px;font-family:inherit;font-size:13px;box-sizing:border-box;width:100%}
     .gae-f textarea{min-height:74px;line-height:1.45;resize:vertical}
     .gae-f.wide{grid-column:1/-1}
     .gae-checks{display:flex;flex-wrap:wrap;gap:7px}
-    .gae-checks label{display:inline-flex;align-items:center;gap:6px;background:#12170d;border:1px solid #2f3524;
+    .gae-checks label{display:inline-flex;align-items:center;gap:6px;background:var(--bedrock);border:1px solid var(--seam);
       border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;white-space:nowrap}
-    .gae-checks label:has(input:checked){background:#2c3a17;border-color:#a9c948;color:#e9f3cd}
-    .gae-checks input{accent-color:#a9c948;margin:0}
+    .gae-checks label:has(input:checked){background:var(--moss);border-color:var(--moss);color:var(--bedrock)}
+    .gae-checks input{accent-color:var(--moss);margin:0}
     #gae-search{width:100%;margin-bottom:8px}
     #gae-json{display:none}`;
   document.head.appendChild(st);
