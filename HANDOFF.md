@@ -578,3 +578,26 @@ theme. **If you add rules there, use the tokens, never hex.**
 
 Still an iframe with its own Supabase client — this makes it *look* native; folding
 it into `index.html` as a React page is a separate, much larger job.
+
+## 18. Enrichment trickle — quick reference (by name)
+
+Slow, cached, respectful use-data enrichment for plants. Scripts live in `importer/`:
+- **`trickle_loop.sh`** — the loop: ~25 PFAF + 50 NAEB fetches/hour, sequential,
+  auto-stops after the `STOP=YYYYMMDD` date near its top. Cron/launchd are TCC-
+  blocked on this Mac, so run it detached:
+  - **Start:**  `cd importer && nohup bash trickle_loop.sh >/dev/null 2>&1 & disown`
+    (bump `STOP=` first; it won't run past that date. Won't survive a reboot.)
+  - **Stop:**   `pkill -f trickle_loop.sh`
+  - **Watch:**  `tail -f importer/trickle.log`
+  - **Alive?**  `pgrep -f trickle_loop.sh`
+- **`pfaf_trickle.py`** / **`naeb_trickle.py`** — one-shot enrichers (used by the
+  loop; also runnable alone): `python3 pfaf_trickle.py --limit 25` /
+  `python3 naeb_trickle.py --limit 50`. Fill use-scores from PFAF star ratings /
+  the Native American Ethnobotany DB (tier E), non-clobbering, skip already-cached
+  species (so they converge), cite the source per plant.
+- **Cache:** `importer/cache/{pfaf,naeb,wiki}/` (gitignored) — every page fetched
+  at most once, ever; re-runs cost no new requests.
+- **When to run:** after adding a new plant batch (the trickle only touches
+  plants still lacking use data). The Aug 2026 run finished 2026-08-09 having
+  fetched ~1,395 PFAF + ~1,458 NAEB pages; ~1,362 of 2,457 plants carry a
+  documented use-score. New additions since then need a fresh run.

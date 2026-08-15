@@ -266,6 +266,7 @@
   .pill.dec{color:#8a5a1f;background:#f6e8d2;border-color:#e2c79c}
   .pill.inv{color:#9a2c22;background:#f6dcd7;border-color:#e3b1a8}
   .pill.prot{color:#5a3a86;background:#ece2f4;border-color:#cdb8e0}
+  .pill.lowdata{color:#8a4b00;background:#fbeccb;border-color:#e2c079}
   .pill.protus{color:#7a2a86;background:#f3e2f2;border-color:#e0b8dd}
   .pill.deer{color:#5b5027;background:#eef0dd;border-color:#cdd3a6}
   .pill.fruit{color:#7a4a1f;background:#f7ead4;border-color:#e6c99b}
@@ -1103,6 +1104,7 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
             {p.nyProtected && <span className="pill prot" title={"Protected native plant in NY (6 NYCRR 193.3): "+p.nyProtected+". Don't wild-harvest — use nursery-propagated stock."}>NY protected · {p.nyProtected}</span>}
             {p.usProtected && <span className="pill protus" title={"Federally protected under the U.S. Endangered Species Act: "+p.usProtected+". Federal rules apply regardless of who owns the land."}>US protected · {p.usProtected}</span>}
             {p.deerResistant && <span className="pill deer">Deer resistant</span>}
+            {isLowData(p) && <span className="pill lowdata" title={"Sparse record — "+dataGaps(p).join(", ")+". Data still being filled in."}>⚠ Low data</span>}
             {fruitLabel(p) && <span className="pill fruit">{fruitLabel(p)}</span>}
             {inPlans.map(pl=>(
               <span key={pl.id} className="pill planpill" style={{background:pl.color,color:textOn(pl.color)}}>★ {pl.name}</span>
