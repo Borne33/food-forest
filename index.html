@@ -721,6 +721,46 @@
     text-transform:uppercase;border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);
     border-radius:4px;padding:5px 11px;text-decoration:none;display:inline-block}
   .shopdetail .acts button.pri{background:var(--sage-d);color:var(--paper)}
+  /* ---------- Shops & Seed (S4: Sale Calendar + banner) ---------- */
+  .salebanner{border:1.5px solid var(--soil-d);border-left:5px solid var(--soil-d);border-radius:6px;
+    background:var(--soil-bg);padding:11px 14px;margin:0 0 14px}
+  .salebanner .hd{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--soil-d);margin-bottom:7px}
+  .salebanner .row{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:4px 0;
+    border-bottom:1px dashed var(--soil-line);font-size:14px}
+  .salebanner .row:last-child{border-bottom:0}
+  .salebanner .dt{font-family:'Space Mono';font-size:11px;color:var(--soil-d);flex:0 0 96px}
+  .salebanner .soon{font-family:'Space Mono';font-size:10px;color:var(--paper);background:var(--soil-d);
+    border-radius:3px;padding:1px 6px}
+  .salebanner a{font-family:'Space Mono';font-size:11px;margin-left:auto}
+  .calmonth{margin-bottom:24px}
+  .calmonth > h4{font-family:'Space Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    border-bottom:1.5px solid var(--ink);padding-bottom:6px;margin:0 0 12px;
+    display:flex;justify-content:space-between;align-items:baseline}
+  .calmonth > h4 span{font-size:10px;color:var(--faint)}
+  .calgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px}
+  .salecard{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;padding:12px 13px;
+    display:flex;flex-direction:column}
+  .salecard.free{border-left:4px solid var(--sage-d)}
+  .salecard .when{font-family:'Space Mono';font-size:11px;font-weight:700;color:var(--soil-d);margin-bottom:3px}
+  .salecard b{display:block;font-size:15.5px;line-height:1.25}
+  .salecard .host{font-size:12.5px;color:var(--ink2);margin:3px 0 6px}
+  .salecard .loc{font-family:'Space Mono';font-size:10.5px;color:var(--faint);margin-bottom:7px}
+  .salecard .note{font-size:12.5px;color:var(--ink2);margin-bottom:8px}
+  .salecard .foot{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:auto;
+    border-top:1px solid var(--line);padding-top:8px}
+  .salecard .foot a,.salecard .foot button{font-family:'Space Mono';font-size:10px;letter-spacing:.04em;
+    text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;color:var(--sage-d);
+    border-radius:4px;padding:3px 8px;text-decoration:none}
+  .caltag{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 6px;border-radius:3px;border:1px solid}
+  .t-sale{color:#2f5b2a;border-color:#8fae7d;background:#e9f2df}
+  .t-order{color:#3f5f72;border-color:#a9c0cd;background:#e6eff4}
+  .t-pickup{color:#7a5320;border-color:var(--soil-line);background:var(--soil-bg)}
+  .calundated{border:1.5px dashed var(--line);border-radius:6px;background:#fbf9f2;padding:14px 16px;margin-bottom:24px}
+  .calundated > h4{font-family:'Space Mono';font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 4px}
+  .calundated > p{font-size:13.5px;color:var(--ink2);margin:0 0 12px;max-width:70ch}
   .shoplist .lrow .lcard{margin-top:7px;font-family:'Space Mono';font-size:10px;letter-spacing:.05em;
     text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;color:var(--sage-d);
     border-radius:4px;padding:3px 9px}
@@ -4207,6 +4247,225 @@ const fmtSaleDate=s=>{
   return span+time;
 };
 
+/* ── Sale Calendar (S4) ────────────────────────────────────────────────────
+   A sale can put several dates on the calendar — an order window opens, closes
+   and is picked up months later — so each sale expands into OCCURRENCES and is
+   listed under every month it touches, labelled for which is which. */
+const OCC_KIND={ sale:["Sale","t-sale"], order_opens:["Orders open","t-order"],
+  order_closes:["Orders close","t-order"], pickup:["Pick-up","t-pickup"] };
+const todayISO=()=>{ const d=new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+const monthKey=iso=>iso.slice(0,7);
+const monthLabel=key=>{ const [y,m]=key.split("-").map(Number);
+  return new Date(y,m-1,1).toLocaleDateString(undefined,{month:"long",year:"numeric"}); };
+
+function saleOccurrences(s){
+  const out=[];
+  if(s.startsOn)      out.push({date:s.startsOn,      type:"sale"});
+  if(s.orderOpensOn)  out.push({date:s.orderOpensOn,  type:"order_opens"});
+  if(s.orderClosesOn) out.push({date:s.orderClosesOn, type:"order_closes"});
+  if(s.pickupOn)      out.push({date:s.pickupOn,      type:"pickup"});
+  return out.map(o=>({...o, sale:s}));
+}
+
+/* ICS is plain text — no library. All-day events keep it simple and correct
+   across time zones; DTEND is exclusive, hence +1 day. */
+const icsEsc=t=>String(t||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+const icsDay=iso=>iso.replace(/-/g,"");
+const icsNextDay=iso=>{ const [y,m,d]=iso.split("-").map(Number);
+  const n=new Date(y,m-1,d+1); return n.getFullYear()+String(n.getMonth()+1).padStart(2,"0")+String(n.getDate()).padStart(2,"0"); };
+function saleToICS(occ, host){
+  const s=occ.sale, label=OCC_KIND[occ.type][0];
+  const end=s.endsOn && occ.type==="sale" ? s.endsOn : occ.date;
+  const loc=[s.venueName,s.street,s.city && s.city+", "+s.state].filter(Boolean).join(", ");
+  const desc=[host&&("Run by "+host.name), s.priceNote, s.notes, s.url].filter(Boolean).join("\n");
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Native Food Forest Planner//Shops//EN",
+    "BEGIN:VEVENT",
+    "UID:"+s.slug+"-"+occ.type+"@borne33.github.io",
+    "DTSTAMP:"+icsDay(todayISO())+"T000000Z",
+    "DTSTART;VALUE=DATE:"+icsDay(occ.date),
+    "DTEND;VALUE=DATE:"+icsNextDay(end),
+    "SUMMARY:"+icsEsc(label+" — "+s.name),
+    loc?"LOCATION:"+icsEsc(loc):null,
+    desc?"DESCRIPTION:"+icsEsc(desc):null,
+    s.url?"URL:"+icsEsc(s.url):null,
+    "END:VEVENT","END:VCALENDAR"].filter(Boolean).join("\r\n");
+}
+function downloadText(name, text, mime){
+  const url=URL.createObjectURL(new Blob([text],{type:mime||"text/plain"}));
+  const a=document.createElement("a"); a.href=url; a.download=name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+
+function SaleCard({occ, host, onOpenCard}){
+  const s=occ.sale, [label,cls]=OCC_KIND[occ.type];
+  const when = occ.type==="sale" ? fmtSaleDate(s) : fmtDay(occ.date);
+  return (
+    <div className={"salecard"+(host&&host.givesFree?" free":"")}>
+      <div className="when">{when}</div>
+      <b>{s.name}</b>
+      {host && <div className="host">{host.name}</div>}
+      <div className="loc">{[s.venueName, s.street, s.city && s.city+", "+s.state].filter(Boolean).join(" · ")}</div>
+      {s.priceNote && <div className="note">{s.priceNote}</div>}
+      <div className="foot">
+        <span className={"caltag "+cls}>{label}</span>
+        {host && host.givesFree && <span className="shopfree">Free</span>}
+        {s.url && <a href={s.url} target="_blank" rel="noopener">Details ↗</a>}
+        <button onClick={()=>downloadText(s.slug+"-"+occ.type+".ics", saleToICS(occ,host), "text/calendar")}>
+          + Calendar</button>
+        {host && <button onClick={()=>onOpenCard(host.id)}>Shop →</button>}
+      </div>
+    </div>
+  );
+}
+
+function SaleCalendar({sales, vendorById, onOpenCard}){
+  const [sub,setSub]=useState("all");
+  const [kind,setKind]=useState("all");
+  const [freeOnly,setFreeOnly]=useState(false);
+  const [showPast,setShowPast]=useState(false);
+  const today=todayISO();
+
+  const subOf=s=>{ const v=vendorById[s.vendorId]; return v?v.subregion:null; };
+  const subregions=useMemo(()=>[...new Set(sales.map(subOf).filter(Boolean))].sort(),[sales,vendorById]);
+
+  const keep=s=>{
+    if(sub!=="all" && subOf(s)!==sub) return false;
+    if(kind!=="all" && s.kind!==kind) return false;
+    if(freeOnly){ const v=vendorById[s.vendorId]; if(!v||!v.givesFree) return false; }
+    return true;
+  };
+  const filtered=useMemo(()=>sales.filter(keep),[sales,sub,kind,freeOnly,vendorById]);
+
+  const occ=useMemo(()=>filtered.flatMap(saleOccurrences).sort((a,b)=>a.date.localeCompare(b.date)),[filtered]);
+  const upcoming=occ.filter(o=>o.date>=today);
+  const past=occ.filter(o=>o.date<today);
+  const undated=filtered.filter(s=>saleOccurrences(s).length===0);
+
+  const byMonth=list=>{ const m=new Map();
+    list.forEach(o=>{ const k=monthKey(o.date); if(!m.has(k)) m.set(k,[]); m.get(k).push(o); });
+    return [...m.entries()]; };
+
+  const exportAll=()=>{
+    const body=upcoming.map(o=>saleToICS(o, vendorById[o.sale.vendorId]))
+      .map(t=>t.split("\r\n").slice(3,-1).join("\r\n"))   // strip each wrapper
+      .join("\r\n");
+    downloadText("native-plant-sales.ics",
+      ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Native Food Forest Planner//Shops//EN",
+       body,"END:VCALENDAR"].join("\r\n"), "text/calendar");
+  };
+
+  return (
+    <div>
+      <div className="shopctl">
+        <div className="fld"><label>Region</label>
+          <select value={sub} onChange={e=>setSub(e.target.value)}>
+            <option value="all">All regions</option>
+            {subregions.map(s=><option key={s} value={s}>{s}</option>)}
+          </select></div>
+        <div className="fld"><label>Type</label>
+          <select value={kind} onChange={e=>setKind(e.target.value)}>
+            <option value="all">Sales &amp; order windows</option>
+            <option value="sale">Sales only</option>
+            <option value="order_window">Order windows only</option>
+          </select></div>
+        <button className={"chip"+(freeOnly?" on":"")} onClick={()=>setFreeOnly(f=>!f)}>Free sources only</button>
+        {upcoming.length>0 &&
+          <button className="chip" onClick={exportAll}>Export {upcoming.length} to calendar (.ics)</button>}
+      </div>
+
+      <div className="count">
+        {upcoming.length} upcoming date{upcoming.length===1?"":"s"} · {undated.length} not yet announced ·
+        {" "}{past.length} past
+      </div>
+
+      {upcoming.length===0 && undated.length===0 &&
+        <div className="empty">No sales match those filters.</div>}
+
+      {byMonth(upcoming).map(([k,list])=>(
+        <div className="calmonth" key={k}>
+          <h4>{monthLabel(k)}<span>{list.length} date{list.length===1?"":"s"}</span></h4>
+          <div className="calgrid">
+            {list.map(o=><SaleCard key={o.sale.id+o.type} occ={o}
+                                   host={vendorById[o.sale.vendorId]} onOpenCard={onOpenCard} />)}
+          </div>
+        </div>
+      ))}
+
+      {undated.length>0 && (
+        <div className="calundated">
+          <h4>Dates not yet announced — {undated.length}</h4>
+          <p>These programmes run every year but haven’t published this season’s dates. Most conservation-district
+             seedling sales open orders in January and close in early March, with April pick-up — check the district
+             directly, or watch this space.</p>
+          <div className="calgrid">
+            {undated.map(s=>{ const host=vendorById[s.vendorId]; return (
+              <div className="salecard" key={s.id}>
+                <div className="when" style={{color:"var(--faint)"}}>Date TBA</div>
+                <b>{s.name}</b>
+                {host && <div className="host">{host.name}</div>}
+                <div className="loc">{[s.city && s.city+", "+s.state].filter(Boolean).join(" · ")}</div>
+                {s.notes && <div className="note">{s.notes}</div>}
+                <div className="foot">
+                  <span className={"caltag "+(s.kind==="order_window"?"t-order":"t-sale")}>
+                    {s.kind==="order_window"?"Order window":"Sale"}</span>
+                  {s.url && <a href={s.url} target="_blank" rel="noopener">Details ↗</a>}
+                  {host && <button onClick={()=>onOpenCard(host.id)}>Shop →</button>}
+                </div>
+              </div>
+            );})}
+          </div>
+        </div>
+      )}
+
+      {past.length>0 && (
+        <div style={{marginTop:10}}>
+          <button className="chip" onClick={()=>setShowPast(p=>!p)}>
+            {showPast?"Hide":"Show"} {past.length} past date{past.length===1?"":"s"}</button>
+          <div style={{fontFamily:"'Space Mono'",fontSize:10.5,color:"var(--faint)",marginTop:6}}>
+            Last year’s date is usually the best predictor of this year’s.
+          </div>
+          {showPast && byMonth(past).reverse().map(([k,list])=>(
+            <div className="calmonth" key={k} style={{marginTop:16,opacity:.75}}>
+              <h4>{monthLabel(k)}<span>{list.length} date{list.length===1?"":"s"}</span></h4>
+              <div className="calgrid">
+                {list.map(o=><SaleCard key={o.sale.id+o.type} occ={o}
+                                       host={vendorById[o.sale.vendorId]} onOpenCard={onOpenCard} />)}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* Directory banner: anything happening this calendar month or next */
+function UpcomingSalesBanner({sales, vendorById, onGoCalendar}){
+  const today=todayISO();
+  const horizon=useMemo(()=>{ const d=new Date(); d.setMonth(d.getMonth()+2, 1);
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-01"; },[]);
+  const soon=useMemo(()=>sales.flatMap(saleOccurrences)
+    .filter(o=>o.date>=today && o.date<horizon)
+    .sort((a,b)=>a.date.localeCompare(b.date)),[sales,today,horizon]);
+  if(!soon.length) return null;
+  const daysAway=iso=>{ const [y,m,d]=iso.split("-").map(Number);
+    return Math.round((new Date(y,m-1,d)-new Date(new Date().toDateString()))/86400000); };
+  return (
+    <div className="salebanner">
+      <div className="hd">Coming up — this month &amp; next</div>
+      {soon.map(o=>{ const host=vendorById[o.sale.vendorId], n=daysAway(o.date); return (
+        <div className="row" key={o.sale.id+o.type}>
+          <span className="dt">{fmtDay(o.date)}</span>
+          <span><b>{o.sale.name}</b>{host?` · ${host.name}`:""}{o.sale.city?` · ${o.sale.city}`:""}</span>
+          <span className="soon">{OCC_KIND[o.type][0]}{n<=14?` · ${n===0?"today":n===1?"tomorrow":"in "+n+" days"}`:""}</span>
+          <a href="#" onClick={e=>{e.preventDefault(); onGoCalendar();}}>Calendar →</a>
+        </div>
+      );})}
+    </div>
+  );
+}
+
 function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, setPlanId, onOpenCard, vendorById}){
   const mapRef=useRef(null), mapObj=useRef(null), pinG=useRef(null), ringRef=useRef(null);
   const markers=useRef({});
@@ -4570,12 +4829,12 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
                                salesByVendor={salesByVendor} distOf={distOf}
                                plans={plans} planId={planId} setPlanId={setPlanId}
                                onOpenCard={openCard} vendorById={vendorById} />}
-      {tab==="cal" && soon("Sale Calendar arrives in stage S4",
-        `${sales.length} sales and order windows are already in the database, waiting on the month-by-month view.`)}
+      {tab==="cal" && <SaleCalendar sales={sales} vendorById={vendorById} onOpenCard={openCard} />}
       {tab==="edit" && soon("Shop Editor arrives in stage S6",
         "Add and edit shops and sales by form, link or document upload. Until then, listings are seeded from importer/vendors/*.json.")}
 
       {tab==="dir" && <>
+        <UpcomingSalesBanner sales={sales} vendorById={vendorById} onGoCalendar={()=>setTab("cal")} />
         <div className="shopctl">
           <div className="fld" style={{flex:"2 1 240px"}}><label>Search name, town or note</label>
             <input value={q} onChange={e=>setQ(e.target.value)} placeholder="e.g. Ithaca, bare-root, Audubon" /></div>
