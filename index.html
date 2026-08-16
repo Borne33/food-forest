@@ -4185,8 +4185,10 @@ const PIN_FILL={ nursery:"#e9f2df", seed_company:"#efe4d0", seed_library:"#eceaf
   society:"#f1eaf5", chapter:"#f1eaf5", nonprofit:"#f1eaf5", land_trust:"#f1eaf5",
   library:"#eceaf6", other:"#f1eaf5" };
 const pinFill=k=>PIN_FILL[k]||"#f1eaf5";
-// popup content is built as an HTML string, so anything from the DB is escaped
-const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>
+// Popup content is built as an HTML string, so anything from the DB is escaped.
+// NB: named escHtml, not esc — `function esc()` already exists (CSV quoting,
+// ~line 3284) and a second top-level `esc` is a SyntaxError that blanks the app.
+const escHtml=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, setPlanId, onOpenCard, vendorById}){
@@ -4252,14 +4254,14 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
       if(v.givesFree) bits.push("free");
       if(salesByVendor[v.id]) bits.push(salesByVendor[v.id]+" sale"+(salesByVendor[v.id]===1?"":"s"));
       m.bindPopup(
-        `<div class="shoppop"><b>${esc(v.name)}</b>`+
-        `<div class="m">${esc([v.city&&v.city+", "+v.state, v.county&&v.county+" Co.", v.subregion].filter(Boolean).join(" · "))}`+
+        `<div class="shoppop"><b>${escHtml(v.name)}</b>`+
+        `<div class="m">${escHtml([v.city&&v.city+", "+v.state, v.county&&v.county+" Co.", v.subregion].filter(Boolean).join(" · "))}`+
         `${d!==null&&d!==undefined?" · "+Math.round(d)+" mi":""}</div>`+
-        `<div>${esc(bits.join(" · "))}</div>`+
-        (v.street?`<div class="m" style="margin-top:4px">${esc(v.street)}</div>`:"")+
+        `<div>${escHtml(bits.join(" · "))}</div>`+
+        (v.street?`<div class="m" style="margin-top:4px">${escHtml(v.street)}</div>`:"")+
         `<div class="shoppopacts">`+
           `<button type="button" data-vendor="${v.id}">Full details</button>`+
-          (v.url?`<a href="${esc(v.url)}" target="_blank" rel="noopener">Website ↗</a>`:"")+
+          (v.url?`<a href="${escHtml(v.url)}" target="_blank" rel="noopener">Website ↗</a>`:"")+
         `</div></div>`);
       m.on("click",()=>setSel(v.id));
       m.addTo(pinG.current); markers.current[v.id]=m;
@@ -4269,14 +4271,14 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
       L.circleMarker([s.lat,s.lon],{radius:6,weight:1.4,color:"#2b2a22",
         fillColor:"#f6e7e2",fillOpacity:1,dashArray:"2 2"})
         .bindPopup(
-          `<div class="shoppop"><b>${esc(s.name)}</b>`+
-          `<div class="m">SALE · ${esc([s.venueName, s.city&&s.city+", "+s.state,
+          `<div class="shoppop"><b>${escHtml(s.name)}</b>`+
+          `<div class="m">SALE · ${escHtml([s.venueName, s.city&&s.city+", "+s.state,
              s.startsOn||"date not yet announced"].filter(Boolean).join(" · "))}</div>`+
-          (host?`<div>Run by ${esc(host.name)}</div>`:"")+
-          (s.priceNote?`<div class="m" style="margin-top:4px">${esc(s.priceNote)}</div>`:"")+
+          (host?`<div>Run by ${escHtml(host.name)}</div>`:"")+
+          (s.priceNote?`<div class="m" style="margin-top:4px">${escHtml(s.priceNote)}</div>`:"")+
           `<div class="shoppopacts">`+
             (host?`<button type="button" data-vendor="${host.id}">Full details</button>`:"")+
-            (s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">Event page ↗</a>`:"")+
+            (s.url?`<a href="${escHtml(s.url)}" target="_blank" rel="noopener">Event page ↗</a>`:"")+
           `</div></div>`)
         .addTo(pinG.current);
     });
