@@ -4172,7 +4172,7 @@ const pinFill=k=>PIN_FILL[k]||"#f1eaf5";
 function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
   const mapRef=useRef(null), mapObj=useRef(null), pinG=useRef(null), ringRef=useRef(null);
   const markers=useRef({});
-  const [radius,setRadius]=useState(75);
+  const [radius,setRadius]=useState(100);
   const [useRadius,setUseRadius]=useState(true);
   const [showSales,setShowSales]=useState(true);
   const [sel,setSel]=useState(null);
