@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seed &amp; Plant Shop Database — 5 mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
+    --line:#c9c2ab; --dot:#c2bba2; --sage:#6f8a5f; --sage-d:#42603a;
+    --blue:#3b82f6; --green:#46a34a; --ygreen:#9bbf3a; --yellow:#e0b932; --orange:#e8923c; --red:#dd4b3e;
+    --soil:#7a5a34; --soil-d:#5c421f; --soil-bg:#efe4d0; --soil-line:#d8c39c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',ui-monospace,monospace}
+  a{color:var(--sage-d)}
+  button{font-family:inherit;cursor:pointer}
+
+  /* ---- site chrome ---- */
+  .topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+  .brand b{font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .brand .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+  .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+  .ham i{display:block;width:18px;height:2px;background:var(--ink)}
+  .wrap{max-width:1020px;margin:0 auto;padding:22px 18px 90px}
+  .wrap.wide{max-width:1340px}
+  .pagehead{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+  .pagehead .eye{font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .pagehead h2{margin:6px 0 4px;font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .pagehead p{margin:0;color:var(--ink2);max-width:680px}
+  .fld{display:flex;flex-direction:column;gap:4px}
+  .fld label{font-family:'Space Mono';font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .fld input,.fld select{font-family:'Spectral';font-size:15px;background:#fbf9f2;border:1.5px solid var(--line);border-radius:4px;padding:8px 10px;color:var(--ink)}
+  .chip{font-family:'Space Mono';font-size:11px;letter-spacing:.04em;border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:6px 12px;color:var(--ink2)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .count{font-family:'Space Mono';font-size:12px;color:var(--faint);margin:12px 2px 6px}
+  .card{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;box-shadow:0 1px 0 #fff inset, 0 10px 24px -22px #000;margin-bottom:14px;overflow:hidden}
+  .eyebrow{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+
+  /* ---- mockup switcher (review chrome, NOT part of the design) ---- */
+  .mkbar{position:sticky;top:59px;z-index:39;background:var(--ink);color:var(--paper);padding:8px 18px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .mkbar .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-right:6px}
+  .mkbar label{font-family:'Space Mono';font-size:11px;letter-spacing:.06em;background:transparent;color:var(--paper);
+    border:1.5px solid rgba(243,239,227,.45);border-radius:99px;padding:5px 13px;cursor:pointer;user-select:none}
+  .mkbar label:hover{border-color:var(--paper)}
+  .mkin{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  #mk1:checked~.mkbar label[for=mk1],#mk2:checked~.mkbar label[for=mk2],#mk3:checked~.mkbar label[for=mk3],
+  #mk4:checked~.mkbar label[for=mk4],#mk5:checked~.mkbar label[for=mk5]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  #mk1:checked~#m1,#mk2:checked~#m2,#mk3:checked~#m3,#mk4:checked~#m4,#mk5:checked~#m5{display:block}
+  .mknote{border-left:3px solid var(--soil);background:var(--soil-bg);padding:10px 14px;border-radius:0 4px 4px 0;margin:0 0 20px;font-size:13.5px}
+  .mknote b{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--soil-d);margin-bottom:3px}
+  .pane{display:none}
+
+  /* ---- shared shop bits ---- */
+  .kind{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 7px;border-radius:3px;border:1px solid;white-space:nowrap}
+  .k-nursery{color:#2f5b2a;border-color:#8fae7d;background:#e9f2df}
+  .k-seed{color:#7a5320;border-color:var(--soil-line);background:var(--soil-bg)}
+  .k-library{color:#4a4a86;border-color:#b3b1d6;background:#eceaf6}
+  .k-sale{color:#8a3b2f;border-color:#ddb2a8;background:#f6e7e2}
+  .k-swcd{color:#3f5f72;border-color:#a9c0cd;background:#e6eff4}
+  .free{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 7px;border-radius:3px;background:var(--sage-d);color:var(--paper)}
+  .fresh{font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);
+    display:inline-flex;align-items:center;gap:5px}
+  .fresh i{width:7px;height:7px;border-radius:99px;display:block;background:var(--green)}
+  .fresh.stale i{background:var(--yellow)} .fresh.old i{background:var(--orange)} .fresh.manual i{background:var(--dot)}
+  .stock{font-family:'Space Mono';font-size:10px;padding:1px 6px;border-radius:3px;border:1px solid}
+  .s-in{color:#26661f;border-color:#9dc48f;background:#e9f2df}
+  .s-out{color:#8a3b2f;border-color:#ddb2a8;background:#f6e7e2}
+  .s-seas{color:#7a5320;border-color:var(--soil-line);background:var(--soil-bg)}
+  .s-unk{color:var(--faint);border-color:var(--line);background:#fbf9f2}
+  .meta{font-family:'Space Mono';font-size:11px;color:var(--faint)}
+  .sci{font-style:italic;color:var(--ink2)}
+  .btn{border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);border-radius:4px;padding:6px 13px;
+    font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+  .btn.solid{background:var(--sage-d);color:var(--paper)}
+  .btn.ghost{border-color:var(--line);color:var(--ink2)}
+
+  /* ---------- M1 : directory cards ---------- */
+  .filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+  .chiprow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+  .shopcard .head{display:flex;align-items:flex-start;gap:14px;padding:15px 18px 13px;border-bottom:1.5px solid var(--ink)}
+  .shopcard .head .info{flex:1 1 auto;min-width:0}
+  .shopcard h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .shopcard .tags{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0 0}
+  .shopcard .rgt{flex:0 0 auto;text-align:right}
+  .shopcard .big{font-family:'Space Mono';font-size:26px;font-weight:700;line-height:1}
+  .shopcard .big span{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:400;margin-top:3px}
+  .shopcard .body{padding:13px 18px 15px}
+  .shopcard .body p{margin:0 0 10px;font-size:14.5px}
+  .invrow{display:flex;gap:7px;flex-wrap:wrap;margin:2px 0 12px}
+  .invpill{font-size:13px;border:1px solid var(--line);background:#fbf9f2;border-radius:99px;padding:3px 11px;display:inline-flex;gap:7px;align-items:center}
+  .invpill em{font-style:italic;color:var(--ink2);font-size:12px}
+  .kv{display:grid;grid-template-columns:118px 1fr;gap:3px 12px;font-size:14px;margin-bottom:9px}
+  .kv dt{font-family:'Space Mono';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding-top:4px}
+  .kv dd{margin:0}
+  .acts{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:11px;margin-top:4px}
+
+  /* ---------- M2 : map + list ---------- */
+  .split{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+  .mapbox{position:relative;border:1.5px solid var(--ink);border-radius:4px;overflow:hidden;background:#e7e9dd;height:620px;position:sticky;top:112px}
+  .mapbox svg{display:block;width:100%;height:100%}
+  .maplegend{position:absolute;left:10px;bottom:10px;background:rgba(247,244,234,.94);border:1px solid var(--line);border-radius:4px;padding:9px 11px}
+  .maplegend div{display:flex;align-items:center;gap:7px;font-family:'Space Mono';font-size:10px;color:var(--ink2);margin:2px 0}
+  .maplegend i{width:11px;height:11px;border-radius:99px;display:block;border:1.5px solid var(--ink)}
+  .mapctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+  .mapctl button{background:rgba(247,244,234,.94);border:1.5px solid var(--ink);border-radius:4px;width:34px;height:34px;font-family:'Space Mono'}
+  .listpane{max-height:620px;overflow:auto;border:1px solid var(--line);border-radius:4px;background:#fbf9f2}
+  .lrow{padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+  .lrow:hover{background:var(--paper2)}
+  .lrow.sel{background:#eef4e5;border-left:4px solid var(--sage-d);padding-left:10px}
+  .lrow .t{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .lrow b{font-size:16px}
+  .lrow .d{font-family:'Space Mono';font-size:11px;color:var(--faint);white-space:nowrap}
+  .lrow .s{font-size:13px;color:var(--ink2);margin-top:3px}
+  .radius{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .radius input[type=range]{accent-color:var(--sage-d);width:200px}
+
+  /* ---------- M3 : data table ---------- */
+  .tbl{width:100%;border-collapse:collapse;background:#fbf9f2;border:1px solid var(--line);font-size:14px}
+  .tbl th{font-family:'Space Mono';font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+    font-weight:400;text-align:left;padding:9px 10px;border-bottom:1.5px solid var(--ink);white-space:nowrap;cursor:pointer;position:sticky;top:112px;background:var(--paper2)}
+  .tbl th.num,.tbl td.num{text-align:right}
+  .tbl td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl tr:hover td{background:#f2eee1}
+  .tbl .fr td{padding:5px 6px;background:var(--paper2)}
+  .tbl .fr input,.tbl .fr select{width:100%;font-family:'Space Mono';font-size:11px;background:#fbf9f2;border:1px solid var(--line);border-radius:3px;padding:4px 6px}
+  .bulk{display:flex;gap:10px;align-items:center;background:var(--ink);color:var(--paper);border-radius:4px;padding:9px 13px;margin-bottom:10px;flex-wrap:wrap}
+  .bulk .mono{font-size:11px}
+  .bulk button{font-family:'Space Mono';font-size:11px;background:transparent;color:var(--paper);border:1.5px solid rgba(243,239,227,.5);border-radius:4px;padding:4px 11px}
+  .bar{height:7px;background:var(--paper2);border:1px solid var(--line);border-radius:99px;overflow:hidden;min-width:74px;display:inline-block;vertical-align:middle}
+  .bar i{display:block;height:100%;background:var(--sage)}
+
+  /* ---------- M4 : plant-first availability ---------- */
+  .avail{display:grid;grid-template-columns:230px 1fr;gap:0;border:1px solid var(--line);background:#fbf9f2;overflow:auto}
+  .avail .hdr{position:sticky;top:0;z-index:2;background:var(--paper2);border-bottom:1.5px solid var(--ink)}
+  .avail .cell{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:8px 10px;font-size:13.5px}
+  .grid5{display:grid;grid-template-columns:repeat(5,minmax(96px,1fr))}
+  .vhead{font-family:'Space Mono';font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);
+    padding:9px 8px;border-right:1px solid var(--line);border-bottom:1.5px solid var(--ink);background:var(--paper2);line-height:1.3}
+  .dotcell{display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 4px}
+  .dotcell b{font-family:'Space Mono';font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;border:1px solid}
+  .wtb{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:14px 16px;margin:0 0 20px}
+  .wtb h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);margin:0 0 10px;border-bottom:1px solid var(--line);padding-bottom:5px}
+  .wtbrow{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+  .wtbrow:last-child{border-bottom:0}
+  .wtbrow .l b{font-size:15.5px}
+  .wtbrow .l div{font-size:12.5px;color:var(--ink2)}
+
+  /* ---------- M5 : regional gazetteer ---------- */
+  .region{margin-bottom:30px}
+  .region>h4{font-family:'Space Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    border-bottom:1.5px solid var(--ink);padding-bottom:6px;margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline}
+  .region>h4 span{font-size:10px;color:var(--faint)}
+  .region>.blurb{font-size:14px;color:var(--ink2);margin:0 0 14px;max-width:720px}
+  .gaz{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+  .gcard{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;padding:12px 13px}
+  .gcard.freeish{border-left:4px solid var(--sage-d)}
+  .gcard b{display:block;font-size:15.5px;line-height:1.25}
+  .gcard .loc{font-family:'Space Mono';font-size:10.5px;color:var(--faint);margin:3px 0 8px}
+  .gcard .desc{font-size:13px;color:var(--ink2);margin-bottom:9px}
+  .gcard .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:8px;flex-wrap:wrap}
+  .cal{border:1.5px solid var(--soil-d);border-radius:6px;background:var(--soil-bg);padding:13px 15px;margin:0 0 24px}
+  .cal h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soil-d);margin:0 0 9px}
+  .calrow{display:flex;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px dashed var(--soil-line);font-size:14px}
+  .calrow:last-child{border-bottom:0}
+  .calrow .dt{font-family:'Space Mono';font-size:11px;color:var(--soil-d);flex:0 0 88px}
+  .orgstrip{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:8px}
+  .org{border:1px dashed var(--line);border-radius:4px;padding:10px 12px;background:#fbf9f2}
+  .org b{font-size:14.5px;display:block}
+  .org .k{font-family:'Space Mono';font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+  @media(max-width:900px){ .split{grid-template-columns:1fr} .mapbox{height:360px;position:relative;top:0}
+    .filters{grid-template-columns:1fr 1fr} .avail{grid-template-columns:150px 1fr} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><b>Native Food Forest</b><div class="acc">Planner · Upstate NY</div></div>
+  <button class="ham"><i></i><i></i><i></i></button>
+</div>
+
+<input class="mkin" type="radio" name="mk" id="mk1" checked>
+<input class="mkin" type="radio" name="mk" id="mk2">
+<input class="mkin" type="radio" name="mk" id="mk3">
+<input class="mkin" type="radio" name="mk" id="mk4">
+<input class="mkin" type="radio" name="mk" id="mk5">
+
+<div class="mkbar">
+  <span class="lbl">Mockup</span>
+  <label for="mk1">1 · Herbarium directory</label>
+  <label for="mk2">2 · Map + list</label>
+  <label for="mk3">3 · Inventory table</label>
+  <label for="mk4">4 · Plant-first availability</label>
+  <label for="mk5">5 · Regional gazetteer</label>
+</div>
+
+<!-- ============================ MOCKUP 1 ============================ -->
+<div class="wrap pane" id="m1">
+  <div class="mknote"><b>Mockup 1 — Herbarium directory</b>
+    Mirrors the existing plant Database exactly: filter bar + chip toggles + expandable cards. Lowest build cost,
+    zero new interaction patterns, reuses <code>Database</code>/<code>PlantCard</code> structure. Each card carries a
+    live inventory preview and a freshness dot. Best if the shop DB should feel like "a second Database".</div>
+
+  <div class="pagehead">
+    <div class="eye">Directory</div>
+    <h2>Seed &amp; Plant Shops</h2>
+    <p>Nurseries, seed companies, seed libraries, conservation-district sales and one-day native plant sales — filtered
+       to what actually stocks the natives in your plans.</p>
+  </div>
+
+  <div class="filters">
+    <div class="fld"><label>Search</label><input value="" placeholder="Name, town, or plant they carry…"></div>
+    <div class="fld"><label>Region</label><select><option>Northeast</option><option>All regions</option></select></div>
+    <div class="fld"><label>State</label><select><option>New York</option><option>All states</option></select></div>
+    <div class="fld"><label>Sub-region</label><select><option>Finger Lakes</option><option selected>All NY</option><option>Western NY</option></select></div>
+  </div>
+  <div class="chiprow">
+    <button class="chip on">Nursery</button>
+    <button class="chip on">Seed</button>
+    <button class="chip on">Seed library</button>
+    <button class="chip">Plant sale</button>
+    <button class="chip">Conservation district</button>
+    <button class="chip">Free / giveaway</button>
+    <button class="chip">Ships</button>
+    <button class="chip">Local ecotype</button>
+    <button class="chip">Straight species only</button>
+    <button class="chip on">Has plants from my plan</button>
+  </div>
+  <div class="count">14 shops · sorted by <b>plan matches</b> ↓ · <span class="fresh"><i></i>10 auto-refreshed</span></div>
+
+  <div class="card shopcard">
+    <div class="head">
+      <div class="info">
+        <h3>Amanda's Garden Native Perennials</h3>
+        <div class="meta">Dansville, NY · Livingston County · Finger Lakes · 41 mi from your plan</div>
+        <div class="tags">
+          <span class="kind k-nursery">Nursery</span>
+          <span class="kind k-seed">Seed</span>
+          <span class="chip" style="padding:2px 9px">Straight species</span>
+          <span class="chip" style="padding:2px 9px">Nursery-propagated</span>
+          <span class="chip" style="padding:2px 9px">Ships in NY</span>
+        </div>
+      </div>
+      <div class="rgt">
+        <div class="big">23<span>plan matches</span></div>
+        <div class="fresh" style="margin-top:8px"><i></i>Stock checked 2d ago</div>
+      </div>
+    </div>
+    <div class="body">
+      <p>Woodland and shade-tolerant natives grown from regional seed; a good source for the herb and groundcover
+         layers that are hardest to buy locally.</p>
+      <div class="eyebrow" style="margin-bottom:5px">Carries, from your plans</div>
+      <div class="invrow">
+        <span class="invpill">Wild Ginger <em>Asarum canadense</em> <span class="stock s-in">in stock</span></span>
+        <span class="invpill">Bloodroot <em>Sanguinaria canadensis</em> <span class="stock s-in">in stock</span></span>
+        <span class="invpill">Wild Leek <em>Allium tricoccum</em> <span class="stock s-seas">spring only</span></span>
+        <span class="invpill">Mayapple <em>Podophyllum peltatum</em> <span class="stock s-out">sold out</span></span>
+        <span class="invpill" style="border-style:dashed">+19 more</span>
+      </div>
+      <dl class="kv">
+        <dt>Forms</dt><dd>Potted plants (quart), plugs, limited seed</dd>
+        <dt>Season</dt><dd>Ships / open April–June, September–October</dd>
+        <dt>Catalog</dt><dd><a href="#">Online catalog</a> · auto-synced nightly</dd>
+        <dt>Verified</dt><dd class="meta">Listing confirmed 2026-08-12 · inventory from vendor catalog feed</dd>
+      </dl>
+      <div class="acts">
+        <button class="btn solid">Add to shopping list</button>
+        <button class="btn">See all 118 plants</button>
+        <button class="btn ghost">Website</button>
+        <button class="btn ghost">Directions</button>
+        <button class="btn ghost">Report a correction</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shopcard">
+    <div class="head">
+      <div class="info">
+        <h3>Finger Lakes Native Plant Society — Seed Exchange</h3>
+        <div class="meta">Ithaca, NY · Tompkins County · Finger Lakes · 58 mi</div>
+        <div class="tags">
+          <span class="kind k-library">Seed library</span>
+          <span class="free">Free</span>
+          <span class="chip" style="padding:2px 9px">Members &amp; public</span>
+          <span class="chip" style="padding:2px 9px">Local ecotype</span>
+        </div>
+      </div>
+      <div class="rgt">
+        <div class="big">9<span>plan matches</span></div>
+        <div class="fresh manual" style="margin-top:8px"><i></i>List updated seasonally</div>
+      </div>
+    </div>
+    <div class="body">
+      <p>Volunteer-run seed exchange; wild-collected local-ecotype seed offered free at meetings and by mail with
+         a stamped envelope. Availability changes every year — treat the list as indicative.</p>
+      <div class="invrow">
+        <span class="invpill">Wild Bergamot <em>Monarda fistulosa</em> <span class="stock s-in">seed</span></span>
+        <span class="invpill">Common Milkweed <em>Asclepias syriaca</em> <span class="stock s-in">seed</span></span>
+        <span class="invpill">Cup Plant <em>Silphium perfoliatum</em> <span class="stock s-unk">unknown</span></span>
+        <span class="invpill" style="border-style:dashed">+6 more</span>
+      </div>
+      <div class="acts">
+        <button class="btn solid">Add to shopping list</button>
+        <button class="btn ghost">Website</button>
+        <button class="btn ghost">Report a correction</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shopcard">
+    <div class="head">
+      <div class="info">
+        <h3>Monroe County Soil &amp; Water Conservation District — Seedling Sale</h3>
+        <div class="meta">Rochester, NY · Monroe County · Western NY · 6 mi</div>
+        <div class="tags">
+          <span class="kind k-swcd">Conservation district</span>
+          <span class="kind k-sale">Annual sale</span>
+          <span class="chip" style="padding:2px 9px">Bare-root bundles</span>
+          <span class="chip" style="padding:2px 9px">Order Jan–Mar · pick up April</span>
+        </div>
+      </div>
+      <div class="rgt">
+        <div class="big">11<span>plan matches</span></div>
+        <div class="fresh stale" style="margin-top:8px"><i></i>2026 list · next order window Jan</div>
+      </div>
+    </div>
+    <div class="body">
+      <p>Cheapest source of canopy and shrub-layer stock by a wide margin — bare-root seedlings sold in bundles of
+         10–25. Order window is short and closes before spring.</p>
+      <div class="invrow">
+        <span class="invpill">American Hazelnut <em>Corylus americana</em> <span class="stock s-seas">order window</span></span>
+        <span class="invpill">Serviceberry <em>Amelanchier spp.</em> <span class="stock s-seas">order window</span></span>
+        <span class="invpill">Black Chokeberry <em>Aronia melanocarpa</em> <span class="stock s-seas">order window</span></span>
+        <span class="invpill" style="border-style:dashed">+8 more</span>
+      </div>
+      <div class="acts">
+        <button class="btn solid">Add to shopping list</button>
+        <button class="btn">Remind me in January</button>
+        <button class="btn ghost">Order form (PDF)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ MOCKUP 2 ============================ -->
+<div class="wrap wide pane" id="m2">
+  <div class="mknote"><b>Mockup 2 — Map + list</b>
+    Geography-first. Reuses the Leaflet stack already loaded for the Planting Plan. Distance is computed from the
+    plan's mapped-area centroid (already reverse-geocoded for the Grant Finder). Strongest for "what's near me",
+    weakest for "who has this one plant".</div>
+
+  <div class="pagehead">
+    <div class="eye">Directory · Map</div>
+    <h2>Seed &amp; Plant Shops near Rochester</h2>
+    <p>Pins are sized by how many of your plan's plants they carry. Drag the radius or pan the map to re-filter.</p>
+  </div>
+
+  <div class="radius">
+    <span class="eyebrow">Within</span>
+    <input type="range" min="10" max="300" value="75">
+    <span class="mono" style="font-size:13px"><b>75 mi</b> of your plan's centre</span>
+    <button class="chip on">Nursery</button><button class="chip on">Seed</button>
+    <button class="chip on">Library</button><button class="chip">Sale</button>
+    <button class="chip">Ships to me (ignore distance)</button>
+  </div>
+
+  <div class="split">
+    <div class="mapbox">
+      <svg viewBox="0 0 700 620" preserveAspectRatio="xMidYMid slice">
+        <rect width="700" height="620" fill="#e9ecdf"/>
+        <!-- lakes -->
+        <path d="M0 60 Q160 20 340 52 T700 40 L700 0 L0 0Z" fill="#cfdde6"/>
+        <g fill="#cfdde6">
+          <ellipse cx="252" cy="300" rx="11" ry="112"/><ellipse cx="316" cy="290" rx="14" ry="126"/>
+          <ellipse cx="378" cy="296" rx="9" ry="98"/><ellipse cx="196" cy="286" rx="8" ry="72"/>
+        </g>
+        <!-- county-ish lines -->
+        <g stroke="#c9c2ab" stroke-width="1.2" fill="none" opacity=".85">
+          <path d="M0 170 H700 M0 330 H700 M0 470 H700"/>
+          <path d="M110 60 V620 M240 60 V620 M370 60 V620 M500 60 V620 M610 60 V620"/>
+        </g>
+        <g font-family="Space Mono" font-size="10" fill="#6c6750">
+          <text x="16" y="86">LAKE ONTARIO</text>
+          <text x="40" y="200">ERIE CO.</text><text x="150" y="200">GENESEE</text>
+          <text x="270" y="200">MONROE</text><text x="392" y="200">WAYNE</text>
+          <text x="140" y="360">LIVINGSTON</text><text x="268" y="360">ONTARIO</text>
+          <text x="392" y="360">SENECA</text><text x="510" y="360">CAYUGA</text>
+          <text x="270" y="510">STEUBEN</text><text x="400" y="510">TOMPKINS</text>
+        </g>
+        <!-- plan centre -->
+        <circle cx="300" cy="228" r="66" fill="#6f8a5f" opacity=".13"/>
+        <circle cx="300" cy="228" r="66" fill="none" stroke="#42603a" stroke-dasharray="5 5"/>
+        <path d="M300 214 l7 14 -14 0Z" fill="#2b2a22"/>
+        <text x="310" y="216" font-family="Space Mono" font-size="10" fill="#2b2a22">YOUR PLAN</text>
+        <!-- pins -->
+        <g stroke="#2b2a22" stroke-width="1.6">
+          <circle cx="268" cy="206" r="15" fill="#e9f2df"/>
+          <circle cx="196" cy="392" r="19" fill="#e9f2df"/>
+          <circle cx="418" cy="470" r="13" fill="#eceaf6"/>
+          <circle cx="352" cy="284" r="11" fill="#e9f2df"/>
+          <circle cx="86"  cy="238" r="12" fill="#e6eff4"/>
+          <circle cx="470" cy="330" r="9"  fill="#f6e7e2"/>
+          <circle cx="150" cy="150" r="10" fill="#efe4d0"/>
+        </g>
+        <g font-family="Space Mono" font-size="10" font-weight="700" fill="#2b2a22" text-anchor="middle">
+          <text x="268" y="210">11</text><text x="196" y="397">23</text><text x="418" y="474">9</text>
+          <text x="352" y="288">7</text><text x="86" y="242">8</text><text x="470" y="333">4</text><text x="150" y="154">5</text>
+        </g>
+      </svg>
+      <div class="mapctl"><button>+</button><button>−</button><button>⌖</button></div>
+      <div class="maplegend">
+        <div><i style="background:#e9f2df"></i> Nursery</div>
+        <div><i style="background:#efe4d0"></i> Seed company</div>
+        <div><i style="background:#eceaf6"></i> Seed library / free</div>
+        <div><i style="background:#e6eff4"></i> Conservation district</div>
+        <div><i style="background:#f6e7e2"></i> One-day plant sale</div>
+        <div style="margin-top:5px;opacity:.75">Pin number = plants from your plan</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="count">7 shops in view · nearest first</div>
+      <div class="listpane">
+        <div class="lrow sel">
+          <div class="t"><b>Amanda's Garden</b><span class="d">41 mi</span></div>
+          <div class="s">Dansville · <span class="kind k-nursery">Nursery</span> · <b>23</b> of your plants · woodland herbs &amp; groundcovers</div>
+          <div class="fresh" style="margin-top:6px"><i></i>catalog synced 2d ago</div>
+        </div>
+        <div class="lrow">
+          <div class="t"><b>Monroe Co. SWCD Seedling Sale</b><span class="d">6 mi</span></div>
+          <div class="s">Rochester · <span class="kind k-swcd">Conservation district</span> · <b>11</b> of your plants · bare-root bundles, order Jan–Mar</div>
+        </div>
+        <div class="lrow">
+          <div class="t"><b>Finger Lakes Native Plant Society</b><span class="d">58 mi</span></div>
+          <div class="s">Ithaca · <span class="kind k-library">Seed library</span> <span class="free">Free</span> · <b>9</b> of your plants</div>
+        </div>
+        <div class="lrow">
+          <div class="t"><b>Erie Co. SWCD Tree &amp; Shrub Sale</b><span class="d">68 mi</span></div>
+          <div class="s">West Seneca · <span class="kind k-swcd">Conservation district</span> · <b>8</b> of your plants</div>
+        </div>
+        <div class="lrow">
+          <div class="t"><b>White Oak Nursery</b><span class="d">27 mi</span></div>
+          <div class="s">Canandaigua · <span class="kind k-nursery">Nursery</span> · <b>7</b> of your plants · trees, shrubs, restoration stock</div>
+        </div>
+        <div class="lrow">
+          <div class="t"><b>Wild Ones Genesee Valley — Spring Sale</b><span class="d">14 mi</span></div>
+          <div class="s">Rochester · <span class="kind k-sale">One-day sale</span> · <b>4</b> of your plants · <span class="mono" style="font-size:11px">next: May 2027</span></div>
+        </div>
+        <div class="lrow">
+          <div class="t"><b>The Plantsmen Nursery</b><span class="d">62 mi</span></div>
+          <div class="s">Groton · <span class="kind k-nursery">Nursery</span> · <b>12</b> of your plants</div>
+        </div>
+        <div class="lrow" style="opacity:.7">
+          <div class="t"><b>Prairie Moon Nursery</b><span class="d">ships</span></div>
+          <div class="s">Winona, MN · <span class="kind k-seed">Seed company</span> · <b>34</b> of your plants · outside radius, ships to NY</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn solid">Build shopping list from map</button>
+        <button class="btn ghost">Export CSV</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ MOCKUP 3 ============================ -->
+<div class="wrap wide pane" id="m3">
+  <div class="mknote"><b>Mockup 3 — Inventory table</b>
+    Copies the Planting Plan → Plants tab pattern (click-any-header sort, per-column filter row, checkbox bulk edit).
+    Densest and most maintainable: doubles as the <em>admin</em> surface for curating vendors, so one screen serves both
+    audiences. Weakest on first impression / discovery.</div>
+
+  <div class="pagehead">
+    <div class="eye">Directory · Table</div>
+    <h2>Seed &amp; Plant Shops</h2>
+    <p>Every listing, sortable. Coverage bar shows what share of your plan a shop can supply in one stop.</p>
+  </div>
+
+  <div class="bulk">
+    <span class="mono">3 selected</span>
+    <button>Add to shopping list</button>
+    <button>Set sub-region…</button>
+    <button>Mark verified</button>
+    <button>Queue re-check</button>
+    <span style="flex:1"></span>
+    <span class="mono" style="opacity:.7">admin-only actions shown for alex@bornemann.us</span>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width:28px"><input type="checkbox"></th>
+        <th>Shop ▲</th><th>Type</th><th>Sub-region</th><th>County</th>
+        <th class="num">Natives</th><th class="num">In my plan</th><th style="width:130px">Plan coverage</th>
+        <th>Forms</th><th>Ships</th><th>Free</th><th>Stock source</th><th>Checked</th>
+      </tr>
+      <tr class="fr">
+        <td></td>
+        <td><input placeholder="filter…"></td>
+        <td><select><option>any</option><option>Nursery</option><option>Seed</option><option>Library</option></select></td>
+        <td><select><option>any</option><option>Western NY</option><option>Finger Lakes</option></select></td>
+        <td><input placeholder="filter…"></td>
+        <td><input placeholder="≥"></td><td><input placeholder="≥"></td><td></td>
+        <td><select><option>any</option><option>Seed</option><option>Bare-root</option><option>Potted</option></select></td>
+        <td><select><option>any</option><option>yes</option></select></td>
+        <td><select><option>any</option><option>yes</option></select></td>
+        <td><select><option>any</option><option>Auto feed</option><option>Manual</option></select></td>
+        <td><select><option>any</option><option>&lt; 7 days</option><option>&gt; 90 days</option></select></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><input type="checkbox" checked></td>
+        <td><b>Amanda's Garden</b><div class="meta">Dansville</div></td>
+        <td><span class="kind k-nursery">Nursery</span></td><td>Finger Lakes</td><td>Livingston</td>
+        <td class="num mono">118</td><td class="num mono"><b>23</b></td>
+        <td><span class="bar"><i style="width:38%"></i></span> <span class="mono" style="font-size:11px">38%</span></td>
+        <td class="mono" style="font-size:11px">Potted, plug</td><td class="mono" style="font-size:11px">NY</td><td></td>
+        <td><span class="fresh"><i></i>Auto feed</span></td><td class="mono" style="font-size:11px">2d</td></tr>
+
+      <tr><td><input type="checkbox" checked></td>
+        <td><b>Prairie Moon Nursery</b><div class="meta">Winona, MN</div></td>
+        <td><span class="kind k-seed">Seed</span> <span class="kind k-nursery">Nursery</span></td><td>—</td><td>—</td>
+        <td class="num mono">726</td><td class="num mono"><b>34</b></td>
+        <td><span class="bar"><i style="width:57%"></i></span> <span class="mono" style="font-size:11px">57%</span></td>
+        <td class="mono" style="font-size:11px">Seed, bare-root</td><td class="mono" style="font-size:11px">US</td><td></td>
+        <td><span class="fresh"><i></i>Auto feed</span></td><td class="mono" style="font-size:11px">1d</td></tr>
+
+      <tr><td><input type="checkbox" checked></td>
+        <td><b>The Plantsmen Nursery</b><div class="meta">Groton</div></td>
+        <td><span class="kind k-nursery">Nursery</span></td><td>Finger Lakes</td><td>Tompkins</td>
+        <td class="num mono">240</td><td class="num mono"><b>12</b></td>
+        <td><span class="bar"><i style="width:20%"></i></span> <span class="mono" style="font-size:11px">20%</span></td>
+        <td class="mono" style="font-size:11px">Potted</td><td class="mono" style="font-size:11px">—</td><td></td>
+        <td><span class="fresh stale"><i></i>Manual</span></td><td class="mono" style="font-size:11px">46d</td></tr>
+
+      <tr><td><input type="checkbox"></td>
+        <td><b>Monroe Co. SWCD Sale</b><div class="meta">Rochester</div></td>
+        <td><span class="kind k-swcd">Cons. district</span></td><td>Western NY</td><td>Monroe</td>
+        <td class="num mono">32</td><td class="num mono"><b>11</b></td>
+        <td><span class="bar"><i style="width:18%"></i></span> <span class="mono" style="font-size:11px">18%</span></td>
+        <td class="mono" style="font-size:11px">Bare-root</td><td class="mono" style="font-size:11px">—</td><td></td>
+        <td><span class="fresh manual"><i></i>PDF, annual</span></td><td class="mono" style="font-size:11px">1 season</td></tr>
+
+      <tr><td><input type="checkbox"></td>
+        <td><b>White Oak Nursery</b><div class="meta">Canandaigua</div></td>
+        <td><span class="kind k-nursery">Nursery</span></td><td>Finger Lakes</td><td>Ontario</td>
+        <td class="num mono">86</td><td class="num mono"><b>7</b></td>
+        <td><span class="bar"><i style="width:12%"></i></span> <span class="mono" style="font-size:11px">12%</span></td>
+        <td class="mono" style="font-size:11px">Potted, B&amp;B</td><td class="mono" style="font-size:11px">—</td><td></td>
+        <td><span class="fresh old"><i></i>Manual</span></td><td class="mono" style="font-size:11px">112d</td></tr>
+
+      <tr><td><input type="checkbox"></td>
+        <td><b>FLNPS Seed Exchange</b><div class="meta">Ithaca</div></td>
+        <td><span class="kind k-library">Seed library</span></td><td>Finger Lakes</td><td>Tompkins</td>
+        <td class="num mono">44</td><td class="num mono"><b>9</b></td>
+        <td><span class="bar"><i style="width:15%"></i></span> <span class="mono" style="font-size:11px">15%</span></td>
+        <td class="mono" style="font-size:11px">Seed</td><td class="mono" style="font-size:11px">SASE</td><td><span class="free">Free</span></td>
+        <td><span class="fresh manual"><i></i>Manual</span></td><td class="mono" style="font-size:11px">1 season</td></tr>
+
+      <tr><td><input type="checkbox"></td>
+        <td><b>Ernst Conservation Seeds</b><div class="meta">Meadville, PA</div></td>
+        <td><span class="kind k-seed">Seed</span></td><td>—</td><td>—</td>
+        <td class="num mono">410</td><td class="num mono"><b>16</b></td>
+        <td><span class="bar"><i style="width:27%"></i></span> <span class="mono" style="font-size:11px">27%</span></td>
+        <td class="mono" style="font-size:11px">Seed (bulk)</td><td class="mono" style="font-size:11px">US</td><td></td>
+        <td><span class="fresh"><i></i>Auto feed</span></td><td class="mono" style="font-size:11px">3d</td></tr>
+
+      <tr><td><input type="checkbox"></td>
+        <td><b>Tompkins Co. Library Seed Library</b><div class="meta">Ithaca</div></td>
+        <td><span class="kind k-library">Seed library</span></td><td>Finger Lakes</td><td>Tompkins</td>
+        <td class="num mono">18</td><td class="num mono"><b>3</b></td>
+        <td><span class="bar"><i style="width:5%"></i></span> <span class="mono" style="font-size:11px">5%</span></td>
+        <td class="mono" style="font-size:11px">Seed</td><td class="mono" style="font-size:11px">—</td><td><span class="free">Free</span></td>
+        <td><span class="fresh manual"><i></i>Manual</span></td><td class="mono" style="font-size:11px">1 season</td></tr>
+    </tbody>
+  </table>
+  <div class="count">8 of 14 shown · 1,674 vendor-plant records · 61% auto-refreshed</div>
+</div>
+
+<!-- ============================ MOCKUP 4 ============================ -->
+<div class="wrap wide pane" id="m4">
+  <div class="mknote"><b>Mockup 4 — Plant-first availability</b>
+    Inverts the model: the shop database is presented as an <em>availability matrix</em> over the plants you already
+    care about, and the same data renders inline on every plant card as "Where to buy". Answers the real question
+    ("who has this?") in one glance and makes the plant↔shop link the centrepiece. Highest data-quality demands —
+    empty cells look like absence rather than unknown, so an explicit "unknown" state is mandatory.</div>
+
+  <div class="pagehead">
+    <div class="eye">Where to buy</div>
+    <h2>Availability — “Backyard Forest” plan</h2>
+    <p>Rows are your plan's plants; columns are shops within 75 mi plus mail-order. Click any cell for form, size,
+       price and when it was last seen.</p>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+    <button class="chip on">Within 75 mi</button><button class="chip on">Mail order</button>
+    <button class="chip">Free sources only</button><button class="chip">Hide fully-covered plants</button>
+    <button class="chip on">Group by layer</button>
+  </div>
+
+  <div class="avail">
+    <div class="vhead" style="border-right:1.5px solid var(--ink)">Plant · 24 in plan</div>
+    <div class="grid5">
+      <div class="vhead">Amanda's Garden<div class="meta" style="font-size:9px">Dansville · 41 mi</div></div>
+      <div class="vhead">White Oak<div class="meta" style="font-size:9px">Canandaigua · 27 mi</div></div>
+      <div class="vhead">Monroe SWCD<div class="meta" style="font-size:9px">Rochester · 6 mi</div></div>
+      <div class="vhead">FLNPS seed<div class="meta" style="font-size:9px">Ithaca · free</div></div>
+      <div class="vhead">Prairie Moon<div class="meta" style="font-size:9px">mail order</div></div>
+    </div>
+
+    <div class="cell" style="grid-column:1/-1;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;border-right:0">Canopy</div>
+
+    <div class="cell">Shagbark Hickory<div class="sci" style="font-size:12px">Carya ovata</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-in">B&amp;B</b></div>
+      <div class="dotcell"><b class="stock s-seas">bare-root</b></div>
+      <div class="dotcell"><b class="stock s-unk">?</b></div>
+      <div class="dotcell"><b class="stock s-in">seed</b></div>
+    </div>
+
+    <div class="cell">Sugar Maple<div class="sci" style="font-size:12px">Acer saccharum</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-in">potted</b></div>
+      <div class="dotcell"><b class="stock s-seas">bare-root</b></div>
+      <div class="dotcell"><b class="stock s-unk">?</b></div>
+      <div class="dotcell"><b class="stock s-out">out</b></div>
+    </div>
+
+    <div class="cell" style="grid-column:1/-1;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;border-right:0">Shrub</div>
+
+    <div class="cell">American Hazelnut<div class="sci" style="font-size:12px">Corylus americana</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-in">potted</b></div>
+      <div class="dotcell"><b class="stock s-seas">bare-root</b></div>
+      <div class="dotcell"><b class="stock s-unk">?</b></div>
+      <div class="dotcell"><b class="stock s-in">seed</b></div>
+    </div>
+
+    <div class="cell">Black Chokeberry<div class="sci" style="font-size:12px">Aronia melanocarpa</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-in">potted</b></div>
+      <div class="dotcell"><b class="stock s-in">potted</b></div>
+      <div class="dotcell"><b class="stock s-seas">bare-root</b></div>
+      <div class="dotcell"><b class="stock s-unk">?</b></div>
+      <div class="dotcell"><b class="stock s-in">seed</b></div>
+    </div>
+
+    <div class="cell" style="grid-column:1/-1;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;border-right:0">Herb &amp; groundcover</div>
+
+    <div class="cell">Wild Ginger<div class="sci" style="font-size:12px">Asarum canadense</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-in">quart</b></div>
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-unk">?</b></div>
+      <div class="dotcell"><b class="stock s-in">plug</b></div>
+    </div>
+
+    <div class="cell">Wild Leek (ramps)<div class="sci" style="font-size:12px">Allium tricoccum</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-seas">spring</b></div>
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-unk">?</b></div>
+      <div class="dotcell"><b class="stock s-out">out</b></div>
+    </div>
+
+    <div class="cell">Wild Bergamot<div class="sci" style="font-size:12px">Monarda fistulosa</div></div>
+    <div class="grid5">
+      <div class="dotcell"><b class="stock s-in">quart</b></div>
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-unk">—</b></div>
+      <div class="dotcell"><b class="stock s-in">seed</b></div>
+      <div class="dotcell"><b class="stock s-in">seed</b></div>
+    </div>
+  </div>
+
+  <div class="count">4 plants in this plan have <b>no known source</b> — <a href="#">show them</a> · <span class="fresh manual"><i></i>“?” = shop has no published list, not “unavailable”</span></div>
+
+  <h3 style="margin:30px 0 10px;font-size:19px">…and the same data, inline on the plant card</h3>
+  <div class="card" style="padding:0">
+    <div style="padding:14px 18px;border-bottom:1.5px solid var(--ink)">
+      <b style="font-size:20px">Wild Ginger</b> <span class="sci">Asarum canadense</span>
+    </div>
+    <div style="padding:14px 18px">
+      <div class="wtb">
+        <h5>Where to buy · 3 sources near you</h5>
+        <div class="wtbrow">
+          <div class="l"><b>Amanda's Garden</b><div>Dansville, NY · 41 mi · quart pot, ~$12 · <span class="fresh"><i></i>seen 2d ago</span></div></div>
+          <div><span class="stock s-in">in stock</span> <button class="btn ghost">Visit</button></div>
+        </div>
+        <div class="wtbrow">
+          <div class="l"><b>Prairie Moon Nursery</b><div>Mail order · bare-root plug, ~$9 · <span class="fresh"><i></i>seen 1d ago</span></div></div>
+          <div><span class="stock s-in">in stock</span> <button class="btn ghost">Visit</button></div>
+        </div>
+        <div class="wtbrow">
+          <div class="l"><b>Wild Ones Genesee Valley spring sale</b><div>Rochester · 14 mi · next sale May 2027 · <span class="fresh manual"><i></i>from 2026 list</span></div></div>
+          <div><span class="stock s-seas">seasonal</span> <button class="btn ghost">Details</button></div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn solid">Add to shopping list</button>
+          <button class="btn ghost">Know another source? Tell us</button>
+        </div>
+      </div>
+      <div class="meta">Legacy free-text “buy” note: <i>Often available at native plant sales; rarely at general garden centres.</i></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ MOCKUP 5 ============================ -->
+<div class="wrap pane" id="m5">
+  <div class="mknote"><b>Mockup 5 — Regional gazetteer</b>
+    Editorial rather than database-y: grouped by NY sub-region with a short orientation note, seed libraries and free
+    sources promoted to first class, a seasonal calendar up top (most local native stock is sold on <em>two weekends a
+    year</em>, which a filterable list buries), and the Organizations database woven in beside the shops it belongs to.
+    Best for a signed-out visitor; needs the table view (M3) as an admin companion.</div>
+
+  <div class="pagehead">
+    <div class="eye">Gazetteer</div>
+    <h2>Where to Find Native Seeds &amp; Plants — Upstate New York</h2>
+    <p>Nurseries, seed exchanges, library seed collections and the once-a-year sales that supply most of the region's
+       native stock. Free and local-ecotype sources are marked.</p>
+  </div>
+
+  <div class="cal">
+    <h5>Season ahead · Western NY &amp; Finger Lakes</h5>
+    <div class="calrow"><span class="dt">Sep 20</span><span><b>Cornell Botanic Gardens fall plant sale</b> — Ithaca · potted natives, member preview Sep 19</span></div>
+    <div class="calrow"><span class="dt">Oct–Nov</span><span><b>Seed collecting &amp; exchange season</b> — FLNPS and Wild Ones chapters accept and redistribute local seed</span></div>
+    <div class="calrow"><span class="dt">Jan 5</span><span><b>SWCD seedling sale order windows open</b> — Monroe, Ontario, Erie, Genesee counties · closes March, pick-up April</span></div>
+    <div class="calrow"><span class="dt">Apr–May</span><span><b>Spring nursery season</b> — Amanda's Garden, The Plantsmen, White Oak open for pick-up</span></div>
+    <div class="calrow"><span class="dt">May 16</span><span><b>Wild Ones Genesee Valley native plant sale</b> — Rochester · one day, cash preferred</span></div>
+    <div style="margin-top:9px"><button class="btn">Add these to my plan's calendar</button></div>
+  </div>
+
+  <div class="region">
+    <h4>Western New York <span>Erie · Niagara · Monroe · Genesee · Orleans · Wyoming</span></h4>
+    <p class="blurb">Bare-root conservation stock dominates here — the county Soil &amp; Water districts are by far the
+       cheapest route to canopy and shrub layers, but they sell once a year on a January-to-March order window. Potted
+       herb-layer natives mostly come from the spring chapter sales.</p>
+    <div class="gaz">
+      <div class="gcard">
+        <b>Monroe County SWCD Seedling Sale</b>
+        <div class="loc">Rochester · Monroe Co.</div>
+        <div class="desc">~32 species of bare-root trees and shrubs in bundles of 10–25. Order Jan–Mar, pick up April.</div>
+        <div class="foot"><span class="kind k-swcd">Cons. district</span><span class="meta">11 in your plan</span></div>
+      </div>
+      <div class="gcard">
+        <b>Erie County SWCD Tree &amp; Shrub Sale</b>
+        <div class="loc">West Seneca · Erie Co.</div>
+        <div class="desc">Similar bare-root program; slightly different species list, includes live stakes for wet areas.</div>
+        <div class="foot"><span class="kind k-swcd">Cons. district</span><span class="meta">8 in your plan</span></div>
+      </div>
+      <div class="gcard freeish">
+        <b>Wild Ones Genesee Valley — Plant Sale &amp; Seed Swap</b>
+        <div class="loc">Rochester · Monroe Co.</div>
+        <div class="desc">Member-grown potted natives each May; a free seed swap runs alongside it in autumn.</div>
+        <div class="foot"><span class="kind k-sale">Annual sale</span><span class="free">Swap free</span></div>
+      </div>
+      <div class="gcard freeish">
+        <b>Reinstein Woods Native Plant Sale</b>
+        <div class="loc">Depew · Erie Co.</div>
+        <div class="desc">Nature-preserve sale with education staff on hand; good for first-time native gardeners.</div>
+        <div class="foot"><span class="kind k-sale">Annual sale</span><span class="meta">4 in your plan</span></div>
+      </div>
+    </div>
+    <div class="eyebrow" style="margin:16px 0 4px">Organizations working in this region</div>
+    <div class="orgstrip">
+      <div class="org"><span class="k">Chapter · volunteer</span><b>Wild Ones — Genesee Valley</b><div class="desc" style="font-size:12.5px;color:var(--ink2)">Native landscaping education, plant sales, yard-sign program.</div></div>
+      <div class="org"><span class="k">County agency</span><b>Monroe County SWCD</b><div class="desc" style="font-size:12.5px;color:var(--ink2)">Seedling sales, riparian buffer and erosion assistance.</div></div>
+      <div class="org"><span class="k">Extension</span><b>CCE Monroe — Master Gardeners</b><div class="desc" style="font-size:12.5px;color:var(--ink2)">Soil testing, plant ID clinics, home-scale advice.</div></div>
+      <div class="org"><span class="k">Land trust</span><b>Genesee Valley Conservancy</b><div class="desc" style="font-size:12.5px;color:var(--ink2)">Farmland and forest easements; occasional seed collection days.</div></div>
+    </div>
+  </div>
+
+  <div class="region">
+    <h4>Finger Lakes <span>Ontario · Livingston · Yates · Seneca · Tompkins · Cayuga · Steuben</span></h4>
+    <p class="blurb">The region's specialist native nurseries cluster here, and they are the realistic source for the
+       herb, groundcover and vine layers — the ones the conservation districts never carry.</p>
+    <div class="gaz">
+      <div class="gcard">
+        <b>Amanda's Garden Native Perennials</b>
+        <div class="loc">Dansville · Livingston Co.</div>
+        <div class="desc">Woodland natives from regional seed; straight species, nursery-propagated. Ships within NY.</div>
+        <div class="foot"><span class="kind k-nursery">Nursery</span><span class="meta">23 in your plan</span></div>
+      </div>
+      <div class="gcard">
+        <b>The Plantsmen Nursery</b>
+        <div class="loc">Groton · Tompkins Co.</div>
+        <div class="desc">Broad native selection including edible shrubs and fruit; retail yard, spring–fall.</div>
+        <div class="foot"><span class="kind k-nursery">Nursery</span><span class="meta">12 in your plan</span></div>
+      </div>
+      <div class="gcard">
+        <b>White Oak Nursery</b>
+        <div class="loc">Canandaigua · Ontario Co.</div>
+        <div class="desc">Trees and shrubs for restoration plantings; local provenance emphasis.</div>
+        <div class="foot"><span class="kind k-nursery">Nursery</span><span class="meta">7 in your plan</span></div>
+      </div>
+      <div class="gcard freeish">
+        <b>Finger Lakes Native Plant Society Seed Exchange</b>
+        <div class="loc">Ithaca · Tompkins Co.</div>
+        <div class="desc">Free local-ecotype seed, wild-collected by volunteers. Availability varies year to year.</div>
+        <div class="foot"><span class="kind k-library">Seed library</span><span class="free">Free</span></div>
+      </div>
+      <div class="gcard freeish">
+        <b>Tompkins County Public Library Seed Library</b>
+        <div class="loc">Ithaca · Tompkins Co.</div>
+        <div class="desc">Borrow seed with a library card; mostly vegetables, a small and growing native section.</div>
+        <div class="foot"><span class="kind k-library">Seed library</span><span class="free">Free</span></div>
+      </div>
+      <div class="gcard">
+        <b>Edible Acres</b>
+        <div class="loc">Trumansburg · Tompkins Co.</div>
+        <div class="desc">Permaculture nursery — perennial edibles, many natives, propagation-focused.</div>
+        <div class="foot"><span class="kind k-nursery">Nursery</span><span class="meta">6 in your plan</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="region">
+    <h4>Mail order that ships to NY <span>outside the region, but stocks what nobody local does</span></h4>
+    <div class="gaz">
+      <div class="gcard">
+        <b>Prairie Moon Nursery</b><div class="loc">Winona, MN · ships US</div>
+        <div class="desc">Deepest catalogue of native seed and bare-root plugs; germination codes published per species.</div>
+        <div class="foot"><span class="kind k-seed">Seed</span><span class="meta">34 in your plan</span></div>
+      </div>
+      <div class="gcard">
+        <b>Ernst Conservation Seeds</b><div class="loc">Meadville, PA · ships US</div>
+        <div class="desc">Bulk seed and regional ecotype mixes — the practical choice for meadow or understory sowing.</div>
+        <div class="foot"><span class="kind k-seed">Seed</span><span class="meta">16 in your plan</span></div>
+      </div>
+      <div class="gcard">
+        <b>Wild Seed Project</b><div class="loc">Portland, ME · ships US</div>
+        <div class="desc">Northeast wild-type seed, small packets, strong propagation guidance. Nonprofit.</div>
+        <div class="foot"><span class="kind k-seed">Seed</span><span class="meta">14 in your plan</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid var(--line);padding-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn solid">Suggest a shop or seed library</button>
+    <button class="btn">Browse all organizations</button>
+    <button class="btn ghost">View as table</button>
+    <button class="btn ghost">View on map</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,603 @@
+[
+  {
+    "slug": "wild-ones-wny",
+    "name": "Wild Ones Western New York Chapter",
+    "kind": "chapter",
+    "scope": "regional",
+    "mission": "Volunteer chapter promoting native landscaping in Western New York; publishes an annual native plant shopping guide and a list of native-focused nurseries.",
+    "focus_areas": [
+      "native landscaping",
+      "education",
+      "nursery directory"
+    ],
+    "state": "NY",
+    "county": "Erie",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://westernnewyork.wildones.org/",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "wild-ones-hgcny",
+    "name": "Wild Ones Habitat Gardening in Central New York Chapter",
+    "kind": "chapter",
+    "scope": "regional",
+    "mission": "Central New York Wild Ones chapter; runs spring and fall native plant sales and maintains a regional list of native plant sales.",
+    "focus_areas": [
+      "native landscaping",
+      "plant sales",
+      "education"
+    ],
+    "state": "NY",
+    "county": "Onondaga",
+    "subregion": "Central NY",
+    "region": "Northeast",
+    "url": "https://hgcny.wildones.org/",
+    "events_url": "https://hgcny.wildones.org/community-events-2/native-plant-sales/",
+    "sources": [
+      [
+        "HGCNY — Native Plant Sales",
+        "https://hgcny.wildones.org/community-events-2/native-plant-sales/"
+      ]
+    ]
+  },
+  {
+    "slug": "flnps",
+    "name": "Finger Lakes Native Plant Society",
+    "kind": "society",
+    "scope": "regional",
+    "mission": "Founded 1997; promotes appreciation of the region's native flora through field trips, programs, a members' seed exchange, and native plant sales.",
+    "focus_areas": [
+      "native flora education",
+      "seed exchange",
+      "plant sales",
+      "field trips"
+    ],
+    "state": "NY",
+    "county": "Tompkins",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://flnps.org/",
+    "membership": "Membership includes the Solidago newsletter and access to the seed exchange.",
+    "sources": [
+      [
+        "Finger Lakes Native Plant Society",
+        "https://flnps.org/"
+      ]
+    ]
+  },
+  {
+    "slug": "monroe-county-swcd-org",
+    "name": "Monroe County Soil & Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; runs the annual Conservation Tree & Shrub Program, erosion control and habitat assistance.",
+    "focus_areas": [
+      "seedling sales",
+      "erosion control",
+      "wildlife habitat"
+    ],
+    "state": "NY",
+    "county": "Monroe",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.monroecountyswcd.org/",
+    "sources": [
+      [
+        "Monroe County SWCD — Tree & Shrub Program",
+        "https://www.monroecountyswcd.org/tree-shrub-program"
+      ]
+    ]
+  },
+  {
+    "slug": "erie-county-swcd-org",
+    "name": "Erie County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; annual sale and distribution of evergreen and deciduous seedlings and transplants for conservation of natural resources.",
+    "focus_areas": [
+      "seedling sales",
+      "conservation"
+    ],
+    "state": "NY",
+    "county": "Erie",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "http://ecswcd.org/",
+    "sources": [
+      [
+        "ECSWCD Programs",
+        "http://ecswcd.org/html/programs.html"
+      ]
+    ]
+  },
+  {
+    "slug": "ontario-county-swcd-org",
+    "name": "Ontario County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district serving Ontario County; annual tree and shrub seedling sale.",
+    "focus_areas": [
+      "seedling sales",
+      "conservation"
+    ],
+    "state": "NY",
+    "county": "Ontario",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.ontariocountyswcd.gov/",
+    "contact_email": "info@ontariocountyswcd.gov",
+    "sources": [
+      [
+        "Ontario County SWCD",
+        "https://www.ontariocountyswcd.gov/"
+      ]
+    ]
+  },
+  {
+    "slug": "livingston-county-swcd-org",
+    "name": "Livingston County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district serving Livingston County; annual tree and shrub seedling sale.",
+    "focus_areas": [
+      "seedling sales",
+      "conservation"
+    ],
+    "state": "NY",
+    "county": "Livingston",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.livingstoncounty.us/",
+    "sources": [
+      [
+        "Genesee Valley Conservancy — Tree and Shrub Seedling Sales",
+        "https://www.geneseevalleyconservancy.org/newsblog/tree-and-shrub-seedling-sales"
+      ]
+    ]
+  },
+  {
+    "slug": "genesee-valley-conservancy",
+    "name": "Genesee Valley Conservancy",
+    "kind": "land_trust",
+    "scope": "regional",
+    "mission": "Land trust protecting farmland and natural areas in the Genesee Valley; publishes a roundup of regional conservation district seedling sales.",
+    "focus_areas": [
+      "land conservation",
+      "farmland protection",
+      "seedling sale directory"
+    ],
+    "state": "NY",
+    "county": "Livingston",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.geneseevalleyconservancy.org/",
+    "sources": [
+      [
+        "Genesee Valley Conservancy — Tree and Shrub Seedling Sales",
+        "https://www.geneseevalleyconservancy.org/newsblog/tree-and-shrub-seedling-sales"
+      ]
+    ]
+  },
+  {
+    "slug": "genesee-land-trust",
+    "name": "Genesee Land Trust",
+    "kind": "land_trust",
+    "scope": "regional",
+    "mission": "Rochester-area land trust; protects natural areas and hosts native plant sales and habitat events.",
+    "focus_areas": [
+      "land conservation",
+      "habitat",
+      "events"
+    ],
+    "state": "NY",
+    "county": "Monroe",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.geneseelandtrust.org/",
+    "events_url": "https://www.geneseelandtrust.org/all-events",
+    "sources": [
+      [
+        "Genesee Land Trust — All Events",
+        "https://www.geneseelandtrust.org/all-events"
+      ]
+    ]
+  },
+  {
+    "slug": "cornell-botanic-gardens",
+    "name": "Cornell Botanic Gardens",
+    "kind": "botanic_garden",
+    "scope": "regional",
+    "mission": "Cornell University's botanic gardens and natural areas; hosts a spring native plant sale in partnership with the Finger Lakes Native Plant Society and houses FLNPS meetings at the Nevin Center.",
+    "focus_areas": [
+      "plant sales",
+      "education",
+      "native plant collections"
+    ],
+    "state": "NY",
+    "county": "Tompkins",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://cornellbotanicgardens.cornell.edu/",
+    "sources": [
+      [
+        "Cornell Events — Spring Native Plant Sale 2026",
+        "https://events.cornell.edu/event/spring-native-plant-sale-2026"
+      ]
+    ]
+  },
+  {
+    "slug": "cce-tompkins",
+    "name": "Cornell Cooperative Extension — Tompkins County",
+    "kind": "extension",
+    "scope": "county",
+    "mission": "Extension office; publishes native plant gardening guidance and a directory of local nurseries and garden centers.",
+    "focus_areas": [
+      "home gardening",
+      "native plants",
+      "nursery directory"
+    ],
+    "state": "NY",
+    "county": "Tompkins",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://ccetompkins.org/gardening/home-gardening/lawns-ornamentals/native-plants",
+    "sources": [
+      [
+        "CCE Tompkins — Native Plants",
+        "https://ccetompkins.org/gardening/home-gardening/lawns-ornamentals/native-plants"
+      ]
+    ]
+  },
+  {
+    "slug": "healthy-yards-monroe",
+    "name": "Healthy Yards Monroe County",
+    "kind": "nonprofit",
+    "scope": "county",
+    "mission": "Monroe County initiative promoting pesticide-free, native-planted yards; maintains a directory of local native plant sellers.",
+    "focus_areas": [
+      "native plant directory",
+      "healthy yards",
+      "education"
+    ],
+    "state": "NY",
+    "county": "Monroe",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.healthyyardsmonroecounty.org/",
+    "sources": [
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ]
+    ]
+  },
+  {
+    "slug": "buffalo-niagara-waterkeeper",
+    "name": "Buffalo Niagara Waterkeeper",
+    "kind": "nonprofit",
+    "scope": "regional",
+    "mission": "Water quality and habitat restoration across the Niagara River watershed; publishes a Western New York native plant supplier guide.",
+    "focus_areas": [
+      "watershed restoration",
+      "native plant guide",
+      "habitat"
+    ],
+    "state": "NY",
+    "county": "Erie",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://bnwaterkeeper.org/",
+    "sources": [
+      [
+        "WNY Native Plant Suppliers guide (PDF)",
+        "https://bnwaterkeeper.org/wp-content/uploads/2020/10/Native-plant-guide-updates-3-column-Mennes-removed.pdf"
+      ]
+    ]
+  },
+  {
+    "slug": "wny-prism",
+    "name": "WNY PRISM (Partnership for Regional Invasive Species Management)",
+    "kind": "nonprofit",
+    "scope": "regional",
+    "mission": "Regional invasive species partnership hosted at SUNY Buffalo State; distributes native plant supplier lists as an alternative to invasive ornamentals.",
+    "focus_areas": [
+      "invasive species",
+      "native alternatives",
+      "supplier lists"
+    ],
+    "state": "NY",
+    "county": "Erie",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.wnyprism.org/",
+    "sources": [
+      [
+        "WNY PRISM — Native Plants Supplier List (PDF)",
+        "https://www.wnyprism.org/wp-content/uploads/2022/12/BNR-Native-Plants-Supplier-List.pdf"
+      ]
+    ]
+  },
+  {
+    "slug": "color-brighton-green",
+    "name": "Color Brighton Green",
+    "kind": "nonprofit",
+    "scope": "local",
+    "mission": "Brighton, NY environmental group; launched an annual native plant sale featuring multiple seed-raised native growers.",
+    "focus_areas": [
+      "native plant sale",
+      "sustainability",
+      "community"
+    ],
+    "state": "NY",
+    "county": "Monroe",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://colorbrightongreen.org/",
+    "sources": [
+      [
+        "Wild Ones HGCNY — Native Plant Sales",
+        "https://hgcny.wildones.org/community-events-2/native-plant-sales/"
+      ]
+    ]
+  },
+  {
+    "slug": "buffalo-erie-public-library",
+    "name": "Buffalo & Erie County Public Library",
+    "kind": "library",
+    "scope": "county",
+    "mission": "Public library system; operates a free Seed Library at the downtown Central Library Launch Pad, including native species.",
+    "focus_areas": [
+      "seed library",
+      "urban gardening",
+      "community"
+    ],
+    "state": "NY",
+    "county": "Erie",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.buffalolib.org/launch-pad/seed-library",
+    "sources": [
+      [
+        "Buffalo & Erie County Public Library — Seed Library",
+        "https://www.buffalolib.org/launch-pad/seed-library"
+      ]
+    ]
+  },
+  {
+    "slug": "broome-county-swcd-org",
+    "name": "Broome County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; runs a Tree & Shrub Seedling Program alongside erosion and water quality work.",
+    "focus_areas": [
+      "seedling sales",
+      "erosion control",
+      "water quality"
+    ],
+    "state": "NY",
+    "county": "Broome",
+    "region": "Northeast",
+    "url": "https://www.broomeswcd.org/broome/",
+    "sources": [
+      [
+        "Broome County SWCD — District Sales",
+        "https://www.broomeswcd.org/broome/districtsales.htm"
+      ]
+    ]
+  },
+  {
+    "slug": "tioga-county-swcd-org",
+    "name": "Tioga County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; annual tree and shrub seedling sale and landowner reforestation assistance.",
+    "focus_areas": [
+      "seedling sales",
+      "reforestation"
+    ],
+    "state": "NY",
+    "county": "Tioga",
+    "region": "Northeast",
+    "url": "https://www.tiogacountyny.com/programs-agencies/soil-and-water/",
+    "sources": [
+      [
+        "Tioga County SWCD",
+        "https://www.tiogacountyny.com/programs-agencies/soil-and-water/"
+      ]
+    ]
+  },
+  {
+    "slug": "schuyler-county-swcd-org",
+    "name": "Schuyler County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; the Green Arbor Program has supplied over 750,000 low-cost trees and shrubs for conservation plantings.",
+    "focus_areas": [
+      "seedling sales",
+      "conservation plantings"
+    ],
+    "state": "NY",
+    "county": "Schuyler",
+    "region": "Northeast",
+    "url": "https://www.schuylerswcd.com/",
+    "sources": [
+      [
+        "Schuyler County SWCD — Tree Sale",
+        "https://www.schuylerswcd.com/tree-sale.html"
+      ]
+    ]
+  },
+  {
+    "slug": "steuben-county-swcd-org",
+    "name": "Steuben County Soil & Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; runs a tree nursery program for landowners.",
+    "focus_areas": [
+      "seedling sales",
+      "conservation"
+    ],
+    "state": "NY",
+    "county": "Steuben",
+    "region": "Northeast",
+    "url": "https://steubenswcd.org/",
+    "sources": [
+      [
+        "Steuben County SWCD — Tree Nursery Program",
+        "https://steubenswcd.org/tree-nursery-program/"
+      ]
+    ]
+  },
+  {
+    "slug": "chemung-county-swcd-org",
+    "name": "Chemung County Soil and Water Conservation District",
+    "kind": "conservation_district",
+    "scope": "county",
+    "mission": "County conservation district; annual tree program selling bundles of young trees, shrubs, flowers and other native plants.",
+    "focus_areas": [
+      "seedling sales",
+      "conservation"
+    ],
+    "state": "NY",
+    "county": "Chemung",
+    "region": "Northeast",
+    "sources": [
+      [
+        "Chemung County SWCD holds tree sale (WETM)",
+        "https://www.mytwintiers.com/news-cat/local-news/chemung-county-soil-and-water-conservation-district-holds-tree-sale/"
+      ]
+    ]
+  },
+  {
+    "slug": "chemung-valley-audubon",
+    "name": "Chemung Valley Audubon Society",
+    "kind": "chapter",
+    "scope": "regional",
+    "mission": "All-volunteer Audubon chapter in the Southern Tier; bird monitoring, habitat restoration with native grasses and forbs, and native plant education. Does not run a plant sale.",
+    "focus_areas": [
+      "bird conservation",
+      "habitat restoration",
+      "native plant education"
+    ],
+    "state": "NY",
+    "county": "Chemung",
+    "region": "Northeast",
+    "url": "https://cvaudubon.org/",
+    "contact_email": "cvaudubon@gmail.com",
+    "notes": "Organization only — no plants or seed supplied, so it has no vendor row.",
+    "sources": [
+      [
+        "Chemung Valley Audubon Society",
+        "https://cvaudubon.org/"
+      ]
+    ]
+  },
+  {
+    "slug": "pollinator-partnership",
+    "name": "Pollinator Partnership",
+    "kind": "nonprofit",
+    "scope": "national",
+    "mission": "Pollinator conservation nonprofit; publishes and maintains the Native Plant Nurseries and Local Seed Vendors list for New York State, with a per-vendor capability checklist.",
+    "focus_areas": [
+      "pollinator habitat",
+      "vendor directory"
+    ],
+    "region": "Northeast",
+    "url": "https://www.pollinator.org/",
+    "sources": [
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ]
+  },
+  {
+    "slug": "broome-county-public-library",
+    "name": "Broome County Public Library",
+    "kind": "library",
+    "scope": "county",
+    "mission": "Public library in Binghamton; runs a free seed library, restarted after a pandemic pause (originally 2017).",
+    "focus_areas": [
+      "seed library",
+      "community gardening"
+    ],
+    "state": "NY",
+    "county": "Broome",
+    "region": "Northeast",
+    "url": "https://www.thebcpl.org/",
+    "sources": [
+      [
+        "Broome County Public Library — Our Seed Library is Back",
+        "https://www.thebcpl.org/posts/our-seed-library-back"
+      ]
+    ]
+  },
+  {
+    "slug": "southeast-steuben-library",
+    "name": "Southeast Steuben County Library",
+    "kind": "library",
+    "scope": "county",
+    "mission": "Public library in Corning; runs a free seed library of flower, fruit and vegetable seed.",
+    "focus_areas": [
+      "seed library",
+      "community gardening"
+    ],
+    "state": "NY",
+    "county": "Steuben",
+    "region": "Northeast",
+    "url": "https://ssclibrary.org/",
+    "sources": [
+      [
+        "Southeast Steuben County Library — Seed Library",
+        "https://ssclibrary.org/services/seed-library/"
+      ]
+    ]
+  },
+  {
+    "slug": "tompkins-county-public-library",
+    "name": "Tompkins County Public Library",
+    "kind": "library",
+    "scope": "county",
+    "mission": "Public library in Ithaca; hosts the Salutations Seed Library with the Master Gardeners of Tompkins County and Cornell Climate Stewards.",
+    "focus_areas": [
+      "seed library",
+      "community gardening"
+    ],
+    "state": "NY",
+    "county": "Tompkins",
+    "region": "Northeast",
+    "url": "https://www.tcpl.org/salutations-seed-library",
+    "sources": [
+      [
+        "TCPL — Salutations Seed Library",
+        "https://www.tcpl.org/salutations-seed-library"
+      ]
+    ]
+  },
+  {
+    "slug": "chemung-county-library-district",
+    "name": "Chemung County Library District",
+    "kind": "library",
+    "scope": "county",
+    "mission": "Library district serving Chemung County; Steele Memorial Library in Elmira participates in the library system's seed lending program.",
+    "focus_areas": [
+      "seed library"
+    ],
+    "state": "NY",
+    "county": "Chemung",
+    "region": "Northeast",
+    "url": "https://www.chemunglibraries.org/things",
+    "sources": [
+      [
+        "Chemung County Library District — Library of Things",
+        "https://www.chemunglibraries.org/things"
+      ]
+    ]
+  }
+]

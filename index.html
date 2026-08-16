@@ -633,6 +633,53 @@
   .hcmonths{display:flex;gap:2px}
   .hcmonths button{width:22px;height:24px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:3px;font-family:'Space Mono';font-size:10px;color:var(--ink2);padding:0}
   .hcmonths button.on{background:var(--sage);color:#fff;border-color:var(--sage-d)}
+  /* ---------- Shops & Seed (S2: Directory) ---------- */
+  .shoptabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);margin:0 0 16px}
+  .shoptabs button{border:1.5px solid var(--line);border-bottom:0;background:#fbf9f2;color:var(--ink2);
+    border-radius:4px 4px 0 0;padding:8px 14px;font-family:'Space Mono';font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;margin-bottom:-1.5px}
+  .shoptabs button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .shoptabs button:disabled{opacity:.45;cursor:default}
+  .shopctl{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+  .shopctl .fld{flex:1 1 180px}
+  .shopcard{background:#f7f4ea;border:1px solid var(--line);border-radius:3px;
+    box-shadow:0 1px 0 #fff inset, 0 10px 24px -22px #000;margin-bottom:14px;overflow:hidden}
+  .shopcard .head{display:flex;align-items:flex-start;gap:14px;padding:15px 18px 13px;border-bottom:1.5px solid var(--ink)}
+  .shopcard .head .info{flex:1 1 auto;min-width:0}
+  .shopcard h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .shopcard .where{font-family:'Space Mono';font-size:11px;color:var(--faint);margin-top:4px}
+  .shopcard .tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
+  .shopcard .rgt{flex:0 0 auto;text-align:right}
+  .shopcard .big{font-family:'Space Mono';font-size:24px;font-weight:700;line-height:1}
+  .shopcard .big span{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);font-weight:400;margin-top:3px}
+  .shopcard .body{padding:13px 18px 15px}
+  .shopcard .body p{margin:0 0 10px;font-size:14.5px}
+  .shopkind{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 7px;border-radius:3px;border:1px solid;white-space:nowrap}
+  .k-nursery{color:#2f5b2a;border-color:#8fae7d;background:#e9f2df}
+  .k-seed{color:#7a5320;border-color:var(--soil-line);background:var(--soil-bg)}
+  .k-library{color:#4a4a86;border-color:#b3b1d6;background:#eceaf6}
+  .k-district{color:#3f5f72;border-color:#a9c0cd;background:#e6eff4}
+  .k-org{color:#6a4b7a;border-color:#c4b1d0;background:#f1eaf5}
+  .shopfree{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 7px;border-radius:3px;background:var(--sage-d);color:var(--paper)}
+  .shopflag{font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;
+    padding:2px 7px;border-radius:99px;border:1px solid var(--line);background:#fbf9f2;color:var(--ink2)}
+  .shopkv{display:grid;grid-template-columns:120px 1fr;gap:3px 12px;font-size:14px;margin:0 0 10px}
+  .shopkv dt{font-family:'Space Mono';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);padding-top:4px}
+  .shopkv dd{margin:0}
+  .shopacts{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:11px}
+  .shopacts a,.shopacts button{border:1.5px solid var(--line);background:#fbf9f2;color:var(--ink2);border-radius:4px;
+    padding:6px 13px;font-family:'Space Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+    text-decoration:none;display:inline-block}
+  .shopacts a.pri{border-color:var(--sage-d);color:var(--sage-d)}
+  .shopunver{font-family:'Space Mono';font-size:10px;color:var(--soil-d);background:var(--soil-bg);
+    border-left:3px solid var(--soil);padding:6px 10px;border-radius:0 4px 4px 0;margin:0 0 10px}
+  .shopsoon{border:1.5px dashed var(--line);border-radius:6px;background:#fbf9f2;padding:26px 22px;text-align:center;color:var(--ink2)}
+  .shopsoon b{display:block;font-size:17px;margin-bottom:6px;color:var(--ink)}
+  @media(max-width:640px){ .shopkv{grid-template-columns:1fr} .shopcard .head{flex-wrap:wrap} }
 </style>
 </head>
 <body>
@@ -699,6 +746,43 @@ const auth = {
   resetPassword(email){ return sb.auth.resetPasswordForEmail(email); },
   signOut(){ return sb.auth.signOut(); },
 };
+/* ── Shops & Seed: DB row → UI shape (SHOPS_PLAN.md §1) ─────────────────── */
+function rowToVendor(r){
+  return {
+    id:r.id, slug:r.slug, name:r.name, orgId:r.org_id, kind:r.kind,
+    street:r.street, city:r.city, county:r.county, state:r.state, postal:r.postal,
+    subregion:r.subregion, region:r.region, lat:r.lat, lon:r.lon, addressNote:r.address_note,
+    url:r.url, catalogUrl:r.catalog_url, orderFormUrl:r.order_form_url, email:r.email, phone:r.phone,
+    sells:r.sells, givesFree:r.gives_free, membershipRequired:r.membership_required,
+    ships:r.ships, shipsStates:r.ships_states||[], pickupOnly:r.pickup_only,
+    forms:r.forms||[], seasonNote:r.season_note, orderWindow:r.order_window, hours:r.hours,
+    straightSpeciesOnly:r.straight_species_only, localEcotype:r.local_ecotype,
+    nurseryPropagated:r.nursery_propagated, neonicFree:r.neonic_free, sourcingNotes:r.sourcing_notes,
+    inventoryMode:r.inventory_mode, inventoryUrl:r.inventory_url, inventoryLastSync:r.inventory_last_sync,
+    notes:r.notes, sources:r.sources||[],
+    needsVerification:r.needs_verification, lastVerified:r.last_verified,
+  };
+}
+function rowToSale(r){
+  return {
+    id:r.id, slug:r.slug, vendorId:r.vendor_id, orgId:r.org_id, name:r.name, kind:r.kind,
+    startsOn:r.starts_on, endsOn:r.ends_on, startsAt:r.starts_at, endsAt:r.ends_at,
+    orderOpensOn:r.order_opens_on, orderClosesOn:r.order_closes_on, pickupOn:r.pickup_on,
+    recurs:r.recurs, venueName:r.venue_name, street:r.street, city:r.city, county:r.county,
+    state:r.state, lat:r.lat, lon:r.lon, url:r.url, priceNote:r.price_note,
+    memberPreview:r.member_preview, notes:r.notes, sourceUrl:r.source_url,
+    needsVerification:r.needs_verification,
+  };
+}
+function rowToOrg(r){
+  return {
+    id:r.id, slug:r.slug, name:r.name, kind:r.kind, scope:r.scope, mission:r.mission,
+    focusAreas:r.focus_areas||[], state:r.state, county:r.county, subregion:r.subregion,
+    region:r.region, url:r.url, eventsUrl:r.events_url, contactEmail:r.contact_email,
+    membership:r.membership, notes:r.notes, sources:r.sources||[],
+    needsVerification:r.needs_verification,
+  };
+}
 const dataProvider = {
   async getPlants(){
     // PostgREST caps a response at 1000 rows, so page through in blocks to get
@@ -713,6 +797,24 @@ const dataProvider = {
     }
     return all.map(rowToPlant);
   },
+  // Shops & Seed. Paged like getPlants — these tables will pass 1000 rows once
+  // vendor_plants lands, and every bulk read in this app has to page (HANDOFF §11).
+  async _all(table, mapper, order){
+    const PAGE=1000; let from=0, all=[];
+    for(;;){
+      // id is a tiebreak so a non-unique sort column can't drop or duplicate rows across pages
+      const { data, error } = await sb.from(table).select('*')
+        .order(order||'id').order('id').range(from, from+PAGE-1);
+      if(error) throw error;
+      all=all.concat(data||[]);
+      if(!data || data.length<PAGE) break;
+      from+=PAGE;
+    }
+    return all.map(mapper);
+  },
+  getVendors(){ return this._all('vendors', rowToVendor, 'name'); },
+  getSales(){ return this._all('sales', rowToSale, 'starts_on'); },
+  getOrganizations(){ return this._all('organizations', rowToOrg, 'name'); },
   async loadPlans(){
     const { data, error } = await sb.from('plans').select('id,name,color,created_at').order('created_at');
     if(error) throw error;
@@ -3927,7 +4029,275 @@ function GrantFinder({curPlan}){
     </div>
   );
 }
-const PAGES=[["db","Database"],["plan","My Plans"],["guide","Scoring Guide"],["data","Raw Data"],["grants","Grant Finder"],["about","About"]];
+/* =====================================================================
+   Shops & Seed — where to actually get the plants (SHOPS_PLAN.md).
+   S2 ships the Directory tab: mockup-1 cards + mockup-3 sorting.
+   Map (S3), Sale Calendar (S4) and the admin Shop Editor (S6) are stubs.
+   ===================================================================== */
+const VKIND={
+  nursery:["Nursery","k-nursery"], seed_company:["Seed company","k-seed"],
+  seed_library:["Seed library","k-library"], conservation_district:["Cons. district","k-district"],
+  botanic_garden:["Botanic garden","k-nursery"], coop:["Co-op","k-nursery"],
+  society:["Society","k-org"], chapter:["Chapter","k-org"], nonprofit:["Nonprofit","k-org"],
+  land_trust:["Land trust","k-org"], library:["Library","k-library"], other:["Other","k-org"],
+};
+const vkLabel=k=>(VKIND[k]||["Other","k-org"])[0];
+const vkClass=k=>(VKIND[k]||["Other","k-org"])[1];
+const FORM_LABEL={seed:"Seed",potted:"Potted",plug:"Plugs",bare_root:"Bare-root",
+  tuber:"Tubers",scion:"Scions",live_stake:"Live stakes"};
+// great-circle miles; both points must have coordinates
+function milesBetween(a,b,c,d){
+  if([a,b,c,d].some(v=>v===null||v===undefined)) return null;
+  const R=3958.8, t=Math.PI/180;
+  const dLa=(c-a)*t, dLo=(d-b)*t;
+  const h=Math.sin(dLa/2)**2 + Math.cos(a*t)*Math.cos(c*t)*Math.sin(dLo/2)**2;
+  return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));
+}
+const SHOP_SORTS=[["name","Name (A–Z)"],["distance","Distance from my plan"],["kind","Type"],
+  ["subregion","Region"],["county","County"],["city","Town"],["forms","Forms offered"],
+  ["free","Free sources first"],["ships","Ships"],["sales","Upcoming sales"],["verified","Last verified"]];
+
+function ShopCard({v, org, saleCount, distance}){
+  const [open,setOpen]=useState(false);
+  const addr=[v.street, v.city && (v.city+(v.state?", "+v.state:"")+(v.postal?" "+v.postal:""))]
+    .filter(Boolean).join(" · ");
+  const geo=v.street?[v.street,v.city,v.state,v.postal].filter(Boolean).join(", ")
+    :[v.name,v.city,v.state].filter(Boolean).join(", ");
+  const flags=[
+    v.givesFree && ["free","Free"], v.ships && ["flag","Ships"+(v.shipsStates&&v.shipsStates.length?" · "+v.shipsStates.join("/"):"")],
+    v.pickupOnly && ["flag","Pick-up only"], v.membershipRequired && ["flag","Members"],
+    v.localEcotype && ["flag","Local ecotype"], v.straightSpeciesOnly && ["flag","Straight species"],
+    v.nurseryPropagated && ["flag","Nursery-propagated"], v.neonicFree && ["flag","Spray-free"],
+  ].filter(Boolean);
+  return (
+    <div className="shopcard">
+      <div className="head" onClick={()=>setOpen(o=>!o)} style={{cursor:"pointer"}}>
+        <div className="info">
+          <h3>{v.name}</h3>
+          <div className="where">
+            {addr || (v.city?`${v.city}, ${v.state}`:v.state) || "Location not recorded"}
+            {v.county?` · ${v.county} County`:""}{v.subregion?` · ${v.subregion}`:""}
+          </div>
+          <div className="tags">
+            <span className={"shopkind "+vkClass(v.kind)}>{vkLabel(v.kind)}</span>
+            {flags.map(([c,label])=><span key={label} className={c==="free"?"shopfree":"shopflag"}>{label}</span>)}
+            {saleCount>0 && <span className="shopflag">{saleCount} sale{saleCount===1?"":"s"} listed</span>}
+          </div>
+        </div>
+        <div className="rgt">
+          {distance!==null && distance!==undefined
+            ? <div className="big">{Math.round(distance)}<span>miles away</span></div>
+            : v.ships ? <div className="big">✈<span>mail order</span></div> : null}
+          <div className="where" style={{marginTop:6}}>{open?"▲ less":"▼ more"}</div>
+        </div>
+      </div>
+      {open && (
+        <div className="body">
+          {v.needsVerification && (
+            <div className="shopunver">Unverified listing — sourced from a public directory, not yet confirmed
+              with {v.name}. Call ahead before travelling.</div>
+          )}
+          {v.notes && <p>{v.notes}</p>}
+          {v.addressNote && <p style={{color:"var(--ink2)",fontSize:13.5}}><i>{v.addressNote}</i></p>}
+          <dl className="shopkv">
+            {v.forms.length>0 && <><dt>Forms</dt><dd>{v.forms.map(f=>FORM_LABEL[f]||f).join(" · ")}</dd></>}
+            {org && <><dt>Run by</dt><dd>{org.name}{org.url?<> — <a href={org.url} target="_blank" rel="noopener">site ↗</a></>:null}</dd></>}
+            {v.orderWindow && <><dt>Ordering</dt><dd>{v.orderWindow}</dd></>}
+            {v.seasonNote && <><dt>Season</dt><dd>{v.seasonNote}</dd></>}
+            {v.hours && <><dt>Hours</dt><dd>{v.hours}</dd></>}
+            {v.phone && <><dt>Phone</dt><dd>{v.phone}</dd></>}
+            {v.email && <><dt>Email</dt><dd><a href={"mailto:"+v.email}>{v.email}</a></dd></>}
+            {v.sourcingNotes && <><dt>Sourcing</dt><dd>{v.sourcingNotes}</dd></>}
+            <dt>Inventory</dt><dd style={{color:"var(--faint)"}}>
+              {v.inventoryMode==="none"||!v.inventoryMode ? "No plant list recorded yet — coming in a later stage."
+                : "Plant list source: "+v.inventoryMode.replace(/_/g," ")}</dd>
+          </dl>
+          {v.sources.length>0 && (
+            <div style={{fontFamily:"'Space Mono'",fontSize:11,color:"var(--faint)",marginBottom:10}}>
+              Sources: {v.sources.map((s,i)=>(
+                <span key={i}>{i?" · ":""}<a href={Array.isArray(s)?s[1]:s} target="_blank" rel="noopener">{Array.isArray(s)?s[0]:s}</a></span>
+              ))}
+            </div>
+          )}
+          <div className="shopacts">
+            {v.url && <a className="pri" href={v.url} target="_blank" rel="noopener">Website ↗</a>}
+            {v.catalogUrl && v.catalogUrl!==v.url && <a href={v.catalogUrl} target="_blank" rel="noopener">Catalog ↗</a>}
+            {v.orderFormUrl && <a href={v.orderFormUrl} target="_blank" rel="noopener">Order form ↗</a>}
+            {geo && <a href={"https://www.openstreetmap.org/search?query="+encodeURIComponent(geo)}
+                       target="_blank" rel="noopener">Directions ↗</a>}
+            {v.phone && <a href={"tel:"+v.phone.replace(/[^0-9+]/g,"")}>Call</a>}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Shops({vendors, sales, orgs, curPlan, isAdmin}){
+  const [tab,setTab]=useState("dir");
+  const [q,setQ]=useState("");
+  const [sub,setSub]=useState("all");
+  const [st,setSt]=useState("all");
+  const [kind,setKind]=useState("all");
+  const [sortKey,setSortKey]=useState("name");
+  const [dir,setDir]=useState(1);
+  const [chips,setChips]=useState({free:false,ships:false,ecotype:false,straight:false,hasSale:false});
+  const [centre,setCentre]=useState(null);   // {lat,lon} of the current plan's mapped area
+
+  // distance is measured from the plan's drawn area, exactly as the Grant Finder does
+  useEffect(()=>{ let dead=false;
+    if(!curPlan){ setCentre(null); return; }
+    (async()=>{
+      try{
+        const L=await dataProvider.loadLayout(curPlan); const polys=(L&&L.polys)||[];
+        let la=0,ln=0,n=0; polys.forEach(r=>r.forEach(([a,b])=>{la+=a;ln+=b;n++;}));
+        if(!dead) setCentre(n?{lat:la/n,lon:ln/n}:null);
+      }catch(e){ if(!dead) setCentre(null); }
+    })();
+    return ()=>{ dead=true; };
+  },[curPlan]);
+
+  const orgById=useMemo(()=>{ const m={}; orgs.forEach(o=>m[o.id]=o); return m; },[orgs]);
+  const salesByVendor=useMemo(()=>{ const m={}; sales.forEach(s=>{ m[s.vendorId]=(m[s.vendorId]||0)+1; }); return m; },[sales]);
+  const distOf=useMemo(()=>{ const m={};
+    vendors.forEach(v=>{ m[v.id]=centre?milesBetween(centre.lat,centre.lon,v.lat,v.lon):null; });
+    return m; },[vendors,centre]);
+
+  const subregions=useMemo(()=>[...new Set(vendors.map(v=>v.subregion).filter(Boolean))].sort(),[vendors]);
+  const states=useMemo(()=>[...new Set(vendors.map(v=>v.state).filter(Boolean))].sort(),[vendors]);
+  const kinds=useMemo(()=>[...new Set(vendors.map(v=>v.kind).filter(Boolean))]
+    .sort((a,b)=>vkLabel(a).localeCompare(vkLabel(b))),[vendors]);
+
+  const shown=useMemo(()=>{
+    const needle=q.trim().toLowerCase();
+    let out=vendors.filter(v=>{
+      if(sub!=="all" && v.subregion!==sub) return false;
+      if(st!=="all" && v.state!==st) return false;
+      if(kind!=="all" && v.kind!==kind) return false;
+      if(chips.free && !v.givesFree) return false;
+      if(chips.ships && !v.ships) return false;
+      if(chips.ecotype && !v.localEcotype) return false;
+      if(chips.straight && !v.straightSpeciesOnly) return false;
+      if(chips.hasSale && !salesByVendor[v.id]) return false;
+      if(needle){
+        const hay=[v.name,v.city,v.county,v.subregion,v.state,v.notes,(v.forms||[]).join(" ")]
+          .filter(Boolean).join(" ").toLowerCase();
+        if(!hay.includes(needle)) return false;
+      }
+      return true;
+    });
+    const val=v=>{ switch(sortKey){
+      case "distance": { const d=distOf[v.id]; return d===null||d===undefined?Infinity:d; }
+      case "kind": return vkLabel(v.kind);
+      case "subregion": return v.subregion||"zzz";
+      case "county": return v.county||"zzz";
+      case "city": return v.city||"zzz";
+      case "forms": return -(v.forms||[]).length;
+      case "free": return v.givesFree?0:1;
+      case "ships": return v.ships?0:1;
+      case "sales": return -(salesByVendor[v.id]||0);
+      case "verified": return v.lastVerified||"";
+      default: return v.name.toLowerCase();
+    }};
+    return out.sort((a,b)=>{
+      const x=val(a), y=val(b);
+      const c = typeof x==="number" && typeof y==="number" ? x-y : String(x).localeCompare(String(y));
+      return (c||a.name.localeCompare(b.name))*dir;
+    });
+  },[vendors,q,sub,st,kind,chips,sortKey,dir,distOf,salesByVendor]);
+
+  const chip=(k,label)=>(
+    <button className={"chip"+(chips[k]?" on":"")} onClick={()=>setChips(c=>({...c,[k]:!c[k]}))}>{label}</button>
+  );
+  const soon=(title,note)=>(
+    <div className="shopsoon"><b>{title}</b>{note}</div>
+  );
+
+  return (
+    <div>
+      <div className="pagehead">
+        <div className="eye">Shops &amp; Seed · {vendors.length} listings</div>
+        <h2>Where to get native plants &amp; seed</h2>
+        <p>Nurseries, seed companies, free seed libraries, conservation-district seedling programmes and the
+        organizations that run native plant sales — across Western New York, the Finger Lakes and the Southern Tier,
+        plus mail-order sources that ship here.</p>
+      </div>
+
+      <div className="shoptabs">
+        <button className={tab==="dir"?"on":""} onClick={()=>setTab("dir")}>Directory</button>
+        <button className={tab==="map"?"on":""} onClick={()=>setTab("map")}>Map</button>
+        <button className={tab==="cal"?"on":""} onClick={()=>setTab("cal")}>Sale Calendar</button>
+        {isAdmin && <button className={tab==="edit"?"on":""} onClick={()=>setTab("edit")}>Shop Editor</button>}
+      </div>
+
+      {tab==="map" && soon("Map arrives in the next stage",
+        "The Leaflet map of every listing, sized by how much of your plan each one can supply, is stage S3.")}
+      {tab==="cal" && soon("Sale Calendar arrives in stage S4",
+        `${sales.length} sales and order windows are already in the database, waiting on the month-by-month view.`)}
+      {tab==="edit" && soon("Shop Editor arrives in stage S6",
+        "Add and edit shops and sales by form, link or document upload. Until then, listings are seeded from importer/vendors/*.json.")}
+
+      {tab==="dir" && <>
+        <div className="shopctl">
+          <div className="fld" style={{flex:"2 1 240px"}}><label>Search name, town or note</label>
+            <input value={q} onChange={e=>setQ(e.target.value)} placeholder="e.g. Ithaca, bare-root, Audubon" /></div>
+          <div className="fld"><label>Region</label>
+            <select value={sub} onChange={e=>setSub(e.target.value)}>
+              <option value="all">All regions</option>
+              {subregions.map(s=><option key={s} value={s}>{s}</option>)}
+            </select></div>
+          <div className="fld"><label>State</label>
+            <select value={st} onChange={e=>setSt(e.target.value)}>
+              <option value="all">All states</option>
+              {states.map(s=><option key={s} value={s}>{s}</option>)}
+            </select></div>
+          <div className="fld"><label>Type</label>
+            <select value={kind} onChange={e=>setKind(e.target.value)}>
+              <option value="all">All types</option>
+              {kinds.map(k=><option key={k} value={k}>{vkLabel(k)}</option>)}
+            </select></div>
+          <div className="fld"><label>Sort by</label>
+            <select value={sortKey} onChange={e=>setSortKey(e.target.value)}>
+              {SHOP_SORTS.map(([k,l])=>(
+                <option key={k} value={k} disabled={k==="distance" && !centre}>
+                  {l}{k==="distance" && !centre ? " (needs a mapped plan)" : ""}
+                </option>
+              ))}
+            </select></div>
+          <button className="dirbtn" title="Toggle direction" onClick={()=>setDir(d=>-d)}>{dir===-1?"↓":"↑"}</button>
+        </div>
+
+        <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:4}}>
+          {chip("free","Free / giveaway")}
+          {chip("ships","Ships to me")}
+          {chip("ecotype","Local ecotype")}
+          {chip("straight","Straight species")}
+          {chip("hasSale","Hosts a sale")}
+        </div>
+
+        <div className="count">
+          {shown.length} of {vendors.length} listings
+          {centre ? " · distances measured from your plan's mapped area"
+                  : " · draw your plot in a Planting Plan to sort by distance"}
+        </div>
+
+        {shown.length===0
+          ? <div className="empty">No listings match those filters.</div>
+          : shown.map(v=>(
+              <ShopCard key={v.id} v={v} org={orgById[v.orgId]}
+                        saleCount={salesByVendor[v.id]||0} distance={distOf[v.id]} />
+            ))}
+
+        <div style={{fontFamily:"'Space Mono'",fontSize:11,color:"var(--faint)",marginTop:18,lineHeight:1.6}}>
+          Every listing is compiled from public directories and the vendors' own sites, and is marked unverified
+          until confirmed directly. Seed libraries mostly stock donated vegetable and flower seed — their native
+          share is unconfirmed. Call ahead; sale dates and stock move.
+        </div>
+      </>}
+    </div>
+  );
+}
+const PAGES=[["db","Database"],["plan","My Plans"],["shops","Shops & Seed"],["guide","Scoring Guide"],["data","Raw Data"],["grants","Grant Finder"],["about","About"]];
 // palette for plan pills; new plans cycle through these
 const PLAN_COLORS=["#6b8f5a","#b5651d","#4a7a96","#9c6b9e","#c99a2e","#7a8b3f","#a5504d","#4f8a7b"];
 // readable text color (dark/light) for a given hex background
@@ -3944,6 +4314,9 @@ function App(){
   const [planItems,setPlanItems]=useState([]);  // [{planId,plantId}]
   const [curPlan,setCurPlan]=useState(null);    // plan currently shown on the My Plans page
   const [loadErr,setLoadErr]=useState(null);
+  const [vendors,setVendors]=useState([]);      // Shops & Seed
+  const [sales,setSales]=useState([]);
+  const [orgs,setOrgs]=useState([]);
   const [user,setUser]=useState(null);
   const [authReady,setAuthReady]=useState(false);
 
@@ -3956,7 +4329,8 @@ function App(){
 
   // load data whenever we have a signed-in user
   useEffect(()=>{
-    if(!user){ setPlants([]); setPlans([]); setPlanItems([]); setCurPlan(null); setLoadErr(null); return; }
+    if(!user){ setPlants([]); setPlans([]); setPlanItems([]); setCurPlan(null); setLoadErr(null);
+               setVendors([]); setSales([]); setOrgs([]); return; }
     (async()=>{
       try{
         const [pl, pns, items] = await Promise.all([dataProvider.getPlants(), dataProvider.loadPlans(), dataProvider.loadPlanItems()]);
@@ -3965,6 +4339,15 @@ function App(){
         setPlants(pl); setPlans(list); setPlanItems(items);
         setCurPlan(c=> (c && list.some(p=>p.id===c)) ? c : list[0].id);
       }catch(err){ console.error(err); setLoadErr(err.message||String(err)); }
+    })();
+    // Shops & Seed loads separately: it must never block or break the plant pages,
+    // so a failure here only disables the Shops tab.
+    (async()=>{
+      try{
+        const [vs, sl, og] = await Promise.all([
+          dataProvider.getVendors(), dataProvider.getSales(), dataProvider.getOrganizations()]);
+        setVendors(vs); setSales(sl); setOrgs(og);
+      }catch(err){ console.error("Shops load failed:",err); }
     })();
   },[user]);
 
@@ -4088,6 +4471,7 @@ function App(){
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
+          page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} curPlan={curPlan} isAdmin={isAdmin} /> :
           page==="guide" ? <ScoringGuide /> :
           page==="about" ? <About /> :
           page==="grants" ? <GrantFinder curPlan={curPlan} /> :

@@ -1,0 +1,1321 @@
+[
+  {
+    "slug": "amandas-native-garden",
+    "name": "Amanda's Native Garden",
+    "kind": "nursery",
+    "street": "8030 Story Rd",
+    "city": "Dansville",
+    "county": "Livingston",
+    "state": "NY",
+    "postal": "14437",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://amandasnativeplants.com/",
+    "phone": "(585) 750-6288",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Native perennial nursery (Ellen Folts). Pollinator Partnership checklist: forbs, grasses/sedges and woodland plants yes; shrubs/trees and seed no. Listed by Wild Ones WNY and Healthy Yards Monroe County; also appears at regional plant sales.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ],
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ],
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ],
+    "email": "ellen@amandasnativeplants.com"
+  },
+  {
+    "slug": "white-oak-nursery",
+    "name": "White Oak Nursery",
+    "kind": "nursery",
+    "street": "4350 Kipp Rd",
+    "city": "Canandaigua",
+    "county": "Ontario",
+    "state": "NY",
+    "postal": "14424",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://whiteoaknursery.biz/",
+    "phone": "(315) 789-3509",
+    "forms": [
+      "potted",
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Native TREES AND SHRUBS only — the Pollinator Partnership capability checklist marks forbs, grasses/sedges, woodland plants and seed as 'No'. By appointment only. Also supplies pre-order stock for the Wild Ones HGCNY fall sale.",
+    "sources": [
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ],
+      [
+        "Wild Ones HGCNY — Native Plant Sales",
+        "https://hgcny.wildones.org/community-events-2/native-plant-sales/"
+      ],
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ],
+    "email": "jengel53@rochester.rr.com",
+    "hours": "By appointment only"
+  },
+  {
+    "slug": "plantsmen-nursery",
+    "name": "The Plantsmen Nursery",
+    "kind": "nursery",
+    "street": "482 Peruville Rd",
+    "city": "Groton",
+    "county": "Tompkins",
+    "state": "NY",
+    "postal": "13073",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.plantsmen.com/",
+    "phone": "(607) 533-7193",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "neonic_free": true,
+    "notes": "States it grows the greatest diversity of native plants available in NY, spray-free (no pesticides, herbicides or fungicides). Near Ithaca. Pollinator Partnership checklist: forbs, grasses/sedges, woodland plants and shrubs/trees all yes; no seed.",
+    "sources": [
+      [
+        "The Plantsmen Nursery",
+        "https://www.plantsmen.com/"
+      ],
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ],
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ],
+    "email": "info@plantsmen.com"
+  },
+  {
+    "slug": "cw-native-plant-farm",
+    "name": "CW Native Plant Farm at Murder Creek",
+    "kind": "nursery",
+    "street": "12288 Tonawanda Creek Rd",
+    "city": "Akron",
+    "county": "Erie",
+    "state": "NY",
+    "postal": "14001",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://cwnativeplantfarm.com/",
+    "phone": "(716) 417-2626",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Nursery plants native to the Western New York area (Cathleen Contrino).",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ],
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ],
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ],
+    "email": "cwnativeplantfarm@gmail.com"
+  },
+  {
+    "slug": "primeval-forest-nursery",
+    "name": "Primeval Forest Nursery",
+    "kind": "nursery",
+    "street": "2813 Niagara St",
+    "city": "Buffalo",
+    "county": "Erie",
+    "state": "NY",
+    "postal": "14207",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.primevalforestnursery.com/",
+    "phone": "(716) 322-6815",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Focuses on plants indigenous to the Northeastern US.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ],
+      [
+        "Primeval Forest Nursery",
+        "https://www.primevalforestnursery.com/"
+      ]
+    ]
+  },
+  {
+    "slug": "redmont-nursery",
+    "name": "Redmont Nursery",
+    "kind": "nursery",
+    "street": "48 Eastland Ave",
+    "city": "Rochester",
+    "county": "Monroe",
+    "state": "NY",
+    "postal": "14618",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://redmontnursery.com/",
+    "phone": "(585) 406-0296",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Native plants (David Ryder). One operation — the Monroe County sellers list shows it twice (Rochester and Brighton entries); confirmed as a single vendor.",
+    "sources": [
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ]
+    ]
+  },
+  {
+    "slug": "spicebush-swallowtail-nursery",
+    "name": "Spicebush Swallowtail Nursery",
+    "kind": "nursery",
+    "city": "Pittsford",
+    "county": "Monroe",
+    "state": "NY",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://spicebushswallowtailnativeplants.com/",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "address_note": "No public storefront address listed; sells at the Brighton Farmers Market. Confirm market days before travelling.",
+    "notes": "Small native plant grower (Sarah Sutton).",
+    "sources": [
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ]
+    ]
+  },
+  {
+    "slug": "grow-wild-natives",
+    "name": "Grow Wild!",
+    "kind": "nursery",
+    "street": "245 Speed Hill Rd",
+    "city": "Brooktondale",
+    "county": "Tompkins",
+    "state": "NY",
+    "postal": "14817",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://growwildnatives.com/",
+    "phone": "(314) 749-2882",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Native plant nursery (Deanna English) south-east of Ithaca.",
+    "sources": [
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ]
+    ]
+  },
+  {
+    "slug": "filbert-farms",
+    "name": "Filbert Farms",
+    "kind": "nursery",
+    "city": "East Rochester",
+    "county": "Monroe",
+    "state": "NY",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://filbertfarms.com/",
+    "phone": "(585) 230-3258",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "address_note": "Sells at the East Rochester Farmers Market; no public nursery address listed.",
+    "notes": "Native plants (Jason Weiland). Name suggests hazelnut/edible focus — worth confirming what share of stock is native.",
+    "sources": [
+      [
+        "Healthy Yards Monroe County — Native Plant Sellers",
+        "https://www.healthyyardsmonroecounty.org/native-plant-sellers/"
+      ]
+    ]
+  },
+  {
+    "slug": "royal-fern-nursery",
+    "name": "Royal Fern Nursery & Sweet Flag Herbs",
+    "kind": "nursery",
+    "street": "8888 Glasgow Rd",
+    "city": "Fredonia",
+    "county": "Chautauqua",
+    "state": "NY",
+    "postal": "14063",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://sweetflagherbs.com/",
+    "phone": "(585) 610-3788",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Fern and herb focus; listed as operating partly as a pop-up. Confirm whether the Glasgow Rd address is open to visitors.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "eastern-monarch-butterfly-farm",
+    "name": "Eastern Monarch Butterfly Farm",
+    "kind": "nursery",
+    "city": "Clarence",
+    "county": "Erie",
+    "state": "NY",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://easternmonarchbutterflyfarm.com/",
+    "phone": "(716) 759-8500",
+    "forms": [
+      "potted",
+      "seed"
+    ],
+    "sells": true,
+    "ships": false,
+    "address_note": "Sells at the Clarence Hollow Farmers Market, 8am–1pm. Confirm market season and day.",
+    "notes": "Milkweed and monarch-habitat focus.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "swiftwater-organic-farm",
+    "name": "Swiftwater Organic Farm",
+    "kind": "nursery",
+    "city": "Lockport",
+    "county": "Niagara",
+    "state": "NY",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "phone": "(716) 406-7374",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Organic grower listed among WNY native-focused nurseries. Website in the source list appears to contain a typo — find the working URL before publishing.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "urban-roots-garden-market",
+    "name": "Urban Roots Cooperative Garden Market",
+    "kind": "coop",
+    "street": "428 Rhode Island St",
+    "city": "Buffalo",
+    "county": "Erie",
+    "state": "NY",
+    "postal": "14213",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://urbanroots.org/",
+    "phone": "(716) 362-8982",
+    "forms": [
+      "potted",
+      "seed"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Community-owned garden centre carrying a native selection alongside general nursery stock.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "mastersons-garden-center",
+    "name": "Masterson's Garden Center",
+    "kind": "nursery",
+    "street": "725 Olean Rd",
+    "city": "East Aurora",
+    "county": "Erie",
+    "state": "NY",
+    "postal": "14052",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://mastersons.net/",
+    "phone": "(716) 655-0133",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "General garden centre listed by Wild Ones WNY as carrying natives — expect cultivars alongside straight species.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "the-english-gardener",
+    "name": "The English Gardener",
+    "kind": "nursery",
+    "street": "4000 Harlem Rd",
+    "city": "Snyder",
+    "county": "Erie",
+    "state": "NY",
+    "postal": "14226",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://english-gardener.com/",
+    "phone": "(716) 833-8000",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Garden centre listed by Wild Ones WNY as carrying natives — expect cultivars alongside straight species.",
+    "sources": [
+      [
+        "Wild Ones WNY — Native-Focused Nurseries",
+        "https://westernnewyork.wildones.org/native-plant-nurseries-in-wny/"
+      ]
+    ]
+  },
+  {
+    "slug": "mill-street-gardens",
+    "name": "Mill Street Gardens",
+    "kind": "nursery",
+    "state": "NY",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.millstgardens.com/native-plant-inventory",
+    "catalog_url": "https://www.millstgardens.com/native-plant-inventory",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "inventory_mode": "manual",
+    "address_note": "Street address not captured during seeding — fill in before publishing.",
+    "notes": "Publishes a native plant inventory page for the Finger Lakes / Central NY region — a good early candidate for inventory sampling in S5.",
+    "sources": [
+      [
+        "Mill Street Gardens — Native Plant Inventory",
+        "https://www.millstgardens.com/native-plant-inventory"
+      ]
+    ]
+  },
+  {
+    "slug": "finger-lakes-nursery",
+    "name": "Finger Lakes Nursery",
+    "kind": "nursery",
+    "city": "Ithaca",
+    "county": "Tompkins",
+    "state": "NY",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.fingerlakesnursery.com/",
+    "forms": [
+      "potted",
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "address_note": "Described as a 14-acre homestead near the southern end of Cayuga Lake; exact address not captured.",
+    "notes": "Edible, perennial and multi-use plants selected for the region — berry bushes, native shrubs, fruit and nut trees. Strong overlap with the food-forest use case.",
+    "sources": [
+      [
+        "Finger Lakes Nursery",
+        "https://www.fingerlakesnursery.com/"
+      ]
+    ]
+  },
+  {
+    "slug": "edible-acres",
+    "name": "Edible Acres",
+    "kind": "nursery",
+    "city": "Trumansburg",
+    "county": "Tompkins",
+    "state": "NY",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://edibleacres.org/",
+    "forms": [
+      "bare_root",
+      "seed",
+      "tuber",
+      "scion"
+    ],
+    "sells": true,
+    "ships": true,
+    "ships_states": [
+      "US"
+    ],
+    "notes": "Permaculture nursery focused on perennial edibles, many of them native; propagation-heavy, sells bare-root, cuttings, bulbs and seed. Local pickup arranged by email for Finger Lakes-area customers. Self-describes as serving the Finger Lakes even though Tompkins County sits in ESD's Southern Tier region.",
+    "sources": [
+      [
+        "Edible Acres — Purchase",
+        "https://www.edibleacres.org/purchase"
+      ],
+      [
+        "Sustainable Finger Lakes — Edible Acres",
+        "https://sustainablefingerlakes.org/2019/08/21/edible-acres/"
+      ]
+    ],
+    "street": "9386 Congress Street Ext",
+    "postal": "14886",
+    "email": "hello@edibleacres.org",
+    "catalog_url": "https://www.edibleacres.org/purchase",
+    "inventory_mode": "manual",
+    "season_note": "Offerings update March 1 for spring bare-root and September 1 for fall bare-root. Fall leans trees and shrubs; spring leans herbaceous perennials and grasses.",
+    "nursery_propagated": true
+  },
+  {
+    "slug": "monroe-county-swcd",
+    "name": "Monroe County SWCD — Conservation Tree & Shrub Program",
+    "org_slug": "monroe-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "145 Paul Road, Building 5",
+    "city": "Rochester",
+    "county": "Monroe",
+    "state": "NY",
+    "postal": "14624",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.monroecountyswcd.org/tree-shrub-program",
+    "phone": "(585) 753-7380",
+    "hours": "Mon–Fri 8am–4pm (closed weekends and federal holidays)",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Pre-order in winter; distribution in April at the district office. 2026 pre-orders are closed.",
+    "season_note": "Pre-order program only — nothing is sold walk-in.",
+    "inventory_mode": "pdf_annual",
+    "notes": "Bare-root seedlings, transplants and other plant materials in species native or naturalized to New York State. Species sheets are published in a public Google Drive folder each season.",
+    "sources": [
+      [
+        "Monroe County SWCD — Tree & Shrub Program",
+        "https://www.monroecountyswcd.org/tree-shrub-program"
+      ]
+    ]
+  },
+  {
+    "slug": "erie-county-swcd",
+    "name": "Erie County SWCD — Tree and Shrub Seedling Sale",
+    "org_slug": "erie-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "50 Commerce Way",
+    "city": "East Aurora",
+    "county": "Erie",
+    "state": "NY",
+    "postal": "14052",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "http://ecswcd.org/html/programs.html",
+    "phone": "(716) 652-8480",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Annual winter pre-order; specific dates not published on the programs page — confirm with the district.",
+    "inventory_mode": "pdf_annual",
+    "notes": "Annual sale and distribution of evergreen and deciduous seedlings and transplants for conservation of natural resources.",
+    "sources": [
+      [
+        "ECSWCD Programs",
+        "http://ecswcd.org/html/programs.html"
+      ]
+    ]
+  },
+  {
+    "slug": "ontario-county-swcd",
+    "name": "Ontario County SWCD — Tree and Shrub Seedling Sale",
+    "org_slug": "ontario-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "480 North Main Street",
+    "city": "Canandaigua",
+    "county": "Ontario",
+    "state": "NY",
+    "postal": "14424",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.ontariocountyswcd.gov/",
+    "phone": "(585) 396-1450",
+    "email": "info@ontariocountyswcd.gov",
+    "hours": "Mon–Fri 7:30am–4:00pm",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Annual winter pre-order; a third-party roundup lists a historic order deadline in early March — confirm the current year's date with the district.",
+    "inventory_mode": "pdf_annual",
+    "sources": [
+      [
+        "Ontario County SWCD",
+        "https://www.ontariocountyswcd.gov/"
+      ],
+      [
+        "Genesee Valley Conservancy — Tree and Shrub Seedling Sales",
+        "https://www.geneseevalleyconservancy.org/newsblog/tree-and-shrub-seedling-sales"
+      ]
+    ]
+  },
+  {
+    "slug": "livingston-county-swcd",
+    "name": "Livingston County SWCD — Tree and Shrub Seedling Sale",
+    "org_slug": "livingston-county-swcd-org",
+    "kind": "conservation_district",
+    "city": "Geneseo",
+    "county": "Livingston",
+    "state": "NY",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://www.livingstoncounty.us/",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Annual winter pre-order; a third-party roundup lists a historic order deadline in mid-March — confirm the current year's date with the district.",
+    "inventory_mode": "pdf_annual",
+    "address_note": "District office address not captured during seeding — fill in before publishing.",
+    "sources": [
+      [
+        "Genesee Valley Conservancy — Tree and Shrub Seedling Sales",
+        "https://www.geneseevalleyconservancy.org/newsblog/tree-and-shrub-seedling-sales"
+      ]
+    ]
+  },
+  {
+    "slug": "nysdec-saratoga-tree-nursery",
+    "name": "NYSDEC Saratoga Tree Nursery — Seedling Sale",
+    "kind": "conservation_district",
+    "city": "Saratoga Springs",
+    "county": "Saratoga",
+    "state": "NY",
+    "subregion": "Capital",
+    "region": "Northeast",
+    "url": "https://dec.ny.gov/nature/forests-trees/saratoga-tree-nursery",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": true,
+    "ships_states": [
+      "NY"
+    ],
+    "order_window": "Statewide seedling program with a spring order deadline (a third-party roundup lists late March historically) — confirm the current year on DEC's site.",
+    "inventory_mode": "pdf_annual",
+    "notes": "State-run nursery selling low-cost native tree and shrub seedlings in bundles to NY landowners. Note dec.ny.gov 403s plain urllib — fetch via the browser pane or full headers (HANDOFF §18).",
+    "sources": [
+      [
+        "Genesee Valley Conservancy — Tree and Shrub Seedling Sales",
+        "https://www.geneseevalleyconservancy.org/newsblog/tree-and-shrub-seedling-sales"
+      ]
+    ]
+  },
+  {
+    "slug": "buffalo-library-seed-library",
+    "name": "Buffalo & Erie County Public Library — Seed Library",
+    "org_slug": "buffalo-erie-public-library",
+    "kind": "seed_library",
+    "venue_hint": "Central Library Launch Pad, downtown Buffalo",
+    "city": "Buffalo",
+    "county": "Erie",
+    "state": "NY",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.buffalolib.org/launch-pad/seed-library",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "season_note": "Seeds checked out in person with Launch Pad staff; borrow up to 4 packets at a time. Returns encouraged but not required.",
+    "notes": "Collection is community-donated and aims to showcase native species alongside vegetables, herbs and flowers. Native share is likely small — sample before claiming coverage.",
+    "sources": [
+      [
+        "Buffalo & Erie County Public Library — Seed Library",
+        "https://www.buffalolib.org/launch-pad/seed-library"
+      ]
+    ]
+  },
+  {
+    "slug": "geneva-public-library-seed-library",
+    "name": "Geneva Public Library — Seed Library",
+    "kind": "seed_library",
+    "city": "Geneva",
+    "county": "Ontario",
+    "state": "NY",
+    "subregion": "Finger Lakes",
+    "region": "Northeast",
+    "url": "https://gplny.org/seed-library/",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "notes": "Public library seed library in the Finger Lakes. Native share not yet checked.",
+    "sources": [
+      [
+        "Geneva Public Library — Seed Library",
+        "https://gplny.org/seed-library/"
+      ]
+    ]
+  },
+  {
+    "slug": "niagara-falls-library-seed-library",
+    "name": "Niagara Falls Public Library — Vegetation Station Seed Library",
+    "kind": "seed_library",
+    "city": "Niagara Falls",
+    "county": "Niagara",
+    "state": "NY",
+    "subregion": "Western NY",
+    "region": "Northeast",
+    "url": "https://www.niagarafallspubliclib.org/services/library_of_things/seed_library.php",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "notes": "Run in cooperation with Grassroots Gardens of WNY, which donates seed. Native share not yet checked.",
+    "sources": [
+      [
+        "Niagara Falls Public Library — Seed Library",
+        "https://www.niagarafallspubliclib.org/services/library_of_things/seed_library.php"
+      ]
+    ]
+  },
+  {
+    "slug": "prairie-moon-nursery",
+    "name": "Prairie Moon Nursery",
+    "kind": "seed_company",
+    "street": "32115 Prairie Lane",
+    "city": "Winona",
+    "state": "MN",
+    "postal": "55987",
+    "region": "Midwest",
+    "url": "https://www.prairiemoon.com/",
+    "catalog_url": "https://www.prairiemoon.com/",
+    "forms": [
+      "seed",
+      "bare_root",
+      "plug"
+    ],
+    "sells": true,
+    "ships": true,
+    "ships_states": [
+      "US"
+    ],
+    "straight_species_only": true,
+    "inventory_mode": "manual",
+    "notes": "Mail-order nursery, since 1982, for native plants and seed of the Midwest, Northeast, Great Lakes and mid-Atlantic; 700+ species with published germination codes. Prime candidate for the first automated feed adapter in S9.",
+    "sources": [
+      [
+        "Prairie Moon Nursery",
+        "https://www.prairiemoon.com/"
+      ]
+    ]
+  },
+  {
+    "slug": "ernst-conservation-seeds",
+    "name": "Ernst Conservation Seeds",
+    "kind": "seed_company",
+    "street": "8884 Mercer Pike",
+    "city": "Meadville",
+    "county": "Crawford",
+    "state": "PA",
+    "postal": "16335",
+    "subregion": "Northwest PA",
+    "region": "Northeast",
+    "url": "https://www.ernstseed.com/",
+    "forms": [
+      "seed"
+    ],
+    "sells": true,
+    "ships": true,
+    "ships_states": [
+      "US"
+    ],
+    "inventory_mode": "manual",
+    "notes": "Founded 1964; described as the largest native seed producer and supplier in the eastern United States, propagating hundreds of native and naturalized species on 9,000+ acres in north-western PA. Bulk seed and regional ecotype mixes — the practical source for meadow or understory sowing near WNY.",
+    "sources": [
+      [
+        "Ernst Conservation Seeds — Contact",
+        "https://www.ernstseed.com/contact-us/"
+      ]
+    ]
+  },
+  {
+    "slug": "izel-native-plants",
+    "name": "Izel Native Plants",
+    "kind": "seed_company",
+    "state": "PA",
+    "region": "Northeast",
+    "url": "https://www.izelplants.com/",
+    "forms": [
+      "plug",
+      "potted",
+      "seed"
+    ],
+    "sells": true,
+    "ships": true,
+    "ships_states": [
+      "US"
+    ],
+    "inventory_mode": "manual",
+    "address_note": "Online marketplace — no retail location.",
+    "notes": "Consolidates the inventories of wholesale-only growers into retail mail order; stock sold as plugs, quarts and seed. Because it aggregates other growers, provenance varies by item — record the actual grower where the listing states it.",
+    "sources": [
+      [
+        "Izel Native Plants",
+        "https://www.izelplants.com/"
+      ]
+    ]
+  },
+  {
+    "slug": "wild-seed-project",
+    "name": "Wild Seed Project",
+    "kind": "seed_company",
+    "state": "ME",
+    "region": "Northeast",
+    "url": "https://wildseedproject.net/",
+    "forms": [
+      "seed"
+    ],
+    "sells": true,
+    "ships": true,
+    "ships_states": [
+      "US"
+    ],
+    "local_ecotype": true,
+    "straight_species_only": true,
+    "notes": "Maine nonprofit selling wild-type Northeast native seed in small packets with strong propagation guidance.",
+    "sources": [
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ],
+    "city": "North Yarmouth",
+    "email": "info@wildseedproject.net",
+    "catalog_url": "https://shop.wildseedproject.net/"
+  },
+  {
+    "slug": "flnps-vendor",
+    "name": "Finger Lakes Native Plant Society",
+    "org_slug": "flnps",
+    "kind": "society",
+    "city": "Ithaca",
+    "county": "Tompkins",
+    "state": "NY",
+    "region": "Northeast",
+    "url": "https://flnps.org/",
+    "forms": [
+      "seed",
+      "potted"
+    ],
+    "sells": true,
+    "gives_free": true,
+    "membership_required": true,
+    "local_ecotype": true,
+    "address_note": "Meets at Cornell Botanic Gardens' Nevin Center; no retail location.",
+    "season_note": "Members' seed exchange runs seasonally; plants are sold at the spring sale and the Grow Native! festival.",
+    "notes": "Supplies plants two ways: a members' seed exchange (free) and its plant sales. Whether non-members may take part in the seed exchange is not stated on the site — confirm before describing it as open to all.",
+    "sources": [
+      [
+        "Finger Lakes Native Plant Society",
+        "https://flnps.org/"
+      ]
+    ]
+  },
+  {
+    "slug": "cornell-botanic-gardens-vendor",
+    "name": "Cornell Botanic Gardens",
+    "org_slug": "cornell-botanic-gardens",
+    "kind": "botanic_garden",
+    "street": "397 Forest Home Dr",
+    "city": "Ithaca",
+    "county": "Tompkins",
+    "state": "NY",
+    "postal": "14850",
+    "region": "Northeast",
+    "url": "https://cornellbotanicgardens.cornell.edu/",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "pickup_only": true,
+    "address_note": "Sales are held at the Plant Production Facility, 397 Forest Home Dr.",
+    "notes": "Sells native plants at its spring sale, run in partnership with the Finger Lakes Native Plant Society.",
+    "sources": [
+      [
+        "Cornell Events — Spring Native Plant Sale 2026",
+        "https://events.cornell.edu/event/spring-native-plant-sale-2026"
+      ]
+    ]
+  },
+  {
+    "slug": "wild-ones-hgcny-vendor",
+    "name": "Wild Ones Habitat Gardening in Central NY",
+    "org_slug": "wild-ones-hgcny",
+    "kind": "chapter",
+    "city": "Syracuse",
+    "county": "Onondaga",
+    "state": "NY",
+    "region": "Northeast",
+    "url": "https://hgcny.wildones.org/what-we-do/native-plant-sales/",
+    "forms": [
+      "potted",
+      "bare_root"
+    ],
+    "sells": true,
+    "pickup_only": true,
+    "address_note": "No retail location; sales are held in Westvale (Syracuse), with the address published in the chapter newsletter before each sale.",
+    "notes": "Volunteer chapter selling member-grown natives at spring and fall sales, plus pre-orders for trees and shrubs supplied by White Oak Nursery. Cash or check only.",
+    "sources": [
+      [
+        "Wild Ones HGCNY — Native Plant Sales",
+        "https://hgcny.wildones.org/community-events-2/native-plant-sales/"
+      ]
+    ]
+  },
+  {
+    "slug": "color-brighton-green-vendor",
+    "name": "Color Brighton Green",
+    "org_slug": "color-brighton-green",
+    "kind": "nonprofit",
+    "city": "Brighton",
+    "county": "Monroe",
+    "state": "NY",
+    "region": "Northeast",
+    "url": "https://colorbrightongreen.org/",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "pickup_only": true,
+    "address_note": "No retail location; its sale is held at Buckland Park, 1435 Westfall Rd, Brighton.",
+    "notes": "Community group whose native plant sale gathers multiple seed-raised native growers in one place. Confirm whether the sale recurs.",
+    "sources": [
+      [
+        "Wild Ones HGCNY — Native Plant Sales",
+        "https://hgcny.wildones.org/community-events-2/native-plant-sales/"
+      ]
+    ]
+  },
+  {
+    "slug": "butterfly-effect",
+    "name": "Butterfly Effect",
+    "kind": "nursery",
+    "street": "2678 Lyons Road",
+    "city": "Geneva",
+    "county": "Ontario",
+    "state": "NY",
+    "postal": "14456",
+    "region": "Northeast",
+    "url": "https://www.butterflyeffectplants.com/",
+    "phone": "(315) 719-6022",
+    "email": "butterflyeffectplants@gmail.com",
+    "forms": [
+      "potted"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "Pollinator Partnership checklist: forbs, grasses/sedges and shrubs/trees yes; woodland plants and seed no.",
+    "sources": [
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ]
+  },
+  {
+    "slug": "southern-tier-consulting",
+    "name": "Southern Tier Consulting",
+    "kind": "nursery",
+    "street": "2701 Co Rd 305",
+    "city": "West Clarksville",
+    "county": "Allegany",
+    "state": "NY",
+    "postal": "14786",
+    "region": "Northeast",
+    "url": "https://www.southerntierconsulting.com/index.html",
+    "phone": "(716) 969-1608",
+    "email": "froghome@southerntierconsulting.com",
+    "forms": [
+      "potted",
+      "plug",
+      "seed"
+    ],
+    "sells": true,
+    "ships": false,
+    "notes": "One of very few regional sources marked YES across the whole Pollinator Partnership checklist — forbs, grasses/sedges, woodland plants, shrubs/trees AND seed. Wetland/restoration focus. Note the name: despite 'Southern Tier', Allegany County is in ESD's Western New York region.",
+    "sources": [
+      [
+        "Pollinator Partnership — Native Plant Nurseries & Seed Vendors for New York State (June 2024)",
+        "https://www.pollinator.org/pollinator.org/assets/globals/Native-Plant-Nurseries-and-Local-Seed-Vendors-for-New-York-State_06.21.24-5.pdf"
+      ]
+    ]
+  },
+  {
+    "slug": "schuyler-county-swcd",
+    "name": "Schuyler County SWCD — Green Arbor Program",
+    "org_slug": "schuyler-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "2400 Meads Hill Rd",
+    "city": "Watkins Glen",
+    "county": "Schuyler",
+    "state": "NY",
+    "postal": "14891",
+    "region": "Northeast",
+    "url": "https://www.schuylerswcd.com/tree-sale.html",
+    "phone": "(607) 535-0878",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Orders taken January through the first week in March; pickup in April.",
+    "address_note": "Lee Harlan Soil and Water Conservation Center, at Meads Hill Rd and County Road 16.",
+    "inventory_mode": "pdf_annual",
+    "notes": "Has supplied over 750,000 low-cost trees and shrubs. Evergreens, deciduous trees and shrubs, berries and fruit trees, plus fertilizer tablets and bluebird houses. Bare-root seedlings and transplants.",
+    "sources": [
+      [
+        "Schuyler County SWCD — Tree Sale",
+        "https://www.schuylerswcd.com/tree-sale.html"
+      ]
+    ]
+  },
+  {
+    "slug": "tioga-county-swcd",
+    "name": "Tioga County SWCD — Tree and Shrub Seedling Sale",
+    "org_slug": "tioga-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "183 Corporate Drive",
+    "city": "Owego",
+    "county": "Tioga",
+    "state": "NY",
+    "postal": "13827",
+    "region": "Northeast",
+    "url": "https://www.tiogacountyny.com/programs-agencies/soil-and-water/",
+    "phone": "(607) 687-3553",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Orders January through mid-April, first-come first-served; the district asks for orders of 100+ seedlings before March 1. Cash or check at time of order.",
+    "inventory_mode": "pdf_annual",
+    "notes": "Drive-thru pickup at the Owego office. Confirm species quantities by phone before ordering.",
+    "sources": [
+      [
+        "Tioga County SWCD",
+        "https://www.tiogacountyny.com/programs-agencies/soil-and-water/"
+      ]
+    ]
+  },
+  {
+    "slug": "broome-county-swcd",
+    "name": "Broome County SWCD — Tree & Shrub Seedling Program",
+    "org_slug": "broome-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "1163 Upper Front Street",
+    "city": "Binghamton",
+    "county": "Broome",
+    "state": "NY",
+    "postal": "13905",
+    "region": "Northeast",
+    "url": "https://www.broomeswcd.org/broome/districtsales.htm",
+    "phone": "(607) 724-9268",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Annual winter pre-order; dates not captured during seeding.",
+    "inventory_mode": "pdf_annual",
+    "address_note": "Directory listings disagree between '1163 Front Street' and '1163 Upper Front Street' — confirm.",
+    "sources": [
+      [
+        "Broome County SWCD — District Sales",
+        "https://www.broomeswcd.org/broome/districtsales.htm"
+      ]
+    ]
+  },
+  {
+    "slug": "steuben-county-swcd",
+    "name": "Steuben County SWCD — Tree Nursery Program",
+    "org_slug": "steuben-county-swcd-org",
+    "kind": "conservation_district",
+    "street": "415 West Morris Rd",
+    "city": "Bath",
+    "county": "Steuben",
+    "state": "NY",
+    "postal": "14810",
+    "region": "Northeast",
+    "url": "https://steubenswcd.org/tree-nursery-program/",
+    "phone": "(607) 776-7398",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Annual pre-order; dates not captured during seeding.",
+    "address_note": "Located in the USDA Service Center.",
+    "inventory_mode": "pdf_annual",
+    "sources": [
+      [
+        "Steuben County SWCD — Tree Nursery Program",
+        "https://steubenswcd.org/tree-nursery-program/"
+      ]
+    ]
+  },
+  {
+    "slug": "chemung-county-swcd",
+    "name": "Chemung County SWCD — Tree Program",
+    "org_slug": "chemung-county-swcd-org",
+    "kind": "conservation_district",
+    "city": "Elmira",
+    "county": "Chemung",
+    "state": "NY",
+    "region": "Northeast",
+    "phone": "(607) 739-2009",
+    "forms": [
+      "bare_root"
+    ],
+    "sells": true,
+    "ships": false,
+    "pickup_only": true,
+    "order_window": "Orders placed by mail; a news report gives a historic March deadline with late-April pickup. Confirm the current year.",
+    "address_note": "District office address not captured during seeding — call for an order form.",
+    "inventory_mode": "pdf_annual",
+    "notes": "Sells bundles of young trees, shrubs, flowers and other native plants.",
+    "sources": [
+      [
+        "Chemung County SWCD holds tree sale (WETM)",
+        "https://www.mytwintiers.com/news-cat/local-news/chemung-county-soil-and-water-conservation-district-holds-tree-sale/"
+      ]
+    ]
+  },
+  {
+    "slug": "broome-library-seed-library",
+    "name": "Broome County Public Library — Seed Library",
+    "org_slug": "broome-county-public-library",
+    "kind": "seed_library",
+    "street": "185 Court Street",
+    "city": "Binghamton",
+    "county": "Broome",
+    "state": "NY",
+    "postal": "13901",
+    "region": "Northeast",
+    "url": "https://www.thebcpl.org/posts/our-seed-library-back",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "membership_required": false,
+    "season_note": "Runs for the growing season; seed cart sits across from the front public printer.",
+    "address_note": "No library card necessary — open and free to the public.",
+    "notes": "Three packets per visit, no need to return them. Stock is donated vegetable, herb and flower seed; NATIVE SHARE IS UNCONFIRMED and probably small. Sample the actual cabinet before crediting it with any native species (S5). Cornell Cooperative Extension of Broome County donated ~10,000 packets of retail surplus in 2025, which is exactly the kind of stock that carries no natives.",
+    "sources": [
+      [
+        "Broome County Public Library — Our Seed Library is Back",
+        "https://www.thebcpl.org/posts/our-seed-library-back"
+      ],
+      [
+        "WBNG — Local public libraries prepare for gardening season",
+        "https://www.wbng.com/2025/03/25/local-public-libraries-prepare-gardening-season-with-seed-libraries/"
+      ]
+    ]
+  },
+  {
+    "slug": "gfj-endicott-seed-library",
+    "name": "George F. Johnson Memorial Library — Seed Library",
+    "kind": "seed_library",
+    "city": "Endicott",
+    "county": "Broome",
+    "state": "NY",
+    "region": "Northeast",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "membership_required": false,
+    "address_note": "Street address not captured during seeding — fill in before publishing. No library card necessary.",
+    "notes": "Launched 2025. Stock is donated vegetable, herb and flower seed; NATIVE SHARE IS UNCONFIRMED and probably small. Sample the actual cabinet before crediting it with any native species (S5).",
+    "sources": [
+      [
+        "WBNG — Local public libraries prepare for gardening season",
+        "https://www.wbng.com/2025/03/25/local-public-libraries-prepare-gardening-season-with-seed-libraries/"
+      ]
+    ]
+  },
+  {
+    "slug": "ssc-library-seed-library",
+    "name": "Southeast Steuben County Library — Seed Library",
+    "org_slug": "southeast-steuben-library",
+    "kind": "seed_library",
+    "street": "300 Nasser Civic Center Plaza, Suite 101",
+    "city": "Corning",
+    "county": "Steuben",
+    "state": "NY",
+    "postal": "14830",
+    "region": "Northeast",
+    "url": "https://ssclibrary.org/services/seed-library/",
+    "phone": "(607) 936-3713",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "hours": "Mon–Fri 9am–7pm, Sat 9am–2pm",
+    "season_note": "Open year-round; no appointment needed.",
+    "notes": "Free flower, fruit and vegetable seed; the library asks patrons to take only what they can use. Stock is donated vegetable, herb and flower seed; NATIVE SHARE IS UNCONFIRMED and probably small. Sample the actual cabinet before crediting it with any native species (S5).",
+    "sources": [
+      [
+        "Southeast Steuben County Library — Seed Library",
+        "https://ssclibrary.org/services/seed-library/"
+      ]
+    ]
+  },
+  {
+    "slug": "tcpl-salutations-seed-library",
+    "name": "Salutations Seed Library (Tompkins County Public Library)",
+    "org_slug": "tompkins-county-public-library",
+    "kind": "seed_library",
+    "street": "101 East Green Street",
+    "city": "Ithaca",
+    "county": "Tompkins",
+    "state": "NY",
+    "postal": "14850",
+    "region": "Northeast",
+    "url": "https://www.tcpl.org/salutations-seed-library",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "season_note": "Year-round. Located near the adult reference desk.",
+    "notes": "Co-sponsored by TCPL, the Master Gardeners of Tompkins County and Cornell Climate Stewards; seed donated by organisations and individuals across the Finger Lakes. Take what you need, no fixed limit. Stock is donated vegetable, herb and flower seed; NATIVE SHARE IS UNCONFIRMED and probably small. Sample the actual cabinet before crediting it with any native species (S5).",
+    "sources": [
+      [
+        "TCPL — Salutations Seed Library",
+        "https://www.tcpl.org/salutations-seed-library"
+      ],
+      [
+        "CCE Tompkins — Free Seed Cabinets",
+        "https://ccetompkins.org/gardening/help-with-home-gardens/free-seed-cabinets"
+      ]
+    ]
+  },
+  {
+    "slug": "ccetc-seed-cabinet",
+    "name": "CCE Tompkins Free Seed Cabinet",
+    "org_slug": "cce-tompkins",
+    "kind": "seed_library",
+    "street": "615 Willow Avenue",
+    "city": "Ithaca",
+    "county": "Tompkins",
+    "state": "NY",
+    "region": "Northeast",
+    "url": "https://ccetompkins.org/gardening/help-with-home-gardens/free-seed-cabinets",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "season_note": "Open from late January until the supply runs out.",
+    "notes": "Free donated vegetable and flower seed; one visit per month, limit 10 packets per household per visit. Stock is donated vegetable, herb and flower seed; NATIVE SHARE IS UNCONFIRMED and probably small. Sample the actual cabinet before crediting it with any native species (S5).",
+    "sources": [
+      [
+        "CCE Tompkins — Free Seed Cabinets",
+        "https://ccetompkins.org/gardening/help-with-home-gardens/free-seed-cabinets"
+      ]
+    ]
+  },
+  {
+    "slug": "steele-memorial-seed-lending",
+    "name": "Steele Memorial Library — Seed Lending",
+    "org_slug": "chemung-county-library-district",
+    "kind": "seed_library",
+    "street": "101 E Church St",
+    "city": "Elmira",
+    "county": "Chemung",
+    "state": "NY",
+    "region": "Northeast",
+    "url": "https://www.chemunglibraries.org/things",
+    "forms": [
+      "seed"
+    ],
+    "sells": false,
+    "gives_free": true,
+    "notes": "WEAKEST CONFIRMATION IN THE SET — the district's Library of Things page says Steele participates in the library system's seed lending program, but there is no dedicated seed library page. Confirm by phone before publishing. Stock is donated vegetable, herb and flower seed; NATIVE SHARE IS UNCONFIRMED and probably small. Sample the actual cabinet before crediting it with any native species (S5).",
+    "sources": [
+      [
+        "Chemung County Library District — Library of Things",
+        "https://www.chemunglibraries.org/things"
+      ]
+    ]
+  }
+]
