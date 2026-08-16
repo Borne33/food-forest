@@ -679,6 +679,32 @@
     border-left:3px solid var(--soil);padding:6px 10px;border-radius:0 4px 4px 0;margin:0 0 10px}
   .shopsoon{border:1.5px dashed var(--line);border-radius:6px;background:#fbf9f2;padding:26px 22px;text-align:center;color:var(--ink2)}
   .shopsoon b{display:block;font-size:17px;margin-bottom:6px;color:var(--ink)}
+  /* ---------- Shops & Seed (S3: Map) ---------- */
+  .shopsplit{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:start}
+  .shopmap{width:100%;min-width:0;height:min(64vh,640px);border:1.5px solid var(--ink);border-radius:6px}
+  .shoplist{max-height:min(64vh,640px);overflow:auto;border:1px solid var(--line);border-radius:6px;background:#fbf9f2}
+  .shoplist .lrow{padding:11px 13px;border-bottom:1px solid var(--line);cursor:pointer}
+  .shoplist .lrow:last-child{border-bottom:0}
+  .shoplist .lrow:hover{background:var(--paper2)}
+  .shoplist .lrow.sel{background:#eef4e5;border-left:4px solid var(--sage-d);padding-left:9px}
+  .shoplist .lrow.off{opacity:.62}
+  .shoplist .t{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .shoplist .t b{font-size:15.5px}
+  .shoplist .d{font-family:'Space Mono';font-size:11px;color:var(--faint);white-space:nowrap}
+  .shoplist .s{font-size:13px;color:var(--ink2);margin-top:3px}
+  .shoplist .grouphd{position:sticky;top:0;z-index:2;background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);padding:7px 13px}
+  .shopradius{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+  .shopradius input[type=range]{accent-color:var(--sage-d);width:min(240px,42vw)}
+  .shoplegend{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0 0;
+    font-family:'Space Mono';font-size:10.5px;color:var(--ink2)}
+  .shoplegend span{display:inline-flex;align-items:center;gap:6px}
+  .shoplegend i{width:12px;height:12px;border-radius:99px;border:1.5px solid var(--ink);display:block}
+  .shoppop{font-family:'Spectral',Georgia,serif;font-size:13.5px;min-width:180px}
+  .shoppop b{font-size:15px;display:block;margin-bottom:2px}
+  .shoppop .m{font-family:'Space Mono';font-size:10.5px;color:var(--faint);margin-bottom:5px}
+  .shoppop a{font-family:'Space Mono';font-size:11px}
+  @media(max-width:900px){ .shopsplit{grid-template-columns:1fr} .shopmap{height:46vh} .shoplist{max-height:340px} }
   @media(max-width:640px){ .shopkv{grid-template-columns:1fr} .shopcard .head{flex-wrap:wrap} }
 </style>
 </head>
@@ -4133,8 +4159,184 @@ function ShopCard({v, org, saleCount, distance}){
   );
 }
 
-function Shops({vendors, sales, orgs, curPlan, isAdmin}){
-  const [tab,setTab]=useState("dir");
+/* Map tab (S3). Uses the Leaflet already loaded for the Planting Plan — same
+   pinned CDN build, same tile layers, so no new dependency. The map is created
+   only while this tab is mounted and torn down on unmount, so it can never
+   coexist with the Planting Plan's instance. */
+const PIN_FILL={ nursery:"#e9f2df", seed_company:"#efe4d0", seed_library:"#eceaf6",
+  conservation_district:"#e6eff4", botanic_garden:"#e9f2df", coop:"#e9f2df",
+  society:"#f1eaf5", chapter:"#f1eaf5", nonprofit:"#f1eaf5", land_trust:"#f1eaf5",
+  library:"#eceaf6", other:"#f1eaf5" };
+const pinFill=k=>PIN_FILL[k]||"#f1eaf5";
+
+function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
+  const mapRef=useRef(null), mapObj=useRef(null), pinG=useRef(null), ringRef=useRef(null);
+  const markers=useRef({});
+  const [radius,setRadius]=useState(75);
+  const [useRadius,setUseRadius]=useState(true);
+  const [showSales,setShowSales]=useState(true);
+  const [sel,setSel]=useState(null);
+  const [ready,setReady]=useState(false);
+
+  const mapped   = useMemo(()=>vendors.filter(v=>v.lat!==null && v.lat!==undefined),[vendors]);
+  const unmapped = useMemo(()=>vendors.filter(v=>v.lat===null || v.lat===undefined),[vendors]);
+  const inRange = useMemo(()=>{
+    if(!centre || !useRadius) return mapped;
+    return mapped.filter(v=>{ const d=distOf[v.id]; return d===null||d===undefined?false:d<=radius; });
+  },[mapped,centre,useRadius,radius,distOf]);
+  // mail order stays reachable even when it falls outside the radius
+  const farShippers = useMemo(()=>{
+    if(!centre || !useRadius) return [];
+    const inSet=new Set(inRange.map(v=>v.id));
+    return mapped.filter(v=>v.ships && !inSet.has(v.id));
+  },[mapped,inRange,centre,useRadius]);
+  const saleP = useMemo(()=>sales.filter(s=>s.lat!==null && s.lat!==undefined),[sales]);
+
+  /* create once, destroy on unmount */
+  useEffect(()=>{
+    if(mapObj.current || !mapRef.current || !window.L) return;
+    const bases=TILE_LAYERS.map(t=>L.tileLayer(t.url,{maxNativeZoom:t.max,maxZoom:19,attribution:t.attr}));
+    const map=L.map(mapRef.current,{center:centre?[centre.lat,centre.lon]:[42.9,-76.5],
+      zoom:centre?8:7, layers:[bases[0]]});
+    const baseObj={}; TILE_LAYERS.forEach((t,i)=>baseObj[t.name]=bases[i]);
+    L.control.layers(baseObj,null,{position:"topright"}).addTo(map);
+    L.control.scale({imperial:true,metric:false,position:"bottomleft"}).addTo(map);
+    pinG.current=L.layerGroup().addTo(map);
+    mapObj.current=map; setReady(true);
+    setTimeout(()=>map.invalidateSize(),40);   // the tab was hidden when the div was measured
+    return ()=>{ map.remove(); mapObj.current=null; pinG.current=null; ringRef.current=null;
+                 markers.current={}; setReady(false); };
+  },[]);
+
+  /* redraw pins whenever the filtered set changes */
+  useEffect(()=>{
+    if(!ready || !pinG.current) return;
+    const map=mapObj.current;
+    pinG.current.clearLayers(); markers.current={};
+    inRange.forEach(v=>{
+      const d=distOf[v.id];
+      const m=L.circleMarker([v.lat,v.lon],{radius:9,weight:1.6,color:"#2b2a22",
+        fillColor:pinFill(v.kind),fillOpacity:1});
+      const bits=[vkLabel(v.kind)];
+      if(v.givesFree) bits.push("free");
+      if(salesByVendor[v.id]) bits.push(salesByVendor[v.id]+" sale"+(salesByVendor[v.id]===1?"":"s"));
+      m.bindPopup(
+        `<div class="shoppop"><b>${v.name}</b>`+
+        `<div class="m">${[v.city&&v.city+", "+v.state, v.county&&v.county+" Co.", v.subregion].filter(Boolean).join(" · ")}`+
+        `${d!==null&&d!==undefined?" · "+Math.round(d)+" mi":""}</div>`+
+        `<div>${bits.join(" · ")}</div>`+
+        (v.street?`<div class="m" style="margin-top:4px">${v.street}</div>`:"")+
+        (v.url?`<div style="margin-top:6px"><a href="${v.url}" target="_blank" rel="noopener">Website ↗</a></div>`:"")+
+        `</div>`);
+      m.on("click",()=>setSel(v.id));
+      m.addTo(pinG.current); markers.current[v.id]=m;
+    });
+    if(showSales) saleP.forEach(s=>{
+      L.circleMarker([s.lat,s.lon],{radius:6,weight:1.4,color:"#2b2a22",
+        fillColor:"#f6e7e2",fillOpacity:1,dashArray:"2 2"})
+        .bindPopup(`<div class="shoppop"><b>${s.name}</b><div class="m">${
+          [s.venueName,s.city&&s.city+", "+s.state,s.startsOn||"date not announced"].filter(Boolean).join(" · ")
+        }</div></div>`).addTo(pinG.current);
+    });
+    // plan centre + radius ring
+    if(ringRef.current){ ringRef.current.remove(); ringRef.current=null; }
+    if(centre){
+      const g=L.layerGroup();
+      L.circleMarker([centre.lat,centre.lon],{radius:5,weight:2,color:"#42603a",fillColor:"#42603a",fillOpacity:1})
+        .bindPopup('<div class="shoppop"><b>Your plan</b><div class="m">centre of your mapped area</div></div>').addTo(g);
+      if(useRadius) L.circle([centre.lat,centre.lon],{radius:radius*1609.34,color:"#42603a",weight:1.5,
+        dashArray:"6 6",fill:true,fillOpacity:.05}).addTo(g);
+      g.addTo(mapObj.current); ringRef.current=g;
+    }
+    // fit to what's shown, first paint only
+    if(!map._shopsFitted){
+      const pts=inRange.map(v=>[v.lat,v.lon]).concat(centre?[[centre.lat,centre.lon]]:[]);
+      if(pts.length>1) map.fitBounds(L.latLngBounds(pts).pad(0.12));
+      else if(pts.length===1) map.setView(pts[0],10);
+      map._shopsFitted=true;
+    }
+  },[ready,inRange,saleP,showSales,centre,radius,useRadius,distOf,salesByVendor]);
+
+  const focus=v=>{
+    setSel(v.id);
+    const m=markers.current[v.id];
+    if(m && mapObj.current){ mapObj.current.setView([v.lat,v.lon], Math.max(mapObj.current.getZoom(),11)); m.openPopup(); }
+  };
+  const row=(v,off)=>{
+    const d=distOf[v.id];
+    return (
+      <div key={v.id} className={"lrow"+(sel===v.id?" sel":"")+(off?" off":"")}
+           onClick={()=>{ if(!off) focus(v); else setSel(v.id); }}>
+        <div className="t"><b>{v.name}</b>
+          <span className="d">{d!==null&&d!==undefined?Math.round(d)+" mi":(v.ships?"ships":"—")}</span></div>
+        <div className="s">
+          {[v.city, v.subregion].filter(Boolean).join(" · ")} · {vkLabel(v.kind)}
+          {v.givesFree?" · free":""}{salesByVendor[v.id]?` · ${salesByVendor[v.id]} sale${salesByVendor[v.id]===1?"":"s"}`:""}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div>
+      <div className="shopradius">
+        {centre ? <>
+          <button className={"chip"+(useRadius?" on":"")} onClick={()=>setUseRadius(r=>!r)}>
+            {useRadius?"Within radius":"Show all"}</button>
+          {useRadius && <>
+            <input type="range" min="10" max="300" step="5" value={radius}
+                   onChange={e=>setRadius(parseInt(e.target.value,10))} />
+            <span className="mono" style={{fontSize:13}}><b>{radius} mi</b> of your plan</span>
+          </>}
+        </> : <span className="mono" style={{fontSize:12,color:"var(--faint)"}}>
+          Draw your plot in a Planting Plan to filter by distance.</span>}
+        <button className={"chip"+(showSales?" on":"")} onClick={()=>setShowSales(s=>!s)}>
+          Sale venues ({saleP.length})</button>
+      </div>
+
+      <div className="shopsplit">
+        <div>
+          <div className="shopmap" ref={mapRef}></div>
+          <div className="shoplegend">
+            <span><i style={{background:"#e9f2df"}}></i>Nursery / garden</span>
+            <span><i style={{background:"#efe4d0"}}></i>Seed company</span>
+            <span><i style={{background:"#eceaf6"}}></i>Seed library</span>
+            <span><i style={{background:"#e6eff4"}}></i>Conservation district</span>
+            <span><i style={{background:"#f1eaf5"}}></i>Organization</span>
+            <span><i style={{background:"#f6e7e2",borderStyle:"dashed"}}></i>Sale venue</span>
+          </div>
+          <div style={{fontFamily:"'Space Mono'",fontSize:10.5,color:"var(--faint)",marginTop:8,lineHeight:1.6}}>
+            Pins are all the same size: sizing them by how much of your plan each shop can supply needs the plant
+            lists, which arrive in a later stage. Colour is the type of supplier.
+          </div>
+        </div>
+
+        <div className="shoplist">
+          <div className="grouphd">{inRange.length} on the map</div>
+          {inRange.length===0 && <div className="lrow" style={{cursor:"default"}}>
+            <div className="s">Nothing within {radius} miles. Widen the radius or switch to “Show all”.</div></div>}
+          {[...inRange].sort((a,b)=>{
+            const x=distOf[a.id], y=distOf[b.id];
+            if(x===null||x===undefined) return 1; if(y===null||y===undefined) return -1;
+            return x-y;
+          }).map(v=>row(v,false))}
+
+          {farShippers.length>0 && <>
+            <div className="grouphd">{farShippers.length} outside the radius, ships here</div>
+            {farShippers.map(v=>row(v,true))}
+          </>}
+
+          {unmapped.length>0 && <>
+            <div className="grouphd">{unmapped.length} with no location recorded</div>
+            {unmapped.map(v=>row(v,true))}
+          </>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Shops({vendors, sales, orgs, curPlan, isAdmin, tab, setTab}){
   const [q,setQ]=useState("");
   const [sub,setSub]=useState("all");
   const [st,setSt]=useState("all");
@@ -4230,8 +4432,8 @@ function Shops({vendors, sales, orgs, curPlan, isAdmin}){
         {isAdmin && <button className={tab==="edit"?"on":""} onClick={()=>setTab("edit")}>Shop Editor</button>}
       </div>
 
-      {tab==="map" && soon("Map arrives in the next stage",
-        "The Leaflet map of every listing, sized by how much of your plan each one can supply, is stage S3.")}
+      {tab==="map" && <ShopMap vendors={vendors} sales={sales} centre={centre}
+                               salesByVendor={salesByVendor} distOf={distOf} />}
       {tab==="cal" && soon("Sale Calendar arrives in stage S4",
         `${sales.length} sales and order windows are already in the database, waiting on the month-by-month view.`)}
       {tab==="edit" && soon("Shop Editor arrives in stage S6",
@@ -4317,6 +4519,7 @@ function App(){
   const [vendors,setVendors]=useState([]);      // Shops & Seed
   const [sales,setSales]=useState([]);
   const [orgs,setOrgs]=useState([]);
+  const [shopTab,setShopTab]=useState("dir"); // lifted so the Map tab can use the wide layout
   const [user,setUser]=useState(null);
   const [authReady,setAuthReady]=useState(false);
 
@@ -4460,7 +4663,7 @@ function App(){
         </div>
       </div>
 
-      <div className={"wrap"+(page==="plan"||page==="grants"?" wide":"")}>
+      <div className={"wrap"+(page==="plan"||page==="grants"||(page==="shops"&&shopTab==="map")?" wide":"")}>
         {loadErr ? (
           <div className="empty" style={{borderColor:"var(--red)",color:"var(--ink)"}}>
             <b>Couldn't reach Supabase.</b>
@@ -4471,7 +4674,8 @@ function App(){
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
-          page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} curPlan={curPlan} isAdmin={isAdmin} /> :
+          page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} curPlan={curPlan} isAdmin={isAdmin}
+                                  tab={shopTab} setTab={setShopTab} /> :
           page==="guide" ? <ScoringGuide /> :
           page==="about" ? <About /> :
           page==="grants" ? <GrantFinder curPlan={curPlan} /> :
