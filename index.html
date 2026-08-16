@@ -4238,9 +4238,11 @@ function ShopCard({v, org, saleCount, distance, forceOpen, inv, planTotal, plant
             return (
               <div style={{marginBottom:12}}>
                 <div className="eyebrow" style={{marginBottom:5}}>
-                  {mine.length>0 ? `Carries ${mine.length} of the ${planTotal} plants in your plan`
-                                 : `${listed} native plants listed`}
-                  {coverage!==null && mine.length>0 ? ` — ${coverage}% of the plan` : ""}
+                  {/* count DISTINCT plants, not listings: a species and its cultivar
+                      are two rows but one plant, which read as "21 of 20" */}
+                  {planHits>0 ? `Carries ${planHits} of the ${planTotal} plants in your plan`
+                              : `${listed} native plants listed`}
+                  {coverage!==null && planHits>0 ? ` — ${coverage}% of the plan` : ""}
                 </div>
                 <div className="invrow">
                   {show.map((x,i)=>(
