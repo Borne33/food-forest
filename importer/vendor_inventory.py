@@ -207,7 +207,8 @@ def main():
 
     rows, misses, how = [], [], {}
     for it in items:
-        cult = CULTIVAR.search(it["raw_name"] or "")
+        # a cultivar is named in the scientific string, not the common name
+        cult = CULTIVAR.search(it.get("cultivar_src") or it.get("raw_sci") or it.get("raw_name") or "")
         pid, reason = match(it.get("raw_sci"), it.get("raw_name"), idx, it.get("code"))
         how[reason] = how.get(reason, 0) + 1
         if pid:

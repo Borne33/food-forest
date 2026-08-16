@@ -152,6 +152,9 @@ create table if not exists public.plant_synonyms (
   kind     text not null default 'sci',   -- sci | common
   source   text
 );
+-- NB: this is an EXPRESSION index, so PostgREST cannot use it as an ON CONFLICT
+-- target either (42P10, same as the old partial vendor_plants index). Insert
+-- synonyms after checking for existing names rather than upserting.
 create unique index if not exists plant_synonyms_uniq on public.plant_synonyms(lower(name), kind);
 
 -- ---------------------------------------------------------------- matcher staging (D5)
