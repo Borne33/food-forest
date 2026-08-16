@@ -4273,8 +4273,11 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
       const g=L.layerGroup();
       L.circleMarker([centre.lat,centre.lon],{radius:5,weight:2,color:"#42603a",fillColor:"#42603a",fillOpacity:1})
         .addTo(g);
+      // interactive:false is ESSENTIAL — a Leaflet circle is clickable by default,
+      // and this one is hundreds of pixels wide, drawn after the pins. Without it
+      // the ring sits on top and swallows every pin click (broke S3 entirely).
       if(useRadius) L.circle([centre.lat,centre.lon],{radius:radius*1609.34,color:"#42603a",weight:1.5,
-        dashArray:"6 6",fill:true,fillOpacity:.05}).addTo(g);
+        dashArray:"6 6",fill:true,fillOpacity:.05,interactive:false}).addTo(g);
       g.addTo(mapObj.current); ringRef.current=g;
     }
     // fit to what's shown, first paint only
