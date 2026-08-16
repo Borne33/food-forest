@@ -136,9 +136,11 @@ create table if not exists public.vendor_plants (
   last_seen     date default current_date,
   created_at    timestamptz not null default now()
 );
+-- NOT partial: PostgREST needs a plain unique index as an ON CONFLICT target
+-- (a partial one raises 42P10). Rows with a NULL plant_id don't dedupe, which
+-- is fine — unmatched names live in vendor_plants_unmatched instead.
 create unique index if not exists vendor_plants_uniq
-  on public.vendor_plants(vendor_id, plant_id, form, cultivar_name)
-  where plant_id is not null;
+  on public.vendor_plants(vendor_id, plant_id, form, cultivar_name);
 create index if not exists vendor_plants_plant_idx  on public.vendor_plants(plant_id);
 create index if not exists vendor_plants_vendor_idx on public.vendor_plants(vendor_id);
 
