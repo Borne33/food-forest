@@ -666,6 +666,16 @@
     padding:2px 7px;border-radius:3px;background:var(--sage-d);color:var(--paper)}
   .shopflag{font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;
     padding:2px 7px;border-radius:99px;border:1px solid var(--line);background:#fbf9f2;color:var(--ink2)}
+.invrow{display:flex;gap:7px;flex-wrap:wrap}
+  .invpill{font-size:13px;border:1px solid var(--line);background:#fbf9f2;border-radius:99px;
+    padding:3px 11px;display:inline-flex;gap:7px;align-items:center}
+  .invpill.mine{border-color:var(--sage-d);background:#eef4e5}
+  .invpill em{font-style:italic;color:var(--ink2);font-size:12px}
+  .invpill .stock{font-family:'Space Mono';font-size:9.5px;padding:1px 6px;border-radius:3px;border:1px solid}
+  .invpill .s-in{color:#26661f;border-color:#9dc48f;background:#e9f2df}
+  .invpill .s-out{color:#8a3b2f;border-color:#ddb2a8;background:#f6e7e2}
+  .invpill .s-seas{color:#7a5320;border-color:var(--soil-line);background:var(--soil-bg)}
+  .invpill .s-unk{color:var(--faint);border-color:var(--line);background:#fbf9f2}
   .shopkv{display:grid;grid-template-columns:120px 1fr;gap:3px 12px;font-size:14px;margin:0 0 10px}
   .shopkv dt{font-family:'Space Mono';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--faint);padding-top:4px}
@@ -902,6 +912,23 @@ const dataProvider = {
   getVendors(){ return this._all('vendors', rowToVendor, 'name'); },
   getSales(){ return this._all('sales', rowToSale, 'starts_on'); },
   getOrganizations(){ return this._all('organizations', rowToOrg, 'name'); },
+  // only the columns the Shops page needs — vendor_plants grows fastest of all
+  // these tables, so don't pull prose/urls we never render in a list view.
+  async getVendorPlants(){
+    const PAGE=1000; let from=0, all=[];
+    for(;;){
+      const { data, error } = await sb.from('vendor_plants')
+        .select('id,vendor_id,plant_id,form,size,stock,price_cents,unit,is_cultivar,cultivar_name,last_seen')
+        .order('id').range(from, from+PAGE-1);
+      if(error) throw error;
+      all=all.concat(data||[]);
+      if(!data || data.length<PAGE) break;
+      from+=PAGE;
+    }
+    return all.map(r=>({ id:r.id, vendorId:r.vendor_id, plantId:r.plant_id, form:r.form,
+      size:r.size, stock:r.stock, priceCents:r.price_cents, unit:r.unit,
+      isCultivar:r.is_cultivar, cultivarName:r.cultivar_name, lastSeen:r.last_seen }));
+  },
   async loadPlans(){
     const { data, error } = await sb.from('plans').select('id,name,color,created_at').order('created_at');
     if(error) throw error;
@@ -4140,11 +4167,16 @@ function milesBetween(a,b,c,d){
   const h=Math.sin(dLa/2)**2 + Math.cos(a*t)*Math.cos(c*t)*Math.sin(dLo/2)**2;
   return 2*R*Math.asin(Math.min(1,Math.sqrt(h)));
 }
-const SHOP_SORTS=[["name","Name (A–Z)"],["distance","Distance from my plan"],["kind","Type"],
-  ["subregion","Region"],["county","County"],["city","Town"],["forms","Forms offered"],
-  ["free","Free sources first"],["ships","Ships"],["sales","Upcoming sales"],["verified","Last verified"]];
+const SHOP_SORTS=[["name","Name (A–Z)"],["planmatch","Plants from my plan"],["listed","Plants listed"],
+  ["distance","Distance from my plan"],["kind","Type"],["subregion","Region"],["county","County"],
+  ["city","Town"],["forms","Forms offered"],["free","Free sources first"],["ships","Ships"],
+  ["sales","Upcoming sales"],["verified","Last verified"]];
 
-function ShopCard({v, org, saleCount, distance, forceOpen}){
+function ShopCard({v, org, saleCount, distance, forceOpen, inv, planTotal, plantById, rows}){
+  inv = inv || {plantIds:new Set(), planIds:new Set(), rows:0};
+  rows = rows || []; plantById = plantById || {};
+  const listed = inv.plantIds.size, planHits = inv.planIds.size;
+  const coverage = planTotal ? Math.round(100*planHits/planTotal) : null;
   const [open,setOpen]=useState(!!forceOpen);
   const box=useRef(null);
   // opened by a jump from the map: expand and bring it into view
@@ -4176,12 +4208,19 @@ function ShopCard({v, org, saleCount, distance, forceOpen}){
             <span className={"shopkind "+vkClass(v.kind)}>{vkLabel(v.kind)}</span>
             {flags.map(([c,label])=><span key={label} className={c==="free"?"shopfree":"shopflag"}>{label}</span>)}
             {saleCount>0 && <span className="shopflag">{saleCount} sale{saleCount===1?"":"s"} listed</span>}
+            {listed>0 && <span className="shopflag">{listed} plants listed</span>}
           </div>
         </div>
         <div className="rgt">
-          {distance!==null && distance!==undefined
-            ? <div className="big">{Math.round(distance)}<span>miles away</span></div>
-            : v.ships ? <div className="big">✈<span>mail order</span></div> : null}
+          {planTotal>0 && listed>0
+            ? <div className="big">{planHits}<span>of your {planTotal} plants</span></div>
+            : listed>0
+              ? <div className="big">{listed}<span>plants listed</span></div>
+              : distance!==null && distance!==undefined
+                ? <div className="big">{Math.round(distance)}<span>miles away</span></div>
+                : v.ships ? <div className="big">✈<span>mail order</span></div> : null}
+          {listed>0 && distance!==null && distance!==undefined &&
+            <div className="where" style={{marginTop:4}}>{Math.round(distance)} mi</div>}
           <div className="where" style={{marginTop:6}}>{open?"▲ less":"▼ more"}</div>
         </div>
       </div>
@@ -4191,6 +4230,33 @@ function ShopCard({v, org, saleCount, distance, forceOpen}){
             <div className="shopunver">Unverified listing — sourced from a public directory, not yet confirmed
               with {v.name}. Call ahead before travelling.</div>
           )}
+          {listed>0 && (()=>{
+            const named=rows.map(r=>({r, p:plantById[r.plantId]})).filter(x=>x.p);
+            const mine=named.filter(x=>inv.planIds.has(x.r.plantId));
+            const rest=named.filter(x=>!inv.planIds.has(x.r.plantId));
+            const show=[...mine, ...rest].slice(0,14);
+            return (
+              <div style={{marginBottom:12}}>
+                <div className="eyebrow" style={{marginBottom:5}}>
+                  {mine.length>0 ? `Carries ${mine.length} of the ${planTotal} plants in your plan`
+                                 : `${listed} native plants listed`}
+                  {coverage!==null && mine.length>0 ? ` — ${coverage}% of the plan` : ""}
+                </div>
+                <div className="invrow">
+                  {show.map((x,i)=>(
+                    <span key={i} className={"invpill"+(inv.planIds.has(x.r.plantId)?" mine":"")}>
+                      {x.p.common}<em>{x.p.sci}</em>
+                      {x.r.isCultivar && x.r.cultivarName ? <em>‘{x.r.cultivarName}’</em> : null}
+                      <span className={"stock s-"+(x.r.stock==="in_stock"?"in":x.r.stock==="out"?"out":x.r.stock==="seasonal"?"seas":"unk")}>
+                        {x.r.form||"—"}</span>
+                    </span>
+                  ))}
+                  {named.length>show.length &&
+                    <span className="invpill" style={{borderStyle:"dashed"}}>+{named.length-show.length} more</span>}
+                </div>
+              </div>
+            );
+          })()}
           {v.notes && <p>{v.notes}</p>}
           {v.addressNote && <p style={{color:"var(--ink2)",fontSize:13.5}}><i>{v.addressNote}</i></p>}
           <dl className="shopkv">
@@ -4202,9 +4268,10 @@ function ShopCard({v, org, saleCount, distance, forceOpen}){
             {v.phone && <><dt>Phone</dt><dd>{v.phone}</dd></>}
             {v.email && <><dt>Email</dt><dd><a href={"mailto:"+v.email}>{v.email}</a></dd></>}
             {v.sourcingNotes && <><dt>Sourcing</dt><dd>{v.sourcingNotes}</dd></>}
-            <dt>Inventory</dt><dd style={{color:"var(--faint)"}}>
-              {v.inventoryMode==="none"||!v.inventoryMode ? "No plant list recorded yet — coming in a later stage."
-                : "Plant list source: "+v.inventoryMode.replace(/_/g," ")}</dd>
+            <dt>Plant list</dt><dd style={{color:"var(--faint)"}}>
+              {listed>0
+                ? `${listed} plants · ${inv.rows} listings · from ${(v.inventoryMode||"manual").replace(/_/g," ")}`
+                : "No plant list recorded yet — this shop's stock hasn't been sampled."}</dd>
           </dl>
           {v.sources.length>0 && (
             <div style={{fontFamily:"'Space Mono'",fontSize:11,color:"var(--faint)",marginBottom:10}}>
@@ -4466,7 +4533,7 @@ function UpcomingSalesBanner({sales, vendorById, onGoCalendar}){
   );
 }
 
-function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, setPlanId, onOpenCard, vendorById}){
+function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, setPlanId, onOpenCard, vendorById, invOf, planTotal}){
   const mapRef=useRef(null), mapObj=useRef(null), pinG=useRef(null), ringRef=useRef(null);
   const markers=useRef({});
   const [radius,setRadius]=useState(100);
@@ -4515,7 +4582,12 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
     // detail panel. Nothing about the UI lives inside a Leaflet layer, so a
     // marker rebuild can never destroy what the user is looking at.
     inRange.forEach(v=>{
-      const m=L.circleMarker([v.lat,v.lon],{radius:9,weight:1.6,color:"#2b2a22",
+      // pin size now means something: how much of the plan this shop can supply
+      const iv=invOf?invOf(v.id):null;
+      const hits=iv?iv.planIds.size:0;
+      const r = planTotal>0 && hits>0 ? Math.min(20, 8+Math.round(12*hits/planTotal))
+              : (iv&&iv.plantIds.size>0 ? 10 : 7);
+      const m=L.circleMarker([v.lat,v.lon],{radius:r,weight:1.6,color:"#2b2a22",
         fillColor:pinFill(v.kind),fillOpacity:1});
       m.on("click",e=>{ L.DomEvent.stopPropagation(e); setSel({kind:"vendor",id:v.id}); });
       m.addTo(pinG.current); markers.current["v"+v.id]=m;
@@ -4546,7 +4618,7 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
       else if(pts.length===1) map.setView(pts[0],10);
       map._shopsFitted=true;
     }
-  },[ready,inRange,saleP,showSales,centre,radius,useRadius,distOf,salesByVendor]);
+  },[ready,inRange,saleP,showSales,centre,radius,useRadius,distOf,salesByVendor,planTotal]);
 
   /* selected pin is restyled in place — never rebuilt, so selection can't flicker */
   useEffect(()=>{
@@ -4576,6 +4648,10 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
         <div className="s">
           {[v.city, v.subregion].filter(Boolean).join(" · ")} · {vkLabel(v.kind)}
           {v.givesFree?" · free":""}{salesByVendor[v.id]?` · ${salesByVendor[v.id]} sale${salesByVendor[v.id]===1?"":"s"}`:""}
+          {(()=>{ const iv=invOf?invOf(v.id):null; if(!iv||!iv.plantIds.size) return null;
+            return planTotal>0 && iv.planIds.size>0
+              ? ` · ${iv.planIds.size} from your plan`
+              : ` · ${iv.plantIds.size} plants listed`; })()}
         </div>
         <button className="lcard" onClick={e=>{ e.stopPropagation(); onOpenCard(v.id); }}>Full details →</button>
       </div>
@@ -4623,8 +4699,9 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
               {centre?"":" (no mapped area)"}</span>
           </div>
           <div style={{fontFamily:"'Space Mono'",fontSize:10.5,color:"var(--faint)",marginTop:8,lineHeight:1.6}}>
-            Pins are all the same size: sizing them by how much of your plan each shop can supply needs the plant
-            lists, which arrive in a later stage. Colour is the type of supplier.
+            Colour is the type of supplier. {planTotal>0
+              ? "Pin size shows how much of your plan that shop can supply; small pins have no plant list recorded yet."
+              : "Pin size shows whether a plant list has been recorded — add plants to a plan to size them by coverage."}
           </div>
         </div>
 
@@ -4715,7 +4792,7 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
   );
 }
 
-function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
+function Shops({vendors, sales, orgs, plans, vendorPlants, plants, planItems, curPlan, isAdmin, tab, setTab}){
   const [q,setQ]=useState("");
   const [planId,setPlanId]=useState(curPlan);   // which plan the map measures from
   const [focusId,setFocusId]=useState(null);    // vendor jumped to from the map
@@ -4725,7 +4802,8 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
   const [kind,setKind]=useState("all");
   const [sortKey,setSortKey]=useState("name");
   const [dir,setDir]=useState(1);
-  const [chips,setChips]=useState({free:false,ships:false,ecotype:false,straight:false,hasSale:false});
+  const [chips,setChips]=useState({free:false,ships:false,ecotype:false,straight:false,hasSale:false,
+                                   planMatch:false,hasList:false});
   const [centre,setCentre]=useState(null);   // {lat,lon} of the current plan's mapped area
 
   // distance is measured from the plan's drawn area, exactly as the Grant Finder does
@@ -4743,6 +4821,26 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
 
   const orgById=useMemo(()=>{ const m={}; orgs.forEach(o=>m[o.id]=o); return m; },[orgs]);
   const vendorById=useMemo(()=>{ const m={}; vendors.forEach(v=>m[v.id]=v); return m; },[vendors]);
+
+  /* ---- inventory: what each vendor stocks, and how much of the plan it covers ---- */
+  const plantById=useMemo(()=>{ const m={}; (plants||[]).forEach(p=>m[p.id]=p); return m; },[plants]);
+  // measured against the same plan the map uses, so the two never disagree
+  const planPlantIds=useMemo(()=>new Set(
+    (planItems||[]).filter(it=>it.planId===planId).map(it=>it.plantId)),[planItems,planId]);
+
+  const inv=useMemo(()=>{
+    const m={};
+    (vendorPlants||[]).forEach(vp=>{
+      if(!vp.plantId) return;
+      const e=m[vp.vendorId]||(m[vp.vendorId]={plantIds:new Set(),planIds:new Set(),rows:0});
+      e.rows++; e.plantIds.add(vp.plantId);
+      if(planPlantIds.has(vp.plantId)) e.planIds.add(vp.plantId);
+    });
+    return m;
+  },[vendorPlants,planPlantIds]);
+  const EMPTY_INV={plantIds:new Set(),planIds:new Set(),rows:0};
+  const invOf=id=>inv[id]||EMPTY_INV;
+  const planTotal=planPlantIds.size;
   const salesByVendor=useMemo(()=>{ const m={}; sales.forEach(s=>{ m[s.vendorId]=(m[s.vendorId]||0)+1; }); return m; },[sales]);
   // "Full details" from a map pin or list row: show the Directory with that card open
   const openCard=useMemo(()=>(id)=>{ setFocusId(id); setTab("dir"); },[setTab]);
@@ -4766,6 +4864,8 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
       if(chips.ecotype && !v.localEcotype) return false;
       if(chips.straight && !v.straightSpeciesOnly) return false;
       if(chips.hasSale && !salesByVendor[v.id]) return false;
+      if(chips.planMatch && invOf(v.id).planIds.size===0) return false;
+      if(chips.hasList && invOf(v.id).plantIds.size===0) return false;
       if(needle){
         const hay=[v.name,v.city,v.county,v.subregion,v.state,v.notes,(v.forms||[]).join(" ")]
           .filter(Boolean).join(" ").toLowerCase();
@@ -4783,6 +4883,8 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
       case "free": return v.givesFree?0:1;
       case "ships": return v.ships?0:1;
       case "sales": return -(salesByVendor[v.id]||0);
+      case "listed": return -invOf(v.id).plantIds.size;
+      case "planmatch": return -invOf(v.id).planIds.size;
       case "verified": return v.lastVerified||"";
       default: return v.name.toLowerCase();
     }};
@@ -4791,7 +4893,7 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
       const c = typeof x==="number" && typeof y==="number" ? x-y : String(x).localeCompare(String(y));
       return (c||a.name.localeCompare(b.name))*dir;
     });
-  },[vendors,q,sub,st,kind,chips,sortKey,dir,distOf,salesByVendor]);
+  },[vendors,q,sub,st,kind,chips,sortKey,dir,distOf,salesByVendor,inv]);
 
   // a vendor jumped to from the map is always shown, even if the filters exclude it
   const listed=useMemo(()=>{
@@ -4828,7 +4930,8 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
       {tab==="map" && <ShopMap vendors={vendors} sales={sales} centre={centre}
                                salesByVendor={salesByVendor} distOf={distOf}
                                plans={plans} planId={planId} setPlanId={setPlanId}
-                               onOpenCard={openCard} vendorById={vendorById} />}
+                               onOpenCard={openCard} vendorById={vendorById}
+                               invOf={invOf} planTotal={planTotal} />}
       {tab==="cal" && <SaleCalendar sales={sales} vendorById={vendorById} onOpenCard={openCard} />}
       {tab==="edit" && soon("Shop Editor arrives in stage S6",
         "Add and edit shops and sales by form, link or document upload. Until then, listings are seeded from importer/vendors/*.json.")}
@@ -4870,6 +4973,8 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
           {chip("ecotype","Local ecotype")}
           {chip("straight","Straight species")}
           {chip("hasSale","Hosts a sale")}
+          {chip("hasList","Has a plant list")}
+          {planTotal>0 && chip("planMatch","Has plants from my plan")}
         </div>
 
         <div className="count">
@@ -4891,7 +4996,9 @@ function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
           : listed.map(v=>(
               <ShopCard key={v.id} v={v} org={orgById[v.orgId]}
                         saleCount={salesByVendor[v.id]||0} distance={distOf[v.id]}
-                        forceOpen={v.id===focusId} />
+                        forceOpen={v.id===focusId}
+                        inv={invOf(v.id)} planTotal={planTotal} plantById={plantById}
+                        rows={(vendorPlants||[]).filter(x=>x.vendorId===v.id)} />
             ))}
 
         <div style={{fontFamily:"'Space Mono'",fontSize:11,color:"var(--faint)",marginTop:18,lineHeight:1.6}}>
@@ -4923,6 +5030,7 @@ function App(){
   const [vendors,setVendors]=useState([]);      // Shops & Seed
   const [sales,setSales]=useState([]);
   const [orgs,setOrgs]=useState([]);
+  const [vendorPlants,setVendorPlants]=useState([]);
   const [shopTab,setShopTab]=useState("dir"); // lifted so the Map tab can use the wide layout
   const [user,setUser]=useState(null);
   const [authReady,setAuthReady]=useState(false);
@@ -4937,7 +5045,7 @@ function App(){
   // load data whenever we have a signed-in user
   useEffect(()=>{
     if(!user){ setPlants([]); setPlans([]); setPlanItems([]); setCurPlan(null); setLoadErr(null);
-               setVendors([]); setSales([]); setOrgs([]); return; }
+               setVendors([]); setSales([]); setOrgs([]); setVendorPlants([]); return; }
     (async()=>{
       try{
         const [pl, pns, items] = await Promise.all([dataProvider.getPlants(), dataProvider.loadPlans(), dataProvider.loadPlanItems()]);
@@ -4951,9 +5059,10 @@ function App(){
     // so a failure here only disables the Shops tab.
     (async()=>{
       try{
-        const [vs, sl, og] = await Promise.all([
-          dataProvider.getVendors(), dataProvider.getSales(), dataProvider.getOrganizations()]);
-        setVendors(vs); setSales(sl); setOrgs(og);
+        const [vs, sl, og, vp] = await Promise.all([
+          dataProvider.getVendors(), dataProvider.getSales(),
+          dataProvider.getOrganizations(), dataProvider.getVendorPlants()]);
+        setVendors(vs); setSales(sl); setOrgs(og); setVendorPlants(vp);
       }catch(err){ console.error("Shops load failed:",err); }
     })();
   },[user]);
@@ -5079,6 +5188,7 @@ function App(){
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
+                                  vendorPlants={vendorPlants} plants={plants} planItems={planItems}
                                   curPlan={curPlan} isAdmin={isAdmin}
                                   tab={shopTab} setTab={setShopTab} /> :
           page==="guide" ? <ScoringGuide /> :
