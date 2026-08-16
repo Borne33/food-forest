@@ -704,6 +704,16 @@
   .shoppop b{font-size:15px;display:block;margin-bottom:2px}
   .shoppop .m{font-family:'Space Mono';font-size:10.5px;color:var(--faint);margin-bottom:5px}
   .shoppop a{font-family:'Space Mono';font-size:11px}
+  .shoppopacts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;
+    border-top:1px solid var(--line);padding-top:7px}
+  .shoppopacts button,.shoppopacts a{font-family:'Space Mono';font-size:10.5px;letter-spacing:.04em;
+    text-transform:uppercase;border:1.5px solid var(--sage-d);background:var(--sage-d);color:var(--paper);
+    border-radius:4px;padding:4px 9px;text-decoration:none;cursor:pointer}
+  .shoppopacts a{background:transparent;color:var(--sage-d)}
+  .shoplist .lrow .lcard{margin-top:7px;font-family:'Space Mono';font-size:10px;letter-spacing:.05em;
+    text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;color:var(--sage-d);
+    border-radius:4px;padding:3px 9px}
+  .shoplist .lrow .lcard:hover{border-color:var(--sage-d)}
   @media(max-width:900px){ .shopsplit{grid-template-columns:1fr} .shopmap{height:46vh} .shoplist{max-height:340px} }
   @media(max-width:640px){ .shopkv{grid-template-columns:1fr} .shopcard .head{flex-wrap:wrap} }
 </style>
@@ -4083,8 +4093,15 @@ const SHOP_SORTS=[["name","Name (A–Z)"],["distance","Distance from my plan"],[
   ["subregion","Region"],["county","County"],["city","Town"],["forms","Forms offered"],
   ["free","Free sources first"],["ships","Ships"],["sales","Upcoming sales"],["verified","Last verified"]];
 
-function ShopCard({v, org, saleCount, distance}){
-  const [open,setOpen]=useState(false);
+function ShopCard({v, org, saleCount, distance, forceOpen}){
+  const [open,setOpen]=useState(!!forceOpen);
+  const box=useRef(null);
+  // opened by a jump from the map: expand and bring it into view
+  useEffect(()=>{ if(!forceOpen) return;
+    setOpen(true);
+    const t=setTimeout(()=>{ if(box.current) box.current.scrollIntoView({behavior:"smooth",block:"start"}); },60);
+    return ()=>clearTimeout(t);
+  },[forceOpen]);
   const addr=[v.street, v.city && (v.city+(v.state?", "+v.state:"")+(v.postal?" "+v.postal:""))]
     .filter(Boolean).join(" · ");
   const geo=v.street?[v.street,v.city,v.state,v.postal].filter(Boolean).join(", ")
@@ -4096,7 +4113,7 @@ function ShopCard({v, org, saleCount, distance}){
     v.nurseryPropagated && ["flag","Nursery-propagated"], v.neonicFree && ["flag","Spray-free"],
   ].filter(Boolean);
   return (
-    <div className="shopcard">
+    <div className="shopcard" ref={box}>
       <div className="head" onClick={()=>setOpen(o=>!o)} style={{cursor:"pointer"}}>
         <div className="info">
           <h3>{v.name}</h3>
@@ -4168,10 +4185,15 @@ const PIN_FILL={ nursery:"#e9f2df", seed_company:"#efe4d0", seed_library:"#eceaf
   society:"#f1eaf5", chapter:"#f1eaf5", nonprofit:"#f1eaf5", land_trust:"#f1eaf5",
   library:"#eceaf6", other:"#f1eaf5" };
 const pinFill=k=>PIN_FILL[k]||"#f1eaf5";
+// popup content is built as an HTML string, so anything from the DB is escaped
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
-function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
+function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, setPlanId, onOpenCard, vendorById}){
   const mapRef=useRef(null), mapObj=useRef(null), pinG=useRef(null), ringRef=useRef(null);
   const markers=useRef({});
+  const openCardRef=useRef(onOpenCard);   // popup buttons call through this, so the map never re-creates
+  useEffect(()=>{ openCardRef.current=onOpenCard; },[onOpenCard]);
   const [radius,setRadius]=useState(100);
   const [useRadius,setUseRadius]=useState(true);
   const [showSales,setShowSales]=useState(true);
@@ -4202,6 +4224,15 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
     L.control.layers(baseObj,null,{position:"topright"}).addTo(map);
     L.control.scale({imperial:true,metric:false,position:"bottomleft"}).addTo(map);
     pinG.current=L.layerGroup().addTo(map);
+    // Popup HTML is a string, so React can't bind to the button inside it.
+    // Attach the handler when the popup opens instead.
+    map.on("popupopen", e=>{
+      const el=e.popup.getElement && e.popup.getElement();
+      if(!el) return;
+      const btn=el.querySelector("[data-vendor]");
+      if(btn) btn.onclick=()=>{ const id=parseInt(btn.getAttribute("data-vendor"),10);
+                                if(openCardRef.current) openCardRef.current(id); };
+    });
     mapObj.current=map; setReady(true);
     setTimeout(()=>map.invalidateSize(),40);   // the tab was hidden when the div was measured
     return ()=>{ map.remove(); mapObj.current=null; pinG.current=null; ringRef.current=null;
@@ -4221,22 +4252,33 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
       if(v.givesFree) bits.push("free");
       if(salesByVendor[v.id]) bits.push(salesByVendor[v.id]+" sale"+(salesByVendor[v.id]===1?"":"s"));
       m.bindPopup(
-        `<div class="shoppop"><b>${v.name}</b>`+
-        `<div class="m">${[v.city&&v.city+", "+v.state, v.county&&v.county+" Co.", v.subregion].filter(Boolean).join(" · ")}`+
+        `<div class="shoppop"><b>${esc(v.name)}</b>`+
+        `<div class="m">${esc([v.city&&v.city+", "+v.state, v.county&&v.county+" Co.", v.subregion].filter(Boolean).join(" · "))}`+
         `${d!==null&&d!==undefined?" · "+Math.round(d)+" mi":""}</div>`+
-        `<div>${bits.join(" · ")}</div>`+
-        (v.street?`<div class="m" style="margin-top:4px">${v.street}</div>`:"")+
-        (v.url?`<div style="margin-top:6px"><a href="${v.url}" target="_blank" rel="noopener">Website ↗</a></div>`:"")+
-        `</div>`);
+        `<div>${esc(bits.join(" · "))}</div>`+
+        (v.street?`<div class="m" style="margin-top:4px">${esc(v.street)}</div>`:"")+
+        `<div class="shoppopacts">`+
+          `<button type="button" data-vendor="${v.id}">Full details</button>`+
+          (v.url?`<a href="${esc(v.url)}" target="_blank" rel="noopener">Website ↗</a>`:"")+
+        `</div></div>`);
       m.on("click",()=>setSel(v.id));
       m.addTo(pinG.current); markers.current[v.id]=m;
     });
     if(showSales) saleP.forEach(s=>{
+      const host=vendorById[s.vendorId];
       L.circleMarker([s.lat,s.lon],{radius:6,weight:1.4,color:"#2b2a22",
         fillColor:"#f6e7e2",fillOpacity:1,dashArray:"2 2"})
-        .bindPopup(`<div class="shoppop"><b>${s.name}</b><div class="m">${
-          [s.venueName,s.city&&s.city+", "+s.state,s.startsOn||"date not announced"].filter(Boolean).join(" · ")
-        }</div></div>`).addTo(pinG.current);
+        .bindPopup(
+          `<div class="shoppop"><b>${esc(s.name)}</b>`+
+          `<div class="m">SALE · ${esc([s.venueName, s.city&&s.city+", "+s.state,
+             s.startsOn||"date not yet announced"].filter(Boolean).join(" · "))}</div>`+
+          (host?`<div>Run by ${esc(host.name)}</div>`:"")+
+          (s.priceNote?`<div class="m" style="margin-top:4px">${esc(s.priceNote)}</div>`:"")+
+          `<div class="shoppopacts">`+
+            (host?`<button type="button" data-vendor="${host.id}">Full details</button>`:"")+
+            (s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">Event page ↗</a>`:"")+
+          `</div></div>`)
+        .addTo(pinG.current);
     });
     // plan centre + radius ring
     if(ringRef.current){ ringRef.current.remove(); ringRef.current=null; }
@@ -4273,6 +4315,7 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
           {[v.city, v.subregion].filter(Boolean).join(" · ")} · {vkLabel(v.kind)}
           {v.givesFree?" · free":""}{salesByVendor[v.id]?` · ${salesByVendor[v.id]} sale${salesByVendor[v.id]===1?"":"s"}`:""}
         </div>
+        <button className="lcard" onClick={e=>{ e.stopPropagation(); onOpenCard(v.id); }}>Full details →</button>
       </div>
     );
   };
@@ -4280,16 +4323,26 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
   return (
     <div>
       <div className="shopradius">
+        {plans.length>0 && (
+          <label className="mono" style={{fontSize:12,display:"inline-flex",alignItems:"center",gap:6}}>
+            Measure from
+            <select value={planId||""} onChange={e=>setPlanId(e.target.value||null)}
+                    style={{fontFamily:"'Spectral'",fontSize:14,background:"#fbf9f2",
+                            border:"1.5px solid var(--line)",borderRadius:4,padding:"5px 8px"}}>
+              {plans.map(p=><option key={p.id} value={p.id}>{p.name}</option>)}
+            </select>
+          </label>
+        )}
         {centre ? <>
           <button className={"chip"+(useRadius?" on":"")} onClick={()=>setUseRadius(r=>!r)}>
             {useRadius?"Within radius":"Show all"}</button>
           {useRadius && <>
             <input type="range" min="10" max="300" step="5" value={radius}
                    onChange={e=>setRadius(parseInt(e.target.value,10))} />
-            <span className="mono" style={{fontSize:13}}><b>{radius} mi</b> of your plan</span>
+            <span className="mono" style={{fontSize:13}}><b>{radius} mi</b></span>
           </>}
         </> : <span className="mono" style={{fontSize:12,color:"var(--faint)"}}>
-          Draw your plot in a Planting Plan to filter by distance.</span>}
+          This plan has no mapped area yet — draw your plot in its Planting Plan to filter by distance.</span>}
         <button className={"chip"+(showSales?" on":"")} onClick={()=>setShowSales(s=>!s)}>
           Sale venues ({saleP.length})</button>
       </div>
@@ -4304,6 +4357,8 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
             <span><i style={{background:"#e6eff4"}}></i>Conservation district</span>
             <span><i style={{background:"#f1eaf5"}}></i>Organization</span>
             <span><i style={{background:"#f6e7e2",borderStyle:"dashed"}}></i>Sale venue</span>
+            <span><i style={{background:"#42603a",borderColor:"#42603a",width:10,height:10}}></i>Your plan
+              {centre?"":" (no mapped area)"}</span>
           </div>
           <div style={{fontFamily:"'Space Mono'",fontSize:10.5,color:"var(--faint)",marginTop:8,lineHeight:1.6}}>
             Pins are all the same size: sizing them by how much of your plan each shop can supply needs the plant
@@ -4336,8 +4391,11 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf}){
   );
 }
 
-function Shops({vendors, sales, orgs, curPlan, isAdmin, tab, setTab}){
+function Shops({vendors, sales, orgs, plans, curPlan, isAdmin, tab, setTab}){
   const [q,setQ]=useState("");
+  const [planId,setPlanId]=useState(curPlan);   // which plan the map measures from
+  const [focusId,setFocusId]=useState(null);    // vendor jumped to from the map
+  useEffect(()=>{ setPlanId(p=> p || curPlan); },[curPlan]);
   const [sub,setSub]=useState("all");
   const [st,setSt]=useState("all");
   const [kind,setKind]=useState("all");
@@ -4348,19 +4406,22 @@ function Shops({vendors, sales, orgs, curPlan, isAdmin, tab, setTab}){
 
   // distance is measured from the plan's drawn area, exactly as the Grant Finder does
   useEffect(()=>{ let dead=false;
-    if(!curPlan){ setCentre(null); return; }
+    if(!planId){ setCentre(null); return; }
     (async()=>{
       try{
-        const L=await dataProvider.loadLayout(curPlan); const polys=(L&&L.polys)||[];
+        const L=await dataProvider.loadLayout(planId); const polys=(L&&L.polys)||[];
         let la=0,ln=0,n=0; polys.forEach(r=>r.forEach(([a,b])=>{la+=a;ln+=b;n++;}));
         if(!dead) setCentre(n?{lat:la/n,lon:ln/n}:null);
       }catch(e){ if(!dead) setCentre(null); }
     })();
     return ()=>{ dead=true; };
-  },[curPlan]);
+  },[planId]);
 
   const orgById=useMemo(()=>{ const m={}; orgs.forEach(o=>m[o.id]=o); return m; },[orgs]);
+  const vendorById=useMemo(()=>{ const m={}; vendors.forEach(v=>m[v.id]=v); return m; },[vendors]);
   const salesByVendor=useMemo(()=>{ const m={}; sales.forEach(s=>{ m[s.vendorId]=(m[s.vendorId]||0)+1; }); return m; },[sales]);
+  // "Full details" from a map pin or list row: show the Directory with that card open
+  const openCard=useMemo(()=>(id)=>{ setFocusId(id); setTab("dir"); },[setTab]);
   const distOf=useMemo(()=>{ const m={};
     vendors.forEach(v=>{ m[v.id]=centre?milesBetween(centre.lat,centre.lon,v.lat,v.lon):null; });
     return m; },[vendors,centre]);
@@ -4408,6 +4469,14 @@ function Shops({vendors, sales, orgs, curPlan, isAdmin, tab, setTab}){
     });
   },[vendors,q,sub,st,kind,chips,sortKey,dir,distOf,salesByVendor]);
 
+  // a vendor jumped to from the map is always shown, even if the filters exclude it
+  const listed=useMemo(()=>{
+    if(!focusId) return shown;
+    const f=vendorById[focusId];
+    if(!f) return shown;
+    return shown.some(v=>v.id===focusId) ? shown : [f,...shown];
+  },[shown,focusId,vendorById]);
+
   const chip=(k,label)=>(
     <button className={"chip"+(chips[k]?" on":"")} onClick={()=>setChips(c=>({...c,[k]:!c[k]}))}>{label}</button>
   );
@@ -4433,7 +4502,9 @@ function Shops({vendors, sales, orgs, curPlan, isAdmin, tab, setTab}){
       </div>
 
       {tab==="map" && <ShopMap vendors={vendors} sales={sales} centre={centre}
-                               salesByVendor={salesByVendor} distOf={distOf} />}
+                               salesByVendor={salesByVendor} distOf={distOf}
+                               plans={plans} planId={planId} setPlanId={setPlanId}
+                               onOpenCard={openCard} vendorById={vendorById} />}
       {tab==="cal" && soon("Sale Calendar arrives in stage S4",
         `${sales.length} sales and order windows are already in the database, waiting on the month-by-month view.`)}
       {tab==="edit" && soon("Shop Editor arrives in stage S6",
@@ -4483,11 +4554,20 @@ function Shops({vendors, sales, orgs, curPlan, isAdmin, tab, setTab}){
                   : " · draw your plot in a Planting Plan to sort by distance"}
         </div>
 
-        {shown.length===0
+        {focusId && !shown.some(v=>v.id===focusId) && vendorById[focusId] && (
+          <div className="shopunver" style={{borderLeftColor:"var(--sage-d)",background:"#f4f7ee",
+                                             color:"var(--sage-d)",marginBottom:12}}>
+            Showing <b>{vendorById[focusId].name}</b> from the map — it doesn’t match the filters below.
+            {" "}<a href="#" onClick={e=>{e.preventDefault(); setFocusId(null);}}>Clear</a>
+          </div>
+        )}
+
+        {shown.length===0 && !focusId
           ? <div className="empty">No listings match those filters.</div>
-          : shown.map(v=>(
+          : listed.map(v=>(
               <ShopCard key={v.id} v={v} org={orgById[v.orgId]}
-                        saleCount={salesByVendor[v.id]||0} distance={distOf[v.id]} />
+                        saleCount={salesByVendor[v.id]||0} distance={distOf[v.id]}
+                        forceOpen={v.id===focusId} />
             ))}
 
         <div style={{fontFamily:"'Space Mono'",fontSize:11,color:"var(--faint)",marginTop:18,lineHeight:1.6}}>
@@ -4674,7 +4754,8 @@ function App(){
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
-          page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} curPlan={curPlan} isAdmin={isAdmin}
+          page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
+                                  curPlan={curPlan} isAdmin={isAdmin}
                                   tab={shopTab} setTab={setShopTab} /> :
           page==="guide" ? <ScoringGuide /> :
           page==="about" ? <About /> :
