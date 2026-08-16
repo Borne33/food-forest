@@ -700,16 +700,27 @@
     font-family:'Space Mono';font-size:10.5px;color:var(--ink2)}
   .shoplegend span{display:inline-flex;align-items:center;gap:6px}
   .shoplegend i{width:12px;height:12px;border-radius:99px;border:1.5px solid var(--ink);display:block}
-  .shoppop{font-family:'Spectral',Georgia,serif;font-size:13.5px;min-width:180px}
-  .shoppop b{font-size:15px;display:block;margin-bottom:2px}
-  .shoppop .m{font-family:'Space Mono';font-size:10.5px;color:var(--faint);margin-bottom:5px}
-  .shoppop a{font-family:'Space Mono';font-size:11px}
-  .shoppopacts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;
-    border-top:1px solid var(--line);padding-top:7px}
-  .shoppopacts button,.shoppopacts a{font-family:'Space Mono';font-size:10.5px;letter-spacing:.04em;
-    text-transform:uppercase;border:1.5px solid var(--sage-d);background:var(--sage-d);color:var(--paper);
-    border-radius:4px;padding:4px 9px;text-decoration:none;cursor:pointer}
-  .shoppopacts a{background:transparent;color:var(--sage-d)}
+  /* pin selection renders here as React, not in a Leaflet popup */
+  .shopdetail{position:relative;border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;
+    padding:14px 16px 13px;margin-bottom:12px}
+  .shopdetail .x{position:absolute;top:8px;right:8px;border:1.5px solid var(--line);background:#fbf9f2;
+    border-radius:99px;width:24px;height:24px;line-height:1;font-size:12px;color:var(--ink2);padding:0}
+  .shopdetail .eyebrow{font-family:'Space Mono';font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--sage-d)}
+  .shopdetail h4{margin:4px 40px 4px 0;font-size:19px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+  .shopdetail .loc{font-family:'Space Mono';font-size:11px;color:var(--faint);margin-bottom:8px}
+  .shopdetail .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+  .shopdetail .line{font-size:13.5px;margin:3px 0}
+  .shopdetail .line b{font-family:'Space Mono';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);margin-right:6px}
+  .shopdetail p{font-size:13.5px;color:var(--ink2);margin:9px 0 0}
+  .shopdetail .warn{font-family:'Space Mono';font-size:10px;color:var(--soil-d);background:var(--soil-bg);
+    border-left:3px solid var(--soil);padding:6px 9px;border-radius:0 4px 4px 0;margin-top:9px}
+  .shopdetail .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+  .shopdetail .acts button,.shopdetail .acts a{font-family:'Space Mono';font-size:10.5px;letter-spacing:.05em;
+    text-transform:uppercase;border:1.5px solid var(--sage-d);background:transparent;color:var(--sage-d);
+    border-radius:4px;padding:5px 11px;text-decoration:none;display:inline-block}
+  .shopdetail .acts button.pri{background:var(--sage-d);color:var(--paper)}
   .shoplist .lrow .lcard{margin-top:7px;font-family:'Space Mono';font-size:10px;letter-spacing:.05em;
     text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;color:var(--sage-d);
     border-radius:4px;padding:3px 9px}
@@ -4185,17 +4196,20 @@ const PIN_FILL={ nursery:"#e9f2df", seed_company:"#efe4d0", seed_library:"#eceaf
   society:"#f1eaf5", chapter:"#f1eaf5", nonprofit:"#f1eaf5", land_trust:"#f1eaf5",
   library:"#eceaf6", other:"#f1eaf5" };
 const pinFill=k=>PIN_FILL[k]||"#f1eaf5";
-// Popup content is built as an HTML string, so anything from the DB is escaped.
-// NB: named escHtml, not esc — `function esc()` already exists (CSV quoting,
-// ~line 3284) and a second top-level `esc` is a SyntaxError that blanks the app.
-const escHtml=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>
-  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+// dates are stored as plain YYYY-MM-DD; parse as local, not UTC, or they shift a day
+const fmtDay=iso=>{ if(!iso) return ""; const [y,m,d]=iso.split("-").map(Number);
+  return new Date(y,m-1,d).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}); };
+const fmtSaleDate=s=>{
+  if(!s.startsOn) return "Date not yet announced";
+  const one=fmtDay(s.startsOn);
+  const span=s.endsOn && s.endsOn!==s.startsOn ? one+" – "+fmtDay(s.endsOn) : one;
+  const time=s.startsAt ? " · "+s.startsAt.slice(0,5)+(s.endsAt?"–"+s.endsAt.slice(0,5):"") : "";
+  return span+time;
+};
 
 function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, setPlanId, onOpenCard, vendorById}){
   const mapRef=useRef(null), mapObj=useRef(null), pinG=useRef(null), ringRef=useRef(null);
   const markers=useRef({});
-  const openCardRef=useRef(onOpenCard);   // popup buttons call through this, so the map never re-creates
-  useEffect(()=>{ openCardRef.current=onOpenCard; },[onOpenCard]);
   const [radius,setRadius]=useState(100);
   const [useRadius,setUseRadius]=useState(true);
   const [showSales,setShowSales]=useState(true);
@@ -4226,15 +4240,7 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
     L.control.layers(baseObj,null,{position:"topright"}).addTo(map);
     L.control.scale({imperial:true,metric:false,position:"bottomleft"}).addTo(map);
     pinG.current=L.layerGroup().addTo(map);
-    // Popup HTML is a string, so React can't bind to the button inside it.
-    // Attach the handler when the popup opens instead.
-    map.on("popupopen", e=>{
-      const el=e.popup.getElement && e.popup.getElement();
-      if(!el) return;
-      const btn=el.querySelector("[data-vendor]");
-      if(btn) btn.onclick=()=>{ const id=parseInt(btn.getAttribute("data-vendor"),10);
-                                if(openCardRef.current) openCardRef.current(id); };
-    });
+    map.on("click", ()=>setSel(null));   // click empty map to dismiss the detail panel
     mapObj.current=map; setReady(true);
     setTimeout(()=>map.invalidateSize(),40);   // the tab was hidden when the div was measured
     return ()=>{ map.remove(); mapObj.current=null; pinG.current=null; ringRef.current=null;
@@ -4246,48 +4252,27 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
     if(!ready || !pinG.current) return;
     const map=mapObj.current;
     pinG.current.clearLayers(); markers.current={};
+    // No Leaflet popups: a click just records a selection and React renders the
+    // detail panel. Nothing about the UI lives inside a Leaflet layer, so a
+    // marker rebuild can never destroy what the user is looking at.
     inRange.forEach(v=>{
-      const d=distOf[v.id];
       const m=L.circleMarker([v.lat,v.lon],{radius:9,weight:1.6,color:"#2b2a22",
         fillColor:pinFill(v.kind),fillOpacity:1});
-      const bits=[vkLabel(v.kind)];
-      if(v.givesFree) bits.push("free");
-      if(salesByVendor[v.id]) bits.push(salesByVendor[v.id]+" sale"+(salesByVendor[v.id]===1?"":"s"));
-      m.bindPopup(
-        `<div class="shoppop"><b>${escHtml(v.name)}</b>`+
-        `<div class="m">${escHtml([v.city&&v.city+", "+v.state, v.county&&v.county+" Co.", v.subregion].filter(Boolean).join(" · "))}`+
-        `${d!==null&&d!==undefined?" · "+Math.round(d)+" mi":""}</div>`+
-        `<div>${escHtml(bits.join(" · "))}</div>`+
-        (v.street?`<div class="m" style="margin-top:4px">${escHtml(v.street)}</div>`:"")+
-        `<div class="shoppopacts">`+
-          `<button type="button" data-vendor="${v.id}">Full details</button>`+
-          (v.url?`<a href="${escHtml(v.url)}" target="_blank" rel="noopener">Website ↗</a>`:"")+
-        `</div></div>`);
-      m.on("click",()=>setSel(v.id));
-      m.addTo(pinG.current); markers.current[v.id]=m;
+      m.on("click",e=>{ L.DomEvent.stopPropagation(e); setSel({kind:"vendor",id:v.id}); });
+      m.addTo(pinG.current); markers.current["v"+v.id]=m;
     });
     if(showSales) saleP.forEach(s=>{
-      const host=vendorById[s.vendorId];
-      L.circleMarker([s.lat,s.lon],{radius:6,weight:1.4,color:"#2b2a22",
-        fillColor:"#f6e7e2",fillOpacity:1,dashArray:"2 2"})
-        .bindPopup(
-          `<div class="shoppop"><b>${escHtml(s.name)}</b>`+
-          `<div class="m">SALE · ${escHtml([s.venueName, s.city&&s.city+", "+s.state,
-             s.startsOn||"date not yet announced"].filter(Boolean).join(" · "))}</div>`+
-          (host?`<div>Run by ${escHtml(host.name)}</div>`:"")+
-          (s.priceNote?`<div class="m" style="margin-top:4px">${escHtml(s.priceNote)}</div>`:"")+
-          `<div class="shoppopacts">`+
-            (host?`<button type="button" data-vendor="${host.id}">Full details</button>`:"")+
-            (s.url?`<a href="${escHtml(s.url)}" target="_blank" rel="noopener">Event page ↗</a>`:"")+
-          `</div></div>`)
-        .addTo(pinG.current);
+      const m=L.circleMarker([s.lat,s.lon],{radius:6,weight:1.4,color:"#2b2a22",
+        fillColor:"#f6e7e2",fillOpacity:1,dashArray:"2 2"});
+      m.on("click",e=>{ L.DomEvent.stopPropagation(e); setSel({kind:"sale",id:s.id}); });
+      m.addTo(pinG.current); markers.current["s"+s.id]=m;
     });
     // plan centre + radius ring
     if(ringRef.current){ ringRef.current.remove(); ringRef.current=null; }
     if(centre){
       const g=L.layerGroup();
       L.circleMarker([centre.lat,centre.lon],{radius:5,weight:2,color:"#42603a",fillColor:"#42603a",fillOpacity:1})
-        .bindPopup('<div class="shoppop"><b>Your plan</b><div class="m">centre of your mapped area</div></div>').addTo(g);
+        .addTo(g);
       if(useRadius) L.circle([centre.lat,centre.lon],{radius:radius*1609.34,color:"#42603a",weight:1.5,
         dashArray:"6 6",fill:true,fillOpacity:.05}).addTo(g);
       g.addTo(mapObj.current); ringRef.current=g;
@@ -4301,16 +4286,29 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
     }
   },[ready,inRange,saleP,showSales,centre,radius,useRadius,distOf,salesByVendor]);
 
+  /* selected pin is restyled in place — never rebuilt, so selection can't flicker */
+  useEffect(()=>{
+    if(!ready) return;
+    Object.keys(markers.current).forEach(key=>{
+      const m=markers.current[key];
+      const isSel = sel && key===(sel.kind==="vendor"?"v":"s")+sel.id;
+      m.setStyle({ color:isSel?"#42603a":"#2b2a22", weight:isSel?4:(key[0]==="s"?1.4:1.6) });
+      if(isSel && m.bringToFront) m.bringToFront();
+    });
+  },[sel,ready,inRange,saleP,showSales]);
+
   const focus=v=>{
-    setSel(v.id);
-    const m=markers.current[v.id];
-    if(m && mapObj.current){ mapObj.current.setView([v.lat,v.lon], Math.max(mapObj.current.getZoom(),11)); m.openPopup(); }
+    setSel({kind:"vendor",id:v.id});
+    const m=markers.current["v"+v.id];
+    if(m && mapObj.current) mapObj.current.setView([v.lat,v.lon], Math.max(mapObj.current.getZoom(),11));
   };
+  const selVendor = sel && sel.kind==="vendor" ? vendorById[sel.id] : null;
+  const selSale   = sel && sel.kind==="sale"   ? sales.find(s=>s.id===sel.id) : null;
   const row=(v,off)=>{
     const d=distOf[v.id];
     return (
-      <div key={v.id} className={"lrow"+(sel===v.id?" sel":"")+(off?" off":"")}
-           onClick={()=>{ if(!off) focus(v); else setSel(v.id); }}>
+      <div key={v.id} className={"lrow"+(sel&&sel.kind==="vendor"&&sel.id===v.id?" sel":"")+(off?" off":"")}
+           onClick={()=>{ if(!off) focus(v); else setSel({kind:"vendor",id:v.id}); }}>
         <div className="t"><b>{v.name}</b>
           <span className="d">{d!==null&&d!==undefined?Math.round(d)+" mi":(v.ships?"ships":"—")}</span></div>
         <div className="s">
@@ -4368,6 +4366,67 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
           </div>
         </div>
 
+        <div>
+        {(selVendor || selSale) && (
+          <div className="shopdetail">
+            <button className="x" title="Close" onClick={()=>setSel(null)}>✕</button>
+            {selVendor && <>
+              <div className="eyebrow">{vkLabel(selVendor.kind)}</div>
+              <h4>{selVendor.name}</h4>
+              <div className="loc">
+                {[selVendor.street, selVendor.city && selVendor.city+", "+selVendor.state+(selVendor.postal?" "+selVendor.postal:"")]
+                  .filter(Boolean).join(" · ") || "Location not recorded"}
+                {selVendor.county?` · ${selVendor.county} County`:""}
+                {distOf[selVendor.id]!==null && distOf[selVendor.id]!==undefined
+                  ? ` · ${Math.round(distOf[selVendor.id])} mi away` : ""}
+              </div>
+              <div className="tags">
+                {selVendor.givesFree && <span className="shopfree">Free</span>}
+                {selVendor.ships && <span className="shopflag">Ships</span>}
+                {selVendor.pickupOnly && <span className="shopflag">Pick-up only</span>}
+                {selVendor.membershipRequired && <span className="shopflag">Members</span>}
+                {selVendor.localEcotype && <span className="shopflag">Local ecotype</span>}
+                {selVendor.straightSpeciesOnly && <span className="shopflag">Straight species</span>}
+                {salesByVendor[selVendor.id]>0 &&
+                  <span className="shopflag">{salesByVendor[selVendor.id]} sale{salesByVendor[selVendor.id]===1?"":"s"}</span>}
+              </div>
+              {selVendor.forms.length>0 &&
+                <div className="line"><b>Forms</b> {selVendor.forms.map(f=>FORM_LABEL[f]||f).join(" · ")}</div>}
+              {selVendor.hours && <div className="line"><b>Hours</b> {selVendor.hours}</div>}
+              {selVendor.orderWindow && <div className="line"><b>Ordering</b> {selVendor.orderWindow}</div>}
+              {selVendor.notes && <p>{selVendor.notes}</p>}
+              {selVendor.needsVerification &&
+                <div className="warn">Unverified listing — call ahead before travelling.</div>}
+              <div className="acts">
+                <button className="pri" onClick={()=>onOpenCard(selVendor.id)}>Full details →</button>
+                {selVendor.url && <a href={selVendor.url} target="_blank" rel="noopener">Website ↗</a>}
+                {selVendor.phone && <a href={"tel:"+selVendor.phone.replace(/[^0-9+]/g,"")}>{selVendor.phone}</a>}
+              </div>
+            </>}
+            {selSale && (()=>{ const host=vendorById[selSale.vendorId]; return <>
+              <div className="eyebrow">{selSale.kind==="order_window"?"Order window":"Sale"}</div>
+              <h4>{selSale.name}</h4>
+              <div className="loc">
+                {[selSale.venueName, selSale.street, selSale.city && selSale.city+", "+selSale.state]
+                  .filter(Boolean).join(" · ")}
+              </div>
+              <div className="line"><b>When</b> {
+                selSale.startsOn
+                  ? fmtSaleDate(selSale)
+                  : selSale.orderClosesOn ? "Orders close "+fmtDay(selSale.orderClosesOn)
+                  : "Date not yet announced"}</div>
+              {selSale.pickupOn && <div className="line"><b>Pick-up</b> {fmtDay(selSale.pickupOn)}</div>}
+              {host && <div className="line"><b>Run by</b> {host.name}</div>}
+              {selSale.priceNote && <div className="line"><b>Payment</b> {selSale.priceNote}</div>}
+              {selSale.notes && <p>{selSale.notes}</p>}
+              <div className="acts">
+                {host && <button className="pri" onClick={()=>onOpenCard(host.id)}>Full details →</button>}
+                {selSale.url && <a href={selSale.url} target="_blank" rel="noopener">Event page ↗</a>}
+              </div>
+            </>; })()}
+          </div>
+        )}
+
         <div className="shoplist">
           <div className="grouphd">{inRange.length} on the map</div>
           {inRange.length===0 && <div className="lrow" style={{cursor:"default"}}>
@@ -4387,6 +4446,7 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
             <div className="grouphd">{unmapped.length} with no location recorded</div>
             {unmapped.map(v=>row(v,true))}
           </>}
+        </div>
         </div>
       </div>
     </div>
