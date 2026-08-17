@@ -503,6 +503,25 @@
      height is what lets the sticky header work vertically again: a horizontal
      scroll container captures vertical sticky too, so the header can only
      follow scrolling that happens inside this element. */
+.pjphase{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;margin-bottom:14px;overflow:hidden}
+  .pjphead{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    background:var(--paper2);border-bottom:1.5px solid var(--ink);padding:10px 13px}
+  .pjpname b{font-size:16px;margin-right:8px}
+  .pjpctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .pjpctl .ppbtn{padding:5px 10px}
+  .pjtbl{overflow-x:auto}
+  .pjthead,.pjtrow{display:grid;grid-template-columns:minmax(180px,2fr) 110px 60px 82px 96px 82px minmax(120px,1fr);
+    gap:10px;align-items:center;padding:8px 13px;min-width:max-content}
+  .pjthead{font-family:'Space Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--faint);border-bottom:1px solid var(--line);background:#f7f2e4}
+  .pjtrow{border-bottom:1px solid var(--line);font-size:14px;cursor:pointer}
+  .pjtrow:last-child{border-bottom:0}
+  .pjtrow:hover{background:#f1ead6}
+  .pjtrow b{font-size:14.5px} .pjtrow i{display:block;font-size:12px;color:var(--ink2)}
+  .pjthead .r,.pjtrow .r{text-align:right;font-family:'Space Mono';font-size:13px}
+  @media(max-width:820px){ .pjthead{display:none}
+    .pjtrow{grid-template-columns:1fr;gap:4px}
+    .pjtrow .r{text-align:left} }
   .pplscroll{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;
     overflow:auto;max-height:min(68vh,700px);overscroll-behavior:contain}
   .pplist{min-width:max-content;background:#fbf9f2}
@@ -1069,6 +1088,13 @@ const dataProvider = {
     const { data, error } = await sb.from('plants').insert(patch).select('*').single();
     if(error) throw error;
     return rowToPlant(data);
+  },
+  // PB: the Scope tab edits phase scheduling while the Planting Plan owns the
+  // rest of the layout blob. Read-modify-write so neither clobbers the other.
+  async savePhaseMeta(planId, phaseMeta){
+    const cur = await this.loadLayout(planId);
+    const next = Object.assign({}, cur || {}, {v:2, phaseMeta});
+    return this.saveLayout(planId, next);
   },
   async loadLayout(planId){
     // Planting Plan layout for one plan (may not exist yet -> null)
@@ -1872,13 +1898,24 @@ function derivePhases(alloc){
   return p;
 }
 const phaseList=meta=>Object.keys(meta||{}).map(Number).sort((a,b)=>a-b);
-function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases, setPhases}){
+const QNUM={Q1:1,Q2:2,Q3:3,Q4:4};
+/* PB: a phase is scheduled to a quarter and a calendar year. Before this,
+   computeProject assumed "phase N = project year N"; now the phase says when it
+   happens, so two phases can share a year, a year can be skipped, and the
+   horizon follows the latest phase. Falls back to the old behaviour when a
+   phase has no year set. */
+function phaseSlot(meta, ph, startYear){
+  const m=(meta||{})[ph]||{};
+  const order=m.order||ph;
+  const year=m.year || (startYear + (order-1));
+  return { y: year-startYear+1, q: QNUM[m.quarter]||2, year, order };
+}
+function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases, setPhases, phaseMeta, setPhaseMeta}){
   const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"soil",label:"Soil Map"},{key:"place",label:"Place Plants"}];
   const [ready,setReady]=useState(false);
   const [mapReady,setMapReady]=useState(false);
   const [step,setStep]=useState("plants");
   const [alloc,setAlloc]=useState({});      // {plantId:{phaseNo:qty}} — v2 source of truth
-  const [phaseMeta,setPhaseMeta]=useState(()=>emptyPhaseMeta(BASE_PHASES));
   // counts/phases are DERIVED from alloc; every existing consumer still reads these
   const counts=useMemo(()=>deriveCounts(alloc),[alloc]);
   const derivedPhases=useMemo(()=>derivePhases(alloc),[alloc]);
@@ -1948,7 +1985,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
       const L=migrateLayout(raw);                  // v1 blobs are upgraded on read
       if(L.step && STEPS.some(s=>s.key===L.step)) setStep(L.step);
       setAlloc(L.alloc||{});
-      setPhaseMeta(L.phaseMeta||emptyPhaseMeta(BASE_PHASES));
+      if(setPhaseMeta) setPhaseMeta(L.phaseMeta||emptyPhaseMeta(BASE_PHASES));
       setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]); setSoilMap(L.soilMap||null);
       if(setPhases) setPhases(derivePhases(L.alloc||{}));
     };
@@ -2995,11 +3032,13 @@ function mergeProject(loaded){ const d=defaultProject(); const s={...d,...(loade
   s.cats=(loaded&&Array.isArray(loaded.cats)&&loaded.cats.length)?loaded.cats:defaultCats();
   s.horizon=Math.max(1,Math.min(15,s.horizon|0||5)); return s; }
 
-function computeProject(chosen, counts, phases, areaSqft, st){
+function computeProject(chosen, counts, phases, areaSqft, st, phaseMeta){
   const N=st.horizon, area=areaSqft||0;
   const hasCounts=Object.keys(counts||{}).length>0;
   const qtyOf=p=>hasCounts?(counts[p.id]||0):1;
-  const pYear=p=>Math.max(1,Math.min(N, phases[p.id]||1)); // one phase per year; unphased => yr 1
+  const slotOf=ph=>phaseSlot(phaseMeta, ph, st.startYear);
+  const pYear=p=>Math.max(1,Math.min(N, slotOf(phases[p.id]||1).y));
+  const pQtr =p=>slotOf(phases[p.id]||1).q;
   const phased=Object.keys(phases||{}).length>0;
   const totalQty=chosen.reduce((a,p)=>a+qtyOf(p),0)||1;
   const scope=[]; const S=(y,q,mo,cat,name,hours)=>{ if(y>=1&&y<=N&&hours>0) scope.push({y,q,mo,cat,name,hours:+hours.toFixed(1)}); };
@@ -3009,8 +3048,9 @@ function computeProject(chosen, counts, phases, areaSqft, st){
   for(let y=1;y<=N;y++){
     const newP=chosen.filter(p=>pYear(p)===y), nqty=newP.reduce((a,p)=>a+qtyOf(p),0);
     if(newP.length){
-      S(y,2,4,"Plant",`Plant ${nqty} plant${nqty===1?"":"s"}`+(phased?` — Phase ${y}`:""), newP.reduce((a,p)=>a+qtyOf(p)*(INSTALL_HRS[p.type]||0.3),0));
-      S(y,2,4,"Site prep",`Prepare & amend beds (${nqty} plant${nqty===1?"":"s"})`, nqty*0.4);
+      const q=pQtr(newP[0]), mo=(q-1)*3+1;
+      S(y,q,mo,"Plant",`Plant ${nqty} plant${nqty===1?"":"s"}`+(phased?` — Phase ${phases[newP[0].id]||1}`:""), newP.reduce((a,p)=>a+qtyOf(p)*(INSTALL_HRS[p.type]||0.3),0));
+      S(y,q,mo,"Site prep",`Prepare & amend beds (${nqty} plant${nqty===1?"":"s"})`, nqty*0.4);
     }
   }
   if(area>0) S(1,1,3,"Setup","Install irrigation", Math.max(2,area*0.005));
@@ -3062,7 +3102,7 @@ function computeProject(chosen, counts, phases, areaSqft, st){
     totalHours:scope.reduce((a,t)=>a+t.hours,0) };
 }
 
-function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetail}){
+function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetail, phaseMeta, setPhaseMeta}){
   const [st,setSt]=useState(defaultProject);
   const [ready,setReady]=useState(false);
   const [tab,setTab]=useState("summary"); // summary | scope | schedule | budget | assume
@@ -3083,7 +3123,54 @@ function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetai
     return ()=>clearTimeout(saveT.current);
   },[ready,planId,st]);
 
-  const M=useMemo(()=>computeProject(chosen,counts||{},phases||{},areaSqft||0,st),[chosen,counts,phases,areaSqft,st]);
+  const M=useMemo(()=>computeProject(chosen,counts||{},phases||{},areaSqft||0,st,phaseMeta),[chosen,counts,phases,areaSqft,st,phaseMeta]);
+
+  /* ---- PB: Scope rows, grouped by phase and ordered by the phase order ---- */
+  const persistMeta=(next)=>{ setPhaseMeta&&setPhaseMeta(next);
+    dataProvider.savePhaseMeta(planId,next).catch(e=>console.error(e)); };
+  const editPhase=(ph,patch)=>persistMeta(Object.assign({},phaseMeta,
+    {[ph]:Object.assign({name:"",quarter:"Q2",year:null,order:ph},phaseMeta[ph],patch)}));
+  const movePhase=(ph,dir)=>{
+    const ordered=phaseList(phaseMeta)
+      .map(n=>({n,o:(phaseMeta[n]&&phaseMeta[n].order)||n}))
+      .sort((a,b)=>a.o-b.o);
+    const i=ordered.findIndex(x=>x.n===ph), j=i+dir;
+    if(i<0||j<0||j>=ordered.length) return;
+    [ordered[i],ordered[j]]=[ordered[j],ordered[i]];
+    const next={...phaseMeta};
+    ordered.forEach((x,k)=>{ next[x.n]=Object.assign({name:"",quarter:"Q2",year:null},next[x.n],{order:k+1}); });
+    persistMeta(next);
+  };
+  // Q3: reordering never renumbers on its own; this is the explicit, destructive one
+  const renumberPhases=()=>{
+    if(!confirm("Renumber the phases so their numbers follow the current order? Every plant's quantities move with them.")) return;
+    const ordered=phaseList(phaseMeta)
+      .map(n=>({n,o:(phaseMeta[n]&&phaseMeta[n].order)||n})).sort((a,b)=>a.o-b.o);
+    const next={};
+    ordered.forEach((x,k)=>{ next[k+1]=Object.assign({},phaseMeta[x.n],{order:k+1}); });
+    persistMeta(next);
+    alert("Phases renumbered. Reopen the Planting Plan to see the columns in the new order.");
+  };
+  const phaseRows=useMemo(()=>{
+    const byPhase={};
+    chosen.forEach(p=>{
+      const ph=(phases||{})[p.id]; if(!ph) return;
+      const qty=(counts||{})[p.id]||0; if(!qty) return;
+      const hours=qty*(INSTALL_HRS[p.type]||0.3);
+      const cost=qty*projPrice(p,st);
+      const yrs=firstFruitYear(p);
+      const slot=phaseSlot(phaseMeta,ph,st.startYear);
+      (byPhase[ph]||(byPhase[ph]=[])).push({p,qty,hours,cost,yrs,
+        firstHarvest: yrs==null?null:(slot.year+yrs)});
+    });
+    return Object.keys(byPhase).map(Number)
+      .map(ph=>{ const rows=byPhase[ph].sort((a,b)=>a.p.common.localeCompare(b.p.common));
+        return {ph, slot:phaseSlot(phaseMeta,ph,st.startYear), rows,
+                qty:rows.reduce((a,r)=>a+r.qty,0),
+                hrs:rows.reduce((a,r)=>a+r.hours,0),
+                cost:rows.reduce((a,r)=>a+r.cost,0)}; })
+      .sort((a,b)=>a.slot.order-b.slot.order);
+  },[chosen,phases,counts,phaseMeta,st]);
   const set=(k,v)=>setSt(o=>({...o,[k]:v}));
   const setLabor=(k,v)=>setSt(o=>({...o,labor:{...o.labor,[k]:v}}));
   const $=n=>(n<0?"-$":"$")+Math.abs(Math.round(n)).toLocaleString();
@@ -3148,23 +3235,64 @@ function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetai
       )}
 
       {tab==="scope" && (
-        <div className="mtsched">
-          <p className="pphint" style={{margin:"0 0 12px"}}>Work packages generated from your plan — planting waves, site setup, upkeep and harvest — with estimated hours. These drive the Schedule and the Labor line in the Budget.</p>
-          {Array.from({length:M.N},(_,i)=>i+1).map(y=>{ const rows=M.scope.filter(t=>t.y===y); if(!rows.length) return null;
-            const hrs=rows.reduce((a,t)=>a+t.hours,0);
-            return (
-              <div className="mtplant" key={y}>
-                <div className="mthead"><b>Year {y}</b> <span className="mtmeta">{M.calYear(y)} · {Math.round(hrs)} h · ≈ {$(hrs*blended)} labor</span></div>
-                {rows.sort((a,b)=>a.q-b.q).map((t,i)=>(
-                  <div className="mttask" key={i}>
-                    <span className="yr">{QLABEL[t.q-1]}</span>
-                    <span className="mtcat" style={{background:MAINT_CATS[t.cat]||"#8a8577"}}>{t.cat}</span>
-                    <div className="body">{t.name} <span className="when">· {t.hours} h</span></div>
+        <div>
+          <p className="pphint" style={{margin:"0 0 12px"}}>
+            Every plant in the plan, grouped by the phase it is planted in. Set when each phase
+            happens with its quarter and year, or move it up and down the order — the Schedule,
+            Budget and horizon all follow from this.
+          </p>
+          {phaseRows.length===0 && <div className="empty">No quantities set yet — add some on the Planting Plan.</div>}
+          {phaseRows.map(({ph, slot, rows, hrs, cost, qty}, idx)=>(
+            <div className="pjphase" key={ph}>
+              <div className="pjphead">
+                <div className="pjpname">
+                  <b>{(phaseMeta[ph]&&phaseMeta[ph].name)||("Phase "+ph)}</b>
+                  <span className="mtmeta">{rows.length} plant{rows.length===1?"":"s"} · {qty} to plant
+                    · {Math.round(hrs)} h · {$(cost)}</span>
+                </div>
+                <div className="pjpctl" onClick={e=>e.stopPropagation()}>
+                  <select className="pjnum" value={(phaseMeta[ph]&&phaseMeta[ph].quarter)||"Q2"}
+                          onChange={e=>editPhase(ph,{quarter:e.target.value})}>
+                    {["Q1","Q2","Q3","Q4"].map(q=><option key={q} value={q}>{q}</option>)}
+                  </select>
+                  <select className="pjnum" value={slot.year}
+                          onChange={e=>editPhase(ph,{year:parseInt(e.target.value,10)})}>
+                    {Array.from({length:M.N+4},(_,i)=>st.startYear+i).map(y=><option key={y} value={y}>{y}</option>)}
+                  </select>
+                  <button className="ppbtn ghost" title="Earlier in the order"
+                          disabled={idx===0} onClick={()=>movePhase(ph,-1)}>↑</button>
+                  <button className="ppbtn ghost" title="Later in the order"
+                          disabled={idx===phaseRows.length-1} onClick={()=>movePhase(ph,1)}>↓</button>
+                </div>
+              </div>
+              <div className="pjtbl">
+                <div className="pjthead">
+                  <div>Plant</div><div>Layer</div><div className="r">Qty</div><div className="r">Install h</div>
+                  <div className="r">Stock cost</div><div className="r">Yrs→fruit</div><div>First harvest</div>
+                </div>
+                {rows.map(r=>(
+                  <div className="pjtrow" key={r.p.id} onClick={()=>openDetail&&openDetail(r.p)}>
+                    <div><b>{r.p.common}</b><i>{r.p.sci}</i></div>
+                    <div className="fr">{(PP_LAYER[r.p.type]||{}).layer||r.p.type}</div>
+                    <div className="r">{r.qty}</div>
+                    <div className="r">{r.hours.toFixed(1)}</div>
+                    <div className="r">{$(r.cost)}</div>
+                    <div className="r">{r.yrs==null?"—":r.yrs}</div>
+                    <div className="fr">{r.firstHarvest==null?"—":r.firstHarvest}</div>
                   </div>
                 ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
+          {phaseRows.length>1 && (
+            <div style={{marginTop:12,display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
+              <button className="ppbtn ghost" onClick={renumberPhases}>Renumber to match order</button>
+              <span className="pphint" style={{margin:0}}>
+                Moving a phase changes when it happens, not its number — P2 can be scheduled before P1.
+                Renumbering rewrites the labels to match, and every plant's quantities move with them.
+              </span>
+            </div>
+          )}
         </div>
       )}
 
@@ -3282,6 +3410,9 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
   const [phases,setPhases]=useState({});   // {plantId: 1..10} for the current plan (lives in the plan layout)
   const [phaseFilter,setPhaseFilter]=useState("all"); // "all" | number | "none" — Forest Layers filter
   const [layoutCounts,setLayoutCounts]=useState({}); // {plantId:qty} from the Planting Plan (for Project Plan)
+  // PB: phase scheduling is shared — the Planting Plan sets quantities per phase,
+  // the Scope tab sets when each phase happens. One copy, one source of truth.
+  const [phaseMeta,setPhaseMeta]=useState(()=>emptyPhaseMeta(BASE_PHASES));
   const [layoutArea,setLayoutArea]=useState(0);       // mapped area in sq ft (for Project Plan)
   // load layout-derived data for the current plan (localStorage instant, then
   // Supabase). The Planting Plan's Plants tab is the sole writer; here we read
@@ -3295,6 +3426,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
       const c=L.alloc?deriveCounts(L.alloc):(L.counts||{});
       const ph=L.alloc?derivePhases(L.alloc):(L.phases||{});
       setPhases(ph); setLayoutCounts(c);
+      setPhaseMeta(L.phaseMeta||emptyPhaseMeta(BASE_PHASES));
       if(L.polys) setLayoutArea(areaOf(L.polys));
     };
     try{ const s=localStorage.getItem("ff-layout-"+curPlan); if(s) apply(JSON.parse(s)); }catch(e){}
@@ -3482,13 +3614,13 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         </div>
       </React.Fragment>)}
 
-      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} phases={phases} setPhases={setPhases} />}
+      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} phases={phases} setPhases={setPhases} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}
 
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
       {view==="maint" && <MaintenanceView chosen={chosen} phases={phases} state={state} openDetail={setDetail} />}
 
-      {view==="project" && <ProjectPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} counts={layoutCounts} phases={phases} areaSqft={layoutArea} openDetail={setDetail} />}
+      {view==="project" && <ProjectPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} counts={layoutCounts} phases={phases} areaSqft={layoutArea} openDetail={setDetail} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} openDetail={setDetail} />}
 
