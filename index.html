@@ -499,7 +499,12 @@
   /* overflow:clip (not hidden) keeps the rounded corners AND lets the header stick to the page scroll */
   /* PA: the table scrolls sideways as phase columns are added; the checkbox and
      plant name stay frozen so you always know which row you're editing. */
-  .pplscroll{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;overflow-x:auto;overflow-y:visible}
+  /* The table scrolls in BOTH directions inside its own box. Giving it a real
+     height is what lets the sticky header work vertically again: a horizontal
+     scroll container captures vertical sticky too, so the header can only
+     follow scrolling that happens inside this element. */
+  .pplscroll{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;
+    overflow:auto;max-height:min(68vh,700px);overscroll-behavior:contain}
   .pplist{min-width:max-content;background:#fbf9f2}
   .pplhead,.pplrow,.pplfilter{display:grid;grid-template-columns:var(--ppcols);gap:11px;align-items:center;padding:12px 14px}
   .pplrow>.pplcheck{position:sticky;left:0;z-index:2;background:inherit}
@@ -561,7 +566,7 @@
        The frozen columns and the sideways scroll are desktop-only — on a phone
        they just made the plant name sit on top of the quantity boxes. */
     .mobileonly{display:inline-flex}
-    .pplscroll{overflow-x:visible}
+    .pplscroll{overflow:visible;max-height:none}
     .pplist{min-width:0}
     .pplhead{display:none}
     .pplfilter{grid-template-columns:1fr 1fr!important;gap:6px}
