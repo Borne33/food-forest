@@ -497,8 +497,20 @@
   .pplsum .b b{font-family:'Space Mono';font-size:17px;color:var(--sage-d)}
   .pplsum .b span{font-family:'Space Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
   /* overflow:clip (not hidden) keeps the rounded corners AND lets the header stick to the page scroll */
-  .pplist{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;overflow:clip;background:#fbf9f2}
-  .pplhead,.pplrow,.pplfilter{display:grid;grid-template-columns:34px minmax(150px,1.7fr) 92px 60px 88px 74px minmax(110px,1.2fr) 118px 68px 116px;gap:11px;align-items:center;padding:12px 14px}
+  /* PA: the table scrolls sideways as phase columns are added; the checkbox and
+     plant name stay frozen so you always know which row you're editing. */
+  .pplscroll{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;overflow-x:auto;overflow-y:visible}
+  .pplist{min-width:max-content;background:#fbf9f2}
+  .pplhead,.pplrow,.pplfilter{display:grid;gap:11px;align-items:center;padding:12px 14px}
+  .pplhead>.pplcheck,.pplrow>.pplcheck,.pplfilter>.pplcheck{position:sticky;left:0;z-index:4;background:inherit}
+  .pplhead>.cncell,.pplrow>.cncell,.pplfilter>.cncell{position:sticky;left:45px;z-index:4;background:inherit;
+    box-shadow:1px 0 0 var(--line)}
+  .pplhead{background:var(--paper2)} .pplfilter{background:#f4efe0}
+  .ppphcol{text-align:center}
+  .pptot{font-family:'Space Mono';font-size:15px;font-weight:700;text-align:center;color:var(--ink)}
+  .ppqty.mini input{width:46px;font-size:14px;padding:5px 2px}
+  .ppphasebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
+  .ppphasebar .ppbtn{white-space:nowrap}
   .pplcheck{display:flex;align-items:center;justify-content:center}
   .pplcheck input{width:16px;height:16px;accent-color:var(--sage-d);cursor:pointer}
   .pplcheck .fx{border:0;background:none;color:var(--red);font-size:12px;cursor:pointer;padding:0}
@@ -1764,13 +1776,75 @@ function drawSoilPattern(ctx,pat,x,y,px){ // USDA-ish area symbols over the base
   ctx.restore();
 }
 
-const PHASE_MAX=10; // planting plan supports up to 10 manual phases
+const PHASE_MAX=10; // legacy ceiling for the old single-phase dropdown
+/* ── PA: per-phase quantities (PLANNING_UPGRADE.md §A) ────────────────────
+   v1 stored one quantity and one phase per plant:
+       counts = {plantId: qty}      phases = {plantId: phaseNo}
+   v2 stores a quantity PER PHASE, so a plant can be split across plantings:
+       alloc  = {plantId: {phaseNo: qty}}
+       phaseMeta = {phaseNo: {name, quarter, year, order}}
+   counts/phases are still DERIVED and still written into the blob, so every
+   existing consumer (computeProject, Maintenance, Harvest, Forest Layers,
+   PlanMiniCard) keeps working untouched, and a stale tab running the old code
+   can still read the plan. */
+const BASE_PHASES=4;   // new and migrated plans start with four; no cap
+function emptyPhaseMeta(n){
+  const m={}; for(let i=1;i<=n;i++) m[i]={name:"", quarter:"Q2", year:null, order:i};
+  return m;
+}
+function migrateLayout(L){
+  if(!L) return L;
+  if(L.v>=2 && L.alloc) return L;
+  const counts=L.counts||{}, phases=L.phases||{};
+  const alloc={};
+  // every plant that had EITHER a quantity or a phase must survive: a plant
+  // with a phase but no quantity keeps its phase at qty 0 (the backup showed
+  // 54 phases against 48 counts, so this is not hypothetical)
+  const ids=new Set([...Object.keys(counts), ...Object.keys(phases)]);
+  ids.forEach(id=>{
+    const ph=Math.max(1, parseInt(phases[id],10)||1);
+    alloc[id]={[ph]: parseInt(counts[id],10)||0};
+  });
+  const used=Object.values(phases).map(n=>parseInt(n,10)||1);
+  const maxPhase=Math.max(BASE_PHASES, used.length?Math.max(...used):0);
+  return {...L, v:2, alloc, phaseMeta:L.phaseMeta||emptyPhaseMeta(maxPhase)};
+}
+const allocTotal=(alloc,id)=>Object.values((alloc&&alloc[id])||{})
+  .reduce((a,n)=>a+(parseInt(n,10)||0),0);
+// derived, for every consumer that still speaks v1
+function deriveCounts(alloc){
+  const c={}; Object.keys(alloc||{}).forEach(id=>{ const t=allocTotal(alloc,id); if(t) c[id]=t; });
+  return c;
+}
+function derivePhases(alloc){
+  const p={};
+  Object.keys(alloc||{}).forEach(id=>{
+    const ks=Object.keys(alloc[id]||{}).filter(k=>(parseInt(alloc[id][k],10)||0)>0)
+              .map(Number).sort((a,b)=>a-b);
+    if(ks.length) p[id]=ks[0];
+    else { const any=Object.keys(alloc[id]||{}).map(Number).sort((a,b)=>a-b); if(any.length) p[id]=any[0]; }
+  });
+  return p;
+}
+const phaseList=meta=>Object.keys(meta||{}).map(Number).sort((a,b)=>a-b);
 function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases, setPhases}){
   const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"soil",label:"Soil Map"},{key:"place",label:"Place Plants"}];
   const [ready,setReady]=useState(false);
   const [mapReady,setMapReady]=useState(false);
   const [step,setStep]=useState("plants");
-  const [counts,setCounts]=useState({});   // {plantId:n}
+  const [alloc,setAlloc]=useState({});      // {plantId:{phaseNo:qty}} — v2 source of truth
+  const [phaseMeta,setPhaseMeta]=useState(()=>emptyPhaseMeta(BASE_PHASES));
+  // counts/phases are DERIVED from alloc; every existing consumer still reads these
+  const counts=useMemo(()=>deriveCounts(alloc),[alloc]);
+  const derivedPhases=useMemo(()=>derivePhases(alloc),[alloc]);
+  const setCounts=(fn)=>setAlloc(prev=>{           // legacy shim: writes into phase 1
+    const cur=deriveCounts(prev), next=typeof fn==="function"?fn(cur):fn, out={...prev};
+    Object.keys(next).forEach(id=>{
+      const ph=(derivePhases(prev)[id])||1;
+      out[id]={...(out[id]||{}), [ph]: next[id]};
+    });
+    return out;
+  });
   const [view,setView]=useState(null);      // {center:[lat,lng], zoom, base}
   const [polys,setPolys]=useState([]);      // [[[lat,lng],...], ...]
   const [places,setPlaces]=useState([]);    // [{id, plantId, lat, lng}]
@@ -1784,7 +1858,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   const [showFilters,setShowFilters]=useState(false); // Step 1 per-column filter row
   const [colF,setColF]=useState({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""});
   const [sel,setSel]=useState(()=>new Set());    // selected plant ids for bulk edit
-  const [bulkQty,setBulkQty]=useState(1);        // quantity to apply in a bulk edit
+  const [bulkQty,setBulkQty]=useState(1);
+  const [bulkPhase,setBulkPhase]=useState(1);
+  const [moveFrom,setMoveFrom]=useState(1);
+  const [moveTo,setMoveTo]=useState(2);        // quantity to apply in a bulk edit
   // Step 3 soil map
   const [soilMap,setSoilMap]=useState(null);   // {grid:{cols,rows,b:[[s,w],[n,e]]}, data:{texture:rle,drainage:rle,ph:rle}} (persisted)
   const [soilCat,setSoilCat]=useState("texture");
@@ -1822,10 +1899,13 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   /* ---- load layout on mount (localStorage instant, Supabase authoritative) ---- */
   useEffect(()=>{
     let cancelled=false;
-    const apply=(L)=>{ if(!L) return;
+    const apply=(raw)=>{ if(!raw) return;
+      const L=migrateLayout(raw);                  // v1 blobs are upgraded on read
       if(L.step && STEPS.some(s=>s.key===L.step)) setStep(L.step);
-      setCounts(L.counts||{}); setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]); setSoilMap(L.soilMap||null);
-      if(setPhases) setPhases(L.phases||{});
+      setAlloc(L.alloc||{});
+      setPhaseMeta(L.phaseMeta||emptyPhaseMeta(BASE_PHASES));
+      setView(L.view||null); setPolys(L.polys||[]); setPlaces(L.places||[]); setSoilMap(L.soilMap||null);
+      if(setPhases) setPhases(derivePhases(L.alloc||{}));
     };
     try{ const s=localStorage.getItem("ff-layout-"+planId); if(s) apply(JSON.parse(s)); }catch(e){}
     dataProvider.loadLayout(planId).then(remote=>{ if(cancelled) return; apply(remote); setReady(true); })
@@ -1833,16 +1913,25 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     return ()=>{ cancelled=true; };
   },[planId]);
 
+  /* ---- keep the parent's derived view in step with the allocation ----
+     MyPlan hands `phases` to Maintenance, Project Plan and the Forest Layers
+     filter. Without this they'd only update on load and would drift the moment
+     a quantity moved between phases. */
+  useEffect(()=>{ if(!ready || !setPhases) return; setPhases(derivePhases(alloc)); },[alloc,ready]);
+
   /* ---- autosave (debounced) once loaded ---- */
   const saveT=useRef(null);
   useEffect(()=>{
     if(!ready) return;
-    const layout={ v:1, step, counts, view, polys, places, soilMap, phases:phases||{} };
+    // v2 blob. counts/phases are written too, derived — an old tab or an
+    // un-migrated reader still sees a coherent v1 plan (PLANNING_UPGRADE §A).
+    const layout={ v:2, step, alloc, phaseMeta, view, polys, places, soilMap,
+                   counts: deriveCounts(alloc), phases: derivePhases(alloc) };
     try{ localStorage.setItem("ff-layout-"+planId, JSON.stringify(layout)); }catch(e){}
     clearTimeout(saveT.current);
     saveT.current=setTimeout(()=>{ dataProvider.saveLayout(planId,layout).catch(e=>console.error(e)); },800);
     return ()=>clearTimeout(saveT.current);
-  },[ready,planId,step,counts,view,polys,places,soilMap,phases]);
+  },[ready,planId,step,alloc,phaseMeta,view,polys,places,soilMap]);
 
   /* ---- create the Leaflet map once data is loaded ---- */
   useEffect(()=>{
@@ -2076,7 +2165,21 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     }
   },[step,places,counts]); // eslint-disable-line
 
-  const setQty=(id,n)=>{ n=Math.max(0,Math.min(999,n|0)); setCounts(c=>{ const nc={...c}; if(n) nc[id]=n; else delete nc[id]; return nc; }); };
+  const setQtyIn=(id,ph,n)=>{ n=Math.max(0,Math.min(999,n|0));
+    setAlloc(a=>{ const row={...(a[id]||{})};
+      if(n) row[ph]=n; else delete row[ph];
+      const out={...a}; if(Object.keys(row).length) out[id]=row; else delete out[id];
+      return out; }); };
+  const setQty=(id,n)=>{ const ph=derivedPhases[id]||phaseList(phaseMeta)[0]||1; setQtyIn(id,ph,n); };
+  const addPhase=()=>setPhaseMeta(m=>{ const ns=phaseList(m); const next=(ns.length?Math.max(...ns):0)+1;
+    return {...m,[next]:{name:"",quarter:"Q2",year:null,order:next}}; });
+  const removePhase=(ph)=>{
+    const held=Object.keys(alloc).filter(id=>(alloc[id]||{})[ph]);
+    if(held.length && !confirm(`Phase ${ph} holds quantities for ${held.length} plant${held.length===1?"":"s"}. Remove it and lose those quantities?`)) return;
+    setAlloc(a=>{ const out={}; Object.keys(a).forEach(id=>{ const row={...a[id]}; delete row[ph];
+      if(Object.keys(row).length) out[id]=row; }); return out; });
+    setPhaseMeta(m=>{ const out={...m}; delete out[ph]; return out; });
+  };
   const setPhase=(id,n)=>{ n=n|0; if(setPhases) setPhases(ph=>{ const np={...ph}; if(n>=1&&n<=PHASE_MAX) np[id]=n; else delete np[id]; return np; }); };
   const doRestart=()=>{
     if(!confirm("Restart this planting plan from scratch? Your plant counts, mapped areas, and placements will be cleared.")) return;
@@ -2133,9 +2236,15 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     if(colF.harvest.trim()){ if(!(p.harvest||"").toLowerCase().includes(colF.harvest.trim().toLowerCase())) return false; }
     if(colF.eco){ if(colF.eco==="nf"&&!p.nf) return false; if(colF.eco==="pol"&&!p.pol) return false;
       if(colF.eco==="either"&&!(p.nf||p.pol)) return false; if(colF.eco==="neither"&&(p.nf||p.pol)) return false; }
-    if(colF.phase){ const ph=phases&&phases[p.id];
+    if(false){ const ph=phases&&phases[p.id];
       if(colF.phase==="none"&&ph) return false; if(colF.phase!=="none"&&String(ph||"")!==colF.phase) return false; }
-    if(colF.qty){ const n=counts[p.id]||0; if(colF.qty==="has"&&!n) return false; if(colF.qty==="none"&&n) return false; }
+    if(colF.qty){ const n=allocTotal(alloc,p.id); if(colF.qty==="has"&&!n) return false; if(colF.qty==="none"&&n) return false; }
+    for(const k of Object.keys(colF)){
+      if(!/^ph\d+$/.test(k) || !colF[k]) continue;
+      const q=(alloc[p.id]||{})[k.slice(2)]||0;
+      if(colF[k]==="has" && !q) return false;
+      if(colF[k]==="none" && q) return false;
+    }
     return true;
   };
   const qtyRowsRaw=chosen.filter(p=>{
@@ -2146,14 +2255,28 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   const colFActive=Object.values(colF).filter(v=>v!=="").length;
   const setCF=(k,v)=>setColF(o=>({...o,[k]:v}));
   // ---- bulk edit over selected rows ----
-  const bulkSetPhase=(ph)=>setPhases&&setPhases(prev=>{ const np={...prev};
-    sel.forEach(id=>{ if(ph>=1&&ph<=PHASE_MAX) np[id]=ph; else delete np[id]; }); return np; });
-  const bulkSetQty=(n)=>{ n=Math.max(0,Math.min(999,n|0)); setCounts(prev=>{ const nc={...prev};
-    sel.forEach(id=>{ if(n) nc[id]=n; else delete nc[id]; }); return nc; }); };
+  // PA: bulk edit is now "set quantity IN phase P", plus a move between phases
+  const bulkSetQtyIn=(ph,n)=>{ n=Math.max(0,Math.min(999,n|0));
+    setAlloc(prev=>{ const out={...prev};
+      sel.forEach(id=>{ const row={...(out[id]||{})};
+        if(n) row[ph]=n; else delete row[ph];
+        if(Object.keys(row).length) out[id]=row; else delete out[id]; });
+      return out; }); };
+  const bulkMovePhase=(from,to)=>{
+    if(!from||!to||from===to) return;
+    setAlloc(prev=>{ const out={...prev};
+      sel.forEach(id=>{ const row={...(out[id]||{})}; const q=row[from]||0; if(!q) return;
+        delete row[from]; row[to]=(row[to]||0)+q; out[id]=row; });
+      return out; }); };
   const toggleSel=(id)=>setSel(s=>{ const n=new Set(s); n.has(id)?n.delete(id):n.add(id); return n; });
   // Step 1 table sort: one value accessor per column
-  const QCOLS=[["name","Common name"],["layer","Layer"],["score","Score"],["minfruit","Min→fruit"],
-    ["yrsfruit","Yrs→fruit"],["harvest","Harvest"],["eco","Ecology"],["phase","Phase"],["qty","Quantity"]];
+  const phaseNos=phaseList(phaseMeta);
+  const QBASE=[["name","Common name"],["layer","Layer"],["score","Score"],["minfruit","Min→fruit"],
+    ["yrsfruit","Yrs→fruit"],["harvest","Harvest"],["eco","Ecology"]];
+  const QCOLS=[...QBASE, ...phaseNos.map(n=>["ph"+n, phaseMeta[n] && phaseMeta[n].name ? phaseMeta[n].name : "P"+n]),
+               ["total","Total"]];
+  // 45px checkbox + 190px frozen name, then the rest; phase columns are fixed-width
+  const gridCols=`45px 190px 92px 60px 88px 74px 130px 118px ${phaseNos.map(()=>"84px").join(" ")} 90px`;
   const qSortVal=(p,key)=>{ switch(key){
     case "name": return p.common.toLowerCase();
     case "layer": return ["Canopy","Shrub","Herbaceous","Groundcover","Vine"].indexOf((PP_LAYER[p.type]||{}).layer);
@@ -2162,8 +2285,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     case "yrsfruit": { const y=firstFruitYear(p); return y==null?9999:y; }
     case "harvest": return (p.harvest||"").toLowerCase();
     case "eco": return (p.nf?2:0)+(p.pol?1:0);
-    case "phase": return (phases&&phases[p.id])||99;
-    case "qty": return counts[p.id]||0;
+    case "total": return allocTotal(alloc,p.id);
+    default:
+      if(/^ph\d+$/.test(key)) return (alloc[p.id]||{})[key.slice(2)]||0;
+      return 0;
     default: return 0; } };
   const qtyRows = qSort.key
     ? [...qtyRowsRaw].sort((a,b)=>{ const x=qSortVal(a,qSort.key),y=qSortVal(b,qSort.key);
@@ -2246,65 +2371,97 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
             <div className="pplbulk">
               <b>{sel.size} selected</b>
               <span className="sep">Bulk set phase</span>
-              <select value="" onChange={e=>{ const v=e.target.value; if(v!=="") bulkSetPhase(v==="clear"?0:parseInt(v,10)); e.target.value=""; }}>
+              <span className="sep">set qty in</span>
+              <select value={bulkPhase} onChange={e=>setBulkPhase(parseInt(e.target.value,10))}>
+                {phaseNos.map(ph=><option key={ph} value={ph}>{(phaseMeta[ph]&&phaseMeta[ph].name)||("Phase "+ph)}</option>)}
+              </select>
+              <input type="number" min="0" value={bulkQty} onChange={e=>setBulkQty(parseInt(e.target.value||"0",10))} />
+              <button className="ppbtn primary" onClick={()=>bulkSetQtyIn(bulkPhase,bulkQty)}>Apply</button>
+              <span className="sep">move</span>
+              <select value={moveFrom} onChange={e=>setMoveFrom(parseInt(e.target.value,10))}>
+                {phaseNos.map(ph=><option key={ph} value={ph}>{"P"+ph}</option>)}
+              </select>
+              <span className="sep">→</span>
+              <select value={moveTo} onChange={e=>setMoveTo(parseInt(e.target.value,10))}>
+                {phaseNos.map(ph=><option key={ph} value={ph}>{"P"+ph}</option>)}
+              </select>
+              <button className="ppbtn" onClick={()=>bulkMovePhase(moveFrom,moveTo)}>Move</button>
+              <select style={{display:"none"}} value="" onChange={e=>{}}>
                 <option value="">—</option>
                 {Array.from({length:PHASE_MAX},(_,k)=>k+1).map(ph=><option key={ph} value={ph}>Phase {ph}</option>)}
                 <option value="clear">Clear phase</option>
               </select>
-              <span className="sep">quantity</span>
-              <input type="number" min="0" value={bulkQty} onChange={e=>setBulkQty(parseInt(e.target.value||"0",10))} />
-              <button className="ppbtn primary" onClick={()=>bulkSetQty(bulkQty)}>Apply qty</button>
               <span className="grow"></span>
               <button className="ppbtn ghost" onClick={()=>setSel(new Set())}>Deselect all</button>
             </div>
           )}
+          <div className="ppphasebar">
+            <span className="sep" style={{fontFamily:"'Space Mono'",fontSize:10,textTransform:"uppercase",letterSpacing:".05em",color:"var(--faint)"}}>Phases</span>
+            {phaseNos.map(ph=>(
+              <button key={ph} className="ppbtn ghost" title={"Remove "+((phaseMeta[ph]&&phaseMeta[ph].name)||("phase "+ph))}
+                      onClick={()=>removePhase(ph)}>{(phaseMeta[ph]&&phaseMeta[ph].name)||("P"+ph)} ✕</button>
+            ))}
+            <button className="ppbtn" onClick={addPhase}>+ Add phase</button>
+          </div>
+          <div className="pplscroll">
           <div className="pplist">
-            <div className="pplhead">
+            <div className="pplhead" style={{gridTemplateColumns:gridCols}}>
               <div className="pplcheck"><input type="checkbox" checked={allInView} onChange={toggleAll} title="Select all shown" /></div>
               {QCOLS.map(([k,label])=>(
-                <div key={k} className={"pplsort"+(qSort.key===k?" on":"")} onClick={()=>qSortBy(k)} title={"Sort by "+label}>
+                <div key={k} className={"pplsort"+(k==="name"?" cncell":"")+(/^ph\d+$/.test(k)||k==="total"?" ppphcol":"")+(qSort.key===k?" on":"")}
+                     onClick={()=>qSortBy(k)} title={"Sort by "+label}>
                   {label}<span className="ar">{qSort.key===k?(qSort.dir===1?"▲":"▼"):"⇅"}</span>
                 </div>
               ))}
             </div>
             {showFilters && (
-              <div className="pplfilter">
+              <div className="pplfilter" style={{gridTemplateColumns:gridCols}}>
                 <div className="pplcheck">{colFActive>0 && <button className="fx" title="Clear column filters" onClick={()=>setColF({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""})}>✕</button>}</div>
-                <input placeholder="name…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} />
+                <div className="cncell"><input placeholder="name…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} style={{width:"100%"}} /></div>
                 <select value={colF.layer} onChange={e=>setCF("layer",e.target.value)}><option value="">Layer</option>{["Canopy","Shrub","Herbaceous","Groundcover","Vine"].map(l=><option key={l} value={l}>{l}</option>)}</select>
                 <select value={colF.score} onChange={e=>setCF("score",e.target.value)}><option value="">Score</option><option value="80">80+</option><option value="60">60–79</option><option value="40">40–59</option><option value="lt40">&lt;40</option></select>
                 <select value={colF.minfruit} onChange={e=>setCF("minfruit",e.target.value)}><option value="">Min→fruit</option><option value="self">Self‑fruitful</option><option value="partner">Needs 2+</option><option value="unknown">Unknown</option></select>
                 <select value={colF.yrs} onChange={e=>setCF("yrs",e.target.value)}><option value="">Yrs→fruit</option><option value="le2">≤2</option><option value="3to5">3–5</option><option value="6plus">6+</option><option value="unknown">Unknown</option></select>
                 <input placeholder="harvest…" value={colF.harvest} onChange={e=>setCF("harvest",e.target.value)} />
                 <select value={colF.eco} onChange={e=>setCF("eco",e.target.value)}><option value="">Ecology</option><option value="nf">N‑fixer</option><option value="pol">Pollinator</option><option value="either">Either</option><option value="neither">Neither</option></select>
-                <select value={colF.phase} onChange={e=>setCF("phase",e.target.value)}><option value="">Phase</option>{Array.from({length:PHASE_MAX},(_,k)=>k+1).map(ph=><option key={ph} value={String(ph)}>{ph}</option>)}<option value="none">Unphased</option></select>
-                <select value={colF.qty} onChange={e=>setCF("qty",e.target.value)}><option value="">Qty</option><option value="has">Has qty</option><option value="none">None</option></select>
+                {phaseNos.map(ph=>(
+                  <select key={ph} value={colF["ph"+ph]||""} onChange={e=>setCF("ph"+ph,e.target.value)}>
+                    <option value="">{(phaseMeta[ph]&&phaseMeta[ph].name)||("P"+ph)}</option>
+                    <option value="has">Has qty</option><option value="none">None</option>
+                  </select>
+                ))}
+                <select value={colF.qty} onChange={e=>setCF("qty",e.target.value)}>
+                  <option value="">Total</option><option value="has">Has qty</option><option value="none">None</option></select>
               </div>
             )}
             {qtyRows.length===0 && <div className="pplrow" style={{gridTemplateColumns:"1fr",cursor:"default"}}><div className="pphint">No plants match that filter.</div></div>}
             {qtyRows.map((p,i)=>{
               const sc=overall(p,state), n=counts[p.id]||0, isSel=sel.has(p.id);
               return (
-                <div className={"pplrow"+(isSel?" selrow":"")+(n?" has":(i%2?" alt":""))} key={p.id} onClick={()=>openDetail(p)}>
+                <div className={"pplrow"+(isSel?" selrow":"")+(n?" has":(i%2?" alt":""))} key={p.id}
+                     style={{gridTemplateColumns:gridCols}} onClick={()=>openDetail(p)}>
                   <div className="pplcheck" onClick={e=>e.stopPropagation()}><input type="checkbox" checked={isSel} onChange={()=>toggleSel(p.id)} /></div>
-                  <div className="cn">{p.common}<i>{p.sci}</i></div>
+                  <div className="cn cncell">{p.common}<i>{p.sci}</i></div>
                   <div className="fr" data-l="Layer">{(PP_LAYER[p.type]||{}).layer||p.type}</div>
                   <div data-l="Score"><span className="sc" style={{background:bandColor(sc),color:bandText(sc)}}>{sc}</span></div>
                   <div className="fr" data-l="Min → fruit">{p.minPlantsFruit?(p.minPlantsFruit>=2?p.minPlantsFruit+" plants":"Self‑fruitful"):"—"}</div>
                   <div className="fr" data-l="Yrs → fruit">{p.yearsToFruit?p.yearsToFruit:"—"}</div>
                   <div className="fr" data-l="Harvest">{nd(p.harvest)}</div>
                   <div className="eco" data-l="Ecology">{p.nf&&<span className="ecopill nf">N‑fixer</span>}{p.pol&&<span className="ecopill">Pollinator</span>}{!p.nf&&!p.pol&&<span style={{color:"var(--faint)",fontSize:12}}>—</span>}</div>
-                  <div data-l="Phase" onClick={e=>e.stopPropagation()}>
-                    <select className="ppphase" value={phases&&phases[p.id]||""} onChange={e=>setPhase(p.id,parseInt(e.target.value||"0",10))}>
-                      <option value="">—</option>
-                      {Array.from({length:PHASE_MAX},(_,k)=>k+1).map(ph=><option key={ph} value={ph}>{ph}</option>)}
-                    </select>
-                  </div>
-                  <div className="ppqty" data-l="Quantity" onClick={e=>e.stopPropagation()}>
-                    <button title="One fewer" onClick={()=>setQty(p.id,n-1)}>–</button>
-                    <input type="number" min="0" value={n} onChange={e=>setQty(p.id,parseInt(e.target.value||"0",10))}/>
-                    <button title="One more" onClick={()=>setQty(p.id,n+1)}>+</button>
-                  </div>
+                  {phaseNos.map(ph=>{
+                    const q=(alloc[p.id]||{})[ph]||0;
+                    return (
+                      <div className="ppqty mini" key={ph}
+                           data-l={(phaseMeta[ph]&&phaseMeta[ph].name)||("Phase "+ph)}
+                           onClick={e=>e.stopPropagation()}>
+                        <button title="One fewer" onClick={()=>setQtyIn(p.id,ph,q-1)}>–</button>
+                        <input type="number" min="0" value={q}
+                               onChange={e=>setQtyIn(p.id,ph,parseInt(e.target.value||"0",10))}/>
+                        <button title="One more" onClick={()=>setQtyIn(p.id,ph,q+1)}>+</button>
+                      </div>
+                    );
+                  })}
+                  <div className="pptot" data-l="Total">{n||"—"}</div>
                 </div>
               );
             })}
@@ -3085,7 +3242,13 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
     const areaOf=polys=>{ if(!(window.L&&L.GeometryUtil&&L.GeometryUtil.geodesicArea)||!polys) return 0;
       const m2=polys.reduce((a,r)=>(!r||r.length<3)?a:a+Math.abs(L.GeometryUtil.geodesicArea(r.map(([la,ln])=>L.latLng(la,ln)))),0);
       return Math.round(m2*M2_TO_SQFT); };
-    const apply=L=>{ if(!L) return; if(L.phases) setPhases(L.phases); if(L.counts) setLayoutCounts(L.counts); if(L.polys) setLayoutArea(areaOf(L.polys)); };
+    const apply=raw=>{ if(!raw) return;
+      const L=migrateLayout(raw);            // same v1->v2 upgrade as the Planting Plan
+      const c=L.alloc?deriveCounts(L.alloc):(L.counts||{});
+      const ph=L.alloc?derivePhases(L.alloc):(L.phases||{});
+      setPhases(ph); setLayoutCounts(c);
+      if(L.polys) setLayoutArea(areaOf(L.polys));
+    };
     try{ const s=localStorage.getItem("ff-layout-"+curPlan); if(s) apply(JSON.parse(s)); }catch(e){}
     dataProvider.loadLayout(curPlan).then(L=>{ if(!cancelled) apply(L); }).catch(()=>{});
     return ()=>{ cancelled=true; };
