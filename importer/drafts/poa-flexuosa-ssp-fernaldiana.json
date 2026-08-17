@@ -1,5 +1,5 @@
 {
-  "common": "Fernald\u2019s blue grass",
+  "common": "Fernald’s blue grass",
   "sci": "Poa flexuosa ssp. fernaldiana",
   "family": "Poaceae",
   "type": "Grass",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Poa%20flexuosa%20ssp.%20fernaldiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POFL10"
     ]
   ],
   "hardiness_zones": "",

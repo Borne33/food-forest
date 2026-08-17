@@ -1,6 +1,6 @@
 {
   "common": "commingling loosestrife",
-  "sci": "Lysimachia terrestris \u00d7 L. thyrsiflora",
+  "sci": "Lysimachia terrestris × L. thyrsiflora",
   "family": "Primulaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Lysimachia%20terrestris%20%C3%97%20L.%20thyrsiflora"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/LYTE2"
     ]
   ],
   "hardiness_zones": "",

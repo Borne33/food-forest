@@ -1,6 +1,6 @@
 {
   "common": "short-awned muhly",
-  "sci": "Muhlenbergia frondosa \u00d7 M. schreberi = M. \u00d7curtisetosa",
+  "sci": "Muhlenbergia frondosa × M. schreberi = M. ×curtisetosa",
   "family": "Poaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Muhlenbergia%20frondosa%20%C3%97%20M.%20schreberi%20%3D%20M.%20%C3%97curtisetosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MUFR2"
     ]
   ],
   "hardiness_zones": "",

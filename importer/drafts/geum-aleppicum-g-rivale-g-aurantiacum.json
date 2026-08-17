@@ -1,6 +1,6 @@
 {
   "common": "orange avens",
-  "sci": "Geum aleppicum \u00d7 G. rivale = G. \u00d7aurantiacum",
+  "sci": "Geum aleppicum × G. rivale = G. ×aurantiacum",
   "family": "Rosaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Geum%20aleppicum%20%C3%97%20G.%20rivale%20%3D%20G.%20%C3%97aurantiacum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GEAL3"
     ]
   ],
   "hardiness_zones": "",

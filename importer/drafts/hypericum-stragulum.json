@@ -1,5 +1,5 @@
 {
-  "common": "low St. John\u2019s wort",
+  "common": "low St. John’s wort",
   "sci": "Hypericum stragulum",
   "family": "Hypericaceae",
   "type": "Shrub",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Hypericum%20stragulum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HYST4"
     ]
   ],
   "hardiness_zones": "",

@@ -1,6 +1,6 @@
 {
   "common": "shining pondweed",
-  "sci": "Potamogeton gramineus \u00d7 P. perfoliatus = P. \u00d7nitens",
+  "sci": "Potamogeton gramineus × P. perfoliatus = P. ×nitens",
   "family": "Potamogetonaceae",
   "type": "Herb",
   "life": "herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Potamogeton%20gramineus%20%C3%97%20P.%20perfoliatus%20%3D%20P.%20%C3%97nitens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POGR8"
     ]
   ],
   "hardiness_zones": "",

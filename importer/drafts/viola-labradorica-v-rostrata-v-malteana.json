@@ -1,6 +1,6 @@
 {
-  "common": "Malte\u2019s violet",
-  "sci": "Viola labradorica \u00d7 V. rostrata = V. \u00d7malteana",
+  "common": "Malte’s violet",
+  "sci": "Viola labradorica × V. rostrata = V. ×malteana",
   "family": "Violaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Viola%20labradorica%20%C3%97%20V.%20rostrata%20%3D%20V.%20%C3%97malteana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VILA10"
     ]
   ],
   "hardiness_zones": "",

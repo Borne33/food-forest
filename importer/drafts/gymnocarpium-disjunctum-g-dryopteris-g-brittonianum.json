@@ -1,6 +1,6 @@
 {
-  "common": "Britton\u2019s oak fern",
-  "sci": "Gymnocarpium disjunctum \u00d7 G. dryopteris = G. \u00d7brittonianum",
+  "common": "Britton’s oak fern",
+  "sci": "Gymnocarpium disjunctum × G. dryopteris = G. ×brittonianum",
   "family": "Cystopteridaceae",
   "type": "Fern",
   "life": "fern",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Gymnocarpium%20disjunctum%20%C3%97%20G.%20dryopteris%20%3D%20G.%20%C3%97brittonianum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/GYDI2"
     ]
   ],
   "hardiness_zones": "",

@@ -1,6 +1,6 @@
 {
   "common": "robust quillwort",
-  "sci": "Isoetes echinospora \u00d7 I. septentrionalis = I. \u00d7robusta",
+  "sci": "Isoetes echinospora × I. septentrionalis = I. ×robusta",
   "family": "Isoetaceae",
   "type": "Fern",
   "life": "fern",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Isoetes%20echinospora%20%C3%97%20I.%20septentrionalis%20%3D%20I.%20%C3%97robusta"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ISEC"
     ]
   ],
   "hardiness_zones": "",

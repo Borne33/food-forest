@@ -1,6 +1,6 @@
 {
   "common": "hybrid pondweed",
-  "sci": "Potamogeton illinoensis \u00d7 P. perfoliatus",
+  "sci": "Potamogeton illinoensis × P. perfoliatus",
   "family": "Potamogetonaceae",
   "type": "Herb",
   "life": "herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Potamogeton%20illinoensis%20%C3%97%20P.%20perfoliatus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POIL"
     ]
   ],
   "hardiness_zones": "",

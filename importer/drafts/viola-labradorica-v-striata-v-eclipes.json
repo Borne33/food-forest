@@ -1,6 +1,6 @@
 {
   "common": "eclipsed violet",
-  "sci": "Viola labradorica \u00d7 V. striata = V. \u00d7eclipes",
+  "sci": "Viola labradorica × V. striata = V. ×eclipes",
   "family": "Violaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Viola%20labradorica%20%C3%97%20V.%20striata%20%3D%20V.%20%C3%97eclipes"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VILA10"
     ]
   ],
   "hardiness_zones": "",

@@ -1,5 +1,5 @@
 {
-  "common": "Torrey\u2019s bulrush",
+  "common": "Torrey’s bulrush",
   "sci": "Schoenoplectus torreyi",
   "family": "Cyperaceae",
   "type": "Grass",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Schoenoplectus%20torreyi"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SCTO3"
     ]
   ],
   "hardiness_zones": "",

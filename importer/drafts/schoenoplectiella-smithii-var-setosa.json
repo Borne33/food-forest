@@ -1,5 +1,5 @@
 {
-  "common": "Smith\u2019s bristly bulrush",
+  "common": "Smith’s bristly bulrush",
   "sci": "Schoenoplectiella smithii var. setosa",
   "family": "Cyperaceae",
   "type": "Grass",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Schoenoplectiella%20smithii%20var.%20setosa"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SCSM3"
     ]
   ],
   "hardiness_zones": "",

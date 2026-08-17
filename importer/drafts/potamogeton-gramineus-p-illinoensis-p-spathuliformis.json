@@ -1,6 +1,6 @@
 {
   "common": "spatulate-leaved pondweed",
-  "sci": "Potamogeton gramineus \u00d7 P. illinoensis = P. \u00d7spathuliformis",
+  "sci": "Potamogeton gramineus × P. illinoensis = P. ×spathuliformis",
   "family": "Potamogetonaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Potamogeton%20gramineus%20%C3%97%20P.%20illinoensis%20%3D%20P.%20%C3%97spathuliformis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POGR8"
     ]
   ],
   "hardiness_zones": "",

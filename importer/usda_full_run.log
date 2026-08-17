@@ -1,0 +1,13 @@
+--only-new: 354 of 2461 plants are unenriched (new)
+...50/354 processed
+...100/354 processed
+...150/354 processed
+...200/354 processed
+...250/354 processed
+...300/354 processed
+
+==== USDA enrichment APPLIED ====
+processed: 354 | resolved: 293 | unresolved: 61
+changes -> nf:0  soil_texture:55  soil_drainage:65  native_north_america:0  +USDA source:293
+nf flips: 0 | native_to_us flags: 1
+report -> /Users/alexbornemann/food-forest/importer/usda_report.json

@@ -1,5 +1,5 @@
 {
-  "common": "LeConte\u2019s violet",
+  "common": "LeConte’s violet",
   "sci": "Viola affinis",
   "family": "Violaceae",
   "type": "Herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Viola%20affinis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/VIAF2"
     ]
   ],
   "hardiness_zones": "",

@@ -1,5 +1,5 @@
 {
-  "common": "chair maker\u2019s bulrush",
+  "common": "chair maker’s bulrush",
   "sci": "Schoenoplectus americanus",
   "family": "Cyperaceae",
   "type": "Grass",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Schoenoplectus%20americanus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SCAM6"
     ]
   ],
   "hardiness_zones": "",

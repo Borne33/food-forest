@@ -1,5 +1,5 @@
 {
-  "common": "Cathcart\u2019s woodsia, Cathcart\u2019s cliff fern",
+  "common": "Cathcart’s woodsia, Cathcart’s cliff fern",
   "sci": "Woodsia oregana ssp. cathcartiana",
   "family": "Woodsiaceae",
   "type": "Fern",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Woodsia%20oregana%20ssp.%20cathcartiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/WOOR"
     ]
   ],
   "hardiness_zones": "",

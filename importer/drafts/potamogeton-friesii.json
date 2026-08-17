@@ -1,5 +1,5 @@
 {
-  "common": "Fries\u2019s pondweed",
+  "common": "Fries’s pondweed",
   "sci": "Potamogeton friesii",
   "family": "Potamogetonaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Potamogeton%20friesii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/POFR3"
     ]
   ],
   "hardiness_zones": "",

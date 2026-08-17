@@ -1,5 +1,5 @@
 {
-  "common": "naked mitrewort, naked bishop\u2019s cap",
+  "common": "naked mitrewort, naked bishop’s cap",
   "sci": "Mitella nuda",
   "family": "Saxifragaceae",
   "type": "Herb",
@@ -56,6 +56,18 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Mitella%20nuda"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Mitella%20nuda"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MINU3"
     ]
   ],
   "hardiness_zones": "",

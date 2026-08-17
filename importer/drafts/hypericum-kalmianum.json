@@ -1,5 +1,5 @@
 {
-  "common": "Kalm\u2019s St. John\u2019s wort",
+  "common": "Kalm’s St. John’s wort",
   "sci": "Hypericum kalmianum",
   "family": "Hypericaceae",
   "type": "Shrub",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Hypericum%20kalmianum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HYKA"
     ]
   ],
   "hardiness_zones": "",

@@ -1,5 +1,5 @@
 {
-  "common": "carpenter\u2019s square",
+  "common": "carpenter’s square",
   "sci": "Scrophularia marilandica",
   "family": "Scrophulariaceae",
   "type": "Herb",
@@ -56,6 +56,18 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Scrophularia%20marilandica"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Scrophularia%20marilandica"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SCMA2"
     ]
   ],
   "hardiness_zones": "",

@@ -1,6 +1,6 @@
 {
-  "common": "Eaton\u2019s quillwort",
-  "sci": "Isoetes echinospora \u00d7 I. engelmannii = I. \u00d7eatonii",
+  "common": "Eaton’s quillwort",
+  "sci": "Isoetes echinospora × I. engelmannii = I. ×eatonii",
   "family": "Isoetaceae",
   "type": "Fern",
   "life": "Perennial fern",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Isoetes%20echinospora%20%C3%97%20I.%20engelmannii%20%3D%20I.%20%C3%97eatonii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ISEC"
     ]
   ],
   "hardiness_zones": "",

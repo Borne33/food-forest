@@ -1,5 +1,5 @@
 {
-  "common": "Pylaie\u2019s rush",
+  "common": "Pylaie’s rush",
   "sci": "Juncus pylaei",
   "family": "Juncaceae",
   "type": "Grass",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Juncus%20pylaei"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/JUPY"
     ]
   ],
   "hardiness_zones": "",

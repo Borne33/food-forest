@@ -1,6 +1,6 @@
 {
   "common": "reddish willow",
-  "sci": "Salix candida \u00d7 S. eriocephala = S. \u00d7rubella",
+  "sci": "Salix candida × S. eriocephala = S. ×rubella",
   "family": "Salicaceae",
   "type": "Shrub",
   "life": "Perennial shrub",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Salix%20candida%20%C3%97%20S.%20eriocephala%20%3D%20S.%20%C3%97rubella"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SACA4"
     ]
   ],
   "hardiness_zones": "",

@@ -1,5 +1,5 @@
 {
-  "common": "Long\u2019s wool grass",
+  "common": "Long’s wool grass",
   "sci": "Scirpus longii",
   "family": "Cyperaceae",
   "type": "Grass",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Scirpus%20longii"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SCLO"
     ]
   ],
   "hardiness_zones": "",
