@@ -2288,8 +2288,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     case "total": return allocTotal(alloc,p.id);
     default:
       if(/^ph\d+$/.test(key)) return (alloc[p.id]||{})[key.slice(2)]||0;
-      return 0;
-    default: return 0; } };
+      return 0; } };
   const qtyRows = qSort.key
     ? [...qtyRowsRaw].sort((a,b)=>{ const x=qSortVal(a,qSort.key),y=qSortVal(b,qSort.key);
         return (x<y?-1:x>y?1:0)*qSort.dir; })
