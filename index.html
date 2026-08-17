@@ -508,9 +508,10 @@
   .pplfilter>.cncell{position:sticky;left:45px;z-index:5;background:inherit;box-shadow:1px 0 0 var(--line)}
   .pplhead>.pplcheck{position:sticky;left:0;z-index:7;background:inherit}
   .pplhead>.cncell{position:sticky;left:45px;z-index:7;background:inherit;box-shadow:1px 0 0 var(--line)}
-  .pplhead{background:var(--paper2);z-index:6} .pplfilter{background:#f4efe0;z-index:4;position:relative}
+  .pplfilter{background:#f4efe0;z-index:4;position:relative}
   .ppphcol{text-align:center}
   .pptot{font-family:'Space Mono';font-size:15px;font-weight:700;text-align:center;color:var(--ink)}
+  .mobileonly{display:none}
   .ppqty.mini{justify-content:center}
   .ppqty.mini input{width:100%;max-width:70px;font-size:15px;padding:6px 2px}
   .ppphasebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
@@ -526,14 +527,18 @@
   .pplbulk input[type=number]{width:60px}
   .pplrow.selrow{outline:2px solid var(--sage-d);outline-offset:-2px}
   .ppphase{width:100%;font-family:'Space Mono';font-size:14px;text-align:center;border:1.5px solid var(--line);border-radius:4px;padding:6px 4px;background:#fff;color:var(--ink)}
-  .pplhead{position:sticky;top:63px;z-index:3;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
+  /* top:0 — .pplscroll is the scroll container now, so the old 63px topbar
+     offset pushed the header down INSIDE the table instead of clearing the
+     site header. z-index must beat the rows' frozen cells (2) and the filter
+     row (4/5), or row inputs paint over the column labels. */
+  .pplhead{position:sticky;top:0;z-index:6;background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-bottom:1.5px solid var(--ink)}
   .pplhead>div:last-child{text-align:center}
   .pplsort{cursor:pointer;user-select:none;display:flex;align-items:center;gap:4px}
   .pplsort .ar{color:var(--faint);font-size:9px}
   .pplsort:hover{color:var(--ink)}
   .pplsort.on{color:var(--ink)}
   .pplsort.on .ar{color:var(--sage-d)}
-  .pplrow{border-bottom:1px solid var(--line);cursor:pointer;background:#fbf9f2}
+  .pplrow{border-bottom:1px solid var(--line);cursor:pointer;background:#fbf9f2;position:relative;z-index:1}
   .pplrow.alt{background:#f7f2e4}
   .pplrow:last-child{border-bottom:0}
   .pplrow:hover{background:#f1ead6}
@@ -555,6 +560,7 @@
     /* Phones get the stacked card layout: one field per line with its label.
        The frozen columns and the sideways scroll are desktop-only — on a phone
        they just made the plant name sit on top of the quantity boxes. */
+    .mobileonly{display:inline-flex}
     .pplscroll{overflow-x:visible}
     .pplist{min-width:0}
     .pplhead{display:none}
@@ -2396,6 +2402,11 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
             <button className={"ppbtn"+(onlyChosen?" primary":" ghost")} onClick={()=>setOnlyChosen(v=>!v)}>
               {onlyChosen?"✓ Only with a quantity":"Only with a quantity"}</button>
             {(colFActive>0||qtyQ) && <button className="ppbtn ghost" onClick={()=>{ setColF({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""}); setQtyQ(""); }}>Clear filters</button>}
+            {/* the header row (and its select-all checkbox) is hidden on phones,
+                so bulk selection needs its own control there */}
+            <button className={"ppbtn mobileonly"+(allInView?" primary":"")} onClick={toggleAll}>
+              {allInView ? `✓ ${selInView} selected — deselect` : `Select all ${qtyRows.length} shown`}</button>
+            {sel.size>0 && <button className="ppbtn ghost mobileonly" onClick={()=>setSel(new Set())}>Clear selection</button>}
             <span className="grow"></span>
             {totalToPlace>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every quantity in this plan?")) setCounts({}); }}>Clear quantities</button>}
             {Object.keys(phases||{}).length>0 && <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every phase assignment in this plan?")) setPhases&&setPhases({}); }}>Clear phases</button>}
