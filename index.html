@@ -650,6 +650,33 @@
   .shopcard .where{font-family:'Space Mono';font-size:11px;color:var(--faint);margin-top:4px}
   .shopcard .tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
   .shopcard .rgt{flex:0 0 auto;text-align:right}
+.wtb{border:1.5px solid var(--sage-d);border-radius:6px;background:#f4f7ee;padding:13px 15px;margin:14px 0 4px}
+  .wtb h5{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);
+    margin:0 0 9px;border-bottom:1px solid var(--line);padding-bottom:5px}
+  .wtbrow{display:flex;gap:12px;align-items:center;justify-content:space-between;
+    padding:7px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+  .wtbrow:last-of-type{border-bottom:0}
+  .wtbrow .l b{font-size:15px}
+  .wtbrow .l div{font-size:12.5px;color:var(--ink2);margin-top:2px}
+  .wtbrow .rr{display:flex;gap:8px;align-items:center;flex:0 0 auto}
+  .wtbrow .rr a{font-family:'Space Mono';font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
+    border:1.5px solid var(--sage-d);color:var(--sage-d);border-radius:4px;padding:3px 9px;text-decoration:none}
+  .wtb .stock{font-family:'Space Mono';font-size:10px;padding:2px 7px;border-radius:3px;border:1px solid}
+  .wtb .s-in{color:#26661f;border-color:#9dc48f;background:#e9f2df}
+  .wtb .s-out{color:#8a3b2f;border-color:#ddb2a8;background:#f6e7e2}
+  .wtb .s-seas{color:#7a5320;border-color:var(--soil-line);background:var(--soil-bg)}
+  .wtb .s-unk{color:var(--faint);border-color:var(--line);background:#fbf9f2}
+  .wtbnone{font-size:13.5px;color:var(--ink2)}
+  .wtbfoot{font-family:'Space Mono';font-size:10px;color:var(--faint);margin-top:9px;line-height:1.55}
+  .statrow{display:flex;gap:6px}
+  .statbox{min-width:60px;border-radius:5px;padding:7px 9px 6px;text-align:center;border:1.5px solid}
+  .statbox b{display:block;font-family:'Space Mono';font-size:21px;font-weight:700;line-height:1.05}
+  .statbox span{display:block;font-family:'Space Mono';font-size:8px;letter-spacing:.08em;
+    text-transform:uppercase;margin-top:4px;opacity:.85}
+  .statbox.plan{background:var(--sage-d);border-color:var(--sage-d);color:var(--paper)}
+  .statbox.db{background:#e9f2df;border-color:#9dc48f;color:#2f5b2a}
+  .statbox.dist{background:var(--paper2);border-color:var(--line);color:var(--ink2)}
+  @media(max-width:520px){ .statbox{min-width:52px;padding:6px 7px} .statbox b{font-size:18px} }
   .shopcard .big{font-family:'Space Mono';font-size:24px;font-weight:700;line-height:1}
   .shopcard .big span{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--faint);font-weight:400;margin-top:3px}
@@ -1299,7 +1326,65 @@ function AddToPlan({p, plans, memberOf, toggle}){
     </div>
   );
 }
-function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
+
+/* ── S6: "Where to buy" on the plant card ─────────────────────────────────
+   Reads the same vendor_plants the Shops page uses. Ordering is deliberate:
+   local & in stock, then local & seasonal, then mail order, then unknown —
+   a gardener wants the nearest thing they can actually get today.
+   An EMPTY list is never rendered as "unavailable": we only know what we've
+   sampled, and at 2 of 47 vendors that is very little. */
+const STOCK_RANK={in_stock:0, seasonal:1, unknown:2, out:3};
+function WhereToBuy({plantId, sources, vendorById, centre, onGoShops}){
+  const rows=useMemo(()=>(sources||[]).filter(r=>r.plantId===plantId),[sources,plantId]);
+  if(!sources) return null;                       // inventory hasn't loaded yet
+  const scored=rows.map(r=>{
+    const v=vendorById[r.vendorId];
+    const d=v && centre ? milesBetween(centre.lat,centre.lon,v.lat,v.lon) : null;
+    const local = d!==null && d!==undefined && d<=150;
+    return {r, v, d, local};
+  }).filter(x=>x.v).sort((a,b)=>
+      (a.local===b.local ? 0 : a.local ? -1 : 1) ||
+      ((STOCK_RANK[a.r.stock]??2)-(STOCK_RANK[b.r.stock]??2)) ||
+      ((a.d??9e9)-(b.d??9e9)) ||
+      a.v.name.localeCompare(b.v.name));
+  return (
+    <div className="wtb">
+      <h5>Where to buy {scored.length>0 ? `· ${scored.length} source${scored.length===1?"":"s"}` : ""}</h5>
+      {scored.length===0 ? (
+        <div className="wtbnone">
+          No shop in the database is recorded as stocking this yet. Only a
+          handful of shops have had their plant lists sampled so far, so this
+          means <b>not yet checked</b> — not unavailable.
+          {onGoShops && <> <a href="#" onClick={e=>{e.preventDefault(); onGoShops();}}>Browse all shops →</a></>}
+        </div>
+      ) : scored.map(({r,v,d})=>(
+        <div className="wtbrow" key={r.id}>
+          <div className="l">
+            <b>{v.name}</b>
+            <div>
+              {[v.city && v.city+", "+v.state, d!==null&&d!==undefined ? Math.round(d)+" mi" : (v.ships?"mail order":null)]
+                .filter(Boolean).join(" · ")}
+              {r.form ? " · "+(FORM_LABEL[r.form]||r.form) : ""}
+              {r.size ? " · "+r.size : ""}
+              {r.isCultivar && r.cultivarName ? ` · cultivar ‘${r.cultivarName}’` : ""}
+              {r.priceCents ? ` · ~$${(r.priceCents/100).toFixed(2)}${r.unit?" "+r.unit:""}` : ""}
+            </div>
+          </div>
+          <div className="rr">
+            <span className={"stock s-"+(r.stock==="in_stock"?"in":r.stock==="out"?"out":r.stock==="seasonal"?"seas":"unk")}>
+              {r.stock==="in_stock"?"in stock":r.stock==="out"?"sold out":r.stock==="seasonal"?"seasonal":"unknown"}</span>
+            {v.url && <a href={v.url} target="_blank" rel="noopener">Visit ↗</a>}
+          </div>
+        </div>
+      ))}
+      {scored.some(x=>x.r.priceCents) &&
+        <div className="wtbfoot">Prices are what the shop last published, in their own units — bulk seed is
+          priced per pound and is not comparable with a potted plant. Confirm before ordering.</div>}
+    </div>
+  );
+}
+
+function PlantCard({p, state, plans, memberOf, toggle, defaultOpen, sources, vendorById, centre, onGoShops}){
   const [open,setOpen]=useState(!!defaultOpen);
   const nat = nativity(p,state);
   const ov = overall(p,state);
@@ -1382,8 +1467,10 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen}){
             </dd></div>
             <div><dt>How to propagate</dt><dd>{nd(p.propagation)}</dd></div>
             <div><dt>Risks</dt><dd className="risk">{nd(p.risks)}</dd></div>
-            <div><dt>Where to buy</dt><dd>{nd(p.buy)}</dd></div>
+            <div><dt>Where to buy (source note)</dt><dd>{nd(p.buy)}</dd></div>
           </div>
+          <WhereToBuy plantId={p.id} sources={sources} vendorById={vendorById}
+                      centre={centre} onGoShops={onGoShops} />
           <div className="srcs">
             <dt>Supporting sources</dt>
             {p.sources.map((s,i)=><a key={i} href={s[1]} target="_blank" rel="noreferrer">↗ {s[0]}</a>)}
@@ -1410,7 +1497,7 @@ function Pager({page, pageCount, go}){
   );
 }
 
-function Database({plants, state, setState, plans, membership, toggle}){
+function Database({plants, state, setState, plans, membership, toggle, sources, vendorById, centre, onGoShops}){
   const inAnyPlan=id=>!!(membership[id]&&membership[id].length);
   const [q,setQ]=useState("");
   const [sortKey,setSortKey]=useState("overall");
@@ -1537,7 +1624,8 @@ function Database({plants, state, setState, plans, membership, toggle}){
 
       <div className="count">{view.length} shown{pageCount>1?` · page ${curPage} of ${pageCount}`:""}</div>
       <Pager page={curPage} pageCount={pageCount} go={goPage} />
-      {pageItems.map(p=><PlantCard key={p.id} p={p} state={state} plans={plans} memberOf={membership[p.id]} toggle={toggle} />)}
+      {pageItems.map(p=><PlantCard key={p.id} p={p} state={state} plans={plans} memberOf={membership[p.id]} toggle={toggle}
+                                   sources={sources} vendorById={vendorById} centre={centre} onGoShops={onGoShops} />)}
       {view.length===0 && <div className="empty">No plants match those filters. Clear a filter or search to see more.</div>}
       <Pager page={curPage} pageCount={pageCount} go={goPage} />
     </div>
@@ -4212,15 +4300,19 @@ function ShopCard({v, org, saleCount, distance, forceOpen, inv, planTotal, plant
           </div>
         </div>
         <div className="rgt">
-          {planTotal>0 && listed>0
-            ? <div className="big">{planHits}<span>of your {planTotal} plants</span></div>
-            : listed>0
-              ? <div className="big">{listed}<span>plants listed</span></div>
-              : distance!==null && distance!==undefined
-                ? <div className="big">{Math.round(distance)}<span>miles away</span></div>
-                : v.ships ? <div className="big">✈<span>mail order</span></div> : null}
-          {listed>0 && distance!==null && distance!==undefined &&
-            <div className="where" style={{marginTop:4}}>{Math.round(distance)} mi</div>}
+          <div className="statrow">
+            <div className="statbox plan" title={planTotal? `${planHits} of the ${planTotal} plants in the selected plan`
+                                                          : "Select a plan to see how many of its plants this shop carries"}>
+              <b>{planTotal>0 ? planHits : "—"}</b><span>in plan</span></div>
+            <div className="statbox db" title={listed? `${listed} plants from the database listed by this shop`
+                                                     : "No plant list recorded for this shop yet"}>
+              <b>{listed>0 ? listed : "—"}</b><span>in database</span></div>
+            <div className="statbox dist" title={distance!==null&&distance!==undefined
+                    ? "Miles from the selected plan's mapped area"
+                    : (v.ships ? "Mail order — distance doesn't apply" : "No location recorded, or no mapped plan")}>
+              <b>{distance!==null&&distance!==undefined ? Math.round(distance) : (v.ships ? "✈" : "—")}</b>
+              <span>{v.ships && (distance===null||distance===undefined) ? "ships" : "miles"}</span></div>
+          </div>
           <div className="where" style={{marginTop:6}}>{open?"▲ less":"▼ more"}</div>
         </div>
       </div>
@@ -5034,6 +5126,17 @@ function App(){
   const [orgs,setOrgs]=useState([]);
   const [vendorPlants,setVendorPlants]=useState([]);
   const [shopTab,setShopTab]=useState("dir"); // lifted so the Map tab can use the wide layout
+  const [planCentre,setPlanCentre]=useState(null);   // shared by Shops and the plant card's Where to buy
+  const vendorLookup=useMemo(()=>{ const m={}; vendors.forEach(v=>m[v.id]=v); return m; },[vendors]);
+  useEffect(()=>{ let dead=false;
+    if(!curPlan){ setPlanCentre(null); return; }
+    (async()=>{ try{
+      const L=await dataProvider.loadLayout(curPlan); const polys=(L&&L.polys)||[];
+      let la=0,ln=0,n=0; polys.forEach(r=>r.forEach(([a,b])=>{la+=a;ln+=b;n++;}));
+      if(!dead) setPlanCentre(n?{lat:la/n,lon:ln/n}:null);
+    }catch(e){ if(!dead) setPlanCentre(null); } })();
+    return ()=>{ dead=true; };
+  },[curPlan]);
   const [user,setUser]=useState(null);
   const [authReady,setAuthReady]=useState(false);
 
@@ -5187,7 +5290,9 @@ function App(){
             that the <b>Email</b> provider is enabled, and that you ran both SQL files.
           </div>
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
-          page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle} /> :
+          page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle}
+                                  sources={vendorPlants} vendorById={vendorLookup} centre={planCentre}
+                                  onGoShops={()=>go("shops")} /> :
           page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
           page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
                                   vendorPlants={vendorPlants} plants={plants} planItems={planItems}
