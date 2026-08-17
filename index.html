@@ -501,14 +501,18 @@
      plant name stay frozen so you always know which row you're editing. */
   .pplscroll{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;overflow-x:auto;overflow-y:visible}
   .pplist{min-width:max-content;background:#fbf9f2}
-  .pplhead,.pplrow,.pplfilter{display:grid;gap:11px;align-items:center;padding:12px 14px}
-  .pplhead>.pplcheck,.pplrow>.pplcheck,.pplfilter>.pplcheck{position:sticky;left:0;z-index:4;background:inherit}
-  .pplhead>.cncell,.pplrow>.cncell,.pplfilter>.cncell{position:sticky;left:45px;z-index:4;background:inherit;
-    box-shadow:1px 0 0 var(--line)}
-  .pplhead{background:var(--paper2)} .pplfilter{background:#f4efe0}
+  .pplhead,.pplrow,.pplfilter{display:grid;grid-template-columns:var(--ppcols);gap:11px;align-items:center;padding:12px 14px}
+  .pplrow>.pplcheck{position:sticky;left:0;z-index:2;background:inherit}
+  .pplrow>.cncell{position:sticky;left:45px;z-index:2;background:inherit;box-shadow:1px 0 0 var(--line)}
+  .pplfilter>.pplcheck{position:sticky;left:0;z-index:5;background:inherit}
+  .pplfilter>.cncell{position:sticky;left:45px;z-index:5;background:inherit;box-shadow:1px 0 0 var(--line)}
+  .pplhead>.pplcheck{position:sticky;left:0;z-index:7;background:inherit}
+  .pplhead>.cncell{position:sticky;left:45px;z-index:7;background:inherit;box-shadow:1px 0 0 var(--line)}
+  .pplhead{background:var(--paper2);z-index:6} .pplfilter{background:#f4efe0;z-index:4;position:relative}
   .ppphcol{text-align:center}
   .pptot{font-family:'Space Mono';font-size:15px;font-weight:700;text-align:center;color:var(--ink)}
-  .ppqty.mini input{width:46px;font-size:14px;padding:5px 2px}
+  .ppqty.mini{justify-content:center}
+  .ppqty.mini input{width:100%;max-width:70px;font-size:15px;padding:6px 2px}
   .ppphasebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
   .ppphasebar .ppbtn{white-space:nowrap}
   .pplcheck{display:flex;align-items:center;justify-content:center}
@@ -548,8 +552,18 @@
   .ppqty button{width:30px;height:34px;border:1.5px solid var(--line);background:#fff;border-radius:4px;font-size:17px;line-height:1;color:var(--ink)}
   .ppqty button:hover{background:var(--sage);border-color:var(--sage-d);color:#fff}
   @media(max-width:820px){
+    /* Phones get the stacked card layout: one field per line with its label.
+       The frozen columns and the sideways scroll are desktop-only — on a phone
+       they just made the plant name sit on top of the quantity boxes. */
+    .pplscroll{overflow-x:visible}
+    .pplist{min-width:0}
     .pplhead{display:none}
-    .pplrow{grid-template-columns:1fr;gap:7px;padding:13px 14px}
+    .pplfilter{grid-template-columns:1fr 1fr!important;gap:6px}
+    .pplrow>.pplcheck,.pplrow>.cncell,.pplfilter>.pplcheck,.pplfilter>.cncell{
+      position:static;box-shadow:none}
+    .ppqty.mini input{max-width:90px}
+    .pplrow .cncell{padding-bottom:2px}
+    .pplrow{grid-template-columns:1fr!important;gap:7px;padding:13px 14px}
     .pplrow>div[data-l]::before{content:attr(data-l);align-self:center;font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:7px}
     .pplrow>div[data-l]{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
     .ppqty{justify-content:flex-start}
@@ -2424,7 +2438,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
           </div>
           <div className="pplscroll">
           <div className="pplist">
-            <div className="pplhead" style={{gridTemplateColumns:gridCols}}>
+            <div className="pplhead" style={{"--ppcols":gridCols}}>
               <div className="pplcheck"><input type="checkbox" checked={allInView} onChange={toggleAll} title="Select all shown" /></div>
               {QCOLS.map(([k,label])=>(
                 <div key={k} className={"pplsort"+(k==="name"?" cncell":"")+(/^ph\d+$/.test(k)||k==="total"?" ppphcol":"")+(qSort.key===k?" on":"")}
@@ -2434,7 +2448,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
               ))}
             </div>
             {showFilters && (
-              <div className="pplfilter" style={{gridTemplateColumns:gridCols}}>
+              <div className="pplfilter" style={{"--ppcols":gridCols}}>
                 <div className="pplcheck">{colFActive>0 && <button className="fx" title="Clear column filters" onClick={()=>setColF({layer:"",score:"",minfruit:"",yrs:"",harvest:"",eco:"",phase:"",qty:""})}>✕</button>}</div>
                 <div className="cncell"><input placeholder="name…" value={qtyQ} onChange={e=>setQtyQ(e.target.value)} style={{width:"100%"}} /></div>
                 <select value={colF.layer} onChange={e=>setCF("layer",e.target.value)}><option value="">Layer</option>{["Canopy","Shrub","Herbaceous","Groundcover","Vine"].map(l=><option key={l} value={l}>{l}</option>)}</select>
@@ -2458,7 +2472,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
               const sc=overall(p,state), n=counts[p.id]||0, isSel=sel.has(p.id);
               return (
                 <div className={"pplrow"+(isSel?" selrow":"")+(n?" has":(i%2?" alt":""))} key={p.id}
-                     style={{gridTemplateColumns:gridCols}} onClick={()=>openDetail(p)}>
+                     style={{"--ppcols":gridCols}} onClick={()=>openDetail(p)}>
                   <div className="pplcheck" onClick={e=>e.stopPropagation()}><input type="checkbox" checked={isSel} onChange={()=>toggleSel(p.id)} /></div>
                   <div className="cn cncell">{p.common}<i>{p.sci}</i></div>
                   <div className="fr" data-l="Layer">{(PP_LAYER[p.type]||{}).layer||p.type}</div>
@@ -2473,10 +2487,8 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
                       <div className="ppqty mini" key={ph}
                            data-l={(phaseMeta[ph]&&phaseMeta[ph].name)||("Phase "+ph)}
                            onClick={e=>e.stopPropagation()}>
-                        <button title="One fewer" onClick={()=>setQtyIn(p.id,ph,q-1)}>–</button>
                         <input type="number" min="0" value={q}
                                onChange={e=>setQtyIn(p.id,ph,parseInt(e.target.value||"0",10))}/>
-                        <button title="One more" onClick={()=>setQtyIn(p.id,ph,q+1)}>+</button>
                       </div>
                     );
                   })}
@@ -5375,7 +5387,6 @@ function App(){
   // landing: shown to signed-out visitors until they choose how to enter
   const [landed,setLanded]=useState(()=>{ try{ return localStorage.getItem("ff-landed")==="1"; }catch(e){ return false; } });
   const [authMode,setAuthMode]=useState("in");
-  useEffect(()=>{ if(user && page==="signin") setPage("db"); },[user,page]);
   const land=(where,mode)=>{ try{ localStorage.setItem("ff-landed","1"); }catch(e){}
     setAuthMode(mode||"in"); setLanded(true); setPage(where); };
   const [planCentre,setPlanCentre]=useState(null);   // shared by Shops and the plant card's Where to buy
@@ -5486,6 +5497,10 @@ function App(){
     return row;
   };
   const go=p=>{ setPage(p); setMenu(false); };
+  // "signin" is not a destination for someone who already has a session; resolve
+  // it to the Database in the SAME render so no frame can fall through to the
+  // router's default (which is Raw Data).
+  const effPage = (user && page==="signin") ? "db" : page;
   const signOut=async()=>{ setMenu(false); await auth.signOut(); };
 
   // gate: wait for auth, then require sign-in
@@ -5515,7 +5530,7 @@ function App(){
           {navPages.map(([k,label],i)=>(
             k==="plan" ? (
               <React.Fragment key={k}>
-                <button className={page==="plan"?"active":""} onClick={()=>go("plan")}>
+                <button className={effPage==="plan"?"active":""} onClick={()=>go("plan")}>
                   {label}<span className="num">0{i+1}</span>
                 </button>
                 {plans.map(pn=>(
@@ -5529,7 +5544,7 @@ function App(){
                 <button className="plannav newp" onClick={async()=>{ const nm=prompt("Name your new plan:",""); if(nm===null) return; try{ await newPlan(nm); go("plan"); }catch(e){ alert("Couldn't create plan: "+(e.message||e)); } }}>+ New plan</button>
               </React.Fragment>
             ) : (
-              <button key={k} className={page===k?"active":""} onClick={()=>go(k)}>
+              <button key={k} className={effPage===k?"active":""} onClick={()=>go(k)}>
                 {label}<span className="num">0{i+1}</span>
               </button>
             )
@@ -5555,8 +5570,8 @@ function App(){
             Check that you pasted your <b>Project URL</b> and <b>anon key</b> in the CONFIG block,
             that the <b>Email</b> provider is enabled, and that you ran both SQL files.
           </div>
-        ) : (!user && !isPublicPage(page)) ? (
-          page==="signin" ? (
+        ) : (!user && !isPublicPage(effPage)) ? (
+          effPage==="signin" ? (
           <div>
             <div className="pagehead">
               <div className="eye">Your account</div>
@@ -5569,7 +5584,7 @@ function App(){
           <div>
             <div className="pagehead">
               <div className="eye">Sign in required</div>
-              <h2>{(PAGES.find(([k])=>k===page)||[,"This page"])[1]} needs an account</h2>
+              <h2>{(PAGES.find(([k])=>k===effPage)||[,"This page"])[1]} needs an account</h2>
               <p>Your plans are saved to your account so they follow you between devices.
                  Browsing the plant database and the shop directory needs no account at all.</p>
             </div>
@@ -5577,18 +5592,18 @@ function App(){
           </div>
           )
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
-          page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle}
+          effPage==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle}
                                   sources={vendorPlants} vendorById={vendorLookup} centre={planCentre}
                                   onGoShops={()=>go("shops")} /> :
-          page==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
-          page==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
+          effPage==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
+          effPage==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
                                   vendorPlants={vendorPlants} plants={plants} planItems={planItems}
                                   curPlan={curPlan} isAdmin={isAdmin}
                                   tab={shopTab} setTab={setShopTab} /> :
-          page==="guide" ? <ScoringGuide /> :
-          page==="about" ? <About /> :
-          page==="grants" ? <GrantFinder curPlan={curPlan} /> :
-          (page==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} createPlant={createPlant} /> :
+          effPage==="guide" ? <ScoringGuide /> :
+          effPage==="about" ? <About /> :
+          effPage==="grants" ? <GrantFinder curPlan={curPlan} /> :
+          (effPage==="verify" && isAdmin) ? <VerifyPage plants={plants} state={state} plans={plans} membership={membership} toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage} updatePlant={updatePlant} createPlant={createPlant} /> :
           <RawData plants={plants} state={state} />
         )}
         <footer className="disclaimer">The contents of this website, such as text, graphics, images, and other material contained on this site (“Content”) are for informational purposes only. The Content is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Caution must be used when utilizing any Content from this website and all Content must be verified by a reliable source before use. The creators of this website accept no liability or responsibility should any damage or injury occur as a result of the use that is made of the Content herein.</footer>
