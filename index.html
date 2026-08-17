@@ -1340,10 +1340,16 @@ function WhereToBuy({plantId, sources, vendorById, centre, onGoShops}){
   const scored=rows.map(r=>{
     const v=vendorById[r.vendorId];
     const d=v && centre ? milesBetween(centre.lat,centre.lon,v.lat,v.lon) : null;
-    const local = d!==null && d!==undefined && d<=150;
-    return {r, v, d, local};
+    // Locality tiers. A shop with no coordinates must NOT rank below mail order:
+    // Mill Street is a Finger Lakes nursery whose address we never captured, and
+    // ranking it under a Pennsylvania seed company because of OUR missing data
+    // is exactly backwards.
+    const tier = (d!==null && d!==undefined && d<=150) ? 0
+               : (v && !v.ships) ? 1        // local-ish, distance simply unknown
+               : 2;                          // mail order
+    return {r, v, d, tier};
   }).filter(x=>x.v).sort((a,b)=>
-      (a.local===b.local ? 0 : a.local ? -1 : 1) ||
+      (a.tier-b.tier) ||
       ((STOCK_RANK[a.r.stock]??2)-(STOCK_RANK[b.r.stock]??2)) ||
       ((a.d??9e9)-(b.d??9e9)) ||
       a.v.name.localeCompare(b.v.name));
@@ -1361,14 +1367,14 @@ function WhereToBuy({plantId, sources, vendorById, centre, onGoShops}){
         <div className="wtbrow" key={r.id}>
           <div className="l">
             <b>{v.name}</b>
-            <div>
-              {[v.city && v.city+", "+v.state, d!==null&&d!==undefined ? Math.round(d)+" mi" : (v.ships?"mail order":null)]
-                .filter(Boolean).join(" · ")}
-              {r.form ? " · "+(FORM_LABEL[r.form]||r.form) : ""}
-              {r.size ? " · "+r.size : ""}
-              {r.isCultivar && r.cultivarName ? ` · cultivar ‘${r.cultivarName}’` : ""}
-              {r.priceCents ? ` · ~$${(r.priceCents/100).toFixed(2)}${r.unit?" "+r.unit:""}` : ""}
-            </div>
+            <div>{[
+              v.city ? v.city+", "+v.state : (v.state||null),
+              d!==null&&d!==undefined ? Math.round(d)+" mi" : (v.ships?"mail order":null),
+              r.form ? (FORM_LABEL[r.form]||r.form) : null,
+              r.size || null,
+              r.isCultivar && r.cultivarName ? `cultivar ‘${r.cultivarName}’` : null,
+              r.priceCents ? `~$${(r.priceCents/100).toFixed(2)}${r.unit?" "+r.unit:""}` : null,
+            ].filter(Boolean).join(" · ")}</div>
           </div>
           <div className="rr">
             <span className={"stock s-"+(r.stock==="in_stock"?"in":r.stock==="out"?"out":r.stock==="seasonal"?"seas":"unk")}>
