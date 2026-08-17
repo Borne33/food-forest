@@ -645,6 +645,26 @@
   .hcmonths{display:flex;gap:2px}
   .hcmonths button{width:22px;height:24px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:3px;font-family:'Space Mono';font-size:10px;color:var(--ink2);padding:0}
   .hcmonths button.on{background:var(--sage);color:#fff;border-color:var(--sage-d)}
+.landing{min-height:100vh;background:var(--paper);
+    background-image:repeating-linear-gradient(transparent,transparent 45px,rgba(201,194,171,.35) 45px,rgba(201,194,171,.35) 46px);
+    display:flex;align-items:center;justify-content:center;padding:40px 18px}
+  .landing .lwrap{max-width:860px;width:100%}
+  .landing .acc{font-family:'Space Mono';font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+  .landing h1{font-size:clamp(30px,5.2vw,50px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:0 0 14px}
+  .landing .lead{font-size:clamp(16px,2.1vw,19px);color:var(--ink2);max-width:62ch;margin:0 0 26px;line-height:1.55}
+  .landing .lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-bottom:28px}
+  .landing .lcard{background:#f7f4ea;border:1px solid var(--line);border-radius:4px;padding:15px 16px}
+  .landing .lcard .n{font-family:'Space Mono';font-size:10px;letter-spacing:.16em;color:var(--sage-d);margin-bottom:6px}
+  .landing .lcard b{display:block;font-size:16.5px;margin-bottom:5px}
+  .landing .lcard p{margin:0;font-size:13.5px;color:var(--ink2);line-height:1.5}
+  .landing .lacts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .landing .lacts button{font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:4px;padding:12px 20px}
+  .landing .lacts button.primary{background:var(--sage-d);border-color:var(--sage-d);color:var(--paper)}
+  .landing .lacts button:hover{background:var(--paper2)}
+  .landing .lacts button.primary:hover{background:#37502f}
+  .landing .lnote{font-size:13px;color:var(--faint);margin:0;max-width:62ch}
+  @media(max-width:560px){ .landing .lacts button{width:100%} }
   /* ---------- Shops & Seed (S2: Directory) ---------- */
   .shoptabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);margin:0 0 16px}
   .shoptabs button{border:1.5px solid var(--line);border-bottom:0;background:#fbf9f2;color:var(--ink2);
@@ -3656,8 +3676,8 @@ function RawData({plants, state}){
 }
 
 /* ---------- Auth screen (email + password) ---------- */
-function Auth(){
-  const [mode,setMode]=useState("in"); // in | up
+function Auth({initialMode}){
+  const [mode,setMode]=useState(initialMode==="up"?"up":"in"); // in | up
   const [email,setEmail]=useState("");
   const [pw,setPw]=useState("");
   const [busy,setBusy]=useState(false);
@@ -5286,6 +5306,58 @@ function textOn(hex){
   const h=(hex||"#6b8f5a").replace("#",""); const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16);
   return (0.299*r+0.587*g+0.114*b)>150 ? "#2b2a22" : "#fff";
 }
+
+/* ── Landing page (shown once, to signed-out first-time visitors) ─────────
+   S2b opened the Database and Shops pages to guests, so the first thing a
+   visitor meets should explain what this is and let them choose how to enter,
+   rather than a bare sign-in form. The choice is remembered in localStorage so
+   it never nags twice. */
+function Landing({onGuest, onSignIn, onCreate, plantCount, vendorCount}){
+  return (
+    <div className="landing">
+      <div className="lwrap">
+        <div className="acc">Native Food Forest</div>
+        <h1>Plant a food forest that belongs here.</h1>
+        <p className="lead">
+          A working reference for gardeners and growers in Upstate New York: {plantCount
+            ? plantCount.toLocaleString() : "2,400+"} native plants scored for how well they
+          feed people and wildlife, and {vendorCount || "40+"} regional nurseries, seed
+          companies and free seed libraries that actually sell them.
+        </p>
+        <div className="lgrid">
+          <div className="lcard">
+            <div className="n">01</div>
+            <b>Browse the plants</b>
+            <p>Every species scored on edibility, ecology, materials and medicine, weighted
+               by how native it is to your state — with sources and evidence tiers shown.</p>
+          </div>
+          <div className="lcard">
+            <div className="n">02</div>
+            <b>Find where to buy</b>
+            <p>Regional nurseries, conservation-district seedling sales and free seed
+               libraries, on a map, with a calendar of the one-weekend-a-year plant sales.</p>
+          </div>
+          <div className="lcard">
+            <div className="n">03</div>
+            <b>Build a plan</b>
+            <p>Group plants into forest layers, map your plot, phase the planting over
+               seasons, and get a maintenance and budget schedule. This part needs an account.</p>
+          </div>
+        </div>
+        <div className="lacts">
+          <button className="primary" onClick={onGuest}>Continue without an account</button>
+          <button onClick={onSignIn}>Sign in</button>
+          <button onClick={onCreate}>Create an account</button>
+        </div>
+        <p className="lnote">
+          Browsing the plant database and the shop directory needs no account. An account
+          only stores <b>your plans</b>, so they follow you between devices.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function App(){
   const [page,setPage]=useState("db");
   const [menu,setMenu]=useState(false);
@@ -5300,6 +5372,12 @@ function App(){
   const [orgs,setOrgs]=useState([]);
   const [vendorPlants,setVendorPlants]=useState([]);
   const [shopTab,setShopTab]=useState("dir"); // lifted so the Map tab can use the wide layout
+  // landing: shown to signed-out visitors until they choose how to enter
+  const [landed,setLanded]=useState(()=>{ try{ return localStorage.getItem("ff-landed")==="1"; }catch(e){ return false; } });
+  const [authMode,setAuthMode]=useState("in");
+  useEffect(()=>{ if(user && page==="signin") setPage("db"); },[user,page]);
+  const land=(where,mode)=>{ try{ localStorage.setItem("ff-landed","1"); }catch(e){}
+    setAuthMode(mode||"in"); setLanded(true); setPage(where); };
   const [planCentre,setPlanCentre]=useState(null);   // shared by Shops and the plant card's Where to buy
   const vendorLookup=useMemo(()=>{ const m={}; vendors.forEach(v=>m[v.id]=v); return m; },[vendors]);
   useEffect(()=>{ let dead=false;
@@ -5412,6 +5490,10 @@ function App(){
 
   // gate: wait for auth, then require sign-in
   if(!authReady) return <div className="wrap"><div className="empty">Loading…</div></div>;
+  if(!user && !landed) return (
+    <Landing plantCount={plants.length} vendorCount={vendors.length}
+             onGuest={()=>land("db")} onSignIn={()=>land("signin","in")} onCreate={()=>land("signin","up")} />
+  );
   const isAdmin = !!user && user.email === ADMIN_EMAIL;
   const navPages = (isAdmin ? [...PAGES, ["verify","Human Verify"]] : PAGES)
     .filter(([k]) => user || isPublicPage(k));   // signed out: public pages only
@@ -5459,7 +5541,7 @@ function App(){
               <button onClick={signOut}>Sign out</button>
             </> : <>
               <span className="em">Browsing as a guest</span>
-              <button onClick={()=>go("plan")}>Sign in</button>
+              <button onClick={()=>{ setAuthMode("in"); go("signin"); }}>Sign in</button>
             </>}
           </div>
         </div>
@@ -5474,6 +5556,16 @@ function App(){
             that the <b>Email</b> provider is enabled, and that you ran both SQL files.
           </div>
         ) : (!user && !isPublicPage(page)) ? (
+          page==="signin" ? (
+          <div>
+            <div className="pagehead">
+              <div className="eye">Your account</div>
+              <h2>Sign in or create an account</h2>
+              <p>Only your plans need an account. Everything else on the site is open.</p>
+            </div>
+            <Auth initialMode={authMode}/>
+          </div>
+          ) : (
           <div>
             <div className="pagehead">
               <div className="eye">Sign in required</div>
@@ -5483,6 +5575,7 @@ function App(){
             </div>
             <Auth/>
           </div>
+          )
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle}
                                   sources={vendorPlants} vendorById={vendorLookup} centre={planCentre}
