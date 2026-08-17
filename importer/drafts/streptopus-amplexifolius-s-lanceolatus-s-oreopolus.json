@@ -1,6 +1,6 @@
 {
   "common": "mountain-dwelling twisted stalk",
-  "sci": "Streptopus amplexifolius \u00d7 S. lanceolatus = S. \u00d7oreopolus",
+  "sci": "Streptopus amplexifolius × S. lanceolatus = S. ×oreopolus",
   "family": "Liliaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Streptopus%20amplexifolius%20%C3%97%20S.%20lanceolatus%20%3D%20S.%20%C3%97oreopolus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/STAM2"
     ]
   ],
   "hardiness_zones": "",

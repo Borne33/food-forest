@@ -1,5 +1,5 @@
 {
-  "common": "starry Solomon\u2019s seal",
+  "common": "starry Solomon’s seal",
   "sci": "Maianthemum stellatum",
   "family": "Asparagaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Maianthemum%20stellatum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MAST4"
     ]
   ],
   "hardiness_zones": "",

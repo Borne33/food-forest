@@ -1,5 +1,5 @@
 {
-  "common": "Fraser\u2019s marsh St. John\u2019s wort",
+  "common": "Fraser’s marsh St. John’s wort",
   "sci": "Hypericum fraseri",
   "family": "Hypericaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Hypericum%20fraseri"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HYFR5"
     ]
   ],
   "hardiness_zones": "",

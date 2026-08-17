@@ -1,5 +1,5 @@
 {
-  "common": "three-leaved Solomon\u2019s seal",
+  "common": "three-leaved Solomon’s seal",
   "sci": "Maianthemum trifolium",
   "family": "Asparagaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Maianthemum%20trifolium"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MATR4"
     ]
   ],
   "hardiness_zones": "",

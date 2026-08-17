@@ -1473,7 +1473,6 @@ function PlantCard({p, state, plans, memberOf, toggle, defaultOpen, sources, ven
             </dd></div>
             <div><dt>How to propagate</dt><dd>{nd(p.propagation)}</dd></div>
             <div><dt>Risks</dt><dd className="risk">{nd(p.risks)}</dd></div>
-            <div><dt>Where to buy (source note)</dt><dd>{nd(p.buy)}</dd></div>
           </div>
           <WhereToBuy plantId={p.id} sources={sources} vendorById={vendorById}
                       centre={centre} onGoShops={onGoShops} />
@@ -5111,6 +5110,12 @@ function Shops({vendors, sales, orgs, plans, vendorPlants, plants, planItems, cu
   );
 }
 const PAGES=[["db","Database"],["plan","My Plans"],["shops","Shops & Seed"],["guide","Scoring Guide"],["data","Raw Data"],["grants","Grant Finder"],["about","About"]];
+// S2b: what a signed-out visitor may see. plants / vendors / sales / organizations
+// all carry public SELECT policies, so these pages work with no session at all.
+// Grant Finder is NOT here on purpose — its tables are authenticated-read only
+// (HANDOFF §16), so a public Grant Finder would render an empty catalog.
+const PUBLIC_PAGES=["db","shops","guide","about"];
+const isPublicPage=k=>PUBLIC_PAGES.includes(k);
 // palette for plan pills; new plans cycle through these
 const PLAN_COLORS=["#6b8f5a","#b5651d","#4a7a96","#9c6b9e","#c99a2e","#7a8b3f","#a5504d","#4f8a7b"];
 // readable text color (dark/light) for a given hex background
@@ -5155,14 +5160,20 @@ function App(){
 
   // load data whenever we have a signed-in user
   useEffect(()=>{
-    if(!user){ setPlants([]); setPlans([]); setPlanItems([]); setCurPlan(null); setLoadErr(null);
-               setVendors([]); setSales([]); setOrgs([]); setVendorPlants([]); return; }
+    // S2b: plants and the shop catalog are PUBLIC (RLS allows anon select), so
+    // they load whether or not anyone is signed in. Only the per-user tables
+    // wait for a session.
     (async()=>{
+      try{ setPlants(await dataProvider.getPlants()); }
+      catch(err){ console.error(err); setLoadErr(err.message||String(err)); }
+    })();
+    if(!user){ setPlans([]); setPlanItems([]); setCurPlan(null); }
+    else (async()=>{
       try{
-        const [pl, pns, items] = await Promise.all([dataProvider.getPlants(), dataProvider.loadPlans(), dataProvider.loadPlanItems()]);
+        const [pns, items] = await Promise.all([dataProvider.loadPlans(), dataProvider.loadPlanItems()]);
         let list=pns;
         if(list.length===0){ list=[await dataProvider.createPlan("My Plan", PLAN_COLORS[0])]; } // brand-new user
-        setPlants(pl); setPlans(list); setPlanItems(items);
+        setPlans(list); setPlanItems(items);
         setCurPlan(c=> (c && list.some(p=>p.id===c)) ? c : list[0].id);
       }catch(err){ console.error(err); setLoadErr(err.message||String(err)); }
     })();
@@ -5238,10 +5249,9 @@ function App(){
 
   // gate: wait for auth, then require sign-in
   if(!authReady) return <div className="wrap"><div className="empty">Loading…</div></div>;
-  if(!user) return <Auth/>;
-
-  const isAdmin = user.email === ADMIN_EMAIL;
-  const navPages = isAdmin ? [...PAGES, ["verify","Human Verify"]] : PAGES;
+  const isAdmin = !!user && user.email === ADMIN_EMAIL;
+  const navPages = (isAdmin ? [...PAGES, ["verify","Human Verify"]] : PAGES)
+    .filter(([k]) => user || isPublicPage(k));   // signed out: public pages only
 
   return (
     <div>
@@ -5281,8 +5291,13 @@ function App(){
           ))}
           <button className="close" onClick={()=>setMenu(false)}>Close ✕</button>
           <div className="userbar">
-            <span className="em" title={user.email}>{user.email}</span>
-            <button onClick={signOut}>Sign out</button>
+            {user ? <>
+              <span className="em" title={user.email}>{user.email}</span>
+              <button onClick={signOut}>Sign out</button>
+            </> : <>
+              <span className="em">Browsing as a guest</span>
+              <button onClick={()=>go("plan")}>Sign in</button>
+            </>}
           </div>
         </div>
       </div>
@@ -5294,6 +5309,16 @@ function App(){
             <div style={{margin:"8px 0",fontFamily:"'Space Mono'",fontSize:12,color:"var(--red)"}}>{loadErr}</div>
             Check that you pasted your <b>Project URL</b> and <b>anon key</b> in the CONFIG block,
             that the <b>Email</b> provider is enabled, and that you ran both SQL files.
+          </div>
+        ) : (!user && !isPublicPage(page)) ? (
+          <div>
+            <div className="pagehead">
+              <div className="eye">Sign in required</div>
+              <h2>{(PAGES.find(([k])=>k===page)||[,"This page"])[1]} needs an account</h2>
+              <p>Your plans are saved to your account so they follow you between devices.
+                 Browsing the plant database and the shop directory needs no account at all.</p>
+            </div>
+            <Auth/>
           </div>
         ) : plants.length===0 ? <div className="empty">Loading plants…</div> : (
           page==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle}

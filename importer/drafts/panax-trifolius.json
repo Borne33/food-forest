@@ -56,6 +56,18 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Panax%20trifolius"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Panax%20trifolius"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PATR2"
     ]
   ],
   "hardiness_zones": "",

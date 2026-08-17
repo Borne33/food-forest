@@ -1,6 +1,6 @@
 {
   "common": "Maine rattlesnake root",
-  "sci": "Nabalus racemosus \u00d7 N. trifoliolatus = N. \u00d7mainensis",
+  "sci": "Nabalus racemosus × N. trifoliolatus = N. ×mainensis",
   "family": "Asteraceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Nabalus%20racemosus%20%C3%97%20N.%20trifoliolatus%20%3D%20N.%20%C3%97mainensis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/NARA2"
     ]
   ],
   "hardiness_zones": "",

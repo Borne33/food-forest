@@ -1,0 +1,88 @@
+{
+  "common": "Pale Corydalis",
+  "sci": "Corydalis sempervirens",
+  "family": "Papaveraceae",
+  "type": "Herb",
+  "life": "Annual or biennial, 1–2 ft, glaucous blue-green foliage",
+  "edible_parts": "None — the plant contains isoquinoline alkaloids and is not edible.",
+  "other_uses": "A pioneer of rocky outcrops, burned ground and other disturbed sites; pink-and-yellow flowers are worked by bumblebees and visited by hummingbirds. Useful for colonising thin, poor soils where little else establishes.",
+  "prep": "Not applicable — do not eat.",
+  "harvest": "Not harvested for food. Collect seed in summer if propagating.",
+  "sun": "Full sun to part shade.",
+  "soil": "Dry, rocky, sharply drained, often acidic; poor soils suit it.",
+  "risks": "TOXIC. Like other Papaveraceae it carries isoquinoline alkaloids; ingestion can cause nervous-system effects in people and livestock. Grow it for habitat and its flowers, never for food.",
+  "buy": "Occasionally offered by specialist native nurseries; usually grown from seed. Also listed under its accepted name Capnoides sempervirens.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "RI",
+    "NY",
+    "NJ",
+    "PA",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "TN",
+    "OH",
+    "MI",
+    "WI",
+    "MN",
+    "MT",
+    "AK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "3-8",
+  "deer_resistant": true,
+  "scores": {
+    "raw": [
+      0,
+      "P"
+    ],
+    "cooked": [
+      0,
+      "P"
+    ],
+    "life": [
+      2,
+      "E"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      2,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Capnoides (Corydalis) sempervirens",
+      "https://en.wikipedia.org/wiki/Capnoides"
+    ],
+    [
+      "GBIF — Corydalis sempervirens",
+      "https://www.gbif.org/species/search?q=Corydalis%20sempervirens"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/COSE5"
+    ]
+  ]
+}

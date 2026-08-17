@@ -1,5 +1,5 @@
 {
-  "common": "Nuttall\u2019s micranthemum",
+  "common": "Nuttall’s micranthemum",
   "sci": "Micranthemum micranthemoides",
   "family": "Linderniaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Micranthemum%20micranthemoides"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/MIMI6"
     ]
   ],
   "hardiness_zones": "",

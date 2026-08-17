@@ -143,9 +143,19 @@ def main():
     args = ap.parse_args()
     env = ff.load_env()
 
-    rows = ff.supabase_request(env, "GET",
-        "plants?select=id,sci,common,nf,soil_texture,soil_drainage,native_to_us,"
-        "native_north_america,sources&order=sci&limit=2000")
+    # PostgREST caps a response at 1000 rows no matter what `limit` says, so
+    # "limit=2000" silently returned the first 1000 and every plant past that
+    # was invisible to enrichment (HANDOFF §12 — the same gotcha as
+    # populate_traits). Page through instead.
+    SEL = ("plants?select=id,sci,common,nf,soil_texture,soil_drainage,native_to_us,"
+           "native_north_america,sources&order=id")
+    rows, _off = [], 0
+    while True:
+        page = ff.supabase_request(env, "GET", "%s&limit=1000&offset=%d" % (SEL, _off)) or []
+        rows += page
+        if len(page) < 1000:
+            break
+        _off += 1000
     if args.only:
         rows = [r for r in rows if r["sci"].lower() == args.only.lower()]
     if args.only_new:

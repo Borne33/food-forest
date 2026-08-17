@@ -1,0 +1,96 @@
+{
+  "common": "Virginia Spiderwort",
+  "sci": "Tradescantia virginiana",
+  "family": "Commelinaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial from fleshy roots, 1–2 ft, clumping",
+  "edible_parts": "Young leaves, tender stems and flowers.",
+  "other_uses": "Pollen-rich flowers worked heavily by bumblebees in the morning; the flowers close by afternoon. A classic cottage-garden native.",
+  "prep": "Young leaves and stems eaten raw in salads or cooked briefly like a mild green; they are mucilaginous, which thickens soups. Flowers make an edible garnish.",
+  "harvest": "Leaves and stems spring through early summer, before flowering toughens them; flowers May–July.",
+  "sun": "Full sun to part shade.",
+  "soil": "Average to moist, well-drained; adaptable.",
+  "risks": "Sap can irritate sensitive skin. Do not confuse young growth with that of daylily or iris in mixed plantings — iris is toxic.",
+  "buy": "Widely offered by native nurseries; many named cultivars exist, so ask for the straight species.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "RI",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "AL",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "3-9",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      7,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      5,
+      "E"
+    ],
+    "materials": [
+      1,
+      "N"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Tradescantia virginiana",
+      "https://en.wikipedia.org/wiki/Tradescantia_virginiana"
+    ],
+    [
+      "GBIF — Tradescantia virginiana",
+      "https://www.gbif.org/species/search?q=Tradescantia%20virginiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/TRVI"
+    ]
+  ]
+}

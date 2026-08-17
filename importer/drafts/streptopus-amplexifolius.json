@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Streptopus%20amplexifolius"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/STAM2"
     ]
   ],
   "hardiness_zones": "",

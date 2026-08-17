@@ -1,6 +1,6 @@
 {
   "common": "red-disked yellow pond lily, red-disked spatter dock",
-  "sci": "Nuphar microphylla \u00d7 N. variegata = N. \u00d7rubrodisca",
+  "sci": "Nuphar microphylla × N. variegata = N. ×rubrodisca",
   "family": "Nymphaeaceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Nuphar%20microphylla%20%C3%97%20N.%20variegata%20%3D%20N.%20%C3%97rubrodisca"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/NUMI4"
     ]
   ],
   "hardiness_zones": "",

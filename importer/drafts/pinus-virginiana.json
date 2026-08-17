@@ -52,6 +52,18 @@
     [
       "NYSDEC 6 NYCRR 193.3 (protected native plants)",
       "https://dec.ny.gov/nature/animals-fish-plants/plants/state-protected-plants"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Pinus%20virginiana"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Pinus%20virginiana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PIVI2"
     ]
   ],
   "hardiness_zones": "",

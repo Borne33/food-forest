@@ -1,5 +1,5 @@
 {
-  "common": "lesser Canadian St. John\u2019s wort",
+  "common": "lesser Canadian St. John’s wort",
   "sci": "Hypericum canadense",
   "family": "Hypericaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Hypericum%20canadense"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HYCA7"
     ]
   ],
   "hardiness_zones": "",

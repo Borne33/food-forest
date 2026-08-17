@@ -189,6 +189,12 @@ Set evidence tiers conservatively: only use P when real studies exist.
 
 
 def build_packet(common, sci, gbif, wiki, existing_names):
+    # The packet template used to name three hard-coded regions (Eastern/Central/
+    # Western). The app moved to six (Northeast, Southeast, Midwest, Great Plains,
+    # Mountain/Southwest, Pacific) and this template was never updated, so `fetch`
+    # raised KeyError: 'Eastern' for every plant. Build the lines from REGION.
+    REGION_LINES = "\n".join("    %-20s %s" % (k + ":", ", ".join(v))
+                              for k, v in REGION.items())
     resolved_sci = gbif.get("canonical") or sci
     family = gbif.get("family") or ""
     wiki_extract = wiki.get("extract") or "(no Wikipedia summary found — use your knowledge)"
@@ -235,9 +241,8 @@ Source: {wiki_url}
 - type: one of {TYPES}
 - state codes (native_states / invasive_states): {STATES}
 - regions: {REGIONS}
-  Region membership: Eastern={REGION['Eastern']}
-                     Central={REGION['Central']}
-                     Western={REGION['Western']}
+  Region membership:
+{REGION_LINES}
 - native_regions is AUTO-DERIVED from native_states on import (a region is
   flagged when the plant covers >=50% of that region's states), so focus on
   getting native_states right and don't hand-tune native_regions.

@@ -1,0 +1,103 @@
+{
+  "common": "Elm-leaved Goldenrod",
+  "sci": "Solidago ulmifolia",
+  "family": "Asteraceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial, clump-forming, 2–4 ft",
+  "edible_parts": "Young leaves and flowers (tea); flowers as a garnish.",
+  "other_uses": "Late-season nectar and pollen for bees and migrating insects; Solidago is one of the highest-value native genera for supporting insect herbivores. Flowers yield a yellow to gold dye.",
+  "prep": "Dry leaves and flowering tops for tea. Flowers can be battered and fried or scattered on food; the flavour is mildly anise-bitter.",
+  "harvest": "Leaves early summer; flowering tops August–October.",
+  "sun": "Part shade to full sun — unusually shade-tolerant for a goldenrod, at home on woodland edges.",
+  "soil": "Dry to medium, well-drained; tolerates poor and rocky ground.",
+  "risks": "Goldenrod pollen is heavy and insect-carried, so it is not a hay-fever cause (that is ragweed, which blooms at the same time). Avoid confusing with ragwort (Senecio), which is toxic.",
+  "buy": "Regional native nurseries; occasionally in seed mixes for woodland edges.",
+  "native_states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "CT",
+    "RI",
+    "NY",
+    "NJ",
+    "PA",
+    "DE",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO",
+    "AR",
+    "LA",
+    "OK",
+    "KS",
+    "NE",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "3-9",
+  "deer_resistant": true,
+  "scores": {
+    "raw": [
+      2,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "P"
+    ],
+    "materials": [
+      4,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Solidago ulmifolia",
+      "https://en.wikipedia.org/wiki/Solidago_ulmifolia"
+    ],
+    [
+      "GBIF — Solidago ulmifolia",
+      "https://www.gbif.org/species/search?q=Solidago%20ulmifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SOUL2"
+    ]
+  ]
+}

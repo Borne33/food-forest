@@ -1,5 +1,5 @@
 {
-  "common": "Muenscher\u2019s water nymph, Muenscher\u2019s naiad",
+  "common": "Muenscher’s water nymph, Muenscher’s naiad",
   "sci": "Najas muenscheri",
   "family": "Hydrocharitaceae",
   "type": "Herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Najas%20muenscheri"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/NAMU2"
     ]
   ],
   "hardiness_zones": "",

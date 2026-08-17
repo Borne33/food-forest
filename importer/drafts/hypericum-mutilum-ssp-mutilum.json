@@ -1,5 +1,5 @@
 {
-  "common": "dwarf St. John\u2019s wort",
+  "common": "dwarf St. John’s wort",
   "sci": "Hypericum mutilum ssp. mutilum",
   "family": "Hypericaceae",
   "type": "Herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Hypericum%20mutilum%20ssp.%20mutilum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HYMU"
     ]
   ],
   "hardiness_zones": "",

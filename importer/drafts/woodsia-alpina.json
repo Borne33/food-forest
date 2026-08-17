@@ -52,6 +52,14 @@
     [
       "NYSDEC 6 NYCRR 193.3 (protected native plants)",
       "https://dec.ny.gov/nature/animals-fish-plants/plants/state-protected-plants"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Woodsia%20alpina"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/WOAL"
     ]
   ],
   "hardiness_zones": "",

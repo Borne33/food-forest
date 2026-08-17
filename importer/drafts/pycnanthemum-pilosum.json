@@ -1,0 +1,90 @@
+{
+  "common": "Hairy Mountain Mint",
+  "sci": "Pycnanthemum pilosum",
+  "family": "Lamiaceae",
+  "type": "Herb",
+  "life": "Hardy herbaceous perennial, 2–4 ft, spreading by rhizomes",
+  "edible_parts": "Leaves and flowering tops.",
+  "other_uses": "Among the strongest pollinator plants of any North American native — mountain mints are consistently top-ranked in pollinator trials, drawing bees, wasps, flies and butterflies over a long bloom.",
+  "prep": "Leaves used fresh or dried as a mint-like seasoning and tea; the flavour is strong and slightly camphorous, so use sparingly.",
+  "harvest": "Leaves before and during bloom, July–September.",
+  "sun": "Full sun to part shade.",
+  "soil": "Dry to medium, well-drained.",
+  "risks": "Strongly aromatic; large medicinal doses are not advised in pregnancy, as with other mints. Spreads by rhizome — give it room or contain it.",
+  "buy": "Native nurseries and regional seed suppliers.",
+  "native_states": [
+    "PA",
+    "NJ",
+    "MD",
+    "VA",
+    "WV",
+    "NC",
+    "SC",
+    "GA",
+    "AL",
+    "MS",
+    "TN",
+    "KY",
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "IA",
+    "MO",
+    "AR",
+    "KS",
+    "OK"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "4-8",
+  "deer_resistant": true,
+  "scores": {
+    "raw": [
+      4,
+      "E"
+    ],
+    "cooked": [
+      6,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      9,
+      "P"
+    ],
+    "materials": [
+      1,
+      "N"
+    ],
+    "med": [
+      5,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Pycnanthemum pilosum",
+      "https://en.wikipedia.org/wiki/Pycnanthemum_pilosum"
+    ],
+    [
+      "GBIF — Pycnanthemum pilosum",
+      "https://www.gbif.org/species/search?q=Pycnanthemum%20pilosum"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PYPI"
+    ]
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "common": "greater Canadian St. John\u2019s wort",
+  "common": "greater Canadian St. John’s wort",
   "sci": "Hypericum majus",
   "family": "Hypericaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Hypericum%20majus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/HYMA2"
     ]
   ],
   "hardiness_zones": "",

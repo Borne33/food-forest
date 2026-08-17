@@ -1,6 +1,6 @@
 {
-  "common": "Blake\u2019s aster",
-  "sci": "Oclemena acuminata \u00d7 O. nemoralis = O. \u00d7blakei",
+  "common": "Blake’s aster",
+  "sci": "Oclemena acuminata × O. nemoralis = O. ×blakei",
   "family": "Asteraceae",
   "type": "Herb",
   "life": "Perennial herb",
@@ -52,6 +52,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Oclemena%20acuminata%20%C3%97%20O.%20nemoralis%20%3D%20O.%20%C3%97blakei"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OCAC"
     ]
   ],
   "hardiness_zones": "",

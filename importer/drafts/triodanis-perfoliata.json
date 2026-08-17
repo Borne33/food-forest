@@ -1,5 +1,5 @@
 {
-  "common": "common Venus\u2019s looking glass",
+  "common": "common Venus’s looking glass",
   "sci": "Triodanis perfoliata",
   "family": "Campanulaceae",
   "type": "Herb",
@@ -56,6 +56,18 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Native American Ethnobotany Database (BRIT)",
+      "http://naeb.brit.org/uses/search/?string=Triodanis%20perfoliata"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Triodanis%20perfoliata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/TRPE4"
     ]
   ],
   "hardiness_zones": "",

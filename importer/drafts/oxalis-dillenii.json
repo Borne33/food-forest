@@ -1,5 +1,5 @@
 {
-  "common": "Dillenius\u2019s yellow wood sorrel",
+  "common": "Dillenius’s yellow wood sorrel",
   "sci": "Oxalis dillenii",
   "family": "Oxalidaceae",
   "type": "Herb",
@@ -60,6 +60,10 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/OXDI2"
     ]
   ],
   "hardiness_zones": "",

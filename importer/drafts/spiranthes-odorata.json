@@ -1,5 +1,5 @@
 {
-  "common": "fragrant ladies\u2019 tresses",
+  "common": "fragrant ladies’ tresses",
   "sci": "Spiranthes odorata",
   "family": "Orchidaceae",
   "type": "Herb",
@@ -56,6 +56,14 @@
     [
       "New York Flora Atlas",
       "https://newyork.plantatlas.usf.edu/"
+    ],
+    [
+      "Plants For A Future (PFAF)",
+      "https://pfaf.org/user/Plant.aspx?LatinName=Spiranthes%20odorata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/SPOD"
     ]
   ],
   "hardiness_zones": "",

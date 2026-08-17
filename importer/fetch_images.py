@@ -87,7 +87,17 @@ def main():
     args = ap.parse_args()
     env = ff.load_env()
 
-    rows = ff.supabase_request(env, "GET", "plants?select=id,common,sci,images,sources&order=id") or []
+    # PostgREST returns at most 1000 rows; without paging every plant past the
+    # first 1000 was invisible here and silently never got an image
+    # (HANDOFF §12 — same gotcha as populate_traits and usda_enrich).
+    rows, _off = [], 0
+    while True:
+        _p = ff.supabase_request(env, "GET",
+            "plants?select=id,common,sci,images,sources&order=id&limit=1000&offset=%d" % _off) or []
+        rows += _p
+        if len(_p) < 1000:
+            break
+        _off += 1000
     if args.limit:
         rows = rows[:args.limit]
 
