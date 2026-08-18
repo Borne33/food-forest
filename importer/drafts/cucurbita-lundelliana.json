@@ -1,0 +1,67 @@
+{
+  "common": "Lundell's Gourd",
+  "sci": "Cucurbita lundelliana",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual to short-lived perennial mesophytic vine",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "A wet-forest gourd of the Yucatán, Guatemala and Belize — one of the few mesophytes in a mostly desert genus. Valued in squash breeding as a source of disease resistance, and crossable with several domesticated species.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Moist, humus-rich tropical forest soils.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "10-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      5,
+      "A"
+    ],
+    "eco": [
+      6,
+      "A"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita lundelliana",
+      "https://en.wikipedia.org/wiki/Cucurbita_lundelliana"
+    ],
+    [
+      "GBIF — Cucurbita lundelliana",
+      "https://www.gbif.org/species/3623132"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20lundelliana"
+    ]
+  ]
+}

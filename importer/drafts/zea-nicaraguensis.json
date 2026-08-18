@@ -1,0 +1,67 @@
+{
+  "common": "Nicaraguan Teosinte",
+  "sci": "Zea nicaraguensis",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Annual grass of seasonally flooded ground",
+  "edible_parts": "Grain — but each kernel is sealed in a stony shell that has to be cracked.",
+  "other_uses": "Described in 2000 from a few kilometres of coastal floodplain in north-western Nicaragua, and critically endangered. It survives weeks of flooding by forming aerenchyma — air channels in the roots — which makes it the key wild source of waterlogging tolerance for maize breeding. Native range: a few kilometres of coastal floodplain in Chinandega, north-western Nicaragua.",
+  "prep": "Teosinte grain is technically edible and was almost certainly parched and ground on the way to maize, but the hard shell around each kernel makes it impractical food today. These are kept as breeding stock and as living relatives of corn, not as crops.",
+  "harvest": "Seed heads shatter as they ripen in autumn — collect early.",
+  "sun": "Full sun",
+  "soil": "Seasonally flooded coastal soils; tolerates prolonged waterlogging.",
+  "risks": "No significant toxicity recorded; the difficulty is the stone-hard kernel shell, not poison.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "hardiness_zones": "10-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Zea nicaraguensis",
+      "https://en.wikipedia.org/wiki/Zea_nicaraguensis"
+    ],
+    [
+      "GBIF — Zea nicaraguensis",
+      "https://www.gbif.org/species/5678409"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Zea%20nicaraguensis"
+    ]
+  ]
+}

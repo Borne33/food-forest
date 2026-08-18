@@ -36,8 +36,8 @@ def npk(nf, is_fruit):
 
 def main():
     env = ff.load_env()
-    rows = ff.supabase_request(env, "GET",
-        "plants?select=id,sci,family,nf,min_plants_fruit&order=id") or []
+    rows = ff.fetch_paged(env,
+        "plants?select=id,sci,family,nf,min_plants_fruit&order=id")
     for r in rows:
         ph = soil_ph(r.get("sci"), r.get("family"))
         n, p, k = npk(bool(r.get("nf")), r.get("min_plants_fruit") is not None)

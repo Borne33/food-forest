@@ -1,0 +1,71 @@
+{
+  "common": "Lima Bean",
+  "sci": "Phaseolus lunatus",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Annual to short-lived perennial vine",
+  "edible_parts": "Seeds, shelled green or dried — always cooked.",
+  "other_uses": "Butter bean, sieva bean, Madagascar bean. Domesticated twice, in Mesoamerica and the Andes, and perennial where frost allows. A nitrogen-fixing legume: it partners with rhizobia to pull nitrogen out of the air, which is why beans were planted with corn and squash rather than beside them. Native range: Mesoamerica and the Andes, domesticated separately in each. Cultivated across the tropics.",
+  "prep": "Shell and boil. Wild and coloured-seeded types must be boiled in an open pot with the water changed — this is the one bean where the cooking method is a safety measure, not a preference.",
+  "harvest": "Green shell beans midsummer on; dry beans at season's end.",
+  "sun": "Full sun",
+  "soil": "Well-drained, moderately fertile soil; beans resent heavy nitrogen feeding.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature. Lima beans additionally contain cyanogenic glycosides that release hydrogen cyanide. Wild and dark-seeded types carry far more than the pale commercial ones — boil them uncovered and throw the water away.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "P"
+    ],
+    "cooked": [
+      9,
+      "P"
+    ],
+    "life": [
+      5,
+      "P"
+    ],
+    "eco": [
+      7,
+      "P"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      2,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Phaseolus lunatus",
+      "https://en.wikipedia.org/wiki/Phaseolus_lunatus"
+    ],
+    [
+      "GBIF — Phaseolus lunatus",
+      "https://www.gbif.org/species/5350438"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20lunatus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PHLU2"
+    ]
+  ]
+}

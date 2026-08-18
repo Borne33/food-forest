@@ -43,7 +43,10 @@ RESIST_FAM = {"Lamiaceae","Poaceae","Cyperaceae","Juncaceae","Iridaceae",
   "Lauraceae","Anacardiaceae","Urticaceae","Campanulaceae"}
 RESIST_TYPE = {"Fern", "Grass"}
 RESIST_GENUS = {"Baptisia", "Tephrosia", "Gymnocladus", "Podophyllum", "Comptonia"}
-BROWSED_GENUS = {"Helianthus"}  # browsed despite resistant family/type
+BROWSED_GENUS = {"Helianthus",
+                 # Poaceae + type "Grass" both read as deer-resistant, but maize
+                 # and its teosintes are the opposite — deer strip a corn patch.
+                 "Zea"}  # browsed despite resistant family/type
 
 
 def deer_resistant(sci, family, typ):
@@ -61,21 +64,34 @@ def main():
     off = 0
     while True:
         page = ff.supabase_request(env, "GET",
-            "plants?select=id,common,sci,family,type,native_states,invasive_states&order=id&limit=1000&offset=%d" % off) or []
+            "plants?select=id,common,sci,family,type,native_states,invasive_states,hardiness_zones&order=id&limit=1000&offset=%d" % off) or []
         rows += page
         if len(page) < 1000:
             break
         off += 1000
     n_deer = 0
+    n_kept = 0
     for r in rows:
         states = r.get("native_states") or r.get("invasive_states") or []
-        hz = hardiness(states) or "4-8"
+        have = (r.get("hardiness_zones") or "").strip()
+        # The "4-8" fallback assumes a US native. For a plant with NO state list
+        # (Mexican, Central/South American — e.g. the Three Sisters wild relatives)
+        # it is not a wide guess, it is a wrong one in the dangerous direction:
+        # it implies a tropical species overwinters in zone 4. Where the draft
+        # already carries a hand-set range and there are no states to derive from,
+        # keep what the draft said.
+        if not states and have:
+            hz = have
+            n_kept += 1
+        else:
+            hz = hardiness(states) or have or "4-8"
         dr = deer_resistant(r.get("sci"), r.get("family"), r.get("type"))
         n_deer += dr
         ff.supabase_request(env, "PATCH", "plants?id=eq.%d" % r["id"],
             body={"hardiness_zones": hz, "deer_resistant": dr},
             extra_headers={"Prefer": "return=minimal"})
-    print("updated %d plants; %d flagged deer-resistant" % (len(rows), n_deer))
+    print("updated %d plants; %d flagged deer-resistant; %d hand-set zone ranges kept"
+          % (len(rows), n_deer, n_kept))
 
 
 if __name__ == "__main__":

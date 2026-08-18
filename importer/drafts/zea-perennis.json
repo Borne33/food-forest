@@ -1,0 +1,71 @@
+{
+  "common": "Perennial Teosinte",
+  "sci": "Zea perennis",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Perennial grass from rhizomes",
+  "edible_parts": "Grain — but each kernel is sealed in a stony shell that has to be cracked.",
+  "other_uses": "A tetraploid perennial teosinte of Jalisco, Mexico, known since 1910 and endangered in the wild. Its tetraploidy makes it harder to cross with maize than Z. diploperennis, but it remains a target for perennial-grain breeding. Native range: Jalisco, western Mexico; adventive elsewhere.",
+  "prep": "Teosinte grain is technically edible and was almost certainly parched and ground on the way to maize, but the hard shell around each kernel makes it impractical food today. These are kept as breeding stock and as living relatives of corn, not as crops.",
+  "harvest": "Seed heads shatter as they ripen in autumn — collect early.",
+  "sun": "Full sun",
+  "soil": "Well-drained; several species take seasonally wet ground.",
+  "risks": "No significant toxicity recorded; the difficulty is the stone-hard kernel shell, not poison.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "hardiness_zones": "8-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Zea perennis",
+      "https://en.wikipedia.org/wiki/Zea_perennis"
+    ],
+    [
+      "GBIF — Zea perennis",
+      "https://www.gbif.org/species/5290054"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Zea%20perennis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ZEPE"
+    ]
+  ]
+}

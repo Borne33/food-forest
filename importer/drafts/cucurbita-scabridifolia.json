@@ -1,0 +1,67 @@
+{
+  "common": "Rough-leaf Gourd",
+  "sci": "Cucurbita scabridifolia",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Perennial vine from a storage root",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "A xerophytic gourd of north-eastern Mexico, generally read as a natural hybrid of C. foetidissima and C. pedatifolia. Undomesticated and barely studied.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Dry, rocky, well-drained soils.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "7-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "A"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita scabridifolia",
+      "https://en.wikipedia.org/wiki/Cucurbita_scabridifolia"
+    ],
+    [
+      "GBIF — Cucurbita scabridifolia",
+      "https://www.gbif.org/species/3622366"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20scabridifolia"
+    ]
+  ]
+}

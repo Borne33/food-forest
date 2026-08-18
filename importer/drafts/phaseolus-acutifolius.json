@@ -1,0 +1,75 @@
+{
+  "common": "Tepary Bean",
+  "sci": "Phaseolus acutifolius",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Annual vine",
+  "edible_parts": "Dry seeds; young pods.",
+  "other_uses": "The most drought- and heat-tolerant cultivated bean in the world, grown by the Tohono O'odham, Akimel O'odham and Hopi on summer flood-water fields for at least a thousand years. It sets a crop on rainfall that would kill a common bean, and it is native to the southwestern United States. A nitrogen-fixing legume: it partners with rhizobia to pull nitrogen out of the air, which is why beans were planted with corn and squash rather than beside them. Native range: Arizona, New Mexico and Texas south into Sonora, Chihuahua and Jalisco.",
+  "prep": "Soak and boil like any dry bean; teparies are small, dense and take longer than common beans. The flavour is sweeter and nuttier.",
+  "harvest": "Dry pods 60–90 days from sowing; harvest before they shatter.",
+  "sun": "Full sun",
+  "soil": "Well-drained, moderately fertile soil; beans resent heavy nitrogen feeding.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
+  "buy": "",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "P"
+    ],
+    "cooked": [
+      9,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      7,
+      "P"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      2,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Phaseolus acutifolius",
+      "https://en.wikipedia.org/wiki/Phaseolus_acutifolius"
+    ],
+    [
+      "GBIF — Phaseolus acutifolius",
+      "https://www.gbif.org/species/5350523"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20acutifolius"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PHAC"
+    ]
+  ]
+}

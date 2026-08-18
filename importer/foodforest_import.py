@@ -164,6 +164,24 @@ def supabase_request(env, method, path, body=None, extra_headers=None):
         sys.exit("Supabase error %s: %s" % (e.code, e.read().decode("utf-8")))
 
 
+def fetch_paged(env, path, page=1000):
+    """GET every row for `path`, paging past PostgREST's hard 1000-row response cap.
+
+    The cap applies regardless of &limit, so a plain select silently truncates once
+    the table passes 1000 rows and every high-id row (i.e. each new batch) is missed.
+    `path` must already carry &order=id — offset paging is only stable when ordered.
+    """
+    rows, off = [], 0
+    sep = "&" if "?" in path else "?"
+    while True:
+        chunk = supabase_request(
+            env, "GET", "%s%slimit=%d&offset=%d" % (path, sep, page, off)) or []
+        rows += chunk
+        if len(chunk) < page:
+            return rows
+        off += page
+
+
 def fetch_existing(env):
     rows = supabase_request(env, "GET", "plants?select=common,sci") or []
     return {r["sci"] for r in rows}, rows

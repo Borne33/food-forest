@@ -1,0 +1,63 @@
+{
+  "common": "Cushaw Squash",
+  "sci": "Cucurbita argyrosperma",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual vine; the fourth domesticated squash",
+  "edible_parts": "Fruit flesh, seeds, flowers and young shoot tips.",
+  "other_uses": "The cushaw or silver-seed gourd, domesticated in southern Mexico and the backbone of the Three Sisters across the Southwest and the Gulf South. Grown as much for its large flat seeds as for its flesh. Cucurbita pollen is the sole food of the squash bees (Eucera pruinosa and Xenoglossa spp.), specialists that emerge with the first squash flowers and are far more effective than honeybees on this genus. Native range: southern Mexico, where it was domesticated; the wild subspecies sororia runs down the Pacific slope from Mexico to Nicaragua. Now grown across the Americas.",
+  "prep": "Flesh is coarse and mildly sweet — best baked, or boiled and mashed. The big silver-edged seeds are the prize: roast them, or grind them into the pepita sauces (pipián, sikil pak) of Mexican cooking. Male flowers batter and fry.",
+  "harvest": "Fruit late summer to first frost; cure two weeks before storing.",
+  "sun": "Full sun",
+  "soil": "Rich, deep, well-drained soil with steady moisture and plenty of compost.",
+  "risks": "Any squash that tastes bitter should be spat out and thrown away: bitter cucurbitacins can reappear in seed-saved or cross-pollinated fruit and cause 'toxic squash syndrome'. Ornamental gourds are not food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      2,
+      "P"
+    ],
+    "cooked": [
+      9,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      6,
+      "P"
+    ],
+    "materials": [
+      2,
+      "E"
+    ],
+    "med": [
+      4,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita argyrosperma",
+      "https://en.wikipedia.org/wiki/Cucurbita_argyrosperma"
+    ],
+    [
+      "GBIF — Cucurbita argyrosperma",
+      "https://www.gbif.org/species/7907172"
+    ]
+  ]
+}

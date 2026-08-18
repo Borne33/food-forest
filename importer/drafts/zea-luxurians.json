@@ -1,0 +1,71 @@
+{
+  "common": "Guatemalan Teosinte",
+  "sci": "Zea luxurians",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Annual grass, tall and cane-like",
+  "edible_parts": "Grain — but each kernel is sealed in a stony shell that has to be cracked.",
+  "other_uses": "A robust annual teosinte of Guatemala, Honduras and southern Mexico, naturalised in Florida. The most maize-like of the wild teosintes in stature, and used in breeding for disease resistance and biomass. Native range: southern Mexico, Guatemala and Honduras; naturalised in Florida.",
+  "prep": "Teosinte grain is technically edible and was almost certainly parched and ground on the way to maize, but the hard shell around each kernel makes it impractical food today. These are kept as breeding stock and as living relatives of corn, not as crops.",
+  "harvest": "Seed heads shatter as they ripen in autumn — collect early.",
+  "sun": "Full sun",
+  "soil": "Well-drained; several species take seasonally wet ground.",
+  "risks": "No significant toxicity recorded; the difficulty is the stone-hard kernel shell, not poison.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "hardiness_zones": "9-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "E"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      4,
+      "A"
+    ],
+    "materials": [
+      3,
+      "A"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Zea luxurians",
+      "https://en.wikipedia.org/wiki/Zea_luxurians"
+    ],
+    [
+      "GBIF — Zea luxurians",
+      "https://www.gbif.org/species/5290053"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Zea%20luxurians"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ZELU"
+    ]
+  ]
+}

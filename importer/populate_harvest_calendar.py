@@ -121,9 +121,9 @@ def calendar_for(harvest, food_types):
 def main():
     force = "--force" in sys.argv
     env = ff.load_env()
-    rows = ff.supabase_request(
-        env, "GET",
-        "plants?select=id,sci,harvest,food_types,harvest_calendar&order=id") or []
+    rows = ff.fetch_paged(
+        env,
+        "plants?select=id,sci,harvest,food_types,harvest_calendar&order=id")
     n = 0
     for r in rows:
         if not force and r.get("harvest_calendar"):

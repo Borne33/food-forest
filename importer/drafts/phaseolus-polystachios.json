@@ -1,43 +1,74 @@
 {
-  "common": "wild bean",
+  "common": "Thicket Bean",
   "sci": "Phaseolus polystachios",
   "family": "Fabaceae",
   "type": "Vine",
-  "life": "Perennial vine",
-  "edible_parts": "",
-  "other_uses": "",
-  "prep": "",
-  "harvest": "",
-  "sun": "",
-  "soil": "",
-  "risks": "",
+  "life": "Perennial twining vine from a thickened root, 3–15 ft",
+  "edible_parts": "Seeds, cooked; young pods.",
+  "other_uses": "The thicket bean — the only Phaseolus native to the eastern United States, and the only one that grows wild in New York. A twining perennial that comes back each year from a thickened root, scrambling over shrubs on woodland edges and riverbanks. Archaeological seed finds show it was gathered across the East long before the common bean arrived from Mexico. Native range: the United States (Alabama, Arkansas, Connecticut, Delaware, District of Columbia, Florida, Georgia, Illinois, Indiana, Iowa, Kentucky, Louisiana, Maine, Maryland, Michigan, Mississippi, Missouri, New Jersey, New York, North Carolina, Ohio, Oklahoma, Pennsylvania, South Carolina, Tennessee, Texas, Virginia, West Virginia).",
+  "prep": "Shell the small dark seeds from the dry pods, soak and boil hard. Young pods can be cooked whole. Seed is small and the pods shatter, so gather them just as they brown.",
+  "harvest": "Pods August–October.",
+  "sun": "Part shade to full sun",
+  "soil": "Dry to medium, well-drained; woodland edges, thickets, riverbanks and rocky slopes.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
   "buy": "",
   "native_states": [
-    "NY"
+    "AL",
+    "AR",
+    "CT",
+    "DE",
+    "DC",
+    "FL",
+    "GA",
+    "IL",
+    "IN",
+    "IA",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MI",
+    "MS",
+    "MO",
+    "NJ",
+    "NY",
+    "NC",
+    "OH",
+    "OK",
+    "PA",
+    "SC",
+    "TN",
+    "TX",
+    "VA",
+    "WV"
   ],
   "native_regions": [],
   "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
   "invasive_states": [],
   "invasive_everywhere": false,
   "dec_priority": false,
   "nf": true,
-  "pol": false,
+  "pol": true,
+  "hardiness_zones": "4-9",
+  "deer_resistant": false,
   "scores": {
     "raw": [
       0,
-      "N"
+      "A"
     ],
     "cooked": [
-      0,
-      "N"
+      5,
+      "E"
     ],
     "life": [
-      10,
-      "A"
+      8,
+      "E"
     ],
     "eco": [
-      4,
-      "A"
+      7,
+      "E"
     ],
     "materials": [
       0,
@@ -50,24 +81,16 @@
   },
   "sources": [
     [
-      "Wikipedia",
-      "https://en.wikipedia.org/wiki/Phaseolus_polystachios"
+      "GBIF — Phaseolus polystachios",
+      "https://www.gbif.org/species/5350430"
     ],
     [
-      "New York Flora Atlas",
-      "https://newyork.plantatlas.usf.edu/"
-    ],
-    [
-      "Plants For A Future (PFAF)",
-      "https://pfaf.org/user/Plant.aspx?LatinName=Phaseolus%20polystachios"
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20polystachios"
     ],
     [
       "USDA PLANTS",
       "https://plants.usda.gov/plant-profile/PHPO2"
     ]
-  ],
-  "hardiness_zones": "",
-  "deer_resistant": false,
-  "native_north_america": true,
-  "native_americas": false
+  ]
 }

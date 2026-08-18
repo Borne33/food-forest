@@ -52,7 +52,7 @@ def main():
     env = ff.load_env()
     # Skip plants already USDA-enriched — usda_enrich.py owns their soil dims and
     # this rule-based pass would otherwise clobber those authoritative values.
-    rows = ff.supabase_request(env, "GET", "plants?select=id,soil,sources&order=id") or []
+    rows = ff.fetch_paged(env, "plants?select=id,soil,sources&order=id")
     todo = [r for r in rows if not _has_usda(r)]
     for r in todo:
         ff.supabase_request(env, "PATCH", "plants?id=eq.%d" % r["id"],

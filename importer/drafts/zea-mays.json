@@ -1,0 +1,71 @@
+{
+  "common": "Maize / Corn",
+  "sci": "Zea mays",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Annual grass, 3–12 ft",
+  "edible_parts": "Grain, fresh or dried; immature ears; pollen; the smut fungus (huitlacoche).",
+  "other_uses": "Domesticated from Balsas teosinte in south-western Mexico roughly 9,000 years ago and now the most-grown grain on earth. The tall sister of the Three Sisters: it gives the beans something to climb while the squash shades their roots. Stalks and husks are used for fodder, thatch, cordage and tamale wrappers. Native range: the Balsas River valley of south-western Mexico, where it was domesticated. Now grown on every continent except Antarctica.",
+  "prep": "Sweet corn is eaten raw or briefly cooked. Flint, flour and dent corns are dried and ground — and for anything but sweet corn, nixtamalisation (cooking the grain in wood ash or lime, then hulling it) is not optional: it is what makes the niacin available and prevents pellagra.",
+  "harvest": "Sweet corn at the milk stage; dry corn once the husks brown and the kernels dent.",
+  "sun": "Full sun",
+  "soil": "Rich, deep, well-drained soil; a heavy nitrogen feeder.",
+  "risks": "A maize-dominated diet without nixtamalisation causes pellagra (niacin deficiency). Corn is wind-pollinated and crosses freely — plant in blocks, not rows, and keep distance between varieties you want to keep true.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      6,
+      "P"
+    ],
+    "cooked": [
+      10,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      3,
+      "P"
+    ],
+    "materials": [
+      5,
+      "E"
+    ],
+    "med": [
+      2,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Zea mays",
+      "https://en.wikipedia.org/wiki/Zea_mays"
+    ],
+    [
+      "GBIF — Zea mays",
+      "https://www.gbif.org/species/5290052"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Zea%20mays"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ZEMA"
+    ]
+  ]
+}

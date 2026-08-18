@@ -1,0 +1,87 @@
+{
+  "common": "Slickseed Fuzzybean",
+  "sci": "Strophostyles leiosperma",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Annual twining vine",
+  "edible_parts": "Seeds and young pods, cooked.",
+  "other_uses": "A slender native annual bean that twines through prairie grass and sandy open ground across the central United States. Smooth seeds — the feature that separates it from the fuzzy-seeded Strophostyles helvola. Seeds and pods of the genus were gathered and cooked by several Plains and Woodland peoples. A nitrogen-fixing legume: it partners with rhizobia to pull nitrogen out of the air, which is why beans were planted with corn and squash rather than beside them. Native range: the central United States, from the western Great Lakes and the Ohio valley south and west to Texas, New Mexico and Colorado.",
+  "prep": "Boil the young pods; shell and boil the dry seeds. Small and fiddly, but genuinely food.",
+  "harvest": "Pods late summer into autumn.",
+  "sun": "Full sun",
+  "soil": "Dry sandy or gravelly open ground; prairie, roadside and river sand.",
+  "risks": "As with all wild beans, cook the seeds thoroughly — do not eat them raw.",
+  "buy": "",
+  "native_states": [
+    "AL",
+    "AR",
+    "CO",
+    "IL",
+    "KS",
+    "KY",
+    "LA",
+    "MD",
+    "MN",
+    "MO",
+    "NM",
+    "OK",
+    "TN",
+    "TX",
+    "WI"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "4-9",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      3,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Strophostyles leiosperma",
+      "https://en.wikipedia.org/wiki/Strophostyles_leiosperma"
+    ],
+    [
+      "GBIF — Strophostyles leiosperma",
+      "https://www.gbif.org/species/2981481"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Strophostyles%20leiosperma"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/STLE6"
+    ]
+  ]
+}

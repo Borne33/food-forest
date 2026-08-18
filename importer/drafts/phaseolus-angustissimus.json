@@ -1,0 +1,75 @@
+{
+  "common": "Slimleaf Bean",
+  "sci": "Phaseolus angustissimus",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Perennial twining vine from a thickened root",
+  "edible_parts": "Seeds, thoroughly cooked; young pods in some species.",
+  "other_uses": "A slender perennial vine of the Sonoran and Chihuahuan uplands, twining through grass and shrubs. One of the few wild beans with a foothold in the United States. Native range: the United States (Arizona, New Mexico, Texas); Mexico — north-eastern Mexico, north-western Mexico.",
+  "prep": "Treated like any wild bean: shell the dry seeds, soak, discard the soaking water and boil hard. Documentation for this species specifically is thin — the genus is broadly edible once cooked, but that is a genus-level inference, not a record for this plant.",
+  "harvest": "Dry pods late in the season; they shatter, so collect just as they brown.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained; most of the wild beans grow on dry rocky slopes and in oak or pine-oak woodland.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
+  "buy": "",
+  "native_states": [
+    "AZ",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "6-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "A"
+    ],
+    "eco": [
+      6,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Phaseolus angustissimus",
+      "https://en.wikipedia.org/wiki/Phaseolus_angustissimus"
+    ],
+    [
+      "GBIF — Phaseolus angustissimus",
+      "https://www.gbif.org/species/5350463"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20angustissimus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PHAN3"
+    ]
+  ]
+}

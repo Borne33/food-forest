@@ -18,7 +18,7 @@ LIFECYCLES=["Annual","Biennial","Short-Lived Perennial","Long-Lived Perennial"]
 
 FOOD_KW={
  "Fruit":["fruit","berry","berries","haw","hips","drupe","pome"," plum","cherry","cherries","grape","apple","crabapple","tuna","fig ","persimmon","mulberr","pawpaw","currant","gooseberr","blueberr","cranberr","huckleberr","elderberr","raspberr","blackberr","dewberr","strawberr","serviceberr","juneberr","maypop","pitaya","bilberr","farkleberr","dangleberr"],
- "Nut/Seed":["nut","acorn","kernel","hazelnut","walnut","pecan","hickory","chestnut","beechnut","chinquapin","pine nut","piñon","pinyon","oily seed","seeds ("],
+ "Nut/Seed":["nut","acorn","kernel","hazelnut","walnut","pecan","hickory","chestnut","beechnut","chinquapin","pine nut","piñon","pinyon","oily seed","seeds (","seeds,","seeds;","seeds and","seed,","edible seed","seed kernel"],
  "Grain":["grain","wild rice","pinole","flour","meal (","ground into meal","seed grain","cereal"],
  "Leafy Green":["leaves","leaf ","greens","salad","potherb","spinach","lettuce","cress","sorrel","cooked green","nopales"],
  "Vegetable":["shoot","stem","stalk","pod","nopal","pad","fiddlehead","heart (","bud","sprout","asparagus","scape","cladode","peeled"],
@@ -29,8 +29,12 @@ FOOD_KW={
  "Sap/Syrup":["sap","maple syrup","birch syrup","tree syrup"],  # not bare 'syrup' (fruit syrup)
 }
 MAT_KW={
- "Timber/Wood":["timber","lumber","hardwood","rot-resistant wood","tool handle","tool handles","fence-post","posts","shingle","carv","boat","pencil","bat","plank","the wood","its wood","light wood","hard wood","durable wood","cedar-chest","musclewood","ironwood","tools"],
- "Fiber/Cordage":["fiber","fibre","cordage","cord "," rope","twine"," string","sandals","netting"],  # padded: not 'European'/'astringent'
+ "Timber/Wood":["timber","lumber","hardwood","rot-resistant wood","tool handle","tool handles","fence-post","posts","shingle","carv","boat","pencil"," bat "," bats","baseball bat","plank","the wood","its wood","light wood","hard wood","durable wood","cedar-chest","musclewood","ironwood","tools"],
+ # padded: not 'European'/'astringent'. "cord " alone matched "re<cord> for" on
+ # 48 wild beans and "Con<cord>" on Vitis labrusca — "cordage" already covers the
+ # real sense, so the bare stem needs spaces on BOTH sides. "twine" must not eat
+ # "twining"/"twines", which is how every twining vine reads.
+ "Fiber/Cordage":["fiber","fibre","cordage"," cord "," cords"," rope"," twine "," twine,"," string","sandals","netting"],
  "Basketry/Weaving":["basket","weav","splint","wicker","withe","matting"," mat "],
  "Dye":["dye"],
  "Soap/Saponin":["soap","saponin","amole","lather"],

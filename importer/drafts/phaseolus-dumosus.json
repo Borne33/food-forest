@@ -1,0 +1,67 @@
+{
+  "common": "Year Bean",
+  "sci": "Phaseolus dumosus",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Annual to perennial vine",
+  "edible_parts": "Dry seeds; young pods.",
+  "other_uses": "The 'year bean' of the Guatemalan and Chiapan highlands — a stabilised hybrid between the runner bean and the common bean, grown in milpa systems where it climbs the maize and lives more than one season. A nitrogen-fixing legume: it partners with rhizobia to pull nitrogen out of the air, which is why beans were planted with corn and squash rather than beside them. Native range: a narrow band of highland Guatemala and Chiapas, Mexico.",
+  "prep": "Soak and boil like a common bean.",
+  "harvest": "Dry pods at the end of the season.",
+  "sun": "Full sun",
+  "soil": "Well-drained, moderately fertile soil; beans resent heavy nitrogen feeding.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "E"
+    ],
+    "life": [
+      6,
+      "E"
+    ],
+    "eco": [
+      7,
+      "E"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      1,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Phaseolus dumosus",
+      "https://en.wikipedia.org/wiki/Phaseolus_dumosus"
+    ],
+    [
+      "GBIF — Phaseolus dumosus",
+      "https://www.gbif.org/species/5632734"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20dumosus"
+    ]
+  ]
+}

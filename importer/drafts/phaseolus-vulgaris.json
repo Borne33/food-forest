@@ -1,0 +1,71 @@
+{
+  "common": "Common Bean",
+  "sci": "Phaseolus vulgaris",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Annual — bush or pole forms",
+  "edible_parts": "Dry seeds; immature pods (green beans); shelled green beans; sprouts.",
+  "other_uses": "Kidney, pinto, black, navy, cranberry, snap and haricot beans are all one species, domesticated twice over — once in Mesoamerica and again in the Andes. The bean of the Three Sisters as it is usually planted today, and the world's most important grain legume for direct human consumption. A nitrogen-fixing legume: it partners with rhizobia to pull nitrogen out of the air, which is why beans were planted with corn and squash rather than beside them. Native range: Mesoamerica and the Andes, domesticated separately in each. Cultivated worldwide.",
+  "prep": "Green pods: steam, boil or stir-fry. Dry beans: soak, discard the water, boil hard for at least ten minutes, then simmer until soft. Pole types climb corn readily; bush types do not and need their own space.",
+  "harvest": "Snap beans from midsummer; dry beans when the pods rattle, before autumn rain.",
+  "sun": "Full sun",
+  "soil": "Well-drained, moderately fertile soil; beans resent heavy nitrogen feeding.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "P"
+    ],
+    "cooked": [
+      10,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      7,
+      "P"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Phaseolus vulgaris",
+      "https://en.wikipedia.org/wiki/Phaseolus_vulgaris"
+    ],
+    [
+      "GBIF — Phaseolus vulgaris",
+      "https://www.gbif.org/species/5350452"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20vulgaris"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PHVU"
+    ]
+  ]
+}

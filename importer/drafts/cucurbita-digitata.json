@@ -1,0 +1,76 @@
+{
+  "common": "Fingerleaf Gourd",
+  "sci": "Cucurbita digitata",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Perennial desert vine from a deep storage root",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "A drought-proof Sonoran Desert perennial with finger-divided leaves and a huge root that carries it through years of drought. Seeds were eaten and the saponin-rich gourds used as soap by desert peoples.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or gravelly, sharply drained desert soils.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [
+    "AZ",
+    "CA",
+    "NM",
+    "TX"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "6-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "E"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita digitata",
+      "https://en.wikipedia.org/wiki/Cucurbita_digitata"
+    ],
+    [
+      "GBIF — Cucurbita digitata",
+      "https://www.gbif.org/species/2874511"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20digitata"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUDI"
+    ]
+  ]
+}

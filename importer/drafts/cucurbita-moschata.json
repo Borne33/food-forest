@@ -1,0 +1,67 @@
+{
+  "common": "Butternut Squash",
+  "sci": "Cucurbita moschata",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual vine",
+  "edible_parts": "Fruit flesh, seeds, flowers and young shoot tips.",
+  "other_uses": "Butternut, Dickinson (the pumpkin in most canned 'pumpkin'), golden cushaw and the tropical calabaza. The most heat- and disease-tolerant of the squashes, and the most resistant to squash vine borer. Cucurbita pollen is the sole food of the squash bees (Eucera pruinosa and Xenoglossa spp.), specialists that emerge with the first squash flowers and are far more effective than honeybees on this genus. Native range: Mesoamerica and northern South America. Cultivated throughout the tropics and warm temperate world.",
+  "prep": "Bake or roast; the flesh is sweet, fine-grained and stores exceptionally well. Seeds roast; flowers and young greens are eaten.",
+  "harvest": "Autumn, after the rind hardens and dulls; cure two weeks.",
+  "sun": "Full sun",
+  "soil": "Rich, deep, well-drained soil with steady moisture and plenty of compost.",
+  "risks": "Any squash that tastes bitter should be spat out and thrown away: bitter cucurbitacins can reappear in seed-saved or cross-pollinated fruit and cause 'toxic squash syndrome'. Ornamental gourds are not food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      3,
+      "P"
+    ],
+    "cooked": [
+      10,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      6,
+      "P"
+    ],
+    "materials": [
+      2,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita moschata",
+      "https://en.wikipedia.org/wiki/Cucurbita_moschata"
+    ],
+    [
+      "GBIF — Cucurbita moschata",
+      "https://www.gbif.org/species/7393329"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUMO"
+    ]
+  ]
+}

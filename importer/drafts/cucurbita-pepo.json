@@ -1,0 +1,79 @@
+{
+  "common": "Field Pumpkin / Summer Squash",
+  "sci": "Cucurbita pepo",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual vine or bush",
+  "edible_parts": "Fruit flesh, seeds, flowers and young shoot tips.",
+  "other_uses": "The most-grown squash on earth — zucchini, courgette, acorn, delicata, spaghetti, pattypan, most jack-o'-lantern pumpkins and most ornamental gourds are all one species. Wild populations still grow in the Ozarks (var. ozarkana) and Texas (var. texana), which makes this the one Three Sisters crop with a genuinely native North American wild range. Cucurbita pollen is the sole food of the squash bees (Eucera pruinosa and Xenoglossa spp.), specialists that emerge with the first squash flowers and are far more effective than honeybees on this genus. Native range: Mexico and the south-central United States, where wild populations survive as var. ozarkana in the Ozarks and var. texana in Texas. Cultivated worldwide.",
+  "prep": "Summer types are eaten immature, skin and all, raw or cooked. Winter types are cured and baked. Seeds roast well; flowers batter and fry; young shoot tips and tendrils cook like greens.",
+  "harvest": "Summer squash all season at finger size; winter squash after the rind hardens.",
+  "sun": "Full sun",
+  "soil": "Rich, deep, well-drained soil with steady moisture and plenty of compost.",
+  "risks": "Any squash that tastes bitter should be spat out and thrown away: bitter cucurbitacins can reappear in seed-saved or cross-pollinated fruit and cause 'toxic squash syndrome'. Ornamental gourds are not food.",
+  "buy": "",
+  "native_states": [
+    "AR",
+    "MO",
+    "OK",
+    "TX",
+    "LA",
+    "IL",
+    "MS"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      8,
+      "P"
+    ],
+    "cooked": [
+      10,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      6,
+      "P"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      4,
+      "P"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita pepo",
+      "https://en.wikipedia.org/wiki/Cucurbita_pepo"
+    ],
+    [
+      "GBIF — Cucurbita pepo",
+      "https://www.gbif.org/species/2874508"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20pepo"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUPE"
+    ]
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "common": "Baja Cylinder Gourd",
+  "sci": "Cucurbita cylindrata",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Perennial desert vine from a storage root",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "A Baja California Sur endemic of the xerophytic gourd group. Undomesticated and known mainly from herbarium collections.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Dry, sandy or gravelly, sharply drained desert soils.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "9-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      8,
+      "A"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita cylindrata",
+      "https://en.wikipedia.org/wiki/Cucurbita_cylindrata"
+    ],
+    [
+      "GBIF — Cucurbita cylindrata",
+      "https://www.gbif.org/species/3623489"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20cylindrata"
+    ]
+  ]
+}

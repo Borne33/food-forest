@@ -1,0 +1,67 @@
+{
+  "common": "Wild Andean Gourd",
+  "sci": "Cucurbita andreana",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual to short-lived perennial vine",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "The wild ancestor of every hubbard, kabocha and giant pumpkin — C. maxima was domesticated from this bitter Argentine vine. Kept in seed banks as breeding stock for disease resistance. Native range: Argentina and Uruguay.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Small striped gourds in autumn.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained; tolerates poor ground.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": false,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "8-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "GBIF — Cucurbita andreana",
+      "https://www.gbif.org/species/3623921"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20andreana"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUAN3"
+    ]
+  ]
+}

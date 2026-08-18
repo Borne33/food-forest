@@ -1,0 +1,71 @@
+{
+  "common": "Fig-leaf Gourd / Chilacayote",
+  "sci": "Cucurbita ficifolia",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Short-lived perennial vine, grown as an annual",
+  "edible_parts": "Fruit flesh, seeds, flowers and young shoot tips.",
+  "other_uses": "Unusual among the squashes: a short-lived perennial where winters are mild, with black seeds and a hard white-fleshed fruit that keeps for a year or more without refrigeration. Grown from Mexico to the Andes and used as a rootstock for grafted cucumbers. Cucurbita pollen is the sole food of the squash bees (Eucera pruinosa and Xenoglossa spp.), specialists that emerge with the first squash flowers and are far more effective than honeybees on this genus. Native range: the highlands from Mexico south through Central America into the Andes. Cultivated in cool tropical hill country worldwide.",
+  "prep": "The stringy mature flesh is candied into cabello de ángel or boiled with sugar and cinnamon; young fruit is cooked as a vegetable. Seeds and greens are eaten.",
+  "harvest": "Fruit in autumn; stores at room temperature for a year or more.",
+  "sun": "Full sun",
+  "soil": "Rich, well-drained soil; more tolerant of cool damp hill country than other squashes.",
+  "risks": "Any squash that tastes bitter should be spat out and thrown away: bitter cucurbitacins can reappear in seed-saved or cross-pollinated fruit and cause 'toxic squash syndrome'. Ornamental gourds are not food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      2,
+      "E"
+    ],
+    "cooked": [
+      8,
+      "P"
+    ],
+    "life": [
+      5,
+      "E"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita ficifolia",
+      "https://en.wikipedia.org/wiki/Cucurbita_ficifolia"
+    ],
+    [
+      "GBIF — Cucurbita ficifolia",
+      "https://www.gbif.org/species/2874512"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20ficifolia"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUFI2"
+    ]
+  ]
+}

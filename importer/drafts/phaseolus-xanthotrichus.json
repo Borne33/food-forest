@@ -1,0 +1,63 @@
+{
+  "common": "Phaseolus xanthotrichus",
+  "sci": "Phaseolus xanthotrichus",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Perennial or annual twining vine — poorly documented for this species",
+  "edible_parts": "Seeds, thoroughly cooked; young pods in some species.",
+  "other_uses": "Native range: Mexico — north-eastern Mexico, south-eastern Mexico; Costa Rica, El Salvador, Guatemala.",
+  "prep": "Treated like any wild bean: shell the dry seeds, soak, discard the soaking water and boil hard. Documentation for this species specifically is thin — the genus is broadly edible once cooked, but that is a genus-level inference, not a record for this plant.",
+  "harvest": "Dry pods late in the season; they shatter, so collect just as they brown.",
+  "sun": "Full sun to part shade",
+  "soil": "Well-drained; most of the wild beans grow on dry rocky slopes and in oak or pine-oak woodland.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "9-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      6,
+      "A"
+    ],
+    "eco": [
+      6,
+      "A"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "GBIF — Phaseolus xanthotrichus",
+      "https://www.gbif.org/species/5350507"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20xanthotrichus"
+    ]
+  ]
+}

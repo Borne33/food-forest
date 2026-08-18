@@ -40,7 +40,7 @@ def traits_for(sci):
 
 def main():
     env = ff.load_env()
-    rows = ff.supabase_request(env, "GET", "plants?select=id,common,sci&order=id") or []
+    rows = ff.fetch_paged(env, "plants?select=id,common,sci&order=id")
     n = 0
     for r in rows:
         t = traits_for(r.get("sci"))

@@ -1,0 +1,67 @@
+{
+  "common": "Calabaza de Coyote",
+  "sci": "Cucurbita radicans",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Perennial vine, rooting at the nodes",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "Calabacilla or calabaza de coyote — a central Mexican perennial that roots where its runners touch ground. Grows wild and is also tolerated and half-cultivated in fields; the gourds are used as soap.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Dry to medium, well-drained; common on disturbed and field-edge ground.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "8-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      4,
+      "E"
+    ],
+    "life": [
+      8,
+      "A"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita radicans",
+      "https://en.wikipedia.org/wiki/Cucurbita_radicans"
+    ],
+    [
+      "GBIF — Cucurbita radicans",
+      "https://www.gbif.org/species/3622416"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20radicans"
+    ]
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "common": "Oaxaca Gourd",
+  "sci": "Cucurbita galeottii",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Perennial vine",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "Known from a handful of collections in Oaxaca, Mexico. One of the least-known species in the genus — undomesticated, and possibly of conservation concern.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Dry, well-drained montane soils.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "9-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      2,
+      "N"
+    ],
+    "life": [
+      7,
+      "A"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      1,
+      "N"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita galeottii",
+      "https://en.wikipedia.org/wiki/Cucurbita_galeottii"
+    ],
+    [
+      "GBIF — Cucurbita galeottii",
+      "https://www.gbif.org/species/3623314"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20galeottii"
+    ]
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "common": "Scarlet Runner Bean",
+  "sci": "Phaseolus coccineus",
+  "family": "Fabaceae",
+  "type": "Vine",
+  "life": "Perennial vine from a tuberous root, usually grown as an annual",
+  "edible_parts": "Immature pods; shelled green and dry seeds; the starchy tuberous root, cooked.",
+  "other_uses": "The one common garden bean that is genuinely perennial: it overwinters from a tuberous root where the ground does not freeze hard, and can be lifted and stored like a dahlia further north. Scarlet flowers pull in hummingbirds and bumblebees, and unlike most beans it is largely outcrossing — so it needs insects. A nitrogen-fixing legume: it partners with rhizobia to pull nitrogen out of the air, which is why beans were planted with corn and squash rather than beside them. Native range: the highlands of Mexico and Central America. Grown as an ornamental and a vegetable worldwide.",
+  "prep": "Young pods cook like runner beans; the big seeds are shelled and boiled. The root is eaten cooked in parts of Mexico and Central America. Lift and store the root over winter in cold zones to carry a plant over.",
+  "harvest": "Pods from midsummer; dry seed in autumn; roots after frost cuts the top.",
+  "sun": "Full sun",
+  "soil": "Well-drained, moderately fertile soil; beans resent heavy nitrogen feeding.",
+  "risks": "Never eat Phaseolus seeds raw or undercooked. They contain phytohaemagglutinin, a lectin that causes violent vomiting and diarrhoea — a few raw beans is enough. Soak, discard the water, and boil hard for at least ten minutes; a slow cooker alone does not reach a safe temperature.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": true,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "P"
+    ],
+    "cooked": [
+      9,
+      "P"
+    ],
+    "life": [
+      7,
+      "P"
+    ],
+    "eco": [
+      8,
+      "P"
+    ],
+    "materials": [
+      0,
+      "N"
+    ],
+    "med": [
+      2,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Phaseolus coccineus",
+      "https://en.wikipedia.org/wiki/Phaseolus_coccineus"
+    ],
+    [
+      "GBIF — Phaseolus coccineus",
+      "https://www.gbif.org/species/5350466"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Phaseolus%20coccineus"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/PHCO6"
+    ]
+  ]
+}

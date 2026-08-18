@@ -1,0 +1,71 @@
+{
+  "common": "Winter Squash / Hubbard Pumpkin",
+  "sci": "Cucurbita maxima",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual vine",
+  "edible_parts": "Fruit flesh, seeds, flowers and young shoot tips.",
+  "other_uses": "Domesticated in South America from Cucurbita andreana. The most diverse squash species and the one that produces the giant pumpkins — hubbard, buttercup, kabocha, banana and Atlantic Giant are all C. maxima. Cucurbita pollen is the sole food of the squash bees (Eucera pruinosa and Xenoglossa spp.), specialists that emerge with the first squash flowers and are far more effective than honeybees on this genus. Native range: temperate South America — Argentina, Bolivia and Uruguay, from the wild Cucurbita andreana. Cultivated worldwide.",
+  "prep": "Bake, roast or steam the dense sweet flesh; it stores for months once cured. Seeds roast well. Leaves and shoot tips are eaten as greens across Africa and Asia.",
+  "harvest": "Autumn, once the stem corks and the rind resists a thumbnail; cure before storing.",
+  "sun": "Full sun",
+  "soil": "Rich, deep, well-drained soil with steady moisture and plenty of compost.",
+  "risks": "Any squash that tastes bitter should be spat out and thrown away: bitter cucurbitacins can reappear in seed-saved or cross-pollinated fruit and cause 'toxic squash syndrome'. Ornamental gourds are not food.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": false,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "2-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      3,
+      "P"
+    ],
+    "cooked": [
+      10,
+      "P"
+    ],
+    "life": [
+      3,
+      "P"
+    ],
+    "eco": [
+      6,
+      "P"
+    ],
+    "materials": [
+      2,
+      "E"
+    ],
+    "med": [
+      3,
+      "E"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita maxima",
+      "https://en.wikipedia.org/wiki/Cucurbita_maxima"
+    ],
+    [
+      "GBIF — Cucurbita maxima",
+      "https://www.gbif.org/species/2874515"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Cucurbita%20maxima"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUMA3"
+    ]
+  ]
+}

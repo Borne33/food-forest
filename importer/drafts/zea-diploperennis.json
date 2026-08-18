@@ -1,0 +1,71 @@
+{
+  "common": "Diploperennial Teosinte",
+  "sci": "Zea diploperennis",
+  "family": "Poaceae",
+  "type": "Grass",
+  "life": "Perennial grass from rhizomes",
+  "edible_parts": "Grain — but each kernel is sealed in a stony shell that has to be cracked.",
+  "other_uses": "A perennial, diploid teosinte found in 1978 in the Sierra de Manantlán, Jalisco, on a few hectares of hillside — one of the most consequential botanical finds of the century. Because it is both perennial and diploid it can be crossed with maize, and it carries resistance to several major maize viruses. The discovery led to the Manantlán Biosphere Reserve. Critically endangered in the wild. Native range: the Sierra de Manantlán in Jalisco, western Mexico — a handful of populations and nowhere else.",
+  "prep": "Teosinte grain is technically edible and was almost certainly parched and ground on the way to maize, but the hard shell around each kernel makes it impractical food today. These are kept as breeding stock and as living relatives of corn, not as crops.",
+  "harvest": "Seed heads shatter as they ripen in autumn — collect early.",
+  "sun": "Full sun",
+  "soil": "Well-drained; several species take seasonally wet ground.",
+  "risks": "No significant toxicity recorded; the difficulty is the stone-hard kernel shell, not poison.",
+  "buy": "",
+  "native_states": [],
+  "native_regions": [],
+  "native_to_us": false,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": false,
+  "hardiness_zones": "8-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "N"
+    ],
+    "cooked": [
+      2,
+      "A"
+    ],
+    "life": [
+      9,
+      "P"
+    ],
+    "eco": [
+      5,
+      "A"
+    ],
+    "materials": [
+      2,
+      "A"
+    ],
+    "med": [
+      0,
+      "N"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Zea diploperennis",
+      "https://en.wikipedia.org/wiki/Zea_diploperennis"
+    ],
+    [
+      "GBIF — Zea diploperennis",
+      "https://www.gbif.org/species/5290048"
+    ],
+    [
+      "World Checklist of Vascular Plants (WCVP) — distribution",
+      "https://powo.science.kew.org/?q=Zea%20diploperennis"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/ZEDI"
+    ]
+  ]
+}

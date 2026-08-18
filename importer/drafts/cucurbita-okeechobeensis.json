@@ -1,0 +1,69 @@
+{
+  "common": "Okeechobee Gourd",
+  "sci": "Cucurbita okeechobeensis",
+  "family": "Cucurbitaceae",
+  "type": "Vine",
+  "life": "Annual to short-lived perennial vine",
+  "edible_parts": "Seeds, roasted; the flesh is bitter and inedible.",
+  "other_uses": "A federally endangered Florida endemic that climbs into pond-apple and willow swamp around Lake Okeechobee and the St. Johns River, plus a disjunct population in Mexico. Archaeology puts it in Florida for thousands of years, and the shift in lake water levels is what pushed it to the brink.",
+  "prep": "Split the hard gourds, wash the seeds free of pulp, dry and roast them — they are oily and protein-rich. The flesh is not eaten. Saponin-rich fruit and roots lather in water and were used as soap.",
+  "harvest": "Gourds ripen and dry on the vine in autumn; seeds keep for years.",
+  "sun": "Full sun",
+  "soil": "Wet organic muck and swamp margins; it climbs shrubs and trees.",
+  "risks": "Flesh, fruit and root are loaded with bitter cucurbitacins — strongly purgative and toxic in quantity. Only the roasted seeds are food.",
+  "buy": "",
+  "native_states": [
+    "FL"
+  ],
+  "native_regions": [],
+  "native_to_us": true,
+  "native_north_america": true,
+  "native_americas": true,
+  "invasive_states": [],
+  "invasive_everywhere": false,
+  "dec_priority": false,
+  "nf": false,
+  "pol": true,
+  "hardiness_zones": "9-11",
+  "deer_resistant": false,
+  "scores": {
+    "raw": [
+      0,
+      "A"
+    ],
+    "cooked": [
+      3,
+      "A"
+    ],
+    "life": [
+      5,
+      "A"
+    ],
+    "eco": [
+      6,
+      "E"
+    ],
+    "materials": [
+      3,
+      "E"
+    ],
+    "med": [
+      1,
+      "A"
+    ]
+  },
+  "sources": [
+    [
+      "Wikipedia — Cucurbita okeechobeensis",
+      "https://en.wikipedia.org/wiki/Cucurbita_okeechobeensis"
+    ],
+    [
+      "GBIF — Cucurbita okeechobeensis",
+      "https://www.gbif.org/species/9567438"
+    ],
+    [
+      "USDA PLANTS",
+      "https://plants.usda.gov/plant-profile/CUOK"
+    ]
+  ]
+}

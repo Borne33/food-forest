@@ -601,3 +601,93 @@ Slow, cached, respectful use-data enrichment for plants. Scripts live in `import
   plants still lacking use data). The Aug 2026 run finished 2026-08-09 having
   fetched ~1,395 PFAF + ~1,458 NAEB pages; ~1,362 of 2,457 plants carry a
   documented use-score. New additions since then need a fresh run.
+
+## 21. Three Sisters batch — Cucurbita / Phaseolus / Zea (Aug 2026)
+
+**+76 plants → 2,534.** The full squash, bean and maize genera as requested:
+17 *Cucurbita*, 53 *Phaseolus*, 5 *Zea*, 1 *Strophostyles* — plus a rewrite of the
+`Phaseolus polystachios` NYFA stub, which turns out to be the single most
+food-forest-relevant plant in the set (see below).
+
+### Taxonomy first — the list was ~20% synonyms
+The source list (Wikipedia's genus pages) mixes accepted species with synonyms and
+infraspecific taxa. **Every name was resolved against the GBIF backbone before a
+draft was written**; 21 of 100 came back `SYNONYM`. One row per accepted species,
+everything else into `plant_synonyms` (29 rows, source `GBIF backbone / WCVP`), so
+search and the vendor matcher still find the old names:
+
+| Given | Resolves to |
+|---|---|
+| C. mixta, kellyana, palmeri, sororia | **C. argyrosperma** (last three = subsp. *sororia*) |
+| C. californica | **C. palmata** |
+| C. martinezii | **C. okeechobeensis** subsp. *martinezii* |
+| C. moorei | **C. pedatifolia** · C. gracilior → **C. radicans** |
+| C. fraterna, C. texana | GBIF puts these under *C. melopepo* (Nesom 2011); filed as **C. pepo** synonyms, matching USDA and the user's own source |
+| P. bolivianus → augusti · pluriflorus → vulcanicus · grayanus + laxiflorus → pedicellatus | |
+| P. albinervus → sonorensis · ritensis → maculatus · smilacifolius → polystachios | |
+| P. anisotrichos → leptostachyus · brevicalyx → micranthus · leucanthus → ×dumosus | |
+| **P. xanthrotrichus** | misspelling — accepted is **P. xanthotrichus** |
+| **P. chacoensis, P. cibellii** | *not Phaseolus at all* → `Macroptilium chacoensis` / `Vatovaea pseudolablab`. **Excluded** — out of genus and out of scope. |
+
+### Nativity: WCVP for wild species, hand-set for crops
+`native_states` comes from **WCVP distributions via GBIF** (`/v1/species/{key}/
+distributions`, `source` contains "WCVP", TDWG level-3 localities that are plain
+English state names). Mapped name→USPS code; Mexico/Central America → `native_
+north_america`, South America/Caribbean → `native_americas`.
+
+**The trap:** GBIF's WCVP export drops `establishmentMeans`, so for anything
+cultivated the list is the *grown* range, not the native one — `Zea mays` came back
+with 190 localities, `Cucurbita pepo` with 23 US states, `Zea perennis` with South
+Carolina. **The ~11 crops therefore have hand-set nativity and a hand-written
+`range_note`**; only wild species take the derived values. If you add more crop
+species, do the same.
+
+12 rows ended up US-native. The one that matters:
+
+> **`Phaseolus polystachios` (thicket bean)** — native to 27 states *including New
+> York*, regions Northeast + Southeast + Midwest, so it scores **10 nativity for a
+> NY user**. A perennial twining bean off a thickened root, gathered across the East
+> long before the common bean arrived from Mexico. **Prairie Moon sells the seed for
+> $3.50.** It was previously a blank NYFA stub scoring 0/0.
+
+### Honest scoring where documentation is thin
+40 of the 53 *Phaseolus* have **no English common name and no Wikipedia article** —
+they are obscure Mexican wild beans. For those, `common` is the scientific name
+(not an invented one) and scores sit at tier `A`, with `prep` saying outright that
+the edibility is a genus-level inference rather than a record for that plant. Two
+real, well-documented risks are carried on every row of their genus:
+- **Phaseolus:** raw/undercooked seeds → phytohaemagglutinin poisoning; *P. lunatus*
+  additionally cyanogenic.
+- **Cucurbita:** cucurbitacins — bitter squash is toxic, wild gourd flesh inedible,
+  only the roasted seeds are food.
+
+`eco` is genuinely high for both genera and for a real reason: Cucurbita pollen is
+the sole food of the **squash bees** (*Eucera pruinosa*, *Xenoglossa*), and every
+Phaseolus is an N-fixer (`nf=true`).
+
+### Stores were re-checked — and the answer is "almost nothing"
+`importer/rematch_vendors.py` (new) replays every stored catalogue through the
+current index. Result: **1 new link** — Prairie Moon's *Strophostyles leiosperma*.
+Nothing else in 1,225 listings is a squash, bean or corn: the vendor list is native-
+plant nurseries, and they don't stock garden vegetables. The obvious gap to fill is
+**Native Seeds/SEARCH** (teparies, cushaws, Southwest landraces) and the 12 **seed
+libraries** already in `vendors` whose catalogues we don't have.
+
+### Fixed along the way: the 1000-row cap, in five more scripts
+HANDOFF §12's PostgREST gotcha was still live in `populate_soil.py`,
+`populate_soildims.py`, `populate_fruit.py` and `populate_harvest_calendar.py` — all
+selected `plants?...&order=id` with no paging, so **every plant past id ~1000 has
+been silently skipped by those four backfills since the DB passed 1,000 rows**.
+Added **`ff.fetch_paged(env, path)`** to `foodforest_import.py` and switched them to
+it; `rematch_vendors.py`'s existing-pairs query had the same bug (it reported 70
+bogus "new" links until paged). **Use `fetch_paged` for any full-table read.**
+
+### Reproducing
+```
+importer/three_sisters.txt          the 77 sci names in this batch
+importer/apply_three_sisters.py     subset apply (the CLI applies ALL drafts)
+importer/add_three_sisters_synonyms.py
+importer/rematch_vendors.py         --dry-run first; safe to re-run any time
+```
+Still owed: a PFAF/NAEB trickle pass over the new rows (§18), and the token
+counter (§13).
