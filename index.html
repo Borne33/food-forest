@@ -3176,7 +3176,19 @@ function ShoppingList({chosen, counts, planId, sources, vendors, sales, centre, 
     const by={};
     (sources||[]).forEach(r=>{ if(!r.plantId) return; (by[r.plantId]||(by[r.plantId]=[])).push(r); });
     Object.keys(by).forEach(pid=>{
-      by[pid]=by[pid].map(r=>({r,v:vendorById[r.vendorId],d:milesTo(vendorById[r.vendorId])}))
+      // ONE ENTRY PER VENDOR. A vendor often lists the same species several
+      // times — Ernst carries Panicum virgatum as PA, NY and SC ecotypes — and
+      // showing each product as a separate "shop" made the picker read
+      // "Ernst · mail" six times. Keep the best listing per vendor: in stock
+      // first, then the one with a recorded price, then any.
+      const best={};
+      by[pid].forEach(r=>{
+        const cur=best[r.vendorId];
+        if(!cur) { best[r.vendorId]=r; return; }
+        const rank=x=>(STOCK_RANK[x.stock]??2)*10 + (x.priceCents?0:1) + (x.isCultivar?2:0);
+        if(rank(r)<rank(cur)) best[r.vendorId]=r;
+      });
+      by[pid]=Object.values(best).map(r=>({r,v:vendorById[r.vendorId],d:milesTo(vendorById[r.vendorId])}))
         .filter(x=>x.v)
         .sort((a,b)=>{
           const tier=x=>(x.d!=null&&x.d<=150)?0:(x.v.ships?2:1);
