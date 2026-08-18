@@ -183,6 +183,25 @@ Generated from the plan and then user-editable:
 
 ---
 
+## Status (Aug 2026)
+
+**PA — shipped and gate closed.** Per-phase quantities (`alloc`), v1→v2 migration verified against the real
+backup (54→54 plants, 441→441 quantity, phases intact), per-phase columns with a frozen name column.
+
+**PB — built, then deliberately reverted.** Phase scheduling (quarter/year/reorder) briefly lived on the Scope
+tab. It is gone: `phaseSlot`, `savePhaseMeta` and the renumber control were removed and `computeProject` is back
+to "phase N = project year N". **Scheduling belongs to PC1 and must not be modelled twice.** What survives is the
+Scope chart with clickable planting waves that open a sortable plant list.
+
+**PC1 owns tasks, order and dates.** Confirmed direction: `computeProject` becomes a *generator* of work packages;
+PC1 is the scheduler that assigns and stores their order and dates, and the Scope / Schedule / Budget views read
+back from it. `plan_tasks` is therefore the source of truth for anything dated, and nothing else should compute a
+date independently.
+
+`phaseMeta` stays lifted to MyPlan and shared — PA's quantity columns need it and PC1 will want the same copy.
+
+---
+
 ## Decisions of record (Q1–Q8, answered Aug 2026)
 
 | # | Decision |

@@ -2,6 +2,12 @@
 
 Companion to `SHOPS_PLAN.md` and `PLANNING_UPGRADE.md`.
 
+**Every stage that ships code also owes the token counter.** HANDOFF §13 says to add each session's
+`/cost` total to `build_stats.tokens`, which drives the AI-footprint figure on the About page. I cannot read my
+own usage, so this can only happen if you paste the `/cost` number and I write it. It was missed for the whole
+S1–S6 run, so the published figure currently understates reality. Treat it as a line item on every gate below,
+not an afterthought.
+
 **Why these exist:** the browser-preview sandbox can't serve this repo, and most of the app is auth-gated behind RLS
 (HANDOFF §2), so I verify changes statically and *you* are the only one who can confirm they actually work signed in.
 Each stage below ends with a short list of things to check before the next stage starts building on top of it. Items
@@ -10,7 +16,7 @@ marked **⛔ blocking** mean don't proceed until they pass — the next stage wo
 Suggested order interleaves the two workstreams so the highest-regression-risk work (the plan data migration, PA)
 lands early, while the shop work — which is purely additive — proves out the new page shell first.
 
-**Order:** S1 → S2 → S3 → S4 → **PA** → **PB** → S5 → S6 → S7 → S8 → PC1 → PC2 → PC3 → PC4 → PC5 → S9 → S10
+**Order:** S1 ✅ → S2 ✅ → S2b ✅ → S3 ✅ → S4 ✅ → PA ✅ → ~~PB~~ (→PC1) → S5 ✅ → S6 ✅ → **S7** → S8 → PC1 → PC2 → PC3 → PC4 → PC5 → S9 → S10
 
 ---
 
@@ -92,7 +98,7 @@ public-facing artifact.
 
 ---
 
-## PA — Plants tab: one column per phase *(highest regression risk in the program)*
+## PA — Plants tab: one column per phase — ✅ CLOSED (Aug 2026)
 
 Ships: `v:1 → v:2` layout migration, per-phase quantity columns, frozen name column, updated sorting/filtering/bulk
 edit, and updates to every consumer of `counts`/`phases`.
@@ -115,7 +121,12 @@ Unlocks: PB, and the Shopping List (S7) quantity source.
 
 ---
 
-## PB — Scope tab: schedulable phases
+## PB — Scope tab: schedulable phases — ❌ REVERTED, folded into PC1
+
+Built and undone by decision: scheduling is PC1's job and must not exist in two places. The Scope tab keeps
+clickable planting waves with a sortable plant list; no dates are set here.
+
+### (original gate, kept for PC1's benefit)
 
 Evaluate:
 1. **⛔ Quarter/Year changes propagate** into Budget, Project Plan horizon, and the summary sentence — `pYear` is gone,

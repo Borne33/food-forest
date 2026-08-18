@@ -1092,6 +1092,26 @@ const dataProvider = {
     if(error) throw error;
     return rowToPlant(data);
   },
+  /* ---- S7: shopping list (own-row RLS, one row per plan+plant+vendor) ---- */
+  async loadShopping(planId){
+    const { data, error } = await sb.from('shopping_list')
+      .select('id,plan_id,plant_id,vendor_id,qty,done,note').eq('plan_id',planId);
+    if(error) throw error;
+    return (data||[]).map(r=>({id:r.id, planId:r.plan_id, plantId:r.plant_id,
+      vendorId:r.vendor_id, qty:r.qty, done:r.done, note:r.note}));
+  },
+  async setShopping(planId, plantId, vendorId, patch){
+    // upsert on the natural key; vendor_id null means "no source chosen yet"
+    const row=Object.assign({plan_id:planId, plant_id:plantId, vendor_id:vendorId}, patch);
+    const { data, error } = await sb.from('shopping_list')
+      .upsert(row,{onConflict:'user_id,plan_id,plant_id'}).select().maybeSingle();
+    if(error) throw error;
+    return data;
+  },
+  async clearShopping(planId){
+    const { error } = await sb.from('shopping_list').delete().eq('plan_id',planId);
+    if(error) throw error;
+  },
   async loadLayout(planId){
     // Planting Plan layout for one plan (may not exist yet -> null)
     const { data, error } = await sb.from('plan_layouts').select('data').eq('plan_id', planId).maybeSingle();
@@ -3129,6 +3149,197 @@ function PhaseTable({data, openDetail, money}){
   );
 }
 
+/* ── S7: Shopping List ────────────────────────────────────────────────────
+   Turns a plan into an actual shopping trip. Quantities come from PA's
+   per-phase allocation (the derived total), sources from S5's vendor_plants.
+   The point is to MINIMISE STOPS: plants are grouped by the vendor that can
+   supply them, and the default pick for each plant is the nearest vendor that
+   has it, so the list collapses onto as few shops as the data allows. */
+function ShoppingList({chosen, counts, planId, sources, vendors, sales, centre, openDetail, go}){
+  const [rows,setRows]=useState({});     // plantId -> {vendorId,qty,done,note}
+  const [ready,setReady]=useState(false);
+  const [onlyOpen,setOnlyOpen]=useState(false);
+
+  useEffect(()=>{ let dead=false; setReady(false);
+    dataProvider.loadShopping(planId).then(list=>{ if(dead) return;
+      const m={}; list.forEach(r=>{ m[r.plantId]={vendorId:r.vendorId,qty:r.qty,done:r.done,note:r.note}; });
+      setRows(m); setReady(true);
+    }).catch(e=>{ console.error(e); if(!dead) setReady(true); });
+    return ()=>{ dead=true; };
+  },[planId]);
+
+  const vendorById=useMemo(()=>{ const m={}; (vendors||[]).forEach(v=>m[v.id]=v); return m; },[vendors]);
+  const milesTo=v=>(centre&&v)?milesBetween(centre.lat,centre.lon,v.lat,v.lon):null;
+
+  // every vendor that stocks a given plant, nearest-and-in-stock first
+  const optionsFor=useMemo(()=>{
+    const by={};
+    (sources||[]).forEach(r=>{ if(!r.plantId) return; (by[r.plantId]||(by[r.plantId]=[])).push(r); });
+    Object.keys(by).forEach(pid=>{
+      by[pid]=by[pid].map(r=>({r,v:vendorById[r.vendorId],d:milesTo(vendorById[r.vendorId])}))
+        .filter(x=>x.v)
+        .sort((a,b)=>{
+          const tier=x=>(x.d!=null&&x.d<=150)?0:(x.v.ships?2:1);
+          return tier(a)-tier(b)
+            || ((STOCK_RANK[a.r.stock]??2)-(STOCK_RANK[b.r.stock]??2))
+            || ((a.d??9e9)-(b.d??9e9))
+            || a.v.name.localeCompare(b.v.name);
+        });
+    });
+    return by;
+  },[sources,vendorById,centre]);
+
+  const items=useMemo(()=>chosen
+    .map(p=>({p, qty:(counts||{})[p.id]||0}))
+    .filter(x=>x.qty>0)
+    .map(x=>{
+      const opts=optionsFor[x.p.id]||[];
+      const saved=rows[x.p.id]||{};
+      const chosenVendor = saved.vendorId!=null ? opts.find(o=>o.v.id===saved.vendorId) : null;
+      const pick = chosenVendor || opts[0] || null;
+      return {...x, opts, pick, done:!!saved.done, qty:saved.qty!=null?saved.qty:x.qty};
+    }),[chosen,counts,optionsFor,rows]);
+
+  const save=(plantId,patch)=>{
+    setRows(m=>({...m,[plantId]:Object.assign({},m[plantId],patch)}));   // optimistic
+    const cur=rows[plantId]||{};
+    const it=items.find(i=>i.p.id===plantId);
+    const vendorId = patch.vendorId!==undefined ? patch.vendorId
+                   : (cur.vendorId!=null ? cur.vendorId : (it&&it.pick?it.pick.v.id:null));
+    dataProvider.setShopping(planId, plantId, vendorId,
+      Object.assign({qty: it?it.qty:1, done: cur.done||false}, patch))
+      .catch(e=>console.error(e));
+  };
+
+  // group into stops
+  const stops=useMemo(()=>{
+    const by={};
+    items.forEach(it=>{ const k=it.pick?it.pick.v.id:"none"; (by[k]||(by[k]=[])).push(it); });
+    return Object.keys(by).map(k=>({
+      vendor: k==="none"?null:vendorById[k],
+      d: k==="none"?null:milesTo(vendorById[k]),
+      items: by[k].sort((a,b)=>a.p.common.localeCompare(b.p.common)),
+    })).sort((a,b)=>{
+      if(!a.vendor) return 1; if(!b.vendor) return -1;
+      return b.items.length-a.items.length || ((a.d??9e9)-(b.d??9e9));
+    });
+  },[items,vendorById,centre]);
+
+  const sourced=items.filter(i=>i.pick).length;
+  const doneN=items.filter(i=>i.done).length;
+  const shown=onlyOpen?stops.map(s=>({...s,items:s.items.filter(i=>!i.done)})).filter(s=>s.items.length):stops;
+
+  const upcoming=useMemo(()=>{
+    const t=todayISO(); const ids=new Set(stops.map(s=>s.vendor&&s.vendor.id).filter(Boolean));
+    return (sales||[]).filter(s=>ids.has(s.vendorId))
+      .flatMap(saleOccurrences).filter(o=>o.date>=t)
+      .sort((a,b)=>a.date.localeCompare(b.date)).slice(0,4);
+  },[sales,stops]);
+
+  const exportCSV=()=>{
+    const head=["Shop","Town","Plant","Scientific name","Qty","Form","Stock","Done"];
+    const lines=[head.join(",")];
+    stops.forEach(s=>s.items.forEach(it=>lines.push([
+      esc(s.vendor?s.vendor.name:"No source found"), esc(s.vendor?(s.vendor.city||""):""),
+      esc(it.p.common), esc(it.p.sci), it.qty,
+      esc(it.pick?(FORM_LABEL[it.pick.r.form]||it.pick.r.form||""):""),
+      esc(it.pick?it.pick.r.stock:""), it.done?"yes":"no"].join(","))));
+    downloadText("shopping-list.csv", lines.join("\n"), "text/csv");
+  };
+
+  if(!ready) return <div className="empty">Loading your list…</div>;
+  if(!items.length) return (
+    <div className="empty">Set some quantities on the <b>Planting Plan</b> and they'll appear here,
+      grouped by the shop that can supply them.</div>
+  );
+
+  return (
+    <div>
+      <div className="pphint" style={{margin:"0 0 12px"}}>
+        Your plan as a shopping trip. Plants are grouped by the shop that carries them — nearest first —
+        so the list collapses onto as few stops as the data allows. Change a shop and everything regroups.
+      </div>
+      <div className="shstats">
+        <div className="shstat"><b>{items.length}</b><span>plants to buy</span></div>
+        <div className="shstat"><b>{items.reduce((a,i)=>a+i.qty,0)}</b><span>total quantity</span></div>
+        <div className="shstat"><b>{stops.filter(s=>s.vendor).length}</b><span>stops</span></div>
+        <div className="shstat"><b>{items.length-sourced}</b><span>no source yet</span></div>
+        <div className="shstat done"><b>{doneN}</b><span>got it</span></div>
+      </div>
+      {upcoming.length>0 && (
+        <div className="salebanner" style={{marginTop:4}}>
+          <div className="hd">Sales coming up at shops on your list</div>
+          {upcoming.map(o=>(
+            <div className="row" key={o.sale.id+o.type}>
+              <span className="dt">{fmtDay(o.date)}</span>
+              <span><b>{o.sale.name}</b>{o.sale.city?` · ${o.sale.city}`:""}</span>
+              <span className="soon">{OCC_KIND[o.type][0]}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="hvctrls" style={{marginBottom:10}}>
+        <button className={"chip"+(onlyOpen?" on":"")} onClick={()=>setOnlyOpen(v=>!v)}>Hide what I've got</button>
+        <span style={{flex:"1 1 auto"}}></span>
+        <button className="ppbtn ghost" onClick={exportCSV}>Export CSV</button>
+        <button className="ppbtn ghost" onClick={()=>{ if(confirm("Clear every choice and tick on this list?")){
+          dataProvider.clearShopping(planId).then(()=>setRows({})).catch(e=>console.error(e)); } }}>Reset list</button>
+      </div>
+
+      {shown.map((s,si)=>(
+        <div className="shstop" key={s.vendor?s.vendor.id:"none"}>
+          <div className="shhead">
+            <div>
+              <b>{s.vendor?s.vendor.name:"No source found yet"}</b>
+              <span className="mtmeta">
+                {s.vendor
+                  ? [s.vendor.city&&s.vendor.city+", "+s.vendor.state,
+                     s.d!=null?Math.round(s.d)+" mi":(s.vendor.ships?"mail order":null)].filter(Boolean).join(" · ")
+                  : "No shop in the database is recorded as stocking these — not yet checked, not unavailable"}
+                {" · "}{s.items.length} plant{s.items.length===1?"":"s"}
+              </span>
+            </div>
+            {s.vendor && <div className="shacts">
+              {s.vendor.url && <a href={s.vendor.url} target="_blank" rel="noopener">Website ↗</a>}
+              {go && <button onClick={()=>go("shops")}>All shops →</button>}
+            </div>}
+          </div>
+          {s.items.map(it=>(
+            <div className={"shrow"+(it.done?" done":"")} key={it.p.id}>
+              <label className="shtick" onClick={e=>e.stopPropagation()}>
+                <input type="checkbox" checked={it.done} onChange={()=>save(it.p.id,{done:!it.done})} />
+              </label>
+              <div className="shname" onClick={()=>openDetail&&openDetail(it.p)}>
+                <b>{it.p.common}</b><i>{it.p.sci}</i>
+              </div>
+              <div className="shqty" onClick={e=>e.stopPropagation()}>
+                <input type="number" min="0" value={it.qty}
+                       onChange={e=>save(it.p.id,{qty:Math.max(0,parseInt(e.target.value||"0",10))})} />
+              </div>
+              <div className="shform">
+                {it.pick ? [FORM_LABEL[it.pick.r.form]||it.pick.r.form, it.pick.r.size].filter(Boolean).join(" · ") : "—"}
+                {it.pick && <span className={"stock s-"+(it.pick.r.stock==="in_stock"?"in":it.pick.r.stock==="out"?"out":it.pick.r.stock==="seasonal"?"seas":"unk")}>
+                  {it.pick.r.stock==="in_stock"?"in stock":it.pick.r.stock==="out"?"sold out":it.pick.r.stock==="seasonal"?"seasonal":"unknown"}</span>}
+              </div>
+              <div className="shpick" onClick={e=>e.stopPropagation()}>
+                {it.opts.length>1 ? (
+                  <select value={it.pick?it.pick.v.id:""} onChange={e=>save(it.p.id,{vendorId:parseInt(e.target.value,10)})}>
+                    {it.opts.map(o=>(
+                      <option key={o.v.id} value={o.v.id}>
+                        {o.v.name}{o.d!=null?` · ${Math.round(o.d)} mi`:(o.v.ships?" · mail":"")}
+                      </option>
+                    ))}
+                  </select>
+                ) : <span className="mtmeta">{it.opts.length===1?"only source":"—"}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetail, phaseMeta, setPhaseMeta}){
   const [st,setSt]=useState(defaultProject);
   const [ready,setReady]=useState(false);
@@ -3376,7 +3587,7 @@ function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetai
   );
 }
 
-function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go}){
+function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go, vendorPlants, vendors, sales, planCentre}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | plant | harvest | maint | project | soil | risk
   const [phases,setPhases]=useState({});   // {plantId: 1..10} for the current plan (lives in the plan layout)
@@ -3529,6 +3740,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
         <button className={view==="plant"?"on":""} onClick={()=>setView("plant")}>Planting Plan</button>
         <button className={view==="harvest"?"on":""} onClick={()=>setView("harvest")}>Harvest</button>
+        <button className={view==="shop"?"on":""} onClick={()=>setView("shop")}>Shopping List</button>
         <button className={view==="maint"?"on":""} onClick={()=>setView("maint")}>Maintenance</button>
         <button className={view==="project"?"on":""} onClick={()=>setView("project")}>Project Plan</button>
         <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
@@ -3590,6 +3802,9 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
 
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
+      {view==="shop" && <ShoppingList chosen={chosen} counts={layoutCounts} planId={curPlan}
+                          sources={vendorPlants} vendors={vendors} sales={sales} centre={planCentre}
+                          openDetail={setDetail} go={go} />}
       {view==="maint" && <MaintenanceView chosen={chosen} phases={phases} state={state} openDetail={setDetail} />}
 
       {view==="project" && <ProjectPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} counts={layoutCounts} phases={phases} areaSqft={layoutArea} openDetail={setDetail} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}

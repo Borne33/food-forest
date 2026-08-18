@@ -203,8 +203,11 @@ create table if not exists public.shopping_list (
   note       text,
   created_at timestamptz not null default now()
 );
+-- Plain index on (user_id, plan_id, plant_id): one row per plant in a plan, with
+-- the chosen vendor as mutable data. coalesce(vendor_id,0) made this an
+-- EXPRESSION index, which PostgREST cannot use as an ON CONFLICT target (42P10).
 create unique index if not exists shopping_list_uniq
-  on public.shopping_list(user_id, plan_id, plant_id, coalesce(vendor_id, 0));
+  on public.shopping_list(user_id, plan_id, plant_id);
 
 -- ================================================================= RLS
 alter table public.organizations           enable row level security;
