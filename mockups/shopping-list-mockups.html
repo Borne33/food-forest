@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopping List — 3 mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
+    --line:#c9c2ab; --dot:#c2bba2; --sage:#6f8a5f; --sage-d:#42603a;
+    --blue:#3b82f6; --green:#46a34a; --ygreen:#9bbf3a; --yellow:#e0b932; --orange:#e8923c; --red:#dd4b3e;
+    --soil:#7a5a34; --soil-d:#5c421f; --soil-bg:#efe4d0; --soil-line:#d8c39c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',ui-monospace,monospace}
+  a{color:var(--sage-d)}
+  button{font-family:inherit;cursor:pointer}
+
+  .topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+  .brand b{font-size:19px;font-weight:800;letter-spacing:-.01em;display:block}
+  .brand .acc{font-family:'Space Mono';font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+  .ham i{display:block;width:18px;height:2px;background:var(--ink)}
+  .wrap{max-width:1080px;margin:0 auto;padding:22px 18px 90px}
+  .pagehead{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+  .pagehead .eye{font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .pagehead h2{margin:6px 0 4px;font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .pagehead p{margin:0;color:var(--ink2);max-width:680px}
+  .chip{font-family:'Space Mono';font-size:11px;letter-spacing:.04em;border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:6px 12px;color:var(--ink2)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip em{font-style:normal;font-weight:700;opacity:.6;margin-left:5px}
+  .btn{font-family:'Space Mono';font-size:11.5px;letter-spacing:.03em;border:1.5px solid var(--line);
+    background:#fbf9f2;border-radius:4px;padding:7px 13px;color:var(--ink2)}
+  .btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  /* switcher — review chrome, not part of the design */
+  .mkbar{position:sticky;top:59px;z-index:39;background:var(--ink);color:var(--paper);padding:8px 18px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .mkbar .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-right:6px}
+  .mkbar label{font-family:'Space Mono';font-size:11px;letter-spacing:.06em;background:transparent;color:var(--paper);
+    border:1.5px solid rgba(243,239,227,.45);border-radius:99px;padding:5px 13px;cursor:pointer;user-select:none}
+  .mkbar label:hover{border-color:var(--paper)}
+  .mkin{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  #mk1:checked~.mkbar label[for=mk1],#mk2:checked~.mkbar label[for=mk2],#mk3:checked~.mkbar label[for=mk3]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  #mk1:checked~#m1,#mk2:checked~#m2,#mk3:checked~#m3{display:block}
+  .pane{display:none}
+  .mknote{border-left:3px solid var(--soil);background:var(--soil-bg);padding:11px 15px;border-radius:0 4px 4px 0;margin:0 0 20px;font-size:13.5px}
+  .mknote b{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--soil-d);margin-bottom:3px}
+  .mknote ul{margin:7px 0 0;padding-left:18px}
+  .mknote li{margin:3px 0}
+
+  /* shared: stats + phase filter */
+  .shstats{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 12px}
+  .shstat{border:1px solid var(--line);background:#fbf9f2;border-radius:4px;padding:8px 10px;text-align:center}
+  .shstat b{display:block;font-family:'Space Mono';font-size:20px;font-weight:700;line-height:1}
+  .shstat span{display:block;margin-top:5px;font-family:'Space Mono';font-size:8.5px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--faint);line-height:1.25}
+  .shstat.done{background:#eef2e7;border-color:var(--sage)} .shstat.done b{color:var(--sage-d)}
+  .shphases{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .shphases .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .ctrls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+  .spacer{flex:1 1 auto}
+  @media(max-width:760px){ .shstats{grid-template-columns:repeat(3,1fr)} }
+
+  /* ============ A: STOPS ============ */
+  .shstop{border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;margin:0 0 14px;overflow:hidden}
+  .shhead{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;
+    padding:11px 14px;background:var(--paper2);border-bottom:1.5px solid var(--ink)}
+  .shhead b{font-size:16.5px}
+  .shhead .meta{font-family:'Space Mono';font-size:11px;color:var(--faint);display:block;margin-top:3px}
+  .shhead .rgt{text-align:right;flex:0 0 auto}
+  .shhead .rgt .amt{font-family:'Space Mono';font-size:17px;font-weight:700}
+  .shhead .rgt .cap{font-family:'Space Mono';font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:block}
+  .salebadge{display:inline-block;font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;background:var(--soil-bg);color:var(--soil-d);border:1px solid var(--soil-line);
+    border-radius:99px;padding:2px 8px;margin-left:8px}
+  .shrow{display:grid;grid-template-columns:auto 1fr auto auto;gap:11px;align-items:start;
+    padding:10px 14px;border-bottom:1px solid var(--line)}
+  .shrow:last-child{border-bottom:0}
+  .shrow.done{background:#f1f4ec}
+  .shrow.done .nm b{text-decoration:line-through;opacity:.55}
+  .tick{width:17px;height:17px;accent-color:var(--sage-d);margin-top:2px}
+  .nm b{display:block;font-size:15px;line-height:1.25}
+  .nm i{display:block;font-size:12.5px;color:var(--faint)}
+  .phrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .ph{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--paper);
+    border-radius:99px;padding:2px 8px 2px 5px;font-family:'Space Mono';font-size:11px;color:var(--ink2)}
+  .ph.ok{background:#eef2e7;border-color:var(--sage);color:var(--sage-d)}
+  .ph input[type=checkbox]{width:13px;height:13px;accent-color:var(--sage-d)}
+  .ph .n{width:32px;font-family:'Space Mono';font-size:11px;text-align:right;background:#fbf9f2;
+    border:1px solid var(--line);border-radius:3px;padding:1px 3px}
+  .tot{text-align:right;white-space:nowrap}
+  .tot b{font-family:'Space Mono';font-size:15px}
+  .tot span{display:block;font-family:'Space Mono';font-size:9px;color:var(--faint);margin-top:2px}
+  .frm{font-family:'Space Mono';font-size:11px;color:var(--ink2);white-space:nowrap;text-align:right}
+  .frm .price{display:block;font-weight:700;color:var(--ink);margin-top:2px}
+  .stock{font-family:'Space Mono';font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    border-radius:99px;padding:1px 7px;margin-left:6px}
+  .s-in{background:#e6efe0;color:var(--sage-d)} .s-seas{background:#f7ecd6;color:var(--soil-d)}
+  @media(max-width:820px){ .shrow{grid-template-columns:auto 1fr} .tot,.frm{grid-column:2;text-align:left} }
+
+  /* ============ B: TABLE ============ */
+  .tbl{width:100%;border-collapse:collapse;background:#fbf9f2;border:1.5px solid var(--ink);border-radius:4px;overflow:hidden}
+  .tbl th{background:var(--paper2);border-bottom:1.5px solid var(--ink);font-family:'Space Mono';
+    font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);
+    padding:9px 8px;text-align:left;white-space:nowrap}
+  .tbl th.num,.tbl td.num{text-align:center}
+  .tbl td{border-bottom:1px solid var(--line);padding:8px;font-size:14px;vertical-align:middle}
+  .tbl tr:last-child td{border-bottom:0}
+  .tbl tr.done{background:#f1f4ec}
+  .tbl tr.done .pl b{text-decoration:line-through;opacity:.55}
+  .pl b{display:block;font-size:14.5px;line-height:1.2}
+  .pl i{font-size:12px;color:var(--faint)}
+  .cell{display:inline-flex;align-items:center;gap:3px;font-family:'Space Mono';font-size:11.5px}
+  .cell input{width:30px;text-align:right;font-family:'Space Mono';font-size:11.5px;background:#fff;
+    border:1px solid var(--line);border-radius:3px;padding:1px 3px}
+  .cell.ok{color:var(--sage-d);font-weight:700}
+  .cell .of{color:var(--faint)}
+  .dash{color:var(--dot)}
+  .shopsel{font-family:'Spectral';font-size:13px;background:#fff;border:1.5px solid var(--line);
+    border-radius:4px;padding:4px 6px;max-width:190px}
+  .tblwrap{overflow-x:auto;border-radius:4px}
+  .grp{background:var(--paper2);font-family:'Space Mono';font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink2)}
+
+  /* ============ C: TRIP CARDS ============ */
+  .trip{border:1.5px solid var(--ink);border-radius:5px;background:#fbf9f2;margin:0 0 16px;overflow:hidden;
+    box-shadow:0 10px 24px -22px #000}
+  .triphd{padding:14px 16px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .triphd .no{font-family:'Space Mono';font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+  .triphd h3{margin:3px 0 0;font-size:20px;font-weight:800;letter-spacing:-.01em}
+  .triphd .meta{font-family:'Space Mono';font-size:11px;opacity:.75;margin-top:4px}
+  .triphd .rgt{text-align:right;flex:0 0 auto}
+  .triphd .rgt b{font-family:'Space Mono';font-size:19px;display:block}
+  .triphd .rgt span{font-family:'Space Mono';font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.65}
+  .tripbar{display:flex;gap:0;height:7px;background:var(--paper2)}
+  .tripbar i{display:block;height:100%;background:var(--sage)}
+  .tripbody{padding:6px 0}
+  .titem{display:flex;align-items:flex-start;gap:11px;padding:9px 16px;border-bottom:1px solid var(--line)}
+  .titem:last-child{border-bottom:0}
+  .titem.done{background:#f1f4ec}
+  .titem.done .nm b{text-decoration:line-through;opacity:.55}
+  .titem .grow{flex:1 1 auto;min-width:0}
+  .titem .qty{font-family:'Space Mono';font-size:15px;font-weight:700;white-space:nowrap;text-align:right}
+  .titem .qty span{display:block;font-size:9px;font-weight:400;color:var(--faint)}
+  .tripft{display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:11px 16px;border-top:1.5px solid var(--ink);background:var(--paper2);flex-wrap:wrap}
+  .tripft .sum{font-family:'Space Mono';font-size:11px;color:var(--ink2)}
+  .route{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 16px;padding:11px 14px;
+    background:#fbf9f2;border:1px dashed var(--line);border-radius:4px;font-family:'Space Mono';font-size:11.5px;color:var(--ink2)}
+  .route .pin{display:inline-flex;align-items:center;gap:5px}
+  .route .dotn{width:19px;height:19px;border-radius:50%;background:var(--ink);color:var(--paper);
+    display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+  .route .arw{color:var(--dot)}
+</style>
+</head>
+<body>
+
+<input class="mkin" type="radio" name="mk" id="mk1" checked>
+<input class="mkin" type="radio" name="mk" id="mk2">
+<input class="mkin" type="radio" name="mk" id="mk3">
+
+<div class="topbar">
+  <div class="brand"><span class="acc">Plant and source database and planning tool</span><b>Native Food Forest Planner</b></div>
+  <div class="ham"><i></i><i></i><i></i></div>
+</div>
+
+<div class="mkbar">
+  <span class="lbl">Shopping list</span>
+  <label for="mk1">A · Stops</label>
+  <label for="mk2">B · One table</label>
+  <label for="mk3">C · Trip cards</label>
+</div>
+
+<!-- ============================================================ A -->
+<div class="pane" id="m1"><div class="wrap">
+  <div class="pagehead">
+    <div class="eye">My Plan · Shopping list</div>
+    <h2>Buy your plan</h2>
+    <p>Grouped by the shop that carries them, nearest first, so the list collapses onto as few stops as the data allows.</p>
+  </div>
+
+  <div class="mknote"><b>Mockup A — Stops</b>
+    The current structure, finished properly. Each shop is a card; plants sit inside it with their phase
+    breakdown. Nothing is hidden behind a click.
+    <ul>
+      <li>Per-stop <b>subtotal and estimated cost</b> in the header — you can see what a trip is worth before you commit to it.</li>
+      <li>Upcoming <b>sale dates</b> badge on the shop that has one.</li>
+      <li>Phase pills carry a tick and a number: tick = all bought, number = partial.</li>
+    </ul>
+  </div>
+
+  <div class="shstats">
+    <div class="shstat"><b>7</b><span>plants to buy</span></div>
+    <div class="shstat"><b>48</b><span>total quantity</span></div>
+    <div class="shstat"><b>19</b><span>purchased</span></div>
+    <div class="shstat"><b>3</b><span>stops</span></div>
+    <div class="shstat"><b>1</b><span>no source yet</span></div>
+    <div class="shstat done"><b>2</b><span>fully got</span></div>
+  </div>
+
+  <div class="shphases">
+    <span class="lbl">Phases</span>
+    <button class="chip on">All</button>
+    <button class="chip on">Year 1 <em>21</em></button>
+    <button class="chip on">Year 2 <em>15</em></button>
+    <button class="chip on">Year 3 <em>12</em></button>
+  </div>
+
+  <div class="ctrls">
+    <button class="chip">Hide what I've got</button>
+    <button class="btn">Mark all as purchased</button>
+    <button class="btn">Un-mark</button>
+    <span class="spacer"></span>
+    <button class="btn">Export CSV</button>
+    <button class="btn">Reset list</button>
+  </div>
+
+  <div class="shstop">
+    <div class="shhead">
+      <div><b>Prairie Moon Nursery</b><span class="salebadge">Sale · Apr 12</span>
+        <span class="meta">Winona, MN · mail order · 4 plants</span></div>
+      <div class="rgt"><span class="amt">$31.50</span><span class="cap">est. subtotal</span></div>
+    </div>
+    <div class="shrow done">
+      <input class="tick" type="checkbox" checked>
+      <div class="nm"><b>Thicket Bean</b><i>Phaseolus polystachios</i>
+        <div class="phrow">
+          <span class="ph ok"><input type="checkbox" checked>Year 1<input class="n" value="3">/3</span>
+          <span class="ph ok"><input type="checkbox" checked>Year 2<input class="n" value="2">/2</span>
+        </div></div>
+      <div class="tot"><b>5/5</b><span>got</span></div>
+      <div class="frm">Seed<span class="stock s-in">in stock</span><span class="price">$3.50</span></div>
+    </div>
+    <div class="shrow">
+      <input class="tick" type="checkbox">
+      <div class="nm"><b>Wild Bergamot</b><i>Monarda fistulosa</i>
+        <div class="phrow">
+          <span class="ph"><input type="checkbox">Year 1<input class="n" value="4">/9</span>
+          <span class="ph"><input type="checkbox">Year 2<input class="n" value="0">/6</span>
+        </div></div>
+      <div class="tot"><b>4/15</b><span>got</span></div>
+      <div class="frm">Seed<span class="stock s-in">in stock</span><span class="price">$3.50</span></div>
+    </div>
+    <div class="shrow done">
+      <input class="tick" type="checkbox" checked>
+      <div class="nm"><b>Slickseed Fuzzybean</b><i>Strophostyles leiosperma</i>
+        <div class="phrow">
+          <span class="ph ok"><input type="checkbox" checked>Year 2<input class="n" value="4">/4</span>
+        </div></div>
+      <div class="tot"><b>4/4</b><span>got</span></div>
+      <div class="frm">Seed<span class="stock s-in">in stock</span><span class="price">$3.50</span></div>
+    </div>
+    <div class="shrow">
+      <input class="tick" type="checkbox">
+      <div class="nm"><b>Bur Oak</b><i>Quercus macrocarpa</i>
+        <div class="phrow">
+          <span class="ph"><input type="checkbox">Year 3<input class="n" value="0">/6</span>
+        </div></div>
+      <div class="tot"><b>0/6</b><span>got</span></div>
+      <div class="frm">Bare root<span class="stock s-seas">seasonal</span><span class="price">$11.00</span></div>
+    </div>
+  </div>
+
+  <div class="shstop">
+    <div class="shhead">
+      <div><b>Amanda's Native Garden</b>
+        <span class="meta">Springville, NY · 41 mi · 2 plants</span></div>
+      <div class="rgt"><span class="amt">$95.88</span><span class="cap">est. subtotal</span></div>
+    </div>
+    <div class="shrow">
+      <input class="tick" type="checkbox">
+      <div class="nm"><b>Black-eyed Susan</b><i>Rudbeckia hirta</i>
+        <div class="phrow">
+          <span class="ph"><input type="checkbox">Year 1<input class="n" value="6">/8</span>
+          <span class="ph"><input type="checkbox">Year 3<input class="n" value="0">/4</span>
+        </div></div>
+      <div class="tot"><b>6/12</b><span>got</span></div>
+      <div class="frm">Potted<span class="stock s-in">in stock</span><span class="price">$7.99</span></div>
+    </div>
+    <div class="shrow">
+      <input class="tick" type="checkbox">
+      <div class="nm"><b>New England Aster</b><i>Symphyotrichum novae-angliae</i>
+        <div class="phrow">
+          <span class="ph"><input type="checkbox">Year 1<input class="n" value="0">/5</span>
+        </div></div>
+      <div class="tot"><b>0/5</b><span>got</span></div>
+      <div class="frm">Potted<span class="stock s-in">in stock</span><span class="price">$7.99</span></div>
+    </div>
+  </div>
+
+  <div class="shstop">
+    <div class="shhead">
+      <div><b>No source found yet</b>
+        <span class="meta">No shop in the database is recorded as stocking these — not yet checked, not unavailable · 1 plant</span></div>
+      <div class="rgt"><span class="amt">—</span><span class="cap">est. subtotal</span></div>
+    </div>
+    <div class="shrow">
+      <input class="tick" type="checkbox">
+      <div class="nm"><b>Downy Serviceberry</b><i>Amelanchier canadensis</i>
+        <div class="phrow"><span class="ph"><input type="checkbox">Year 3<input class="n" value="0">/2</span></div></div>
+      <div class="tot"><b>0/2</b><span>got</span></div>
+      <div class="frm">—</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============================================================ B -->
+<div class="pane" id="m2"><div class="wrap">
+  <div class="pagehead">
+    <div class="eye">My Plan · Shopping list</div>
+    <h2>Buy your plan</h2>
+    <p>Every plant on one grid. Phases are columns; change a shop in place and the totals follow.</p>
+  </div>
+
+  <div class="mknote"><b>Mockup B — One table</b>
+    Phases become real columns, so the plan reads across in one line and down in one scan.
+    <ul>
+      <li>Best for <b>bulk work</b> — set six quantities without moving your eyes.</li>
+      <li>Shop is a column you can change in place; rows regroup under the shop headers.</li>
+      <li>Densest of the three, and the only one that fits a whole plan on one screen.</li>
+      <li>Weakest for the actual errand — it doesn't feel like a trip.</li>
+    </ul>
+  </div>
+
+  <div class="shstats">
+    <div class="shstat"><b>7</b><span>plants to buy</span></div>
+    <div class="shstat"><b>48</b><span>total quantity</span></div>
+    <div class="shstat"><b>19</b><span>purchased</span></div>
+    <div class="shstat"><b>3</b><span>stops</span></div>
+    <div class="shstat"><b>1</b><span>no source yet</span></div>
+    <div class="shstat done"><b>2</b><span>fully got</span></div>
+  </div>
+
+  <div class="shphases">
+    <span class="lbl">Phases</span>
+    <button class="chip on">All</button>
+    <button class="chip on">Year 1 <em>21</em></button>
+    <button class="chip on">Year 2 <em>15</em></button>
+    <button class="chip on">Year 3 <em>12</em></button>
+  </div>
+
+  <div class="ctrls">
+    <button class="chip">Hide what I've got</button>
+    <button class="btn">Mark all as purchased</button>
+    <button class="btn">Un-mark</button>
+    <span class="spacer"></span>
+    <button class="btn">Export CSV</button>
+  </div>
+
+  <div class="tblwrap"><table class="tbl">
+    <thead><tr>
+      <th style="width:26px"></th><th>Plant</th>
+      <th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th>
+      <th class="num">Total</th><th>Shop</th><th>Form</th><th class="num">Price</th>
+    </tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="9" style="padding:6px 8px">Prairie Moon Nursery · Winona, MN · mail order · est. $31.50</td></tr>
+      <tr class="done">
+        <td><input class="tick" type="checkbox" checked></td>
+        <td class="pl"><b>Thicket Bean</b><i>Phaseolus polystachios</i></td>
+        <td class="num"><span class="cell ok"><input value="3"><span class="of">/3</span></span></td>
+        <td class="num"><span class="cell ok"><input value="2"><span class="of">/2</span></span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell ok">5<span class="of">/5</span></span></td>
+        <td><select class="shopsel"><option>Prairie Moon · mail</option></select></td>
+        <td class="mono" style="font-size:11px">Seed</td>
+        <td class="num mono" style="font-size:11.5px">$3.50</td>
+      </tr>
+      <tr>
+        <td><input class="tick" type="checkbox"></td>
+        <td class="pl"><b>Wild Bergamot</b><i>Monarda fistulosa</i></td>
+        <td class="num"><span class="cell"><input value="4"><span class="of">/9</span></span></td>
+        <td class="num"><span class="cell"><input value="0"><span class="of">/6</span></span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell">4<span class="of">/15</span></span></td>
+        <td><select class="shopsel"><option>Prairie Moon · mail</option><option>Mill Street · 12 mi</option><option>Ernst · mail</option></select></td>
+        <td class="mono" style="font-size:11px">Seed</td>
+        <td class="num mono" style="font-size:11.5px">$3.50</td>
+      </tr>
+      <tr class="done">
+        <td><input class="tick" type="checkbox" checked></td>
+        <td class="pl"><b>Slickseed Fuzzybean</b><i>Strophostyles leiosperma</i></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell ok"><input value="4"><span class="of">/4</span></span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell ok">4<span class="of">/4</span></span></td>
+        <td><select class="shopsel"><option>Prairie Moon · mail</option></select></td>
+        <td class="mono" style="font-size:11px">Seed</td>
+        <td class="num mono" style="font-size:11.5px">$3.50</td>
+      </tr>
+      <tr>
+        <td><input class="tick" type="checkbox"></td>
+        <td class="pl"><b>Bur Oak</b><i>Quercus macrocarpa</i></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell"><input value="0"><span class="of">/6</span></span></td>
+        <td class="num"><span class="cell">0<span class="of">/6</span></span></td>
+        <td><select class="shopsel"><option>Prairie Moon · mail</option><option>White Oak · 37 mi</option><option>Wild Ones · 8 mi</option></select></td>
+        <td class="mono" style="font-size:11px">Bare root</td>
+        <td class="num mono" style="font-size:11.5px">$11.00</td>
+      </tr>
+
+      <tr class="grp"><td colspan="9" style="padding:6px 8px">Amanda's Native Garden · Springville, NY · 41 mi · est. $95.88</td></tr>
+      <tr>
+        <td><input class="tick" type="checkbox"></td>
+        <td class="pl"><b>Black-eyed Susan</b><i>Rudbeckia hirta</i></td>
+        <td class="num"><span class="cell"><input value="6"><span class="of">/8</span></span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell"><input value="0"><span class="of">/4</span></span></td>
+        <td class="num"><span class="cell">6<span class="of">/12</span></span></td>
+        <td><select class="shopsel"><option>Amanda's · 41 mi</option><option>Mill Street · 12 mi</option><option>Ernst · mail</option></select></td>
+        <td class="mono" style="font-size:11px">Potted</td>
+        <td class="num mono" style="font-size:11.5px">$7.99</td>
+      </tr>
+      <tr>
+        <td><input class="tick" type="checkbox"></td>
+        <td class="pl"><b>New England Aster</b><i>Symphyotrichum novae-angliae</i></td>
+        <td class="num"><span class="cell"><input value="0"><span class="of">/5</span></span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell">0<span class="of">/5</span></span></td>
+        <td><select class="shopsel"><option>Amanda's · 41 mi</option><option>Prairie Moon · mail</option></select></td>
+        <td class="mono" style="font-size:11px">Potted</td>
+        <td class="num mono" style="font-size:11.5px">$7.99</td>
+      </tr>
+
+      <tr class="grp"><td colspan="9" style="padding:6px 8px">No source found yet</td></tr>
+      <tr>
+        <td><input class="tick" type="checkbox"></td>
+        <td class="pl"><b>Downy Serviceberry</b><i>Amelanchier canadensis</i></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="dash">—</span></td>
+        <td class="num"><span class="cell"><input value="0"><span class="of">/2</span></span></td>
+        <td class="num"><span class="cell">0<span class="of">/2</span></span></td>
+        <td><span class="mono" style="font-size:11px;color:var(--faint)">—</span></td>
+        <td class="mono" style="font-size:11px">—</td>
+        <td class="num mono" style="font-size:11.5px">—</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div></div>
+
+<!-- ============================================================ C -->
+<div class="pane" id="m3"><div class="wrap">
+  <div class="pagehead">
+    <div class="eye">My Plan · Shopping list</div>
+    <h2>Buy your plan</h2>
+    <p>One card per stop, in the order it makes sense to visit them. Built to be carried into the nursery.</p>
+  </div>
+
+  <div class="mknote"><b>Mockup C — Trip cards</b>
+    Treats the list as an errand rather than a spreadsheet. Each shop is a self-contained card with a
+    progress bar, a running total and its own "done" action.
+    <ul>
+      <li>A <b>route strip</b> at the top orders the stops by distance so a Saturday plans itself.</li>
+      <li>Big touch targets — the one design that works properly <b>on a phone in a car park</b>.</li>
+      <li>Phase detail is condensed to "4 of 9 · Y1" to keep rows short; the full split is one tap away.</li>
+      <li>Weakest for bulk editing — you work stop by stop, not across the whole plan.</li>
+    </ul>
+  </div>
+
+  <div class="shphases">
+    <span class="lbl">Phases</span>
+    <button class="chip on">All</button>
+    <button class="chip on">Year 1 <em>21</em></button>
+    <button class="chip on">Year 2 <em>15</em></button>
+    <button class="chip on">Year 3 <em>12</em></button>
+  </div>
+
+  <div class="route">
+    <span class="pin"><span class="dotn">1</span> Wild Ones · 8 mi</span><span class="arw">→</span>
+    <span class="pin"><span class="dotn">2</span> Amanda's · 41 mi</span><span class="arw">→</span>
+    <span class="pin"><span class="dotn">3</span> Prairie Moon · mail order</span>
+    <span class="spacer"></span><span>49 mi driving · 3 stops · est. $139</span>
+  </div>
+
+  <div class="ctrls">
+    <button class="chip">Hide what I've got</button>
+    <button class="btn">Mark all as purchased</button>
+    <span class="spacer"></span>
+    <button class="btn">Print list</button>
+    <button class="btn">Export CSV</button>
+  </div>
+
+  <div class="trip">
+    <div class="triphd">
+      <div><div class="no">Stop 2 · 41 mi</div><h3>Amanda's Native Garden</h3>
+        <div class="meta">Springville, NY · open Fri–Sun 9–4 · potted stock</div></div>
+      <div class="rgt"><b>$95.88</b><span>estimated</span></div>
+    </div>
+    <div class="tripbar"><i style="width:35%"></i></div>
+    <div class="tripbody">
+      <div class="titem">
+        <input class="tick" type="checkbox">
+        <div class="grow nm"><b>Black-eyed Susan</b><i>Rudbeckia hirta</i>
+          <div class="phrow"><span class="ph">6 of 8 · Year 1</span><span class="ph">0 of 4 · Year 3</span></div></div>
+        <div class="qty">6/12<span>potted</span></div>
+      </div>
+      <div class="titem">
+        <input class="tick" type="checkbox">
+        <div class="grow nm"><b>New England Aster</b><i>Symphyotrichum novae-angliae</i>
+          <div class="phrow"><span class="ph">0 of 5 · Year 1</span></div></div>
+        <div class="qty">0/5<span>potted</span></div>
+      </div>
+    </div>
+    <div class="tripft">
+      <span class="sum">6 of 17 bought · 2 plants · 35% done</span>
+      <span><button class="btn">Directions</button> <button class="btn solid">Mark stop complete</button></span>
+    </div>
+  </div>
+
+  <div class="trip">
+    <div class="triphd">
+      <div><div class="no">Stop 3 · mail order</div><h3>Prairie Moon Nursery</h3>
+        <div class="meta">Winona, MN · ships to NY · sale Apr 12</div></div>
+      <div class="rgt"><b>$31.50</b><span>estimated</span></div>
+    </div>
+    <div class="tripbar"><i style="width:60%"></i></div>
+    <div class="tripbody">
+      <div class="titem done">
+        <input class="tick" type="checkbox" checked>
+        <div class="grow nm"><b>Thicket Bean</b><i>Phaseolus polystachios</i>
+          <div class="phrow"><span class="ph ok">3 of 3 · Year 1</span><span class="ph ok">2 of 2 · Year 2</span></div></div>
+        <div class="qty">5/5<span>seed</span></div>
+      </div>
+      <div class="titem">
+        <input class="tick" type="checkbox">
+        <div class="grow nm"><b>Wild Bergamot</b><i>Monarda fistulosa</i>
+          <div class="phrow"><span class="ph">4 of 9 · Year 1</span><span class="ph">0 of 6 · Year 2</span></div></div>
+        <div class="qty">4/15<span>seed</span></div>
+      </div>
+      <div class="titem done">
+        <input class="tick" type="checkbox" checked>
+        <div class="grow nm"><b>Slickseed Fuzzybean</b><i>Strophostyles leiosperma</i>
+          <div class="phrow"><span class="ph ok">4 of 4 · Year 2</span></div></div>
+        <div class="qty">4/4<span>seed</span></div>
+      </div>
+      <div class="titem">
+        <input class="tick" type="checkbox">
+        <div class="grow nm"><b>Bur Oak</b><i>Quercus macrocarpa</i>
+          <div class="phrow"><span class="ph">0 of 6 · Year 3</span></div></div>
+        <div class="qty">0/6<span>bare root</span></div>
+      </div>
+    </div>
+    <div class="tripft">
+      <span class="sum">13 of 30 bought · 4 plants · 60% done</span>
+      <span><button class="btn">Website ↗</button> <button class="btn solid">Mark stop complete</button></span>
+    </div>
+  </div>
+
+  <div class="trip">
+    <div class="triphd" style="background:var(--paper2);color:var(--ink2)">
+      <div><div class="no" style="opacity:.8">Not sourced</div>
+        <h3 style="color:var(--ink)">1 plant has no shop yet</h3>
+        <div class="meta" style="opacity:.9">Nothing in the database is recorded as stocking it — not yet checked, not unavailable</div></div>
+    </div>
+    <div class="tripbody">
+      <div class="titem">
+        <input class="tick" type="checkbox">
+        <div class="grow nm"><b>Downy Serviceberry</b><i>Amelanchier canadensis</i>
+          <div class="phrow"><span class="ph">0 of 2 · Year 3</span></div></div>
+        <div class="qty">0/2<span>—</span></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+</body>
+</html>
