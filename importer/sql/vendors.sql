@@ -198,11 +198,16 @@ create table if not exists public.shopping_list (
   plan_id    uuid not null references public.plans(id) on delete cascade,
   plant_id   bigint not null references public.plants(id) on delete cascade,
   vendor_id  bigint references public.vendors(id) on delete set null,
-  qty        integer default 1,
-  done       boolean default false,
+  qty        integer default 1,          -- legacy; the plan's alloc is the source of truth
+  done       boolean default false,      -- derived: every needed phase fully purchased
+  bought     jsonb not null default '{}'::jsonb,  -- {phase: qtyPurchased}, keys are phase numbers as text
   note       text,
   created_at timestamptz not null default now()
 );
+-- `bought` is a jsonb map rather than a `phase` column ON PURPOSE: a phase column
+-- would push the natural key to (user_id, plan_id, plant_id, phase), and rebuilding
+-- that unique index risks the ON CONFLICT failures this schema has hit three times
+-- (42P10 on partial/expression indexes). The map leaves shopping_list_uniq alone.
 -- Plain index on (user_id, plan_id, plant_id): one row per plant in a plan, with
 -- the chosen vendor as mutable data. coalesce(vendor_id,0) made this an
 -- EXPRESSION index, which PostgREST cannot use as an ON CONFLICT target (42P10).
