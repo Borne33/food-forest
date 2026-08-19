@@ -36,7 +36,9 @@
   .brand .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
   .brand h1{margin:2px 0 0;font-size:21px;font-weight:800;letter-spacing:-.01em}
   /* the accent line is 43 characters — give it room to breathe on phones */
-  @media(max-width:560px){ .brand .acc{font-size:8.5px;letter-spacing:.13em} .brand h1{font-size:18px} }
+  /* at 10px/.22em the run is ~633px; it needs ~730px of viewport to clear the
+     18px padding and the 42px hamburger, so step down well before 560. */
+  @media(max-width:760px){ .brand .acc{font-size:8.5px;letter-spacing:.13em} .brand h1{font-size:18px} }
   @media(max-width:380px){ .brand .acc{font-size:7.5px;letter-spacing:.08em} .brand h1{font-size:17px} }
   .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
   .ham i{display:block;width:18px;height:2px;background:var(--ink)}
