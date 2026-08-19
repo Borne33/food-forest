@@ -1921,7 +1921,7 @@ function derivePhases(alloc){
   return p;
 }
 const phaseList=meta=>Object.keys(meta||{}).map(Number).sort((a,b)=>a-b);
-function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases, setPhases, phaseMeta, setPhaseMeta}){
+function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases, setPhases, onCounts, phaseMeta, setPhaseMeta}){
   const STEPS=[{key:"plants",label:"Plants"},{key:"map",label:"Map & Areas"},{key:"soil",label:"Soil Map"},{key:"place",label:"Place Plants"}];
   const [ready,setReady]=useState(false);
   const [mapReady,setMapReady]=useState(false);
@@ -1930,6 +1930,7 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
   // counts/phases are DERIVED from alloc; every existing consumer still reads these
   const counts=useMemo(()=>deriveCounts(alloc),[alloc]);
   const derivedPhases=useMemo(()=>derivePhases(alloc),[alloc]);
+  // NB: local name — the parent's callback prop is `onCounts`, not `setCounts`.
   const setCounts=(fn)=>setAlloc(prev=>{           // legacy shim: writes into phase 1
     const cur=deriveCounts(prev), next=typeof fn==="function"?fn(cur):fn, out={...prev};
     Object.keys(next).forEach(id=>{
@@ -2008,12 +2009,18 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
 
   /* ---- keep the parent's derived view in step with the allocation ----
      MyPlan hands `phases` to Maintenance, Project Plan and the Forest Layers
-     filter. Without this they'd only update on load and would drift the moment
-     a quantity moved between phases. */
-  useEffect(()=>{ if(!ready || !setPhases) return; setPhases(derivePhases(alloc)); },[alloc,ready]);
+     filter, and `counts` to the Shopping List and Project Plan. Without this
+     they'd only update on load and would drift the moment a quantity moved
+     between phases. counts was missing here, so the Shopping List kept showing
+     whatever quantities were current when the plan was opened. */
+  useEffect(()=>{ if(!ready) return;
+    if(setPhases) setPhases(derivePhases(alloc));
+    if(onCounts) onCounts(deriveCounts(alloc));
+  },[alloc,ready]);
 
   /* ---- autosave (debounced) once loaded ---- */
   const saveT=useRef(null);
+  const pendingSave=useRef(null);   // latest layout still waiting on the debounce
   useEffect(()=>{
     if(!ready) return;
     // v2 blob. counts/phases are written too, derived — an old tab or an
@@ -2021,10 +2028,27 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     const layout={ v:2, step, alloc, phaseMeta, view, polys, places, soilMap,
                    counts: deriveCounts(alloc), phases: derivePhases(alloc) };
     try{ localStorage.setItem("ff-layout-"+planId, JSON.stringify(layout)); }catch(e){}
+    pendingSave.current=layout;
     clearTimeout(saveT.current);
-    saveT.current=setTimeout(()=>{ dataProvider.saveLayout(planId,layout).catch(e=>console.error(e)); },800);
+    saveT.current=setTimeout(()=>{
+      pendingSave.current=null;
+      dataProvider.saveLayout(planId,layout).catch(e=>console.error(e));
+    },800);
     return ()=>clearTimeout(saveT.current);
   },[ready,planId,step,alloc,phaseMeta,view,polys,places,soilMap]);
+
+  /* ---- flush the debounce on unmount / plan switch ----
+     MyPlan renders this component as {view==="plant" && <PlantingPlan/>}, so
+     changing tabs UNMOUNTS it and the cleanup above cancels any save still
+     inside its 800ms window. localStorage had already been written, which is
+     why this looked fine in one session and lost the last edit on another
+     device. Write it out rather than drop it. */
+  useEffect(()=>()=>{
+    if(pendingSave.current){
+      dataProvider.saveLayout(planId,pendingSave.current).catch(e=>console.error(e));
+      pendingSave.current=null;
+    }
+  },[planId]);
 
   /* ---- create the Leaflet map once data is loaded ---- */
   useEffect(()=>{
@@ -3817,7 +3841,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         </div>
       </React.Fragment>)}
 
-      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} phases={phases} setPhases={setPhases} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}
+      {view==="plant" && <PlantingPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} openDetail={setDetail} onSoilDerived={onSoilDerived} phases={phases} setPhases={setPhases} onCounts={setLayoutCounts} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}
 
       {view==="harvest" && <HarvestView chosen={chosen} plants={plants} state={state} openDetail={setDetail} />}
 
