@@ -32,9 +32,12 @@
   /* ---------- chrome ---------- */
   .topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1.5px solid var(--ink);
     display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
-  .brand{display:flex;flex-direction:column;line-height:1.05}
+  .brand{display:flex;flex-direction:column;line-height:1.05;min-width:0;flex:1}
   .brand .acc{font-family:'Space Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
   .brand h1{margin:2px 0 0;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  /* the accent line is 43 characters — give it room to breathe on phones */
+  @media(max-width:560px){ .brand .acc{font-size:8.5px;letter-spacing:.13em} .brand h1{font-size:18px} }
+  @media(max-width:380px){ .brand .acc{font-size:7.5px;letter-spacing:.08em} .brand h1{font-size:17px} }
   .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
   .ham i{display:block;width:18px;height:2px;background:var(--ink)}
   .menu{position:fixed;inset:0;z-index:50;display:none}
@@ -5864,8 +5867,8 @@ function App(){
     <div>
       <div className="topbar">
         <div className="brand">
-          <span className="acc">Native Plant Database</span>
-          <h1>Food Forest Planner</h1>
+          <span className="acc">Plant and source database and planning tool</span>
+          <h1>Native Food Forest Planner</h1>
         </div>
         <button className="ham" aria-label="Menu" onClick={()=>setMenu(true)}><i></i><i></i><i></i></button>
       </div>
