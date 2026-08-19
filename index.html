@@ -6001,6 +6001,10 @@ function App(){
     })();
   },[user]);
 
+  // NB: MyPlan must be given vendorPlants / vendors / sales / planCentre. Its
+  // signature declared them long before the call site passed them, so the
+  // Shopping List saw sources=undefined and put every plant under
+  // "No source found yet".
   // membership map: plantId -> [planId,...]
   const membership=useMemo(()=>{
     const m={}; planItems.forEach(it=>{ (m[it.plantId]||(m[it.plantId]=[])).push(it.planId); }); return m;
@@ -6155,7 +6159,8 @@ function App(){
           effPage==="db" ? <Database plants={plants} state={state} setState={setState} plans={plans} membership={membership} toggle={toggle}
                                   sources={vendorPlants} vendorById={vendorLookup} centre={planCentre}
                                   onGoShops={()=>go("shops")} /> :
-          effPage==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go} /> :
+          effPage==="plan" ? <MyPlan plants={plants} state={state} plans={plans} planItems={planItems} curPlan={curPlan} setCurPlan={setCurPlan} membership={membership} toggle={toggle} newPlan={newPlan} renamePlan={renamePlan} deletePlan={deletePlan} go={go}
+                              vendorPlants={vendorPlants} vendors={vendors} sales={sales} planCentre={planCentre} /> :
           effPage==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
                                   vendorPlants={vendorPlants} plants={plants} planItems={planItems}
                                   curPlan={curPlan} isAdmin={isAdmin}
