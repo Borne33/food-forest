@@ -1221,8 +1221,8 @@ function nativity(p, st){
   if(p.invasiveEverywhere || (p.invasiveStates||[]).includes(st)) return {v:-5,label:"Invasive here"};
   if((p.nativeStates||[]).includes(st)) return {v:10,label:"Native to "+st};
   if((p.nativeRegions||[]).includes(regionGroupOf(st))) return {v:8,label:"Native to region"};
-  if(p.nativeToUS) return {v:5,label:"Native to US"};
-  if(p.nativeNorthAmerica) return {v:4,label:"Native to North America"};
+  if(p.nativeToUS) return {v:7,label:"Native to US"};
+  if(p.nativeNorthAmerica) return {v:6,label:"Native to North America"};
   if(p.nativeAmericas) return {v:3,label:"Native to the Americas"};
   return {v:0,label:"Not native"};
 }
@@ -1686,7 +1686,7 @@ function Database({plants, state, setState, plans, membership, toggle, sources, 
         <select value={state} onChange={e=>setState(e.target.value)}>
           {STATES.map(s=><option key={s} value={s}>{STATE_NAMES[s]} ({s})</option>)}
         </select>
-        <span className="note">Nativity is recalculated for {STATE_NAMES[state]} (10 in-state · 8 in-region · 5 in-US · 0 non-native · −5 invasive).</span>
+        <span className="note">Nativity is recalculated for {STATE_NAMES[state]} (10 in-state · 8 in-region · 7 in-US · 6 in-N.America · 0 non-native · −5 invasive).</span>
       </div>
 
       <div className="controls">
@@ -3853,8 +3853,8 @@ const GUIDE = {
   nativity:[
     [10,"Native to your selected state — best fit for local ecology."],
     [8,"Native to your broader region (e.g. the Northeast or Southeast) but not recorded in your state."],
-    [5,"Native somewhere in the US, outside your region."],
-    [4,"Native elsewhere in North America (Canada or Mexico) but not the US."],
+    [7,"Native somewhere in the US, outside your region."],
+    [6,"Native elsewhere in North America (Canada or Mexico) but not the US."],
     [3,"Native elsewhere in the Americas (Central or South America, or the Caribbean)."],
     [0,"Introduced from outside the Americas, but not classed as invasive."],
     [-5,"Invasive or prohibited in your area — actively harmful; avoid planting."],
