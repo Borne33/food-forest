@@ -50,7 +50,9 @@
   #mk1:checked~#m1,#mk2:checked~#m2,#mk3:checked~#m3{display:block}
   .pane{display:none}
   .mknote{border-left:3px solid var(--soil);background:var(--soil-bg);padding:11px 15px;border-radius:0 4px 4px 0;margin:0 0 20px;font-size:13.5px}
-  .mknote b{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--soil-d);margin-bottom:3px}
+  /* title only — otherwise inline <b> inside the notes turns into block caps */
+  .mknote > b:first-child{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--soil-d);margin-bottom:3px}
+  .mknote li b{font-weight:700}
   .mknote ul{margin:7px 0 0;padding-left:18px}
   .mknote li{margin:3px 0}
 
