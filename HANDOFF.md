@@ -99,8 +99,9 @@ SQL for all of the above lives in `importer/sql/*.sql`
 `Overall = Nativity×4 + Raw×2 + Cooked×2 + Lifecycle×1 + Ecology×1 +
 Materials×0.7 + Medicinal×0.3` (range ≈ −20 to 110), colored into bands.
 **Nativity** (computed live for the user's selected state): 10 in-state, 8
-in-region, **7 native-to-US, 6 native-to-North-America (Canada/Mexico)** (both
-raised from 5/4 in Aug 2026), 3 native-to-Americas, 0 non-native, −5 invasive.
+in-region, **7 native-to-US, 6 native-to-North-America (Canada/Mexico), 5
+native-to-Americas** (raised from 5/4/3 in Aug 2026 — the ladder now steps
+evenly), 0 non-native, −5 invasive.
 The ladder lives in THREE places — `nativity()`, the `GUIDE.nativity` table on
 the Scoring Guide page, and the hint under the state picker. Change all three.
 
