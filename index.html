@@ -1120,7 +1120,8 @@ function advisoryHits(cal, a, b){
 function addWorkingTime(cal, from, minutes, elapsed){
   var d = toDate(from);
   if (elapsed) return new Date(d.getTime() + minutes*MIN);
-  if (minutes <= 0) return snapForward(cal, d);
+  if (minutes < 0) return subWorkingTime(cal, d, -minutes, elapsed);   // lead
+  if (minutes === 0) return snapForward(cal, d);
   var left = minutes, guard = 0;
   d = snapForward(cal, d);
   while (left > 0){
@@ -1144,7 +1145,8 @@ function addWorkingTime(cal, from, minutes, elapsed){
 function subWorkingTime(cal, from, minutes, elapsed){
   var d = toDate(from);
   if (elapsed) return new Date(d.getTime() - minutes*MIN);
-  if (minutes <= 0) return snapBack(cal, d);
+  if (minutes < 0) return addWorkingTime(cal, d, -minutes, elapsed);
+  if (minutes === 0) return snapBack(cal, d);
   var left = minutes, guard = 0;
   d = snapBack(cal, d);
   while (left > 0){
@@ -1311,6 +1313,10 @@ function scheduleProject(input){
       }
       if (cand > es) es = cand;
     });
+    // A start sitting on an interval END has no working time before the next
+    // interval, so normalise it forward — otherwise SS+1d reads as 16:00 where
+    // MSP shows 08:00 the next day.
+    es = snapForward(c, es);
 
     // constraints — applied here, conflicts reported rather than swallowed
     var cd = t.constraintDate;
