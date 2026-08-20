@@ -407,6 +407,72 @@
   @media(max-width:620px){ .mttask{grid-template-columns:auto 1fr} .mttask .yr{grid-column:1/-1} }
   /* ── Shopping List (S7). These classes shipped with no stylesheet at all, so
      the list rendered as bare divs until Aug 2026. ───────────────────────── */
+  /* ── PC2 task grid ─────────────────────────────────────────────────────
+     Alignment is structural: one vertical scroller, every row --rowh tall, so
+     the grid and (in PC3) the timeline cannot drift apart. */
+  .tgwrap{margin-top:4px}
+  .sched{--gw:44%; --rowh:32px; --headh:46px;
+    border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
+  .schscroll{max-height:520px;overflow-y:auto;display:grid}
+  .gpane{min-width:0;overflow-x:auto}
+  .ghead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    position:sticky;top:0;z-index:3;display:flex;align-items:flex-end;padding:0 0 5px}
+  .ghead .hcell{display:grid;grid-template-columns:var(--cols);width:100%;min-width:max-content}
+  .ghead .hcell span{font-family:'Space Mono';font-size:8.5px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink2);padding:0 6px;white-space:nowrap;overflow:hidden}
+  .grow{height:var(--rowh);display:grid;grid-template-columns:var(--cols);align-items:center;
+    border-bottom:1px solid var(--line);font-size:13px;min-width:max-content}
+  .grow:last-child{border-bottom:0}
+  .grow > *{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .grow.sum{background:#f0ecdf;font-weight:700}
+  .grow.sel{background:#eef2e7;box-shadow:inset 3px 0 0 var(--sage-d)}
+  .grow.crit .nm{color:var(--red)}
+  .grow .idc{font-family:'Space Mono';font-size:11px;color:var(--sage-d);cursor:pointer;text-decoration:underline}
+  .grow .nm{cursor:pointer}
+  .grow.sel .nm{font-weight:700}
+  .grow[draggable=true]{cursor:grab}
+  .grow .lvl1{padding-left:16px !important}
+  .grow .num{text-align:right;font-family:'Space Mono';font-size:11px}
+  .grow .ind{text-align:center;color:var(--ink);font-size:11px}
+  .sched.narrow .wideonly,.sched.narrow .wbscol,.sched.narrow .indcol,.sched.narrow .durcol{display:none}
+  .sched.narrow .grow,.sched.narrow .ghead .hcell{min-width:0}
+  @media(max-width:900px){
+    .sched:not(.narrow) .wideonly,.sched:not(.narrow) .wbscol,
+    .sched:not(.narrow) .indcol,.sched:not(.narrow) .durcol{display:none}
+    .sched:not(.narrow){--cols:28px 1fr !important}
+    .sched:not(.narrow) .grow,.sched:not(.narrow) .ghead .hcell{min-width:0}
+  }
+  /* change notice — zero height when empty; the component gives the scroll
+     position the same pixels back so the view never jumps */
+  .changebar{height:0;margin:0;overflow:hidden;transition:height .12s ease}
+  .changebar.has{height:auto;margin:0 0 10px}
+  .changenote{border-left:3px solid var(--sage-d);background:#eef2e7;border-radius:0 4px 4px 0;
+    padding:8px 13px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .changenote .hd{font-family:'Space Mono';font-size:9.5px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--sage-d);white-space:nowrap}
+  .changenote .mv{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px}
+  .changenote .undo{margin-left:auto}
+  .cardwrap{position:fixed;inset:0;z-index:80;background:rgba(43,42,34,.34);display:flex;
+    align-items:center;justify-content:center;padding:18px}
+  .card{background:#fbf9f2;border:1.5px solid var(--ink);border-radius:5px;max-width:520px;width:100%;
+    max-height:88vh;overflow:auto;box-shadow:0 24px 60px -30px #000}
+  .cardhd{padding:13px 16px;background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .cardhd .eye{font-family:'Space Mono';font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .cardhd h3{margin:3px 0 0;font-size:19px;font-weight:800}
+  .cardbd{padding:14px 16px}
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  @media(max-width:540px){ .fgrid{grid-template-columns:repeat(2,1fr)} }
+  .fld{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .fld label{font-family:'Space Mono';font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .fld input,.fld select{width:100%;font-family:'Spectral';font-size:14px;background:#fff;
+    border:1.5px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink)}
+  .cardft{padding:11px 16px;border-top:1.5px solid var(--ink);background:var(--paper2);
+    display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap}
+  .btn{font-family:'Space Mono';font-size:11.5px;border:1.5px solid var(--line);background:#fbf9f2;
+    border-radius:4px;padding:6px 12px;color:var(--ink2)}
+  .btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
   /* ── S8 admin Shop Editor ─────────────────────────────────────────────── */
   .shopedit{margin-top:4px}
   .edtabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
@@ -1689,6 +1755,27 @@ const auth = {
   signOut(){ return sb.auth.signOut(); },
 };
 /* ── Shops & Seed: DB row → UI shape (SHOPS_PLAN.md §1) ─────────────────── */
+function rowToTask(r){
+  return { id:r.id, planId:r.plan_id, wbs:r.wbs, outlineLevel:r.outline_level, sortOrder:r.sort_order,
+    parentId:r.parent_id, name:r.name, notes:r.notes, durationMin:r.duration_min,
+    elapsed:r.elapsed, isMilestone:r.is_milestone, isSummary:r.is_summary, isManual:r.is_manual,
+    startAt:r.start_at, finishAt:r.finish_at, pctComplete:r.pct_complete,
+    constraintType:r.constraint_type, constraintDate:r.constraint_date, deadline:r.deadline,
+    calendarId:r.calendar_id, phaseNo:r.phase_no, plantId:r.plant_id,
+    isGenerated:r.is_generated, generatedKey:r.generated_key, userEdited:r.user_edited };
+}
+function taskToRow(t){
+  return { id:t.id||undefined, wbs:t.wbs||null, outline_level:t.outlineLevel||1,
+    sort_order:t.sortOrder||0, parent_id:t.parentId||null, name:t.name||'',
+    notes:t.notes||null, duration_min:t.durationMin||0, elapsed:!!t.elapsed,
+    is_milestone:!!t.isMilestone, is_summary:!!t.isSummary, is_manual:!!t.isManual,
+    pct_complete:t.pctComplete||0, constraint_type:t.constraintType||'ASAP',
+    constraint_date:t.constraintDate||null, deadline:t.deadline||null,
+    calendar_id:t.calendarId||null, phase_no:t.phaseNo||null, plant_id:t.plantId||null,
+    is_generated:!!t.isGenerated, generated_key:t.generatedKey||null,
+    user_edited:!!t.userEdited };
+}
+
 function rowToVendor(r){
   return {
     id:r.id, slug:r.slug, name:r.name, orgId:r.org_id, kind:r.kind,
@@ -1849,6 +1936,53 @@ const dataProvider = {
   },
   async clearShopping(planId){
     const { error } = await sb.from('shopping_list').delete().eq('plan_id',planId);
+    if(error) throw error;
+  },
+  /* ---- PC2: plan tasks + links (own-row RLS) ---- */
+  async loadTasks(planId){
+    const [{data:tk, error:e1}, {data:lk, error:e2}] = await Promise.all([
+      sb.from('plan_tasks').select('*').eq('plan_id',planId).order('sort_order'),
+      sb.from('plan_task_links').select('*').eq('plan_id',planId)
+    ]);
+    if(e1) throw e1; if(e2) throw e2;
+    return { tasks:(tk||[]).map(rowToTask), links:(lk||[]).map(r=>({
+      id:r.id, predId:r.pred_id, succId:r.succ_id, type:r.type, lagMin:r.lag_min })) };
+  },
+  async saveTasks(planId, rows){
+    if(!rows.length) return [];
+    // upsert on the PLAIN (plan_id, generated_key) index; manual rows carry a
+    // null key, and NULLs are distinct in Postgres so they never collide.
+    const withKey = rows.filter(r=>r.generated_key), noKey = rows.filter(r=>!r.generated_key);
+    const out=[];
+    if(withKey.length){
+      const {data,error} = await sb.from('plan_tasks')
+        .upsert(withKey.map(r=>({...r, plan_id:planId})), {onConflict:'plan_id,generated_key'}).select();
+      if(error) throw error; out.push(...(data||[]));
+    }
+    for(const r of noKey){
+      const body={...r, plan_id:planId};
+      const {data,error} = r.id
+        ? await sb.from('plan_tasks').update(body).eq('id',r.id).select().maybeSingle()
+        : await sb.from('plan_tasks').insert(body).select().maybeSingle();
+      if(error) throw error; if(data) out.push(data);
+    }
+    return out;
+  },
+  async deleteTask(id){
+    const { error } = await sb.from('plan_tasks').delete().eq('id',id);
+    if(error) throw error;
+  },
+  async replaceLinks(planId, links){
+    const { error: de } = await sb.from('plan_task_links').delete().eq('plan_id',planId);
+    if(de) throw de;
+    if(!links.length) return;
+    const { error } = await sb.from('plan_task_links').insert(
+      links.map(l=>({plan_id:planId, pred_id:l.predId, succ_id:l.succId,
+                     type:l.type||'FS', lag_min:l.lagMin||0})));
+    if(error) throw error;
+  },
+  async clearTasks(planId){
+    const { error } = await sb.from('plan_tasks').delete().eq('plan_id',planId);
     if(error) throw error;
   },
   /* ---- S8: admin Shop Editor (RLS already restricts writes to the admin uid) ---- */
@@ -4396,7 +4530,365 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
   );
 }
 
-function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetail, phaseMeta, setPhaseMeta}){
+/* ── PC2: Task grid ───────────────────────────────────────────────────────
+   The approved design (mockup 1 + collapse + row-editor popup), grid half only —
+   the timeline pane is PC3 and slots into the same scroller.
+
+   Dates are NEVER computed here. plan_tasks is the source of truth and PC1's
+   scheduleProject() is the only thing that assigns dates; this component reads
+   them back. Drag-to-reorder changes ID and WBS and NOTHING else: links belong
+   to the task and travel with it, so no date moves and predecessor references
+   merely re-render (settled Aug 2026). */
+const TG_COLS = "34px 46px 22px minmax(150px,1fr) 46px 58px 58px 66px 48px 46px";
+const TG_RAIL = "28px 1fr";
+const MIN_PER_DAY = 480;
+const dayStr = m => { const d = (m||0)/MIN_PER_DAY; return (Math.round(d*10)/10) + "d"; };
+const fmtShort = v => { if(!v) return "—"; const d = new Date(v);
+  return d.toLocaleDateString(undefined,{day:"2-digit",month:"short"}); };
+
+function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
+  const [tasks,setTasks]=useState([]);
+  const [links,setLinks]=useState([]);
+  const [ready,setReady]=useState(false);
+  const [busy,setBusy]=useState(false);
+  const [sel,setSel]=useState(null);        // selected task id
+  const [editing,setEditing]=useState(null);// task being edited in the popup
+  const [narrow,setNarrow]=useState(false);
+  const [notice,setNotice]=useState(null);  // {lines:[…]} — reserved space, see CSS
+  const [err,setErr]=useState(null);
+  const scrollRef=useRef(null);
+
+  useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
+    dataProvider.loadTasks(planId).then(({tasks,links})=>{ if(dead) return;
+      setTasks(tasks); setLinks(links); setReady(true);
+    }).catch(e=>{ console.error(e); if(!dead){ setErr(e.message||String(e)); setReady(true); } });
+    return ()=>{ dead=true; };
+  },[planId]);
+
+  const byId=useMemo(()=>{ const m={}; tasks.forEach(t=>m[t.id]=t); return m; },[tasks]);
+  const ordered=useMemo(()=>tasks.slice().sort((a,b)=>(a.sortOrder||0)-(b.sortOrder||0)),[tasks]);
+  // display number = position, exactly what the Predecessors column references
+  const numOf=useMemo(()=>{ const m={}; ordered.forEach((t,i)=>m[t.id]=i+1); return m; },[ordered]);
+
+  const schedule=useMemo(()=>{
+    if(!ordered.length || !window.PC1) return null;
+    try{
+      return window.PC1.scheduleProject({
+        tasks: ordered.map(t=>({ id:t.id, name:t.name, parentId:t.parentId,
+          durationMin:t.durationMin, elapsed:t.elapsed, isMilestone:t.isMilestone,
+          isSummary:t.isSummary, constraintType:t.constraintType,
+          constraintDate:t.constraintDate, deadline:t.deadline,
+          calendarId:t.calendarId, pctComplete:t.pctComplete, phaseNo:t.phaseNo })),
+        links: links.map(l=>({predId:l.predId, succId:l.succId, type:l.type, lagMin:l.lagMin})),
+        calendars: null, projectStart: new Date()
+      });
+    }catch(e){ console.error(e); return null; }
+  },[ordered,links]);
+
+  const S = id => (schedule && schedule.tasks[id]) || {};
+  const predText = id => window.PC1
+    ? window.PC1.formatPredecessors(links.filter(l=>l.succId===id), pid=>numOf[pid], {minutesPerDay:MIN_PER_DAY})
+    : "";
+
+  const say=(lines)=>{
+    // keep the viewport still: the strip grows, so give the scroller the same
+    // number of pixels back (the strip is 0 tall when there is nothing to say)
+    const el=scrollRef.current, before=el?el.getBoundingClientRect().top:0;
+    setNotice({lines});
+    requestAnimationFrame(()=>{ if(!el) return;
+      const after=el.getBoundingClientRect().top;
+      if(after!==before) window.scrollBy(0, after-before);
+    });
+  };
+
+  const persist=async(next, links2)=>{
+    setBusy(true);
+    try{
+      const saved=await dataProvider.saveTasks(planId, next.map(taskToRow));
+      const fresh=saved.map(rowToTask);
+      // A just-added manual task has neither an id nor a generatedKey, so it used
+      // to fall through without picking up its new id — and the next save inserted
+      // it all over again. sortOrder is unique within the plan, so it is the
+      // reliable third key.
+      const merged=next.map(t=>fresh.find(f=>f.generatedKey&&f.generatedKey===t.generatedKey)
+                            || (t.id!=null && fresh.find(f=>f.id===t.id))
+                            || fresh.find(f=>f.sortOrder===t.sortOrder)
+                            || t);
+      setTasks(merged);
+      if(links2){ await dataProvider.replaceLinks(planId, links2); setLinks(links2); }
+      setErr(null);
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  /* ---- generate / regenerate ---- */
+  const generate=async()=>{
+    if(!window.PC1) return;
+    const LAYER={Tree:"Canopy",Shrub:"Shrub",Vine:"Vine",Herb:"Herbaceous",
+                 Fern:"Herbaceous",Grass:"Herbaceous",Groundcover:"Groundcover"};
+    const plantsById={}; (chosen||[]).forEach(p=>plantsById[p.id]=p);
+    const gen=window.PC1.generateTasks({
+      alloc:alloc||{}, plantsById,
+      layerOf:p=>p?(LAYER[p.type]||"Herbaceous"):"Herbaceous",
+      hoursOf:p=>(INSTALL_HRS[p&&p.type]||0.3),
+      phaseName:n=>((phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n)),
+      horizon:horizon||3, minutesPerDay:MIN_PER_DAY });
+    if(!gen.tasks.length){ say(["Nothing to generate — set some quantities on the Planting Plan first."]); return; }
+
+    const merged=window.PC1.mergeGenerated(tasks, gen);
+    // keys -> ids for parenting, after the write
+    const next=[];
+    const keyed={};
+    tasks.forEach(t=>{ if(t.generatedKey) keyed[t.generatedKey]=t; });
+    let order=0;
+    gen.tasks.forEach(g=>{
+      const cur=keyed[g.generatedKey];
+      if(cur && cur.userEdited){ next.push({...cur, sortOrder:order++}); return; }
+      next.push({ ...(cur||{}), id:cur?cur.id:undefined, name:g.name,
+        durationMin:g.durationMin, isSummary:!!g.isSummary, outlineLevel:g.outlineLevel,
+        phaseNo:g.phaseNo||null, generatedKey:g.generatedKey, isGenerated:true,
+        userEdited:false, sortOrder:order++ });
+    });
+    tasks.filter(t=>!t.generatedKey).forEach(t=>next.push({...t, sortOrder:order++}));
+
+    setBusy(true);
+    try{
+      const saved=(await dataProvider.saveTasks(planId, next.map(taskToRow))).map(rowToTask);
+      const idByKey={}; saved.forEach(t=>{ if(t.generatedKey) idByKey[t.generatedKey]=t.id; });
+      // second pass: parents and links, now that every row has an id
+      const withParents=saved.map(t=>{
+        const g=gen.tasks.find(x=>x.generatedKey===t.generatedKey);
+        return g&&g.parentKey ? {...t, parentId:idByKey[g.parentKey]||null} : t;
+      });
+      await dataProvider.saveTasks(planId, withParents.map(taskToRow));
+      const newLinks=gen.links
+        .map(l=>({predId:idByKey[l.predRef], succId:idByKey[l.succRef], type:l.type, lagMin:l.lagMin}))
+        .filter(l=>l.predId&&l.succId);
+      await dataProvider.replaceLinks(planId, newLinks);
+      setTasks(withParents); setLinks(newLinks); setErr(null);
+      say([`Generated ${gen.tasks.length} tasks from the plan.`,
+           merged.skipped.length ? `${merged.skipped.length} hand-edited task${merged.skipped.length===1?"":"s"} left untouched.` : null,
+           merged.manual.length ? `${merged.manual.length} manual task${merged.manual.length===1?"":"s"} kept.` : null
+          ].filter(Boolean));
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  /* ---- reorder: ID and WBS only ---- */
+  const move=(fromIdx,toIdx)=>{
+    if(fromIdx===toIdx||toIdx<0||toIdx>=ordered.length) return;
+    // Compare against the destination in the ORIGINAL list. Checking after the
+    // splice made toIdx point one row further on, so a legitimate move inside a
+    // phase was read as a jump into the next one and refused.
+    const it=ordered[fromIdx], dest=ordered[toIdx];
+    const a=ordered.slice(); a.splice(fromIdx,1);
+    // reorder is confined to the task's own parent (settled Aug 2026)
+    if(!dest || dest.parentId!==it.parentId || it.isSummary){
+      say([`“${it.name}” can only move within its own phase. Use the row editor to change phase.`]);
+      return;
+    }
+    a.splice(toIdx,0,it);
+    const next=a.map((t,i)=>({...t, sortOrder:i}));
+    const before={}; ordered.forEach(t=>before[t.id]=predText(t.id));
+    persist(next).then(()=>{
+      const after={}; next.forEach((t,i)=>after[t.id]=t.id);
+      const lines=[`“${it.name}” moved to ${toIdx+1}.`, "Dates unchanged — links travel with the task."];
+      next.forEach((t,i)=>{ const wasNum=numOf[t.id];
+        if(wasNum && wasNum!==i+1) lines.push(`${wasNum} → ${i+1}  ${t.name}`); });
+      say(lines.slice(0,6));
+    });
+  };
+
+  const addTask=()=>{
+    const parent = sel && byId[sel] ? (byId[sel].isSummary ? byId[sel] : byId[byId[sel].parentId]) : null;
+    const at = sel ? ordered.findIndex(t=>t.id===sel)+1 : ordered.length;
+    const row={ name:"New task", durationMin:MIN_PER_DAY, outlineLevel: parent?2:1,
+                parentId: parent?parent.id:null, isManual:true, isGenerated:false,
+                generatedKey:null, sortOrder:at };
+    const next=[...ordered.slice(0,at), row, ...ordered.slice(at)].map((t,i)=>({...t, sortOrder:i}));
+    persist(next).then(()=>say(["Task added."]));
+  };
+
+  const removeTask=async(t)=>{
+    if(!confirm(`Delete “${t.name}”?` + (t.isGenerated ? "\nIt will come back next time you regenerate." : ""))) return;
+    setBusy(true);
+    try{
+      await dataProvider.deleteTask(t.id);
+      const next=ordered.filter(x=>x.id!==t.id).map((x,i)=>({...x, sortOrder:i}));
+      setTasks(next); setLinks(links.filter(l=>l.predId!==t.id&&l.succId!==t.id));
+      setSel(null); setEditing(null); say([`Deleted “${t.name}”.`]);
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  const saveEdit=async(f)=>{
+    const parsed=window.PC1.parsePredecessors(f._pred, {minutesPerDay:MIN_PER_DAY});
+    if(parsed.errors.length){ setEditing({...f, _err:parsed.errors.map(e=>e.message).join(" ")}); return; }
+    const numToId={}; ordered.forEach((t,i)=>numToId[i+1]=t.id);
+    const bad=parsed.links.filter(l=>!numToId[l.predRef]||numToId[l.predRef]===f.id);
+    if(bad.length){ setEditing({...f, _err:"No such task: "+bad.map(b=>b.predRef).join(", ")}); return; }
+    const next=ordered.map(t=>t.id===f.id
+      ? {...t, name:f.name, durationMin:Math.max(0,Math.round((parseFloat(f._dur)||0)*MIN_PER_DAY)),
+         pctComplete:Math.max(0,Math.min(100,parseInt(f._pct,10)||0)),
+         constraintType:f.constraintType||"ASAP", notes:f.notes||null,
+         isMilestone:!!f.isMilestone, userEdited:true}
+      : t);
+    const others=links.filter(l=>l.succId!==f.id);
+    const mine=parsed.links.map(l=>({predId:numToId[l.predRef], succId:f.id, type:l.type, lagMin:l.lagMin}));
+    setEditing(null);
+    await persist(next, [...others, ...mine]);
+    say([`Saved “${f.name}”.`]);
+  };
+
+  if(!ready) return <div className="empty">Loading the schedule…</div>;
+
+  const openEditor=(t)=>setEditing({...t, _dur:(t.durationMin/MIN_PER_DAY),
+                                    _pct:t.pctComplete||0, _pred:predText(t.id), _err:null});
+
+  return (
+    <div className="tgwrap">
+      {err && <div className="edmsg bad">{err}</div>}
+      <div className="schbar">
+        <button className="ppbtn" disabled={busy} onClick={generate}>
+          {tasks.length ? "Regenerate from plan" : "Generate tasks from plan"}</button>
+        <button className="ppbtn ghost" disabled={busy} onClick={addTask}>+ Add task</button>
+        <button className={"chip"+(narrow?" on":"")} onClick={()=>setNarrow(v=>!v)}>
+          {narrow ? "Expand grid ⟩" : "⟨ Collapse grid"}</button>
+        <span className="spacer"></span>
+        <span className="mtmeta">{ordered.length} task{ordered.length===1?"":"s"}
+          {schedule && schedule.warnings.length ? ` · ${schedule.warnings.length} warning${schedule.warnings.length===1?"":"s"}` : ""}</span>
+        {tasks.length>0 && <button className="ppbtn ghost" disabled={busy} onClick={()=>{
+          if(confirm("Delete every task on this schedule?"))
+            dataProvider.clearTasks(planId).then(()=>{ setTasks([]); setLinks([]); say(["Schedule cleared."]); });
+        }}>Clear</button>}
+      </div>
+
+      <div className={"changebar"+(notice?" has":"")}>
+        {notice && <div className="changenote">
+          <span className="hd">Changed</span>
+          <span className="mv">{notice.lines.map((l,i)=><span key={i}>{l}</span>)}</span>
+          <button className="btn undo" onClick={()=>setNotice(null)}>Dismiss</button>
+        </div>}
+      </div>
+
+      {!ordered.length ? (
+        <div className="empty">No tasks yet. <b>Generate tasks from plan</b> builds a schedule from
+          your phases and quantities — one summary per phase, then the planting layers in order.</div>
+      ) : (
+      <div className={"sched"+(narrow?" narrow":"")} style={{"--cols": narrow?TG_RAIL:TG_COLS}}>
+        <div className="schscroll" ref={scrollRef} style={{gridTemplateColumns:"1fr"}}>
+          <div className="gpane" style={{borderRight:0}}>
+            <div className="ghead"><div className="hcell">
+              <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
+              <span>Task name</span><span className="durcol">Dur</span>
+              <span className="wideonly">Start</span><span className="wideonly">Finish</span>
+              <span className="wideonly">Pred</span><span className="wideonly">% Comp</span>
+              <span className="wideonly">Slack</span>
+            </div></div>
+            {ordered.map((t,i)=>{ const s=S(t.id);
+              return (
+              <div key={t.id}
+                   className={"grow"+(t.isSummary?" sum":"")+(s.critical?" crit":"")+(sel===t.id?" sel":"")}
+                   draggable={!t.isSummary}
+                   onDragStart={e=>{ e.dataTransfer.setData("text/plain", String(i)); }}
+                   onDragOver={e=>e.preventDefault()}
+                   onDrop={e=>{ e.preventDefault();
+                     const from=parseInt(e.dataTransfer.getData("text/plain"),10);
+                     if(!isNaN(from)) move(from,i); }}>
+                <span className="idc" onDoubleClick={()=>openEditor(t)}>{i+1}</span>
+                <span className="idc wbscol" onDoubleClick={()=>openEditor(t)}>{t.wbs||wbsOf(ordered,i)}</span>
+                <span className="ind indcol">{t.isMilestone?"◆":""}{s.critical&&!t.isSummary?"":""}</span>
+                <span className={"nm"+(t.outlineLevel>1?" lvl1":"")}
+                      onClick={()=>setSel(t.id)} onDoubleClick={()=>openEditor(t)}
+                      title={t.name}>{t.name}</span>
+                <span className="num durcol">{t.isSummary?"":dayStr(t.durationMin)}</span>
+                <span className="num wideonly">{fmtShort(s.start)}</span>
+                <span className="num wideonly">{fmtShort(s.finish)}</span>
+                <span className="mono wideonly" style={{fontSize:10}}>{predText(t.id)}</span>
+                <span className="num wideonly">{t.isSummary?"":(t.pctComplete||0)+"%"}</span>
+                <span className="num wideonly">{s.totalSlackMin==null?"":dayStr(s.totalSlackMin)}</span>
+              </div>);
+            })}
+          </div>
+        </div>
+      </div>)}
+
+      {schedule && schedule.warnings.length>0 && (
+        <div className="warnstrip" style={{marginTop:10}}>
+          <b>{schedule.warnings.length} warning{schedule.warnings.length===1?"":"s"}</b>
+          <span>{schedule.warnings.slice(0,3).map(w=>w.message).join(" · ")}</span>
+        </div>)}
+
+      {editing && <TaskEditor f={editing} setF={setEditing} onSave={saveEdit}
+        onDelete={()=>removeTask(editing)} onClose={()=>setEditing(null)} busy={busy} />}
+    </div>
+  );
+}
+
+/* WBS from position within the outline — 1, 1.1, 1.2, 2, 2.1 … */
+function wbsOf(list, idx){
+  let top=0, sub=0;
+  for(let i=0;i<=idx;i++){
+    if((list[i].outlineLevel||1)<=1){ top++; sub=0; } else sub++;
+  }
+  return (list[idx].outlineLevel||1)<=1 ? String(top) : top+"."+sub;
+}
+
+function TaskEditor({f, setF, onSave, onDelete, onClose, busy}){
+  const set=(k,v)=>setF({...f,[k]:v,_err:null});
+  return (
+    <div className="cardwrap" onClick={e=>{ if(e.target===e.currentTarget) onClose(); }}>
+      <div className="card">
+        <div className="cardhd">
+          <div><div className="eye">Task {f.isSummary?"· summary":""}{f.isGenerated?" · generated":" · manual"}</div>
+            <h3>{f.name||"Untitled"}</h3></div>
+          <button className="btn" onClick={onClose}>✕</button>
+        </div>
+        <div className="cardbd">
+          {f._err && <div className="edmsg bad" style={{marginTop:0}}>{f._err}</div>}
+          {f.isGenerated && !f.userEdited &&
+            <div className="pphint" style={{margin:"0 0 12px"}}>Generated from the plan.
+              Saving marks it hand-edited, and regeneration will leave it alone from then on.</div>}
+          <div className="fgrid">
+            <div className="fld" style={{gridColumn:"1/-1"}}><label>Name</label>
+              <input value={f.name||""} onChange={e=>set("name",e.target.value)} /></div>
+            <div className="fld"><label>Duration (days)</label>
+              <input type="number" step="0.1" min="0" value={f._dur}
+                     onChange={e=>set("_dur",e.target.value)} disabled={f.isSummary} /></div>
+            <div className="fld"><label>% complete</label>
+              <input type="number" min="0" max="100" value={f._pct}
+                     onChange={e=>set("_pct",e.target.value)} disabled={f.isSummary} /></div>
+            <div className="fld"><label>Constraint</label>
+              <select value={f.constraintType||"ASAP"} onChange={e=>set("constraintType",e.target.value)}>
+                <option value="ASAP">As soon as possible</option>
+                <option value="SNET">Start no earlier than</option>
+                <option value="FNLT">Finish no later than</option>
+                <option value="MSO">Must start on</option>
+                <option value="MFO">Must finish on</option>
+              </select></div>
+            <div className="fld" style={{gridColumn:"1/-1"}}><label>Predecessors</label>
+              <input value={f._pred} placeholder="e.g. 3, 4FS+2d, 7SS"
+                     onChange={e=>set("_pred",e.target.value)} disabled={f.isSummary} /></div>
+            <div className="fld" style={{gridColumn:"1/-1"}}><label>Notes</label>
+              <input value={f.notes||""} onChange={e=>set("notes",e.target.value)} /></div>
+          </div>
+          <label className="edchk" style={{marginTop:12}}>
+            <input type="checkbox" checked={!!f.isMilestone}
+                   onChange={e=>set("isMilestone",e.target.checked)} disabled={f.isSummary} />
+            Milestone (zero duration)</label>
+        </div>
+        <div className="cardft">
+          <button className="btn" onClick={onDelete} disabled={busy}>Delete task</button>
+          <span><button className="btn" onClick={onClose}>Cancel</button>{" "}
+            <button className="btn solid" disabled={busy} onClick={()=>onSave(f)}>
+              {busy?"Saving…":"Save task"}</button></span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProjectPlan({chosen, state, planId, counts, phases, alloc, areaSqft, openDetail, phaseMeta, setPhaseMeta}){
   const [st,setSt]=useState(defaultProject);
   const [ready,setReady]=useState(false);
   const [tab,setTab]=useState("summary"); // summary | scope | schedule | budget | assume
@@ -4560,6 +5052,16 @@ function ProjectPlan({chosen, state, planId, counts, phases, areaSqft, openDetai
               return <div className="pgr" key={y}><div>{M.calYear(y)}</div>{qs.map((v,qi)=><div key={qi}>{v?Math.round(v)+"h":"·"}</div>)}<div>{Math.round(h)}</div><div>{$(h*blended)}</div></div>;
             })}
           </div>
+
+          <div className="pagehead" style={{marginTop:26,paddingBottom:10}}>
+            <div className="eye">Gantt · PC2</div>
+            <h2 style={{fontSize:22,margin:"4px 0 3px"}}>Task schedule</h2>
+            <p style={{fontSize:14}}>Generated from your phases and quantities, then yours to edit.
+              Dates come from the scheduling engine — click a name to select a row, double-click it
+              (or the ID / WBS) to open the editor, drag to renumber.</p>
+          </div>
+          <TaskGrid planId={planId} chosen={chosen} alloc={alloc}
+                    phaseMeta={phaseMeta} horizon={M.N} />
         </div>
       )}
 
@@ -4865,7 +5367,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
                           openDetail={setDetail} go={go} />}
       {view==="maint" && <MaintenanceView chosen={chosen} phases={phases} state={state} openDetail={setDetail} />}
 
-      {view==="project" && <ProjectPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} counts={layoutCounts} phases={phases} areaSqft={layoutArea} openDetail={setDetail} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}
+      {view==="project" && <ProjectPlan key={curPlan} chosen={chosen} state={state} planId={curPlan} counts={layoutCounts} phases={phases} alloc={layoutAlloc} areaSqft={layoutArea} openDetail={setDetail} phaseMeta={phaseMeta} setPhaseMeta={setPhaseMeta} />}
 
       {view==="soil" && <SoilExam plants={plants} state={state} plan={plan} toggle={curToggle} soil={soil} setSoil={setSoil} soilDerived={soilDerived} openDetail={setDetail} />}
 

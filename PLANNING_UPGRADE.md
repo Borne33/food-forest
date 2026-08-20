@@ -223,3 +223,42 @@ date independently.
 | Q6 | 7-day default working calendar. **The planting window is a warning, not a constraint** — it shades the timeline and flags overlapping tasks, but never moves a date and never blocks a save. |
 | Q7 | Build inside `index.html`, with a hard checkpoint: if first paint regresses, move the Schedule tab to its own iframe file like `grants.html`. |
 | Q8 | Staged build with an evaluation gate between stages — see **`STAGE_GATES.md`**. |
+
+## PC2 — task grid (Aug 2026) — shipped
+
+Sits **below** the existing Schedule content, not replacing it. Dates are never
+computed in the component: `plan_tasks` is the source of truth and PC1's
+`scheduleProject()` is the only thing that assigns dates.
+
+**Grain (settled):** one summary per phase → per-**layer** planting tasks inside
+it (canopy, shrub, herbaceous, groundcover, vine, in that order) → mulch/water →
+browse protection where anything is browsed. Maintenance is aggregated: one row
+per activity per year, never per plant. A 124-plant, 3-phase plan generates
+**25 tasks**, not 350.
+
+- **Add / delete tasks** — manual rows carry a null `generated_key` and survive
+  regeneration untouched.
+- **Regeneration is non-clobbering.** Editing a generated task sets `user_edited`;
+  from then on regeneration skips it. Verified: a renamed, re-timed task kept both
+  through a regenerate, and the notice reported "1 hand-edited task left untouched."
+- **Predecessor text** `12FS+3d` parses with units m/h/d/w/mo and leads. Garbage is
+  rejected with the offending text quoted; a reference to a non-existent task is
+  rejected by number. Neither closes the editor.
+- **Reorder changes ID and WBS only** — verified by diffing every task's dates
+  across a drag: zero changed. Confined to the task's own phase.
+- **Change notice** collapses to zero height when empty and compensates scroll on
+  appearing, so the view never jumps.
+
+### Bugs the mount-and-drive testing caught
+1. `rowToTask`/`taskToRow` were inserted **inside** the `dataProvider` object
+   literal. Babel caught it.
+2. A just-added manual task had neither `id` nor `generatedKey`, so `persist()`
+   could not match the saved row back and **inserted it again on the next save**.
+   Falls back to `sortOrder` now.
+3. The reorder guard compared parents **after** splicing the row out, so `toIdx`
+   pointed one row further on and a legitimate move inside a phase was refused as
+   a cross-phase jump.
+
+### Not done here
+Inline cell editing (everything goes through the row editor, per the approved
+design), and the timeline pane — that is PC3, and slots into the same scroller.
