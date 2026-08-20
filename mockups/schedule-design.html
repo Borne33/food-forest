@@ -38,8 +38,9 @@
     border:1.5px solid rgba(243,239,227,.45);border-radius:99px;padding:5px 13px;cursor:pointer;user-select:none}
   .mkin{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
   #s1:checked~.mkbar label[for=s1],#s2:checked~.mkbar label[for=s2],
-  #s3:checked~.mkbar label[for=s3],#s4:checked~.mkbar label[for=s4]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-  #s1:checked~#p1,#s2:checked~#p2,#s3:checked~#p3,#s4:checked~#p4{display:block}
+  #s3:checked~.mkbar label[for=s3],#s4:checked~.mkbar label[for=s4],
+  #s5:checked~.mkbar label[for=s5]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  #s1:checked~#p1,#s2:checked~#p2,#s3:checked~#p3,#s4:checked~#p4,#s5:checked~#p5{display:block}
   .pane{display:none}
   .mknote{border-left:3px solid var(--soil);background:var(--soil-bg);padding:11px 15px;border-radius:0 4px 4px 0;
     margin:0 0 16px;font-size:13.5px}
@@ -81,6 +82,8 @@
   .grow > *{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .grow.sum{background:#f0ecdf;font-weight:700}
   .grow.sel{background:#eef2e7;box-shadow:inset 3px 0 0 var(--sage-d)}
+  .grow.moved{background:#f6f1e0} .trow.moved{background:#f6f1e0}
+  .grow.moved.sel{background:#eef2e7}
   .grow .idc{font-family:'Space Mono';font-size:11px;color:var(--sage-d);cursor:pointer;text-decoration:underline}
   .grow.crit .nm{color:var(--red)}
   .lvl1{padding-left:16px !important}
@@ -117,6 +120,23 @@
   .thead .min{position:absolute;bottom:5px;font-family:'Space Mono';font-size:8px;color:var(--faint)}
   .arrows{position:absolute;inset:0;pointer-events:none}
 
+  /* ══════ CHANGE NOTICE — RESERVES ITS SPACE ══════
+     The strip is ALWAYS in the layout at a fixed height, empty or not, so a move
+     never pushes the schedule down and never moves what you were looking at.
+     Only the contents fade in. */
+  .changebar{height:56px;margin:0 0 10px;overflow:hidden}
+  .changenote{height:56px;border-left:3px solid var(--sage-d);background:#eef2e7;border-radius:0 4px 4px 0;
+    padding:7px 13px;display:flex;align-items:center;gap:14px;overflow-x:auto}
+  .changenote.empty{background:transparent;border-left-color:transparent}
+  .changenote .hd{font-family:'Space Mono';font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--sage-d);white-space:nowrap}
+  .changenote .mv{display:flex;gap:16px;font-size:12.5px;white-space:nowrap}
+  .changenote .mv b{font-family:'Space Mono';font-size:11px;color:var(--ink)}
+  .changenote .mv em{font-style:normal;color:var(--faint);font-family:'Space Mono';font-size:10.5px}
+  .changenote .undo{margin-left:auto;white-space:nowrap}
+  .grow .nm{cursor:pointer}
+  .grow.sel .nm{font-weight:700}
+  .hintrow{font-family:'Space Mono';font-size:10px;color:var(--faint);margin:7px 2px 0}
   .legend{display:flex;gap:14px;flex-wrap:wrap;font-family:'Space Mono';font-size:10px;color:var(--faint);margin:9px 2px 0}
   .legend i{display:inline-block;width:16px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
 
@@ -150,6 +170,7 @@
 <input class="mkin" type="radio" name="s" id="s2">
 <input class="mkin" type="radio" name="s" id="s3">
 <input class="mkin" type="radio" name="s" id="s4">
+<input class="mkin" type="radio" name="s" id="s5">
 
 <div class="topbar">
   <div class="brand"><span class="acc">Plant and source database and planning tool</span><b>Native Food Forest Planner</b></div>
@@ -162,6 +183,7 @@
   <label for="s2">B · Collapsed</label>
   <label for="s3">C · Row editor</label>
   <label for="s4">D · Phone</label>
+  <label for="s5">E · Row moved</label>
 </div>
 
 <!-- ============================================== A EXPANDED -->
@@ -187,6 +209,8 @@
     <button class="btn">Set baseline</button><button class="btn">Export XML</button>
   </div>
   <div class="warnstrip"><b>3 warnings</b><span>Two tasks fall outside the planting window; one finish is past its baseline. Advisory only — no dates were moved.</span></div>
+
+  <div class="changebar"><div class="changenote empty"></div></div>
 
   <div class="sched">
     <div class="schscroll">
@@ -288,6 +312,7 @@
       </div></div>
     </div>
   </div>
+  <div class="hintrow">Click a task name to select the row · double-click it (or the ID / WBS) to open the editor · drag a row to renumber</div>
   <div class="legend">
     <span><i style="background:var(--sage)"></i>Task</span><span><i style="background:var(--red)"></i>Critical</span>
     <span><i style="background:var(--ink)"></i>Summary</span><span><i style="background:var(--dot)"></i>Baseline</span>
@@ -455,6 +480,125 @@
       </div>
     </div>
   </div>
+</div></div>
+
+
+<!-- ============================================== E ROW MOVED -->
+<div class="pane" id="p5"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div><h2>Schedule</h2>
+    <p>After dragging task 5 down to position 7.</p></div>
+
+  <div class="mknote"><b>E — Row moved, and what it says</b>
+    Dragging renumbers, and <b>predecessors stay with the position, not the task</b>. Slot 5 keeps
+    <code>3FS,4FS</code> whatever now sits in it. The notice spells out every row that changed hands.
+    <ul>
+      <li><b>The strip never shifts the page.</b> It occupies a fixed 56px whether it has something to say or
+        not — compare where the table starts in state A against here. Only the contents fade in.</li>
+      <li>Undo is in the strip, because a reorder that rewires dependencies is exactly the edit you want to take back.</li>
+      <li>This is <b>not</b> MS Project's rule — MSP carries links with the task. Noted on export.</li>
+    </ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip">Day</button><button class="chip on">Week</button><button class="chip">Month</button>
+    <label class="btn solid" for="s2">⟨ Collapse grid</label>
+    <span class="spacer"></span><button class="btn">Set baseline</button><button class="btn">Export XML</button>
+  </div>
+  <div class="warnstrip"><b>3 warnings</b><span>Two tasks fall outside the planting window; one finish is past its baseline. Advisory only — no dates were moved.</span></div>
+
+  <div class="changebar"><div class="changenote">
+    <span class="hd">Moved<br>5 → 7</span>
+    <span class="mv">
+      <span><b>5 · 1.4</b> Plant shrub layer <em>← took slot 5's preds 3FS,4FS</em></span>
+      <span><b>6 · 1.5</b> Mulch &amp; water in <em>← took slot 6's pred 5FS</em></span>
+      <span><b>7 · 1.6</b> Plant canopy trees <em>← took slot 7's pred 6SS+1d</em></span>
+    </span>
+    <button class="btn undo">Undo move</button>
+  </div></div>
+
+  <div class="sched">
+    <div class="schscroll">
+      <div class="gpane">
+        <div class="ghead"><div class="hcell">
+          <span>ID</span><span>WBS</span><span>!</span><span>Task name</span><span>Dur</span>
+          <span class="wideonly">Start</span><span class="wideonly">Finish</span><span class="wideonly">Pred</span>
+          <span class="wideonly">% Comp</span><span class="wideonly">Slack</span>
+        </div></div>
+        <div class="grow sum"><span class="idc">1</span><span class="idc">1</span><span class="ind"></span>
+          <span class="nm">Phase 1 — Canopy &amp; soil</span><span class="num">18d</span>
+          <span class="num wideonly">04 Apr</span><span class="num wideonly">29 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">38%</span><span class="num wideonly">0d</span></div>
+        <div class="grow crit"><span class="idc">2</span><span class="idc">1.1</span><span class="ind"></span>
+          <span class="nm lvl1">Site survey &amp; marking</span><span class="num">2d</span>
+          <span class="num wideonly">04 Apr</span><span class="num wideonly">05 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">100%</span><span class="num wideonly">0d</span></div>
+        <div class="grow crit"><span class="idc">3</span><span class="idc">1.2</span><span class="ind"></span>
+          <span class="nm lvl1">Sheet-mulch the beds</span><span class="num">5d</span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">12 Apr</span><span class="mono wideonly" style="font-size:10px">2FS</span>
+          <span class="num wideonly">60%</span><span class="num wideonly">0d</span></div>
+        <div class="grow"><span class="idc">4</span><span class="idc">1.3</span><span class="ind">◆</span>
+          <span class="nm lvl1">Bare-root order arrives</span><span class="num">0d</span>
+          <span class="num wideonly">11 Apr</span><span class="num wideonly">11 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">—</span><span class="num wideonly">1d</span></div>
+        <div class="grow crit moved"><span class="idc">5</span><span class="idc">1.4</span><span class="ind">⇅</span>
+          <span class="nm lvl1">Plant shrub layer (24)</span><span class="num">4d</span>
+          <span class="num wideonly">13 Apr</span><span class="num wideonly">18 Apr</span><span class="mono wideonly" style="font-size:10px">3FS,4FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
+        <div class="grow moved"><span class="idc">6</span><span class="idc">1.5</span><span class="ind">⇅</span>
+          <span class="nm lvl1">Mulch &amp; water in</span><span class="num">2d</span>
+          <span class="num wideonly">19 Apr</span><span class="num wideonly">20 Apr</span><span class="mono wideonly" style="font-size:10px">5FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">1d</span></div>
+        <div class="grow crit moved sel"><span class="idc">7</span><span class="idc">1.6</span><span class="ind">⇅ ⚠</span>
+          <span class="nm lvl1">Plant canopy trees (12)</span><span class="num">3d</span>
+          <span class="num wideonly">21 Apr</span><span class="num wideonly">23 Apr</span><span class="mono wideonly" style="font-size:10px">6SS+1d</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
+        <div class="grow crit"><span class="idc">8</span><span class="idc">1.7</span><span class="ind"></span>
+          <span class="nm lvl1">Deer protection</span><span class="num">2d</span>
+          <span class="num wideonly">24 Apr</span><span class="num wideonly">29 Apr</span><span class="mono wideonly" style="font-size:10px">6FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
+        <div class="grow sum"><span class="idc">9</span><span class="idc">2</span><span class="ind"></span>
+          <span class="nm">Phase 2 — Understory</span><span class="num">9d</span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">16 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+        <div class="grow"><span class="idc">10</span><span class="idc">2.1</span><span class="ind"></span>
+          <span class="nm lvl1">Soil test &amp; amend</span><span class="num">1d</span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">06 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+        <div class="grow"><span class="idc">11</span><span class="idc">2.2</span><span class="ind">⚠</span>
+          <span class="nm lvl1">Plant herb layer (48)</span><span class="num">5d</span>
+          <span class="num wideonly">07 Apr</span><span class="num wideonly">13 Apr</span><span class="mono wideonly" style="font-size:10px">10FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+        <div class="grow"><span class="idc">12</span><span class="idc">2.3</span><span class="ind"></span>
+          <span class="nm lvl1">Divide &amp; spread groundcover</span><span class="num">3d</span>
+          <span class="num wideonly">14 Apr</span><span class="num wideonly">16 Apr</span><span class="mono wideonly" style="font-size:10px">11FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+      </div>
+      <div class="tpane"><div style="width:1080px">
+        <div class="thead"><div class="scale">
+          <span class="maj" style="left:8px">APRIL 2027</span><span class="maj" style="left:548px">MAY 2027</span>
+          <span class="min" style="left:54px">4</span><span class="min" style="left:180px">11</span>
+          <span class="min" style="left:306px">18</span><span class="min" style="left:432px">25</span>
+          <span class="min" style="left:558px">2</span></div></div>
+        <div class="tbody">
+          <div class="win" style="left:0;width:54px;top:0;bottom:0"></div>
+          <div class="today" style="left:198px"></div>
+          <div class="trow sum"><div class="sumbar" style="left:54px;width:468px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:54px;width:36px"><i class="pc" style="width:100%"></i><i class="pclab">100%</i></div><div class="base" style="left:54px;width:36px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:90px;width:126px"><i class="pc" style="width:60%"></i><i class="pclab">60%</i></div><div class="base" style="left:90px;width:126px"></div></div>
+          <div class="trow"><div class="ms" style="left:174px"></div></div>
+          <div class="trow moved"><div class="bar crit" style="left:216px;width:108px"></div><div class="base" style="left:306px;width:108px"></div></div>
+          <div class="trow moved"><div class="bar" style="left:324px;width:36px"></div><div class="base" style="left:324px;width:36px"></div></div>
+          <div class="trow moved sel"><div class="bar crit" style="left:360px;width:54px"></div><div class="base" style="left:216px;width:72px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:414px;width:108px"></div><div class="base" style="left:414px;width:90px"></div></div>
+          <div class="trow sum"><div class="sumbar" style="left:90px;width:198px"></div></div>
+          <div class="trow"><div class="bar" style="left:90px;width:18px"></div></div>
+          <div class="trow"><div class="bar" style="left:108px;width:126px"></div></div>
+          <div class="trow"><div class="bar" style="left:234px;width:54px"></div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="hintrow">⇅ marks a row whose ID, WBS or predecessors changed in the last move. Baseline bars stay where they were, so the shift is visible on the chart.</div>
 </div></div>
 
 </body>
