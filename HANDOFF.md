@@ -695,3 +695,58 @@ importer/rematch_vendors.py         --dry-run first; safe to re-run any time
 ```
 Still owed: a PFAF/NAEB trickle pass over the new rows (§18), and the token
 counter (§13).
+
+## 22. Shopping List mockup A + S8 Shop Editor (Aug 2026)
+
+### Shopping List — mockup A adopted
+`mockups/shopping-list-mockups.html` holds the three options reviewed (A Stops /
+B One table / C Trip cards); **A was chosen**, plus hours of operation.
+
+- **Per-stop estimated subtotal, computed only where the unit allows it.** Of
+  1,226 listings only ~214 carry a unit you can honestly multiply by a quantity:
+  `per plant` (162) and `each, 2026 sale` (52). `from` (615) is a STARTING price
+  — Prairie Moon's "$3.50 from" — and `per pound (bulk seed)` (205) is Ernst
+  selling by weight. Multiplying either by a plant count invents a number.
+  `each (bundle of 10)` (18) rounds **up to whole bundles**. A stop with no
+  countable prices shows `—`, never a wrong total.
+- Row price shows the arithmetic (`12 × $7.99 = $95.88`). A bare total wearing
+  the unit label read as if the total were the unit price.
+- **Hours** come from `vendors.hours`, which already existed and was already
+  mapped in `rowToVendor` — only 4 of 47 vendors have it, so it falls back to
+  `order_window`, then a pickup-only note, rather than an empty label.
+
+### Two wiring bugs behind "the shopping list isn't working"
+1. `MyPlan`'s signature declared `vendorPlants / vendors / sales / planCentre`
+   but **the call site never passed them**, so `sources` was `undefined` and every
+   plant fell through to "No source found yet". The Shops page passed them all
+   along.
+2. `layoutCounts` was written only by an effect keyed `[curPlan]`. `PlantingPlan`
+   bridged `derivePhases(alloc)` back to the parent on every change but had no
+   equivalent for counts, so quantities froze at load. Now bridged via `onCounts`
+   (the prop can't be called `setCounts` — PlantingPlan has a LOCAL `setCounts`,
+   the v1 shim that writes into phase 1; Babel catches the collision).
+
+Also: the Shopping List **had no CSS at all** — every class it used appeared only
+in JSX. It rendered as bare divs from S7 until this pass.
+
+### S8 — admin Shop Editor (`ShopEditor`)
+Scope was **form + edit list + review queue + upload; link-paste deliberately
+skipped** (CORS reduces it to a URL note).
+
+- Structured form for Shops and Sales, reusing `VKIND` / `FORM_LABEL`. Empty
+  inputs read back as `null`, not `''` or `0`.
+- Searchable list including past sales; **Duplicate** clears `id`, `source_url`
+  and resets `needs_verification` so a copy never claims to be verified against a
+  source describing a different year.
+- **Review queue** over `vendor_plants_unmatched` (174 rows). Resolving writes the
+  `vendor_plants` link **and** a `plant_synonyms` row, so the same miss resolves
+  itself on every later import. `plant_synonyms_uniq` is an EXPRESSION index, so
+  the insert checks first rather than upserting (42P10).
+- **Upload** to a new private Storage bucket `vendor-imports` (25 MB, admin-only
+  policy on the same uid). CSV parses in-browser into `vendor_imports.parsed`;
+  PDF/XLSX are stored with `status='queued'`.
+- `loadShops()` lifted out of the App effect so the editor refreshes after a save.
+
+**Still owed:** `importer/vendor_import.py` does not exist yet. PDF and XLSX
+uploads therefore sit at `status='queued'` forever until it is written — CSV is
+the only format that completes today.
