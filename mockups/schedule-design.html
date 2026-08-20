@@ -89,6 +89,10 @@
   /* full column set only when the grid is wide */
   .sched{--cols:34px 40px 22px 1fr 42px 56px 56px 62px 40px 44px}
   .sched.narrow{--cols:34px 1fr 40px}
+  /* On a phone the rail must earn its width: drop Duration (it lives in the
+     popup) so the task name is actually readable. */
+  .sched.phone{--cols:26px 1fr}
+  .sched.phone .durcol{display:none}
   .sched.narrow .wideonly{display:none}
 
   .tbody{position:relative}
@@ -417,18 +421,18 @@
       <button class="chip" style="font-size:10px">Month</button>
       <span class="spacer"></span><button class="btn" style="font-size:10px">Expand ⟩</button>
     </div>
-    <div class="sched narrow" style="--gw:104px;--day:14px">
+    <div class="sched narrow phone" style="--gw:150px;--day:14px">
       <div class="schscroll">
         <div class="gpane">
-          <div class="ghead"><div class="hcell"><span>ID</span><span>Task</span><span>Dur</span></div></div>
-          <div class="grow sum"><span class="idc">1</span><span class="nm">Phase 1</span><span class="num">18d</span></div>
-          <div class="grow crit"><span class="idc">2</span><span class="nm">Survey</span><span class="num">2d</span></div>
-          <div class="grow crit"><span class="idc">3</span><span class="nm">Mulch</span><span class="num">5d</span></div>
-          <div class="grow"><span class="idc">4</span><span class="nm">◆ Stock</span><span class="num">0d</span></div>
-          <div class="grow crit sel"><span class="idc">5</span><span class="nm">Canopy</span><span class="num">3d</span></div>
-          <div class="grow crit"><span class="idc">6</span><span class="nm">Shrubs</span><span class="num">4d</span></div>
-          <div class="grow"><span class="idc">7</span><span class="nm">Water in</span><span class="num">2d</span></div>
-          <div class="grow crit"><span class="idc">8</span><span class="nm">Deer</span><span class="num">2d</span></div>
+          <div class="ghead"><div class="hcell"><span>ID</span><span>Task</span><span class="durcol">Dur</span></div></div>
+          <div class="grow sum"><span class="idc">1</span><span class="nm">Phase 1 — Canopy</span><span class="num durcol">18d</span></div>
+          <div class="grow crit"><span class="idc">2</span><span class="nm">Site survey</span><span class="num durcol">2d</span></div>
+          <div class="grow crit"><span class="idc">3</span><span class="nm">Sheet-mulch</span><span class="num durcol">5d</span></div>
+          <div class="grow"><span class="idc">4</span><span class="nm">◆ Stock in</span><span class="num durcol">0d</span></div>
+          <div class="grow crit sel"><span class="idc">5</span><span class="nm">Plant canopy</span><span class="num durcol">3d</span></div>
+          <div class="grow crit"><span class="idc">6</span><span class="nm">Plant shrubs</span><span class="num durcol">4d</span></div>
+          <div class="grow"><span class="idc">7</span><span class="nm">Mulch &amp; water</span><span class="num durcol">2d</span></div>
+          <div class="grow crit"><span class="idc">8</span><span class="nm">Deer guard</span><span class="num durcol">2d</span></div>
         </div>
         <div class="tpane"><div style="width:840px">
           <div class="thead"><div class="scale">
