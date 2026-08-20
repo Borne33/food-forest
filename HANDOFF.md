@@ -750,3 +750,47 @@ skipped** (CORS reduces it to a URL note).
 **Still owed:** `importer/vendor_import.py` does not exist yet. PDF and XLSX
 uploads therefore sit at `status='queued'` forever until it is written — CSV is
 the only format that completes today.
+
+## 23. `importer/vendor_import.py` — the queued-upload parser (Aug 2026)
+
+Closes the gap S8 left: the Shop Editor uploads PDF/XLSX into the private
+`vendor-imports` bucket at `status='queued'`, and **nothing picked them up**.
+CSV was parsed in-browser; PDF and XLSX sat there forever.
+
+```
+python3 vendor_import.py --list                    # what is waiting
+python3 vendor_import.py                           # parse the queue (dry run)
+python3 vendor_import.py --apply                   # write `parsed`, mark parsed
+python3 vendor_import.py --id 3 --apply --match    # ...and file vendor_plants
+python3 vendor_import.py --file some.pdf           # local file, writes nothing
+```
+
+- Downloads with the **service-role key**, which bypasses the admin-only RLS on
+  the bucket. Verified: upload / download / delete all 200.
+- **PDF** — `extract_tables()` first (HANDOFF §9), then a prose fallback that
+  keeps any line containing a binomial. Real results: the HGCNY table PDF gives
+  **52 rows** (matching the hand-parse exactly) and the prose-only "Potted
+  Seedlings" PDF gives **126**.
+- **XLSX** — `zipfile` + `xml.etree` against `sharedStrings.xml`; openpyxl is not
+  installed and is not needed.
+- **CSV** — `csv.Sniffer` for the delimiter.
+- `--match` runs the strict D5 matcher and files `vendor_plants`, with misses
+  going to the S8 review queue. End-to-end on the HGCNY PDF: **52/52 matched**.
+
+### Two faults this shook out
+1. **Invented prices.** The price scan treated any digits in any cell as money,
+   so a USDA export with no prices came back with `$2.00` and `$4.00` rows. A
+   number is now only money if the cell has a `$` **or** the column header names
+   it (`price|cost|each|ea|amount`). A fabricated price is worse than a missing one.
+2. **`vendor_inventory.match()` only tested synonyms against the WHOLE string.**
+   `"Sambucus nigra Syn: S. canadensis"` missed even though `Sambucus nigra` is a
+   recorded synonym. It now also tries the base binomial (`synonym_base`) — still
+   exact, still D5-strict. This is why the White Oak "Syn:" rows needed hand-
+   cleaning back in the six-catalogue import.
+
+Also: the parser strips vendor annotations off the botanical column
+(`Syn:`, `(Note: …)`, `; aka …`) before matching, and drops section banners and
+export metadata (a real listing has a binomial or a price).
+
+**Nothing is required of Alex to use it** — the bucket, RLS and env key are all
+in place. Run it after someone uploads through the Shop Editor.

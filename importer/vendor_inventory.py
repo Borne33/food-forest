@@ -109,6 +109,12 @@ def match(raw_sci, raw_common, idx, code=None):
             return idx["sci"][base], "sci_base"
         if s in idx["syn"]:
             return idx["syn"][s], "synonym"
+        # A synonym was only ever tested against the WHOLE string, so a listing
+        # like "Sambucus nigra Syn: S. canadensis" missed even though
+        # "Sambucus nigra" is a recorded synonym. Still exact, still D5-strict —
+        # just applied to the base binomial as well.
+        if base in idx["syn"]:
+            return idx["syn"][base], "synonym_base"
     if code:
         c6 = code[:6].upper()
         if c6 in idx["amb_code"]:
