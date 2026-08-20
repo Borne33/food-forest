@@ -1439,8 +1439,182 @@ function scheduleProject(input){
            projectStart: projectStart, projectFinish: projectFinish };
 }
 
+
+/* ═════════════════════════════════════════════════════════════════════════
+   PC2 — task generation + predecessor-text parsing. Plain JS, same block as
+   the engine so schedule/test.js can exercise both.
+
+   Grain (settled Aug 2026): one summary per phase, then per-LAYER planting
+   tasks inside it. Per-plant would put 54+ near-identical rows on the chart;
+   per-phase would make it impossible to sequence canopy before understory,
+   which is the one ordering that actually matters horticulturally.
+   Maintenance is aggregated: one row per activity per year.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* "12FS+3d, 4" / "7SS-2d" / "3" — MSP's predecessor syntax.
+   Returns {links, errors}. Garbage is REPORTED, never silently dropped. */
+function parsePredecessors(text, opts){
+  opts = opts || {};
+  var perDay = opts.minutesPerDay || 480;
+  var out = [], errors = [];
+  String(text == null ? "" : text).split(/[,;]/).forEach(function(chunk){
+    var raw = chunk.trim();
+    if (!raw) return;
+    var m = raw.match(/^(\d+)\s*(FS|SS|FF|SF)?\s*([+-]\s*\d+(?:\.\d+)?)?\s*(m|h|d|w|mo)?$/i);
+    if (!m){ errors.push({ text: raw, message: '"' + raw + '" is not a predecessor. Use 12FS+3d.' }); return; }
+    var id = parseInt(m[1], 10);
+    var type = (m[2] || "FS").toUpperCase();
+    var lag = 0;
+    if (m[3]){
+      var n = parseFloat(m[3].replace(/\s+/g, ""));
+      var unit = (m[4] || "d").toLowerCase();
+      lag = unit === "m" ? n
+          : unit === "h" ? n * 60
+          : unit === "w" ? n * perDay * 7
+          : unit === "mo" ? n * perDay * 30
+          : n * perDay;
+    } else if (m[4]){
+      errors.push({ text: raw, message: '"' + raw + '" has a unit but no lag value.' });
+      return;
+    }
+    out.push({ predRef: id, type: type, lagMin: Math.round(lag) });
+  });
+  return { links: out, errors: errors };
+}
+
+function formatPredecessors(links, idOf, opts){
+  var perDay = (opts && opts.minutesPerDay) || 480;
+  return (links || []).map(function(l){
+    var id = idOf ? idOf(l.predId) : l.predId;
+    var s = String(id) + (l.type && l.type !== "FS" ? l.type : "");
+    if (l.lagMin){
+      var d = l.lagMin / perDay;
+      var v = Math.abs(d) >= 1 && Math.abs(d) % 1 === 0 ? d + "d" : (l.lagMin / 60) + "h";
+      s += (l.lagMin > 0 ? "+" : "") + v;
+    }
+    return s;
+  }).join(", ");
+}
+
+/* ── task generation ──────────────────────────────────────────────────────
+   Reads the plan the same way the rest of the app does: `alloc` for per-phase
+   quantities, PP_LAYER for the planting layer, INSTALL_HRS for effort.
+   Every generated task carries a stable `generatedKey`; regeneration must
+   leave anything the user touched alone (see mergeGenerated). */
+var PC2_LAYER_ORDER = ["Canopy", "Understory", "Shrub", "Vine", "Herbaceous", "Groundcover"];
+
+function generateTasks(input){
+  input = input || {};
+  var alloc = input.alloc || {};
+  var byId = input.plantsById || {};
+  var layerOf = input.layerOf || function(){ return "Herbaceous"; };
+  var hoursOf = input.hoursOf || function(){ return 0.3; };
+  var phaseName = input.phaseName || function(n){ return "Phase " + n; };
+  var horizon = input.horizon || 0;
+  var perDay = input.minutesPerDay || 480;
+  var hrs = function(h){ return Math.max(60, Math.round(h * 60)); };   // never a zero-length task
+
+  var phases = {};
+  Object.keys(alloc).forEach(function(pid){
+    Object.keys(alloc[pid] || {}).forEach(function(ph){
+      var q = parseInt(alloc[pid][ph], 10) || 0;
+      if (!q) return;
+      var n = Number(ph);
+      var layer = layerOf(byId[pid]) || "Herbaceous";
+      (phases[n] || (phases[n] = {}))[layer] = (phases[n][layer] || 0) + q;
+      phases[n]._qty = (phases[n]._qty || 0) + q;
+      phases[n]._hrs = (phases[n]._hrs || 0) + q * hoursOf(byId[pid]);
+      if (!byId[pid] || !byId[pid].deerResistant) phases[n]._browse = true;
+    });
+  });
+
+  var tasks = [], links = [], order = 0;
+  var add = function(t){ t.sortOrder = order++; tasks.push(t); return t; };
+
+  Object.keys(phases).map(Number).sort(function(a, b){ return a - b; }).forEach(function(n){
+    var ph = phases[n];
+    var sum = add({ generatedKey: "phase:" + n, name: phaseName(n), isSummary: true,
+                    outlineLevel: 1, phaseNo: n, durationMin: 0 });
+    var prevKey = null;
+    var chain = function(t){
+      if (prevKey) links.push({ predRef: prevKey, succRef: t.generatedKey, type: "FS", lagMin: 0 });
+      prevKey = t.generatedKey;
+      return t;
+    };
+
+    chain(add({ generatedKey: "phase:" + n + ":prep", parentKey: sum.generatedKey,
+      name: "Site prep — clear, sheet-mulch and amend (" + ph._qty + " plants)",
+      outlineLevel: 2, phaseNo: n, durationMin: hrs(ph._qty * 0.4) }));
+
+    PC2_LAYER_ORDER.forEach(function(layer){
+      var q = ph[layer];
+      if (!q) return;
+      chain(add({ generatedKey: "phase:" + n + ":plant:" + layer, parentKey: sum.generatedKey,
+        name: "Plant " + layer.toLowerCase() + " layer (" + q + ")",
+        outlineLevel: 2, phaseNo: n, durationMin: hrs(q * 0.5) }));
+    });
+
+    chain(add({ generatedKey: "phase:" + n + ":mulch", parentKey: sum.generatedKey,
+      name: "Mulch and water in", outlineLevel: 2, phaseNo: n,
+      durationMin: hrs(Math.max(2, ph._qty * 0.15)) }));
+    if (ph._browse)
+      chain(add({ generatedKey: "phase:" + n + ":protect", parentKey: sum.generatedKey,
+        name: "Install browse protection", outlineLevel: 2, phaseNo: n,
+        durationMin: hrs(Math.max(4, ph._qty * 0.2)) }));
+  });
+
+  // aggregate maintenance — one row per activity per year, never per plant
+  var years = horizon || Object.keys(phases).length;
+  if (years > 0){
+    var msum = add({ generatedKey: "maint", name: "Ongoing maintenance", isSummary: true,
+                     outlineLevel: 1, durationMin: 0 });
+    var cumulative = 0;
+    Object.keys(phases).map(Number).sort(function(a, b){ return a - b; }).forEach(function(n){
+      cumulative += phases[n]._qty;
+    });
+    for (var y = 1; y <= years; y++){
+      var est = 0;
+      Object.keys(phases).map(Number).forEach(function(n){ if (n <= y) est += phases[n]._qty; });
+      if (!est) continue;
+      add({ generatedKey: "maint:" + y + ":weed", parentKey: msum.generatedKey,
+        name: "Year " + y + " — weeding & monitoring (" + est + " plants)",
+        outlineLevel: 2, durationMin: hrs(est * 0.25) });
+      add({ generatedKey: "maint:" + y + ":mulch", parentKey: msum.generatedKey,
+        name: "Year " + y + " — mulch refresh", outlineLevel: 2,
+        durationMin: hrs(Math.max(2, est * 0.1)) });
+      if (y > 1)
+        add({ generatedKey: "maint:" + y + ":prune", parentKey: msum.generatedKey,
+          name: "Year " + y + " — dormant pruning", outlineLevel: 2,
+          durationMin: hrs(Math.max(2, est * 0.12)) });
+    }
+  }
+  void perDay;
+  return { tasks: tasks, links: links };
+}
+
+/* Regeneration must never clobber hand edits. A generated task the user has
+   touched (user_edited) keeps its values; one they deleted stays deleted;
+   manual tasks are untouched entirely. Same fill-only discipline the importer
+   backfills use. */
+function mergeGenerated(existing, fresh){
+  var byKey = {}, keep = [], added = [], updated = [], skipped = [];
+  (existing || []).forEach(function(t){ if (t.generatedKey) byKey[t.generatedKey] = t; });
+  (fresh.tasks || []).forEach(function(g){
+    var cur = byKey[g.generatedKey];
+    if (!cur){ added.push(g); return; }
+    if (cur.userEdited || cur.deleted){ skipped.push(cur); return; }
+    updated.push(Object.assign({}, cur, g, { id: cur.id }));
+  });
+  (existing || []).forEach(function(t){ if (!t.generatedKey) keep.push(t); });
+  return { added: added, updated: updated, skipped: skipped, manual: keep };
+}
+
 var api = {
   scheduleProject: scheduleProject,
+  parsePredecessors: parsePredecessors,
+  formatPredecessors: formatPredecessors,
+  generateTasks: generateTasks,
+  mergeGenerated: mergeGenerated,
   addWorkingTime: addWorkingTime,
   subWorkingTime: subWorkingTime,
   workingMinutesBetween: workingMinutesBetween,

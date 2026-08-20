@@ -107,6 +107,73 @@ function run(PC1, F){
   eq("start on a closed day moves to the next open one",
      fmt(nw.tasks[1].start), "2027-04-10 08:00");
 
+  // ═══════════ PC2: predecessor parsing ═══════════
+  const P = (s) => PC1.parsePredecessors(s, {minutesPerDay: D});
+  eq("bare id defaults to FS",        JSON.stringify(P("3").links), JSON.stringify([{predRef:3,type:"FS",lagMin:0}]));
+  eq("type is parsed",                P("7SS").links[0].type, "SS");
+  eq("positive lag in days",          P("12FS+3d").links[0].lagMin, 3*D);
+  eq("negative lag (lead)",           P("4FS-1d").links[0].lagMin, -D);
+  eq("hours lag",                     P("4FS+4h").links[0].lagMin, 240);
+  eq("weeks lag",                     P("4FS+1w").links[0].lagMin, 7*D);
+  eq("comma-separated list",          P("3, 4FS+2d, 7SS").links.length, 3);
+  eq("whitespace tolerated",          P(" 12 FS + 3 d ").links[0].lagMin, 3*D);
+  ok("garbage is reported, not dropped", P("banana").errors.length === 1 && P("banana").links.length === 0,
+     JSON.stringify(P("banana")));
+  ok("partial garbage keeps the good half",
+     P("3, banana, 5SS").links.length === 2 && P("3, banana, 5SS").errors.length === 1);
+  ok("unit without a value is rejected", P("4FSd").errors.length === 1, JSON.stringify(P("4FSd")));
+  eq("round-trips through format",
+     PC1.formatPredecessors([{predId:12,type:"FS",lagMin:3*D}], null, {minutesPerDay:D}), "12+3d");
+  eq("format keeps a non-FS type",
+     PC1.formatPredecessors([{predId:7,type:"SS",lagMin:0}], null, {minutesPerDay:D}), "7SS");
+
+  // ═══════════ PC2: task generation ═══════════
+  const plants = {
+    101:{id:101,type:"Tree",deerResistant:false}, 102:{id:102,type:"Shrub",deerResistant:true},
+    103:{id:103,type:"Herb",deerResistant:true},  104:{id:104,type:"Tree",deerResistant:true}
+  };
+  const LAYER = {Tree:"Canopy", Shrub:"Shrub", Herb:"Herbaceous", Vine:"Vine"};
+  const gen = PC1.generateTasks({
+    alloc: {101:{1:12}, 102:{1:24}, 103:{2:18}, 104:{2:6}},
+    plantsById: plants,
+    layerOf: p => p ? LAYER[p.type] : "Herbaceous",
+    hoursOf: p => ({Tree:0.75,Shrub:0.4,Herb:0.15}[p && p.type] || 0.3),
+    phaseName: n => "Phase " + n, horizon: 2, minutesPerDay: D
+  });
+  const names = gen.tasks.map(t=>t.name);
+  const key = k => gen.tasks.find(t=>t.generatedKey===k);
+  ok("a summary per phase",
+     !!key("phase:1") && !!key("phase:2") && key("phase:1").isSummary === true);
+  ok("planting split by LAYER, not by plant",
+     !!key("phase:1:plant:Canopy") && !!key("phase:1:plant:Shrub"),
+     names.filter(n=>/^Plant /.test(n)).join(" | "));
+  eq("canopy row carries its quantity", key("phase:1:plant:Canopy").name, "Plant canopy layer (12)");
+  ok("no per-plant rows", gen.tasks.filter(t=>/plant:/.test(t.generatedKey||"")).length === 4,
+     "got " + gen.tasks.filter(t=>/plant:/.test(t.generatedKey||"")).length);
+  ok("browse protection only where something is browsed",
+     !!key("phase:1:protect") && !key("phase:2:protect"),
+     "p1=" + !!key("phase:1:protect") + " p2=" + !!key("phase:2:protect"));
+  ok("maintenance is aggregated per year, not per plant",
+     !!key("maint:1:weed") && !!key("maint:2:weed") && !key("maint:1:prune"));
+  ok("year-2 weeding counts every plant established by then",
+     /60 plants/.test(key("maint:2:weed").name), key("maint:2:weed").name);
+  ok("tasks are chained within a phase", gen.links.length > 0, gen.links.length + " links");
+  ok("nothing has zero duration",
+     gen.tasks.filter(t=>!t.isSummary).every(t=>t.durationMin > 0));
+
+  // ═══════════ PC2: regeneration must not clobber hand edits ═══════════
+  const existing = [
+    {id:1, generatedKey:"phase:1:prep", name:"Site prep — MY WORDING", durationMin:999, userEdited:true},
+    {id:2, generatedKey:"phase:1:mulch", name:"Mulch and water in", durationMin:120},
+    {id:3, generatedKey:null, name:"Call the nursery", durationMin:60},
+  ];
+  const merged = PC1.mergeGenerated(existing, gen);
+  ok("a hand-edited generated task is left alone",
+     merged.skipped.some(t=>t.id===1) && !merged.updated.some(t=>t.id===1));
+  ok("an untouched generated task is refreshed", merged.updated.some(t=>t.id===2));
+  ok("manual tasks survive regeneration", merged.manual.some(t=>t.id===3));
+  ok("new generated tasks are added", merged.added.length > 0, merged.added.length + " added");
+
   const passed = results.filter(r=>r.pass).length;
   return { passed, failed: results.length - passed, results, out };
 }
