@@ -502,16 +502,20 @@
 <!-- ============================================== E ROW MOVED -->
 <div class="pane" id="p5"><div class="wrap">
   <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div><h2>Schedule</h2>
-    <p>After dragging task 5 down to position 7.</p></div>
+    <p>After dragging “Plant canopy trees” from position 5 down to 7.</p></div>
 
-  <div class="mknote"><b>E — Row moved, and what it says</b>
-    Dragging renumbers, and <b>predecessors stay with the position, not the task</b>. Slot 5 keeps
-    <code>3FS,4FS</code> whatever now sits in it. The notice spells out every row that changed hands.
+  <div class="mknote"><b>E — Row moved: numbering only</b>
+    Dragging changes <b>ID and WBS and nothing else</b>. Links belong to the task and travel with it, so the
+    network is untouched and <b>not one date moves</b> — compare the bars against state A, they are in exactly
+    the same horizontal positions.
     <ul>
-      <li><b>The strip never shifts the page.</b> It occupies a fixed 56px whether it has something to say or
-        not — compare where the table starts in state A against here. Only the contents fade in.</li>
-      <li>Undo is in the strip, because a reorder that rewires dependencies is exactly the edit you want to take back.</li>
-      <li>This is <b>not</b> MS Project's rule — MSP carries links with the task. Noted on export.</li>
+      <li>Predecessor references <b>re-point</b> so they still mean the same task: “Plant shrub layer” depended on
+        Plant canopy, which is now 7, so its reference re-renders <code>5FS → 7FS</code>. The link did not change,
+        only the numeral.</li>
+      <li>Reorder is <b>within a phase</b>. Moving a task to another phase is an explicit edit in the row editor,
+        not something a drag can do by accident.</li>
+      <li>A predecessor may now have a higher number than its successor (5 depends on 7). That is legal and MS
+        Project shows it the same way — it just means the rows are no longer in date order.</li>
     </ul>
   </div>
 
@@ -525,9 +529,10 @@
   <div class="changebar"><div class="changenote">
     <span class="hd">Moved<br>5 → 7</span>
     <span class="mv">
-      <span><b>5 · 1.4</b> Plant shrub layer <em>← took slot 5's preds 3FS,4FS</em></span>
-      <span><b>6 · 1.5</b> Mulch &amp; water in <em>← took slot 6's pred 5FS</em></span>
-      <span><b>7 · 1.6</b> Plant canopy trees <em>← took slot 7's pred 6SS+1d</em></span>
+      <span><b>Plant canopy trees</b> is now <b>7 · 1.6</b> <em>no dates changed</em></span>
+      <span><b>5FS → 7FS</b> <em>Plant shrub layer</em></span>
+      <span><b>6SS+1d → 5SS+1d</b> <em>Mulch &amp; water in</em></span>
+      <span><b>6FS → 5FS</b> <em>Deer protection</em></span>
     </span>
     <button class="btn undo">Undo move</button>
   </div></div>
@@ -546,7 +551,7 @@
           <span class="num wideonly">38%</span><span class="num wideonly">0d</span></div>
         <div class="grow crit"><span class="idc">2</span><span class="idc wbscol">1.1</span><span class="ind indcol"></span>
           <span class="nm lvl1">Site survey &amp; marking</span><span class="num durcol">2d</span>
-          <span class="num wideonly">04 Apr</span><span class="num wideonly">05 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">04 Apr</span><span class="num wideonly">05 Apr</span><span class="wideonly">—</span>
           <span class="num wideonly">100%</span><span class="num wideonly">0d</span></div>
         <div class="grow crit"><span class="idc">3</span><span class="idc wbscol">1.2</span><span class="ind indcol"></span>
           <span class="nm lvl1">Sheet-mulch the beds</span><span class="num durcol">5d</span>
@@ -554,23 +559,23 @@
           <span class="num wideonly">60%</span><span class="num wideonly">0d</span></div>
         <div class="grow"><span class="idc">4</span><span class="idc wbscol">1.3</span><span class="ind indcol">◆</span>
           <span class="nm lvl1">Bare-root order arrives</span><span class="num durcol">0d</span>
-          <span class="num wideonly">11 Apr</span><span class="num wideonly">11 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">11 Apr</span><span class="num wideonly">11 Apr</span><span class="wideonly">—</span>
           <span class="num wideonly">—</span><span class="num wideonly">1d</span></div>
         <div class="grow crit moved"><span class="idc">5</span><span class="idc wbscol">1.4</span><span class="ind indcol">⇅</span>
           <span class="nm lvl1">Plant shrub layer (24)</span><span class="num durcol">4d</span>
-          <span class="num wideonly">13 Apr</span><span class="num wideonly">18 Apr</span><span class="mono wideonly" style="font-size:10px">3FS,4FS</span>
+          <span class="num wideonly">18 Apr</span><span class="num wideonly">23 Apr</span><span class="mono wideonly" style="font-size:10px;color:var(--sage-d)">7FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
         <div class="grow moved"><span class="idc">6</span><span class="idc wbscol">1.5</span><span class="ind indcol">⇅</span>
           <span class="nm lvl1">Mulch &amp; water in</span><span class="num durcol">2d</span>
-          <span class="num wideonly">19 Apr</span><span class="num wideonly">20 Apr</span><span class="mono wideonly" style="font-size:10px">5FS</span>
-          <span class="num wideonly">0%</span><span class="num wideonly">1d</span></div>
+          <span class="num wideonly">19 Apr</span><span class="num wideonly">20 Apr</span><span class="mono wideonly" style="font-size:10px;color:var(--sage-d)">5SS+1d</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">3d</span></div>
         <div class="grow crit moved sel"><span class="idc">7</span><span class="idc wbscol">1.6</span><span class="ind indcol">⇅ ⚠</span>
           <span class="nm lvl1">Plant canopy trees (12)</span><span class="num durcol">3d</span>
-          <span class="num wideonly">21 Apr</span><span class="num wideonly">23 Apr</span><span class="mono wideonly" style="font-size:10px">6SS+1d</span>
+          <span class="num wideonly">13 Apr</span><span class="num wideonly">17 Apr</span><span class="mono wideonly" style="font-size:10px">3FS,4FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
         <div class="grow crit"><span class="idc">8</span><span class="idc wbscol">1.7</span><span class="ind indcol"></span>
           <span class="nm lvl1">Deer protection</span><span class="num durcol">2d</span>
-          <span class="num wideonly">24 Apr</span><span class="num wideonly">29 Apr</span><span class="mono wideonly" style="font-size:10px">6FS</span>
+          <span class="num wideonly">24 Apr</span><span class="num wideonly">29 Apr</span><span class="mono wideonly" style="font-size:10px;color:var(--sage-d)">5FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
         <div class="grow sum"><span class="idc">9</span><span class="idc wbscol">2</span><span class="ind indcol"></span>
           <span class="nm">Phase 2 — Understory</span><span class="num durcol">9d</span>
@@ -578,7 +583,7 @@
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
         <div class="grow"><span class="idc">10</span><span class="idc wbscol">2.1</span><span class="ind indcol"></span>
           <span class="nm lvl1">Soil test &amp; amend</span><span class="num durcol">1d</span>
-          <span class="num wideonly">06 Apr</span><span class="num wideonly">06 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">06 Apr</span><span class="wideonly">—</span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
         <div class="grow"><span class="idc">11</span><span class="idc wbscol">2.2</span><span class="ind indcol">⚠</span>
           <span class="nm lvl1">Plant herb layer (48)</span><span class="num durcol">5d</span>
@@ -602,9 +607,9 @@
           <div class="trow"><div class="bar crit" style="left:54px;width:36px"><i class="pc" style="width:100%"></i><i class="pclab">100%</i></div><div class="base" style="left:54px;width:36px"></div></div>
           <div class="trow"><div class="bar crit" style="left:90px;width:126px"><i class="pc" style="width:60%"></i><i class="pclab">60%</i></div><div class="base" style="left:90px;width:126px"></div></div>
           <div class="trow"><div class="ms" style="left:174px"></div></div>
-          <div class="trow moved"><div class="bar crit" style="left:216px;width:108px"></div><div class="base" style="left:306px;width:108px"></div></div>
+          <div class="trow moved"><div class="bar crit" style="left:306px;width:108px"></div><div class="base" style="left:306px;width:108px"></div></div>
           <div class="trow moved"><div class="bar" style="left:324px;width:36px"></div><div class="base" style="left:324px;width:36px"></div></div>
-          <div class="trow moved sel"><div class="bar crit" style="left:360px;width:54px"></div><div class="base" style="left:216px;width:72px"></div></div>
+          <div class="trow moved sel"><div class="bar crit" style="left:216px;width:90px"><i class="pc" style="width:0"></i></div><div class="base" style="left:216px;width:72px"></div></div>
           <div class="trow"><div class="bar crit" style="left:414px;width:108px"></div><div class="base" style="left:414px;width:90px"></div></div>
           <div class="trow sum"><div class="sumbar" style="left:90px;width:198px"></div></div>
           <div class="trow"><div class="bar" style="left:90px;width:18px"></div></div>
@@ -614,7 +619,7 @@
       </div></div>
     </div>
   </div>
-  <div class="hintrow">⇅ marks a row whose ID, WBS or predecessors changed in the last move. Baseline bars stay where they were, so the shift is visible on the chart.</div>
+  <div class="hintrow">⇅ marks a row whose number changed. Green predecessor text re-pointed to keep the same link. Bars did not move — row 7 now starts before rows 5 and 6, which is what “out of date order” looks like.</div>
 </div></div>
 
 </body>
