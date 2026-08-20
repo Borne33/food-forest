@@ -193,6 +193,15 @@ tab. It is gone: `phaseSlot`, `savePhaseMeta` and the renumber control were remo
 to "phase N = project year N". **Scheduling belongs to PC1 and must not be modelled twice.** What survives is the
 Scope chart with clickable planting waves that open a sortable plant list.
 
+**PC1 — engine shipped, gate open.** `scheduleProject()` lives in `index.html` as a plain-JS
+`<script id="pc1-engine">` block (not JSX) so `schedule/test.js` runs the exact shipped code. **25/25 tests pass.**
+Verification artefacts in `schedule/`: fixture, browser test harness, `pc1-fixture.xml` (MSPDI) and
+`pc1-expected.csv`. There is no Node and no MS Project on this machine — the test runs in the browser and the
+scheduler comparison targets ProjectLibre/GanttProject, so the **SNET and FNLT rows are provisional** until
+checked in MSP itself. Row movement (settled Aug 2026): a drag changes **ID and WBS only**; links belong to the
+task and travel with it, so no date moves and predecessor references merely re-render to keep pointing at the
+same task. Reorder is within a phase.
+
 **PC1 owns tasks, order and dates.** Confirmed direction: `computeProject` becomes a *generator* of work packages;
 PC1 is the scheduler that assigns and stores their order and dates, and the Scope / Schedule / Budget views read
 back from it. `plan_tasks` is therefore the source of truth for anything dated, and nothing else should compute a
