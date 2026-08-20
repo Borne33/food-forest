@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule — chosen design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
+    --line:#c9c2ab; --dot:#c2bba2; --sage:#6f8a5f; --sage-d:#42603a;
+    --red:#dd4b3e; --orange:#e8923c;
+    --soil:#7a5a34; --soil-d:#5c421f; --soil-bg:#efe4d0; --soil-line:#d8c39c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',ui-monospace,monospace}
+  button{font-family:inherit;cursor:pointer}
+  .topbar{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+  .brand b{font-size:19px;font-weight:800;letter-spacing:-.01em;display:block}
+  .brand .acc{font-family:'Space Mono';font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;
+    display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+  .ham i{display:block;width:18px;height:2px;background:var(--ink)}
+  .wrap{max-width:1340px;margin:0 auto;padding:18px 16px 80px}
+  .pagehead{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+  .pagehead .eye{font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .pagehead h2{margin:5px 0 3px;font-size:28px;font-weight:800;letter-spacing:-.02em}
+  .pagehead p{margin:0;color:var(--ink2);max-width:720px}
+  .mkbar{position:sticky;top:59px;z-index:59;background:var(--ink);color:var(--paper);padding:8px 18px;
+    display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .mkbar .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-right:6px}
+  .mkbar label{font-family:'Space Mono';font-size:11px;background:transparent;color:var(--paper);
+    border:1.5px solid rgba(243,239,227,.45);border-radius:99px;padding:5px 13px;cursor:pointer;user-select:none}
+  .mkin{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  #s1:checked~.mkbar label[for=s1],#s2:checked~.mkbar label[for=s2],
+  #s3:checked~.mkbar label[for=s3],#s4:checked~.mkbar label[for=s4]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  #s1:checked~#p1,#s2:checked~#p2,#s3:checked~#p3,#s4:checked~#p4{display:block}
+  .pane{display:none}
+  .mknote{border-left:3px solid var(--soil);background:var(--soil-bg);padding:11px 15px;border-radius:0 4px 4px 0;
+    margin:0 0 16px;font-size:13.5px}
+  .mknote > b:first-child{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    display:block;color:var(--soil-d);margin-bottom:3px}
+  .mknote ul{margin:7px 0 0;padding-left:18px} .mknote li{margin:3px 0}
+
+  .schbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+  .chip{font-family:'Space Mono';font-size:11px;border:1.5px solid var(--line);background:#fbf9f2;
+    border-radius:99px;padding:5px 11px;color:var(--ink2)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn{font-family:'Space Mono';font-size:11.5px;border:1.5px solid var(--line);background:#fbf9f2;
+    border-radius:4px;padding:6px 12px;color:var(--ink2)}
+  .btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .spacer{flex:1 1 auto}
+  .warnstrip{display:flex;gap:9px;border-left:3px solid var(--orange);background:#fbf1e4;
+    padding:8px 13px;border-radius:0 4px 4px 0;margin:0 0 12px;font-size:13px}
+  .warnstrip b{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a5a1d;white-space:nowrap}
+
+  /* ══════ THE ALIGNMENT FIX ══════
+     One vertical scroller wraps BOTH panes, so rows can never drift apart.
+     Every row height comes from --rowh and every header from --headh — the
+     timeline is laid out from the same two numbers as the grid, not from
+     hard-coded y values. Only the timeline scrolls horizontally. */
+  .sched{--gw:44%; --rowh:32px; --headh:46px; --day:18px;
+    border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
+  .sched.narrow{--gw:132px}
+  .schscroll{max-height:460px;overflow-y:auto;display:grid;grid-template-columns:var(--gw) 1fr}
+  .gpane{min-width:0;border-right:1.5px solid var(--ink);overflow-x:auto}
+  .tpane{min-width:0;overflow-x:auto;position:relative}
+  .ghead,.thead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    position:sticky;top:0;z-index:3;display:flex;align-items:flex-end}
+  .ghead{padding:0 0 5px}
+  .gcells,.hcell{display:grid;grid-template-columns:var(--cols);width:100%}
+  .ghead .hcell span{font-family:'Space Mono';font-size:8.5px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink2);padding:0 6px;white-space:nowrap;overflow:hidden}
+  .grow{height:var(--rowh);display:grid;grid-template-columns:var(--cols);align-items:center;
+    border-bottom:1px solid var(--line);font-size:13px}
+  .grow > *{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .grow.sum{background:#f0ecdf;font-weight:700}
+  .grow.sel{background:#eef2e7;box-shadow:inset 3px 0 0 var(--sage-d)}
+  .grow .idc{font-family:'Space Mono';font-size:11px;color:var(--sage-d);cursor:pointer;text-decoration:underline}
+  .grow.crit .nm{color:var(--red)}
+  .lvl1{padding-left:16px !important}
+  .num{text-align:right;font-family:'Space Mono';font-size:11px}
+  .ind{text-align:center;color:var(--orange);font-size:11px}
+  /* full column set only when the grid is wide */
+  .sched{--cols:34px 40px 22px 1fr 42px 56px 56px 62px 40px 44px}
+  .sched.narrow{--cols:34px 1fr 40px}
+  .sched.narrow .wideonly{display:none}
+
+  .tbody{position:relative}
+  .trow{height:var(--rowh);border-bottom:1px solid var(--line);position:relative}
+  .trow.sum{background:#f0ecdf} .trow.sel{background:#eef2e7}
+  .bar{position:absolute;top:7px;height:13px;border-radius:2px;background:var(--sage)}
+  .bar.crit{background:var(--red)}
+  /* % complete — darker inner bar, MSP's convention */
+  .bar .pc{position:absolute;left:0;top:0;bottom:0;border-radius:2px 0 0 2px;background:rgba(0,0,0,.30)}
+  .bar .pclab{position:absolute;right:-30px;top:-1px;font-family:'Space Mono';font-size:9px;color:var(--faint)}
+  /* baseline — thin bar under the task bar so slip is visible at a glance */
+  .base{position:absolute;top:23px;height:4px;border-radius:2px;background:var(--dot)}
+  .sumbar{position:absolute;top:9px;height:9px;background:var(--ink)}
+  .sumbar::before,.sumbar::after{content:"";position:absolute;top:9px;border-top:6px solid var(--ink);
+    border-left:5px solid transparent;border-right:5px solid transparent}
+  .sumbar::before{left:0} .sumbar::after{right:0}
+  .ms{position:absolute;top:8px;width:12px;height:12px;background:var(--ink);transform:rotate(45deg)}
+  .win{position:absolute;top:0;bottom:0;background:var(--soil-bg);opacity:.6;pointer-events:none}
+  .today{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--red)}
+  .thead .scale{position:relative;height:100%;width:100%}
+  .thead .maj{position:absolute;top:5px;font-family:'Space Mono';font-size:9.5px;color:var(--ink2)}
+  .thead .min{position:absolute;bottom:5px;font-family:'Space Mono';font-size:8px;color:var(--faint)}
+  .arrows{position:absolute;inset:0;pointer-events:none}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-family:'Space Mono';font-size:10px;color:var(--faint);margin:9px 2px 0}
+  .legend i{display:inline-block;width:16px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+
+  /* row editor popup (opened from the ID / WBS cell) */
+  .cardwrap{position:fixed;inset:0;z-index:80;background:rgba(43,42,34,.34);display:flex;
+    align-items:center;justify-content:center;padding:18px}
+  .card{background:#fbf9f2;border:1.5px solid var(--ink);border-radius:5px;max-width:520px;width:100%;
+    max-height:88vh;overflow:auto;box-shadow:0 24px 60px -30px #000}
+  .cardhd{padding:13px 16px;background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .cardhd .eye{font-family:'Space Mono';font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .cardhd h3{margin:3px 0 0;font-size:19px;font-weight:800}
+  .cardbd{padding:14px 16px}
+  .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  @media(max-width:540px){ .fgrid{grid-template-columns:repeat(2,1fr)} }
+  .fld label{display:block;font-family:'Space Mono';font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+  .fld input,.fld select{width:100%;font-family:'Spectral';font-size:14px;background:#fff;
+    border:1.5px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink)}
+  .cardft{padding:11px 16px;border-top:1.5px solid var(--ink);background:var(--paper2);
+    display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap}
+
+  /* phone frame for the mobile state */
+  .phone{width:390px;max-width:100%;margin:0 auto;border:10px solid var(--ink);border-radius:26px;overflow:hidden;background:var(--paper)}
+  .phone .sched{border:0;border-radius:0}
+  .phone .schscroll{max-height:420px}
+</style>
+</head>
+<body>
+
+<input class="mkin" type="radio" name="s" id="s1" checked>
+<input class="mkin" type="radio" name="s" id="s2">
+<input class="mkin" type="radio" name="s" id="s3">
+<input class="mkin" type="radio" name="s" id="s4">
+
+<div class="topbar">
+  <div class="brand"><span class="acc">Plant and source database and planning tool</span><b>Native Food Forest Planner</b></div>
+  <div class="ham"><i></i><i></i><i></i></div>
+</div>
+
+<div class="mkbar">
+  <span class="lbl">Schedule design</span>
+  <label for="s1">A · Expanded</label>
+  <label for="s2">B · Collapsed</label>
+  <label for="s3">C · Row editor</label>
+  <label for="s4">D · Phone</label>
+</div>
+
+<!-- ============================================== A EXPANDED -->
+<div class="pane" id="p1"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div><h2>Schedule</h2>
+    <p>Full grid and Gantt. Collapse the grid when you want the chart to breathe.</p></div>
+
+  <div class="mknote"><b>A — Expanded (mockup 1)</b>
+    The full MSP column set beside the chart. <b>% Complete</b> is now a column and a darker inner bar;
+    the <b>baseline</b> is the grey bar beneath each task, so slip reads at a glance.
+    <ul>
+      <li><b>Alignment is structural, not tuned.</b> One vertical scroller wraps both panes and every row is
+        <code>--rowh</code> tall, so the grid and the chart cannot drift — including on a phone.</li>
+      <li>Click any <b>ID or WBS</b> to open the row editor (state C).</li>
+    </ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip">Day</button><button class="chip on">Week</button><button class="chip">Month</button>
+    <button class="chip">Quarter</button><button class="chip">Year</button>
+    <label class="btn solid" for="s2">⟨ Collapse grid</label>
+    <span class="spacer"></span>
+    <button class="btn">Set baseline</button><button class="btn">Export XML</button>
+  </div>
+  <div class="warnstrip"><b>3 warnings</b><span>Two tasks fall outside the planting window; one finish is past its baseline. Advisory only — no dates were moved.</span></div>
+
+  <div class="sched">
+    <div class="schscroll">
+      <div class="gpane">
+        <div class="ghead"><div class="hcell">
+          <span>ID</span><span>WBS</span><span>!</span><span>Task name</span><span>Dur</span>
+          <span class="wideonly">Start</span><span class="wideonly">Finish</span><span class="wideonly">Pred</span>
+          <span class="wideonly">% Comp</span><span class="wideonly">Slack</span>
+        </div></div>
+        <div class="grow sum"><span class="idc">1</span><span class="idc">1</span><span class="ind"></span>
+          <span class="nm">Phase 1 — Canopy &amp; soil</span><span class="num">18d</span>
+          <span class="num wideonly">04 Apr</span><span class="num wideonly">29 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">38%</span><span class="num wideonly">0d</span></div>
+        <div class="grow crit"><span class="idc">2</span><span class="idc">1.1</span><span class="ind"></span>
+          <span class="nm lvl1">Site survey &amp; marking</span><span class="num">2d</span>
+          <span class="num wideonly">04 Apr</span><span class="num wideonly">05 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">100%</span><span class="num wideonly">0d</span></div>
+        <div class="grow crit"><span class="idc">3</span><span class="idc">1.2</span><span class="ind"></span>
+          <span class="nm lvl1">Sheet-mulch the beds</span><span class="num">5d</span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">12 Apr</span><span class="mono wideonly" style="font-size:10px">2FS</span>
+          <span class="num wideonly">60%</span><span class="num wideonly">0d</span></div>
+        <div class="grow"><span class="idc">4</span><span class="idc">1.3</span><span class="ind">◆</span>
+          <span class="nm lvl1">Bare-root order arrives</span><span class="num">0d</span>
+          <span class="num wideonly">11 Apr</span><span class="num wideonly">11 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">—</span><span class="num wideonly">1d</span></div>
+        <div class="grow crit sel"><span class="idc">5</span><span class="idc">1.4</span><span class="ind">⚠</span>
+          <span class="nm lvl1">Plant canopy trees (12)</span><span class="num">3d</span>
+          <span class="num wideonly">13 Apr</span><span class="num wideonly">17 Apr</span><span class="mono wideonly" style="font-size:10px">3FS,4FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
+        <div class="grow crit"><span class="idc">6</span><span class="idc">1.5</span><span class="ind"></span>
+          <span class="nm lvl1">Plant shrub layer (24)</span><span class="num">4d</span>
+          <span class="num wideonly">18 Apr</span><span class="num wideonly">23 Apr</span><span class="mono wideonly" style="font-size:10px">5FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
+        <div class="grow"><span class="idc">7</span><span class="idc">1.6</span><span class="ind"></span>
+          <span class="nm lvl1">Mulch &amp; water in</span><span class="num">2d</span>
+          <span class="num wideonly">19 Apr</span><span class="num wideonly">20 Apr</span><span class="mono wideonly" style="font-size:10px">6SS+1d</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">3d</span></div>
+        <div class="grow crit"><span class="idc">8</span><span class="idc">1.7</span><span class="ind"></span>
+          <span class="nm lvl1">Deer protection</span><span class="num">2d</span>
+          <span class="num wideonly">24 Apr</span><span class="num wideonly">29 Apr</span><span class="mono wideonly" style="font-size:10px">6FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
+        <div class="grow sum"><span class="idc">9</span><span class="idc">2</span><span class="ind"></span>
+          <span class="nm">Phase 2 — Understory</span><span class="num">9d</span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">16 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+        <div class="grow"><span class="idc">10</span><span class="idc">2.1</span><span class="ind"></span>
+          <span class="nm lvl1">Soil test &amp; amend</span><span class="num">1d</span>
+          <span class="num wideonly">06 Apr</span><span class="num wideonly">06 Apr</span><span class="wideonly"></span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+        <div class="grow"><span class="idc">11</span><span class="idc">2.2</span><span class="ind">⚠</span>
+          <span class="nm lvl1">Plant herb layer (48)</span><span class="num">5d</span>
+          <span class="num wideonly">07 Apr</span><span class="num wideonly">13 Apr</span><span class="mono wideonly" style="font-size:10px">10FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+        <div class="grow"><span class="idc">12</span><span class="idc">2.3</span><span class="ind"></span>
+          <span class="nm lvl1">Divide &amp; spread groundcover</span><span class="num">3d</span>
+          <span class="num wideonly">14 Apr</span><span class="num wideonly">16 Apr</span><span class="mono wideonly" style="font-size:10px">11FS</span>
+          <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
+      </div>
+
+      <div class="tpane"><div style="width:1080px">
+        <div class="thead"><div class="scale">
+          <span class="maj" style="left:8px">APRIL 2027</span><span class="maj" style="left:548px">MAY 2027</span>
+          <span class="min" style="left:54px">4</span><span class="min" style="left:180px">11</span>
+          <span class="min" style="left:306px">18</span><span class="min" style="left:432px">25</span>
+          <span class="min" style="left:558px">2</span><span class="min" style="left:684px">9</span>
+        </div></div>
+        <div class="tbody">
+          <div class="win" style="left:0;width:54px;top:0;bottom:0"></div>
+          <div class="today" style="left:198px"></div>
+          <div class="trow sum"><div class="sumbar" style="left:54px;width:468px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:54px;width:36px"><i class="pc" style="width:100%"></i><i class="pclab">100%</i></div>
+            <div class="base" style="left:54px;width:36px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:90px;width:126px"><i class="pc" style="width:60%"></i><i class="pclab">60%</i></div>
+            <div class="base" style="left:90px;width:126px"></div></div>
+          <div class="trow"><div class="ms" style="left:174px"></div></div>
+          <div class="trow sel"><div class="bar crit" style="left:216px;width:90px"><i class="pc" style="width:0"></i><i class="pclab">0%</i></div>
+            <div class="base" style="left:216px;width:72px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:306px;width:108px"><i class="pc" style="width:0"></i></div>
+            <div class="base" style="left:306px;width:108px"></div></div>
+          <div class="trow"><div class="bar" style="left:324px;width:36px"><i class="pc" style="width:0"></i></div>
+            <div class="base" style="left:324px;width:36px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:414px;width:108px"><i class="pc" style="width:0"></i></div>
+            <div class="base" style="left:414px;width:90px"></div></div>
+          <div class="trow sum"><div class="sumbar" style="left:90px;width:198px"></div></div>
+          <div class="trow"><div class="bar" style="left:90px;width:18px"></div></div>
+          <div class="trow"><div class="bar" style="left:108px;width:126px"></div></div>
+          <div class="trow"><div class="bar" style="left:234px;width:54px"></div></div>
+          <svg class="arrows" width="1080" height="416" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="ar" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+              <path d="M0 0 L5 2.5 L0 5 z" fill="#8a8672"/></marker></defs>
+            <g stroke="#8a8672" fill="none" stroke-width="1">
+              <path d="M90 71 h5 v27 h-3" marker-end="url(#ar)"/>
+              <path d="M216 103 h6 v27 h-4" marker-end="url(#ar)"/>
+              <path d="M306 167 h5 v27 h-3" marker-end="url(#ar)"/>
+              <path d="M414 199 h5 v59 h-3" marker-end="url(#ar)"/>
+            </g>
+          </svg>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--sage)"></i>Task</span><span><i style="background:var(--red)"></i>Critical</span>
+    <span><i style="background:var(--ink)"></i>Summary</span><span><i style="background:var(--dot)"></i>Baseline</span>
+    <span><i style="background:rgba(0,0,0,.30)"></i>% complete</span>
+    <span><i style="background:var(--soil-bg);border:1px solid var(--soil-line)"></i>Outside planting window</span>
+    <span>◆ Milestone</span>
+  </div>
+</div></div>
+
+<!-- ============================================== B COLLAPSED -->
+<div class="pane" id="p2"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div><h2>Schedule</h2>
+    <p>Grid collapsed to a name rail. Same rows, same scroller — the chart just gets the width.</p></div>
+
+  <div class="mknote"><b>B — Collapsed (mockup 2 behaviour)</b>
+    One control swaps <code>--gw</code> from 44% to a 132px rail and hides the <code>.wideonly</code> columns.
+    Nothing re-renders and no row moves, so collapsing never costs you your scroll position.
+    <ul><li>This is the <b>default on a phone</b> — see state D.</li>
+      <li>The ID stays visible, so the row editor is still one tap away.</li></ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip">Day</button><button class="chip on">Week</button><button class="chip">Month</button>
+    <label class="btn solid" for="s1">Expand grid ⟩</label>
+    <span class="spacer"></span><button class="btn">Export XML</button>
+  </div>
+
+  <div class="sched narrow">
+    <div class="schscroll">
+      <div class="gpane">
+        <div class="ghead"><div class="hcell"><span>ID</span><span>Task</span><span>Dur</span></div></div>
+        <div class="grow sum"><span class="idc">1</span><span class="nm">Phase 1 — Canopy</span><span class="num">18d</span></div>
+        <div class="grow crit"><span class="idc">2</span><span class="nm lvl1">Site survey</span><span class="num">2d</span></div>
+        <div class="grow crit"><span class="idc">3</span><span class="nm lvl1">Sheet-mulch</span><span class="num">5d</span></div>
+        <div class="grow"><span class="idc">4</span><span class="nm lvl1">◆ Stock arrives</span><span class="num">0d</span></div>
+        <div class="grow crit sel"><span class="idc">5</span><span class="nm lvl1">Plant canopy</span><span class="num">3d</span></div>
+        <div class="grow crit"><span class="idc">6</span><span class="nm lvl1">Plant shrubs</span><span class="num">4d</span></div>
+        <div class="grow"><span class="idc">7</span><span class="nm lvl1">Mulch &amp; water</span><span class="num">2d</span></div>
+        <div class="grow crit"><span class="idc">8</span><span class="nm lvl1">Deer protection</span><span class="num">2d</span></div>
+        <div class="grow sum"><span class="idc">9</span><span class="nm">Phase 2</span><span class="num">9d</span></div>
+        <div class="grow"><span class="idc">10</span><span class="nm lvl1">Soil test</span><span class="num">1d</span></div>
+        <div class="grow"><span class="idc">11</span><span class="nm lvl1">Plant herbs</span><span class="num">5d</span></div>
+        <div class="grow"><span class="idc">12</span><span class="nm lvl1">Groundcover</span><span class="num">3d</span></div>
+      </div>
+      <div class="tpane"><div style="width:1080px">
+        <div class="thead"><div class="scale">
+          <span class="maj" style="left:8px">APRIL 2027</span><span class="maj" style="left:548px">MAY 2027</span>
+          <span class="min" style="left:54px">4</span><span class="min" style="left:180px">11</span>
+          <span class="min" style="left:306px">18</span><span class="min" style="left:432px">25</span>
+          <span class="min" style="left:558px">2</span></div></div>
+        <div class="tbody">
+          <div class="win" style="left:0;width:54px;top:0;bottom:0"></div>
+          <div class="today" style="left:198px"></div>
+          <div class="trow sum"><div class="sumbar" style="left:54px;width:468px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:54px;width:36px"><i class="pc" style="width:100%"></i><i class="pclab">100%</i></div><div class="base" style="left:54px;width:36px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:90px;width:126px"><i class="pc" style="width:60%"></i><i class="pclab">60%</i></div><div class="base" style="left:90px;width:126px"></div></div>
+          <div class="trow"><div class="ms" style="left:174px"></div></div>
+          <div class="trow sel"><div class="bar crit" style="left:216px;width:90px"><i class="pc" style="width:0"></i></div><div class="base" style="left:216px;width:72px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:306px;width:108px"></div><div class="base" style="left:306px;width:108px"></div></div>
+          <div class="trow"><div class="bar" style="left:324px;width:36px"></div></div>
+          <div class="trow"><div class="bar crit" style="left:414px;width:108px"></div><div class="base" style="left:414px;width:90px"></div></div>
+          <div class="trow sum"><div class="sumbar" style="left:90px;width:198px"></div></div>
+          <div class="trow"><div class="bar" style="left:90px;width:18px"></div></div>
+          <div class="trow"><div class="bar" style="left:108px;width:126px"></div></div>
+          <div class="trow"><div class="bar" style="left:234px;width:54px"></div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============================================== C ROW EDITOR -->
+<div class="pane" id="p3"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div><h2>Schedule</h2>
+    <p>Clicking an ID or WBS opens the row editor over the chart.</p></div>
+  <div class="mknote"><b>C — Row editor popup</b>
+    Mockup 5's detail card, opened from the <b>ID or WBS</b> cell. Every field gets a real label instead of a
+    cramped column header, so it works identically at any grid width — including collapsed and on a phone.
+    <ul><li>Baseline and variance are shown here as numbers, and on the chart as the grey bar.</li>
+      <li>The warning is repeated in context, so you cannot edit a date without seeing why it is flagged.</li></ul>
+  </div>
+  <div class="schbar"><label class="btn" for="s1">⟵ Close and go back</label></div>
+
+  <div class="cardwrap" style="position:relative;inset:auto;background:none;padding:0;display:block">
+    <div class="card" style="margin:0 auto">
+      <div class="cardhd">
+        <div><div class="eye">Task 5 · WBS 1.4 · on the critical path</div>
+          <h3>Plant canopy trees (12)</h3></div>
+        <label class="btn" for="s1">✕</label>
+      </div>
+      <div class="cardbd">
+        <div class="warnstrip" style="margin:0 0 12px"><b>Warning</b>
+          <span>Overlaps the tail of the dormant window, and finishes 1 day past baseline. Advisory — no date was moved.</span></div>
+        <div class="fgrid">
+          <div class="fld"><label>Duration</label><input value="3d"></div>
+          <div class="fld"><label>Start</label><input value="2027-04-13" type="date"></div>
+          <div class="fld"><label>Finish</label><input value="2027-04-17" type="date"></div>
+          <div class="fld"><label>% complete</label><input value="0"></div>
+          <div class="fld"><label>Constraint</label><select><option>As soon as possible</option><option>Start no earlier than</option><option>Finish no later than</option></select></div>
+          <div class="fld"><label>Calendar</label><select><option>Standard (7-day)</option></select></div>
+          <div class="fld"><label>Baseline start</label><input value="13 Apr" disabled></div>
+          <div class="fld"><label>Baseline finish</label><input value="16 Apr" disabled></div>
+          <div class="fld"><label>Finish variance</label><input value="+1 day" disabled style="color:var(--red)"></div>
+        </div>
+        <div class="fld" style="margin-top:12px"><label>Predecessors</label>
+          <input value="3FS, 4FS"></div>
+        <div class="fld" style="margin-top:12px"><label>Notes</label>
+          <input value="Water in the same day if it stays dry"></div>
+      </div>
+      <div class="cardft">
+        <label class="btn" for="s1">Delete task</label>
+        <span><label class="btn" for="s1">Cancel</label> <label class="btn solid" for="s1">Save task</label></span>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============================================== D PHONE -->
+<div class="pane" id="p4"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div><h2>Schedule on a phone</h2>
+    <p>Collapsed by default. Same markup, same scroller — only <code>--gw</code> differs.</p></div>
+  <div class="mknote"><b>D — Phone (390px)</b>
+    The alignment problem you spotted was two panes scrolling independently. Here both live in one vertical
+    scroller, so rows stay locked together; only the chart pans sideways.
+    <ul><li>Grid starts collapsed; the expand control is still there for landscape.</li>
+      <li>Editing happens in the popup card, never by typing across a row.</li></ul>
+  </div>
+  <div class="phone">
+    <div style="padding:9px 11px;border-bottom:1.5px solid var(--ink);display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+      <button class="chip on" style="font-size:10px">Week</button>
+      <button class="chip" style="font-size:10px">Month</button>
+      <span class="spacer"></span><button class="btn" style="font-size:10px">Expand ⟩</button>
+    </div>
+    <div class="sched narrow" style="--gw:104px;--day:14px">
+      <div class="schscroll">
+        <div class="gpane">
+          <div class="ghead"><div class="hcell"><span>ID</span><span>Task</span><span>Dur</span></div></div>
+          <div class="grow sum"><span class="idc">1</span><span class="nm">Phase 1</span><span class="num">18d</span></div>
+          <div class="grow crit"><span class="idc">2</span><span class="nm">Survey</span><span class="num">2d</span></div>
+          <div class="grow crit"><span class="idc">3</span><span class="nm">Mulch</span><span class="num">5d</span></div>
+          <div class="grow"><span class="idc">4</span><span class="nm">◆ Stock</span><span class="num">0d</span></div>
+          <div class="grow crit sel"><span class="idc">5</span><span class="nm">Canopy</span><span class="num">3d</span></div>
+          <div class="grow crit"><span class="idc">6</span><span class="nm">Shrubs</span><span class="num">4d</span></div>
+          <div class="grow"><span class="idc">7</span><span class="nm">Water in</span><span class="num">2d</span></div>
+          <div class="grow crit"><span class="idc">8</span><span class="nm">Deer</span><span class="num">2d</span></div>
+        </div>
+        <div class="tpane"><div style="width:840px">
+          <div class="thead"><div class="scale">
+            <span class="maj" style="left:6px">APR 2027</span>
+            <span class="min" style="left:42px">4</span><span class="min" style="left:140px">11</span>
+            <span class="min" style="left:238px">18</span><span class="min" style="left:336px">25</span></div></div>
+          <div class="tbody">
+            <div class="win" style="left:0;width:42px;top:0;bottom:0"></div>
+            <div class="today" style="left:154px"></div>
+            <div class="trow sum"><div class="sumbar" style="left:42px;width:364px"></div></div>
+            <div class="trow"><div class="bar crit" style="left:42px;width:28px"><i class="pc" style="width:100%"></i></div><div class="base" style="left:42px;width:28px"></div></div>
+            <div class="trow"><div class="bar crit" style="left:70px;width:98px"><i class="pc" style="width:60%"></i></div><div class="base" style="left:70px;width:98px"></div></div>
+            <div class="trow"><div class="ms" style="left:136px"></div></div>
+            <div class="trow sel"><div class="bar crit" style="left:168px;width:70px"></div><div class="base" style="left:168px;width:56px"></div></div>
+            <div class="trow"><div class="bar crit" style="left:238px;width:84px"></div><div class="base" style="left:238px;width:84px"></div></div>
+            <div class="trow"><div class="bar" style="left:252px;width:28px"></div></div>
+            <div class="trow"><div class="bar crit" style="left:322px;width:84px"></div><div class="base" style="left:322px;width:70px"></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+</body>
+</html>
