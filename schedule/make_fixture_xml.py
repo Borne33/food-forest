@@ -12,7 +12,14 @@ Enum notes (MSPDI):
   LinkLag is in TENTHS OF A MINUTE, so one 480-minute day = 4800.
 """
 import re
+import sys
 from pathlib import Path
+
+# --recompute emits the same project with NO finish dates and every task parked
+# at the project start, so the importing tool must schedule it from the links and
+# the calendar. That is the version that actually tests the engine — the normal
+# file carries our own dates and only proves the structure is expressible.
+RECOMPUTE = "--recompute" in sys.argv
 
 HERE = Path(__file__).resolve().parent
 D = 480
@@ -32,6 +39,18 @@ def dur(mins, elapsed=False):
 def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
+
+# --- the engine's computed dates, so every task can carry Start/Finish ---
+# GanttProject (and MPXJ generally) SKIPS any task with neither start+finish nor
+# start+duration. Summaries had neither, so both were dropped and all thirteen
+# children were orphaned with "source task not found".
+DATES, SUMDUR = {}, {}
+import csv as _csv
+with open(HERE / "pc1-expected.csv") as fh:
+    for row in _csv.DictReader(fh):
+        DATES[int(row["ID"])] = (row["Start"].replace(" ", "T") + ":00",
+                                 row["Finish"].replace(" ", "T") + ":00")
+        SUMDUR[int(row["ID"])] = int(row["Dur(min)"] or 0)
 
 # --- read the fixture straight out of fixture.js so the two cannot drift ---
 src = (HERE / "fixture.js").read_text()
@@ -129,12 +148,22 @@ for idx, (tid, t) in enumerate(order):
     pct = field(t, "pctComplete", int, 0) or 0
     lvl = 2 if parent else 1
 
+    st, fi = DATES.get(tid, (None, None))
     out += ['    <Task>',
             '      <UID>%d</UID><ID>%d</ID><Name>%s</Name>' % (tid, idx + 1, name),
             '      <Active>1</Active><Manual>0</Manual><Type>1</Type>',
             '      <OutlineLevel>%d</OutlineLevel>' % lvl,
             '      <Summary>%d</Summary><Milestone>%d</Milestone>' % (1 if is_sum else 0, 1 if is_ms else 0),
             '      <ConstraintType>%d</ConstraintType>' % CONS.get(ctype, 0)]
+    if RECOMPUTE:
+        # start+duration only: enough for MPXJ to import, not enough to skip the maths
+        out += ['      <Start>%s</Start>' % PROJ_START]
+    elif st and fi:
+        out += ['      <Start>%s</Start><Finish>%s</Finish>' % (st, fi)]
+    if is_sum and (RECOMPUTE or (st and fi)):
+        # a summary still needs a duration of its own or MPXJ treats it as empty
+        out += ['      <Duration>%s</Duration><DurationFormat>7</DurationFormat>'
+                % dur(SUMDUR.get(tid, 0))]
     if cdate:
         out.append('      <ConstraintDate>%s</ConstraintDate>' % iso(cdate))
     if deadline:
@@ -153,6 +182,6 @@ for idx, (tid, t) in enumerate(order):
 
 out += ['  </Tasks>', '</Project>']
 xml = "\n".join(out) + "\n"
-(HERE / "pc1-fixture.xml").write_text(xml)
-print("wrote pc1-fixture.xml — %d tasks, %d links, %d bytes"
-      % (len(tasks), len(links), len(xml)))
+name = "pc1-fixture-recompute.xml" if RECOMPUTE else "pc1-fixture.xml"
+(HERE / name).write_text(xml)
+print("wrote %s — %d tasks, %d links, %d bytes" % (name, len(tasks), len(links), len(xml)))

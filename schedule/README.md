@@ -27,6 +27,24 @@ await PC1_TEST.run("/food-forest/index.html");   // -> {passed, failed, results}
 Current state: **25 passed, 0 failed.**
 
 ## Verifying against a real scheduler (the ⛔ gate)
+
+**Two files, and the difference matters.**
+
+| File | Contains | What it proves |
+|---|---|---|
+| `pc1-fixture.xml` | tasks, links, calendar **and our computed dates** | the project imports and the structure is expressible |
+| `pc1-fixture-recompute.xml` | same, but **no finish dates**; every task parked at the project start | the other tool schedules it itself — *this* is the real check |
+
+Import the **recompute** file, let GanttProject/ProjectLibre lay it out, then
+compare its dates against `pc1-expected.csv`. The plain file only echoes us back.
+
+> **Import bug fixed Aug 2026.** The first version emitted no `<Start>` or
+> `<Finish>` on any task, and nothing at all for the two summaries. MPXJ (which
+> GanttProject uses) skips a task with neither start+finish nor start+duration,
+> so both summaries were dropped and all thirteen children were orphaned —
+> "source task=N was not found" thirteen times over. Every task now carries
+> Start, Finish and Duration. The links and lags were read correctly even then.
+
 `pc1-fixture.xml` is the same fixture as MS Project XML (MSPDI 2003+ schema),
 openable in **ProjectLibre / GanttProject / MS Project**.
 `pc1-expected.csv` is what this engine computes.
