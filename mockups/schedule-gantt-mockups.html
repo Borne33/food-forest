@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule &amp; Gantt — 5 mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe3; --paper2:#ece7d7; --ink:#2b2a22; --ink2:#5b5743; --faint:#6c6750;
+    --line:#c9c2ab; --dot:#c2bba2; --sage:#6f8a5f; --sage-d:#42603a;
+    --blue:#3b82f6; --green:#46a34a; --ygreen:#9bbf3a; --yellow:#e0b932; --orange:#e8923c; --red:#dd4b3e;
+    --soil:#7a5a34; --soil-d:#5c421f; --soil-bg:#efe4d0; --soil-line:#d8c39c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Spectral',Georgia,serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'Space Mono',ui-monospace,monospace}
+  button{font-family:inherit;cursor:pointer}
+
+  .topbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+  .brand b{font-size:19px;font-weight:800;letter-spacing:-.01em;display:block}
+  .brand .acc{font-family:'Space Mono';font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .ham{border:1.5px solid var(--ink);background:var(--paper);border-radius:3px;width:42px;height:38px;
+    display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+  .ham i{display:block;width:18px;height:2px;background:var(--ink)}
+  .wrap{max-width:1340px;margin:0 auto;padding:18px 16px 80px}
+  .pagehead{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+  .pagehead .eye{font-family:'Space Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .pagehead h2{margin:5px 0 3px;font-size:28px;font-weight:800;letter-spacing:-.02em}
+  .pagehead p{margin:0;color:var(--ink2);max-width:720px}
+
+  .mkbar{position:sticky;top:59px;z-index:39;background:var(--ink);color:var(--paper);padding:8px 18px;
+    display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .mkbar .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-right:6px}
+  .mkbar label{font-family:'Space Mono';font-size:11px;letter-spacing:.06em;background:transparent;color:var(--paper);
+    border:1.5px solid rgba(243,239,227,.45);border-radius:99px;padding:5px 13px;cursor:pointer;user-select:none}
+  .mkbar label:hover{border-color:var(--paper)}
+  .mkin{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  #mk1:checked~.mkbar label[for=mk1],#mk2:checked~.mkbar label[for=mk2],#mk3:checked~.mkbar label[for=mk3],
+  #mk4:checked~.mkbar label[for=mk4],#mk5:checked~.mkbar label[for=mk5]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  #mk1:checked~#m1,#mk2:checked~#m2,#mk3:checked~#m3,#mk4:checked~#m4,#mk5:checked~#m5{display:block}
+  .pane{display:none}
+  .mknote{border-left:3px solid var(--soil);background:var(--soil-bg);padding:11px 15px;border-radius:0 4px 4px 0;
+    margin:0 0 16px;font-size:13.5px}
+  .mknote > b:first-child{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    display:block;color:var(--soil-d);margin-bottom:3px}
+  .mknote ul{margin:7px 0 0;padding-left:18px} .mknote li{margin:3px 0}
+  .mknote li b{font-weight:700}
+
+  /* shared chrome */
+  .schbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+  .chip{font-family:'Space Mono';font-size:11px;border:1.5px solid var(--line);background:#fbf9f2;
+    border-radius:99px;padding:5px 11px;color:var(--ink2)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn{font-family:'Space Mono';font-size:11.5px;border:1.5px solid var(--line);background:#fbf9f2;
+    border-radius:4px;padding:6px 12px;color:var(--ink2)}
+  .spacer{flex:1 1 auto}
+  .warnstrip{display:flex;align-items:center;gap:9px;border-left:3px solid var(--orange);background:#fbf1e4;
+    padding:8px 13px;border-radius:0 4px 4px 0;margin:0 0 12px;font-size:13px}
+  .warnstrip b{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a5a1d}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-family:'Space Mono';font-size:10px;color:var(--faint);margin:9px 2px 0}
+  .legend i{display:inline-block;width:16px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+  .lg-task{background:var(--sage)} .lg-crit{background:var(--red)} .lg-sum{background:var(--ink)}
+  .lg-base{background:var(--dot)} .lg-win{background:var(--soil-bg);border:1px solid var(--soil-line)}
+
+  /* grid */
+  .gwrap{border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
+  .gsplit{display:grid;grid-template-columns:minmax(340px,46%) 1fr}
+  .gcol{overflow-x:auto}
+  .gtbl{width:100%;border-collapse:collapse;font-size:13px}
+  .gtbl th{background:var(--paper2);border-bottom:1.5px solid var(--ink);font-family:'Space Mono';
+    font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);
+    padding:7px 7px;text-align:left;white-space:nowrap;position:sticky;top:0;z-index:2}
+  .gtbl td{border-bottom:1px solid var(--line);padding:5px 7px;white-space:nowrap;height:31px}
+  .gtbl tr.sum td{background:#f0ecdf;font-weight:700}
+  .gtbl tr.crit td.nm{color:var(--red)}
+  .gtbl .ind{width:26px;text-align:center;color:var(--orange)}
+  .gtbl .nm{max-width:260px;overflow:hidden;text-overflow:ellipsis}
+  .lvl1{padding-left:16px !important} .lvl2{padding-left:30px !important}
+  .num{text-align:right;font-family:'Space Mono';font-size:11.5px}
+  .msto{color:var(--ink)}
+  /* timeline */
+  .tl{position:relative;overflow-x:auto}
+  .tlsvg{display:block}
+</style>
+</head>
+<body>
+
+<input class="mkin" type="radio" name="mk" id="mk1" checked>
+<input class="mkin" type="radio" name="mk" id="mk2">
+<input class="mkin" type="radio" name="mk" id="mk3">
+<input class="mkin" type="radio" name="mk" id="mk4">
+<input class="mkin" type="radio" name="mk" id="mk5">
+
+<div class="topbar">
+  <div class="brand"><span class="acc">Plant and source database and planning tool</span><b>Native Food Forest Planner</b></div>
+  <div class="ham"><i></i><i></i><i></i></div>
+</div>
+
+<div class="mkbar">
+  <span class="lbl">Schedule</span>
+  <label for="mk1">1 · MSP Classic</label>
+  <label for="mk2">2 · Timeline-first</label>
+  <label for="mk3">3 · Phase bands</label>
+  <label for="mk4">4 · Season calendar</label>
+  <label for="mk5">5 · Task focus</label>
+</div>
+
+<!-- ======================================================= 1 MSP CLASSIC -->
+<div class="pane" id="m1"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div>
+    <h2>Schedule</h2>
+    <p>Every task, its order and its dates — computed by the scheduling engine, editable by hand.</p></div>
+
+  <div class="mknote"><b>Mockup 1 — MSP Classic</b>
+    A faithful split pane: editable grid on the left, SVG Gantt on the right, draggable divider between.
+    <ul>
+      <li><b>Familiar</b> to anyone who has used MS Project, and maps 1:1 onto the XML export (Q1).</li>
+      <li>Full column set — WBS, predecessors as <code>4FS+2d</code> text, slack, critical flag.</li>
+      <li>Densest and most capable; also the most intimidating, and the hardest to make work on a phone.</li>
+    </ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip on">Day</button><button class="chip">Week</button>
+    <button class="chip on">Month</button><button class="chip">Quarter</button><button class="chip">Year</button>
+    <span class="spacer"></span>
+    <button class="btn">Set baseline</button><button class="btn">Export MS Project XML</button><button class="btn">Export CSV</button>
+  </div>
+
+  <div class="warnstrip"><b>3 warnings</b>
+    <span>Two tasks fall outside the planting window; one deadline is at risk. Advisory only — no dates were moved.</span>
+  </div>
+
+  <div class="gwrap"><div class="gsplit">
+    <div class="gcol"><table class="gtbl">
+      <thead><tr><th>ID</th><th>WBS</th><th class="ind">!</th><th>Task name</th><th>Dur</th><th>Start</th><th>Finish</th><th>Pred</th><th>Slack</th></tr></thead>
+      <tbody>
+        <tr class="sum"><td>1</td><td>1</td><td class="ind"></td><td class="nm">Phase 1 — Canopy &amp; soil</td><td class="num">18d</td><td class="mono">04 Apr</td><td class="mono">29 Apr</td><td></td><td class="num">0d</td></tr>
+        <tr class="crit"><td>2</td><td>1.1</td><td class="ind"></td><td class="nm lvl1">Site survey &amp; marking</td><td class="num">2d</td><td class="mono">04 Apr</td><td class="mono">05 Apr</td><td></td><td class="num">0d</td></tr>
+        <tr class="crit"><td>3</td><td>1.2</td><td class="ind"></td><td class="nm lvl1">Sheet-mulch the beds</td><td class="num">5d</td><td class="mono">06 Apr</td><td class="mono">12 Apr</td><td class="mono">2FS</td><td class="num">0d</td></tr>
+        <tr><td>4</td><td>1.3</td><td class="ind">◆</td><td class="nm lvl1 msto">Bare-root order arrives</td><td class="num">0d</td><td class="mono">11 Apr</td><td class="mono">11 Apr</td><td></td><td class="num">1d</td></tr>
+        <tr class="crit"><td>5</td><td>1.4</td><td class="ind">⚠</td><td class="nm lvl1">Plant canopy trees (12)</td><td class="num">3d</td><td class="mono">13 Apr</td><td class="mono">17 Apr</td><td class="mono">3FS, 4FS</td><td class="num">0d</td></tr>
+        <tr class="crit"><td>6</td><td>1.5</td><td class="ind"></td><td class="nm lvl1">Plant shrub layer (24)</td><td class="num">4d</td><td class="mono">18 Apr</td><td class="mono">23 Apr</td><td class="mono">5FS</td><td class="num">0d</td></tr>
+        <tr><td>7</td><td>1.6</td><td class="ind"></td><td class="nm lvl1">Mulch &amp; water in</td><td class="num">2d</td><td class="mono">19 Apr</td><td class="mono">20 Apr</td><td class="mono">6SS+1d</td><td class="num">3d</td></tr>
+        <tr class="crit"><td>8</td><td>1.7</td><td class="ind"></td><td class="nm lvl1">Deer protection</td><td class="num">2d</td><td class="mono">24 Apr</td><td class="mono">29 Apr</td><td class="mono">6FS</td><td class="num">0d</td></tr>
+        <tr class="sum"><td>9</td><td>2</td><td class="ind"></td><td class="nm">Phase 2 — Understory</td><td class="num">9d</td><td class="mono">06 Apr</td><td class="mono">16 Apr</td><td></td><td class="num">248d</td></tr>
+        <tr><td>10</td><td>2.1</td><td class="ind"></td><td class="nm lvl1">Soil test &amp; amend</td><td class="num">1d</td><td class="mono">06 Apr</td><td class="mono">06 Apr</td><td></td><td class="num">248d</td></tr>
+        <tr><td>11</td><td>2.2</td><td class="ind">⚠</td><td class="nm lvl1">Plant herb layer (48)</td><td class="num">5d</td><td class="mono">07 Apr</td><td class="mono">13 Apr</td><td class="mono">10FS</td><td class="num">248d</td></tr>
+        <tr><td>12</td><td>2.3</td><td class="ind"></td><td class="nm lvl1">Divide &amp; spread groundcover</td><td class="num">3d</td><td class="mono">14 Apr</td><td class="mono">16 Apr</td><td class="mono">11FS</td><td class="num">248d</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="tl"><svg class="tlsvg" width="700" height="404" viewBox="0 0 700 404" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="700" height="404" fill="#fbf9f2"/>
+      <!-- advisory planting-window shading -->
+      <rect x="0" y="44" width="120" height="360" fill="#efe4d0" opacity=".65"/>
+      <text x="6" y="58" font-family="Space Mono" font-size="8" fill="#5c421f">DORMANT — ADVISORY</text>
+      <!-- header -->
+      <rect x="0" y="0" width="700" height="44" fill="#ece7d7"/>
+      <line x1="0" y1="44" x2="700" y2="44" stroke="#2b2a22" stroke-width="1.5"/>
+      <text x="150" y="16" font-family="Space Mono" font-size="10" fill="#5b5743">APRIL 2027</text>
+      <text x="470" y="16" font-family="Space Mono" font-size="10" fill="#5b5743">MAY 2027</text>
+      <line x1="440" y1="0" x2="440" y2="404" stroke="#c9c2ab"/>
+      <g font-family="Space Mono" font-size="8" fill="#6c6750">
+        <text x="128" y="36">4</text><text x="188" y="36">11</text><text x="248" y="36">18</text>
+        <text x="308" y="36">25</text><text x="368" y="36">2</text><text x="448" y="36">9</text>
+      </g>
+      <!-- today line -->
+      <line x1="196" y1="44" x2="196" y2="404" stroke="#dd4b3e" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="200" y="54" font-family="Space Mono" font-size="8" fill="#dd4b3e">TODAY</text>
+      <!-- rows: summary, then tasks -->
+      <g>
+        <path d="M124 56 h176 v10 l-6 -5 h-164 l-6 5 z" fill="#2b2a22"/>
+        <rect x="124" y="88" width="24" height="12" rx="2" fill="#dd4b3e"/><rect x="124" y="88" width="14" height="12" rx="2" fill="#a8382e"/>
+        <rect x="124" y="76" width="24" height="4" rx="1" fill="#c2bba2"/>
+        <rect x="154" y="119" width="60" height="12" rx="2" fill="#dd4b3e"/>
+        <rect x="154" y="107" width="52" height="4" rx="1" fill="#c2bba2"/>
+        <path d="M190 150 l7 7 l-7 7 l-7 -7 z" fill="#2b2a22"/>
+        <rect x="220" y="181" width="36" height="12" rx="2" fill="#dd4b3e"/>
+        <rect x="262" y="212" width="48" height="12" rx="2" fill="#dd4b3e"/>
+        <rect x="274" y="243" width="24" height="12" rx="2" fill="#6f8a5f"/>
+        <rect x="316" y="274" width="24" height="12" rx="2" fill="#dd4b3e"/>
+        <path d="M154 305 h110 v10 l-6 -5 h-98 l-6 5 z" fill="#2b2a22"/>
+        <rect x="154" y="336" width="12" height="12" rx="2" fill="#6f8a5f"/>
+        <rect x="172" y="367" width="60" height="12" rx="2" fill="#6f8a5f"/>
+      </g>
+      <!-- dependency arrows -->
+      <g stroke="#8a8672" fill="none" stroke-width="1">
+        <path d="M148 94 h4 v25 h2" marker-end="url(#a1)"/>
+        <path d="M214 125 h4 v56 h2" marker-end="url(#a1)"/>
+        <path d="M256 187 h4 v25 h2" marker-end="url(#a1)"/>
+        <path d="M310 218 h4 v56 h2" marker-end="url(#a1)"/>
+      </g>
+      <defs><marker id="a1" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+        <path d="M0 0 L5 2.5 L0 5 z" fill="#8a8672"/></marker></defs>
+      <g font-family="Space Mono" font-size="8" fill="#8a5a1d">
+        <text x="260" y="190">⚠</text><text x="236" y="376">⚠</text>
+      </g>
+    </svg></div>
+  </div></div>
+  <div class="legend">
+    <span><i class="lg-task"></i>Task</span><span><i class="lg-crit"></i>Critical path</span>
+    <span><i class="lg-sum"></i>Summary</span><span><i class="lg-base"></i>Baseline</span>
+    <span><i class="lg-win"></i>Outside planting window (advisory)</span><span>◆ Milestone</span>
+  </div>
+</div></div>
+
+<!-- ======================================================= 2 TIMELINE-FIRST -->
+<div class="pane" id="m2"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div>
+    <h2>Schedule</h2>
+    <p>The shape of the project first; the numbers when you ask for them.</p></div>
+
+  <div class="mknote"><b>Mockup 2 — Timeline-first</b>
+    The Gantt takes the width. The grid shrinks to a name-and-duration rail; the full MSP column set slides
+    out when you need it.
+    <ul>
+      <li>Best for <b>seeing the plan</b> — where the crunch is, what runs long, what the critical path really is.</li>
+      <li>Reads well on a laptop and degrades to a scrollable strip on a phone.</li>
+      <li>Editing is a second-class act: you open a task rather than typing across a row.</li>
+    </ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip">Day</button><button class="chip on">Week</button><button class="chip">Month</button>
+    <button class="chip">Quarter</button><button class="chip">Year</button>
+    <button class="btn">⇔ Show all columns</button>
+    <span class="spacer"></span>
+    <button class="btn">Set baseline</button><button class="btn">Export XML</button>
+  </div>
+
+  <div class="warnstrip"><b>3 warnings</b><span>Advisory only — the engine never moved a date.</span></div>
+
+  <div class="gwrap"><div class="gsplit" style="grid-template-columns:minmax(200px,240px) 1fr">
+    <div class="gcol"><table class="gtbl">
+      <thead><tr><th>Task</th><th>Dur</th></tr></thead>
+      <tbody>
+        <tr class="sum"><td class="nm">Phase 1 — Canopy &amp; soil</td><td class="num">18d</td></tr>
+        <tr class="crit"><td class="nm lvl1">Site survey</td><td class="num">2d</td></tr>
+        <tr class="crit"><td class="nm lvl1">Sheet-mulch beds</td><td class="num">5d</td></tr>
+        <tr><td class="nm lvl1 msto">◆ Stock arrives</td><td class="num">0d</td></tr>
+        <tr class="crit"><td class="nm lvl1">Plant canopy (12)</td><td class="num">3d</td></tr>
+        <tr class="crit"><td class="nm lvl1">Plant shrubs (24)</td><td class="num">4d</td></tr>
+        <tr><td class="nm lvl1">Mulch &amp; water</td><td class="num">2d</td></tr>
+        <tr class="crit"><td class="nm lvl1">Deer protection</td><td class="num">2d</td></tr>
+        <tr class="sum"><td class="nm">Phase 2 — Understory</td><td class="num">9d</td></tr>
+        <tr><td class="nm lvl1">Soil test &amp; amend</td><td class="num">1d</td></tr>
+        <tr><td class="nm lvl1">Plant herbs (48)</td><td class="num">5d</td></tr>
+        <tr><td class="nm lvl1">Groundcover</td><td class="num">3d</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tl"><svg class="tlsvg" width="900" height="404" viewBox="0 0 900 404" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="404" fill="#fbf9f2"/>
+      <rect x="0" y="44" width="150" height="360" fill="#efe4d0" opacity=".65"/>
+      <rect x="760" y="44" width="140" height="360" fill="#efe4d0" opacity=".65"/>
+      <rect x="0" y="0" width="900" height="44" fill="#ece7d7"/>
+      <line x1="0" y1="44" x2="900" y2="44" stroke="#2b2a22" stroke-width="1.5"/>
+      <g font-family="Space Mono" font-size="10" fill="#5b5743">
+        <text x="60" y="16">MAR</text><text x="240" y="16">APR</text><text x="480" y="16">MAY</text><text x="700" y="16">JUN</text>
+      </g>
+      <g font-family="Space Mono" font-size="8" fill="#6c6750">
+        <text x="160" y="36">W14</text><text x="250" y="36">W15</text><text x="340" y="36">W16</text>
+        <text x="430" y="36">W17</text><text x="520" y="36">W18</text><text x="610" y="36">W19</text></g>
+      <line x1="300" y1="44" x2="300" y2="404" stroke="#dd4b3e" stroke-dasharray="3 3"/>
+      <g>
+        <path d="M155 56 h300 v10 l-6 -5 h-288 l-6 5 z" fill="#2b2a22"/>
+        <rect x="155" y="88" width="40" height="13" rx="2" fill="#dd4b3e"/><rect x="155" y="88" width="24" height="13" rx="2" fill="#a8382e"/>
+        <rect x="205" y="119" width="95" height="13" rx="2" fill="#dd4b3e"/>
+        <path d="M290 150 l8 8 l-8 8 l-8 -8 z" fill="#2b2a22"/>
+        <rect x="310" y="181" width="60" height="13" rx="2" fill="#dd4b3e"/>
+        <rect x="380" y="212" width="78" height="13" rx="2" fill="#dd4b3e"/>
+        <rect x="400" y="243" width="40" height="13" rx="2" fill="#6f8a5f"/>
+        <rect x="468" y="274" width="40" height="13" rx="2" fill="#dd4b3e"/>
+        <path d="M205 305 h175 v10 l-6 -5 h-163 l-6 5 z" fill="#2b2a22"/>
+        <rect x="205" y="336" width="20" height="13" rx="2" fill="#6f8a5f"/>
+        <rect x="235" y="367" width="95" height="13" rx="2" fill="#6f8a5f"/>
+      </g>
+      <text x="12" y="60" font-family="Space Mono" font-size="8" fill="#5c421f">DORMANT</text>
+      <text x="772" y="60" font-family="Space Mono" font-size="8" fill="#5c421f">SUMMER HEAT</text>
+    </svg></div>
+  </div></div>
+  <div class="legend">
+    <span><i class="lg-task"></i>Task</span><span><i class="lg-crit"></i>Critical</span>
+    <span><i class="lg-sum"></i>Summary</span><span><i class="lg-win"></i>Advisory window</span>
+  </div>
+</div></div>
+
+<!-- ======================================================= 3 PHASE BANDS -->
+<div class="pane" id="m3"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div>
+    <h2>Schedule</h2>
+    <p>One band per planting phase. The forest grows down the page.</p></div>
+
+  <div class="mknote"><b>Mockup 3 — Phase bands</b>
+    Drops the single continuous grid for a band per phase, each with its own mini-Gantt across the season.
+    <ul>
+      <li>Matches how the plan is actually <b>authored</b> — the Plants tab already thinks in phases.</li>
+      <li>Seasonal shading is the star: each band shows its planting window, so "too late for bare root" is obvious.</li>
+      <li>Cross-phase dependencies are the weak point — an arrow between bands is easy to miss.</li>
+    </ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip on">All phases</button><button class="chip">Year 1</button>
+    <button class="chip">Year 2</button><button class="chip">Year 3</button>
+    <span class="spacer"></span><button class="btn">Export XML</button>
+  </div>
+
+  <div class="gwrap" style="margin-bottom:14px">
+    <div style="padding:11px 14px;background:var(--paper2);border-bottom:1.5px solid var(--ink);
+                display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div><b style="font-size:16px">Phase 1 — Canopy &amp; soil</b>
+        <span class="mono" style="font-size:11px;color:var(--faint);display:block;margin-top:2px">
+          4–29 Apr 2027 · 18 working days · 7 tasks · 36 plants</span></div>
+      <div class="mono" style="font-size:11px;color:var(--sage-d)">ON THE CRITICAL PATH</div>
+    </div>
+    <div class="tl"><svg class="tlsvg" width="1100" height="196" viewBox="0 0 1100 196" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1100" height="196" fill="#fbf9f2"/>
+      <rect x="0" y="28" width="130" height="168" fill="#efe4d0" opacity=".7"/>
+      <rect x="0" y="0" width="1100" height="28" fill="#ece7d7"/>
+      <line x1="0" y1="28" x2="1100" y2="28" stroke="#2b2a22" stroke-width="1.5"/>
+      <g font-family="Space Mono" font-size="9" fill="#5b5743">
+        <text x="140" y="18">4 APR</text><text x="330" y="18">11 APR</text><text x="520" y="18">18 APR</text>
+        <text x="710" y="18">25 APR</text><text x="900" y="18">2 MAY</text></g>
+      <g font-family="Space Mono" font-size="10" fill="#2b2a22">
+        <text x="8" y="52">Site survey</text><text x="8" y="80">Sheet-mulch</text>
+        <text x="8" y="108">Plant canopy</text><text x="8" y="136">Plant shrubs</text><text x="8" y="164">Deer protection</text></g>
+      <g>
+        <rect x="140" y="42" width="52" height="14" rx="3" fill="#dd4b3e"/>
+        <rect x="200" y="70" width="130" height="14" rx="3" fill="#dd4b3e"/>
+        <rect x="340" y="98" width="78" height="14" rx="3" fill="#dd4b3e"/>
+        <rect x="428" y="126" width="104" height="14" rx="3" fill="#dd4b3e"/>
+        <rect x="542" y="154" width="52" height="14" rx="3" fill="#dd4b3e"/>
+      </g>
+      <text x="6" y="20" font-family="Space Mono" font-size="8" fill="#5c421f">DORMANT</text>
+    </svg></div>
+  </div>
+
+  <div class="gwrap" style="margin-bottom:14px">
+    <div style="padding:11px 14px;background:var(--paper2);border-bottom:1.5px solid var(--ink);
+                display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div><b style="font-size:16px">Phase 2 — Understory &amp; herbs</b>
+        <span class="mono" style="font-size:11px;color:var(--faint);display:block;margin-top:2px">
+          6–16 Apr 2028 · 9 working days · 3 tasks · 48 plants</span></div>
+      <div class="mono" style="font-size:11px;color:var(--faint)">248 DAYS SLACK</div>
+    </div>
+    <div class="tl"><svg class="tlsvg" width="1100" height="140" viewBox="0 0 1100 140" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1100" height="140" fill="#fbf9f2"/>
+      <rect x="0" y="28" width="130" height="112" fill="#efe4d0" opacity=".7"/>
+      <rect x="700" y="28" width="400" height="112" fill="#efe4d0" opacity=".5"/>
+      <rect x="0" y="0" width="1100" height="28" fill="#ece7d7"/>
+      <line x1="0" y1="28" x2="1100" y2="28" stroke="#2b2a22" stroke-width="1.5"/>
+      <g font-family="Space Mono" font-size="9" fill="#5b5743">
+        <text x="140" y="18">6 APR</text><text x="330" y="18">13 APR</text><text x="520" y="18">20 APR</text>
+        <text x="710" y="18">27 APR</text></g>
+      <g font-family="Space Mono" font-size="10" fill="#2b2a22">
+        <text x="8" y="52">Soil test</text><text x="8" y="80">Plant herbs</text><text x="8" y="108">Groundcover</text></g>
+      <rect x="140" y="42" width="26" height="14" rx="3" fill="#6f8a5f"/>
+      <rect x="174" y="70" width="130" height="14" rx="3" fill="#6f8a5f"/>
+      <rect x="312" y="98" width="78" height="14" rx="3" fill="#6f8a5f"/>
+      <text x="706" y="20" font-family="Space Mono" font-size="8" fill="#5c421f">TOO LATE FOR BARE ROOT — ADVISORY</text>
+    </svg></div>
+  </div>
+</div></div>
+
+<!-- ======================================================= 4 SEASON CALENDAR -->
+<div class="pane" id="m4"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div>
+    <h2>Schedule</h2>
+    <p>What happens in which month, year by year.</p></div>
+
+  <div class="mknote"><b>Mockup 4 — Season calendar</b>
+    Not a Gantt. A year × month matrix with tasks as blocks in month cells — the schedule as a planting calendar.
+    <ul>
+      <li>Answers <b>"what do I do in April"</b> better than any Gantt does.</li>
+      <li>Seasonality is the axis, so planting windows are structural rather than shading.</li>
+      <li>Loses day-level precision, dependency arrows and the critical path — it cannot replace the Gantt,
+        it can only sit alongside it.</li>
+    </ul>
+  </div>
+
+  <div class="schbar">
+    <button class="chip on">Calendar</button><button class="chip">Gantt</button>
+    <span class="spacer"></span><button class="btn">Print</button><button class="btn">Export CSV</button>
+  </div>
+
+  <div class="gwrap"><div class="gcol"><table class="gtbl">
+    <thead><tr><th style="min-width:96px">Year</th>
+      <th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>
+      <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr></thead>
+    <tbody>
+      <tr><td class="sum" style="font-weight:700">Year 1 · 2027</td>
+        <td style="background:#efe4d0"></td><td style="background:#efe4d0"></td>
+        <td><span class="mono" style="font-size:9px;background:#e6efe0;border-radius:3px;padding:2px 5px">Order</span></td>
+        <td style="background:#f7dcd8"><span class="mono" style="font-size:9px">Survey · Mulch · Plant 36</span></td>
+        <td><span class="mono" style="font-size:9px;background:#e6efe0;border-radius:3px;padding:2px 5px">Deer guard</span></td>
+        <td><span class="mono" style="font-size:9px">Water</span></td><td><span class="mono" style="font-size:9px">Water</span></td>
+        <td><span class="mono" style="font-size:9px">Water</span></td><td></td>
+        <td><span class="mono" style="font-size:9px">Mulch top-up</span></td>
+        <td style="background:#efe4d0"></td><td style="background:#efe4d0"></td></tr>
+      <tr><td class="sum" style="font-weight:700">Year 2 · 2028</td>
+        <td style="background:#efe4d0"></td><td style="background:#efe4d0"></td><td></td>
+        <td><span class="mono" style="font-size:9px;background:#e6efe0;border-radius:3px;padding:2px 5px">Soil · Herbs 48</span></td>
+        <td><span class="mono" style="font-size:9px">Groundcover</span></td>
+        <td><span class="mono" style="font-size:9px">Prune</span></td><td></td><td></td>
+        <td><span class="mono" style="font-size:9px">Divide</span></td><td></td>
+        <td style="background:#efe4d0"></td><td style="background:#efe4d0"></td></tr>
+      <tr><td class="sum" style="font-weight:700">Year 3 · 2029</td>
+        <td style="background:#efe4d0"></td><td style="background:#efe4d0"></td><td></td>
+        <td><span class="mono" style="font-size:9px;background:#e6efe0;border-radius:3px;padding:2px 5px">Vines 6</span></td>
+        <td><span class="mono" style="font-size:9px">Replace losses</span></td>
+        <td></td><td></td><td></td><td><span class="mono" style="font-size:9px">Harvest</span></td>
+        <td><span class="mono" style="font-size:9px">Harvest</span></td>
+        <td style="background:#efe4d0"></td><td style="background:#efe4d0"></td></tr>
+    </tbody>
+  </table></div></div>
+  <div class="legend">
+    <span><i style="background:#f7dcd8" class="lg-task"></i>Critical work</span>
+    <span><i class="lg-task"></i>Planned work</span>
+    <span><i class="lg-win"></i>Dormant / outside planting window</span>
+  </div>
+</div></div>
+
+<!-- ======================================================= 5 TASK FOCUS -->
+<div class="pane" id="m5"><div class="wrap">
+  <div class="pagehead"><div class="eye">My Plan · Project · Schedule</div>
+    <h2>Schedule</h2>
+    <p>A list you scan, and one task you edit properly.</p></div>
+
+  <div class="mknote"><b>Mockup 5 — Task focus</b>
+    A compact list plus a detail panel for the selected task, with the timeline reduced to a context strip.
+    <ul>
+      <li>Every MSP field gets <b>room to be labelled</b> — constraints, calendars, deadlines, variance —
+        instead of being squeezed into a column header.</li>
+      <li>The only one of the five that would genuinely work <b>on a phone</b>.</li>
+      <li>Poor for comparing tasks or seeing the whole shape; you lose the at-a-glance Gantt read.</li>
+    </ul>
+  </div>
+
+  <div class="gwrap"><div class="gsplit" style="grid-template-columns:minmax(280px,38%) 1fr">
+    <div class="gcol"><table class="gtbl">
+      <thead><tr><th>Task</th><th>Dates</th></tr></thead>
+      <tbody>
+        <tr class="sum"><td class="nm">Phase 1 — Canopy &amp; soil</td><td class="mono" style="font-size:10.5px">4–29 Apr</td></tr>
+        <tr class="crit"><td class="nm lvl1">Site survey</td><td class="mono" style="font-size:10.5px">4–5 Apr</td></tr>
+        <tr class="crit"><td class="nm lvl1">Sheet-mulch beds</td><td class="mono" style="font-size:10.5px">6–12 Apr</td></tr>
+        <tr style="background:#eef2e7"><td class="nm lvl1"><b>Plant canopy trees (12)</b></td><td class="mono" style="font-size:10.5px">13–17 Apr</td></tr>
+        <tr class="crit"><td class="nm lvl1">Plant shrub layer (24)</td><td class="mono" style="font-size:10.5px">18–23 Apr</td></tr>
+        <tr><td class="nm lvl1">Mulch &amp; water in</td><td class="mono" style="font-size:10.5px">19–20 Apr</td></tr>
+        <tr class="crit"><td class="nm lvl1">Deer protection</td><td class="mono" style="font-size:10.5px">24–29 Apr</td></tr>
+      </tbody>
+    </table></div>
+    <div style="padding:14px;border-left:1.5px solid var(--ink)">
+      <div class="mono" style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)">Task 5 · WBS 1.4</div>
+      <h3 style="margin:4px 0 2px;font-size:20px;font-weight:800">Plant canopy trees (12)</h3>
+      <div class="mono" style="font-size:11px;color:var(--red);margin-bottom:12px">ON THE CRITICAL PATH · 0d SLACK</div>
+
+      <div class="warnstrip" style="margin-bottom:12px"><b>Warning</b>
+        <span>Overlaps the tail of the dormant window. Advisory — the date was not moved.</span></div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px;font-size:13.5px">
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Duration</div>3 days</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Start</div>13 Apr 2027</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Finish</div>17 Apr 2027</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Constraint</div>As soon as possible</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Calendar</div>Standard (7-day)</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">% complete</div>0%</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Baseline</div>13–16 Apr</div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Finish variance</div><span style="color:var(--red)">+1 day</span></div>
+        <div><div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)">Deadline</div>—</div>
+      </div>
+
+      <div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:16px 0 5px">Predecessors</div>
+      <div style="font-size:13.5px">3 · Sheet-mulch the beds <span class="mono" style="font-size:11px;color:var(--faint)">FS</span><br>
+        4 · Bare-root order arrives <span class="mono" style="font-size:11px;color:var(--faint)">FS</span></div>
+
+      <div class="mono" style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:16px 0 5px">In context</div>
+      <svg width="100%" height="54" viewBox="0 0 420 54" xmlns="http://www.w3.org/2000/svg">
+        <rect width="420" height="54" fill="#f7f4ea"/><rect x="0" y="0" width="70" height="54" fill="#efe4d0"/>
+        <rect x="40" y="20" width="40" height="12" rx="2" fill="#c9c2ab"/>
+        <rect x="88" y="20" width="70" height="12" rx="2" fill="#c9c2ab"/>
+        <rect x="166" y="20" width="52" height="12" rx="2" fill="#dd4b3e"/>
+        <rect x="226" y="20" width="66" height="12" rx="2" fill="#c9c2ab"/>
+        <rect x="300" y="20" width="40" height="12" rx="2" fill="#c9c2ab"/>
+        <text x="166" y="46" font-family="Space Mono" font-size="8" fill="#dd4b3e">THIS TASK</text>
+      </svg>
+    </div>
+  </div></div>
+</div></div>
+
+</body>
+</html>
