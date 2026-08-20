@@ -407,6 +407,71 @@
   @media(max-width:620px){ .mttask{grid-template-columns:auto 1fr} .mttask .yr{grid-column:1/-1} }
   /* ── Shopping List (S7). These classes shipped with no stylesheet at all, so
      the list rendered as bare divs until Aug 2026. ───────────────────────── */
+  /* ── S8 admin Shop Editor ─────────────────────────────────────────────── */
+  .shopedit{margin-top:4px}
+  .edtabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+  .edtabs button{font-family:'Space Mono';font-size:11.5px;letter-spacing:.03em;border:1.5px solid var(--line);
+    background:#fbf9f2;border-radius:99px;padding:6px 13px;color:var(--ink2)}
+  .edtabs button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .edmsg{border-left:3px solid var(--sage);background:#eef2e7;padding:9px 13px;border-radius:0 4px 4px 0;
+    margin:0 0 12px;font-size:13.5px;color:var(--sage-d)}
+  .edmsg.bad{border-left-color:var(--red);background:#fbecea;color:#8f2d22}
+  .edbar{display:flex;gap:9px;align-items:center;margin:0 0 12px;flex-wrap:wrap}
+  .edsearch{flex:1 1 260px;font-family:'Spectral';font-size:15px;background:#fbf9f2;
+    border:1.5px solid var(--line);border-radius:4px;padding:8px 10px;color:var(--ink)}
+  .edlist{border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
+  .edrow{display:flex;align-items:center;gap:12px;justify-content:space-between;
+    padding:9px 13px;border-bottom:1px solid var(--line)}
+  .edrow:last-child{border-bottom:0}
+  .edrow-main{min-width:0}
+  .edrow-main b{display:block;font-size:15px;line-height:1.25}
+  .edrow-act{flex:0 0 auto;display:flex;gap:7px}
+  .edform{border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
+  .edhd{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:11px 14px;background:var(--paper2);border-bottom:1.5px solid var(--ink)}
+  .edhd b{font-size:16px}
+  .edhd span{display:flex;gap:8px}
+  .edgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px}
+  @media(max-width:820px){ .edgrid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:560px){ .edgrid{grid-template-columns:1fr} }
+  .edfld{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .edfld label{font-family:'Space Mono';font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+  .edfld input,.edfld select,.edfld textarea{font-family:'Spectral';font-size:14.5px;background:#fff;
+    border:1.5px solid var(--line);border-radius:4px;padding:7px 9px;color:var(--ink);width:100%}
+  .edfld input[type=file]{font-family:'Space Mono';font-size:12px;background:#fbf9f2;padding:6px}
+  .edchecks{display:flex;flex-wrap:wrap;gap:12px}
+  .edchk{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2)}
+  .edchk input{width:16px;height:16px;accent-color:var(--sage-d)}
+  .edchips{display:flex;flex-wrap:wrap;gap:6px}
+  .eddanger{padding:0 14px 14px}
+  .edsub{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);margin:20px 0 8px}
+  /* review queue */
+  .edq{display:grid;grid-template-columns:1fr 1.3fr auto;gap:12px;align-items:start;
+    border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:11px 13px;margin-bottom:9px}
+  @media(max-width:820px){ .edq{grid-template-columns:1fr} }
+  .edq-src b{display:block;font-size:14.5px;font-style:italic}
+  .edq-fix input{width:100%;font-family:'Spectral';font-size:14px;background:#fff;
+    border:1.5px solid var(--line);border-radius:4px;padding:6px 8px}
+  .edq-hits{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+  .edq-hits .chip em{font-style:italic;color:var(--faint);margin-left:4px}
+  .edq-pick{margin-top:6px;font-size:14px}
+  .edq-pick i{color:var(--faint);margin-left:5px}
+  .edq-pick button{margin-left:8px}
+  .edq-act{display:flex;gap:7px;flex:0 0 auto}
+  /* upload */
+  .edprev{margin-top:14px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:11px 13px}
+  .edprev b{font-family:'Space Mono';font-size:11.5px;display:block;margin-bottom:8px}
+  .edtbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .edtbl th{background:var(--paper2);border-bottom:1.5px solid var(--ink);font-family:'Space Mono';
+    font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:6px 7px;text-align:left;white-space:nowrap}
+  .edtbl td{border-bottom:1px solid var(--line);padding:5px 7px;white-space:nowrap;
+    max-width:210px;overflow:hidden;text-overflow:ellipsis}
+  .edstatus{font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    border-radius:99px;padding:2px 9px;background:var(--paper2);color:var(--ink2)}
+  .edstatus.s-parsed{background:#eef2e7;color:var(--sage-d)}
+  .edstatus.s-applied{background:#e6eff4;color:#245a72}
+  .edstatus.s-failed{background:#fbecea;color:#8f2d22}
   .shstats{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 12px}
   .shstat{border:1px solid var(--line);background:#fbf9f2;border-radius:4px;padding:8px 10px;text-align:center}
   .shstat b{display:block;font-family:'Space Mono';font-size:20px;font-weight:700;line-height:1;color:var(--ink)}
@@ -966,7 +1031,7 @@
 <div id="root"></div>
 
 <script type="text/babel">
-const {useState,useMemo,useEffect,useRef} = React;
+const {useState,useMemo,useEffect,useRef,useCallback} = React;
 
 /* =====================================================================
    ▼▼▼  CONFIG — PASTE YOUR TWO SUPABASE VALUES HERE  ▼▼▼
@@ -1187,6 +1252,94 @@ const dataProvider = {
   },
   async clearShopping(planId){
     const { error } = await sb.from('shopping_list').delete().eq('plan_id',planId);
+    if(error) throw error;
+  },
+  /* ---- S8: admin Shop Editor (RLS already restricts writes to the admin uid) ---- */
+  async saveVendor(row){
+    const { data, error } = row.id
+      ? await sb.from('vendors').update(row).eq('id',row.id).select().maybeSingle()
+      : await sb.from('vendors').insert(row).select().maybeSingle();
+    if(error) throw error;
+    return data;
+  },
+  async deleteVendor(id){
+    const { error } = await sb.from('vendors').delete().eq('id',id);
+    if(error) throw error;
+  },
+  async saveSale(row){
+    const { data, error } = row.id
+      ? await sb.from('sales').update(row).eq('id',row.id).select().maybeSingle()
+      : await sb.from('sales').insert(row).select().maybeSingle();
+    if(error) throw error;
+    return data;
+  },
+  async deleteSale(id){
+    const { error } = await sb.from('sales').delete().eq('id',id);
+    if(error) throw error;
+  },
+  async getUnmatched(){
+    const { data, error } = await sb.from('vendor_plants_unmatched')
+      .select('id,vendor_id,raw_name,raw_sci,form,seen_count,first_seen,last_seen,resolved_plant_id,dismissed')
+      .is('resolved_plant_id',null).eq('dismissed',false).order('id');
+    if(error) throw error;
+    return (data||[]).map(r=>({id:r.id, vendorId:r.vendor_id, rawName:r.raw_name, rawSci:r.raw_sci,
+      form:r.form, seenCount:r.seen_count, firstSeen:r.first_seen, lastSeen:r.last_seen}));
+  },
+  /* Resolving teaches the matcher: it links the listing AND records the name as a
+     synonym, so the same miss resolves itself on every later import. */
+  async resolveUnmatched(row, plantId){
+    const name=(row.rawSci||row.rawName||"").trim();
+    if(name){
+      const { data: dup } = await sb.from('plant_synonyms').select('id').ilike('name',name).maybeSingle();
+      if(!dup){
+        // plant_synonyms_uniq is an EXPRESSION index — PostgREST can't ON CONFLICT
+        // it (42P10), so check first, then insert.
+        const { error: se } = await sb.from('plant_synonyms')
+          .insert({plant_id:plantId, name, kind: row.rawSci?'sci':'common', source:'Shop Editor review queue'});
+        if(se) throw se;
+      }
+    }
+    if(row.vendorId){
+      const { error: ve } = await sb.from('vendor_plants').upsert(
+        {vendor_id:row.vendorId, plant_id:plantId, raw_name:row.rawName, raw_sci:row.rawSci,
+         form:row.form, size:'', cultivar_name:'', stock:'unknown', source:'manual', confidence:'high'},
+        {onConflict:'vendor_id,plant_id,form,cultivar_name,size'});
+      if(ve) throw ve;
+    }
+    const { error } = await sb.from('vendor_plants_unmatched')
+      .update({resolved_plant_id:plantId}).eq('id',row.id);
+    if(error) throw error;
+  },
+  async dismissUnmatched(id){
+    const { error } = await sb.from('vendor_plants_unmatched').update({dismissed:true}).eq('id',id);
+    if(error) throw error;
+  },
+  async getImports(){
+    const { data, error } = await sb.from('vendor_imports')
+      .select('id,vendor_id,sale_id,kind,mode,source_url,storage_path,filename,mime,bytes,status,parsed,error,created_at')
+      .order('id',{ascending:false}).limit(200);
+    if(error) throw error;
+    return data||[];
+  },
+  /* Upload lands in the private `vendor-imports` bucket and files a queued row.
+     CSV is parsed in the browser straight away; PDF/XLSX wait for
+     importer/vendor_import.py, which writes `parsed` back for review. */
+  async uploadImport(file, meta){
+    const safe=(file.name||"upload").replace(/[^A-Za-z0-9._-]+/g,"_").slice(-80);
+    const path=`${meta.kind||"inventory"}/${Date.now()}-${safe}`;
+    const { error: ue } = await sb.storage.from('vendor-imports')
+      .upload(path, file, {contentType:file.type||'application/octet-stream', upsert:false});
+    if(ue) throw ue;
+    const { data, error } = await sb.from('vendor_imports').insert({
+      vendor_id: meta.vendorId||null, kind: meta.kind||'inventory', mode:'upload',
+      storage_path: path, filename: file.name, mime: file.type||null, bytes: file.size,
+      status: meta.parsed?'parsed':'queued', parsed: meta.parsed||null,
+    }).select().maybeSingle();
+    if(error) throw error;
+    return data;
+  },
+  async setImportStatus(id, status){
+    const { error } = await sb.from('vendor_imports').update({status}).eq('id',id);
     if(error) throw error;
   },
   async loadLayout(planId){
@@ -5729,7 +5882,392 @@ function ShopMap({vendors, sales, centre, salesByVendor, distOf, plans, planId, 
   );
 }
 
-function Shops({vendors, sales, orgs, plans, vendorPlants, plants, planItems, curPlan, isAdmin, tab, setTab}){
+/* ── S8: admin Shop Editor ─────────────────────────────────────────────────
+   Form entry + a searchable edit list for Shops and Sales, the review queue for
+   vendor_plants_unmatched, and document upload into the private `vendor-imports`
+   bucket. Link-paste is deliberately not here — CORS makes it little more than a
+   URL note, so that effort went into upload instead.
+   Writes are gated by RLS on the admin uid; this UI is gated by isAdmin too, but
+   the database is the real boundary. */
+const SUBREGIONS=["Western New York","Finger Lakes","Central New York","Southern Tier",
+  "Mohawk Valley","Capital Region","North Country","Mid-Hudson","New York City","Long Island"];
+const SALE_KINDS=[["sale","Sale"],["order_opens","Orders open"],["order_closes","Orders close"],
+  ["pickup","Pickup"],["swap","Swap"]];
+
+function EdField({label, children, wide}){
+  return <div className="edfld" style={wide?{gridColumn:"1/-1"}:null}>
+    <label>{label}</label>{children}</div>;
+}
+
+function ShopEditor({vendors, sales, orgs, plants, reload}){
+  const [sub,setSub]=useState("shops");        // shops | sales | queue | upload
+  const [q,setQ]=useState("");
+  const [editing,setEditing]=useState(null);   // the row being edited, or {} for new
+  const [busy,setBusy]=useState(false);
+  const [msg,setMsg]=useState(null);
+  const [unmatched,setUnmatched]=useState(null);
+  const [imports,setImports]=useState(null);
+
+  const say=(text,bad)=>{ setMsg({text,bad}); setTimeout(()=>setMsg(null), bad?9000:4000); };
+  const run=async(fn,ok)=>{ setBusy(true);
+    try{ await fn(); say(ok); if(reload) await reload(); }
+    catch(e){ console.error(e); say(e.message||String(e), true); }
+    finally{ setBusy(false); } };
+
+  useEffect(()=>{ if(sub!=="queue"||unmatched) return;
+    dataProvider.getUnmatched().then(setUnmatched).catch(e=>{ console.error(e); setUnmatched([]); });
+  },[sub,unmatched]);
+  useEffect(()=>{ if(sub!=="upload"||imports) return;
+    dataProvider.getImports().then(setImports).catch(e=>{ console.error(e); setImports([]); });
+  },[sub,imports]);
+
+  const vendorById=useMemo(()=>{ const m={}; (vendors||[]).forEach(v=>m[v.id]=v); return m; },[vendors]);
+  const needle=q.trim().toLowerCase();
+  const shopList=useMemo(()=>(vendors||[])
+    .filter(v=>!needle||[v.name,v.city,v.county,v.subregion,v.slug].some(x=>(x||"").toLowerCase().includes(needle)))
+    .sort((a,b)=>a.name.localeCompare(b.name)),[vendors,needle]);
+  // past sales are kept in the list on purpose: last year's is the starting point
+  // for this year's, same reasoning as the grant editor's "duplicate" flow.
+  const saleList=useMemo(()=>(sales||[])
+    .filter(s=>!needle||[s.name,s.city,(vendorById[s.vendorId]||{}).name].some(x=>(x||"").toLowerCase().includes(needle)))
+    .sort((a,b)=>(b.startsOn||"").localeCompare(a.startsOn||"")),[sales,needle,vendorById]);
+
+  const slugify=s=>(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
+  const numOrNull=v=>{ const s=(v==null?"":String(v)).trim(); return s===""?null:(isNaN(+s)?null:+s); };
+
+  const saveShop=(f)=>run(async()=>{
+    const row={ id:f.id||undefined, slug:f.slug||slugify(f.name), name:(f.name||"").trim(),
+      kind:f.kind||null, org_id:numOrNull(f.orgId), street:f.street||null, city:f.city||null,
+      county:f.county||null, state:f.state||null, postal:f.postal||null,
+      subregion:f.subregion||null, lat:numOrNull(f.lat), lon:numOrNull(f.lon),
+      url:f.url||null, catalog_url:f.catalogUrl||null, email:f.email||null, phone:f.phone||null,
+      hours:f.hours||null, order_window:f.orderWindow||null, season_note:f.seasonNote||null,
+      ships:!!f.ships, pickup_only:!!f.pickupOnly, gives_free:!!f.givesFree,
+      membership_required:!!f.membershipRequired,
+      forms:(f.forms||[]), notes:f.notes||null,
+      needs_verification:!!f.needsVerification };
+    if(!row.name) throw new Error("A shop needs a name.");
+    await dataProvider.saveVendor(row); setEditing(null);
+  }, f.id?"Shop updated.":"Shop added.");
+
+  const saveSaleRow=(f)=>run(async()=>{
+    const row={ id:f.id||undefined, vendor_id:numOrNull(f.vendorId), name:(f.name||"").trim(),
+      kind:f.kind||"sale", starts_on:f.startsOn||null, ends_on:f.endsOn||null,
+      city:f.city||null, state:f.state||null, url:f.url||null, notes:f.notes||null,
+      source_url:f.sourceUrl||null, needs_verification:!!f.needsVerification };
+    if(!row.name) throw new Error("A sale needs a name.");
+    if(!row.starts_on) throw new Error("A sale needs a start date.");
+    await dataProvider.saveSale(row); setEditing(null);
+  }, f.id?"Sale updated.":"Sale added.");
+
+  /* Duplicating clears id, source_url and the verification flag — otherwise a copy
+     of last year's sale still claims to have been checked against a source that
+     described a different year. */
+  const dupSale=(s)=>setEditing({...s, id:null, sourceUrl:"", needsVerification:true,
+                                 startsOn:"", endsOn:"", name:s.name});
+
+  const F=(f,set)=>({
+    txt:(k,ph)=><input value={f[k]||""} placeholder={ph||""} onChange={e=>set({...f,[k]:e.target.value})} />,
+    num:(k,ph)=><input type="number" value={f[k]??""} placeholder={ph||""} onChange={e=>set({...f,[k]:e.target.value})} />,
+    date:(k)=><input type="date" value={f[k]||""} onChange={e=>set({...f,[k]:e.target.value})} />,
+    sel:(k,opts,blank)=><select value={f[k]||""} onChange={e=>set({...f,[k]:e.target.value})}>
+        {blank!==false && <option value="">—</option>}
+        {opts.map(o=>Array.isArray(o)?<option key={o[0]} value={o[0]}>{o[1]}</option>
+                                     :<option key={o} value={o}>{o}</option>)}
+      </select>,
+    chk:(k,label)=><label className="edchk"><input type="checkbox" checked={!!f[k]}
+        onChange={e=>set({...f,[k]:e.target.checked})} />{label}</label>,
+    chips:(k,opts)=><div className="edchips">{opts.map(o=>{
+        const on=(f[k]||[]).includes(o[0]);
+        return <button key={o[0]} type="button" className={"chip"+(on?" on":"")}
+          onClick={()=>set({...f,[k]:on?(f[k]||[]).filter(x=>x!==o[0]):[...(f[k]||[]),o[0]]})}>{o[1]}</button>;
+      })}</div>,
+  });
+
+  return (
+    <div className="shopedit">
+      <div className="edtabs">
+        <button className={sub==="shops"?"on":""} onClick={()=>{setSub("shops");setEditing(null);}}>Shops</button>
+        <button className={sub==="sales"?"on":""} onClick={()=>{setSub("sales");setEditing(null);}}>Sales</button>
+        <button className={sub==="queue"?"on":""} onClick={()=>{setSub("queue");setEditing(null);}}>
+          Review queue{unmatched?` · ${unmatched.length}`:""}</button>
+        <button className={sub==="upload"?"on":""} onClick={()=>{setSub("upload");setEditing(null);}}>Upload</button>
+      </div>
+      {msg && <div className={"edmsg"+(msg.bad?" bad":"")}>{msg.text}</div>}
+
+      {(sub==="shops"||sub==="sales") && !editing && (
+        <>
+          <div className="edbar">
+            <input className="edsearch" value={q} onChange={e=>setQ(e.target.value)}
+                   placeholder={sub==="shops"?"Search shops by name, town, county":"Search sales by name, town or shop"} />
+            <button className="ppbtn" onClick={()=>setEditing(sub==="shops"
+              ? {forms:[],needsVerification:true,state:"NY"}
+              : {kind:"sale",needsVerification:true,state:"NY"})}>
+              + Add {sub==="shops"?"shop":"sale"}</button>
+          </div>
+          <div className="edlist">
+            {(sub==="shops"?shopList:saleList).map(r=>(
+              <div className="edrow" key={r.id}>
+                <div className="edrow-main">
+                  <b>{r.name}</b>
+                  <span className="mtmeta">{sub==="shops"
+                    ? [vkLabel(r.kind), r.city&&r.city+", "+r.state, r.subregion].filter(Boolean).join(" · ")
+                    : [(vendorById[r.vendorId]||{}).name, r.startsOn&&fmtDay(r.startsOn), r.city].filter(Boolean).join(" · ")}
+                  </span>
+                </div>
+                <div className="edrow-act">
+                  {sub==="sales" && <button className="ppbtn ghost" onClick={()=>dupSale(r)}>Duplicate</button>}
+                  <button className="ppbtn ghost" onClick={()=>setEditing({...r})}>Edit</button>
+                </div>
+              </div>
+            ))}
+            {!(sub==="shops"?shopList:saleList).length &&
+              <div className="empty">Nothing matches “{q}”.</div>}
+          </div>
+        </>
+      )}
+
+      {sub==="shops" && editing && (()=>{ const f=editing, set=setEditing, C=F(f,set); return (
+        <div className="edform">
+          <div className="edhd"><b>{f.id?"Edit shop":"Add a shop"}</b>
+            <span><button className="ppbtn ghost" onClick={()=>setEditing(null)}>Cancel</button>
+              <button className="ppbtn" disabled={busy} onClick={()=>saveShop(f)}>{busy?"Saving…":"Save shop"}</button></span></div>
+          <div className="edgrid">
+            <EdField label="Name" wide>{C.txt("name","Amanda's Native Garden")}</EdField>
+            <EdField label="Type">{C.sel("kind",Object.keys(VKIND).map(k=>[k,vkLabel(k)]))}</EdField>
+            <EdField label="Slug">{C.txt("slug","auto from name if blank")}</EdField>
+            <EdField label="Street" wide>{C.txt("street")}</EdField>
+            <EdField label="Town">{C.txt("city")}</EdField>
+            <EdField label="County">{C.txt("county")}</EdField>
+            <EdField label="State">{C.txt("state","NY")}</EdField>
+            <EdField label="Postal">{C.txt("postal")}</EdField>
+            <EdField label="NY region">{C.sel("subregion",SUBREGIONS)}</EdField>
+            <EdField label="Latitude">{C.num("lat")}</EdField>
+            <EdField label="Longitude">{C.num("lon")}</EdField>
+            <EdField label="Website" wide>{C.txt("url","https://…")}</EdField>
+            <EdField label="Catalog URL" wide>{C.txt("catalogUrl","https://…")}</EdField>
+            <EdField label="Email">{C.txt("email")}</EdField>
+            <EdField label="Phone">{C.txt("phone")}</EdField>
+            <EdField label="Hours of operation" wide>{C.txt("hours","Fri–Sun 9am–4pm")}</EdField>
+            <EdField label="Order window" wide>{C.txt("orderWindow","Annual winter pre-order, pickup in April")}</EdField>
+            <EdField label="Forms sold" wide>{C.chips("forms",Object.keys(FORM_LABEL).map(k=>[k,FORM_LABEL[k]]))}</EdField>
+            <EdField label="Flags" wide><div className="edchecks">
+              {C.chk("ships","Ships")}{C.chk("pickupOnly","Pickup only")}
+              {C.chk("givesFree","Gives free seed")}{C.chk("membershipRequired","Membership required")}
+              {C.chk("needsVerification","Needs verification")}</div></EdField>
+            <EdField label="Notes" wide>
+              <textarea rows="3" value={f.notes||""} onChange={e=>set({...f,notes:e.target.value})} /></EdField>
+          </div>
+          {f.id && <div className="eddanger">
+            <button className="ppbtn ghost" onClick={()=>{ if(confirm(`Delete “${f.name}”? Its listings and sales lose their link.`))
+              run(()=>dataProvider.deleteVendor(f.id).then(()=>setEditing(null)),"Shop deleted."); }}>Delete shop</button>
+          </div>}
+        </div>); })()}
+
+      {sub==="sales" && editing && (()=>{ const f=editing, set=setEditing, C=F(f,set); return (
+        <div className="edform">
+          <div className="edhd"><b>{f.id?"Edit sale":"Add a sale"}</b>
+            <span><button className="ppbtn ghost" onClick={()=>setEditing(null)}>Cancel</button>
+              <button className="ppbtn" disabled={busy} onClick={()=>saveSaleRow(f)}>{busy?"Saving…":"Save sale"}</button></span></div>
+          <div className="edgrid">
+            <EdField label="Name" wide>{C.txt("name","Spring Native Plant Sale")}</EdField>
+            <EdField label="Shop" wide>{C.sel("vendorId",(vendors||[]).slice()
+              .sort((a,b)=>a.name.localeCompare(b.name)).map(v=>[v.id,v.name]))}</EdField>
+            <EdField label="Kind">{C.sel("kind",SALE_KINDS,false)}</EdField>
+            <EdField label="Starts">{C.date("startsOn")}</EdField>
+            <EdField label="Ends">{C.date("endsOn")}</EdField>
+            <EdField label="Town">{C.txt("city")}</EdField>
+            <EdField label="State">{C.txt("state","NY")}</EdField>
+            <EdField label="Event URL" wide>{C.txt("url","https://…")}</EdField>
+            <EdField label="Source URL" wide>{C.txt("sourceUrl","where this was confirmed")}</EdField>
+            <EdField label="Flags" wide><div className="edchecks">{C.chk("needsVerification","Needs verification")}</div></EdField>
+            <EdField label="Notes" wide>
+              <textarea rows="3" value={f.notes||""} onChange={e=>set({...f,notes:e.target.value})} /></EdField>
+          </div>
+          {f.id && <div className="eddanger">
+            <button className="ppbtn ghost" onClick={()=>{ if(confirm(`Delete “${f.name}”?`))
+              run(()=>dataProvider.deleteSale(f.id).then(()=>setEditing(null)),"Sale deleted."); }}>Delete sale</button>
+          </div>}
+        </div>); })()}
+
+      {sub==="queue" && <ReviewQueue rows={unmatched} plants={plants} vendorById={vendorById}
+        onResolve={(row,plantId)=>run(async()=>{ await dataProvider.resolveUnmatched(row,plantId);
+          setUnmatched(u=>(u||[]).filter(x=>x.id!==row.id)); },"Linked, and the name is now a synonym.")}
+        onDismiss={(row)=>run(async()=>{ await dataProvider.dismissUnmatched(row.id);
+          setUnmatched(u=>(u||[]).filter(x=>x.id!==row.id)); },"Dismissed.")} busy={busy} />}
+
+      {sub==="upload" && <ImportUpload vendors={vendors} imports={imports} busy={busy}
+        onUploaded={()=>setImports(null)} say={say} />}
+    </div>
+  );
+}
+
+/* Review queue — the 174 listings the strict D5 matcher could not place.
+   Resolving one writes the vendor link AND a plant_synonyms row, so the same
+   name resolves itself on every later import. Dismiss is for the genuinely
+   out-of-scope: Norway Spruce, Douglas Fir and the other non-natives these
+   nurseries sell alongside the natives. */
+function ReviewQueue({rows, plants, vendorById, onResolve, onDismiss, busy}){
+  const [pick,setPick]=useState({});     // unmatched id -> plantId
+  const [q,setQ]=useState({});           // unmatched id -> search text
+  if(rows===null) return <div className="empty">Loading the queue…</div>;
+  if(!rows.length) return <div className="empty">Nothing waiting. Every listing the importer saw has been placed or dismissed.</div>;
+
+  const search=(text)=>{
+    const n=(text||"").trim().toLowerCase();
+    if(n.length<2) return [];
+    return (plants||[]).filter(p=>(p.common||"").toLowerCase().includes(n)||(p.sci||"").toLowerCase().includes(n))
+      .slice(0,8);
+  };
+  return (
+    <div className="edqueue">
+      <div className="pphint" style={{margin:"0 0 12px"}}>
+        Listings the matcher could not place. Linking one also records the name as a synonym,
+        so the next import places it automatically. Dismiss anything that is genuinely not in scope.
+      </div>
+      {rows.map(r=>{
+        const term=q[r.id]!==undefined?q[r.id]:(r.rawSci||r.rawName||"");
+        const hits=search(term), chosen=pick[r.id];
+        return (
+          <div className="edq" key={r.id}>
+            <div className="edq-src">
+              <b>{r.rawSci||r.rawName||"(no name)"}</b>
+              <span className="mtmeta">
+                {[(vendorById[r.vendorId]||{}).name, r.rawSci&&r.rawName&&r.rawName,
+                  r.form&&(FORM_LABEL[r.form]||r.form)].filter(Boolean).join(" · ")}
+              </span>
+            </div>
+            <div className="edq-fix">
+              <input value={term} onChange={e=>{ setQ({...q,[r.id]:e.target.value}); setPick({...pick,[r.id]:null}); }}
+                     placeholder="Search the plant database" />
+              {!chosen && hits.length>0 && (
+                <div className="edq-hits">
+                  {hits.map(p=>(
+                    <button key={p.id} className="chip" onClick={()=>setPick({...pick,[r.id]:p.id})}>
+                      {p.common} <em>{p.sci}</em>
+                    </button>
+                  ))}
+                </div>
+              )}
+              {chosen && (()=>{ const p=(plants||[]).find(x=>x.id===chosen); return (
+                <div className="edq-pick">→ <b>{p?p.common:chosen}</b> <i>{p?p.sci:""}</i>
+                  <button className="ppbtn ghost" onClick={()=>setPick({...pick,[r.id]:null})}>change</button></div>); })()}
+            </div>
+            <div className="edq-act">
+              <button className="ppbtn" disabled={!chosen||busy} onClick={()=>onResolve(r,chosen)}>Link</button>
+              <button className="ppbtn ghost" disabled={busy} onClick={()=>onDismiss(r)}>Dismiss</button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* Document upload. CSV is parsed here and stored as `parsed` so it lands ready
+   for review; PDF and XLSX are stored and queued for importer/vendor_import.py,
+   because parsing either in the browser is not worth the payload. */
+function parseCSV(text){
+  const rows=[]; let row=[], cell="", quoted=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(quoted){
+      if(c==='"'){ if(text[i+1]==='"'){ cell+='"'; i++; } else quoted=false; }
+      else cell+=c;
+    } else if(c==='"') quoted=true;
+    else if(c===","){ row.push(cell); cell=""; }
+    else if(c==="\n"){ row.push(cell); rows.push(row); row=[]; cell=""; }
+    else if(c!=="\r") cell+=c;
+  }
+  if(cell.length||row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.some(x=>(x||"").trim()!==""));
+}
+
+function ImportUpload({vendors, imports, busy, onUploaded, say}){
+  const [vendorId,setVendorId]=useState("");
+  const [kind,setKind]=useState("inventory");
+  const [preview,setPreview]=useState(null);
+  const [working,setWorking]=useState(false);
+  const fileRef=useRef(null);
+
+  const take=async(file)=>{
+    if(!file) return;
+    setWorking(true); setPreview(null);
+    try{
+      let parsed=null;
+      if(/\.csv$/i.test(file.name)||file.type==="text/csv"){
+        const rows=parseCSV(await file.text());
+        parsed={ header:rows[0]||[], rows:rows.slice(1,200), rowCount:Math.max(0,rows.length-1) };
+        setPreview(parsed);
+      }
+      await dataProvider.uploadImport(file,{vendorId:vendorId||null, kind, parsed});
+      say(parsed ? `Uploaded and parsed — ${parsed.rowCount} rows ready for review.`
+                 : "Uploaded and queued for the importer.");
+      if(fileRef.current) fileRef.current.value="";
+      onUploaded();
+    }catch(e){ console.error(e); say(e.message||String(e), true); }
+    finally{ setWorking(false); }
+  };
+
+  return (
+    <div className="edupload">
+      <div className="pphint" style={{margin:"0 0 12px"}}>
+        PDF, CSV or XLSX order forms and plant lists, up to 25 MB. CSV is parsed here and
+        stored ready for review; PDF and XLSX are queued for <code>importer/vendor_import.py</code>.
+        Files go to a private bucket only an admin can read.
+      </div>
+      <div className="edgrid">
+        <EdField label="Shop (optional)">
+          <select value={vendorId} onChange={e=>setVendorId(e.target.value)}>
+            <option value="">— not linked yet —</option>
+            {(vendors||[]).slice().sort((a,b)=>a.name.localeCompare(b.name))
+              .map(v=><option key={v.id} value={v.id}>{v.name}</option>)}
+          </select></EdField>
+        <EdField label="What is it">
+          <select value={kind} onChange={e=>setKind(e.target.value)}>
+            <option value="inventory">Plant list / inventory</option>
+            <option value="vendor">Shop details</option>
+            <option value="sale">Sale details</option>
+          </select></EdField>
+        <EdField label="File" wide>
+          <input ref={fileRef} type="file" accept=".pdf,.csv,.xlsx,.xls,text/csv,application/pdf"
+                 disabled={working||busy} onChange={e=>take(e.target.files&&e.target.files[0])} />
+        </EdField>
+      </div>
+      {working && <div className="empty">Uploading…</div>}
+
+      {preview && (
+        <div className="edprev">
+          <b>Parsed {preview.rowCount} row{preview.rowCount===1?"":"s"}</b>
+          <div className="tblwrap"><table className="edtbl">
+            <thead><tr>{preview.header.map((h,i)=><th key={i}>{h||"—"}</th>)}</tr></thead>
+            <tbody>{preview.rows.slice(0,8).map((r,i)=>(
+              <tr key={i}>{preview.header.map((_,j)=><td key={j}>{r[j]||""}</td>)}</tr>))}</tbody>
+          </table></div>
+        </div>
+      )}
+
+      <h4 className="edsub">Recent uploads</h4>
+      {imports===null ? <div className="empty">Loading…</div>
+        : !imports.length ? <div className="empty">Nothing uploaded yet.</div>
+        : <div className="edlist">
+            {imports.map(r=>(
+              <div className="edrow" key={r.id}>
+                <div className="edrow-main">
+                  <b>{r.filename||r.storage_path}</b>
+                  <span className="mtmeta">{[r.kind, r.mode,
+                    r.bytes!=null?Math.round(r.bytes/1024)+" KB":null,
+                    r.created_at?fmtDay(r.created_at.slice(0,10)):null].filter(Boolean).join(" · ")}</span>
+                </div>
+                <div className="edrow-act"><span className={"edstatus s-"+(r.status||"queued")}>{r.status}</span></div>
+              </div>
+            ))}
+          </div>}
+    </div>
+  );
+}
+
+function Shops({vendors, sales, orgs, plans, vendorPlants, plants, planItems, curPlan, isAdmin, tab, setTab, reload}){
   const [q,setQ]=useState("");
   const [planId,setPlanId]=useState(curPlan);   // which plan the map measures from
   const [focusId,setFocusId]=useState(null);    // vendor jumped to from the map
@@ -5870,8 +6408,8 @@ function Shops({vendors, sales, orgs, plans, vendorPlants, plants, planItems, cu
                                onOpenCard={openCard} vendorById={vendorById}
                                invOf={invOf} planTotal={planTotal} />}
       {tab==="cal" && <SaleCalendar sales={sales} vendorById={vendorById} onOpenCard={openCard} />}
-      {tab==="edit" && soon("Shop Editor arrives in stage S6",
-        "Add and edit shops and sales by form, link or document upload. Until then, listings are seeded from importer/vendors/*.json.")}
+      {tab==="edit" && isAdmin && <ShopEditor vendors={vendors} sales={sales} orgs={orgs}
+                                     plants={plants} reload={reload} />}
 
       {tab==="dir" && <>
         <UpcomingSalesBanner sales={sales} vendorById={vendorById} onGoCalendar={()=>setTab("cal")} />
@@ -6074,15 +6612,18 @@ function App(){
     })();
     // Shops & Seed loads separately: it must never block or break the plant pages,
     // so a failure here only disables the Shops tab.
-    (async()=>{
-      try{
-        const [vs, sl, og, vp] = await Promise.all([
-          dataProvider.getVendors(), dataProvider.getSales(),
-          dataProvider.getOrganizations(), dataProvider.getVendorPlants()]);
-        setVendors(vs); setSales(sl); setOrgs(og); setVendorPlants(vp);
-      }catch(err){ console.error("Shops load failed:",err); }
-    })();
+    loadShops();
   },[user]);
+
+  // Pulled out so the admin Shop Editor can refresh after a save without a reload.
+  const loadShops=useCallback(async()=>{
+    try{
+      const [vs, sl, og, vp] = await Promise.all([
+        dataProvider.getVendors(), dataProvider.getSales(),
+        dataProvider.getOrganizations(), dataProvider.getVendorPlants()]);
+      setVendors(vs); setSales(sl); setOrgs(og); setVendorPlants(vp);
+    }catch(err){ console.error("Shops load failed:",err); }
+  },[]);
 
   // NB: MyPlan must be given vendorPlants / vendors / sales / planCentre. Its
   // signature declared them long before the call site passed them, so the
@@ -6247,7 +6788,7 @@ function App(){
           effPage==="shops" ? <Shops vendors={vendors} sales={sales} orgs={orgs} plans={plans}
                                   vendorPlants={vendorPlants} plants={plants} planItems={planItems}
                                   curPlan={curPlan} isAdmin={isAdmin}
-                                  tab={shopTab} setTab={setShopTab} /> :
+                                  tab={shopTab} setTab={setShopTab} reload={loadShops} /> :
           effPage==="guide" ? <ScoringGuide /> :
           effPage==="about" ? <About /> :
           effPage==="grants" ? <GrantFinder curPlan={curPlan} /> :

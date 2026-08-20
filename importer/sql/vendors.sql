@@ -303,3 +303,28 @@ from public.sales s
 join public.vendors v on v.id = s.vendor_id
 where coalesce(s.ends_on, s.starts_on, s.pickup_on, s.order_closes_on)
       >= current_date - interval '1 day';
+
+-- ================================================================= S8 storage
+-- Document upload for the admin Shop Editor: order forms and plant lists.
+-- Private bucket — vendor documents, not site content. Admin-only read/write,
+-- same uid the vendors/sales policies use.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'vendor-imports', 'vendor-imports', false, 26214400,
+  array['application/pdf','text/csv','text/plain',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+)
+on conflict (id) do update
+  set file_size_limit = excluded.file_size_limit,
+      allowed_mime_types = excluded.allowed_mime_types;
+
+do $$
+declare a uuid := '631158fd-3291-4f4e-9294-cff8abc5d3f8';
+begin
+  execute 'drop policy if exists vendor_imports_obj_admin_all on storage.objects';
+  execute format(
+    'create policy vendor_imports_obj_admin_all on storage.objects for all '
+    'using (bucket_id = ''vendor-imports'' and auth.uid() = %L) '
+    'with check (bucket_id = ''vendor-imports'' and auth.uid() = %L)', a, a);
+end $$;
