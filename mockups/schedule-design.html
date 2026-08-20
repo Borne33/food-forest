@@ -140,7 +140,11 @@
      The strip is ALWAYS in the layout at a fixed height, empty or not, so a move
      never pushes the schedule down and never moves what you were looking at.
      Only the contents fade in. */
-  .changebar{height:56px;margin:0 0 10px;overflow:hidden}
+  /* Collapses to nothing when there is no notice. Appearing would normally push
+     the schedule down, so the real build compensates scrollTop by the same delta
+     on show/hide — the strip grows, and what you were looking at stays put. */
+  .changebar{height:0;margin:0;overflow:hidden;transition:height .12s ease}
+  .changebar.has{height:56px;margin:0 0 10px}
   .changenote{height:56px;border-left:3px solid var(--sage-d);background:#eef2e7;border-radius:0 4px 4px 0;
     padding:7px 13px;display:flex;align-items:center;gap:14px;overflow-x:auto}
   .changenote.empty{background:transparent;border-left-color:transparent}
@@ -226,7 +230,8 @@
   </div>
   <div class="warnstrip"><b>3 warnings</b><span>Two tasks fall outside the planting window; one finish is past its baseline. Advisory only — no dates were moved.</span></div>
 
-  <div class="changebar"><div class="changenote empty"></div></div>
+  <!-- no notice: the strip collapses to zero -->
+  <div class="changebar"></div>
 
   <div class="sched">
     <div class="schscroll">
@@ -526,7 +531,7 @@
   </div>
   <div class="warnstrip"><b>3 warnings</b><span>Two tasks fall outside the planting window; one finish is past its baseline. Advisory only — no dates were moved.</span></div>
 
-  <div class="changebar"><div class="changenote">
+  <div class="changebar has"><div class="changenote">
     <span class="hd">Moved<br>5 → 7</span>
     <span class="mv">
       <span><b>Plant canopy trees</b> is now <b>7 · 1.6</b> <em>no dates changed</em></span>

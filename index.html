@@ -1030,6 +1030,421 @@
 <body>
 <div id="root"></div>
 
+<script id="pc1-engine">
+/* ═════════════════════════════════════════════════════════════════════════
+   PC1 — scheduling engine.  PLAIN JS ON PURPOSE (no JSX): the Node test in
+   schedule/test.js extracts this exact block from index.html and runs it, so
+   what ships is what is tested. Nothing here touches the DOM or React.
+
+   scheduleProject({tasks, links, calendars, projectStart}) -> {tasks, warnings, cycles}
+
+   Design rules from PLANNING_UPGRADE.md:
+     · Planting windows are ADVISORY (Q6): an exception with working:true +
+       advisory:true shades the chart and raises a warning, but never moves a
+       date and never blocks a save.
+     · Constraint conflicts warn rather than silently violate (MSP's behaviour).
+     · Deadlines have no scheduling effect at all — they only warn.
+     · Cycles are reported, never hung on.
+   ════════════════════════════════════════════════════════════════════════ */
+(function(global){
+"use strict";
+
+var MIN = 60000;                       // ms per minute
+var DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
+
+function toDate(v){ return (v instanceof Date) ? new Date(v.getTime()) : new Date(v); }
+function dayKey(d){
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" +
+         String(d.getDate()).padStart(2,"0");
+}
+function atMinutes(d, mins){
+  var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  return new Date(x.getTime() + mins*MIN);
+}
+function minutesIntoDay(d){ return d.getHours()*60 + d.getMinutes(); }
+function hhmm(s){ var p = String(s).split(":"); return (+p[0])*60 + (+(p[1]||0)); }
+
+/* ── calendars ────────────────────────────────────────────────────────── */
+var DEFAULT_CALENDAR = {
+  id: "default", name: "Standard (7-day)", isDefault: true,
+  // Q6: 7-day working week. 8h/day keeps "1d" == 480 working minutes.
+  workweek: { sun:[["08:00","16:00"]], mon:[["08:00","16:00"]], tue:[["08:00","16:00"]],
+              wed:[["08:00","16:00"]], thu:[["08:00","16:00"]], fri:[["08:00","16:00"]],
+              sat:[["08:00","16:00"]] },
+  exceptions: []
+};
+
+function calFor(calendars, id){
+  var list = calendars && calendars.length ? calendars : [DEFAULT_CALENDAR];
+  var byId = null, def = null;
+  for (var i=0;i<list.length;i++){
+    if (list[i].id === id) byId = list[i];
+    if (list[i].isDefault) def = list[i];
+  }
+  return byId || def || list[0] || DEFAULT_CALENDAR;
+}
+
+/* Working intervals for one calendar day, as [startMin,endMin] from midnight.
+   A non-working exception wins. An ADVISORY exception is still working time —
+   that is the whole point of Q6 — so it is not consulted here at all. */
+function intervalsFor(cal, d){
+  var key = dayKey(d), ex = cal.exceptions || [];
+  for (var i=0;i<ex.length;i++){
+    var e = ex[i];
+    var from = e.date || e.from, to = e.to || e.date || e.from;
+    if (!from) continue;
+    if (key >= from && key <= to){
+      if (e.working === false) return [];
+      if (e.hours) return e.hours.map(function(h){ return [hhmm(h[0]), hhmm(h[1])]; });
+    }
+  }
+  var slots = (cal.workweek || {})[DAYS[d.getDay()]] || [];
+  return slots.map(function(h){ return [hhmm(h[0]), hhmm(h[1])]; });
+}
+
+function advisoryHits(cal, a, b){
+  var out = [], ex = cal.exceptions || [];
+  var ka = dayKey(a), kb = dayKey(b);
+  for (var i=0;i<ex.length;i++){
+    var e = ex[i];
+    if (!e.advisory) continue;
+    var from = e.date || e.from, to = e.to || e.date || e.from;
+    if (!from) continue;
+    if (from <= kb && to >= ka) out.push(e.name || "advisory window");
+  }
+  return out;
+}
+
+/* Move `from` forward by `minutes` of WORKING time. elapsed=true ignores the
+   calendar entirely (MSP's "e" durations). */
+function addWorkingTime(cal, from, minutes, elapsed){
+  var d = toDate(from);
+  if (elapsed) return new Date(d.getTime() + minutes*MIN);
+  if (minutes <= 0) return snapForward(cal, d);
+  var left = minutes, guard = 0;
+  d = snapForward(cal, d);
+  while (left > 0){
+    if (++guard > 20000) throw new Error("addWorkingTime: no working time found in 20000 days");
+    var iv = intervalsFor(cal, d), cur = minutesIntoDay(d), placed = false;
+    for (var i=0;i<iv.length;i++){
+      var s = iv[i][0], e = iv[i][1];
+      if (cur >= e) continue;
+      var start = Math.max(cur, s), avail = e - start;
+      if (avail >= left) return atMinutes(d, start + left);
+      left -= avail; cur = e; placed = true;
+    }
+    void placed;
+    d = atMinutes(new Date(d.getFullYear(), d.getMonth(), d.getDate()+1), 0);
+    d = snapForward(cal, d);
+  }
+  return d;
+}
+
+/* Move `from` backward by `minutes` of working time. */
+function subWorkingTime(cal, from, minutes, elapsed){
+  var d = toDate(from);
+  if (elapsed) return new Date(d.getTime() - minutes*MIN);
+  if (minutes <= 0) return snapBack(cal, d);
+  var left = minutes, guard = 0;
+  d = snapBack(cal, d);
+  while (left > 0){
+    if (++guard > 20000) throw new Error("subWorkingTime: no working time found in 20000 days");
+    var iv = intervalsFor(cal, d), cur = minutesIntoDay(d);
+    for (var i=iv.length-1;i>=0;i--){
+      var s = iv[i][0], e = iv[i][1];
+      if (cur <= s) continue;
+      var end = Math.min(cur, e), avail = end - s;
+      if (avail >= left) return atMinutes(d, end - left);
+      left -= avail; cur = s;
+    }
+    var prev = new Date(d.getFullYear(), d.getMonth(), d.getDate()-1);
+    var piv = intervalsFor(cal, prev);
+    d = atMinutes(prev, piv.length ? piv[piv.length-1][1] : 24*60);
+  }
+  return d;
+}
+
+/* Nudge a moment to the next instant of working time (no-op if already in it). */
+function snapForward(cal, from){
+  var d = toDate(from), guard = 0;
+  while (++guard <= 20000){
+    var iv = intervalsFor(cal, d), cur = minutesIntoDay(d);
+    for (var i=0;i<iv.length;i++){
+      if (cur < iv[i][0]) return atMinutes(d, iv[i][0]);
+      if (cur < iv[i][1]) return d;
+    }
+    d = atMinutes(new Date(d.getFullYear(), d.getMonth(), d.getDate()+1), 0);
+  }
+  throw new Error("snapForward: no working time found");
+}
+function snapBack(cal, from){
+  var d = toDate(from), guard = 0;
+  while (++guard <= 20000){
+    var iv = intervalsFor(cal, d), cur = minutesIntoDay(d);
+    for (var i=iv.length-1;i>=0;i--){
+      if (cur > iv[i][1]) return atMinutes(d, iv[i][1]);
+      if (cur > iv[i][0]) return d;
+    }
+    var prev = new Date(d.getFullYear(), d.getMonth(), d.getDate()-1);
+    var piv = intervalsFor(cal, prev);
+    d = atMinutes(prev, piv.length ? piv[piv.length-1][1] : 24*60);
+  }
+  throw new Error("snapBack: no working time found");
+}
+
+function workingMinutesBetween(cal, a, b){
+  var s = toDate(a), e = toDate(b);
+  if (e <= s) return 0;
+  var total = 0, d = new Date(s.getFullYear(), s.getMonth(), s.getDate()), guard = 0;
+  while (d <= e){
+    if (++guard > 20000) throw new Error("workingMinutesBetween: range too large");
+    var iv = intervalsFor(cal, d);
+    for (var i=0;i<iv.length;i++){
+      var ws = atMinutes(d, iv[i][0]), we = atMinutes(d, iv[i][1]);
+      var lo = ws < s ? s : ws, hi = we > e ? e : we;
+      if (hi > lo) total += (hi - lo) / MIN;
+    }
+    d = new Date(d.getFullYear(), d.getMonth(), d.getDate()+1);
+  }
+  return Math.round(total);
+}
+
+/* ── graph ────────────────────────────────────────────────────────────── */
+/* Kahn's algorithm over leaf tasks. Anything left over is in a cycle; we then
+   walk it with DFS so the report names the actual loop rather than "there is
+   a cycle somewhere". */
+function topoOrder(ids, links){
+  var succ = {}, indeg = {};
+  ids.forEach(function(id){ succ[id] = []; indeg[id] = 0; });
+  links.forEach(function(l){
+    if (!(l.predId in succ) || !(l.succId in indeg)) return;
+    succ[l.predId].push(l.succId); indeg[l.succId]++;
+  });
+  var q = ids.filter(function(id){ return indeg[id] === 0; }), order = [];
+  while (q.length){
+    var n = q.shift(); order.push(n);
+    succ[n].forEach(function(s){ if (--indeg[s] === 0) q.push(s); });
+  }
+  if (order.length === ids.length) return { order: order, cycles: [] };
+
+  var stuck = ids.filter(function(id){ return order.indexOf(id) === -1; });
+  var cycles = [], seen = {};
+  stuck.forEach(function(startId){
+    if (seen[startId]) return;
+    var path = [], onPath = {};
+    (function walk(id){
+      if (onPath[id]){ cycles.push(path.slice(path.indexOf(id)).concat([id])); return true; }
+      if (seen[id]) return false;
+      seen[id] = true; onPath[id] = true; path.push(id);
+      var found = succ[id].some(walk);
+      path.pop(); onPath[id] = false;
+      return found;
+    })(startId);
+  });
+  return { order: order, cycles: cycles };
+}
+
+/* ── the scheduler ────────────────────────────────────────────────────── */
+function scheduleProject(input){
+  input = input || {};
+  var tasksIn   = input.tasks || [];
+  var links     = (input.links || []).filter(function(l){ return l && l.predId != null && l.succId != null; });
+  var calendars = input.calendars || [DEFAULT_CALENDAR];
+  var projectStart = toDate(input.projectStart || new Date());
+  var warnings = [];
+
+  var T = {}, order0 = [];
+  tasksIn.forEach(function(t){
+    T[t.id] = {
+      id: t.id, name: t.name || "", parentId: (t.parentId == null ? null : t.parentId),
+      durationMin: Math.max(0, t.durationMin || 0),
+      elapsed: !!t.elapsed,
+      isMilestone: !!t.isMilestone || (t.durationMin === 0 && !t.isSummary),
+      isSummary: !!t.isSummary,
+      constraintType: t.constraintType || "ASAP",
+      constraintDate: t.constraintDate ? toDate(t.constraintDate) : null,
+      deadline: t.deadline ? toDate(t.deadline) : null,
+      calendarId: t.calendarId || null,
+      pctComplete: t.pctComplete == null ? 0 : t.pctComplete,
+      phaseNo: t.phaseNo == null ? null : t.phaseNo,
+      plantId: t.plantId == null ? null : t.plantId
+    };
+    order0.push(t.id);
+  });
+
+  var kids = {};
+  order0.forEach(function(id){
+    var pid = T[id].parentId;
+    if (pid != null && T[pid]) (kids[pid] || (kids[pid] = [])).push(id);
+  });
+  var leaves = order0.filter(function(id){ return !T[id].isSummary && !kids[id]; });
+
+  var topo = topoOrder(leaves, links);
+  if (topo.cycles.length){
+    return {
+      tasks: T, warnings: [{ type: "cycle", message: "Dependency cycle — nothing scheduled.",
+                             cycles: topo.cycles }],
+      cycles: topo.cycles, projectStart: projectStart, projectFinish: null
+    };
+  }
+
+  var predsOf = {}, succsOf = {};
+  links.forEach(function(l){
+    (predsOf[l.succId] || (predsOf[l.succId] = [])).push(l);
+    (succsOf[l.predId] || (succsOf[l.predId] = [])).push(l);
+  });
+  var cal = function(id){ return calFor(calendars, T[id].calendarId); };
+  var dur = function(id){ return T[id].isMilestone ? 0 : T[id].durationMin; };
+
+  /* ---- forward pass: early start / early finish ---- */
+  topo.order.forEach(function(id){
+    var c = cal(id), t = T[id];
+    var es = snapForward(c, projectStart);
+    (predsOf[id] || []).forEach(function(l){
+      var p = T[l.predId]; if (!p || !p.ef) return;
+      var lag = l.lagMin || 0, cand;
+      switch (l.type || "FS"){
+        case "SS": cand = addWorkingTime(c, p.es, lag, t.elapsed); break;
+        case "FF": cand = subWorkingTime(c, addWorkingTime(c, p.ef, lag, t.elapsed), dur(id), t.elapsed); break;
+        case "SF": cand = subWorkingTime(c, addWorkingTime(c, p.es, lag, t.elapsed), dur(id), t.elapsed); break;
+        default:   cand = addWorkingTime(c, p.ef, lag, t.elapsed);         // FS
+      }
+      if (cand > es) es = cand;
+    });
+
+    // constraints — applied here, conflicts reported rather than swallowed
+    var cd = t.constraintDate;
+    if (cd){
+      switch (t.constraintType){
+        case "SNET": if (cd > es) es = snapForward(c, cd); break;
+        case "MSO":  es = snapForward(c, cd); break;
+        case "FNET": {
+          var need = subWorkingTime(c, cd, dur(id), t.elapsed);
+          if (need > es) es = need;
+          break;
+        }
+        case "MFO":  es = subWorkingTime(c, cd, dur(id), t.elapsed); break;
+        case "SNLT": if (es > cd) warnings.push({ type:"constraint", taskId:id,
+                       message: t.name + ": cannot start by its Start-No-Later-Than date." }); break;
+        case "FNLT": break;   // checked after ef is known
+      }
+    }
+    t.es = es;
+    t.ef = t.isMilestone ? new Date(es.getTime()) : addWorkingTime(c, es, dur(id), t.elapsed);
+    if (t.constraintType === "FNLT" && cd && t.ef > cd){
+      warnings.push({ type:"constraint", taskId:id,
+        message: t.name + ": cannot finish by its Finish-No-Later-Than date." });
+    }
+  });
+
+  var projectFinish = null;
+  leaves.forEach(function(id){ if (T[id].ef && (!projectFinish || T[id].ef > projectFinish)) projectFinish = T[id].ef; });
+  if (!projectFinish) projectFinish = snapForward(calFor(calendars, null), projectStart);
+
+  /* ---- backward pass: late start / late finish ---- */
+  topo.order.slice().reverse().forEach(function(id){
+    var c = cal(id), t = T[id];
+    var lf = new Date(projectFinish.getTime());
+    var outs = succsOf[id] || [];
+    if (outs.length){
+      lf = null;
+      outs.forEach(function(l){
+        var s = T[l.succId]; if (!s || !s.ls) return;
+        var lag = l.lagMin || 0, cand;
+        switch (l.type || "FS"){
+          case "SS": cand = addWorkingTime(c, subWorkingTime(c, s.ls, lag, t.elapsed), dur(id), t.elapsed); break;
+          case "FF": cand = subWorkingTime(c, s.lf, lag, t.elapsed); break;
+          case "SF": cand = addWorkingTime(c, subWorkingTime(c, s.lf, lag, t.elapsed), dur(id), t.elapsed); break;
+          default:   cand = subWorkingTime(c, s.ls, lag, t.elapsed);       // FS
+        }
+        if (lf === null || cand < lf) lf = cand;
+      });
+      if (lf === null) lf = new Date(projectFinish.getTime());
+    }
+    var cd2 = t.constraintDate;
+    if (cd2){
+      if (t.constraintType === "SNLT"){
+        var capped = addWorkingTime(c, cd2, dur(id), t.elapsed);
+        if (capped < lf) lf = capped;
+      } else if (t.constraintType === "FNLT" || t.constraintType === "MFO"){
+        if (cd2 < lf) lf = new Date(cd2.getTime());
+      }
+    }
+    t.lf = lf;
+    t.ls = t.isMilestone ? new Date(lf.getTime()) : subWorkingTime(c, lf, dur(id), t.elapsed);
+  });
+
+  /* ---- slack, critical, advisory warnings ---- */
+  leaves.forEach(function(id){
+    var t = T[id], c = cal(id);
+    t.totalSlackMin = t.ls > t.es ? workingMinutesBetween(c, t.es, t.ls)
+                                  : -workingMinutesBetween(c, t.ls, t.es);
+    var outs = succsOf[id] || [], free = null;
+    outs.forEach(function(l){
+      var s = T[l.succId]; if (!s || !s.es) return;
+      var gap = s.es > t.ef ? workingMinutesBetween(c, t.ef, s.es) : 0;
+      if (free === null || gap < free) free = gap;
+    });
+    t.freeSlackMin = outs.length ? (free || 0) : t.totalSlackMin;
+    t.critical = t.totalSlackMin <= 0;
+    t.start = t.es; t.finish = t.ef;
+
+    // Q6: advisory only — the date is already fixed, this just flags it.
+    var hits = advisoryHits(c, t.es, t.ef);
+    hits.forEach(function(name){
+      warnings.push({ type:"advisory", taskId:id,
+        message: t.name + ": overlaps " + name + ". Advisory — the date was not moved." });
+    });
+    if (t.deadline && t.ef > t.deadline){
+      warnings.push({ type:"deadline", taskId:id,
+        message: t.name + ": finishes after its deadline." });   // no scheduling effect
+    }
+  });
+
+  /* ---- summary rollups (deepest first, so nesting works) ---- */
+  var depth = {};
+  order0.forEach(function(id){
+    var d = 0, p = T[id].parentId, guard = 0;
+    while (p != null && T[p] && ++guard < 500){ d++; p = T[p].parentId; }
+    depth[id] = d;
+  });
+  order0.slice().sort(function(a,b){ return depth[b] - depth[a]; }).forEach(function(id){
+    var ch = kids[id]; if (!ch || !ch.length) return;
+    var t = T[id], st = null, fi = null, work = 0, done = 0;
+    ch.forEach(function(k){
+      var x = T[k]; if (!x.start || !x.finish) return;
+      if (!st || x.start < st) st = x.start;
+      if (!fi || x.finish > fi) fi = x.finish;
+      work += x.durationMin || 0;
+      done += (x.durationMin || 0) * ((x.pctComplete || 0) / 100);
+    });
+    t.isSummary = true;
+    t.start = t.es = st; t.finish = t.ef = fi;
+    t.durationMin = (st && fi) ? workingMinutesBetween(cal(id), st, fi) : 0;
+    t.pctComplete = work ? Math.round((done / work) * 100) : 0;
+    t.critical = ch.some(function(k){ return T[k].critical; });
+    t.totalSlackMin = Math.min.apply(null, ch.map(function(k){
+      return T[k].totalSlackMin == null ? 0 : T[k].totalSlackMin; }));
+  });
+
+  return { tasks: T, warnings: warnings, cycles: [],
+           projectStart: projectStart, projectFinish: projectFinish };
+}
+
+var api = {
+  scheduleProject: scheduleProject,
+  addWorkingTime: addWorkingTime,
+  subWorkingTime: subWorkingTime,
+  workingMinutesBetween: workingMinutesBetween,
+  intervalsFor: intervalsFor,
+  topoOrder: topoOrder,
+  DEFAULT_CALENDAR: DEFAULT_CALENDAR
+};
+global.PC1 = api;
+if (typeof module !== "undefined" && module.exports) module.exports = api;
+})(typeof globalThis !== "undefined" ? globalThis : this);
+</script>
+
 <script type="text/babel">
 const {useState,useMemo,useEffect,useRef,useCallback} = React;
 
