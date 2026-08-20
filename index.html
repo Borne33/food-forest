@@ -451,6 +451,17 @@
     background:#fbf9f2;border:1px solid var(--line);border-radius:3px;padding:1px 3px;color:var(--ink)}
   .shph em{font-style:normal;color:var(--faint)}
 
+  .shwho{min-width:0;flex:1 1 auto}
+  .shrgt{flex:0 0 auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+  .shcost b{font-family:'Space Mono';font-size:17px;font-weight:700;display:block;line-height:1}
+  .shcost span{display:block;font-family:'Space Mono';font-size:8.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--faint);margin-top:3px;max-width:190px}
+  .shhours{display:block;margin-top:4px;font-family:'Space Mono';font-size:10.5px;color:var(--sage-d)}
+  .salebadge{display:inline-block;font-family:'Space Mono';font-size:9px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;background:var(--soil-bg,#efe4d0);color:var(--soil-d,#5c421f);
+    border:1px solid var(--soil-line,#d8c39c);border-radius:99px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+  .shform .price{display:block;font-weight:700;color:var(--ink);margin-top:3px}
+  .shform .price em{font-style:normal;font-weight:400;color:var(--faint)}
   .shqty{text-align:right;white-space:nowrap}
   .shqty b{font-family:'Space Mono';font-size:15px;font-weight:700;color:var(--ink)}
   .shqty .shall{display:block;font-family:'Space Mono';font-size:9px;color:var(--faint);margin-top:3px}
@@ -3380,19 +3391,55 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
     save(it.p.id,{bought:next});
   };
 
+  /* ---- estimated cost, only where the unit actually supports it ----
+     Of 1,226 listings only ~214 carry a unit you can honestly multiply by a
+     quantity. "from" is a STARTING price (Prairie Moon's "$3.50 from"), and
+     "per pound (bulk seed)" is Ernst selling by weight — multiplying either by a
+     plant count invents a number. So cost is computed from the countable units
+     only, bundles are rounded up to whole bundles, and a stop that mixes the two
+     is labelled partial rather than quietly under-reported. */
+  const BUNDLE=/bundle of (\d+)/i;
+  const costOf=(it)=>{
+    if(!it.pick) return null;
+    const r=it.pick.r, cents=r.priceCents, unit=(r.unit||"").toLowerCase();
+    if(!cents) return null;
+    if(!it.needSel) return {cents:0, exact:true};
+    const b=unit.match(BUNDLE);
+    if(b){ const n=parseInt(b[1],10)||1;
+      return {cents: cents*n*Math.ceil(it.needSel/n), exact:true, note:"bundles of "+n}; }
+    if(/per plant|^each\b/.test(unit)) return {cents: cents*it.needSel, exact:true};
+    return {cents, exact:false};      // "from" / per-pound — show, never total
+  };
+
   // group into stops
   const stops=useMemo(()=>{
     const by={};
     items.forEach(it=>{ const k=it.pick?it.pick.v.id:"none"; (by[k]||(by[k]=[])).push(it); });
-    return Object.keys(by).map(k=>({
-      vendor: k==="none"?null:vendorById[k],
-      d: k==="none"?null:milesTo(vendorById[k]),
-      items: by[k].sort((a,b)=>a.p.common.localeCompare(b.p.common)),
-    })).sort((a,b)=>{
+    return Object.keys(by).map(k=>{
+      const list=by[k].sort((a,b)=>a.p.common.localeCompare(b.p.common));
+      let cents=0, counted=0, uncounted=0;
+      list.forEach(it=>{ const c=costOf(it);
+        if(!c){ uncounted++; return; }
+        if(c.exact){ cents+=c.cents; counted++; } else uncounted++; });
+      return {
+        vendor: k==="none"?null:vendorById[k],
+        d: k==="none"?null:milesTo(vendorById[k]),
+        items: list, cents, counted, uncounted,
+      };
+    }).sort((a,b)=>{
       if(!a.vendor) return 1; if(!b.vendor) return -1;
       return b.items.length-a.items.length || ((a.d??9e9)-(b.d??9e9));
     });
   },[items,vendorById,centre]);
+
+  // next dated sale per vendor, for the badge on the stop header
+  const nextSaleBy=useMemo(()=>{
+    const t=todayISO(), m={};
+    (sales||[]).flatMap(saleOccurrences).filter(o=>o.date>=t)
+      .sort((a,b)=>a.date.localeCompare(b.date))
+      .forEach(o=>{ const v=o.sale.vendorId; if(v&&!m[v]) m[v]=o; });
+    return m;
+  },[sales]);
 
   const sourced=items.filter(i=>i.pick).length;
   const doneN=items.filter(i=>i.done).length;
@@ -3492,8 +3539,10 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
       {shown.map((s,si)=>(
         <div className="shstop" key={s.vendor?s.vendor.id:"none"}>
           <div className="shhead">
-            <div>
+            <div className="shwho">
               <b>{s.vendor?s.vendor.name:"No source found yet"}</b>
+              {s.vendor && nextSaleBy[s.vendor.id] &&
+                <span className="salebadge">Sale · {fmtDay(nextSaleBy[s.vendor.id].date)}</span>}
               <span className="mtmeta">
                 {s.vendor
                   ? [s.vendor.city&&s.vendor.city+", "+s.vendor.state,
@@ -3501,11 +3550,31 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
                   : "No shop in the database is recorded as stocking these — not yet checked, not unavailable"}
                 {" · "}{s.items.length} plant{s.items.length===1?"":"s"}
               </span>
+              {/* Hours are recorded for only a handful of shops, so fall back to
+                  whatever IS known rather than showing an empty "Hours:" label. */}
+              {s.vendor && (s.vendor.hours || s.vendor.orderWindow || s.vendor.pickupOnly) &&
+                <span className="shhours">
+                  {s.vendor.hours
+                    ? s.vendor.hours
+                    : s.vendor.orderWindow
+                      ? "Order window: "+s.vendor.orderWindow
+                      : "Pickup only — check before travelling"}
+                </span>}
             </div>
-            {s.vendor && <div className="shacts">
-              {s.vendor.url && <a href={s.vendor.url} target="_blank" rel="noopener">Website ↗</a>}
-              {go && <button onClick={()=>go("shops")}>All shops →</button>}
-            </div>}
+            <div className="shrgt">
+              {s.vendor && (s.counted>0 || s.uncounted>0) && (
+                <div className="shcost">
+                  <b>{s.counted>0 ? "$"+(s.cents/100).toFixed(2) : "—"}</b>
+                  <span>{s.counted>0
+                    ? (s.uncounted>0 ? "est. — "+s.uncounted+" not priced by plant" : "estimated subtotal")
+                    : "no per-plant prices"}</span>
+                </div>
+              )}
+              {s.vendor && <div className="shacts">
+                {s.vendor.url && <a href={s.vendor.url} target="_blank" rel="noopener">Website ↗</a>}
+                {go && <button onClick={()=>go("shops")}>All shops →</button>}
+              </div>}
+            </div>
           </div>
           {s.items.map(it=>(
             <div className={"shrow"+(it.done?" done":"")} key={it.p.id}>
@@ -3543,6 +3612,20 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
                 {it.pick ? [FORM_LABEL[it.pick.r.form]||it.pick.r.form, it.pick.r.size].filter(Boolean).join(" · ") : "—"}
                 {it.pick && <span className={"stock s-"+(it.pick.r.stock==="in_stock"?"in":it.pick.r.stock==="out"?"out":it.pick.r.stock==="seasonal"?"seas":"unk")}>
                   {it.pick.r.stock==="in_stock"?"in stock":it.pick.r.stock==="out"?"sold out":it.pick.r.stock==="seasonal"?"seasonal":"unknown"}</span>}
+                {it.pick && it.pick.r.priceCents>0 && (()=>{ const c=costOf(it), each=it.pick.r.priceCents/100;
+                  // show the arithmetic, not just the total — "$95.88 per plant"
+                  // reads as if 95.88 were the unit price.
+                  if(c && c.exact){
+                    const n=Math.round(c.cents/it.pick.r.priceCents);
+                    return <span className="price">{n} × ${each.toFixed(2)} = ${(c.cents/100).toFixed(2)}
+                      {c.note ? <em> ({c.note})</em> : null}</span>;
+                  }
+                  // the unit for Prairie Moon's rows is literally the word "from",
+                  // which would render as "from $3.50 from"
+                  const u=(it.pick.r.unit||"").trim();
+                  return <span className="price">from ${each.toFixed(2)}
+                    {u && u.toLowerCase()!=="from" ? <em> {u}</em> : null}</span>;
+                })()}
               </div>
               <div className="shpick" onClick={e=>e.stopPropagation()}>
                 {it.opts.length>1 ? (
