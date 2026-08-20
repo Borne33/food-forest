@@ -1315,8 +1315,9 @@ function scheduleProject(input){
     });
     // A start sitting on an interval END has no working time before the next
     // interval, so normalise it forward — otherwise SS+1d reads as 16:00 where
-    // MSP shows 08:00 the next day.
-    es = snapForward(c, es);
+    // MSP shows 08:00 the next day. Elapsed tasks are exempt: they ignore the
+    // calendar and may legitimately start in non-working time.
+    if (!t.elapsed) es = snapForward(c, es);
 
     // constraints — applied here, conflicts reported rather than swallowed
     var cd = t.constraintDate;
@@ -1367,6 +1368,7 @@ function scheduleProject(input){
       });
       if (lf === null) lf = new Date(projectFinish.getTime());
     }
+    if (lf > projectFinish) lf = new Date(projectFinish.getTime());
     var cd2 = t.constraintDate;
     if (cd2){
       if (t.constraintType === "SNLT"){
