@@ -97,9 +97,13 @@
   .sched{--cols:34px 40px 22px minmax(150px,1fr) 42px 56px 56px 62px 46px 44px}
   .grow,.ghead .hcell{min-width:max-content}
   .sched.narrow .grow,.sched.narrow .ghead .hcell{min-width:0}
+  /* The rail shows ID · Task · Dur, so WBS and the indicator column hide too —
+     otherwise those cells consume the template and the name lands in a 40px slot. */
+  .sched.narrow .wbscol,.sched.narrow .indcol{display:none}
   @media(max-width:900px){
     .sched:not(.phone){--gw:132px;--cols:34px 1fr 40px}
-    .sched:not(.phone) .wideonly{display:none}
+    .sched:not(.phone) .wideonly,
+    .sched:not(.phone) .wbscol,.sched:not(.phone) .indcol{display:none}
     .sched:not(.phone) .grow,.sched:not(.phone) .ghead .hcell{min-width:0}
   }
   .sched.narrow{--cols:34px 1fr 40px}
@@ -227,55 +231,55 @@
     <div class="schscroll">
       <div class="gpane">
         <div class="ghead"><div class="hcell">
-          <span>ID</span><span>WBS</span><span>!</span><span>Task name</span><span>Dur</span>
+          <span>ID</span><span class="wbscol">WBS</span><span class="indcol">!</span><span>Task name</span><span>Dur</span>
           <span class="wideonly">Start</span><span class="wideonly">Finish</span><span class="wideonly">Pred</span>
           <span class="wideonly">% Comp</span><span class="wideonly">Slack</span>
         </div></div>
-        <div class="grow sum"><span class="idc">1</span><span class="idc">1</span><span class="ind"></span>
+        <div class="grow sum"><span class="idc">1</span><span class="idc wbscol">1</span><span class="ind indcol"></span>
           <span class="nm">Phase 1 — Canopy &amp; soil</span><span class="num">18d</span>
           <span class="num wideonly">04 Apr</span><span class="num wideonly">29 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">38%</span><span class="num wideonly">0d</span></div>
-        <div class="grow crit"><span class="idc">2</span><span class="idc">1.1</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">2</span><span class="idc wbscol">1.1</span><span class="ind indcol"></span>
           <span class="nm lvl1">Site survey &amp; marking</span><span class="num">2d</span>
           <span class="num wideonly">04 Apr</span><span class="num wideonly">05 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">100%</span><span class="num wideonly">0d</span></div>
-        <div class="grow crit"><span class="idc">3</span><span class="idc">1.2</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">3</span><span class="idc wbscol">1.2</span><span class="ind indcol"></span>
           <span class="nm lvl1">Sheet-mulch the beds</span><span class="num">5d</span>
           <span class="num wideonly">06 Apr</span><span class="num wideonly">12 Apr</span><span class="mono wideonly" style="font-size:10px">2FS</span>
           <span class="num wideonly">60%</span><span class="num wideonly">0d</span></div>
-        <div class="grow"><span class="idc">4</span><span class="idc">1.3</span><span class="ind">◆</span>
+        <div class="grow"><span class="idc">4</span><span class="idc wbscol">1.3</span><span class="ind indcol">◆</span>
           <span class="nm lvl1">Bare-root order arrives</span><span class="num">0d</span>
           <span class="num wideonly">11 Apr</span><span class="num wideonly">11 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">—</span><span class="num wideonly">1d</span></div>
-        <div class="grow crit sel"><span class="idc">5</span><span class="idc">1.4</span><span class="ind">⚠</span>
+        <div class="grow crit sel"><span class="idc">5</span><span class="idc wbscol">1.4</span><span class="ind indcol">⚠</span>
           <span class="nm lvl1">Plant canopy trees (12)</span><span class="num">3d</span>
           <span class="num wideonly">13 Apr</span><span class="num wideonly">17 Apr</span><span class="mono wideonly" style="font-size:10px">3FS,4FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
-        <div class="grow crit"><span class="idc">6</span><span class="idc">1.5</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">6</span><span class="idc wbscol">1.5</span><span class="ind indcol"></span>
           <span class="nm lvl1">Plant shrub layer (24)</span><span class="num">4d</span>
           <span class="num wideonly">18 Apr</span><span class="num wideonly">23 Apr</span><span class="mono wideonly" style="font-size:10px">5FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
-        <div class="grow"><span class="idc">7</span><span class="idc">1.6</span><span class="ind"></span>
+        <div class="grow"><span class="idc">7</span><span class="idc wbscol">1.6</span><span class="ind indcol"></span>
           <span class="nm lvl1">Mulch &amp; water in</span><span class="num">2d</span>
           <span class="num wideonly">19 Apr</span><span class="num wideonly">20 Apr</span><span class="mono wideonly" style="font-size:10px">6SS+1d</span>
           <span class="num wideonly">0%</span><span class="num wideonly">3d</span></div>
-        <div class="grow crit"><span class="idc">8</span><span class="idc">1.7</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">8</span><span class="idc wbscol">1.7</span><span class="ind indcol"></span>
           <span class="nm lvl1">Deer protection</span><span class="num">2d</span>
           <span class="num wideonly">24 Apr</span><span class="num wideonly">29 Apr</span><span class="mono wideonly" style="font-size:10px">6FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
-        <div class="grow sum"><span class="idc">9</span><span class="idc">2</span><span class="ind"></span>
+        <div class="grow sum"><span class="idc">9</span><span class="idc wbscol">2</span><span class="ind indcol"></span>
           <span class="nm">Phase 2 — Understory</span><span class="num">9d</span>
           <span class="num wideonly">06 Apr</span><span class="num wideonly">16 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
-        <div class="grow"><span class="idc">10</span><span class="idc">2.1</span><span class="ind"></span>
+        <div class="grow"><span class="idc">10</span><span class="idc wbscol">2.1</span><span class="ind indcol"></span>
           <span class="nm lvl1">Soil test &amp; amend</span><span class="num">1d</span>
           <span class="num wideonly">06 Apr</span><span class="num wideonly">06 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
-        <div class="grow"><span class="idc">11</span><span class="idc">2.2</span><span class="ind">⚠</span>
+        <div class="grow"><span class="idc">11</span><span class="idc wbscol">2.2</span><span class="ind indcol">⚠</span>
           <span class="nm lvl1">Plant herb layer (48)</span><span class="num">5d</span>
           <span class="num wideonly">07 Apr</span><span class="num wideonly">13 Apr</span><span class="mono wideonly" style="font-size:10px">10FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
-        <div class="grow"><span class="idc">12</span><span class="idc">2.3</span><span class="ind"></span>
+        <div class="grow"><span class="idc">12</span><span class="idc wbscol">2.3</span><span class="ind indcol"></span>
           <span class="nm lvl1">Divide &amp; spread groundcover</span><span class="num">3d</span>
           <span class="num wideonly">14 Apr</span><span class="num wideonly">16 Apr</span><span class="mono wideonly" style="font-size:10px">11FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
@@ -531,55 +535,55 @@
     <div class="schscroll">
       <div class="gpane">
         <div class="ghead"><div class="hcell">
-          <span>ID</span><span>WBS</span><span>!</span><span>Task name</span><span>Dur</span>
+          <span>ID</span><span class="wbscol">WBS</span><span class="indcol">!</span><span>Task name</span><span>Dur</span>
           <span class="wideonly">Start</span><span class="wideonly">Finish</span><span class="wideonly">Pred</span>
           <span class="wideonly">% Comp</span><span class="wideonly">Slack</span>
         </div></div>
-        <div class="grow sum"><span class="idc">1</span><span class="idc">1</span><span class="ind"></span>
+        <div class="grow sum"><span class="idc">1</span><span class="idc wbscol">1</span><span class="ind indcol"></span>
           <span class="nm">Phase 1 — Canopy &amp; soil</span><span class="num">18d</span>
           <span class="num wideonly">04 Apr</span><span class="num wideonly">29 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">38%</span><span class="num wideonly">0d</span></div>
-        <div class="grow crit"><span class="idc">2</span><span class="idc">1.1</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">2</span><span class="idc wbscol">1.1</span><span class="ind indcol"></span>
           <span class="nm lvl1">Site survey &amp; marking</span><span class="num">2d</span>
           <span class="num wideonly">04 Apr</span><span class="num wideonly">05 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">100%</span><span class="num wideonly">0d</span></div>
-        <div class="grow crit"><span class="idc">3</span><span class="idc">1.2</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">3</span><span class="idc wbscol">1.2</span><span class="ind indcol"></span>
           <span class="nm lvl1">Sheet-mulch the beds</span><span class="num">5d</span>
           <span class="num wideonly">06 Apr</span><span class="num wideonly">12 Apr</span><span class="mono wideonly" style="font-size:10px">2FS</span>
           <span class="num wideonly">60%</span><span class="num wideonly">0d</span></div>
-        <div class="grow"><span class="idc">4</span><span class="idc">1.3</span><span class="ind">◆</span>
+        <div class="grow"><span class="idc">4</span><span class="idc wbscol">1.3</span><span class="ind indcol">◆</span>
           <span class="nm lvl1">Bare-root order arrives</span><span class="num">0d</span>
           <span class="num wideonly">11 Apr</span><span class="num wideonly">11 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">—</span><span class="num wideonly">1d</span></div>
-        <div class="grow crit moved"><span class="idc">5</span><span class="idc">1.4</span><span class="ind">⇅</span>
+        <div class="grow crit moved"><span class="idc">5</span><span class="idc wbscol">1.4</span><span class="ind indcol">⇅</span>
           <span class="nm lvl1">Plant shrub layer (24)</span><span class="num">4d</span>
           <span class="num wideonly">13 Apr</span><span class="num wideonly">18 Apr</span><span class="mono wideonly" style="font-size:10px">3FS,4FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
-        <div class="grow moved"><span class="idc">6</span><span class="idc">1.5</span><span class="ind">⇅</span>
+        <div class="grow moved"><span class="idc">6</span><span class="idc wbscol">1.5</span><span class="ind indcol">⇅</span>
           <span class="nm lvl1">Mulch &amp; water in</span><span class="num">2d</span>
           <span class="num wideonly">19 Apr</span><span class="num wideonly">20 Apr</span><span class="mono wideonly" style="font-size:10px">5FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">1d</span></div>
-        <div class="grow crit moved sel"><span class="idc">7</span><span class="idc">1.6</span><span class="ind">⇅ ⚠</span>
+        <div class="grow crit moved sel"><span class="idc">7</span><span class="idc wbscol">1.6</span><span class="ind indcol">⇅ ⚠</span>
           <span class="nm lvl1">Plant canopy trees (12)</span><span class="num">3d</span>
           <span class="num wideonly">21 Apr</span><span class="num wideonly">23 Apr</span><span class="mono wideonly" style="font-size:10px">6SS+1d</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
-        <div class="grow crit"><span class="idc">8</span><span class="idc">1.7</span><span class="ind"></span>
+        <div class="grow crit"><span class="idc">8</span><span class="idc wbscol">1.7</span><span class="ind indcol"></span>
           <span class="nm lvl1">Deer protection</span><span class="num">2d</span>
           <span class="num wideonly">24 Apr</span><span class="num wideonly">29 Apr</span><span class="mono wideonly" style="font-size:10px">6FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">0d</span></div>
-        <div class="grow sum"><span class="idc">9</span><span class="idc">2</span><span class="ind"></span>
+        <div class="grow sum"><span class="idc">9</span><span class="idc wbscol">2</span><span class="ind indcol"></span>
           <span class="nm">Phase 2 — Understory</span><span class="num">9d</span>
           <span class="num wideonly">06 Apr</span><span class="num wideonly">16 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
-        <div class="grow"><span class="idc">10</span><span class="idc">2.1</span><span class="ind"></span>
+        <div class="grow"><span class="idc">10</span><span class="idc wbscol">2.1</span><span class="ind indcol"></span>
           <span class="nm lvl1">Soil test &amp; amend</span><span class="num">1d</span>
           <span class="num wideonly">06 Apr</span><span class="num wideonly">06 Apr</span><span class="wideonly"></span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
-        <div class="grow"><span class="idc">11</span><span class="idc">2.2</span><span class="ind">⚠</span>
+        <div class="grow"><span class="idc">11</span><span class="idc wbscol">2.2</span><span class="ind indcol">⚠</span>
           <span class="nm lvl1">Plant herb layer (48)</span><span class="num">5d</span>
           <span class="num wideonly">07 Apr</span><span class="num wideonly">13 Apr</span><span class="mono wideonly" style="font-size:10px">10FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
-        <div class="grow"><span class="idc">12</span><span class="idc">2.3</span><span class="ind"></span>
+        <div class="grow"><span class="idc">12</span><span class="idc wbscol">2.3</span><span class="ind indcol"></span>
           <span class="nm lvl1">Divide &amp; spread groundcover</span><span class="num">3d</span>
           <span class="num wideonly">14 Apr</span><span class="num wideonly">16 Apr</span><span class="mono wideonly" style="font-size:10px">11FS</span>
           <span class="num wideonly">0%</span><span class="num wideonly">248d</span></div>
