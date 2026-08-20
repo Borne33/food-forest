@@ -1159,7 +1159,7 @@ function subWorkingTime(cal, from, minutes, elapsed){
     }
     var prev = new Date(d.getFullYear(), d.getMonth(), d.getDate()-1);
     var piv = intervalsFor(cal, prev);
-    d = atMinutes(prev, piv.length ? piv[piv.length-1][1] : 24*60);
+    d = atMinutes(prev, piv.length ? piv[piv.length-1][1] : 0);
   }
   return d;
 }
@@ -1187,7 +1187,7 @@ function snapBack(cal, from){
     }
     var prev = new Date(d.getFullYear(), d.getMonth(), d.getDate()-1);
     var piv = intervalsFor(cal, prev);
-    d = atMinutes(prev, piv.length ? piv[piv.length-1][1] : 24*60);
+    d = atMinutes(prev, piv.length ? piv[piv.length-1][1] : 0);
   }
   throw new Error("snapBack: no working time found");
 }
