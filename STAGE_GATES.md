@@ -195,9 +195,19 @@ Evaluate:
 
 ---
 
-## PC1 — Gantt scheduling engine (headless)
+## PC1 — Gantt scheduling engine (headless) — ✅ SHIPPED, gate largely closed
 
 Ships: `scheduleProject()` + calendar math, no UI. Verified with a test fixture, not by clicking.
+
+**Result (Aug 2026):** 25/25 unit tests pass, and a cross-check against GanttProject 3.3.3322
+matched **14 of 15 rows exactly** — see `schedule/VERIFICATION.md`. Forward/backward pass,
+FS/SS/FF/SF, lag, lead, milestones and summary rollups are all confirmed against an independent
+implementation. The single difference is Phase 2's summary finish: GanttProject excludes
+milestones from summary spans, MS Project includes them, and we follow MSP.
+
+**Still open:** calendars (7-day weeks, exceptions, advisory windows) and constraints
+(SNET/SNLT/FNET/FNLT/MSO/MFO) are **not** cross-checked — GanttProject ignores both, so those
+rest on the unit tests until someone opens `schedule/pc1-fixture.xml` in MS Project itself.
 
 Evaluate:
 1. **⛔ Compare against MS Project directly.** I'll produce a small fixture (≈15 tasks, mixed FS/SS/FF/SF, lags, a

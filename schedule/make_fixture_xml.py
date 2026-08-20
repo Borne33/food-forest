@@ -120,7 +120,8 @@ out = ['<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',
        '  <MinutesPerWeek>3360</MinutesPerWeek>',
        '  <DaysPerMonth>30</DaysPerMonth>',
        '  <Calendars><Calendar>',
-       '    <UID>1</UID><Name>Standard (7-day)</Name><IsBaseCalendar>1</IsBaseCalendar>',
+       '    <UID>1</UID><Name>Standard (7-day)</Name><IsBaseCalendar>1</IsBaseCalendar>'
+       '<BaseCalendarUID>-1</BaseCalendarUID>',
        '    <WeekDays>']
 for dt in range(1, 8):                       # 1=Sunday .. 7=Saturday, all working
     out += ['      <WeekDay><DayType>%d</DayType><DayWorking>1</DayWorking>' % dt,
@@ -154,7 +155,8 @@ for idx, (tid, t) in enumerate(order):
             '      <Active>1</Active><Manual>0</Manual><Type>1</Type>',
             '      <OutlineLevel>%d</OutlineLevel>' % lvl,
             '      <Summary>%d</Summary><Milestone>%d</Milestone>' % (1 if is_sum else 0, 1 if is_ms else 0),
-            '      <ConstraintType>%d</ConstraintType>' % CONS.get(ctype, 0)]
+            '      <ConstraintType>%d</ConstraintType>' % CONS.get(ctype, 0),
+            '      <CalendarUID>1</CalendarUID>']
     if RECOMPUTE:
         # start+duration only: enough for MPXJ to import, not enough to skip the maths
         out += ['      <Start>%s</Start>' % PROJ_START]
