@@ -90,7 +90,18 @@
   .num{text-align:right;font-family:'Space Mono';font-size:11px}
   .ind{text-align:center;color:var(--orange);font-size:11px}
   /* full column set only when the grid is wide */
-  .sched{--cols:34px 40px 22px 1fr 42px 56px 56px 62px 40px 44px}
+  /* The name column must never be squeezed out. minmax() gives it a floor and
+     min-width:max-content makes the PANE scroll instead of the column collapsing —
+     at ~800px the fixed columns alone exceeded the pane and the name shrank to
+     one letter. Below 900px the grid auto-collapses to the rail. */
+  .sched{--cols:34px 40px 22px minmax(150px,1fr) 42px 56px 56px 62px 46px 44px}
+  .grow,.ghead .hcell{min-width:max-content}
+  .sched.narrow .grow,.sched.narrow .ghead .hcell{min-width:0}
+  @media(max-width:900px){
+    .sched:not(.phone){--gw:132px;--cols:34px 1fr 40px}
+    .sched:not(.phone) .wideonly{display:none}
+    .sched:not(.phone) .grow,.sched:not(.phone) .ghead .hcell{min-width:0}
+  }
   .sched.narrow{--cols:34px 1fr 40px}
   /* On a phone the rail must earn its width: drop Duration (it lives in the
      popup) so the task name is actually readable. */
