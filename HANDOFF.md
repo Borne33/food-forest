@@ -827,3 +827,78 @@ export metadata (a real listing has a binomial or a price).
 
 **Nothing is required of Alex to use it** — the bucket, RLS and env key are all
 in place. Run it after someone uploads through the Shop Editor.
+
+---
+
+## 24. Schedule: sticky headers, editable dates/slack, Instructions tab (Aug 2026)
+
+### The sticky-header trap, a second time
+The task grid's column header and the timeline's date scale both already carried
+`position:sticky; top:0`. Neither stuck. **`.gpane`/`.tpane` were declared
+`overflow-x:auto`, and CSS computes `overflow-y` to `auto` whenever the other
+axis is not `visible`** — so each pane was its own scrollport, while the actual
+vertical scrolling happened on `.schscroll` one level up. Sticky resolved
+against a box that never moved.
+
+Exactly the failure recorded in §9 for `.pplhead`. **Rule of thumb: a sticky
+header only works if there is no `overflow` ancestor between it and the element
+that actually scrolls.**
+
+Fix: each pane became the real vertical scroller (`overflow:auto; max-height`),
+with the two `scrollTop`s kept in step.
+
+- **Native listeners, not `onScroll`.** React's delegated `scroll` did not reach
+  these reliably; one missed event leaves rows offset from their bars.
+- **No lock and no rAF.** Writing `scrollTop` does fire the other pane's scroll,
+  but by then the values are equal and the `!==` guard returns — it converges on
+  its own. A rAF latch would stall in a throttled tab where no frame ever runs.
+
+Also: `.gbody{min-width:640px}` is a floor for the *ten-column* layout. It was
+still applying to the two-column rail under 900px, forcing a 640px body through
+a ~260px pane and slicing every task name. Now dropped in rail mode.
+
+### Editing engine outputs
+Start, Finish and Slack are **computed**, so the editor translates them back into
+inputs. The constraint dropdown decides which date is the anchor:
+
+| Constraint | Anchor | The other date box then… |
+|---|---|---|
+| ASAP | neither | typing a Start promotes it to SNET; typing a Finish restretches the duration |
+| SNET / MSO | Start | Finish restretches the duration |
+| FNLT / MFO | Finish | Start restretches the duration |
+
+Two things that bit during verification, both worth keeping in mind:
+
+1. **A `<input type=date>` finish means the END of that day.** Reading it back at
+   08:00 shortens every task the editor touches by a day — "start the 2nd, finish
+   the 4th" is three days, not two.
+2. **Restretch from the instants the engine produced, not from 08:00.** A task
+   pushed to 14:00 by its predecessor, remeasured from 08:00, comes back a day
+   long — the user types a finish of the 8th and the grid answers the 9th.
+
+**Slack cannot be assigned** (it is `LS − ES`); it can only be **capped**. Typing
+a slack figure writes a `deadline`, and the backward pass now caps `lf` at it —
+MS Project's behaviour. Early dates never move; overrunning a deadline drives
+slack negative and the task critical. The field seeds from the computed slack, so
+opening the card and saving it unchanged must not invent a deadline — hence the
+`_start0`/`_finish0`/`_slack0` seed copies and the "only if it differs" checks.
+Eight new engine tests cover it (**59 passing**).
+
+### Verification note
+`.scrollTop = n` **fires no scroll event while the browser pane is hidden** — the
+renderer is throttled, and rAF is starved too. Half an hour went into "the sync
+is broken" before that showed up. Drive the handler with an explicit
+`dispatchEvent(new Event("scroll"))` when measuring headlessly, or front the pane.
+
+### Instructions tab
+New `HowTo` component, first in the My Plans view row. **Static by decision** —
+it does not read the open plan. Written for anyone the planner is shared with,
+so no stage codes, no admin tools, no engine-verification internals; tools that
+are early say so in plain terms. Starts on the Database page, because an empty
+plan makes every My Plans tool look broken rather than empty.
+
+If tools change, the two things most likely to go stale are the per-step
+**Needs first / Feeds** tags and the amber status notes.
+
+One JSX gotcha it shook out: **whitespace spanning a newline is dropped**, so a
+`<b>` opening a line loses the space before it ("in the<b>Planting Plan</b>").
