@@ -902,3 +902,57 @@ If tools change, the two things most likely to go stale are the per-step
 
 One JSX gotcha it shook out: **whitespace spanning a newline is dropped**, so a
 `<b>` opening a line loses the space before it ("in the<b>Planting Plan</b>").
+
+---
+
+## 25. Schedule: one scroller, undo/redo, full screen (Aug 2026)
+
+### The scroll was not smooth because there were two of them
+§24 made each pane its own vertical scroller so the sticky headers would bite.
+That worked, and it cost smoothness: the pane you are *not* touching is driven
+by JS, so it is always a frame behind the one you are. Rows and their bars
+sheared apart, worst under momentum scrolling on a phone.
+
+**The headers are out of the scroller now.** They sit in a `.schhead` strip above
+it, duplicating the row geometry (same `--cols`), and each is moved sideways by
+`transform` to match its pane's `scrollLeft`. Vertical is a single native
+scroller with no JS at all.
+
+Two things to keep true:
+- **Neither pane may carry a `max-height`.** One is enough to make it a scrollport
+  again that clips its own rows, and the shearing comes straight back.
+- **The transform is written to the node, not through React.** A scroll handler
+  that calls `setState` cannot keep up and the header visibly trails the columns.
+
+### Undo / redo
+Whole `{tasks, links}` snapshots, 30 deep, cleared when the plan changes. `mark()`
+is called *before* each mutation — after validation, so a rejected save leaves no
+step behind.
+
+**The hard case is undoing a delete.** `saveTasks` writes a manual row by UPDATE,
+which silently does nothing once the row is gone, so a deleted task cannot come
+back under its old id. `restore()` therefore strips the id from anything the
+server no longer has, lets it re-insert, and then re-points links **and**
+`parentId` by **position** — the one identity that survives the round trip.
+Generated rows upsert on `generated_key` and revive on their own, but they go
+through the same path so there is only one behaviour to reason about.
+
+### Editor dismissal
+Dismissal is decided on **pointerdown**, not click. On click, a press that began
+inside the card and ended on the backdrop closed it — selecting text in a field
+and releasing past its edge threw the edit away. With unsaved changes (measured
+against an `_seed` signature taken when the card opens) it asks instead: go back,
+discard, or save. Cancel still discards outright.
+
+### Gotcha for the next person verifying
+**Disable the page's own `<style>` blocks before injecting a new one.** Leaving
+them live means any property the new sheet no longer sets keeps applying — a
+stale `max-height:520px` on `.gpane` made the fix look broken and sent me after
+`align-content` for a while. It is a harness fault, not a page fault.
+
+### Field grid specificity
+`@media(...){ .fgrid{...} }` never once applied: `.fgrid` (0,1,0) loses to
+`.tgwrap .fgrid` (0,2,0) regardless of source order. **Scope the media rule to
+the same depth as the base rule.** Tracks are `minmax(0,1fr)` too — a plain `1fr`
+refuses to shrink below a date input's intrinsic width, which is what put Slack
+on top of Finish at 375px.
