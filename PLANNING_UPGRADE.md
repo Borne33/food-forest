@@ -262,3 +262,45 @@ per activity per year, never per plant. A 124-plant, 3-phase plan generates
 ### Not done here
 Inline cell editing (everything goes through the row editor, per the approved
 design), and the timeline pane — that is PC3, and slots into the same scroller.
+
+## Project start + phase targets, and PC3 — timeline (Aug 2026) — shipped
+
+### Dated fields live on `plans`, not the layout
+`plans.project_start` (date) and `plans.phase_targets` (jsonb `{phase: date}`).
+Deliberately **not** in the layout blob: the layout is written only by
+`PlantingPlan`, which is unmounted while the user is on the Schedule tab, so the
+task grid could never have persisted there. PC1 owns anything dated, so these sit
+where PC1 can reach them.
+
+**A phase target is hard, and reported.** It becomes a `SNET` constraint on the
+phase's first task, so a phase cannot start before it; dependencies may still push
+it later, and when they do a `target` warning fires. `targetDate` is a separate
+field from `constraintDate` on purpose — SNET does the scheduling, `targetDate`
+does the reporting.
+
+Verified: with targets a year apart, Phase 1/2/3 start Apr 2027 / Apr 2028 /
+Apr 2029 and the timeline widens from 320px to 10,304px. Before this, every phase
+started on the project start date.
+
+### PC3 — timeline
+**HTML rows with positioned bars plus one SVG overlay for arrows — not a single
+big SVG.** A monolithic SVG has to derive its geometry from the grid's rendered
+row heights, which is exactly the coupling that made the first mockups drift apart
+on mobile. Both panes now read the same `--rowh` / `--headh`. Measured in the real
+component: **0px drift across 25 rows**.
+
+Ships: task bars, summary brackets, milestone diamonds, % complete as a darker
+inner bar, critical path in `--red`, target-date markers, today line, dependency
+arrows (faded unless the row is selected), and day/week/month/quarter zoom.
+
+Not yet: drag-to-move and drag-to-link on the bars, baseline bars (PC4), and
+PNG export.
+
+### Bugs caught by driving the real component
+1. **`generate()` dropped `constraintType` / `constraintDate` / `targetDate`.** The
+   generator produced them, the row builder never copied them across, so every
+   phase still started on the project start date and the whole feature silently
+   did nothing.
+2. Grid dates showed `Apr 05` with no year — ambiguous across a multi-year plan.
+3. Adding the year overflowed the 58px Start/Finish columns; measured the actual
+   overflow (79px content in a 74px box) rather than guessing, and set 86px.

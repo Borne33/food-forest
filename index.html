@@ -442,6 +442,37 @@
     .sched:not(.narrow){--cols:28px 1fr !important}
     .sched:not(.narrow) .grow,.sched:not(.narrow) .ghead .hcell{min-width:0}
   }
+  /* PC3 timeline — geometry from the SAME --rowh/--headh as the grid */
+  .schscroll{grid-template-columns:var(--gw) 1fr}
+  .gpane{border-right:1.5px solid var(--ink)}
+  .sched.narrow .gpane{border-right:1.5px solid var(--ink)}
+  .tpane{min-width:0;overflow-x:auto;position:relative}
+  .thead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    position:sticky;top:0;z-index:3}
+  .thead .scale{position:relative;height:100%;width:100%}
+  .thead .maj{position:absolute;top:6px;font-family:'Space Mono';font-size:9.5px;color:var(--ink2);white-space:nowrap}
+  .thead .min{position:absolute;bottom:6px;font-family:'Space Mono';font-size:8px;color:var(--faint)}
+  .tbody{position:relative}
+  .trow{height:var(--rowh);border-bottom:1px solid var(--line);position:relative}
+  .trow.sum{background:#f0ecdf} .trow.sel{background:#eef2e7}
+  .bar{position:absolute;top:9px;height:14px;border-radius:2px;background:var(--sage);overflow:hidden}
+  .bar.crit{background:var(--red)}
+  .bar .pc{position:absolute;left:0;top:0;bottom:0;background:rgba(0,0,0,.30)}
+  .sumbar{position:absolute;top:11px;height:9px;background:var(--ink)}
+  .ms{position:absolute;top:10px;width:12px;height:12px;background:var(--ink);transform:rotate(45deg)}
+  .tgt{position:absolute;top:6px;bottom:6px;width:0;border-left:2px dotted var(--soil-d)}
+  .today{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--red);z-index:2}
+  .arrows{position:absolute;left:0;top:0;pointer-events:none}
+  /* dates strip */
+  .tgdates{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px;
+    background:#fbf9f2;border:1px solid var(--line);border-radius:4px;padding:8px 12px}
+  .tgdates .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint)}
+  .tgdates input[type=date]{font-family:'Space Mono';font-size:12px;background:#fff;
+    border:1.5px solid var(--line);border-radius:4px;padding:4px 6px;color:var(--ink)}
+  .tgph{display:inline-flex;align-items:center;gap:5px}
+  .tgph label{font-family:'Space Mono';font-size:10px;color:var(--ink2);white-space:nowrap}
+
   /* change notice — zero height when empty; the component gives the scroll
      position the same pixels back so the view never jumps */
   .changebar{height:0;margin:0;overflow:hidden;transition:height .12s ease}
@@ -1333,6 +1364,7 @@ function scheduleProject(input){
       constraintDate: t.constraintDate ? toDate(t.constraintDate) : null,
       deadline: t.deadline ? toDate(t.deadline) : null,
       calendarId: t.calendarId || null,
+      targetDate: t.targetDate ? toDate(t.targetDate) : null,
       pctComplete: t.pctComplete == null ? 0 : t.pctComplete,
       phaseNo: t.phaseNo == null ? null : t.phaseNo,
       plantId: t.plantId == null ? null : t.plantId
@@ -1404,6 +1436,13 @@ function scheduleProject(input){
     }
     t.es = es;
     t.ef = t.isMilestone ? new Date(es.getTime()) : addWorkingTime(c, es, dur(id), t.elapsed);
+    // A phase target is a separate field from the constraint on purpose: SNET does
+    // the scheduling, targetDate does the reporting. Warn only when dependencies
+    // pushed the start PAST the target — SNET already guarantees it is not before.
+    if (t.targetDate && t.es > t.targetDate){
+      warnings.push({ type: "target", taskId: id,
+        message: t.name + ": starts after its target date — dependencies pushed it." });
+    }
     if (t.constraintType === "FNLT" && cd && t.ef > cd){
       warnings.push({ type:"constraint", taskId:id,
         message: t.name + ": cannot finish by its Finish-No-Later-Than date." });
@@ -1576,6 +1615,7 @@ function generateTasks(input){
   var layerOf = input.layerOf || function(){ return "Herbaceous"; };
   var hoursOf = input.hoursOf || function(){ return 0.3; };
   var phaseName = input.phaseName || function(n){ return "Phase " + n; };
+  var phaseTargets = input.phaseTargets || {};   // {phase: "YYYY-MM-DD"}
   var horizon = input.horizon || 0;
   var perDay = input.minutesPerDay || 480;
   var hrs = function(h){ return Math.max(60, Math.round(h * 60)); };   // never a zero-length task
@@ -1608,9 +1648,14 @@ function generateTasks(input){
       return t;
     };
 
+    var target = phaseTargets[n] || phaseTargets[String(n)] || null;
     chain(add({ generatedKey: "phase:" + n + ":prep", parentKey: sum.generatedKey,
       name: "Site prep — clear, sheet-mulch and amend (" + ph._qty + " plants)",
-      outlineLevel: 2, phaseNo: n, durationMin: hrs(ph._qty * 0.4) }));
+      outlineLevel: 2, phaseNo: n, durationMin: hrs(ph._qty * 0.4),
+      // the phase cannot begin before its target; dependencies may still push it
+      constraintType: target ? "SNET" : "ASAP",
+      constraintDate: target ? target + "T08:00:00" : null,
+      targetDate: target ? target + "T08:00:00" : null }));
 
     PC2_LAYER_ORDER.forEach(function(layer){
       var q = ph[layer];
@@ -1762,6 +1807,7 @@ function rowToTask(r){
     startAt:r.start_at, finishAt:r.finish_at, pctComplete:r.pct_complete,
     constraintType:r.constraint_type, constraintDate:r.constraint_date, deadline:r.deadline,
     calendarId:r.calendar_id, phaseNo:r.phase_no, plantId:r.plant_id,
+    targetDate:r.constraint_type==='SNET'?r.constraint_date:null,
     isGenerated:r.is_generated, generatedKey:r.generated_key, userEdited:r.user_edited };
 }
 function taskToRow(t){
@@ -1936,6 +1982,20 @@ const dataProvider = {
   },
   async clearShopping(planId){
     const { error } = await sb.from('shopping_list').delete().eq('plan_id',planId);
+    if(error) throw error;
+  },
+  /* ---- PC1/PC3: project start + per-phase targets (own the dated fields) ---- */
+  async loadPlanDates(planId){
+    const { data, error } = await sb.from('plans')
+      .select('project_start,phase_targets').eq('id',planId).maybeSingle();
+    if(error) throw error;
+    return { projectStart:(data&&data.project_start)||null,
+             phaseTargets:(data&&data.phase_targets)||{} };
+  },
+  async savePlanDates(planId, projectStart, phaseTargets){
+    const { error } = await sb.from('plans')
+      .update({ project_start: projectStart||null, phase_targets: phaseTargets||{} })
+      .eq('id',planId);
     if(error) throw error;
   },
   /* ---- PC2: plan tasks + links (own-row RLS) ---- */
@@ -4539,12 +4599,58 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
    them back. Drag-to-reorder changes ID and WBS and NOTHING else: links belong
    to the task and travel with it, so no date moves and predecessor references
    merely re-render (settled Aug 2026). */
-const TG_COLS = "34px 46px 22px minmax(150px,1fr) 46px 58px 58px 66px 48px 46px";
+// Start/Finish now carry a year ("Apr 05, 27"), so 58px truncated them.
+const TG_COLS = "34px 46px 22px minmax(150px,1fr) 46px 86px 86px 66px 48px 56px";
 const TG_RAIL = "28px 1fr";
 const MIN_PER_DAY = 480;
 const dayStr = m => { const d = (m||0)/MIN_PER_DAY; return (Math.round(d*10)/10) + "d"; };
+// A food-forest plan spans years, so "Apr 05" alone is ambiguous — carry the year.
 const fmtShort = v => { if(!v) return "—"; const d = new Date(v);
-  return d.toLocaleDateString(undefined,{day:"2-digit",month:"short"}); };
+  return d.toLocaleDateString(undefined,{day:"2-digit",month:"short",year:"2-digit"}); };
+
+
+/* ── PC3: timeline ────────────────────────────────────────────────────────
+   HTML rows with positioned bars plus one SVG overlay for the arrows — NOT a
+   single big SVG. A monolithic SVG would have to recompute its geometry from
+   the grid's rendered row heights, which is exactly the coupling that made the
+   first mockups drift apart on mobile. This way both panes read --rowh and
+   --headh and cannot disagree. */
+const TL_PXDAY = { day:30, week:14, month:5, quarter:2 };
+const DAY_MS = 86400000;
+function tlScale(schedule, zoom){
+  if(!schedule || !schedule.projectStart) return null;
+  const px = TL_PXDAY[zoom] || 14;
+  let lo = new Date(schedule.projectStart), hi = new Date(schedule.projectFinish || lo);
+  lo = new Date(lo.getFullYear(), lo.getMonth(), lo.getDate());
+  hi = new Date(hi.getFullYear(), hi.getMonth(), hi.getDate()+1);
+  const days = Math.max(1, Math.round((hi-lo)/DAY_MS));
+  return { lo, hi, px, days, width: Math.max(320, days*px),
+           x: d => d ? ((new Date(d) - lo)/DAY_MS)*px : 0 };
+}
+function tlTicks(sc, zoom){
+  if(!sc) return {major:[], minor:[]};
+  const major=[], minor=[];
+  const d=new Date(sc.lo);
+  if(zoom==="quarter"||zoom==="month"){
+    let cur=new Date(d.getFullYear(), d.getMonth(), 1);
+    while(cur<sc.hi){
+      if(cur.getMonth()===0) major.push({x:sc.x(cur), label:String(cur.getFullYear())});
+      minor.push({x:sc.x(cur), label:cur.toLocaleDateString(undefined,{month:"short"})});
+      cur=new Date(cur.getFullYear(), cur.getMonth()+1, 1);
+    }
+    if(!major.length) major.push({x:0, label:String(d.getFullYear())});
+  } else {
+    let cur=new Date(d); cur.setDate(cur.getDate() - ((cur.getDay()+6)%7)); // Monday
+    let lastMo=-1;
+    while(cur<sc.hi){
+      if(cur.getMonth()!==lastMo){ lastMo=cur.getMonth();
+        major.push({x:sc.x(cur), label:cur.toLocaleDateString(undefined,{month:"long", year:"numeric"})}); }
+      minor.push({x:sc.x(cur), label:String(cur.getDate())});
+      cur=new Date(cur.getFullYear(), cur.getMonth(), cur.getDate()+7);
+    }
+  }
+  return {major, minor};
+}
 
 function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const [tasks,setTasks]=useState([]);
@@ -4556,15 +4662,26 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const [narrow,setNarrow]=useState(false);
   const [notice,setNotice]=useState(null);  // {lines:[…]} — reserved space, see CSS
   const [err,setErr]=useState(null);
+  const [projStart,setProjStart]=useState("");
+  const [targets,setTargets]=useState({});   // {phase: "YYYY-MM-DD"}
+  const [zoom,setZoom]=useState("week");     // day | week | month | quarter
   const scrollRef=useRef(null);
 
   useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
-    dataProvider.loadTasks(planId).then(({tasks,links})=>{ if(dead) return;
-      setTasks(tasks); setLinks(links); setReady(true);
-    }).catch(e=>{ console.error(e); if(!dead){ setErr(e.message||String(e)); setReady(true); } });
+    Promise.all([dataProvider.loadTasks(planId), dataProvider.loadPlanDates(planId)])
+      .then(([{tasks,links},d])=>{ if(dead) return;
+        setTasks(tasks); setLinks(links);
+        setProjStart(d.projectStart||""); setTargets(d.phaseTargets||{}); setReady(true);
+      }).catch(e=>{ console.error(e); if(!dead){ setErr(e.message||String(e)); setReady(true); } });
     return ()=>{ dead=true; };
   },[planId]);
 
+  const phaseNos=useMemo(()=>{
+    const s=new Set();
+    Object.keys(alloc||{}).forEach(id=>Object.keys(alloc[id]||{}).forEach(ph=>{
+      if((parseInt(alloc[id][ph],10)||0)>0) s.add(Number(ph)); }));
+    return [...s].sort((a,b)=>a-b);
+  },[alloc]);
   const byId=useMemo(()=>{ const m={}; tasks.forEach(t=>m[t.id]=t); return m; },[tasks]);
   const ordered=useMemo(()=>tasks.slice().sort((a,b)=>(a.sortOrder||0)-(b.sortOrder||0)),[tasks]);
   // display number = position, exactly what the Predecessors column references
@@ -4577,13 +4694,14 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         tasks: ordered.map(t=>({ id:t.id, name:t.name, parentId:t.parentId,
           durationMin:t.durationMin, elapsed:t.elapsed, isMilestone:t.isMilestone,
           isSummary:t.isSummary, constraintType:t.constraintType,
-          constraintDate:t.constraintDate, deadline:t.deadline,
+          constraintDate:t.constraintDate, targetDate:t.targetDate, deadline:t.deadline,
           calendarId:t.calendarId, pctComplete:t.pctComplete, phaseNo:t.phaseNo })),
         links: links.map(l=>({predId:l.predId, succId:l.succId, type:l.type, lagMin:l.lagMin})),
-        calendars: null, projectStart: new Date()
+        calendars: null,
+        projectStart: projStart ? new Date(projStart + "T08:00:00") : new Date()
       });
     }catch(e){ console.error(e); return null; }
-  },[ordered,links]);
+  },[ordered,links,projStart]);
 
   const S = id => (schedule && schedule.tasks[id]) || {};
   const predText = id => window.PC1
@@ -4632,6 +4750,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       layerOf:p=>p?(LAYER[p.type]||"Herbaceous"):"Herbaceous",
       hoursOf:p=>(INSTALL_HRS[p&&p.type]||0.3),
       phaseName:n=>((phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n)),
+      phaseTargets:targets,
       horizon:horizon||3, minutesPerDay:MIN_PER_DAY });
     if(!gen.tasks.length){ say(["Nothing to generate — set some quantities on the Planting Plan first."]); return; }
 
@@ -4644,9 +4763,13 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
     gen.tasks.forEach(g=>{
       const cur=keyed[g.generatedKey];
       if(cur && cur.userEdited){ next.push({...cur, sortOrder:order++}); return; }
+      // constraint/target MUST be carried across — dropping them here is what made
+      // every phase start on the project start date regardless of its target
       next.push({ ...(cur||{}), id:cur?cur.id:undefined, name:g.name,
         durationMin:g.durationMin, isSummary:!!g.isSummary, outlineLevel:g.outlineLevel,
         phaseNo:g.phaseNo||null, generatedKey:g.generatedKey, isGenerated:true,
+        constraintType:g.constraintType||"ASAP", constraintDate:g.constraintDate||null,
+        targetDate:g.targetDate||null,
         userEdited:false, sortOrder:order++ });
     });
     tasks.filter(t=>!t.generatedKey).forEach(t=>next.push({...t, sortOrder:order++}));
@@ -4754,6 +4877,9 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         <button className="ppbtn ghost" disabled={busy} onClick={addTask}>+ Add task</button>
         <button className={"chip"+(narrow?" on":"")} onClick={()=>setNarrow(v=>!v)}>
           {narrow ? "Expand grid ⟩" : "⟨ Collapse grid"}</button>
+        {["day","week","month","quarter"].map(z=>(
+          <button key={z} className={"chip"+(zoom===z?" on":"")} onClick={()=>setZoom(z)}>
+            {z[0].toUpperCase()+z.slice(1)}</button>))}
         <span className="spacer"></span>
         <span className="mtmeta">{ordered.length} task{ordered.length===1?"":"s"}
           {schedule && schedule.warnings.length ? ` · ${schedule.warnings.length} warning${schedule.warnings.length===1?"":"s"}` : ""}</span>
@@ -4761,6 +4887,24 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           if(confirm("Delete every task on this schedule?"))
             dataProvider.clearTasks(planId).then(()=>{ setTasks([]); setLinks([]); say(["Schedule cleared."]); });
         }}>Clear</button>}
+      </div>
+
+      <div className="tgdates">
+        <span className="lbl">Project start</span>
+        <input type="date" value={projStart}
+               onChange={e=>{ setProjStart(e.target.value);
+                 dataProvider.savePlanDates(planId, e.target.value, targets).catch(x=>setErr(String(x))); }} />
+        {phaseNos.map(n=>(
+          <span className="tgph" key={n}>
+            <label>{(phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n)}</label>
+            <input type="date" value={targets[n]||""}
+                   onChange={e=>{ const next={...targets}; if(e.target.value) next[n]=e.target.value; else delete next[n];
+                     setTargets(next);
+                     dataProvider.savePlanDates(planId, projStart, next).catch(x=>setErr(String(x))); }} />
+          </span>
+        ))}
+        {phaseNos.length>0 &&
+          <span className="mtmeta">A phase cannot start before its target — regenerate to apply.</span>}
       </div>
 
       <div className={"changebar"+(notice?" has":"")}>
@@ -4776,8 +4920,8 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           your phases and quantities — one summary per phase, then the planting layers in order.</div>
       ) : (
       <div className={"sched"+(narrow?" narrow":"")} style={{"--cols": narrow?TG_RAIL:TG_COLS}}>
-        <div className="schscroll" ref={scrollRef} style={{gridTemplateColumns:"1fr"}}>
-          <div className="gpane" style={{borderRight:0}}>
+        <div className="schscroll" ref={scrollRef}>
+          <div className="gpane">
             <div className="ghead"><div className="hcell">
               <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
               <span>Task name</span><span className="durcol">Dur</span>
@@ -4810,6 +4954,54 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
               </div>);
             })}
           </div>
+
+          {(()=>{ const sc=tlScale(schedule, zoom); if(!sc) return <div className="tpane"></div>;
+            const tk=tlTicks(sc, zoom);
+            const todayX=sc.x(new Date());
+            const rowY=i=>i*32+16;               // --rowh is 32; centre of row i
+            const idx={}; ordered.forEach((t,i)=>idx[t.id]=i);
+            return (
+            <div className="tpane">
+              <div style={{width:sc.width}}>
+                <div className="thead"><div className="scale">
+                  {tk.major.map((m,i)=><span className="maj" key={i} style={{left:m.x+4}}>{m.label}</span>)}
+                  {tk.minor.map((m,i)=><span className="min" key={i} style={{left:m.x+3}}>{m.label}</span>)}
+                </div></div>
+                <div className="tbody">
+                  {todayX>=0 && todayX<=sc.width && <div className="today" style={{left:todayX}} title="Today"></div>}
+                  {ordered.map(t=>{ const s=S(t.id);
+                    const L=sc.x(s.start), W=Math.max(3, sc.x(s.finish)-L);
+                    return (
+                      <div className={"trow"+(t.isSummary?" sum":"")+(sel===t.id?" sel":"")}
+                           key={t.id} onClick={()=>setSel(t.id)}>
+                        {!s.start ? null
+                         : t.isSummary ? <div className="sumbar" style={{left:L,width:W}}></div>
+                         : t.isMilestone ? <div className="ms" style={{left:L-6}}></div>
+                         : <div className={"bar"+(s.critical?" crit":"")} style={{left:L,width:W}}
+                                title={t.name}>
+                             <i className="pc" style={{width:(t.pctComplete||0)+"%"}}></i>
+                           </div>}
+                        {t.targetDate && <div className="tgt" style={{left:sc.x(t.targetDate)}} title="Target"></div>}
+                      </div>);
+                  })}
+                  <svg className="arrows" width={sc.width} height={ordered.length*32}>
+                    <defs><marker id="tgar" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+                      <path d="M0 0 L5 2.5 L0 5 z" fill="#8a8672"/></marker></defs>
+                    {links.map((l,i)=>{
+                      const a=S(l.predId), b=S(l.succId);
+                      if(!a.finish||!b.start) return null;
+                      const ai=idx[l.predId], bi=idx[l.succId];
+                      if(ai==null||bi==null) return null;
+                      const x1=sc.x(a.finish), y1=rowY(ai), x2=sc.x(b.start), y2=rowY(bi);
+                      const mid=Math.max(x1+6, x2-6);
+                      return <path key={i} d={`M${x1} ${y1} H${mid} V${y2} H${x2}`}
+                                   stroke="#8a8672" fill="none" strokeWidth="1"
+                                   markerEnd="url(#tgar)" opacity={sel===l.succId||sel===l.predId?1:.35} />;
+                    })}
+                  </svg>
+                </div>
+              </div>
+            </div>); })()}
         </div>
       </div>)}
 
