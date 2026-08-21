@@ -751,6 +751,39 @@ skipped** (CORS reduces it to a URL note).
 uploads therefore sit at `status='queued'` forever until it is written — CSV is
 the only format that completes today.
 
+## 22b. Gotcha: never send `id: undefined` to Supabase
+
+`{id: t.id || undefined, ...}` looks like "omit the id", but the key is still
+**present** on the object. supabase-js unions the keys across a batch and fills
+the gaps, so a brand-new row reaches PostgREST as `id: null` and Postgres rejects
+it against the NOT NULL identity column:
+
+```
+null value in column "id" of relation "plan_tasks" violates not-null constraint
+```
+
+Confirmed directly against PostgREST with the service key:
+
+| payload | result |
+|---|---|
+| row with `id: null` | **400, code 23502** |
+| row with no `id` key at all | 201 |
+| mixed batch, some keyed some not | 201 |
+
+**Rule: build the row without `id`, then add it only when it exists.** Where an
+upsert has a natural conflict target (`plan_tasks` uses `(plan_id, generated_key)`),
+strip `id` entirely — ON CONFLICT already identifies the row.
+
+Fixed in `taskToRow`, `saveTasks`, and both S8 editor save paths.
+
+**Why the PC2 tests missed it:** the task grid was verified by mounting the real
+component against an *in-memory* dataProvider stub. That exercised every line of
+component logic and none of the serialisation, which is exactly where the bug
+lived. A stub that stands in for the network cannot catch a network-shape bug —
+worth a real round-trip against one row before calling a write path done.
+
+---
+
 ## 23. `importer/vendor_import.py` — the queued-upload parser (Aug 2026)
 
 Closes the gap S8 left: the Shop Editor uploads PDF/XLSX into the private

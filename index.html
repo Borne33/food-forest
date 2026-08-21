@@ -1815,7 +1815,11 @@ function rowToTask(r){
     isGenerated:r.is_generated, generatedKey:r.generated_key, userEdited:r.user_edited };
 }
 function taskToRow(t){
-  return { id:t.id||undefined, wbs:t.wbs||null, outline_level:t.outlineLevel||1,
+  // NB: no `id` key unless there genuinely is one. `id: undefined` still counts
+  // as a present key, and supabase-js unions the keys across a batch and fills
+  // the gaps with null — so a new row arrived as id:null against a NOT NULL
+  // identity column ("null value in column id ... violates not-null constraint").
+  const row = { wbs:t.wbs||null, outline_level:t.outlineLevel||1,
     sort_order:t.sortOrder||0, parent_id:t.parentId||null, name:t.name||'',
     notes:t.notes||null, duration_min:t.durationMin||0, elapsed:!!t.elapsed,
     is_milestone:!!t.isMilestone, is_summary:!!t.isSummary, is_manual:!!t.isManual,
@@ -1824,6 +1828,8 @@ function taskToRow(t){
     calendar_id:t.calendarId||null, phase_no:t.phaseNo||null, plant_id:t.plantId||null,
     is_generated:!!t.isGenerated, generated_key:t.generatedKey||null,
     user_edited:!!t.userEdited };
+  if(t.id) row.id = t.id;
+  return row;
 }
 
 function rowToVendor(r){
@@ -2019,8 +2025,12 @@ const dataProvider = {
     const withKey = rows.filter(r=>r.generated_key), noKey = rows.filter(r=>!r.generated_key);
     const out=[];
     if(withKey.length){
+      // Strip `id` deliberately: ON CONFLICT (plan_id, generated_key) already
+      // identifies the row, and a batch mixing rows with and without an id would
+      // have the missing ones filled with null again.
       const {data,error} = await sb.from('plan_tasks')
-        .upsert(withKey.map(r=>({...r, plan_id:planId})), {onConflict:'plan_id,generated_key'}).select();
+        .upsert(withKey.map(r=>{ const {id, ...rest}=r; return {...rest, plan_id:planId}; }),
+                {onConflict:'plan_id,generated_key'}).select();
       if(error) throw error; out.push(...(data||[]));
     }
     for(const r of noKey){
@@ -7231,7 +7241,7 @@ function ShopEditor({vendors, sales, orgs, plants, reload}){
   const numOrNull=v=>{ const s=(v==null?"":String(v)).trim(); return s===""?null:(isNaN(+s)?null:+s); };
 
   const saveShop=(f)=>run(async()=>{
-    const row={ id:f.id||undefined, slug:f.slug||slugify(f.name), name:(f.name||"").trim(),
+    const row={ slug:f.slug||slugify(f.name), name:(f.name||"").trim(),
       kind:f.kind||null, org_id:numOrNull(f.orgId), street:f.street||null, city:f.city||null,
       county:f.county||null, state:f.state||null, postal:f.postal||null,
       subregion:f.subregion||null, lat:numOrNull(f.lat), lon:numOrNull(f.lon),
@@ -7242,16 +7252,18 @@ function ShopEditor({vendors, sales, orgs, plants, reload}){
       forms:(f.forms||[]), notes:f.notes||null,
       needs_verification:!!f.needsVerification };
     if(!row.name) throw new Error("A shop needs a name.");
+    if(f.id) row.id = f.id;      // never send id:undefined — it can serialise as null
     await dataProvider.saveVendor(row); setEditing(null);
   }, f.id?"Shop updated.":"Shop added.");
 
   const saveSaleRow=(f)=>run(async()=>{
-    const row={ id:f.id||undefined, vendor_id:numOrNull(f.vendorId), name:(f.name||"").trim(),
+    const row={ vendor_id:numOrNull(f.vendorId), name:(f.name||"").trim(),
       kind:f.kind||"sale", starts_on:f.startsOn||null, ends_on:f.endsOn||null,
       city:f.city||null, state:f.state||null, url:f.url||null, notes:f.notes||null,
       source_url:f.sourceUrl||null, needs_verification:!!f.needsVerification };
     if(!row.name) throw new Error("A sale needs a name.");
     if(!row.starts_on) throw new Error("A sale needs a start date.");
+    if(f.id) row.id = f.id;      // never send id:undefined — it can serialise as null
     await dataProvider.saveSale(row); setEditing(null);
   }, f.id?"Sale updated.":"Sale added.");
 
