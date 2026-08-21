@@ -458,6 +458,14 @@
     .tgwrap .sched:not(.narrow){--cols:28px 1fr !important}
     .tgwrap .sched:not(.narrow) .grow, .tgwrap .sched:not(.narrow) .ghead .hcell{min-width:0}
   }
+  /* draggable divider — sits over the pane boundary; the grid keeps its own
+     border so the seam stays visible while dragging */
+  .tgwrap .sched{position:relative}
+  .tgwrap .tgsplit{position:absolute;top:0;bottom:0;left:var(--gw);width:11px;
+    margin-left:-5px;z-index:6;cursor:col-resize;display:flex;align-items:center;
+    justify-content:center;touch-action:none}
+  .tgwrap .tgsplit i{display:block;width:3px;height:34px;border-radius:2px;background:var(--dot)}
+  .tgwrap .tgsplit:hover i{background:var(--sage-d);height:60px}
   /* PC3 timeline — geometry from the SAME --rowh/--headh as the grid */
   .tgwrap .schscroll{grid-template-columns:var(--gw) 1fr}
   .tgwrap .gpane{border-right:1.5px solid var(--ink)}
@@ -4643,12 +4651,19 @@ const fmtShort = v => { if(!v) return "—"; const d = new Date(v);
    --headh and cannot disagree. */
 const TL_PXDAY = { day:30, week:14, month:5, quarter:2 };
 const DAY_MS = 86400000;
-function tlScale(schedule, zoom){
+function tlScale(schedule, zoom, horizonYears){
   if(!schedule || !schedule.projectStart) return null;
   const px = TL_PXDAY[zoom] || 14;
-  let lo = new Date(schedule.projectStart), hi = new Date(schedule.projectFinish || lo);
+  let lo = new Date(schedule.projectStart);
   lo = new Date(lo.getFullYear(), lo.getMonth(), lo.getDate());
-  hi = new Date(hi.getFullYear(), hi.getMonth(), hi.getDate()+1);
+  // The calendar runs the whole plan horizon PLUS a year, so it never stops dead
+  // at the last bar: empty months stay scrollable and adding a later task does
+  // not reframe the chart.
+  const spanYears = Math.max(1, (horizonYears || 1)) + 1;
+  const horizonEnd = new Date(lo.getFullYear() + spanYears, lo.getMonth(), lo.getDate());
+  let fin = new Date(schedule.projectFinish || lo);
+  fin = new Date(fin.getFullYear(), fin.getMonth(), fin.getDate()+1);
+  const hi = fin > horizonEnd ? fin : horizonEnd;
   const days = Math.max(1, Math.round((hi-lo)/DAY_MS));
   return { lo, hi, px, days, width: Math.max(320, days*px),
            x: d => d ? ((new Date(d) - lo)/DAY_MS)*px : 0 };
@@ -4691,6 +4706,11 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const [projStart,setProjStart]=useState("");
   const [targets,setTargets]=useState({});   // {phase: "YYYY-MM-DD"}
   const [zoom,setZoom]=useState("week");     // day | week | month | quarter
+  // Divider position is a per-browser preference, not plan data — localStorage,
+  // never Supabase. null = the responsive default.
+  const [gw,setGw]=useState(()=>{ try{ const v=parseInt(localStorage.getItem("ff-tg-split"),10);
+    return Number.isFinite(v)&&v>=220 ? v : null; }catch(e){ return null; } });
+  const schedRef=useRef(null);
   const scrollRef=useRef(null);
 
   useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
@@ -4733,6 +4753,28 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const predText = id => window.PC1
     ? window.PC1.formatPredecessors(links.filter(l=>l.succId===id), pid=>numOf[pid], {minutesPerDay:MIN_PER_DAY})
     : "";
+
+  const GW_MIN=220, GW_TAIL=240;             // leave the timeline something to show
+  const startDrag=(e)=>{
+    const box=schedRef.current; if(!box) return;
+    e.preventDefault();
+    const rect=box.getBoundingClientRect();
+    const move=(ev)=>{
+      const x=(ev.touches?ev.touches[0].clientX:ev.clientX)-rect.left;
+      setGw(Math.max(GW_MIN, Math.min(rect.width-GW_TAIL, Math.round(x))));
+    };
+    const up=()=>{
+      window.removeEventListener("pointermove",move);
+      window.removeEventListener("pointerup",up);
+      document.body.style.cursor="";
+      setGw(v=>{ try{ if(v==null) localStorage.removeItem("ff-tg-split");
+                      else localStorage.setItem("ff-tg-split", String(v)); }catch(x){} return v; });
+    };
+    document.body.style.cursor="col-resize";
+    window.addEventListener("pointermove",move);
+    window.addEventListener("pointerup",up);
+  };
+  const resetDrag=()=>{ setGw(null); try{ localStorage.removeItem("ff-tg-split"); }catch(e){} };
 
   const say=(lines)=>{
     // keep the viewport still: the strip grows, so give the scroller the same
@@ -4945,7 +4987,12 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         <div className="empty">No tasks yet. <b>Generate tasks from plan</b> builds a schedule from
           your phases and quantities — one summary per phase, then the planting layers in order.</div>
       ) : (
-      <div className={"sched"+(narrow?" narrow":"")} style={{"--cols": narrow?TG_RAIL:TG_COLS}}>
+      <div className={"sched"+(narrow?" narrow":"")} ref={schedRef}
+           style={Object.assign({"--cols": narrow?TG_RAIL:TG_COLS},
+                                (!narrow && gw!=null) ? {"--gw": gw+"px"} : {})}>
+        {!narrow && <div className="tgsplit" onPointerDown={startDrag}
+                         onDoubleClick={resetDrag}
+                         title="Drag to resize · double-click to reset"><i></i></div>}
         <div className="schscroll" ref={scrollRef}>
           <div className="gpane"><div className="gbody">
             <div className="ghead"><div className="hcell">
@@ -4981,14 +5028,14 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
             })}
           </div></div>
 
-          {(()=>{ const sc=tlScale(schedule, zoom); if(!sc) return <div className="tpane"></div>;
+          {(()=>{ const sc=tlScale(schedule, zoom, horizon); if(!sc) return <div className="tpane"></div>;
             const tk=tlTicks(sc, zoom);
             const todayX=sc.x(new Date());
             const rowY=i=>i*32+16;               // --rowh is 32; centre of row i
             const idx={}; ordered.forEach((t,i)=>idx[t.id]=i);
             return (
             <div className="tpane">
-              <div style={{width:sc.width}}>
+              <div style={{width:sc.width, minWidth:"100%"}}>
                 <div className="thead"><div className="scale">
                   {tk.major.map((m,i)=><span className="maj" key={i} style={{left:m.x+4}}>{m.label}</span>)}
                   {tk.minor.map((m,i)=><span className="min" key={i} style={{left:m.x+3}}>{m.label}</span>)}
