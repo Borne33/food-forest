@@ -367,7 +367,11 @@
   .pjtbl tr.rev td{color:var(--sage-d)}
   .pjtbl tr.net td{font-weight:700}
   .pjtbl tr.cum td{font-family:'Space Mono';color:var(--ink2);font-size:12px}
-  .pjcal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+  /* Two rows of six — a calendar year reads as halves, and auto-fill gave a
+     ragged 9 + 3 at desktop widths. Narrow screens step down 6 → 3 → 2. */
+  .pjcal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:start}
+  @media(max-width:1000px){ .pjcal{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media(max-width:560px){ .pjcal{grid-template-columns:repeat(2,minmax(0,1fr))} }
   .pjmo{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;min-height:60px;padding:6px}
   .pjmo .mh{font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:5px}
   .pjev{font-size:11.5px;line-height:1.3;border-left:3px solid #8a8577;background:#fff;border-radius:3px;padding:3px 6px;margin-bottom:4px}
@@ -420,10 +424,16 @@
      timeline still gets room; below 900px the rail takes over anyway. */
   .tgwrap .sched{--gw:min(52%, 690px); --rowh:32px; --headh:46px;
     border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
-  .tgwrap .schscroll{max-height:520px;overflow-y:auto;display:grid}
-  .tgwrap .gpane{min-width:0;overflow-x:auto}
+  /* The two panes are the vertical scrollers, NOT .schscroll — and their
+     scrollTop is kept in step in JS. overflow-x:auto computes overflow-y to
+     auto, so each pane was already its own scrollport; a sticky header inside
+     it therefore pinned to the pane, which never scrolled, while .schscroll
+     did. Same trap as the planting-plan table (see .pplhead). Making the pane
+     the real scroller is what lets top:0 bite. */
+  .tgwrap .schscroll{display:grid}
+  .tgwrap .gpane{min-width:0;overflow:auto;max-height:520px;overscroll-behavior:contain}
   .tgwrap .ghead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
-    position:sticky;top:0;z-index:3;display:flex;align-items:flex-end;padding:0 0 5px}
+    position:sticky;top:0;z-index:8;display:flex;align-items:flex-end;padding:0 0 5px}
   /* One shared width for every row. min-width:max-content on each .grow made each
      row its OWN grid context, so a long task name widened only that row and the
      columns stepped around. The wrapper takes the widest row's width and the rows
@@ -452,11 +462,16 @@
   .tgwrap .grow .ind{text-align:center;color:var(--ink);font-size:11px}
   .tgwrap .sched.narrow .wideonly, .tgwrap .sched.narrow .wbscol, .tgwrap .sched.narrow .indcol, .tgwrap .sched.narrow .durcol{display:none}
   .tgwrap .sched.narrow .grow, .tgwrap .sched.narrow .ghead .hcell{min-width:0}
+  /* The 640px floor exists for the ten-column layout. The rail is two columns,
+     so keeping it there pushed a 640px body through a 260px pane and sliced
+     every task name in half. */
+  .tgwrap .sched.narrow .gbody{min-width:0}
   @media(max-width:900px){
     .tgwrap .sched:not(.narrow) .wideonly,.tgwrap .sched:not(.narrow) .wbscol,
     .tgwrap .sched:not(.narrow) .indcol, .tgwrap .sched:not(.narrow) .durcol{display:none}
     .tgwrap .sched:not(.narrow){--cols:28px 1fr !important}
     .tgwrap .sched:not(.narrow) .grow, .tgwrap .sched:not(.narrow) .ghead .hcell{min-width:0}
+    .tgwrap .sched:not(.narrow) .gbody{min-width:0}
   }
   /* draggable divider — sits over the pane boundary; the grid keeps its own
      border so the seam stays visible while dragging */
@@ -470,9 +485,9 @@
   .tgwrap .schscroll{grid-template-columns:var(--gw) 1fr}
   .tgwrap .gpane{border-right:1.5px solid var(--ink)}
   .tgwrap .sched.narrow .gpane{border-right:1.5px solid var(--ink)}
-  .tgwrap .tpane{min-width:0;overflow-x:auto;position:relative}
+  .tgwrap .tpane{min-width:0;overflow:auto;max-height:520px;overscroll-behavior:contain;position:relative}
   .tgwrap .thead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
-    position:sticky;top:0;z-index:3}
+    position:sticky;top:0;z-index:8}
   .tgwrap .thead .scale{position:relative;height:100%;width:100%}
   .tgwrap .thead .maj{position:absolute;top:6px;font-family:'Space Mono';font-size:9.5px;color:var(--ink2);white-space:nowrap}
   .tgwrap .thead .min{position:absolute;bottom:6px;font-family:'Space Mono';font-size:8px;color:var(--faint)}
@@ -1507,6 +1522,10 @@ function scheduleProject(input){
         if (cd2 < lf) lf = new Date(cd2.getTime());
       }
     }
+    // A deadline caps late finish without touching early dates — which is the
+    // whole point: it does not move the task, it eats its slack. Overrunning it
+    // drives total slack negative and the task goes critical, as in MS Project.
+    if (t.deadline && t.deadline < lf) lf = new Date(t.deadline.getTime());
     t.lf = lf;
     t.ls = t.isMilestone ? new Date(lf.getTime()) : subWorkingTime(c, lf, dur(id), t.elapsed);
   });
@@ -1534,7 +1553,7 @@ function scheduleProject(input){
     });
     if (t.deadline && t.ef > t.deadline){
       warnings.push({ type:"deadline", taskId:id,
-        message: t.name + ": finishes after its deadline." });   // no scheduling effect
+        message: t.name + ": finishes after its deadline." });
     }
   });
 
@@ -4638,6 +4657,11 @@ const TG_COLS = "34px 46px 22px minmax(150px,1fr) 46px 86px 86px 66px 48px 56px"
 const TG_RAIL = "28px 1fr";
 const MIN_PER_DAY = 480;
 const dayStr = m => { const d = (m||0)/MIN_PER_DAY; return (Math.round(d*10)/10) + "d"; };
+// <input type=date> wants a LOCAL yyyy-mm-dd. toISOString() converts to UTC
+// first, which walks the date back a day for anyone west of Greenwich.
+const isoDay = v => { if(!v) return ""; const d=new Date(v); if(isNaN(d)) return "";
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+const dayAt8 = v => v ? new Date(v+"T08:00:00") : null;
 // A food-forest plan spans years, so "Apr 05" alone is ambiguous — carry the year.
 const fmtShort = v => { if(!v) return "—"; const d = new Date(v);
   return d.toLocaleDateString(undefined,{day:"2-digit",month:"short",year:"2-digit"}); };
@@ -4712,6 +4736,23 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
     return Number.isFinite(v)&&v>=220 ? v : null; }catch(e){ return null; } });
   const schedRef=useRef(null);
   const scrollRef=useRef(null);
+  // Each pane is its own vertical scroller, so its header can stick; this keeps
+  // the two in step. Native listeners rather than onScroll — React's delegated
+  // scroll does not reach these reliably, and one missed event leaves the rows
+  // offset from their bars. No lock and no rAF: writing scrollTop does fire the
+  // other pane's scroll, but by then the two values are equal and the guard
+  // below returns. A timer-based latch would stall in a throttled tab, where
+  // rAF never runs — this converges on its own.
+  const gpRef=useRef(null), tpRef=useRef(null);
+  useEffect(()=>{
+    const a=gpRef.current, b=tpRef.current;
+    if(!a||!b) return;
+    const pair=(from,to)=>()=>{ if(to.scrollTop!==from.scrollTop) to.scrollTop=from.scrollTop; };
+    const ga=pair(a,b), tb=pair(b,a);
+    a.addEventListener("scroll", ga, {passive:true});
+    b.addEventListener("scroll", tb, {passive:true});
+    return ()=>{ a.removeEventListener("scroll", ga); b.removeEventListener("scroll", tb); };
+  });
 
   useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
     Promise.all([dataProvider.loadTasks(planId), dataProvider.loadPlanDates(planId)])
@@ -4918,10 +4959,64 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
     const numToId={}; ordered.forEach((t,i)=>numToId[i+1]=t.id);
     const bad=parsed.links.filter(l=>!numToId[l.predRef]||numToId[l.predRef]===f.id);
     if(bad.length){ setEditing({...f, _err:"No such task: "+bad.map(b=>b.predRef).join(", ")}); return; }
+    /* Dates and slack are engine OUTPUTS, so editing them has to be translated
+       back into the inputs that produce them. The constraint dropdown picks
+       which date is the anchor; the other date box then moves the duration.
+         ASAP        neither anchored — typing a Start promotes it to SNET,
+                     typing a Finish restretches the duration
+         SNET / MSO  Start is the anchor, Finish moves the duration
+         FNLT / MFO  Finish is the anchor, Start moves the duration
+       Slack is pure CPM (LS − ES) and cannot be assigned; what it can be is
+       CAPPED, by a deadline. Typing N days sets deadline = finish + N working
+       days, which is exactly how MS Project bounds total slack. */
+    const D=window.PC1.DEFAULT_CALENDAR, el=!!f.elapsed;
+    // A <input type=date> carries no time, but a finish date means the END of
+    // that day's work — "finish on the 4th, starting the 2nd" is a three-day
+    // task, not two. Reading the box back at 08:00 would quietly shorten every
+    // task the editor touched by a day. Starts are the opposite: 08:00 is right.
+    const dayEnd = v => { const d=dayAt8(v);
+      return d ? window.PC1.addWorkingTime(D, d, MIN_PER_DAY, false) : null; };
+    let ctype=f.constraintType||"ASAP";
+    let durMin=Math.max(0,Math.round((parseFloat(f._dur)||0)*MIN_PER_DAY));
+    const startChanged = f._start!==f._start0, finishChanged = f._finish!==f._finish0;
+    if(ctype==="ASAP" && startChanged && f._start) ctype="SNET";
+    const anchorIsStart = ctype==="SNET"||ctype==="MSO";
+    const anchorIsFinish = ctype==="FNLT"||ctype==="MFO";
+    let cdate = anchorIsStart ? dayAt8(f._start) : anchorIsFinish ? dayEnd(f._finish) : null;
+
+    // whichever box is NOT the anchor restretches the duration. Measure from the
+    // instants the engine actually produced, not from 08:00 — a task pushed to
+    // 14:00 by its predecessor and remeasured from 08:00 comes back a day long,
+    // so the user types a finish of the 8th and the grid answers the 9th.
+    const stretch=(from,to)=>{
+      if(!from||!to) return null;
+      if(to<=from) return 0;
+      return Math.round(window.PC1.workingMinutesBetween(D, from, to));
+    };
+    const startBase  = startChanged  ? dayAt8(f._start)  : (f._startAt  ? new Date(f._startAt)  : dayAt8(f._start));
+    const finishBase = finishChanged ? dayEnd(f._finish) : (f._finishAt ? new Date(f._finishAt) : dayEnd(f._finish));
+    if(!f.isMilestone && !f.isSummary){
+      if((anchorIsFinish && startChanged) || (!anchorIsFinish && finishChanged)){
+        const d=stretch(startBase, finishBase); if(d!=null) durMin=d;
+      }
+    }
+    if(anchorIsStart && !f._start){ ctype="ASAP"; cdate=null; }
+    if(anchorIsFinish && !f._finish){ ctype="ASAP"; cdate=null; }
+
+    let deadline=f.deadline||null;
+    if(f._slack!==f._slack0){
+      const n=parseFloat(f._slack);
+      const fin = finishBase;   // where the task actually ends, to the minute
+      deadline = (f._slack==="" || isNaN(n) || !fin) ? null
+        : window.PC1.addWorkingTime(D, fin, Math.max(0,Math.round(n*MIN_PER_DAY)), el).toISOString();
+    }
+
     const next=ordered.map(t=>t.id===f.id
-      ? {...t, name:f.name, durationMin:Math.max(0,Math.round((parseFloat(f._dur)||0)*MIN_PER_DAY)),
+      ? {...t, name:f.name, durationMin:durMin,
          pctComplete:Math.max(0,Math.min(100,parseInt(f._pct,10)||0)),
-         constraintType:f.constraintType||"ASAP", notes:f.notes||null,
+         constraintType:ctype, constraintDate:cdate?cdate.toISOString():null,
+         targetDate:ctype==="SNET"&&cdate?cdate.toISOString():null,
+         deadline, notes:f.notes||null,
          isMilestone:!!f.isMilestone, userEdited:true}
       : t);
     const others=links.filter(l=>l.succId!==f.id);
@@ -4933,8 +5028,20 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
 
   if(!ready) return <div className="empty">Loading the schedule…</div>;
 
-  const openEditor=(t)=>setEditing({...t, _dur:(t.durationMin/MIN_PER_DAY),
-                                    _pct:t.pctComplete||0, _pred:predText(t.id), _err:null});
+  const openEditor=(t)=>{
+    const s=S(t.id);
+    const slack = s.totalSlackMin==null ? "" : String(Math.round(s.totalSlackMin/MIN_PER_DAY*10)/10);
+    setEditing({...t, _dur:(t.durationMin/MIN_PER_DAY),
+      _pct:t.pctComplete||0, _pred:predText(t.id), _err:null,
+      // *0 copies are the seed values — an edit is only acted on if it differs,
+      // so opening the card and saving it unchanged must not invent a deadline
+      // or rewrite the duration.
+      _start:isoDay(s.start), _start0:isoDay(s.start),
+      _startAt: s.start ? new Date(s.start).toISOString() : null,
+      _finish:isoDay(s.finish), _finish0:isoDay(s.finish),
+      _finishAt: s.finish ? new Date(s.finish).toISOString() : null,
+      _slack:slack, _slack0:slack});
+  };
 
   return (
     <div className="tgwrap">
@@ -4994,7 +5101,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
                          onDoubleClick={resetDrag}
                          title="Drag to resize · double-click to reset"><i></i></div>}
         <div className="schscroll" ref={scrollRef}>
-          <div className="gpane"><div className="gbody">
+          <div className="gpane" ref={gpRef}><div className="gbody">
             <div className="ghead"><div className="hcell">
               <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
               <span>Task name</span><span className="durcol">Dur</span>
@@ -5028,13 +5135,13 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
             })}
           </div></div>
 
-          {(()=>{ const sc=tlScale(schedule, zoom, horizon); if(!sc) return <div className="tpane"></div>;
+          {(()=>{ const sc=tlScale(schedule, zoom, horizon); if(!sc) return <div className="tpane" ref={tpRef}></div>;
             const tk=tlTicks(sc, zoom);
             const todayX=sc.x(new Date());
             const rowY=i=>i*32+16;               // --rowh is 32; centre of row i
             const idx={}; ordered.forEach((t,i)=>idx[t.id]=i);
             return (
-            <div className="tpane">
+            <div className="tpane" ref={tpRef}>
               <div style={{width:sc.width, minWidth:"100%"}}>
                 <div className="thead"><div className="scale">
                   {tk.major.map((m,i)=><span className="maj" key={i} style={{left:m.x+4}}>{m.label}</span>)}
@@ -5099,6 +5206,16 @@ function wbsOf(list, idx){
   return (list[idx].outlineLevel||1)<=1 ? String(top) : top+"."+sub;
 }
 
+/* Which of the two date boxes pins the task, and what the other one does
+   instead. Editing an engine output only makes sense if it maps back onto an
+   input, and the constraint is that mapping. */
+const ANCHOR_HINT = {
+  ASAP: "Dates float on the predecessors. Typing a Start pins it (Start no earlier than); typing a Finish restretches the duration.",
+  SNET: "Start is pinned to the date above; changing the Finish restretches the duration.",
+  MSO:  "Start is pinned to the date above; changing the Finish restretches the duration.",
+  FNLT: "Finish is pinned to the date above; changing the Start restretches the duration.",
+  MFO:  "Finish is pinned to the date above; changing the Start restretches the duration."
+};
 function TaskEditor({f, setF, onSave, onDelete, onClose, busy}){
   const set=(k,v)=>setF({...f,[k]:v,_err:null});
   return (
@@ -5131,6 +5248,25 @@ function TaskEditor({f, setF, onSave, onDelete, onClose, busy}){
                 <option value="MSO">Must start on</option>
                 <option value="MFO">Must finish on</option>
               </select></div>
+            <div className="fld"><label>Start</label>
+              <input type="date" value={f._start||""} disabled={f.isSummary}
+                     onChange={e=>set("_start",e.target.value)} /></div>
+            <div className="fld"><label>Finish</label>
+              <input type="date" value={f._finish||""} disabled={f.isSummary||f.isMilestone}
+                     onChange={e=>set("_finish",e.target.value)} /></div>
+            <div className="fld"><label>Slack (days)</label>
+              <input type="number" step="0.1" min="0" value={f._slack} disabled={f.isSummary}
+                     onChange={e=>set("_slack",e.target.value)} /></div>
+            <div className="pphint" style={{gridColumn:"1/-1",margin:"-2px 0 0"}}>
+              {f.isSummary
+                ? "A summary's dates and slack are rolled up from the tasks beneath it — edit those instead."
+                : ANCHOR_HINT[f.constraintType||"ASAP"]}
+              {" "}Slack sets a deadline that many working days after the finish; the schedule
+              may come back with less if the work has nowhere to move. Clear it to drop the deadline.
+              {f.deadline && !f.isSummary &&
+                <b style={{display:"block",marginTop:4,color:"var(--ink)"}}>
+                  Deadline set: {fmtShort(f.deadline)}. Clear the Slack box to remove it.</b>}
+            </div>
             <div className="fld" style={{gridColumn:"1/-1"}}><label>Predecessors</label>
               <input value={f._pred} placeholder="e.g. 3, 4FS+2d, 7SS"
                      onChange={e=>set("_pred",e.target.value)} disabled={f.isSummary} /></div>

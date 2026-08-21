@@ -161,6 +161,35 @@ function run(PC1, F){
   ok("nothing has zero duration",
      gen.tasks.filter(t=>!t.isSummary).every(t=>t.durationMin > 0));
 
+  // ═══════════ deadlines cap late finish (backs the editor's Slack box) ═══════════
+  // The Task editor lets you type a slack figure; that is stored as a deadline,
+  // because slack itself is LS − ES and cannot be assigned. So a deadline has to
+  // eat slack WITHOUT moving any early date.
+  {
+    const ps = new Date("2027-04-01T08:00:00");
+    const mk = deadline => PC1.scheduleProject({
+      projectStart: ps, calendars: null,
+      tasks: [{id:1, name:"A", durationMin:D},
+              {id:2, name:"B", durationMin:D, deadline: deadline},
+              {id:3, name:"C", durationMin:D*10}],
+      links: [{predId:1, succId:2, type:"FS"}, {predId:1, succId:3, type:"FS"}]
+    });
+    const loose = mk(null);
+    const tight = mk(new Date("2027-04-05T16:00:00"));
+    const late  = mk(new Date("2027-04-01T16:00:00"));   // before B can finish
+    eq("no deadline: slack is the full float", loose.tasks[2].totalSlackMin / D, 9);
+    eq("deadline caps total slack",            tight.tasks[2].totalSlackMin / D, 3);
+    eq("deadline does not move the start",
+       fmt(tight.tasks[2].start), fmt(loose.tasks[2].start));
+    eq("deadline does not touch a sibling's slack",
+       tight.tasks[3].totalSlackMin, loose.tasks[3].totalSlackMin);
+    eq("an unreachable deadline drives slack negative", late.tasks[2].totalSlackMin / D, -1);
+    ok("... and the task goes critical", late.tasks[2].critical);
+    ok("... and it is still reported", late.warnings.some(w=>w.type==="deadline"));
+    eq("... but the dates are unchanged",
+       fmt(late.tasks[2].finish), fmt(loose.tasks[2].finish));
+  }
+
   // ═══════════ PC2: regeneration must not clobber hand edits ═══════════
   const existing = [
     {id:1, generatedKey:"phase:1:prep", name:"Site prep — MY WORDING", durationMin:999, userEdited:true},

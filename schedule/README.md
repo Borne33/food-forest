@@ -24,7 +24,7 @@ for (const f of ["schedule/fixture.js","schedule/test.js"]) {
 await PC1_TEST.run("/food-forest/index.html");   // -> {passed, failed, results}
 ```
 
-Current state: **25 passed, 0 failed.**
+Current state: **59 passed, 0 failed.**
 
 ## Verifying against a real scheduler (the ⛔ gate)
 
