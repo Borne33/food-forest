@@ -683,6 +683,44 @@
   .viewtoggle{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}
   .viewtoggle button{font-family:'Space Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--line);background:#fbf9f2;border-radius:4px;padding:8px 14px;color:var(--ink2)}
   .viewtoggle button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  /* ---------- How to use (My Plans walkthrough) ---------- */
+  .howto{max-width:860px}
+  .howto .lede{font-size:15.5px;line-height:1.55;color:var(--ink2);margin:0 0 20px}
+  .howto .chain{border:1.5px solid var(--ink);border-radius:6px;background:#fbf9f2;
+    padding:14px 16px;margin:0 0 26px}
+  .howto .chain .eye{margin-bottom:8px}
+  .howto .chain p{margin:0;font-size:14px;line-height:1.6}
+  /* A highlighter stripe inside the text box. Padding pushed the following comma
+     off ("Shopping List ,") and a box-shadow ring bled over the word before it
+     whenever a name started a line; this changes no geometry at all. */
+  .howto .chain b{background:linear-gradient(transparent 58%, #dbe6ca 58%)}
+  .howto .stp{display:grid;grid-template-columns:34px minmax(0,1fr);gap:14px;
+    padding:0 0 24px;position:relative}
+  .howto .stp:not(:last-child)::before{content:"";position:absolute;left:16px;top:34px;
+    bottom:0;width:1.5px;background:var(--line)}
+  .howto .no{width:33px;height:33px;border-radius:50%;border:1.5px solid var(--ink);
+    background:var(--paper2);display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono';font-size:13px;font-weight:700;position:relative;z-index:1}
+  .howto .stp.opt .no{border-style:dashed;color:var(--ink2)}
+  .howto h4{margin:5px 0 3px;font-size:17px}
+  .howto .where{font-family:'Space Mono';font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:7px}
+  .howto .stp p{margin:0 0 9px;font-size:14.5px;line-height:1.55}
+  .howto .io{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px}
+  .howto .tag{font-family:'Space Mono';font-size:10.5px;line-height:1.45;
+    border:1.5px solid var(--line);border-radius:4px;padding:5px 9px;background:#fbf9f2;
+    max-width:100%}
+  .howto .tag em{font-style:normal;color:var(--faint);letter-spacing:.07em;
+    text-transform:uppercase;font-size:9px;display:block}
+  .howto .tag.needs{border-color:var(--soil-d)}
+  .howto .tag.feeds{border-color:var(--sage-d);background:#eef2e7}
+  .howto .flag{border-left:3px solid var(--orange);background:#fbf1e6;
+    border-radius:0 4px 4px 0;padding:8px 11px;font-size:13px;line-height:1.5}
+  .howto ul{margin:2px 0 10px;padding-left:19px;font-size:14.5px;line-height:1.55}
+  .howto ul li{margin-bottom:4px}
+  @media(max-width:560px){ .howto .stp{grid-template-columns:26px minmax(0,1fr);gap:10px}
+    .howto .no{width:25px;height:25px;font-size:11px}
+    .howto .stp:not(:last-child)::before{left:12px;top:26px} }
   .foresttriad{display:grid;gap:16px;grid-template-columns:minmax(0,0.85fr) minmax(0,1.9fr) minmax(0,1fr);grid-template-areas:"ins layers sug";align-items:start}
   @media(max-width:860px){ .foresttriad{grid-template-columns:1fr;grid-template-areas:"ins" "sug" "layers"} }
   /* ---------- Risk Register ---------- */
@@ -5546,6 +5584,185 @@ function ProjectPlan({chosen, state, planId, counts, phases, alloc, areaSqft, op
   );
 }
 
+/* ---------- How to use: the My Plans walkthrough ----------
+   Static on purpose. It describes the tools and the order they want to be
+   used in; it does not read the open plan. Written for anyone the planner is
+   shared with, so it names what is still early without going into internals. */
+function HowTo({go}){
+  const Step=({n, title, where, optional, children})=>(
+    <div className={"stp"+(optional?" opt":"")}>
+      <div className="no">{n}</div>
+      <div>
+        <div className="where">{where}</div>
+        <h4 style={{marginTop:0}}>{title}</h4>
+        {children}
+      </div>
+    </div>
+  );
+  const IO=({needs, feeds})=>(
+    <div className="io">
+      {needs && <div className="tag needs"><em>Needs first</em>{needs}</div>}
+      {feeds && <div className="tag feeds"><em>Feeds</em>{feeds}</div>}
+    </div>
+  );
+
+  return (
+    <div className="howto">
+      <p className="lede">Every tool on this page reads the same plan, and several of them
+        read each other. This is the order they were built to be used in — you can wander,
+        but a tool whose inputs are missing will simply look empty rather than tell you
+        why. If you only read one thing: <b>the Planting Plan feeds nearly everything
+        else</b>.</p>
+
+      <div className="chain">
+        <div className="eye">What drives what</div>
+        {/* JSX drops whitespace that spans a newline, so a <b> starting a line
+            loses the space before it — "in the<b>Planting Plan</b>". */}
+        <p>Pick plants in the <b>Database</b> → set quantities and phases in
+          the <b>Planting Plan</b> → that one step supplies the <b>Shopping List</b>,
+          the <b>Maintenance</b> timetable, the whole <b>Project Plan</b>, and the
+          soil readings compared in <b>Soil Examination</b>.
+          <br /><br />
+          <b>Forest Layers</b>, <b>Harvest</b> and the <b>Risk Register</b> are the
+          exceptions — they read your plant list directly and work the moment you have
+          plants, with no set-up.</p>
+      </div>
+
+      <Step n="1" where="Database page" title="Set your location, then choose plants">
+        <p>Set your state before anything else. Every score on the site is relative to
+          it — a plant native to your state scores 10 for nativity, one native elsewhere
+          in the country scores 7 — so scores you read before setting it are answering a
+          different question. Then filter, sort and add plants to a plan.</p>
+        <p>You can keep several plans side by side (one per site, or one per idea) and
+          switch between them from the bar at the top of this page.</p>
+        <IO feeds="Every tool on this page. An empty plan means empty tools." />
+      </Step>
+
+      <Step n="2" where="My Plans · Forest Layers" title="See what you have">
+        <p>The overview: your plants sorted into canopy, shrub, herbaceous, groundcover
+          and vine layers, with symbiosis notes and suggestions for what would round the
+          planting out. Nothing to fill in — it reflects whatever is in the plan.</p>
+        <p>Worth returning to after step 3, when the phase filter starts working.</p>
+        <IO needs="Plants in the plan." />
+      </Step>
+
+      <Step n="3" where="My Plans · Planting Plan" title="Quantities, area, soil and placement">
+        <p>The one tool to do properly, because four others read its output. It runs in
+          four steps:</p>
+        <ul>
+          <li><b>Plants</b> — how many of each, and which phase each goes in. This is the
+            single most important input on the site.</li>
+          <li><b>Map &amp; Areas</b> — draw your planting area. Gives every area-based
+            estimate its number: mulch, sheet-mulching, site prep.</li>
+          <li><b>Soil Map</b> — paint texture, drainage and pH across the area.</li>
+          <li><b>Place Plants</b> — drop individual plants onto the map.</li>
+        </ul>
+        <p>Phases are how you spread the work over several years. A plant can appear in
+          more than one phase with different quantities, and everything downstream keeps
+          the split.</p>
+        <IO needs="Plants in the plan."
+            feeds="Shopping List · Maintenance · Project Plan · Soil Examination · the phase filters elsewhere" />
+        <div className="flag">Skip the map and the cost estimates still work, but the
+          area-based ones fall back to zero. The Project Plan says so when it happens.</div>
+      </Step>
+
+      <Step n="4" where="My Plans · Soil Examination" title="Check what you painted against what you have">
+        <p>Record what your soil actually is — texture, drainage, pH — and the tool
+          compares it against the soil map you painted in step 3, flags any plants in
+          the plan that would struggle, and suggests better-suited alternatives.</p>
+        <IO needs="The Soil Map step, if you want the comparison. Works standalone otherwise." />
+        <div className="flag">Advisory. It reads published tolerances for each plant
+          against the readings you enter — it is not a site assessment, and it does not
+          know about your drainage in a wet spring.</div>
+      </Step>
+
+      <Step n="5" where="My Plans · Shopping List" title="What to buy, from whom, in what order">
+        <p>Turns your per-phase quantities into a buying list, matched against nursery
+          and seed-supplier catalogues. Filter to any set of phases, record how many
+          you have bought phase by phase, and tick off a phase, a plant, or the whole
+          list.</p>
+        <IO needs="Quantities and phases from step 3 — the list is empty without them."
+            feeds="Nothing. It is the end of its own chain." />
+        <div className="flag">Vendor catalogues were gathered at different times and in
+          different formats, so treat prices and availability as a starting point, not a
+          quote. Only some listings carry a unit that lets a per-plant price be worked
+          out, so subtotals cover part of the list rather than all of it — the rest are
+          labelled instead of guessed at. Check with the nursery before you rely on a
+          number.</div>
+      </Step>
+
+      <Step n="6" where="My Plans · Maintenance" title="The care calendar">
+        <p>What each plant needs and when, either grouped by plant or laid out year by
+          year, filtered by kind of work — sourcing, planting, watering, mulching,
+          protection, pruning, feeding, dividing, harvest, monitoring. Ordered by phase,
+          so it follows your planting sequence.</p>
+        <IO needs="Plants, and phases from step 3 for the ordering to mean anything."
+            feeds="The maintenance tasks in the Project Plan." />
+        <div className="flag">Generated from typical care patterns for each plant, not
+          from your site. Read it as a prompt, not a prescription.</div>
+      </Step>
+
+      <Step n="7" where="My Plans · Project Plan" title="Scope, schedule, budget">
+        <p>The establishment project, in five tabs. Do them roughly in this order:</p>
+        <ul>
+          <li><b>Assumptions</b> first, however tempting it is to leave it — your plant
+            prices, labour rate, mulch cost and the number of years the plan covers.
+            Every figure in the other four tabs is computed from these.</li>
+          <li><b>Scope</b> — the work items, sized from your quantities and your area.</li>
+          <li><b>Schedule</b> — a month calendar of that work, and below it a task
+            schedule with a Gantt chart.</li>
+          <li><b>Budget</b> — costs by year and category.</li>
+          <li><b>Summary</b> — the whole thing on one page.</li>
+        </ul>
+        <p>In the task schedule, press <b>Generate tasks from plan</b> to build a
+          starting schedule from your phases and quantities. From there it behaves like
+          project software: double-click a row (or its ID or WBS) to edit it, set
+          predecessors to chain tasks together, and drag rows to renumber them.
+          Editing a task marks it as yours, and regenerating afterwards leaves it
+          alone.</p>
+        <IO needs="Quantities, phases and area from step 3 · your figures under Assumptions" />
+        <div className="flag">The task schedule is the newest tool here and the one most
+          likely to change. It computes dates, dependencies, slack and the critical path,
+          but there is no export yet, you cannot drag the bars themselves, and comparing
+          a plan against an earlier version is not built. The month calendar, scope,
+          budget and summary above it are settled.</div>
+      </Step>
+
+      <Step n="8" where="My Plans · Harvest" title="When the food arrives" optional>
+        <p>A year-round calendar of what your plants produce and when, sorted by kind —
+          fruit, nuts, grain, greens, roots, herbs, sap — with the current month marked
+          and a toggle for what keeps in storage past the fresh window. Useful for
+          spotting the hungry gaps before you plant rather than after.</p>
+        <IO needs="Plants in the plan. No set-up." />
+        <div className="flag">Only plants with harvest-month data on record appear here,
+          so a plant can be in your plan and missing from the calendar. Absence from
+          this view is not a claim that a plant yields nothing.</div>
+      </Step>
+
+      <Step n="9" where="My Plans · Risk Register" title="Read the cautions in one place" optional>
+        <p>Collects the warnings attached to the plants you have chosen — toxicity,
+          spreading habit, thorns, anything that wants thinking about before it is in
+          the ground — sorted high, moderate, then low or none, with a count of each.</p>
+        <IO needs="Plants in the plan. No set-up." />
+        <div className="flag">A reading of the plant records, not an assessment of your
+          site. It will not know that the spreading one is next to your neighbour's
+          fence.</div>
+      </Step>
+
+      <div className="chain" style={{marginTop:6}}>
+        <div className="eye">If something looks empty</div>
+        <p>Nine times in ten it is step 3. The Shopping List, the Maintenance ordering
+          and the whole Project Plan are built from the quantities and phases you set in
+          the Planting Plan — with none set, they have nothing to work from and show
+          nothing rather than an explanation.
+          {go && <React.Fragment>{" "}
+            <a href="#" onClick={e=>{e.preventDefault(); go("guide");}}>The Scoring Guide</a>
+            {" "}explains where the numbers on each plant card come from.</React.Fragment>}</p>
+      </div>
+    </div>
+  );
+}
+
 function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membership, toggle, newPlan, renamePlan, deletePlan, go, vendorPlants, vendors, sales, planCentre}){
   const [detail,setDetail]=useState(null);
   const [view,setView]=useState("layers"); // layers | plant | harvest | maint | project | soil | risk
@@ -5697,6 +5914,7 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         <p>Layers, soil fit, and risks for the plants in this plan.</p></div>
 
       <div className="viewtoggle">
+        <button className={view==="how"?"on":""} onClick={()=>setView("how")}>Instructions</button>
         <button className={view==="layers"?"on":""} onClick={()=>setView("layers")}>Forest Layers</button>
         <button className={view==="plant"?"on":""} onClick={()=>setView("plant")}>Planting Plan</button>
         <button className={view==="harvest"?"on":""} onClick={()=>setView("harvest")}>Harvest</button>
@@ -5706,6 +5924,8 @@ function MyPlan({plants, state, plans, planItems, curPlan, setCurPlan, membershi
         <button className={view==="soil"?"on":""} onClick={()=>setView("soil")}>Soil Examination</button>
         <button className={view==="risk"?"on":""} onClick={()=>setView("risk")}>Risk Register</button>
       </div>
+
+      {view==="how" && <HowTo go={go} />}
 
       {view==="layers" && (<React.Fragment>
         <div className="stats">
