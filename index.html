@@ -424,16 +424,26 @@
      timeline still gets room; below 900px the rail takes over anyway. */
   .tgwrap .sched{--gw:min(52%, 690px); --rowh:32px; --headh:46px;
     border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
-  /* The two panes are the vertical scrollers, NOT .schscroll — and their
-     scrollTop is kept in step in JS. overflow-x:auto computes overflow-y to
-     auto, so each pane was already its own scrollport; a sticky header inside
-     it therefore pinned to the pane, which never scrolled, while .schscroll
-     did. Same trap as the planting-plan table (see .pplhead). Making the pane
-     the real scroller is what lets top:0 bite. */
-  .tgwrap .schscroll{display:grid}
-  .tgwrap .gpane{min-width:0;overflow:auto;max-height:520px;overscroll-behavior:contain}
-  .tgwrap .ghead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
-    position:sticky;top:0;z-index:8;display:flex;align-items:flex-end;padding:0 0 5px}
+  /* ONE vertical scroller. Two synced scrollports made the passive pane lag the
+     active one by a frame — the rows and their bars sheared apart under momentum
+     scrolling, on a phone especially. So the headers are lifted OUT of the
+     scroller into their own strip instead, which is also the only way a header
+     can stay put without a sticky ancestor fight (see .pplhead, §9). The strip
+     tracks each pane's horizontal position by transform, written straight to the
+     node — never through React, which cannot keep up with a scroll. */
+  .tgwrap .schhead{display:grid;grid-template-columns:var(--gw) 1fr;
+    height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
+    position:relative;z-index:3}
+  .tgwrap .hclip{min-width:0;overflow:hidden;position:relative}
+  .tgwrap .hclip.gclip{border-right:1.5px solid var(--ink)}
+  .tgwrap .hclip > *{will-change:transform}
+  /* The panes must carry NO max-height of their own. One left on .gpane is all it
+     takes to turn it back into a scrollport that clips its own rows, and the
+     shearing comes straight back. */
+  .tgwrap .schscroll{display:grid;max-height:520px;overflow-y:auto;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .tgwrap .gpane{min-width:0;overflow-x:auto;overflow-y:hidden}
+  .tgwrap .ghead{height:var(--headh);display:flex;align-items:flex-end;padding:0 0 5px}
   /* One shared width for every row. min-width:max-content on each .grow made each
      row its OWN grid context, so a long task name widened only that row and the
      columns stepped around. The wrapper takes the widest row's width and the rows
@@ -477,7 +487,7 @@
      border so the seam stays visible while dragging */
   .tgwrap .sched{position:relative}
   .tgwrap .tgsplit{position:absolute;top:0;bottom:0;left:var(--gw);width:11px;
-    margin-left:-5px;z-index:6;cursor:col-resize;display:flex;align-items:center;
+    margin-left:-5px;z-index:9;cursor:col-resize;display:flex;align-items:center;
     justify-content:center;touch-action:none}
   .tgwrap .tgsplit i{display:block;width:3px;height:34px;border-radius:2px;background:var(--dot)}
   .tgwrap .tgsplit:hover i{background:var(--sage-d);height:60px}
@@ -485,9 +495,8 @@
   .tgwrap .schscroll{grid-template-columns:var(--gw) 1fr}
   .tgwrap .gpane{border-right:1.5px solid var(--ink)}
   .tgwrap .sched.narrow .gpane{border-right:1.5px solid var(--ink)}
-  .tgwrap .tpane{min-width:0;overflow:auto;max-height:520px;overscroll-behavior:contain;position:relative}
-  .tgwrap .thead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
-    position:sticky;top:0;z-index:8}
+  .tgwrap .tpane{min-width:0;overflow-x:auto;overflow-y:hidden;position:relative}
+  .tgwrap .thead{height:var(--headh)}
   .tgwrap .thead .scale{position:relative;height:100%;width:100%}
   .tgwrap .thead .maj{position:absolute;top:6px;font-family:'Space Mono';font-size:9.5px;color:var(--ink2);white-space:nowrap}
   .tgwrap .thead .min{position:absolute;bottom:6px;font-family:'Space Mono';font-size:8px;color:var(--faint)}
@@ -531,17 +540,54 @@
   .tgwrap .cardhd .eye{font-family:'Space Mono';font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
   .tgwrap .cardhd h3{margin:3px 0 0;font-size:19px;font-weight:800}
   .tgwrap .cardbd{padding:14px 16px}
-  .tgwrap .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
-  @media(max-width:540px){ .fgrid{grid-template-columns:repeat(2,1fr)} }
+  /* minmax(0,1fr), not 1fr: a date input has an intrinsic minimum width, and a
+     plain 1fr track refuses to go below it — so at 375px the three columns each
+     overflowed their track and Slack sat on top of Finish. The step-down below
+     was written unscoped, `.fgrid`, which loses on specificity to `.tgwrap
+     .fgrid` no matter the order, so it never once applied. */
+  .tgwrap .fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+  @media(max-width:640px){ .tgwrap .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media(max-width:430px){ .tgwrap .fgrid{grid-template-columns:minmax(0,1fr)} }
+  .tgwrap .fld input[type=date]{min-width:0}
   .tgwrap .fld{display:flex;flex-direction:column;gap:4px;min-width:0}
   .tgwrap .fld label{font-family:'Space Mono';font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
   .tgwrap .fld input, .tgwrap .fld select{width:100%;font-family:'Spectral';font-size:14px;background:#fff;
     border:1.5px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink)}
   .tgwrap .cardft{padding:11px 16px;border-top:1.5px solid var(--ink);background:var(--paper2);
     display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap}
+  .tgwrap .dirtybar{border-left:3px solid var(--orange);background:#fbf1e6;
+    border-radius:0 4px 4px 0;padding:10px 13px;margin:0 0 12px;display:flex;
+    align-items:center;gap:10px;flex-wrap:wrap;font-size:13.5px}
+  .tgwrap .dirtybar b{font-weight:700}
+  .tgwrap .dirtybar .sp{flex:1 1 auto}
   .tgwrap .btn{font-family:'Space Mono';font-size:11.5px;border:1.5px solid var(--line);background:#fbf9f2;
     border-radius:4px;padding:6px 12px;color:var(--ink2)}
   .tgwrap .btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  /* full-screen Gantt. position:fixed, so --gw's percentage resolves against the
+     viewport instead of the page column — a pixel value from the divider still
+     wins, which is what we want. */
+  .tgwrap .fsroot{position:fixed;inset:0;z-index:90;background:var(--paper);
+    display:flex;flex-direction:column;padding:10px 12px 12px}
+  .tgwrap .fsbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 9px}
+  .tgwrap .fsbar .ttl{font-family:'Space Mono';font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint)}
+  .tgwrap .fsbar .sp{flex:1 1 auto}
+  .tgwrap .fsroot .sched{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .tgwrap .fsroot .schscroll{max-height:none;flex:1 1 auto;min-height:0}
+  .tgwrap .fsx{font-family:'Space Mono';font-size:15px;line-height:1;border:1.5px solid var(--ink);
+    background:var(--paper2);border-radius:4px;padding:7px 12px;color:var(--ink)}
+  .tgwrap .fsx:hover{background:var(--ink);color:var(--paper)}
+  /* On a phone the bar wrapped to four lines and ate 159px of an 812px screen —
+     in the one mode whose entire point is more chart. */
+  @media(max-width:560px){
+    .tgwrap .fsroot{padding:7px 8px 8px}
+    .tgwrap .fsbar{gap:5px;margin:0 0 7px}
+    .tgwrap .fsbar .ttl,.tgwrap .fsbar .sp{display:none}
+    .tgwrap .fsbar .chip,.tgwrap .fsbar .ppbtn{padding:4px 8px;font-size:10.5px}
+    .tgwrap .fsx{padding:4px 9px;font-size:12px;margin-left:auto}
+  }
+  body.tg-fs{overflow:hidden}
 
   /* ── S8 admin Shop Editor ─────────────────────────────────────────────── */
   .shopedit{margin-top:4px}
@@ -4772,27 +4818,30 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   // never Supabase. null = the responsive default.
   const [gw,setGw]=useState(()=>{ try{ const v=parseInt(localStorage.getItem("ff-tg-split"),10);
     return Number.isFinite(v)&&v>=220 ? v : null; }catch(e){ return null; } });
+  const [fs,setFs]=useState(false);           // full-screen Gantt
   const schedRef=useRef(null);
   const scrollRef=useRef(null);
-  // Each pane is its own vertical scroller, so its header can stick; this keeps
-  // the two in step. Native listeners rather than onScroll — React's delegated
-  // scroll does not reach these reliably, and one missed event leaves the rows
-  // offset from their bars. No lock and no rAF: writing scrollTop does fire the
-  // other pane's scroll, but by then the two values are equal and the guard
-  // below returns. A timer-based latch would stall in a throttled tab, where
-  // rAF never runs — this converges on its own.
+  // Vertical scrolling is native and single-scroller now, so nothing to sync.
+  // What is left is horizontal: each pane scrolls sideways on its own, and its
+  // header has to travel with it. Written as a transform straight onto the node
+  // — routing a scroll through React state drops frames and the header visibly
+  // trails the columns.
   const gpRef=useRef(null), tpRef=useRef(null);
+  const ghRef=useRef(null), thRef=useRef(null);
   useEffect(()=>{
-    const a=gpRef.current, b=tpRef.current;
-    if(!a||!b) return;
-    const pair=(from,to)=>()=>{ if(to.scrollTop!==from.scrollTop) to.scrollTop=from.scrollTop; };
-    const ga=pair(a,b), tb=pair(b,a);
-    a.addEventListener("scroll", ga, {passive:true});
-    b.addEventListener("scroll", tb, {passive:true});
-    return ()=>{ a.removeEventListener("scroll", ga); b.removeEventListener("scroll", tb); };
+    const track=(pane,head)=>{
+      if(!pane||!head) return null;
+      const on=()=>{ head.style.transform="translate3d("+(-pane.scrollLeft)+"px,0,0)"; };
+      on();
+      pane.addEventListener("scroll", on, {passive:true});
+      return ()=>pane.removeEventListener("scroll", on);
+    };
+    const offs=[track(gpRef.current, ghRef.current), track(tpRef.current, thRef.current)];
+    return ()=>offs.forEach(f=>f&&f());
   });
 
   useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
+    hist.current={past:[],future:[]}; setHistN([0,0]);
     Promise.all([dataProvider.loadTasks(planId), dataProvider.loadPlanDates(planId)])
       .then(([{tasks,links},d])=>{ if(dead) return;
         setTasks(tasks); setLinks(links);
@@ -4868,6 +4917,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
 
   const persist=async(next, links2)=>{
     setBusy(true);
+    let merged=next;
     try{
       const saved=await dataProvider.saveTasks(planId, next.map(taskToRow));
       const fresh=saved.map(rowToTask);
@@ -4875,7 +4925,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       // to fall through without picking up its new id — and the next save inserted
       // it all over again. sortOrder is unique within the plan, so it is the
       // reliable third key.
-      const merged=next.map(t=>fresh.find(f=>f.generatedKey&&f.generatedKey===t.generatedKey)
+      merged=next.map(t=>fresh.find(f=>f.generatedKey&&f.generatedKey===t.generatedKey)
                             || (t.id!=null && fresh.find(f=>f.id===t.id))
                             || fresh.find(f=>f.sortOrder===t.sortOrder)
                             || t);
@@ -4884,6 +4934,71 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       setErr(null);
     }catch(e){ console.error(e); setErr(e.message||String(e)); }
     finally{ setBusy(false); }
+    return merged;
+  };
+
+  /* ---- undo / redo ----------------------------------------------------------
+     A step is the whole {tasks, links} pair, not a diff — the mutations here are
+     small in number and a plan is a few dozen rows, so a diff would buy nothing
+     but places to be wrong. Capped, and cleared when the plan changes.
+
+     Restoring across a delete is the awkward case: a manual row saves by UPDATE,
+     which silently does nothing once the row is gone, so a deleted task cannot
+     keep its id. Anything missing from the server goes back with its id stripped
+     and re-inserts, and links and parents are then re-pointed by POSITION, which
+     is the one thing that survives the round trip. */
+  const HIST_MAX=30;
+  const hist=useRef({past:[],future:[]});
+  const [histN,setHistN]=useState([0,0]);        // [undoable, redoable], for the buttons
+  const syncHist=()=>setHistN([hist.current.past.length, hist.current.future.length]);
+  const snap=()=>({tasks:ordered.map(t=>({...t})), links:links.map(l=>({...l}))});
+  const mark=()=>{                                // call BEFORE mutating
+    hist.current.past.push(snap());
+    if(hist.current.past.length>HIST_MAX) hist.current.past.shift();
+    hist.current.future.length=0;
+    syncHist();
+  };
+
+  const restore=async(snapshot)=>{
+    setBusy(true);
+    try{
+      const live=new Set(tasks.map(t=>t.id).filter(x=>x!=null));
+      const keep=new Set(snapshot.tasks.map(t=>t.id).filter(x=>x!=null));
+      for(const g of tasks) if(g.id!=null && !keep.has(g.id)) await dataProvider.deleteTask(g.id);
+      const posOf={}; snapshot.tasks.forEach((t,i)=>{ if(t.id!=null) posOf[t.id]=i; });
+      const next=snapshot.tasks.map((t,i)=>{
+        const revived = t.id!=null && !live.has(t.id);
+        const o={...t, sortOrder:i};
+        if(revived){ delete o.id; delete o.parentId; }
+        return o;
+      });
+      const merged=await persist(next);
+      const idAt=i=>(merged[i]?merged[i].id:null);
+      // parents and links both referred to ids that a revive may have replaced
+      const reparented=merged.map((t,i)=>{
+        const want=snapshot.tasks[i]; if(!want) return t;
+        const pj=want.parentId!=null?posOf[want.parentId]:null;
+        const pid=pj==null?null:idAt(pj);
+        return t.parentId===pid ? t : {...t, parentId:pid};
+      });
+      const relinked=snapshot.links.map(l=>({
+        ...l, predId:idAt(posOf[l.predId]), succId:idAt(posOf[l.succId])
+      })).filter(l=>l.predId!=null && l.succId!=null);
+      await persist(reparented, relinked);
+      setSel(null); setEditing(null);
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  const undo=async()=>{
+    const h=hist.current; if(!h.past.length||busy) return;
+    const cur=snap(); const prev=h.past.pop(); h.future.push(cur); syncHist();
+    await restore(prev); say(["Undone."]);
+  };
+  const redo=async()=>{
+    const h=hist.current; if(!h.future.length||busy) return;
+    const cur=snap(); const nextS=h.future.pop(); h.past.push(cur); syncHist();
+    await restore(nextS); say(["Redone."]);
   };
 
   /* ---- generate / regenerate ---- */
@@ -4901,6 +5016,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       horizon:horizon||3, minutesPerDay:MIN_PER_DAY });
     if(!gen.tasks.length){ say(["Nothing to generate — set some quantities on the Planting Plan first."]); return; }
 
+    mark();
     const merged=window.PC1.mergeGenerated(tasks, gen);
     // keys -> ids for parenting, after the write
     const next=[];
@@ -4958,6 +5074,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       return;
     }
     a.splice(toIdx,0,it);
+    mark();
     const next=a.map((t,i)=>({...t, sortOrder:i}));
     const before={}; ordered.forEach(t=>before[t.id]=predText(t.id));
     persist(next).then(()=>{
@@ -4975,12 +5092,14 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
     const row={ name:"New task", durationMin:MIN_PER_DAY, outlineLevel: parent?2:1,
                 parentId: parent?parent.id:null, isManual:true, isGenerated:false,
                 generatedKey:null, sortOrder:at };
+    mark();
     const next=[...ordered.slice(0,at), row, ...ordered.slice(at)].map((t,i)=>({...t, sortOrder:i}));
     persist(next).then(()=>say(["Task added."]));
   };
 
   const removeTask=async(t)=>{
     if(!confirm(`Delete “${t.name}”?` + (t.isGenerated ? "\nIt will come back next time you regenerate." : ""))) return;
+    mark();
     setBusy(true);
     try{
       await dataProvider.deleteTask(t.id);
@@ -5007,6 +5126,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
        Slack is pure CPM (LS − ES) and cannot be assigned; what it can be is
        CAPPED, by a deadline. Typing N days sets deadline = finish + N working
        days, which is exactly how MS Project bounds total slack. */
+    mark();
     const D=window.PC1.DEFAULT_CALENDAR, el=!!f.elapsed;
     // A <input type=date> carries no time, but a finish date means the END of
     // that day's work — "finish on the 4th, starting the 2nd" is a three-day
@@ -5064,6 +5184,31 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
     say([`Saved “${f.name}”.`]);
   };
 
+  /* Keyboard. Esc leaves full screen (the editor handles its own Esc, and gets
+     first refusal because it is checked here first). Undo/redo are ignored while
+     a field has focus, so ⌘Z still means "undo my typing" inside an input. */
+  useEffect(()=>{
+    const onKey=(e)=>{
+      const tag=(e.target&&e.target.tagName)||"";
+      const typing = tag==="INPUT" || tag==="TEXTAREA" || tag==="SELECT" || e.target.isContentEditable;
+      if(e.key==="Escape" && fs && !editing){ e.preventDefault(); setFs(false); return; }
+      if(typing || editing) return;
+      const z = (e.metaKey||e.ctrlKey) && (e.key==="z"||e.key==="Z");
+      if(!z) return;
+      e.preventDefault();
+      (e.shiftKey ? redo : undo)();
+    };
+    window.addEventListener("keydown", onKey);
+    return ()=>window.removeEventListener("keydown", onKey);
+  });
+
+  // full screen owns the page scroll while it is up
+  useEffect(()=>{
+    if(!fs) return;
+    document.body.classList.add("tg-fs");
+    return ()=>document.body.classList.remove("tg-fs");
+  },[fs]);
+
   if(!ready) return <div className="empty">Loading the schedule…</div>;
 
   const openEditor=(t)=>{
@@ -5077,6 +5222,9 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       _start:isoDay(s.start), _start0:isoDay(s.start),
       _startAt: s.start ? new Date(s.start).toISOString() : null,
       _finish:isoDay(s.finish), _finish0:isoDay(s.finish),
+      _seed: editSig({...t, _dur:(t.durationMin/MIN_PER_DAY), _pct:t.pctComplete||0,
+                      _pred:predText(t.id), _start:isoDay(s.start), _finish:isoDay(s.finish),
+                      _slack: s.totalSlackMin==null ? "" : String(Math.round(s.totalSlackMin/MIN_PER_DAY*10)/10)}),
       _finishAt: s.finish ? new Date(s.finish).toISOString() : null,
       _slack:slack, _slack0:slack});
   };
@@ -5088,8 +5236,14 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         <button className="ppbtn" disabled={busy} onClick={generate}>
           {tasks.length ? "Regenerate from plan" : "Generate tasks from plan"}</button>
         <button className="ppbtn ghost" disabled={busy} onClick={addTask}>+ Add task</button>
+        <button className="ppbtn ghost" disabled={busy||!histN[0]} onClick={undo}
+                title="Undo (⌘Z)">↶ Undo</button>
+        <button className="ppbtn ghost" disabled={busy||!histN[1]} onClick={redo}
+                title="Redo (⇧⌘Z)">↷ Redo</button>
         <button className={"chip"+(narrow?" on":"")} onClick={()=>setNarrow(v=>!v)}>
           {narrow ? "Expand grid ⟩" : "⟨ Collapse grid"}</button>
+        <button className="chip" onClick={()=>setFs(true)} title="Full screen (Esc to leave)">
+          ⤢ Full screen</button>
         {["day","week","month","quarter"].map(z=>(
           <button key={z} className={"chip"+(zoom===z?" on":"")} onClick={()=>setZoom(z)}>
             {z[0].toUpperCase()+z.slice(1)}</button>))}
@@ -5131,22 +5285,44 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       {!ordered.length ? (
         <div className="empty">No tasks yet. <b>Generate tasks from plan</b> builds a schedule from
           your phases and quantities — one summary per phase, then the planting layers in order.</div>
-      ) : (
+      ) : (()=>{ const gridEl = (
       <div className={"sched"+(narrow?" narrow":"")} ref={schedRef}
            style={Object.assign({"--cols": narrow?TG_RAIL:TG_COLS},
                                 (!narrow && gw!=null) ? {"--gw": gw+"px"} : {})}>
         {!narrow && <div className="tgsplit" onPointerDown={startDrag}
                          onDoubleClick={resetDrag}
                          title="Drag to resize · double-click to reset"><i></i></div>}
+        {/* The headers live OUTSIDE the scroller. They are duplicates of the row
+            geometry — same --cols, same widths — moved sideways by transform to
+            match their pane. Keeping them in the scroller is what forced two
+            scrollports and the shearing that came with it. */}
+        <div className="schhead">
+          <div className="hclip gclip">
+            <div className="gbody" ref={ghRef}>
+              <div className="ghead"><div className="hcell">
+                <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
+                <span>Task name</span><span className="durcol">Dur</span>
+                <span className="wideonly">Start</span><span className="wideonly">Finish</span>
+                <span className="wideonly">Pred</span><span className="wideonly">% Comp</span>
+                <span className="wideonly">Slack</span>
+              </div></div>
+            </div>
+          </div>
+          <div className="hclip">
+            {(()=>{ const sc=tlScale(schedule, zoom, horizon); if(!sc) return null;
+              const tk=tlTicks(sc, zoom);
+              return (
+                <div style={{width:sc.width, minWidth:"100%"}} ref={thRef}>
+                  <div className="thead"><div className="scale">
+                    {tk.major.map((m,i)=><span className="maj" key={i} style={{left:m.x+4}}>{m.label}</span>)}
+                    {tk.minor.map((m,i)=><span className="min" key={i} style={{left:m.x+3}}>{m.label}</span>)}
+                  </div></div>
+                </div>);
+            })()}
+          </div>
+        </div>
         <div className="schscroll" ref={scrollRef}>
           <div className="gpane" ref={gpRef}><div className="gbody">
-            <div className="ghead"><div className="hcell">
-              <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
-              <span>Task name</span><span className="durcol">Dur</span>
-              <span className="wideonly">Start</span><span className="wideonly">Finish</span>
-              <span className="wideonly">Pred</span><span className="wideonly">% Comp</span>
-              <span className="wideonly">Slack</span>
-            </div></div>
             {ordered.map((t,i)=>{ const s=S(t.id);
               return (
               <div key={t.id}
@@ -5174,17 +5350,12 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           </div></div>
 
           {(()=>{ const sc=tlScale(schedule, zoom, horizon); if(!sc) return <div className="tpane" ref={tpRef}></div>;
-            const tk=tlTicks(sc, zoom);
             const todayX=sc.x(new Date());
             const rowY=i=>i*32+16;               // --rowh is 32; centre of row i
             const idx={}; ordered.forEach((t,i)=>idx[t.id]=i);
             return (
             <div className="tpane" ref={tpRef}>
               <div style={{width:sc.width, minWidth:"100%"}}>
-                <div className="thead"><div className="scale">
-                  {tk.major.map((m,i)=><span className="maj" key={i} style={{left:m.x+4}}>{m.label}</span>)}
-                  {tk.minor.map((m,i)=><span className="min" key={i} style={{left:m.x+3}}>{m.label}</span>)}
-                </div></div>
                 <div className="tbody">
                   {todayX>=0 && todayX<=sc.width && <div className="today" style={{left:todayX}} title="Today"></div>}
                   {ordered.map(t=>{ const s=S(t.id);
@@ -5221,7 +5392,24 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
               </div>
             </div>); })()}
         </div>
-      </div>)}
+      </div>);
+      return fs ? (
+        <div className="fsroot">
+          <div className="fsbar">
+            <span className="ttl">Task schedule · full screen</span>
+            {["day","week","month","quarter"].map(z=>(
+              <button key={z} className={"chip"+(zoom===z?" on":"")} onClick={()=>setZoom(z)}>
+                {z[0].toUpperCase()+z.slice(1)}</button>))}
+            <button className={"chip"+(narrow?" on":"")} onClick={()=>setNarrow(v=>!v)}>
+              {narrow ? "Expand grid ⟩" : "⟨ Collapse grid"}</button>
+            <button className="ppbtn ghost" disabled={busy||!histN[0]} onClick={undo}>↶ Undo</button>
+            <button className="ppbtn ghost" disabled={busy||!histN[1]} onClick={redo}>↷ Redo</button>
+            <span className="sp"></span>
+            <button className="fsx" onClick={()=>setFs(false)} title="Esc">✕ Exit full screen</button>
+          </div>
+          {gridEl}
+        </div>
+      ) : gridEl; })()}
 
       {schedule && schedule.warnings.length>0 && (
         <div className="warnstrip" style={{marginTop:10}}>
@@ -5247,6 +5435,14 @@ function wbsOf(list, idx){
 /* Which of the two date boxes pins the task, and what the other one does
    instead. Editing an engine output only makes sense if it maps back onto an
    input, and the constraint is that mapping. */
+/* The editable surface of the task card, as one comparable string. Seeded when
+   the card opens; anything different means unsaved work, and the card says so
+   instead of quietly dropping it. */
+function editSig(f){
+  return JSON.stringify([f.name||"", String(f._dur), String(f._pct), f.constraintType||"ASAP",
+    f._start||"", f._finish||"", String(f._slack), f._pred||"", f.notes||"", !!f.isMilestone]);
+}
+
 const ANCHOR_HINT = {
   ASAP: "Dates float on the predecessors. Typing a Start pins it (Start no earlier than); typing a Finish restretches the duration.",
   SNET: "Start is pinned to the date above; changing the Finish restretches the duration.",
@@ -5256,15 +5452,38 @@ const ANCHOR_HINT = {
 };
 function TaskEditor({f, setF, onSave, onDelete, onClose, busy}){
   const set=(k,v)=>setF({...f,[k]:v,_err:null});
+  const dirty = f._seed!=null && editSig(f)!==f._seed;
+  // Dismissing on click meant a click that BEGAN inside the card and ended on
+  // the backdrop closed it — selecting text in a field and releasing past its
+  // edge threw the edit away. The decision is made on pointerdown now, so only a
+  // press that starts outside counts, and if there is unsaved work it asks
+  // rather than acts.
+  const tryClose=()=>{ if(dirty) setF({...f, _confirm:true}); else onClose(); };
+  useEffect(()=>{
+    const onKey=e=>{ if(e.key!=="Escape") return; e.preventDefault(); e.stopPropagation();
+      if(f._confirm) setF({...f,_confirm:false}); else tryClose(); };
+    window.addEventListener("keydown", onKey, true);
+    return ()=>window.removeEventListener("keydown", onKey, true);
+  });
   return (
-    <div className="cardwrap" onClick={e=>{ if(e.target===e.currentTarget) onClose(); }}>
-      <div className="card">
+    <div className="cardwrap"
+         onPointerDown={e=>{ if(e.target===e.currentTarget) tryClose(); }}>
+      <div className="card" onPointerDown={e=>e.stopPropagation()}>
         <div className="cardhd">
           <div><div className="eye">Task {f.isSummary?"· summary":""}{f.isGenerated?" · generated":" · manual"}</div>
             <h3>{f.name||"Untitled"}</h3></div>
-          <button className="btn" onClick={onClose}>✕</button>
+          <button className="btn" onClick={tryClose}>✕</button>
         </div>
         <div className="cardbd">
+          {f._confirm && (
+            <div className="dirtybar">
+              <b>Unsaved changes.</b> Close this card and they are gone.
+              <span className="sp"></span>
+              <button className="btn" onClick={()=>setF({...f,_confirm:false})}>Go back</button>
+              <button className="btn" onClick={onClose}>Discard</button>
+              <button className="btn solid" disabled={busy}
+                      onClick={()=>onSave({...f,_confirm:false})}>Save</button>
+            </div>)}
           {f._err && <div className="edmsg bad" style={{marginTop:0}}>{f._err}</div>}
           {f.isGenerated && !f.userEdited &&
             <div className="pphint" style={{margin:"0 0 12px"}}>Generated from the plan.
