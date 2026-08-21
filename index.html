@@ -415,17 +415,29 @@
      Alignment is structural: one vertical scroller, every row --rowh tall, so
      the grid and (in PC3) the timeline cannot drift apart. */
   .tgwrap{margin-top:4px}
-  .tgwrap .sched{--gw:44%; --rowh:32px; --headh:46px;
+  /* The ten columns sum to ~640px, so 44% of a 1340px container clipped the
+     Finish column mid-word. Wide enough for the full set, capped so the
+     timeline still gets room; below 900px the rail takes over anyway. */
+  .tgwrap .sched{--gw:min(52%, 690px); --rowh:32px; --headh:46px;
     border:1.5px solid var(--ink);border-radius:4px;background:#fbf9f2;overflow:hidden}
   .tgwrap .schscroll{max-height:520px;overflow-y:auto;display:grid}
   .tgwrap .gpane{min-width:0;overflow-x:auto}
   .tgwrap .ghead{height:var(--headh);background:var(--paper2);border-bottom:1.5px solid var(--ink);
     position:sticky;top:0;z-index:3;display:flex;align-items:flex-end;padding:0 0 5px}
-  .tgwrap .ghead .hcell{display:grid;grid-template-columns:var(--cols);width:100%;min-width:max-content}
+  /* One shared width for every row. min-width:max-content on each .grow made each
+     row its OWN grid context, so a long task name widened only that row and the
+     columns stepped around. The wrapper takes the widest row's width and the rows
+     all stretch to it, so the tracks line up. */
+  /* A fixed floor, NOT max-content: max-content sizes the name column to its
+     longest task name, which inflated the pane to 815px and clipped the right
+     columns. 490px of fixed columns + a 150px name floor = 640. Long names
+     ellipsise and carry a title tooltip. */
+  .tgwrap .gbody{min-width:640px}
+  .tgwrap .ghead .hcell{display:grid;grid-template-columns:var(--cols);width:100%;min-width:0}
   .tgwrap .ghead .hcell span{font-family:'Space Mono';font-size:8.5px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;color:var(--ink2);padding:0 6px;white-space:nowrap;overflow:hidden}
   .tgwrap .grow{height:var(--rowh);display:grid;grid-template-columns:var(--cols);align-items:center;
-    border-bottom:1px solid var(--line);font-size:13px;min-width:max-content}
+    border-bottom:1px solid var(--line);font-size:13px;min-width:0;width:100%}
   .tgwrap .grow:last-child{border-bottom:0}
   .tgwrap .grow > *{padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tgwrap .grow.sum{background:#f0ecdf;font-weight:700}
@@ -4935,7 +4947,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       ) : (
       <div className={"sched"+(narrow?" narrow":"")} style={{"--cols": narrow?TG_RAIL:TG_COLS}}>
         <div className="schscroll" ref={scrollRef}>
-          <div className="gpane">
+          <div className="gpane"><div className="gbody">
             <div className="ghead"><div className="hcell">
               <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
               <span>Task name</span><span className="durcol">Dur</span>
@@ -4967,7 +4979,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
                 <span className="num wideonly">{s.totalSlackMin==null?"":dayStr(s.totalSlackMin)}</span>
               </div>);
             })}
-          </div>
+          </div></div>
 
           {(()=>{ const sc=tlScale(schedule, zoom); if(!sc) return <div className="tpane"></div>;
             const tk=tlTicks(sc, zoom);
