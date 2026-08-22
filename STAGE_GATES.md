@@ -289,14 +289,52 @@ it means a round trip through MSP severs a plan's tasks from the planting plan t
 
 ---
 
-## S9 — Automated inventory refresh
+## S9 — Automated inventory refresh — 🟡 BUILT, and the answer to item 2 changes what it is for
+
+`importer/vendor_fetch.py`. Dry run by default; `--apply` writes.
 
 Evaluate:
-1. **⛔ Run `--dry-run` and read the diff before anything is applied**, same discipline as `grant_fetch.py`. Check for
-   false "out of stock" — a feed that fails should leave rows alone, not mark them out.
-2. Which vendors are actually on Shopify/Square (that's what determines whether this stage was worth it).
-3. Request volume per vendor per run — confirm you'd be comfortable with a nursery owner seeing it.
-4. Whether any vendor should be asked for permission first, or invited to submit a list instead.
+1. ~~**⛔ Run `--dry-run` and read the diff before anything is applied.** Check for false "out of stock" — a feed that
+   fails should leave rows alone, not mark them out.~~ **Machinery done and tested; the READ is still Alex's.**
+   All four failure modes (HTTP error, timeout, empty feed, unparseable body) were forced against the live Ernst
+   vendor and left the data untouched — `stock='out'` count 0 before and after each. On top of that a feed that comes
+   back below 60% of the rows already held still applies prices and additions but **refuses to mark anything out of
+   stock**; a deliberately truncated run reproduced this (46% coverage, 118 rows protected). Rows are never deleted;
+   a row the feed stops mentioning goes to `stock='unknown'`, the explicit state D4 asks for.
+2. ~~Which vendors are actually on Shopify/Square (that's what determines whether this stage was worth it).~~
+   **Answered, and it is the headline. Of 44 vendors with a URL, 3 expose a public product feed, and only one of
+   those — Ernst Conservation Seeds, 205 rows — is a native-plant source.** The other two are The English Gardener
+   (a gift shop: first product "Artisan Glass Sunflower Bowl") and Urban Roots (a garden market: "Cannabis Growing
+   101"). Platforms: 25 no e-commerce markers at all, 7 Wix, 4 Squarespace, 3 WooCommerce, 3 Square, 2 Shopify —
+   and Wix, Squarespace and Square publish no public catalogue endpoint. **The two biggest catalogues in the
+   database will never come this way:** Prairie Moon (670 rows) is Magento, whose catalogue API needs a token, and
+   the HGCNY list (153 rows) is a PDF. So the "one adapter, many vendors" premise does not hold, and
+   `vendor_fetch.py` was built source-agnostic instead — `--file` takes a supplied list through the same diff and
+   the same safety rails.
+3. ~~Request volume per vendor per run — confirm you'd be comfortable with a nursery owner seeing it.~~
+   **Probe: at most 5 requests per vendor per run** (robots.txt, homepage, up to 3 feed candidates), 1.5 s apart,
+   honest User-Agent, no crawling beyond those fixed paths. A full probe of all 44 is ≤220 requests over ~6 minutes.
+   **Refresh: one paginated read per vendor** — Ernst's whole 687-product catalogue is 14 requests. ⛔ Your call
+   whether that reads as reasonable.
+4. ⛔ **Still open — and now the more important question.** Whether any vendor should be asked for permission first,
+   or invited to submit a list instead. Given item 2, outreach for supplied lists is the track that actually scales
+   here; the feed reader covers one vendor.
+
+**Three defects the dry run shook out, all fixed before anything was written:**
+- 237 seed **mixes** were being filed against single species — a mix is not a species, and that is exactly the wrong
+  "where to buy" the strict D5 matcher exists to prevent.
+- 13 named Switchgrass selections, 7 Big Bluestem and 6 Indiangrass were **collapsing onto one row each**, because
+  the inherited ecotype pattern only caught a trailing bare state code and missed "Long Island-NY Ecotype",
+  "NY4 Ecotype", "Fort Indiantown Gap-PA Ecotype". A regional ecotype is not packaging; it is the product.
+- Duplicate keys would have made PostgREST reject the whole batch ("ON CONFLICT DO UPDATE cannot affect row a
+  second time"). Collapsed and reported rather than left to fail at write time.
+
+**Nothing has been applied.** The pending Ernst diff is 60 new, 189 unchanged, 18 to `unknown`. Most of those 18 are
+the *same products* re-keyed under the corrected ecotype string, not delistings — the run says so and prints both
+lists so it can be checked. Read it, then:
+```
+python3 importer/vendor_fetch.py --vendor ernst-conservation-seeds --unit "per pound (bulk seed)" --apply
+```
 
 ---
 
