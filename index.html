@@ -452,7 +452,7 @@
      longest task name, which inflated the pane to 815px and clipped the right
      columns. 490px of fixed columns + a 150px name floor = 640. Long names
      ellipsise and carry a title tooltip. */
-  .tgwrap .gbody{min-width:640px}
+  .tgwrap .gbody{min-width:var(--gminw,640px)}
   .tgwrap .ghead .hcell{display:grid;grid-template-columns:var(--cols);width:100%;min-width:0}
   .tgwrap .ghead .hcell span{font-family:'Space Mono';font-size:8.5px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;color:var(--ink2);padding:0 6px;white-space:nowrap;overflow:hidden}
@@ -511,6 +511,51 @@
   .tgwrap .tgt{position:absolute;top:6px;bottom:6px;width:0;border-left:2px dotted var(--soil-d)}
   .tgwrap .today{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--red);z-index:2}
   .tgwrap .arrows{position:absolute;left:0;top:0;pointer-events:none}
+  /* PC4 — baseline strip, variance cells, baseline bars, deadline flags */
+  .tgwrap .tgbase{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 10px;
+    background:#fbf9f2;border:1px solid var(--line);border-radius:4px;padding:7px 12px}
+  .tgwrap .tgbase .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint)}
+  .tgwrap .tgbase .cap{font-family:'Space Mono';font-size:11px;color:var(--ink2)}
+  .tgwrap .tgbase .cap.none{color:var(--faint)}
+  .tgwrap .tgbase .spacer{flex:1 1 auto}
+  .tgwrap .grow .num.late{color:var(--red)}
+  .tgwrap .grow .num.early{color:var(--sage-d)}
+  /* the baseline sits UNDER the bar, not behind it — overlapping them makes a
+     one-day slip invisible, which is the case you most want to see */
+  .tgwrap .basebar{position:absolute;top:25px;height:4px;border-radius:1px;
+    background:#a9a591}
+  .tgwrap .basebar.slip{background:var(--red);opacity:.55}
+  .tgwrap .trow.sum .basebar{top:22px}
+  /* deadline: a flag, and red once the finish runs past it — MSP's behaviour.
+     It caps late finish (so it eats slack) but never moves a date. */
+  /* top:0 — the bar starts at 9px, and a deadline nearly always falls inside the
+     span it governs, so anything lower is drawn straight into the bar */
+  .tgwrap .dl{position:absolute;top:0;width:0;height:0;z-index:3;
+    border-left:5px solid transparent;border-right:5px solid transparent;
+    border-top:8px solid var(--soil-d)}
+  .tgwrap .dl.miss{border-top-color:var(--red)}
+
+  /* warning strip */
+  .tgwrap .warnstrip .wtop{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .tgwrap .warnstrip .spacer{flex:1 1 auto}
+  .tgwrap .wchip{font-family:'Space Mono';font-size:10px;letter-spacing:.04em;
+    border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;
+    padding:3px 9px;color:var(--ink2);display:inline-flex;align-items:center;gap:5px}
+  .tgwrap .wchip i{font-style:normal;font-weight:700;color:var(--ink)}
+  .tgwrap .wchip.off{opacity:.45;text-decoration:line-through}
+  .tgwrap .wchip.clear{border-style:dashed}
+  .tgwrap .wsum,.tgwrap .wnone{display:block;margin-top:6px;font-size:13px;color:var(--ink2)}
+  .tgwrap .wlist{margin:8px 0 0;padding:0;list-style:none;max-height:190px;overflow:auto}
+  .tgwrap .wlist li{display:flex;gap:9px;align-items:flex-start;padding:4px 0;
+    border-top:1px solid var(--line);font-size:13px}
+  .tgwrap .wlist li:first-child{border-top:0}
+  .tgwrap .wk{font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--faint);flex:0 0 92px;padding-top:2px}
+  .tgwrap .wk.k-cycle,.tgwrap .wk.k-constraint{color:var(--red)}
+  .tgwrap .wm{cursor:pointer}
+  .tgwrap .wm:hover{text-decoration:underline}
+
   /* dates strip */
   .tgwrap .tgdates{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px;
     background:#fbf9f2;border:1px solid var(--line);border-radius:4px;padding:8px 12px}
@@ -2183,6 +2228,31 @@ const dataProvider = {
   },
   async clearTasks(planId){
     const { error } = await sb.from('plan_tasks').delete().eq('plan_id',planId);
+    if(error) throw error;
+  },
+  /* ---- PC4: one baseline per plan (multiple baselines are v3, per Q5) ---- */
+  async loadBaseline(planId){
+    const { data, error } = await sb.from('plan_baselines')
+      .select('*').eq('plan_id',planId).maybeSingle();
+    if(error) throw error;
+    return data ? { id:data.id, planId:data.plan_id, name:data.name,
+                    capturedAt:data.captured_at, projectStart:data.project_start,
+                    rows:data.snapshot||[] } : null;
+  },
+  async saveBaseline(planId, name, projectStart, rows){
+    // plan_baselines_plan_uniq is a PLAIN unique constraint on purpose: PostgREST
+    // cannot use a partial or expression index as an ON CONFLICT target (42P10).
+    const { data, error } = await sb.from('plan_baselines')
+      .upsert({ plan_id:planId, name:name||'Baseline', captured_at:new Date().toISOString(),
+                project_start:projectStart||null, snapshot:rows },
+              {onConflict:'plan_id'}).select().maybeSingle();
+    if(error) throw error;
+    return data ? { id:data.id, planId:data.plan_id, name:data.name,
+                    capturedAt:data.captured_at, projectStart:data.project_start,
+                    rows:data.snapshot||[] } : null;
+  },
+  async clearBaseline(planId){
+    const { error } = await sb.from('plan_baselines').delete().eq('plan_id',planId);
     if(error) throw error;
   },
   /* ---- S8: admin Shop Editor (RLS already restricts writes to the admin uid) ---- */
@@ -4740,8 +4810,17 @@ function ShoppingList({chosen, counts, alloc, phaseMeta, planId, sources, vendor
    to the task and travel with it, so no date moves and predecessor references
    merely re-render (settled Aug 2026). */
 // Start/Finish now carry a year ("Apr 05, 27"), so 58px truncated them.
+/* Two column sets, switched by the Entry / Variance chips — MSP's tables, and
+   the only sane answer to fitting four more date columns into a pane the user
+   can drag down to 220px. Both share --cols, so the hoisted header and the rows
+   stay one geometry. */
 const TG_COLS = "34px 46px 22px minmax(150px,1fr) 46px 86px 86px 66px 48px 56px";
+const TG_VCOLS = "34px 46px 22px minmax(120px,1fr) 46px 84px 84px 80px 80px 62px 62px";
 const TG_RAIL = "28px 1fr";
+// the sums of the fixed tracks plus the name floor. Finish var is the column the
+// whole table exists for, so the set has to fit before the timeline's 240px
+// minimum takes over and clips the right-hand end.
+const TG_MINW = 640, TG_VMINW = 724;
 const MIN_PER_DAY = 480;
 const dayStr = m => { const d = (m||0)/MIN_PER_DAY; return (Math.round(d*10)/10) + "d"; };
 // <input type=date> wants a LOCAL yyyy-mm-dd. toISOString() converts to UTC
@@ -4804,6 +4883,204 @@ function tlTicks(sc, zoom){
   return {major, minor};
 }
 
+/* ── PC3/PC4: PNG export ─────────────────────────────────────────────────────
+   Drawn on a 2D canvas rather than rasterising the DOM. An <img> pointed at
+   serialised SVG cannot load the Google-hosted webfonts (different origin, and
+   the SVG document gets no stylesheet), so every label would come back in a
+   fallback face and the export would not look like the app. Canvas draws with
+   the fonts the page has already loaded.
+
+   The export is NOT the on-screen scale: that one spans the plan horizon plus a
+   year so empty months stay scrollable, which off-screen is just acres of blank
+   paper. This one frames the work — first start to last finish, deadlines and
+   baseline bars included — rounded out to whole months. */
+function exportScale(rows, zoom, maxPx){
+  let lo=null, hi=null;
+  const lo_=d=>{ if(!d) return; const x=new Date(d); if(isNaN(x)) return;
+                 if(!lo||x<lo) lo=x; if(!hi||x>hi) hi=x; };
+  rows.forEach(r=>{ lo_(r.start); lo_(r.finish); lo_(r.baseStart); lo_(r.baseFinish); lo_(r.deadline); });
+  if(!lo) return null;
+  lo=new Date(lo.getFullYear(), lo.getMonth(), 1);
+  hi=new Date(hi.getFullYear(), hi.getMonth()+1, 1);
+  const days=Math.max(1, Math.round((hi-lo)/DAY_MS));
+  let px=TL_PXDAY[zoom]||14;
+  if(days*px>maxPx) px=maxPx/days;          // a 3-year day-zoom plan is 28,000px
+  if(days*px<460) px=460/days;              // and a two-week plan is a sliver
+  return { lo, hi, px, days, width:Math.round(days*px),
+           x:d=>d?((new Date(d)-lo)/DAY_MS)*px:0 };
+}
+
+async function renderScheduleCanvas(opt){
+  const rows=opt.rows, zoom=opt.zoom||"week";
+  const cs=getComputedStyle(document.documentElement);
+  const C=n=>(cs.getPropertyValue(n)||"").trim();
+  const INK=C("--ink")||"#2b2a22", INK2=C("--ink2")||"#5f5c4c",
+        FAINT=C("--faint")||"#8a8577", LINE=C("--line")||"#d8d2be",
+        PAPER=C("--paper")||"#f2eee1", PAPER2=C("--paper2")||"#e9e4d2",
+        SAGE=C("--sage")||"#7d9a5b", SAGED=C("--sage-d")||"#4f6b34",
+        RED=C("--red")||"#b3402e", SOILD=C("--soil-d")||"#6b4f2a";
+  const MONO="'Space Mono', ui-monospace, monospace", SERIF="'Spectral', Georgia, serif";
+
+  const hasBase=rows.some(r=>r.baseStart||r.baseFinish);
+  // NB the text columns read *Txt fields. `start`/`finish` stay Dates for the
+  // bar geometry, and String(aDate) is "Thu Apr 01 2027 08:00:00 GMT…", which
+  // ellipsised down to "Thu Apr 01…" in an 80px column.
+  const COLS=[{k:"num", t:"ID", w:34, a:"right"},
+              {k:"wbs", t:"WBS", w:52, a:"left"},
+              {k:"name",t:"Task name", w:250, a:"left"},
+              {k:"dur", t:"Dur", w:46, a:"right"},
+              {k:"startTxt",t:"Start", w:84, a:"right"},
+              {k:"finishTxt",t:"Finish", w:84, a:"right"}]
+    .concat(hasBase ? [{k:"bfinish",t:"Base finish",w:82,a:"right"},
+                       {k:"fvar",  t:"Finish var", w:68,a:"right"}]
+                    : [{k:"slack", t:"Slack", w:56, a:"right"}]);
+  const PAD=18, ROW=26, HEAD=54, TITLE=opt.subtitle?66:48, FOOT=30;
+  const gridW=COLS.reduce((a,c)=>a+c.w,0)+PAD*2;
+  const sc=exportScale(rows, zoom, 3400);
+  if(!sc) return null;
+  const tlW=sc.width+24;
+  const W=gridW+tlW, H=TITLE+HEAD+rows.length*ROW+FOOT;
+
+  try{ if(document.fonts && document.fonts.ready) await document.fonts.ready; }catch(e){}
+
+  const dpr=2;
+  const cv=document.createElement("canvas");
+  cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+  const g=cv.getContext("2d");
+  g.scale(dpr,dpr);
+  g.textBaseline="middle";
+
+  const clipText=(txt,max)=>{
+    if(g.measureText(txt).width<=max) return txt;
+    let s=txt;
+    while(s.length>1 && g.measureText(s+"…").width>max) s=s.slice(0,-1);
+    return s+"…";
+  };
+  const line=(x1,y1,x2,y2,col,w)=>{ g.strokeStyle=col; g.lineWidth=w||1;
+    g.beginPath(); g.moveTo(x1,y1); g.lineTo(x2,y2); g.stroke(); };
+
+  g.fillStyle=PAPER; g.fillRect(0,0,W,H);
+
+  // ── title ────────────────────────────────────────────────────────────────
+  g.fillStyle=INK; g.font="700 19px "+SERIF; g.textAlign="left";
+  g.fillText(opt.title||"Task schedule", PAD, 24);
+  if(opt.subtitle){ g.fillStyle=INK2; g.font="11px "+MONO;
+    g.fillText(opt.subtitle, PAD, 46); }
+  g.fillStyle=FAINT; g.font="10px "+MONO; g.textAlign="right";
+  g.fillText(opt.stamp||"", W-PAD, 24);
+
+  const top=TITLE;
+  // ── column header ────────────────────────────────────────────────────────
+  g.fillStyle=PAPER2; g.fillRect(0,top,W,HEAD);
+  line(0,top+HEAD,W,top+HEAD,INK,1.5);
+  line(gridW,top,gridW,H-FOOT,INK,1.5);
+  g.font="700 9px "+MONO; g.fillStyle=FAINT;
+  let cx=PAD;
+  COLS.forEach(c=>{ g.textAlign=c.a==="right"?"right":"left";
+    g.fillText(c.t.toUpperCase(), c.a==="right"?cx+c.w-6:cx, top+HEAD-14); cx+=c.w; });
+
+  // ── date scale ───────────────────────────────────────────────────────────
+  const TX=gridW+12;
+  const tk=tlTicks(sc, zoom);
+  g.textAlign="left";
+  tk.major.forEach(m=>{ const x=TX+m.x; if(x<gridW||x>W) return;
+    g.fillStyle=INK2; g.font="10px "+MONO; g.fillText(m.label, x+4, top+16);
+    line(x,top,x,H-FOOT,LINE,1); });
+  tk.minor.forEach(m=>{ const x=TX+m.x; if(x<gridW||x>W) return;
+    g.fillStyle=FAINT; g.font="8px "+MONO; g.fillText(m.label, x+3, top+HEAD-12); });
+
+  // ── rows ─────────────────────────────────────────────────────────────────
+  rows.forEach((r,i)=>{
+    const y=top+HEAD+i*ROW, mid=y+ROW/2;
+    if(r.isSummary){ g.fillStyle=PAPER2; g.fillRect(0,y,W,ROW); }
+    else if(i%2){ g.fillStyle="rgba(0,0,0,.022)"; g.fillRect(0,y,W,ROW); }
+    line(0,y+ROW,W,y+ROW,LINE,1);
+
+    let x=PAD;
+    COLS.forEach(c=>{
+      const v=r[c.k]==null?"":String(r[c.k]);
+      g.textAlign=c.a==="right"?"right":"left";
+      if(c.k==="name"){
+        g.font=(r.isSummary?"700 ":"")+"12.5px "+SERIF;
+        g.fillStyle=r.critical&&!r.isSummary?RED:INK;
+        const ind=(r.level>1?12:0);
+        g.fillText(clipText(v, c.w-8-ind), x+ind, mid);
+      } else {
+        g.font=(r.isSummary?"700 ":"")+"10px "+MONO;
+        g.fillStyle = c.k==="fvar" ? (r.fvarN>0?RED:r.fvarN<0?SAGED:INK2) : INK2;
+        g.fillText(clipText(v, c.w-8), c.a==="right"?x+c.w-6:x, mid);
+      }
+      x+=c.w;
+    });
+
+    // baseline bar first, so a slipped task shows the gap it opened
+    if(r.baseStart&&r.baseFinish){
+      const bl=TX+sc.x(r.baseStart), bw=Math.max(2, sc.x(r.baseFinish)-sc.x(r.baseStart));
+      g.fillStyle = r.slipped ? RED : "#a9a591";
+      g.globalAlpha = r.slipped ? .5 : 1;
+      g.fillRect(bl, y+ROW-8, bw, 3.5);
+      g.globalAlpha = 1;
+    }
+    if(r.start&&r.finish){
+      const L=TX+sc.x(r.start), Wd=Math.max(3, sc.x(r.finish)-sc.x(r.start));
+      if(r.isSummary){ g.fillStyle=INK; g.fillRect(L, y+9, Wd, 6);
+        g.fillRect(L, y+9, 2, 10); g.fillRect(L+Wd-2, y+9, 2, 10); }
+      else if(r.isMilestone){ g.save(); g.translate(L, mid); g.rotate(Math.PI/4);
+        g.fillStyle=INK; g.fillRect(-5,-5,10,10); g.restore(); }
+      else { g.fillStyle=r.critical?RED:SAGE; g.fillRect(L, y+6, Wd, 12);
+        if(r.pct>0){ g.fillStyle="rgba(0,0,0,.30)"; g.fillRect(L, y+6, Wd*Math.min(1,r.pct/100), 12); } }
+    }
+    if(r.deadline){
+      // above the bar, not over it: a deadline usually falls inside the span it
+      // applies to, so drawn at bar height it disappeared into the bar
+      const dx=TX+sc.x(r.deadline);
+      g.fillStyle=r.missed?RED:SOILD;
+      g.beginPath(); g.moveTo(dx-4.5,y+1); g.lineTo(dx+4.5,y+1); g.lineTo(dx,y+7.5); g.closePath(); g.fill();
+    }
+  });
+
+  // ── dependency arrows, faded so they stay background at scale ────────────
+  const idx={}; rows.forEach((r,i)=>{ if(r.id!=null) idx[r.id]=i; });
+  g.strokeStyle="rgba(138,134,114,.55)"; g.lineWidth=1;
+  (opt.links||[]).forEach(l=>{
+    const ai=idx[l.predId], bi=idx[l.succId];
+    if(ai==null||bi==null) return;
+    const a=rows[ai], b=rows[bi];
+    if(!a.finish||!b.start) return;
+    const x1=TX+sc.x(a.finish), y1=top+HEAD+ai*ROW+ROW/2;
+    const x2=TX+sc.x(b.start),  y2=top+HEAD+bi*ROW+ROW/2;
+    const mid=Math.max(x1+6, x2-6);
+    g.beginPath(); g.moveTo(x1,y1); g.lineTo(mid,y1); g.lineTo(mid,y2); g.lineTo(x2,y2); g.stroke();
+    g.beginPath(); g.moveTo(x2,y2); g.lineTo(x2-4,y2-2.5); g.lineTo(x2-4,y2+2.5); g.closePath();
+    g.fillStyle="rgba(138,134,114,.75)"; g.fill();
+  });
+
+  // today, only when it is actually on the chart
+  const now=new Date();
+  if(now>=sc.lo && now<=sc.hi){
+    const tx=TX+sc.x(now);
+    g.save(); g.setLineDash([4,3]); line(tx, top, tx, H-FOOT, RED, 1); g.restore();
+    g.fillStyle=RED; g.font="8px "+MONO; g.textAlign="left"; g.fillText("today", tx+3, top+HEAD-26);
+  }
+
+  // ── legend ───────────────────────────────────────────────────────────────
+  const ly=H-FOOT/2-1; let lx=PAD;
+  const key=(draw,label)=>{ draw(lx,ly); lx+=16;
+    g.fillStyle=FAINT; g.font="9px "+MONO; g.textAlign="left";
+    g.fillText(label, lx, ly); lx+=g.measureText(label).width+16; };
+  g.textAlign="left";
+  key((x,y)=>{ g.fillStyle=SAGE; g.fillRect(x,y-4,12,8); }, "Task");
+  key((x,y)=>{ g.fillStyle=RED;  g.fillRect(x,y-4,12,8); }, "Critical");
+  key((x,y)=>{ g.fillStyle=INK;  g.fillRect(x,y-3,12,6); }, "Summary");
+  if(hasBase) key((x,y)=>{ g.fillStyle="#a9a591"; g.fillRect(x,y-2,12,3.5); }, "Baseline");
+  if(rows.some(r=>r.deadline)) key((x,y)=>{ g.fillStyle=SOILD;
+    g.beginPath(); g.moveTo(x,y-4); g.lineTo(x+10,y-4); g.lineTo(x+5,y+4); g.closePath(); g.fill(); }, "Deadline");
+  g.fillStyle=FAINT; g.font="9px "+MONO; g.textAlign="right";
+  g.fillText("Native Food Forest Planner", W-PAD, ly);
+
+  return cv;
+}
+
 function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const [tasks,setTasks]=useState([]);
   const [links,setLinks]=useState([]);
@@ -4822,6 +5099,10 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const [gw,setGw]=useState(()=>{ try{ const v=parseInt(localStorage.getItem("ff-tg-split"),10);
     return Number.isFinite(v)&&v>=220 ? v : null; }catch(e){ return null; } });
   const [fs,setFs]=useState(false);           // full-screen Gantt
+  const [table,setTable]=useState("entry");   // entry | variance
+  const [base,setBase]=useState(null);        // {name, capturedAt, projectStart, rows[]}
+  const [warnHide,setWarnHide]=useState({});  // {type:true} — dismissed warning kinds
+  const [warnOpen,setWarnOpen]=useState(false);
   const schedRef=useRef(null);
   const scrollRef=useRef(null);
   // Vertical scrolling is native and single-scroller now, so nothing to sync.
@@ -4845,6 +5126,9 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
 
   useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
     hist.current={past:[],future:[]}; setHistN([0,0]);
+    setBase(null); setWarnHide({}); setWarnOpen(false);
+    dataProvider.loadBaseline(planId).then(b=>{ if(!dead) setBase(b); })
+      .catch(e=>console.error(e));
     Promise.all([dataProvider.loadTasks(planId), dataProvider.loadPlanDates(planId)])
       .then(([{tasks,links},d])=>{ if(dead) return;
         setTasks(tasks); setLinks(links);
@@ -4881,6 +5165,37 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   },[ordered,links,projStart]);
 
   const S = id => (schedule && schedule.tasks[id]) || {};
+
+  /* ---- PC4: baseline lookup and variance -----------------------------------
+     Matched id → generatedKey → wbs+name, in that order. An id alone is not
+     enough: undo can revive a task under a new one, and regeneration can too,
+     so a baseline keyed only by id would silently lose rows and report every
+     variance as "no baseline" instead of the truth. */
+  const baseOf=useMemo(()=>{
+    if(!base||!base.rows||!base.rows.length) return ()=>null;
+    const byId={}, byKey={}, byName={};
+    base.rows.forEach(r=>{
+      if(r.id!=null) byId[r.id]=r;
+      if(r.generatedKey) byKey[r.generatedKey]=r;
+      byName[(r.wbs||"")+"|"+(r.name||"")]=r;
+    });
+    return t => (t.id!=null&&byId[t.id]) || (t.generatedKey&&byKey[t.generatedKey])
+             || byName[(t.wbs||"")+"|"+(t.name||"")] || null;
+  },[base]);
+
+  // Variance in WORKING days, the same unit as every duration on this screen —
+  // calendar days would read as slippage across a weekend that nobody worked.
+  const varDays=(a,b)=>{
+    if(!a||!b||!window.PC1) return null;
+    const A=new Date(a), B=new Date(b); if(isNaN(A)||isNaN(B)) return null;
+    const C=window.PC1.DEFAULT_CALENDAR;
+    const sign = B>=A ? 1 : -1;
+    const mins = sign>0 ? window.PC1.workingMinutesBetween(C,A,B)
+                        : window.PC1.workingMinutesBetween(C,B,A);
+    return sign*mins/MIN_PER_DAY;
+  };
+  const varStr=v=>v==null?"—":(v===0?"0d":(v>0?"+":"")+(Math.round(v*10)/10)+"d");
+
   const predText = id => window.PC1
     ? window.PC1.formatPredecessors(links.filter(l=>l.succId===id), pid=>numOf[pid], {minutesPerDay:MIN_PER_DAY})
     : "";
@@ -4989,6 +5304,84 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
       })).filter(l=>l.predId!=null && l.succId!=null);
       await persist(reparented, relinked);
       setSel(null); setEditing(null);
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  /* Asking for the variance columns and then having to scroll sideways to find
+     them is a poor trade. Widen the grid pane to fit, once, without writing the
+     new width to the stored divider preference — this is a view accommodation,
+     not a choice the user made. */
+  const showVariance=()=>{
+    setTable("variance");
+    const box=schedRef.current; if(!box) return;
+    const total=box.getBoundingClientRect().width;
+    const need=Math.min(TG_VMINW+16, Math.max(GW_MIN, total-GW_TAIL));
+    const cur = gw!=null ? gw : total*0.52;
+    if(cur < need) setGw(Math.round(need));
+  };
+
+  /* ---- PC4: capture / clear the baseline ---- */
+  const setBaseline=async()=>{
+    if(!schedule){ say(["Nothing to baseline yet."]); return; }
+    if(base && !confirm("Replace the baseline captured "+fmtShort(base.capturedAt)+"?")) return;
+    setBusy(true);
+    try{
+      const rows=ordered.map(t=>{ const s=S(t.id);
+        return { id:t.id, generatedKey:t.generatedKey||null, wbs:t.wbs||wbsOf(ordered,ordered.indexOf(t)),
+                 name:t.name||"", start:s.start?new Date(s.start).toISOString():null,
+                 finish:s.finish?new Date(s.finish).toISOString():null,
+                 durationMin:t.durationMin||0, pctComplete:t.pctComplete||0,
+                 isSummary:!!t.isSummary, isMilestone:!!t.isMilestone }; });
+      const saved=await dataProvider.saveBaseline(planId, "Baseline", projStart||null, rows);
+      setBase(saved);
+      say([`Baseline captured — ${rows.length} task${rows.length===1?"":"s"}.`,
+           "Variance is measured against these dates until you replace it."]);
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+  const dropBaseline=async()=>{
+    if(!confirm("Clear the baseline? Variance columns and baseline bars go with it.")) return;
+    setBusy(true);
+    try{ await dataProvider.clearBaseline(planId); setBase(null);
+         if(table==="variance") setTable("entry");
+         say(["Baseline cleared."]); }
+    catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  /* ---- PNG export ---- */
+  const exportPNG=async()=>{
+    if(!schedule) return;
+    setBusy(true);
+    try{
+      const rows=ordered.map((t,i)=>{ const s=S(t.id), b=baseOf(t);
+        const fv=b?varDays(b.finish,s.finish):null;
+        return { id:t.id, num:i+1, wbs:t.wbs||wbsOf(ordered,i), name:t.name||"",
+          level:t.outlineLevel||1, isSummary:!!t.isSummary, isMilestone:!!t.isMilestone,
+          critical:!!s.critical, pct:t.pctComplete||0,
+          dur:t.isSummary?"":dayStr(t.durationMin),
+          start:s.start||null, finish:s.finish||null,
+          startTxt:fmtShort(s.start), finishTxt:fmtShort(s.finish),
+          slack:s.totalSlackMin==null?"":dayStr(s.totalSlackMin),
+          baseStart:b?b.start:null, baseFinish:b?b.finish:null,
+          bfinish:b?fmtShort(b.finish):"—", fvar:b?varStr(fv):"—", fvarN:fv,
+          slipped: !!(b&&b.finish&&s.finish&&new Date(s.finish)>new Date(b.finish)),
+          deadline:t.deadline||null,
+          missed: !!(t.deadline&&s.finish&&new Date(s.finish)>new Date(t.deadline)) }; });
+      const cv=await renderScheduleCanvas({ rows, links, zoom,
+        title:"Task schedule",
+        subtitle: base ? "Baseline captured "+fmtShort(base.capturedAt)
+                       : (projStart ? "Project start "+fmtShort(projStart+"T08:00:00") : ""),
+        stamp: new Date().toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"}) });
+      if(!cv){ say(["Nothing to export yet."]); return; }
+      const blob=await new Promise(r=>cv.toBlob(r,"image/png"));
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url; a.download="task-schedule-"+isoDay(new Date())+".png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+      say([`PNG exported — ${cv.width}×${cv.height}.`]);
     }catch(e){ console.error(e); setErr(e.message||String(e)); }
     finally{ setBusy(false); }
   };
@@ -5212,6 +5605,8 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
     return ()=>document.body.classList.remove("tg-fs");
   },[fs]);
 
+  const vtab = table==="variance" && !!base;
+
   if(!ready) return <div className="empty">Loading the schedule…</div>;
 
   const openEditor=(t)=>{
@@ -5247,6 +5642,8 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           {narrow ? "Expand grid ⟩" : "⟨ Collapse grid"}</button>
         <button className="chip" onClick={()=>setFs(true)} title="Full screen (Esc to leave)">
           ⤢ Full screen</button>
+        <button className="chip" disabled={busy||!schedule} onClick={()=>exportPNG()}
+                title="Download the chart as a PNG">⇩ PNG</button>
         {["day","week","month","quarter"].map(z=>(
           <button key={z} className={"chip"+(zoom===z?" on":"")} onClick={()=>setZoom(z)}>
             {z[0].toUpperCase()+z.slice(1)}</button>))}
@@ -5277,6 +5674,22 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           <span className="mtmeta">A phase cannot start before its target — regenerate to apply.</span>}
       </div>
 
+      <div className="tgbase">
+        <span className="lbl">Baseline</span>
+        {base
+          ? <span className="cap">Captured {fmtShort(base.capturedAt)} · {(base.rows||[]).length} tasks</span>
+          : <span className="cap none">Not set — capture one to measure slippage against it</span>}
+        <button className="ppbtn ghost" disabled={busy||!schedule} onClick={setBaseline}>
+          {base ? "Re-baseline" : "Set baseline"}</button>
+        {base && <button className="ppbtn ghost" disabled={busy} onClick={dropBaseline}>Clear</button>}
+        <span className="spacer"></span>
+        <span className="lbl">Columns</span>
+        <button className={"chip"+(table==="entry"?" on":"")} onClick={()=>setTable("entry")}>Entry</button>
+        <button className={"chip"+(table==="variance"?" on":"")} disabled={!base}
+                onClick={showVariance}
+                title={base?"":"Capture a baseline first"}>Variance</button>
+      </div>
+
       <div className={"changebar"+(notice?" has":"")}>
         {notice && <div className="changenote">
           <span className="hd">Changed</span>
@@ -5290,7 +5703,8 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           your phases and quantities — one summary per phase, then the planting layers in order.</div>
       ) : (()=>{ const gridEl = (
       <div className={"sched"+(narrow?" narrow":"")} ref={schedRef}
-           style={Object.assign({"--cols": narrow?TG_RAIL:TG_COLS},
+           style={Object.assign({"--cols": narrow?TG_RAIL:(vtab?TG_VCOLS:TG_COLS),
+                                 "--gminw": (narrow?0:(vtab?TG_VMINW:TG_MINW))+"px"},
                                 (!narrow && gw!=null) ? {"--gw": gw+"px"} : {})}>
         {!narrow && <div className="tgsplit" onPointerDown={startDrag}
                          onDoubleClick={resetDrag}
@@ -5306,8 +5720,13 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
                 <span>ID</span><span className="wbscol">WBS</span><span className="indcol">!</span>
                 <span>Task name</span><span className="durcol">Dur</span>
                 <span className="wideonly">Start</span><span className="wideonly">Finish</span>
-                <span className="wideonly">Pred</span><span className="wideonly">% Comp</span>
-                <span className="wideonly">Slack</span>
+                {vtab ? <React.Fragment>
+                  <span className="wideonly">Base start</span><span className="wideonly">Base finish</span>
+                  <span className="wideonly">Start var</span><span className="wideonly">Finish var</span>
+                </React.Fragment> : <React.Fragment>
+                  <span className="wideonly">Pred</span><span className="wideonly">% Comp</span>
+                  <span className="wideonly">Slack</span>
+                </React.Fragment>}
               </div></div>
             </div>
           </div>
@@ -5345,9 +5764,19 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
                 <span className="num durcol">{t.isSummary?"":dayStr(t.durationMin)}</span>
                 <span className="num wideonly">{fmtShort(s.start)}</span>
                 <span className="num wideonly">{fmtShort(s.finish)}</span>
-                <span className="mono wideonly" style={{fontSize:10}}>{predText(t.id)}</span>
-                <span className="num wideonly">{t.isSummary?"":(t.pctComplete||0)+"%"}</span>
-                <span className="num wideonly">{s.totalSlackMin==null?"":dayStr(s.totalSlackMin)}</span>
+                {vtab ? (()=>{ const b=baseOf(t);
+                  const sv=b?varDays(b.start,s.start):null, fv=b?varDays(b.finish,s.finish):null;
+                  const cls=v=>"num wideonly"+(v==null?"":v>0?" late":v<0?" early":"");
+                  return (<React.Fragment>
+                    <span className="num wideonly">{b?fmtShort(b.start):"—"}</span>
+                    <span className="num wideonly">{b?fmtShort(b.finish):"—"}</span>
+                    <span className={cls(sv)}>{varStr(sv)}</span>
+                    <span className={cls(fv)}>{varStr(fv)}</span>
+                  </React.Fragment>); })() : <React.Fragment>
+                  <span className="mono wideonly" style={{fontSize:10}}>{predText(t.id)}</span>
+                  <span className="num wideonly">{t.isSummary?"":(t.pctComplete||0)+"%"}</span>
+                  <span className="num wideonly">{s.totalSlackMin==null?"":dayStr(s.totalSlackMin)}</span>
+                </React.Fragment>}
               </div>);
             })}
           </div></div>
@@ -5373,6 +5802,18 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
                                 title={t.name}>
                              <i className="pc" style={{width:(t.pctComplete||0)+"%"}}></i>
                            </div>}
+                        {(()=>{ if(!base) return null; const b=baseOf(t);
+                          if(!b||!b.start||!b.finish) return null;
+                          const bl=sc.x(b.start), bw=Math.max(2, sc.x(b.finish)-bl);
+                          const slipped = s.finish && new Date(s.finish) > new Date(b.finish);
+                          return <div className={"basebar"+(slipped?" slip":"")}
+                                      style={{left:bl,width:bw}}
+                                      title={"Baseline "+fmtShort(b.start)+" → "+fmtShort(b.finish)}></div>;
+                        })()}
+                        {t.deadline && <div className={"dl"+(s.finish&&new Date(s.finish)>new Date(t.deadline)?" miss":"")}
+                                            style={{left:sc.x(t.deadline)-5}}
+                                            title={"Deadline "+fmtShort(t.deadline)+
+                                              (s.finish&&new Date(s.finish)>new Date(t.deadline)?" — missed":"")}></div>}
                         {t.targetDate && <div className="tgt" style={{left:sc.x(t.targetDate)}} title="Target"></div>}
                       </div>);
                   })}
@@ -5414,11 +5855,36 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         </div>
       ) : gridEl; })()}
 
-      {schedule && schedule.warnings.length>0 && (
-        <div className="warnstrip" style={{marginTop:10}}>
-          <b>{schedule.warnings.length} warning{schedule.warnings.length===1?"":"s"}</b>
-          <span>{schedule.warnings.slice(0,3).map(w=>w.message).join(" · ")}</span>
-        </div>)}
+      {schedule && schedule.warnings.length>0 && (()=>{
+        const kinds={}; schedule.warnings.forEach(w=>{ kinds[w.type]=(kinds[w.type]||0)+1; });
+        const shown=schedule.warnings.filter(w=>!warnHide[w.type]);
+        const hidden=schedule.warnings.length-shown.length;
+        return (
+        <div className={"warnstrip"+(warnOpen?" open":"")} style={{marginTop:10}}>
+          <div className="wtop">
+            <b>{shown.length} warning{shown.length===1?"":"s"}</b>
+            {WARN_ORDER.filter(k=>kinds[k]).map(k=>(
+              <button key={k} className={"wchip"+(warnHide[k]?" off":"")}
+                      title={warnHide[k]?"Show these again":"Hide this kind"}
+                      onClick={()=>setWarnHide(h=>({...h,[k]:!h[k]}))}>
+                {WARN_LABEL[k]||k} <i>{kinds[k]}</i></button>))}
+            {hidden>0 && <button className="wchip clear" onClick={()=>setWarnHide({})}>
+              Show all ({hidden} hidden)</button>}
+            <span className="spacer"></span>
+            {shown.length>0 &&
+              <button className="btn" onClick={()=>setWarnOpen(v=>!v)}>
+                {warnOpen?"Collapse":"See all"}</button>}
+          </div>
+          {shown.length===0
+            ? <span className="wnone">Every warning is hidden.</span>
+            : warnOpen
+              ? <ul className="wlist">{shown.map((w,i)=>(
+                  <li key={i}><span className={"wk k-"+w.type}>{WARN_LABEL[w.type]||w.type}</span>
+                    <span className="wm"
+                          onClick={()=>{ if(w.taskId!=null) setSel(w.taskId); }}>{w.message}</span></li>))}</ul>
+              : <span className="wsum">{shown.slice(0,3).map(w=>w.message).join(" · ")}
+                  {shown.length>3 ? ` · +${shown.length-3} more` : ""}</span>}
+        </div>); })()}
 
       {editing && <TaskEditor f={editing} setF={setEditing} onSave={saveEdit}
         onDelete={()=>removeTask(editing)} onClose={()=>setEditing(null)} busy={busy} />}
@@ -5445,6 +5911,13 @@ function editSig(f){
   return JSON.stringify([f.name||"", String(f._dur), String(f._pct), f.constraintType||"ASAP",
     f._start||"", f._finish||"", String(f._slack), f._pred||"", f.notes||"", !!f.isMilestone]);
 }
+
+/* Warning kinds, most consequential first. The engine's `type` strings are the
+   contract; anything it starts emitting that is not listed here still shows,
+   under its raw type. */
+const WARN_ORDER = ["cycle","constraint","deadline","target","advisory"];
+const WARN_LABEL = { cycle:"Circular", constraint:"Constraint", deadline:"Deadline",
+                     target:"Phase target", advisory:"Planting window" };
 
 const ANCHOR_HINT = {
   ASAP: "Dates float on the predecessors. Typing a Start pins it (Start no earlier than); typing a Finish restretches the duration.",
