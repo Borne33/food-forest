@@ -84,3 +84,47 @@ closed day (Good Friday) · one advisory window · two summary rollups.
 ## Not in PC1
 Task grid (PC2), timeline (PC3), baselines/variance UI (PC4), general MS Project
 XML import/export (PC5). The XML here is fixture-only, for the gate.
+
+
+---
+
+# PC5 — MS Project XML
+
+Lives in `index.html` in a second plain-JS block, `<script id="pc5-xml">`, for the
+same reason the engine does: `xml-test.js` extracts and runs **that** code rather
+than a copy. Exposed as `window.PC5`:
+`buildMSPDI · parseMSPDI · parseCalendars · mspDate · mspDur · parseDur`
+
+## Running the test
+```js
+new Function(await (await fetch("/food-forest/schedule/xml-test.js")).text())();
+await PC5_TEST.run("/food-forest/index.html");   // -> {passed, failed, results}
+```
+Current state: **60 passed, 0 failed.**
+
+## What survives a round trip
+Tasks, names (escaped), WBS, outline hierarchy, durations, elapsed durations,
+milestones, summaries, % complete, notes, all four link types, positive lag and
+negative lag (lead), every constraint that carries a date, deadlines, the
+baseline, the project start, and the working calendar including its exceptions.
+
+## What does not
+| Not carried | Why |
+|---|---|
+| Resources, assignments, costs | v2 (Q5). MSP's `<Resources>`/`<Assignments>` are ignored on import and never written. |
+| `generated_key` | MSPDI has no field for it, so **imported tasks come in as hand-made** — regeneration leaves them alone rather than trying to match them. |
+| Our task ids | MSP UIDs are preserved *within* a file; importing always inserts new rows. |
+| Multiple baselines | Only `<Baseline><Number>0</Number>` is read or written. Multiple baselines are v3. |
+| Advisory windows | **Deliberate.** They are advisory here (Q6); exported as calendar exceptions they would move MSP's dates and the trip would come back wrong. |
+
+## The one that bit
+The calendar was not imported at first, and nothing said so. The PC1 fixture's
+sheet-mulch task came back **Apr 07–11** instead of the verified **Apr 07–12**,
+because the file's single non-working day never crossed over. Dates that change
+quietly are worse than an import that refuses. `parseCalendars` now reads
+`<Calendars>`, the calendar is stored per plan on `plans.calendar`, and the import
+notice names the working week and the exception count either way.
+
+Re-importing `pc1-fixture.xml` now reproduces **all 15 rows of `pc1-expected.csv`
+exactly**, critical path included — which is the same output that was cross-checked
+against GanttProject in `VERIFICATION.md`.

@@ -16,7 +16,7 @@ marked **⛔ blocking** mean don't proceed until they pass — the next stage wo
 Suggested order interleaves the two workstreams so the highest-regression-risk work (the plan data migration, PA)
 lands early, while the shop work — which is purely additive — proves out the new page shell first.
 
-**Order:** S1 ✅ → S2 ✅ → S2b ✅ → S3 ✅ → S4 ✅ → PA ✅ → ~~PB~~ (→PC1) → S5 ✅ → S6 ✅ → **S7** → S8 → PC1 → PC2 → PC3 → PC4 → PC5 → S9 → S10
+**Order:** S1 ✅ → S2 ✅ → S2b ✅ → S3 ✅ → S4 ✅ → PA ✅ → ~~PB~~ (→PC1) → S5 ✅ → S6 ✅ → **S7** → S8 → PC1 ✅ → PC2 ✅ → PC3 ✅ → PC4 ✅ → PC5 🟡 → S9 → S10
 
 ---
 
@@ -267,14 +267,25 @@ and on the chart.
 
 ---
 
-## PC5 — MS Project XML import/export
+## PC5 — MS Project XML import/export — 🟡 BUILT, gate needs Alex
+
+Built and tested in-app (60 XML tests, all green). What is written and read back is listed in `schedule/README.md`,
+along with what is deliberately not carried.
 
 Evaluate:
-1. **⛔ Round-trip.** Export → open in MS Project → save → re-import. Confirm dates, links, durations, hierarchy and
-   baselines survive. Note anything that doesn't; some loss is expected and should be documented rather than silently
-   accepted.
-2. Import a project *you* made in MS Project and see what breaks.
+1. **⛔ Round-trip. STILL NEEDS ALEX — there is no MS Project on this machine.** Export → open in MS Project → save →
+   re-import. What has been proven here: a full app-level export→import is byte-identical on all 19 rows and 6 links
+   with the baseline intact, and re-importing `pc1-fixture.xml` (written by a *different* writer, the Python script)
+   reproduces all 15 rows of `pc1-expected.csv` exactly, critical path included. What MSP itself does with the file
+   is untested.
+2. **⛔ Import a project *you* made in MS Project and see what breaks.** Same reason. The closest proxy run here was
+   the Python-written fixture, which is not the same as MSP's own output — MSP writes far more elements, and the
+   reader ignores everything it does not recognise, which is the behaviour to check.
 3. Whether v2 (resources, assignments, earned value) is worth starting, now that you've used v1 on a real plan.
+
+**Known loss, worth reading before the round trip:** imported tasks arrive with no `generated_key`, so they are treated
+as hand-made and "Regenerate from plan" will leave them alone and add its own alongside. That is the safe default but
+it means a round trip through MSP severs a plan's tasks from the planting plan that produced them.
 
 ---
 

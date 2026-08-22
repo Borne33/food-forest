@@ -519,6 +519,12 @@
   .tgwrap .tgbase .cap{font-family:'Space Mono';font-size:11px;color:var(--ink2)}
   .tgwrap .tgbase .cap.none{color:var(--faint)}
   .tgwrap .tgbase .spacer{flex:1 1 auto}
+  .tgwrap .calnote{font-family:'Space Mono';font-size:10.5px;color:var(--soil-d);
+    background:#f6efe2;border:1.5px solid var(--soil-d);border-radius:99px;
+    padding:3px 6px 3px 10px;display:inline-flex;align-items:center;gap:6px}
+  .tgwrap .calnote .fx{border:0;background:none;color:var(--soil-d);font-size:11px;
+    cursor:pointer;padding:0 3px}
+  .tgwrap .calnote .fx:hover{color:var(--red)}
   .tgwrap .grow .num.late{color:var(--red)}
   .tgwrap .grow .num.early{color:var(--sage-d)}
   /* the baseline sits UNDER the bar, not behind it — overlapping them makes a
@@ -1913,6 +1919,313 @@ if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);
 </script>
 
+<script id="pc5-xml">
+/* PC5 — MS Project XML (MSPDI, the Project 2003+ schema MSP still opens and
+   saves natively). `.mpp` is a closed binary format and is not producible here
+   (Q1). Plain JS, not JSX, and in its own block for the same reason the engine
+   is: schedule/xml-test.js extracts and runs THIS code rather than a copy.
+
+   Enum codes, which are the whole game:
+     PredecessorLink Type   0=FF 1=FS 2=SF 3=SS
+     ConstraintType         0=ASAP 1=ALAP 2=MSO 3=MFO 4=SNET 5=SNLT 6=FNET 7=FNLT
+     DurationFormat         7=days  21=elapsed days
+     LinkLag                TENTHS OF A MINUTE, so one 480-minute day is 4800
+     Duration               PT#H#M#S
+
+   Two things MSPDI does NOT carry, both of which have to be reconstructed:
+     · parent/child — the hierarchy is OutlineLevel plus document order
+     · our generated_key — imported tasks are therefore treated as hand-made */
+(function(global){
+"use strict";
+
+var LINK_OUT = { FF:0, FS:1, SF:2, SS:3 };
+var LINK_IN  = { 0:"FF", 1:"FS", 2:"SF", 3:"SS" };
+var CONS_OUT = { ASAP:0, ALAP:1, MSO:2, MFO:3, SNET:4, SNLT:5, FNET:6, FNLT:7 };
+var CONS_IN  = { 0:"ASAP", 1:"ALAP", 2:"MSO", 3:"MFO", 4:"SNET", 5:"SNLT", 6:"FNET", 7:"FNLT" };
+var MPD = 480;
+
+function pad(n){ return (n<10?"0":"")+n; }
+/* MSP reads these as LOCAL wall-clock with no zone. toISOString() would convert
+   to UTC first and hand MSP a date shifted by the offset — four hours early for
+   the whole of the US east coast. */
+function mspDate(d){
+  if(!d) return null;
+  var x = (d instanceof Date) ? d : new Date(d);
+  if(isNaN(x)) return null;
+  return x.getFullYear()+"-"+pad(x.getMonth()+1)+"-"+pad(x.getDate())+"T"
+       + pad(x.getHours())+":"+pad(x.getMinutes())+":"+pad(x.getSeconds());
+}
+function mspDur(min, elapsed){
+  var m = Math.max(0, Math.round(min||0));
+  return "PT"+Math.floor(m/60)+"H"+(m%60)+"M0S";
+}
+function parseDur(s){
+  if(!s) return 0;
+  var m = /^P(?:T)?(?:(\d+(?:\.\d+)?)H)?(?:(\d+(?:\.\d+)?)M)?(?:(\d+(?:\.\d+)?)S)?$/.exec(String(s).trim());
+  if(!m) return 0;
+  return Math.round((parseFloat(m[1]||0))*60 + parseFloat(m[2]||0) + parseFloat(m[3]||0)/60);
+}
+function esc(s){
+  return String(s==null?"":s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g,"");   // XML 1.0 forbids these outright
+}
+
+/* ── WRITE ──────────────────────────────────────────────────────────────── */
+/* opts: {name, projectStart, tasks[], links[], schedule, baselineOf, calendar} */
+function buildMSPDI(opts){
+  var tasks = opts.tasks||[], links = opts.links||[];
+  var S = opts.schedule || function(){ return {}; };
+  var baselineOf = opts.baselineOf || function(){ return null; };
+  var cal = opts.calendar || null;
+  var wm = opts.workingMinutes || null;
+  var start = mspDate(opts.projectStart||new Date()) || mspDate(new Date());
+
+  // UID must be stable and positive; our ids already are, but an imported plan
+  // can carry nulls on rows that have never been saved.
+  var uid = {}, n = 0;
+  tasks.forEach(function(t){ uid[t.id] = (t.id!=null ? t.id : (900000 + (++n))); });
+
+  var predsOf = {};
+  links.forEach(function(l){ (predsOf[l.succId] = predsOf[l.succId]||[]).push(l); });
+
+  var out = [];
+  out.push('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
+  out.push('<Project xmlns="http://schemas.microsoft.com/project">');
+  out.push('  <Name>'+esc(opts.name||"Food forest schedule")+'</Name>');
+  out.push('  <Title>'+esc(opts.name||"Food forest schedule")+'</Title>');
+  out.push('  <ScheduleFromStart>1</ScheduleFromStart>');
+  out.push('  <StartDate>'+start+'</StartDate>');
+  out.push('  <CalendarUID>1</CalendarUID>');
+  out.push('  <DefaultStartTime>08:00:00</DefaultStartTime>');
+  out.push('  <DefaultFinishTime>16:00:00</DefaultFinishTime>');
+  out.push('  <MinutesPerDay>'+MPD+'</MinutesPerDay>');
+  out.push('  <MinutesPerWeek>'+(MPD*7)+'</MinutesPerWeek>');
+  out.push('  <DaysPerMonth>30</DaysPerMonth>');
+
+  out.push('  <Calendars><Calendar>');
+  out.push('    <UID>1</UID><Name>'+esc((cal&&cal.name)||"Standard (7-day)")+'</Name>'
+         + '<IsBaseCalendar>1</IsBaseCalendar><BaseCalendarUID>-1</BaseCalendarUID>');
+  out.push('    <WeekDays>');
+  var DAYK = ["sun","mon","tue","wed","thu","fri","sat"];
+  for(var d=1; d<=7; d++){
+    var spans = cal && cal.workweek ? (cal.workweek[DAYK[d-1]]||[]) : [["08:00","16:00"]];
+    if(!spans.length){ out.push('      <WeekDay><DayType>'+d+'</DayType><DayWorking>0</DayWorking></WeekDay>'); continue; }
+    var wt = spans.map(function(s){
+      return '<WorkingTime><FromTime>'+s[0]+':00</FromTime><ToTime>'+s[1]+':00</ToTime></WorkingTime>'; }).join("");
+    out.push('      <WeekDay><DayType>'+d+'</DayType><DayWorking>1</DayWorking>'
+           + '<WorkingTimes>'+wt+'</WorkingTimes></WeekDay>');
+  }
+  // Advisory windows are deliberately NOT exported. They are advisory here (Q6)
+  // and MSP has no such notion — as an exception they would move its dates and
+  // the round trip would come back wrong.
+  (cal && cal.exceptions || []).forEach(function(x){
+    if(x.working !== false || x.advisory) return;
+    var from = mspDate(x.date||x.from), to = mspDate(x.to||x.date);
+    if(!from) return;
+    out.push('      <WeekDay><DayType>0</DayType><DayWorking>0</DayWorking>'
+           + '<TimePeriod><FromDate>'+from+'</FromDate><ToDate>'+(to||from)+'</ToDate></TimePeriod></WeekDay>');
+  });
+  out.push('    </WeekDays>');
+  out.push('  </Calendar></Calendars>');
+
+  out.push('  <Tasks>');
+  tasks.forEach(function(t, i){
+    var s = S(t.id) || {};
+    var b = baselineOf(t);
+    var lvl = t.outlineLevel || 1;
+    out.push('    <Task>');
+    out.push('      <UID>'+uid[t.id]+'</UID><ID>'+(i+1)+'</ID><Name>'+esc(t.name||"")+'</Name>');
+    if(t.wbs) out.push('      <WBS>'+esc(t.wbs)+'</WBS>');
+    out.push('      <Active>1</Active><Manual>0</Manual><Type>1</Type>');
+    out.push('      <OutlineLevel>'+lvl+'</OutlineLevel>');
+    out.push('      <Summary>'+(t.isSummary?1:0)+'</Summary><Milestone>'+(t.isMilestone?1:0)+'</Milestone>');
+    out.push('      <ConstraintType>'+(CONS_OUT[t.constraintType]||0)+'</ConstraintType>');
+    out.push('      <CalendarUID>1</CalendarUID>');
+    // Start AND Finish on every task, summaries included. MPXJ-based readers
+    // skip any task with neither start+finish nor start+duration, and dropping
+    // the summaries orphans every child under "source task not found".
+    if(s.start) out.push('      <Start>'+mspDate(s.start)+'</Start>');
+    if(s.finish) out.push('      <Finish>'+mspDate(s.finish)+'</Finish>');
+    // MSP reads Duration as WORKING time. A summary's span in wall-clock minutes
+    // is three times its working duration on an 8-hour day, so a one-day phase
+    // would import as three. opts.workingMinutes is the calendar-aware measure;
+    // without it, fall back to whole days of the span rather than raw minutes.
+    var dmin;
+    if(!t.isSummary) dmin = t.durationMin||0;
+    else if(s.start && s.finish){
+      dmin = wm ? Math.max(0, Math.round(wm(new Date(s.start), new Date(s.finish))))
+                : Math.max(0, Math.round((new Date(s.finish)-new Date(s.start))/86400000)*MPD);
+    } else dmin = 0;
+    out.push('      <Duration>'+mspDur(dmin)+'</Duration>');
+    out.push('      <DurationFormat>'+(t.elapsed?21:7)+'</DurationFormat>');
+    out.push('      <PercentComplete>'+(t.pctComplete||0)+'</PercentComplete>');
+    if(t.constraintDate) out.push('      <ConstraintDate>'+mspDate(t.constraintDate)+'</ConstraintDate>');
+    if(t.deadline) out.push('      <Deadline>'+mspDate(t.deadline)+'</Deadline>');
+    if(t.notes) out.push('      <Notes>'+esc(t.notes)+'</Notes>');
+    if(b && (b.start||b.finish)){
+      out.push('      <Baseline><Number>0</Number>'
+             + (b.start ? '<Start>'+mspDate(b.start)+'</Start>' : '')
+             + (b.finish ? '<Finish>'+mspDate(b.finish)+'</Finish>' : '')
+             + '<Duration>'+mspDur(b.durationMin||0)+'</Duration><DurationFormat>7</DurationFormat>'
+             + '</Baseline>');
+    }
+    (predsOf[t.id]||[]).forEach(function(l){
+      if(uid[l.predId]==null) return;
+      out.push('      <PredecessorLink>');
+      out.push('        <PredecessorUID>'+uid[l.predId]+'</PredecessorUID>');
+      out.push('        <Type>'+(LINK_OUT[l.type||"FS"]!=null?LINK_OUT[l.type||"FS"]:1)+'</Type>');
+      out.push('        <LinkLag>'+Math.round((l.lagMin||0)*10)+'</LinkLag><LagFormat>7</LagFormat>');
+      out.push('      </PredecessorLink>');
+    });
+    out.push('    </Task>');
+  });
+  out.push('  </Tasks>');
+  out.push('</Project>');
+  return out.join("\n")+"\n";
+}
+
+/* ── READ ───────────────────────────────────────────────────────────────── */
+function kids(el, name){
+  var out=[], c=el.firstElementChild;
+  while(c){ if(c.localName===name) out.push(c); c=c.nextElementSibling; }
+  return out;
+}
+function one(el, name){ var k=kids(el,name); return k.length?k[0]:null; }
+function txt(el, name){ var n=one(el,name); return n?(n.textContent||"").trim():null; }
+function num(el, name, dflt){ var v=txt(el,name); if(v==null||v==="") return dflt;
+  var n=parseFloat(v); return isNaN(n)?dflt:n; }
+function date(el, name){ var v=txt(el,name); if(!v) return null;
+  var d=new Date(v); return isNaN(d)?null:d; }
+
+/* MSPDI WeekDay DayType: 1=Sunday … 7=Saturday. DayType 0 is not a weekday at
+   all — it is an exception, and the dates live in its <TimePeriod>. */
+var DAYK = ["sun","mon","tue","wed","thu","fri","sat"];
+function hhmm(s){ return String(s||"").slice(0,5); }
+function parseCalendars(root){
+  var wrap = one(root,"Calendars");
+  if(!wrap) return null;
+  var cals = kids(wrap,"Calendar");
+  if(!cals.length) return null;
+  // the project's own calendar if it names one, else the first base calendar
+  var want = num(root,"CalendarUID",null);
+  var el = null;
+  cals.forEach(function(c){ if(want!=null && num(c,"UID",null)===want) el=c; });
+  if(!el) cals.forEach(function(c){ if(!el && txt(c,"IsBaseCalendar")==="1") el=c; });
+  if(!el) el = cals[0];
+
+  var workweek = {}, exceptions = [];
+  DAYK.forEach(function(k){ workweek[k] = []; });
+  var seen = {};
+  kids(one(el,"WeekDays")||el, "WeekDay").forEach(function(wd){
+    var type = num(wd,"DayType",null);
+    var working = txt(wd,"DayWorking")==="1";
+    if(type===0){
+      var tp = one(wd,"TimePeriod");
+      var from = tp?date(tp,"FromDate"):null, to = tp?date(tp,"ToDate"):null;
+      if(from) exceptions.push({ date: mspDate(from).slice(0,10),
+                                 to: to?mspDate(to).slice(0,10):undefined,
+                                 working: working, name: txt(wd,"Name")||"Exception" });
+      return;
+    }
+    if(type==null || type<1 || type>7) return;
+    var key = DAYK[type-1];
+    seen[key] = true;
+    if(!working){ workweek[key] = []; return; }
+    var wts = one(wd,"WorkingTimes");
+    var spans = wts ? kids(wts,"WorkingTime").map(function(w){
+      return [hhmm(txt(w,"FromTime")), hhmm(txt(w,"ToTime"))]; }) : [];
+    workweek[key] = spans.length ? spans : [["08:00","16:00"]];
+  });
+  // a day the file never mentions is not "closed", it is unstated — MSP omits
+  // days that match the base calendar, so default them to the standard working day
+  DAYK.forEach(function(k){ if(!seen[k]) workweek[k] = [["08:00","16:00"]]; });
+
+  return { id:"imported", name: txt(el,"Name")||"Imported calendar",
+           isDefault:true, workweek:workweek, exceptions:exceptions };
+}
+
+function parseMSPDI(xmlText){
+  var doc = new DOMParser().parseFromString(xmlText, "application/xml");
+  var bad = doc.getElementsByTagName("parsererror");
+  if(bad && bad.length) throw new Error("That file is not valid XML.");
+  var root = doc.documentElement;
+  if(!root || root.localName!=="Project")
+    throw new Error("Not an MS Project XML file — the root element is <"+(root?root.localName:"?")+">, expected <Project>.");
+
+  var tasksEl = one(root, "Tasks");
+  var raw = tasksEl ? kids(tasksEl, "Task") : [];
+  if(!raw.length) throw new Error("The file has no <Task> elements.");
+
+  var tasks=[], links=[], byUid={}, baseline=[];
+  raw.forEach(function(el){
+    var uid = num(el, "UID", null);
+    // MSP writes a UID 0 project-summary row; it is not a task
+    if(uid===0 && num(el,"OutlineLevel",1)===0) return;
+    var isSum = txt(el,"Summary")==="1";
+    var t = {
+      uid: uid,
+      name: txt(el,"Name")||"(untitled)",
+      wbs: txt(el,"WBS")||null,
+      outlineLevel: Math.max(1, num(el,"OutlineLevel",1)||1),
+      isSummary: isSum,
+      isMilestone: txt(el,"Milestone")==="1",
+      durationMin: parseDur(txt(el,"Duration")),
+      elapsed: num(el,"DurationFormat",7)===21,
+      pctComplete: Math.max(0, Math.min(100, num(el,"PercentComplete",0)||0)),
+      constraintType: CONS_IN[num(el,"ConstraintType",0)] || "ASAP",
+      constraintDate: date(el,"ConstraintDate"),
+      deadline: date(el,"Deadline"),
+      notes: txt(el,"Notes")||null,
+      start: date(el,"Start"),
+      finish: date(el,"Finish")
+    };
+    // A summary's duration is a span, not work — the engine rolls it up from
+    // the children, and carrying MSP's number through would double-count.
+    if(isSum) t.durationMin = 0;
+    tasks.push(t);
+    byUid[uid]=t;
+    var b = one(el,"Baseline");
+    if(b){
+      var bs=date(b,"Start"), bf=date(b,"Finish");
+      if(bs||bf) baseline.push({ uid:uid, name:t.name, wbs:t.wbs, start:bs, finish:bf,
+                                 durationMin:parseDur(txt(b,"Duration")) });
+    }
+    kids(el,"PredecessorLink").forEach(function(p){
+      var pu = num(p,"PredecessorUID",null); if(pu==null) return;
+      links.push({ predUid:pu, succUid:uid,
+        type: LINK_IN[num(p,"Type",1)] || "FS",
+        lagMin: Math.round((num(p,"LinkLag",0)||0)/10) });
+    });
+  });
+
+  // hierarchy from OutlineLevel + document order, the only place MSPDI keeps it
+  var stack=[];
+  tasks.forEach(function(t){
+    while(stack.length && stack[stack.length-1].outlineLevel >= t.outlineLevel) stack.pop();
+    t.parentUid = stack.length ? stack[stack.length-1].uid : null;
+    stack.push(t);
+  });
+
+  links = links.filter(function(l){ return byUid[l.predUid] && byUid[l.succUid]; });
+
+  var ps = date(root,"StartDate");
+  if(!ps){ tasks.forEach(function(t){ if(t.start && (!ps || t.start<ps)) ps=t.start; }); }
+
+  return { name: txt(root,"Name")||txt(root,"Title")||"Imported schedule",
+           projectStart: ps, tasks: tasks, links: links, baseline: baseline,
+           calendar: parseCalendars(root) };
+}
+
+var api = { buildMSPDI:buildMSPDI, parseMSPDI:parseMSPDI, parseCalendars:parseCalendars,
+            mspDate:mspDate, mspDur:mspDur, parseDur:parseDur,
+            LINK_OUT:LINK_OUT, LINK_IN:LINK_IN, CONS_OUT:CONS_OUT, CONS_IN:CONS_IN };
+global.PC5 = api;
+if (typeof module !== "undefined" && module.exports) module.exports = api;
+})(typeof globalThis !== "undefined" ? globalThis : this);
+</script>
+
 <script type="text/babel">
 const {useState,useMemo,useEffect,useRef,useCallback} = React;
 
@@ -2168,15 +2481,18 @@ const dataProvider = {
   /* ---- PC1/PC3: project start + per-phase targets (own the dated fields) ---- */
   async loadPlanDates(planId){
     const { data, error } = await sb.from('plans')
-      .select('project_start,phase_targets').eq('id',planId).maybeSingle();
+      .select('project_start,phase_targets,calendar').eq('id',planId).maybeSingle();
     if(error) throw error;
     return { projectStart:(data&&data.project_start)||null,
-             phaseTargets:(data&&data.phase_targets)||{} };
+             phaseTargets:(data&&data.phase_targets)||{},
+             calendar:(data&&data.calendar)||null };
   },
-  async savePlanDates(planId, projectStart, phaseTargets){
-    const { error } = await sb.from('plans')
-      .update({ project_start: projectStart||null, phase_targets: phaseTargets||{} })
-      .eq('id',planId);
+  async savePlanDates(planId, projectStart, phaseTargets, calendar){
+    const patch = { project_start: projectStart||null, phase_targets: phaseTargets||{} };
+    // undefined means "leave it alone" — every existing caller passes three
+    // arguments and must not blank the calendar as a side effect
+    if(calendar !== undefined) patch.calendar = calendar;
+    const { error } = await sb.from('plans').update(patch).eq('id',planId);
     if(error) throw error;
   },
   /* ---- PC2: plan tasks + links (own-row RLS) ---- */
@@ -5093,6 +5409,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const [err,setErr]=useState(null);
   const [projStart,setProjStart]=useState("");
   const [targets,setTargets]=useState({});   // {phase: "YYYY-MM-DD"}
+  const [cal,setCal]=useState(null);         // per-plan working calendar, or null = standard
   const [zoom,setZoom]=useState("week");     // day | week | month | quarter
   // Divider position is a per-browser preference, not plan data — localStorage,
   // never Supabase. null = the responsive default.
@@ -5110,7 +5427,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   // header has to travel with it. Written as a transform straight onto the node
   // — routing a scroll through React state drops frames and the header visibly
   // trails the columns.
-  const gpRef=useRef(null), tpRef=useRef(null);
+  const gpRef=useRef(null), tpRef=useRef(null), xmlIn=useRef(null);
   const ghRef=useRef(null), thRef=useRef(null);
   useEffect(()=>{
     const track=(pane,head)=>{
@@ -5126,13 +5443,14 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
 
   useEffect(()=>{ let dead=false; setReady(false); setSel(null); setNotice(null);
     hist.current={past:[],future:[]}; setHistN([0,0]);
-    setBase(null); setWarnHide({}); setWarnOpen(false);
+    setBase(null); setWarnHide({}); setWarnOpen(false); setCal(null);
     dataProvider.loadBaseline(planId).then(b=>{ if(!dead) setBase(b); })
       .catch(e=>console.error(e));
     Promise.all([dataProvider.loadTasks(planId), dataProvider.loadPlanDates(planId)])
       .then(([{tasks,links},d])=>{ if(dead) return;
         setTasks(tasks); setLinks(links);
-        setProjStart(d.projectStart||""); setTargets(d.phaseTargets||{}); setReady(true);
+        setProjStart(d.projectStart||""); setTargets(d.phaseTargets||{});
+        setCal(d.calendar||null); setReady(true);
       }).catch(e=>{ console.error(e); if(!dead){ setErr(e.message||String(e)); setReady(true); } });
     return ()=>{ dead=true; };
   },[planId]);
@@ -5158,13 +5476,17 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           constraintDate:t.constraintDate, targetDate:t.targetDate, deadline:t.deadline,
           calendarId:t.calendarId, pctComplete:t.pctComplete, phaseNo:t.phaseNo })),
         links: links.map(l=>({predId:l.predId, succId:l.succId, type:l.type, lagMin:l.lagMin})),
-        calendars: null,
+        calendars: cal ? [cal] : null,
         projectStart: projStart ? new Date(projStart + "T08:00:00") : new Date()
       });
     }catch(e){ console.error(e); return null; }
-  },[ordered,links,projStart]);
+  },[ordered,links,projStart,cal]);
 
   const S = id => (schedule && schedule.tasks[id]) || {};
+  // Every working-time measure on this screen — variance, the editor's date
+  // maths, the export — has to use the SAME calendar the engine scheduled on,
+  // or they disagree with the dates sitting next to them.
+  const CAL = cal || (window.PC1 ? window.PC1.DEFAULT_CALENDAR : null);
 
   /* ---- PC4: baseline lookup and variance -----------------------------------
      Matched id → generatedKey → wbs+name, in that order. An id alone is not
@@ -5188,7 +5510,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
   const varDays=(a,b)=>{
     if(!a||!b||!window.PC1) return null;
     const A=new Date(a), B=new Date(b); if(isNaN(A)||isNaN(B)) return null;
-    const C=window.PC1.DEFAULT_CALENDAR;
+    const C=CAL;
     const sign = B>=A ? 1 : -1;
     const mins = sign>0 ? window.PC1.workingMinutesBetween(C,A,B)
                         : window.PC1.workingMinutesBetween(C,B,A);
@@ -5347,6 +5669,111 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
          if(table==="variance") setTable("entry");
          say(["Baseline cleared."]); }
     catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  /* ---- PC5: MS Project XML out / in ---------------------------------------
+     Export carries the computed dates, the hierarchy, links with lag, the
+     constraints, deadlines, % complete and the baseline. Import replaces the
+     whole schedule after a confirm — a merge would have to guess which of the
+     user's tasks an MSP row corresponds to, and there is no key to guess with. */
+  const download=(text, filename, mime)=>{
+    const blob=new Blob([text], {type:mime||"application/xml"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url; a.download=filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  };
+
+  const exportXML=()=>{
+    if(!window.PC5 || !schedule) return;
+    try{
+      const xml=window.PC5.buildMSPDI({
+        name: "Food forest schedule",
+        projectStart: schedule.projectStart || (projStart? new Date(projStart+"T08:00:00") : new Date()),
+        tasks: ordered.map((t,i)=>({...t, wbs:t.wbs||wbsOf(ordered,i)})),
+        links,
+        schedule: id=>S(id),
+        baselineOf: t=>baseOf(t),
+        calendar: CAL,
+        workingMinutes: window.PC1 && CAL
+          ? (a,b)=>window.PC1.workingMinutesBetween(CAL, a, b) : null });
+      download(xml, "food-forest-schedule-"+isoDay(new Date())+".xml");
+      say([`Exported ${ordered.length} tasks and ${links.length} links as MS Project XML.`,
+           base ? "The baseline went with it." : "No baseline captured, so none was written."]);
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+  };
+
+  const importXML=async(file)=>{
+    if(!file || !window.PC5) return;
+    setBusy(true);
+    try{
+      const text=await file.text();
+      const p=window.PC5.parseMSPDI(text);
+      const real=p.tasks.length;
+      if(!confirm(`Import “${p.name}”?\n\n${real} tasks and ${p.links.length} links.\n\n`
+                 +`This REPLACES the ${tasks.length} task${tasks.length===1?"":"s"} on this plan. `
+                 +`Undo will bring them back.`)) { setBusy(false); return; }
+      mark();
+      await dataProvider.clearTasks(planId);
+      // pass 1: rows without parents, because a parent needs an id first
+      const rows=p.tasks.map((t,i)=>({
+        name:t.name, wbs:t.wbs, outlineLevel:t.outlineLevel, sortOrder:i,
+        durationMin:t.durationMin, elapsed:t.elapsed, isMilestone:t.isMilestone,
+        isSummary:t.isSummary, pctComplete:t.pctComplete,
+        constraintType:t.constraintType,
+        constraintDate:t.constraintDate?t.constraintDate.toISOString():null,
+        deadline:t.deadline?t.deadline.toISOString():null,
+        notes:t.notes,
+        // imported rows are nobody's generated output, so regeneration must not
+        // touch them and must not try to match them by key
+        isManual:true, isGenerated:false, generatedKey:null, userEdited:true }));
+      const saved=(await dataProvider.saveTasks(planId, rows.map(taskToRow))).map(rowToTask);
+      const idAt=i=>(saved[i]?saved[i].id:null);
+      const uidPos={}; p.tasks.forEach((t,i)=>{ uidPos[t.uid]=i; });
+      const withParents=saved.map((t,i)=>{
+        const src=p.tasks[i];
+        const pj=src && src.parentUid!=null ? uidPos[src.parentUid] : null;
+        return {...t, parentId: pj==null?null:idAt(pj)};
+      });
+      await dataProvider.saveTasks(planId, withParents.map(taskToRow));
+      const newLinks=p.links.map(l=>({
+        predId:idAt(uidPos[l.predUid]), succId:idAt(uidPos[l.succUid]),
+        type:l.type, lagMin:l.lagMin
+      })).filter(l=>l.predId!=null && l.succId!=null);
+      await dataProvider.replaceLinks(planId, newLinks);
+      setTasks(withParents); setLinks(newLinks); setSel(null);
+      // The calendar is the difference between importing a schedule and
+      // importing a schedule that means the same thing. Dropping it re-computed
+      // the PC1 fixture's sheet-mulch task as Apr 07–11 instead of Apr 07–12,
+      // silently, because the file's one non-working day never came across.
+      const nextCal = p.calendar || null;
+      setCal(nextCal);
+      const nextStart = p.projectStart ? isoDay(p.projectStart) : projStart;
+      if(p.projectStart) setProjStart(nextStart);
+      dataProvider.savePlanDates(planId, nextStart||null, targets, nextCal)
+        .catch(x=>console.error(x));
+      if(p.baseline && p.baseline.length){
+        const brows=p.baseline.map(b=>({ id:idAt(uidPos[b.uid]), generatedKey:null,
+          wbs:b.wbs, name:b.name,
+          start:b.start?b.start.toISOString():null, finish:b.finish?b.finish.toISOString():null,
+          durationMin:b.durationMin||0, pctComplete:0, isSummary:false, isMilestone:false }));
+        const sb=await dataProvider.saveBaseline(planId, "Imported baseline",
+          p.projectStart?p.projectStart.toISOString():null, brows);
+        setBase(sb);
+      }
+      const exc=(nextCal&&nextCal.exceptions||[]).length;
+      const closed=nextCal ? Object.keys(nextCal.workweek||{})
+        .filter(k=>!(nextCal.workweek[k]||[]).length) : [];
+      say([`Imported ${withParents.length} tasks and ${newLinks.length} links from “${p.name}”.`,
+           p.baseline && p.baseline.length ? `${p.baseline.length} baseline rows came with it.` : "",
+           nextCal ? `Calendar “${nextCal.name}” adopted — `
+             + (closed.length ? `${closed.length} non-working day${closed.length===1?"":"s"}, ` : "7-day week, ")
+             + `${exc} exception${exc===1?"":"s"}.`
+             : "The file carried no calendar, so the standard 7-day one stays in force.",
+           "Dates are recomputed by this engine — compare them against the file."].filter(Boolean));
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
     finally{ setBusy(false); }
   };
 
@@ -5523,7 +5950,7 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
        CAPPED, by a deadline. Typing N days sets deadline = finish + N working
        days, which is exactly how MS Project bounds total slack. */
     mark();
-    const D=window.PC1.DEFAULT_CALENDAR, el=!!f.elapsed;
+    const D=CAL, el=!!f.elapsed;
     // A <input type=date> carries no time, but a finish date means the END of
     // that day's work — "finish on the 4th, starting the 2nd" is a three-day
     // task, not two. Reading the box back at 08:00 would quietly shorten every
@@ -5644,6 +6071,14 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           ⤢ Full screen</button>
         <button className="chip" disabled={busy||!schedule} onClick={()=>exportPNG()}
                 title="Download the chart as a PNG">⇩ PNG</button>
+        <button className="chip" disabled={busy||!schedule} onClick={exportXML}
+                title="MS Project XML — MSP, ProjectLibre and GanttProject all open it">⇩ XML</button>
+        <button className="chip" disabled={busy} onClick={()=>xmlIn.current&&xmlIn.current.click()}
+                title="Replace this schedule from an MS Project XML file">⇧ Import XML</button>
+        <input ref={xmlIn} type="file" accept=".xml,text/xml,application/xml"
+               style={{display:"none"}}
+               onChange={e=>{ const f=e.target.files&&e.target.files[0];
+                 e.target.value=""; if(f) importXML(f); }} />
         {["day","week","month","quarter"].map(z=>(
           <button key={z} className={"chip"+(zoom===z?" on":"")} onClick={()=>setZoom(z)}>
             {z[0].toUpperCase()+z.slice(1)}</button>))}
@@ -5682,6 +6117,18 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         <button className="ppbtn ghost" disabled={busy||!schedule} onClick={setBaseline}>
           {base ? "Re-baseline" : "Set baseline"}</button>
         {base && <button className="ppbtn ghost" disabled={busy} onClick={dropBaseline}>Clear</button>}
+        {cal && <span className="calnote" title={"Working week: "+
+            ["mon","tue","wed","thu","fri","sat","sun"]
+              .filter(k=>((cal.workweek||{})[k]||[]).length).join(", ")}>
+          Calendar: {cal.name}
+          {(cal.exceptions||[]).length ? ` · ${cal.exceptions.length} exception${cal.exceptions.length===1?"":"s"}` : ""}
+          <button className="fx" title="Back to the standard 7-day calendar"
+                  disabled={busy}
+                  onClick={()=>{ if(!confirm("Drop “"+cal.name+"” and reschedule on the standard 7-day calendar?")) return;
+                    setCal(null);
+                    dataProvider.savePlanDates(planId, projStart||null, targets, null).catch(x=>setErr(String(x)));
+                    say(["Back on the standard 7-day calendar — dates recomputed."]); }}>✕</button>
+        </span>}
         <span className="spacer"></span>
         <span className="lbl">Columns</span>
         <button className={"chip"+(table==="entry"?" on":"")} onClick={()=>setTable("entry")}>Entry</button>
