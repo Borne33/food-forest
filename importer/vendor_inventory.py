@@ -74,6 +74,18 @@ def sku_code(sci):
     return (w[0][:3] + w[1][:3]).upper() if len(w) >= 2 else None
 
 
+def norm(t):
+    """Lower-case, and fold the typographic apostrophes to a plain one.
+
+    Not fuzzy matching — the same characters, written the way a typesetter does.
+    Ernst writes "Culver’s Root" with U+2019; the plants table has "Culver's
+    Root" with U+0027, and an exact string match calls those different plants.
+    That silently lost Culver's Root, Gray's Sedge and Riddell's Goldenrod. 145
+    common names here use a straight apostrophe and 116 use a curly one, so this
+    cuts both ways."""
+    return (t or "").strip().lower().replace("’", "'").replace("‘", "'")
+
+
 def build_index(env, plants):
     by_sci, by_common, common_counts = {}, {}, {}
     code_hits = {}
@@ -83,7 +95,7 @@ def build_index(env, plants):
             c6 = sku_code(p["sci"])
             if c6:
                 code_hits.setdefault(c6, []).append(p["id"])
-        c = (p.get("common") or "").strip().lower()
+        c = norm(p.get("common"))
         if c:
             common_counts[c] = common_counts.get(c, 0) + 1
             by_common[c] = p["id"]
@@ -93,14 +105,14 @@ def build_index(env, plants):
     amb_code = {k for k, v in code_hits.items() if len(v) > 1}
     syn = {}
     for r in supabase(env, "GET", "plant_synonyms?select=plant_id,name,kind&limit=10000") or []:
-        syn[r["name"].strip().lower()] = r["plant_id"]
+        syn[norm(r["name"])] = r["plant_id"]
     return {"sci": by_sci, "common": by_common, "ambiguous": ambiguous,
             "syn": syn, "code": by_code, "amb_code": amb_code}
 
 
 def match(raw_sci, raw_common, idx, code=None):
     """Return (plant_id, how) or (None, reason). Strict — see D5."""
-    s = (raw_sci or "").strip().lower()
+    s = norm(raw_sci)
     if s:
         if s in idx["sci"]:
             return idx["sci"][s], "sci"
@@ -121,7 +133,7 @@ def match(raw_sci, raw_common, idx, code=None):
             return None, "code_ambiguous"
         if c6 in idx["code"]:
             return idx["code"][c6], "sku_code"
-    c = (raw_common or "").strip().lower()
+    c = norm(raw_common)
     if c:
         if c in idx["ambiguous"]:
             return None, "common_ambiguous"

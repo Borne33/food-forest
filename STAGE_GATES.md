@@ -316,9 +316,12 @@ Evaluate:
    honest User-Agent, no crawling beyond those fixed paths. A full probe of all 44 is ≤220 requests over ~6 minutes.
    **Refresh: one paginated read per vendor** — Ernst's whole 687-product catalogue is 14 requests. ⛔ Your call
    whether that reads as reasonable.
-4. ⛔ **Still open — and now the more important question.** Whether any vendor should be asked for permission first,
-   or invited to submit a list instead. Given item 2, outreach for supplied lists is the track that actually scales
-   here; the feed reader covers one vendor.
+4. ~~Whether any vendor should be asked for permission first, or invited to submit a list instead.~~
+   **Decided Aug 2026: tabled.** No vendor outreach for now; revisit as a longer-term goal. `--file` is already
+   wired for supplied lists whenever that changes.
+
+**Also decided Aug 2026: this stays MANUAL.** No cron. The argument for it is this very run — three defects surfaced
+only because a person read the dry run before it was applied. Run it seasonally, when Ernst refreshes pricing.
 
 **Three defects the dry run shook out, all fixed before anything was written:**
 - 237 seed **mixes** were being filed against single species — a mix is not a species, and that is exactly the wrong
