@@ -241,17 +241,29 @@ Evaluate:
 2. Bars/arrows legible at each zoom level; dependency arrows not overwhelming at 200 tasks.
 3. Drag-to-move and drag-to-link behave like MSP (a drag sets a constraint — confirm that's what you want, it surprises
    people).
-4. Printing / PNG export produces something you'd put in front of someone else.
+4. ~~Printing / PNG export produces something you'd put in front of someone else.~~ **PNG done** (Aug 2026) — 2× canvas,
+   title/subtitle/date stamp, grid + scale + bars + baseline bars + % complete + deadline flags + arrows + legend.
+   Swaps the Slack column for Base finish / Finish var when a baseline exists. Print stylesheet still not done.
 5. Mobile: probably read-only there. Confirm that's acceptable rather than trying to make it editable.
 
 ---
 
-## PC4 — Baselines, warnings, variance
+## PC4 — Baselines, warnings, variance — ✅ SHIPPED (Aug 2026)
 
 Evaluate:
-1. Capture a baseline, shift a phase in Scope (PB), confirm variance columns and baseline bars tell the true story.
-2. Warning strip surfaces the planting-window overlaps you'd care about, and can be dismissed/filtered.
-3. Deadline markers behave like MSP (flag, no scheduling effect).
+1. ~~Capture a baseline, shift a phase in Scope (PB), confirm variance columns and baseline bars tell the true story.~~
+   **Done.** Stretching Site prep 1.8d → 6d gave it start var 0d / finish var +4.3d, carried +4.3d to every task
+   downstream of it and to the Phase 1 summary, and left Phase 2 — a separate chain — at 0d. Five baseline bars went red.
+2. ~~Warning strip surfaces the planting-window overlaps you'd care about, and can be dismissed/filtered.~~
+   **Done.** Grouped by kind with per-kind hide chips and counts, expandable list, click-a-message-to-select-the-row,
+   "show all" when anything is hidden. ⛔ **Still to check with real data:** the advisory/planting-window kind has never
+   fired, because no `plan_calendars` exceptions exist yet. Confirm it reads well once frost dates are loaded.
+3. ~~Deadline markers behave like MSP (flag, no scheduling effect).~~ **Done, with the MSP nuance stated:** a deadline
+   never moves a date, but it *does* cap late finish and therefore eats slack, and drives the task critical when
+   overrun. That is MS Project's behaviour and it is what the Slack box in the editor writes.
+
+Still open for a later pass: baseline variance is not surfaced in the Budget or Summary tabs, only in the task grid
+and on the chart.
 
 ---
 

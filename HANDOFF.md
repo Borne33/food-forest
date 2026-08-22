@@ -956,3 +956,60 @@ stale `max-height:520px` on `.gpane` made the fix look broken and sent me after
 the same depth as the base rule.** Tracks are `minmax(0,1fr)` too — a plain `1fr`
 refuses to shrink below a date input's intrinsic width, which is what put Slack
 on top of Finish at 375px.
+
+---
+
+## 26. PC4 — baselines, variance, warnings + PNG export (Aug 2026)
+
+### plan_baselines
+One row per plan (`unique (plan_id)` — a **plain** unique constraint, because
+PostgREST cannot use a partial or expression index as an ON CONFLICT target,
+42P10; that trap has been hit three times before). Verified against the live API:
+an anonymous upsert to `?on_conflict=plan_id` comes back **42501 RLS**, not
+42P10, so the target is valid and RLS is doing its job.
+
+`snapshot` is a jsonb **array**, not a map keyed by task id. A task can come back
+from an undo under a new id, and regeneration can rewrite ids too; a baseline
+keyed only by id would silently lose rows and report every variance as "no
+baseline" rather than the truth. Rows are matched **id → generatedKey →
+wbs+name**, the same ladder `mergeGenerated` uses.
+
+### Variance
+A second column table (Entry / Variance chips) rather than four more columns
+squeezed into a pane the divider can drag to 220px. `TG_VMINW` is the sum of the
+fixed tracks plus the name floor — keep it under `paneWidth − GW_TAIL` or the
+Finish var column, the one the table exists for, is the one that gets clipped.
+
+**Variance is in working days**, via `workingMinutesBetween`. Calendar days would
+report slippage across a weekend nobody worked.
+
+### Drawing order matters twice
+- **Baseline bars sit under the task bar, not behind it.** Overlapping them makes
+  a one-day slip invisible, which is the case you most want to see.
+- **Deadline flags sit above the bar.** A deadline nearly always falls inside the
+  span it governs; drawn at bar height the triangle disappeared into the bar
+  entirely. Caught by cropping and zooming the exported PNG, not by looking at it.
+
+### PNG export
+Canvas, not DOM rasterisation. An `<img>` pointed at serialised SVG **cannot load
+the Google-hosted webfonts** — different origin, and the SVG document gets no
+stylesheet — so every label comes back in a fallback face and the export stops
+looking like the app. Canvas draws with the fonts the page already has; `await
+document.fonts.ready` first.
+
+The export scale is **not** the on-screen one. On screen the chart spans the plan
+horizon plus a year so empty months stay scrollable; exported, that is acres of
+blank paper. `exportScale()` frames the work instead — first start to last finish,
+deadlines and baseline bars included, rounded out to whole months, with the
+pixels-per-day capped so a three-year day-zoom plan is not 28,000px wide.
+
+**Gotcha that cost a round trip:** the columns read `startTxt`/`finishTxt`.
+`start`/`finish` stay Dates for the bar geometry, and `String(aDate)` is
+`"Thu Apr 01 2027 08:00:00 GMT…"`, which ellipsised to `"Thu Apr 01…"` in an 80px
+column. **Look at the exported image, zoomed, before believing it.**
+
+### Verifying an export headlessly
+`toBlob` gives a blob URL that the code revokes a few seconds later, so it is gone
+by the time you fetch it. Patch `HTMLCanvasElement.prototype.toBlob` to stash a
+`toDataURL()` copy first, then draw that into a scratch canvas with
+`imageSmoothingEnabled=false` and `drawImage` a crop of it to inspect detail.
