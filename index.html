@@ -952,11 +952,16 @@
   .pplhead>.pplcheck{position:sticky;left:0;z-index:7;background:inherit}
   .pplhead>.cncell{position:sticky;left:45px;z-index:7;background:inherit;box-shadow:1px 0 0 var(--line)}
   .pplfilter{background:#f4efe0;z-index:4;position:relative}
-  .ppphcol{text-align:center}
   .pptot{font-family:'Space Mono';font-size:15px;font-weight:700;text-align:center;color:var(--ink)}
   .mobileonly{display:none}
-  .ppqty.mini{justify-content:center}
-  .ppqty.mini input{width:100%;max-width:70px;font-size:15px;padding:6px 2px}
+  /* The input fills its cell. A 70px box in an 84px track left a band of the row
+     colour down both sides of every quantity, which read as a border the boxes
+     did not have. */
+  .ppqty.mini{justify-content:stretch;gap:0}
+  .ppqty.mini input{flex:1 1 auto;width:100%;max-width:none;min-width:0;
+    font-size:14px;font-weight:400;padding:5px 4px}
+  /* a custom phase name can be long; truncate rather than push the track wider */
+  .ppphcol{text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .ppphasebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
   .ppphasebar .ppbtn{white-space:nowrap}
   .pplcheck{display:flex;align-items:center;justify-content:center}
@@ -1010,7 +1015,12 @@
     .pplfilter{grid-template-columns:1fr 1fr!important;gap:6px}
     .pplrow>.pplcheck,.pplrow>.cncell,.pplfilter>.pplcheck,.pplfilter>.cncell{
       position:static;box-shadow:none}
-    .ppqty.mini input{max-width:90px}
+    /* Fill the rest of the stacked row. Capping at 90px inside a 224px cell left
+       a slab of row colour to the right of every quantity — the same surplus the
+       desktop columns had, just bigger. Basis 60px, not auto: the row is
+       flex-wrap, and an auto basis made the input claim the full width and push
+       its own label onto a line of its own, doubling the height of every phase. */
+    .ppqty.mini input{max-width:none;flex:1 1 60px;min-width:0}
     .pplrow .cncell{padding-bottom:2px}
     .pplrow{grid-template-columns:1fr!important;gap:7px;padding:13px 14px}
     .pplrow>div[data-l]::before{content:attr(data-l);align-self:center;font-family:'Space Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-right:7px}
@@ -3933,8 +3943,10 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
     ["yrsfruit","Yrs→fruit"],["harvest","Harvest"],["eco","Ecology"]];
   const QCOLS=[...QBASE, ...phaseNos.map(n=>["ph"+n, phaseMeta[n] && phaseMeta[n].name ? phaseMeta[n].name : "P"+n]),
                ["total","Total"]];
-  // 45px checkbox + 190px frozen name, then the rest; phase columns are fixed-width
-  const gridCols=`45px 190px 92px 60px 88px 74px 130px 118px ${phaseNos.map(()=>"84px").join(" ")} 90px`;
+  // 45px checkbox + 190px frozen name, then the rest; phase columns are fixed-width.
+  // 64px, not 84: the box only ever holds two or three digits, and the surplus
+  // was showing as row colour around every input.
+  const gridCols=`45px 190px 92px 60px 88px 74px 130px 118px ${phaseNos.map(()=>"64px").join(" ")} 76px`;
   const qSortVal=(p,key)=>{ switch(key){
     case "name": return p.common.toLowerCase();
     case "layer": return ["Canopy","Shrub","Herbaceous","Groundcover","Vine"].indexOf((PP_LAYER[p.type]||{}).layer);
@@ -4116,8 +4128,25 @@ function PlantingPlan({chosen, state, planId, openDetail, onSoilDerived, phases,
                       <div className="ppqty mini" key={ph}
                            data-l={(phaseMeta[ph]&&phaseMeta[ph].name)||("Phase "+ph)}
                            onClick={e=>e.stopPropagation()}>
-                        <input type="number" min="0" value={q}
-                               onChange={e=>setQtyIn(p.id,ph,parseInt(e.target.value||"0",10))}/>
+                        {/* q||"" not q: every unset cell showed a literal 0, so the
+                            grid read as "0 of everything" and you had to delete it
+                            before typing. Empty means unset, and it stays empty —
+                            a faint placeholder 0 is still a 0 in every box, which
+                            is the thing that was in the way.
+
+                            type=text, not number: the selection API is not
+                            available on a number input — selectionStart reads
+                            null — so select-on-focus cannot be relied on there,
+                            and one-click-and-type is the whole point. inputMode
+                            still brings up the numeric keypad on a phone, the
+                            spinners were already suppressed in CSS, and onChange
+                            strips anything that is not a digit. */}
+                        <input type="text" inputMode="numeric" pattern="[0-9]*"
+                               value={q||""}
+                               onFocus={e=>e.target.select()}
+                               onMouseUp={e=>e.preventDefault()}
+                               onChange={e=>{ const d=e.target.value.replace(/[^0-9]/g,"");
+                                 setQtyIn(p.id,ph, d==="" ? 0 : parseInt(d,10)); }}/>
                       </div>
                     );
                   })}
