@@ -511,6 +511,21 @@
   .tgwrap .tgt{position:absolute;top:6px;bottom:6px;width:0;border-left:2px dotted var(--soil-d)}
   .tgwrap .today{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--red);z-index:2}
   .tgwrap .arrows{position:absolute;left:0;top:0;pointer-events:none}
+  .tgwrap .tgphases{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px;
+    background:#fbf9f2;border:1px solid var(--line);border-radius:4px;padding:7px 12px}
+  .tgwrap .tgphases .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint)}
+  .tgwrap .tgphases .cap.none{font-family:'Space Mono';font-size:11px;color:var(--faint)}
+  .tgwrap .tgphases .spacer{flex:1 1 auto}
+  .tgwrap .tgyears{display:inline-flex;align-items:center;gap:6px}
+  .tgwrap .tgyears b{font-family:'Space Mono';font-size:12px;min-width:44px;text-align:center}
+  .tgwrap .copyrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;
+    border-top:1px solid var(--line);padding-top:12px}
+  .tgwrap .copyrow .lbl{font-family:'Space Mono';font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--faint)}
+  .tgwrap .copyrow select{font-family:'Spectral';font-size:14px;background:#fff;
+    border:1.5px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink)}
+
   /* PC4 — baseline strip, variance cells, baseline bars, deadline flags */
   .tgwrap .tgbase{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 10px;
     background:#fbf9f2;border:1px solid var(--line);border-radius:4px;padding:7px 12px}
@@ -5426,7 +5441,7 @@ async function renderScheduleCanvas(opt){
   return cv;
 }
 
-function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
+function TaskGrid({planId, chosen, alloc, phaseMeta, horizon, setHorizon}){
   const [tasks,setTasks]=useState([]);
   const [links,setLinks]=useState([]);
   const [ready,setReady]=useState(false);
@@ -5887,6 +5902,9 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         targetDate:g.targetDate||null,
         userEdited:false, sortOrder:order++ });
     });
+    // Manual tasks keep their parent; flattenByParent below puts them back under
+    // it. Appending them here and leaving it at that is what marooned them under
+    // Ongoing maintenance.
     tasks.filter(t=>!t.generatedKey).forEach(t=>next.push({...t, sortOrder:order++}));
 
     setBusy(true);
@@ -5898,18 +5916,173 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         const g=gen.tasks.find(x=>x.generatedKey===t.generatedKey);
         return g&&g.parentKey ? {...t, parentId:idByKey[g.parentKey]||null} : t;
       });
-      await dataProvider.saveTasks(planId, withParents.map(taskToRow));
+      const laid=flattenByParent(withParents);
+      await dataProvider.saveTasks(planId, laid.map(taskToRow));
       const newLinks=gen.links
         .map(l=>({predId:idByKey[l.predRef], succId:idByKey[l.succRef], type:l.type, lagMin:l.lagMin}))
         .filter(l=>l.predId&&l.succId);
-      await dataProvider.replaceLinks(planId, newLinks);
-      setTasks(withParents); setLinks(newLinks); setErr(null);
+      // links the user made between their own tasks are not the generator's to
+      // discard; only the generated chain is rewritten
+      const manualIds=new Set(laid.filter(t=>!t.generatedKey).map(t=>t.id));
+      const keptLinks=links.filter(l=>manualIds.has(l.predId)||manualIds.has(l.succId));
+      const allLinks=[...newLinks, ...keptLinks.filter(l=>
+        !newLinks.some(n=>n.predId===l.predId&&n.succId===l.succId))];
+      await dataProvider.replaceLinks(planId, allLinks);
+      setTasks(laid); setLinks(allLinks); setErr(null);
       say([`Generated ${gen.tasks.length} tasks from the plan.`,
            merged.skipped.length ? `${merged.skipped.length} hand-edited task${merged.skipped.length===1?"":"s"} left untouched.` : null,
            merged.manual.length ? `${merged.manual.length} manual task${merged.manual.length===1?"":"s"} kept.` : null
           ].filter(Boolean));
     }catch(e){ console.error(e); setErr(e.message||String(e)); }
     finally{ setBusy(false); }
+  };
+
+  /* ---- one phase at a time -------------------------------------------------
+     Runs the same generator, then applies ONLY the slice for the phase asked
+     for. Everything outside that phase keeps its values, its parent and its
+     relative order; sortOrder is renumbered because it is a single sequence,
+     but no other row's content is touched.
+
+     What survives inside the phase: hand-edited tasks keep their values, manual
+     tasks stay where they were created, and a generated task the plan no longer
+     needs is only removed if you say so. */
+  const genAll=()=>{
+    if(!window.PC1) return null;
+    const LAYER={Tree:"Canopy",Shrub:"Shrub",Vine:"Vine",Herb:"Herbaceous",
+                 Fern:"Herbaceous",Grass:"Herbaceous",Groundcover:"Groundcover"};
+    const plantsById={}; (chosen||[]).forEach(p=>plantsById[p.id]=p);
+    return window.PC1.generateTasks({
+      alloc:alloc||{}, plantsById,
+      layerOf:p=>p?(LAYER[p.type]||"Herbaceous"):"Herbaceous",
+      hoursOf:p=>(INSTALL_HRS[p&&p.type]||0.3),
+      phaseName:n=>((phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n)),
+      phaseTargets:targets,
+      horizon:horizon||3, minutesPerDay:MIN_PER_DAY });
+  };
+
+  // "phase:2" and "phase:2:mulch" belong to phase 2; "phase:20" does not
+  const inPhase=(key,n)=>!!key && (key===("phase:"+n) || key.indexOf("phase:"+n+":")===0);
+  const isMaint=key=>!!key && (key==="maint" || key.indexOf("maint:")===0);
+
+  const syncBlock=async(opts)=>{
+    const gen=genAll(); if(!gen) return;
+    const {label, belongs, sliceKeys, emptyMsg} = opts;
+    const slice=gen.tasks.filter(g=>belongs(g.generatedKey));
+    if(!slice.length){ say([emptyMsg]); return; }
+
+    const sumKey=slice[0].generatedKey;                  // the summary leads its own block
+    const existingSum=ordered.find(t=>t.generatedKey===sumKey);
+    const mine=t => t.generatedKey ? belongs(t.generatedKey)
+                  : (existingSum && t.parentId===existingSum.id);
+    const block=ordered.filter(mine);
+    const outside=ordered.filter(t=>!mine(t));
+
+    const byKey={}; block.forEach(t=>{ if(t.generatedKey) byKey[t.generatedKey]=t; });
+    const wanted=new Set(slice.map(g=>g.generatedKey));
+    const stale=block.filter(t=>t.generatedKey && belongs(t.generatedKey)
+                              && !wanted.has(t.generatedKey) && !t.userEdited);
+    let drop=new Set();
+    if(stale.length){
+      const names=stale.map(t=>" · "+t.name).join("\n");
+      drop = confirm(`The plan no longer needs ${stale.length} task${stale.length===1?"":"s"} in ${label}:\n\n`
+                    +names+`\n\nRemove them?\n\nCancel keeps them exactly as they are.`)
+        ? new Set(stale.map(t=>t.id)) : new Set();
+    }
+
+    const nextBlock=[];
+    slice.forEach(g=>{
+      const cur=byKey[g.generatedKey];
+      if(cur && cur.userEdited){ nextBlock.push(cur); return; }
+      nextBlock.push({ ...(cur||{}), id:cur?cur.id:undefined, name:g.name,
+        durationMin:g.durationMin, isSummary:!!g.isSummary, outlineLevel:g.outlineLevel,
+        phaseNo:g.phaseNo||null, generatedKey:g.generatedKey, isGenerated:true,
+        constraintType:g.constraintType||"ASAP", constraintDate:g.constraintDate||null,
+        targetDate:g.targetDate||null, userEdited:false });
+    });
+    // hand-edited rows the plan dropped, plus every manual task, stay in the block
+    block.forEach(t=>{
+      if(t.generatedKey && wanted.has(t.generatedKey)) return;
+      if(drop.has(t.id)) return;
+      nextBlock.push(t);
+    });
+
+    // splice the block back where it was; a brand-new phase goes in phase order,
+    // and always ahead of maintenance, which reads as the tail of the plan
+    let at=outside.length;
+    if(existingSum){
+      const firstIdx=ordered.findIndex(mine);
+      at=outside.findIndex(t=>ordered.indexOf(t)>firstIdx);
+      if(at<0) at=outside.length;
+    } else if(opts.beforeMaint!==false){
+      // a new phase slots into phase order, not on the end — adding Phase 1 after
+      // Phase 2 and leaving it below reads as a mistake even though nothing but
+      // its position changed. Ahead of maintenance either way; that is the tail.
+      const myNo=opts.phaseNo;
+      let idx=-1;
+      if(myNo!=null) idx=outside.findIndex(t=>{
+        const m=/^phase:(\d+)$/.exec(t.generatedKey||"");
+        return m && Number(m[1])>myNo; });
+      if(idx<0) idx=outside.findIndex(t=>isMaint(t.generatedKey));
+      if(idx>=0) at=idx;
+    }
+    const merged=[...outside.slice(0,at), ...nextBlock, ...outside.slice(at)];
+
+    mark(); setBusy(true);
+    try{
+      for(const t of block) if(drop.has(t.id) && t.id!=null) await dataProvider.deleteTask(t.id);
+      const saved=(await dataProvider.saveTasks(planId, merged.map(taskToRow))).map(rowToTask);
+      const idByKey={}; saved.forEach(t=>{ if(t.generatedKey) idByKey[t.generatedKey]=t.id; });
+      const withParents=saved.map(t=>{
+        const g=gen.tasks.find(x=>x.generatedKey===t.generatedKey);
+        return g && g.parentKey ? {...t, parentId:idByKey[g.parentKey]||null} : t;
+      });
+      const laid=flattenByParent(withParents);
+      await dataProvider.saveTasks(planId, laid.map(taskToRow));
+      // only this block's internal chain is rewritten; every other link stands
+      const blockIds=new Set(laid.filter(t=>t.generatedKey && belongs(t.generatedKey)).map(t=>t.id));
+      const fresh=gen.links
+        .map(l=>({predId:idByKey[l.predRef], succId:idByKey[l.succRef], type:l.type, lagMin:l.lagMin}))
+        .filter(l=>l.predId&&l.succId&&blockIds.has(l.predId)&&blockIds.has(l.succId));
+      const kept=links.filter(l=>!(blockIds.has(l.predId)&&blockIds.has(l.succId)))
+                      .filter(l=>laid.some(t=>t.id===l.predId)&&laid.some(t=>t.id===l.succId));
+      const allLinks=[...kept, ...fresh];
+      await dataProvider.replaceLinks(planId, allLinks);
+      setTasks(laid); setLinks(allLinks); setErr(null);
+      say([`${existingSum?"Updated":"Added"} ${label} — ${slice.length} generated task${slice.length===1?"":"s"}.`,
+           drop.size ? `${drop.size} removed.` : (stale.length ? `${stale.length} kept at your request.` : ""),
+           "Other phases were not touched."].filter(Boolean));
+    }catch(e){ console.error(e); setErr(e.message||String(e)); }
+    finally{ setBusy(false); }
+  };
+
+  const syncPhase=n=>syncBlock({
+    label:(phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n),
+    belongs:k=>inPhase(k,n), phaseNo:n,
+    emptyMsg:`Phase ${n} has no quantities on the Planting Plan yet.` });
+
+  const syncMaint=()=>syncBlock({
+    label:"Ongoing maintenance", belongs:isMaint, beforeMaint:false,
+    emptyMsg:"Nothing to maintain yet — set some quantities on the Planting Plan." });
+
+  /* Copy the work, not the wiring. A predecessor pointing back into the source
+     phase would tie the two phases together on the chart, which is almost never
+     what copying a task means; the copy lands as a manual task at the end of the
+     target phase and is scheduled on that phase's own chain. */
+  const copyToPhase=async(t, n)=>{
+    const sum=ordered.find(x=>x.generatedKey==="phase:"+n);
+    if(!sum){ say([`Phase ${n} is not in the chart yet — add it first.`]); return; }
+    mark();
+    const row={ name:t.name, durationMin:t.durationMin, pctComplete:t.pctComplete||0,
+      notes:t.notes||null, isMilestone:!!t.isMilestone, isSummary:false,
+      outlineLevel:2, parentId:sum.id, phaseNo:n,
+      constraintType:"ASAP", constraintDate:null, targetDate:null, deadline:null,
+      isManual:true, isGenerated:false, generatedKey:null, userEdited:true,
+      sortOrder:ordered.length };
+    const next=flattenByParent([...ordered, row]);
+    await persist(next);
+    setEditing(null);
+    say([`Copied “${t.name}” into ${(phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n)}.`,
+         "Predecessors were not copied — the new task is scheduled on its own phase."]);
   };
 
   /* ---- reorder: ID and WBS only ---- */
@@ -6138,6 +6311,33 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
           <span className="mtmeta">A phase cannot start before its target — regenerate to apply.</span>}
       </div>
 
+      <div className="tgphases">
+        <span className="lbl">Phases</span>
+        {phaseNos.length===0 && <span className="cap none">No phases with quantities yet — set some on the Planting Plan.</span>}
+        {phaseNos.map(n=>{
+          const there=ordered.some(t=>t.generatedKey==="phase:"+n);
+          const nm=(phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n);
+          return (
+            <button key={n} className={"chip"+(there?" on":"")} disabled={busy}
+                    onClick={()=>syncPhase(n)}
+                    title={there ? `Update ${nm} from the plan — other phases are not touched`
+                                 : `Add ${nm} to the chart`}>
+              {there ? "⟳ " : "+ "}{nm}</button>);
+        })}
+        <span className="spacer"></span>
+        <span className="lbl">Maintenance</span>
+        <span className="tgyears">
+          <button className="chip" disabled={busy||!setHorizon||(horizon||3)<=1}
+                  onClick={()=>setHorizon && setHorizon((horizon||3)-1)} title="One year fewer">−</button>
+          <b>{horizon||3} yr</b>
+          <button className="chip" disabled={busy||!setHorizon||(horizon||3)>=15}
+                  onClick={()=>setHorizon && setHorizon((horizon||3)+1)} title="One year more">+</button>
+        </span>
+        <button className="chip" disabled={busy} onClick={syncMaint}
+                title="Rebuild the maintenance rows for that many years">⟳ Apply</button>
+        {!setHorizon && <span className="cap none">years are read-only here</span>}
+      </div>
+
       <div className="tgbase">
         <span className="lbl">Baseline</span>
         {base
@@ -6363,9 +6563,46 @@ function TaskGrid({planId, chosen, alloc, phaseMeta, horizon}){
         </div>); })()}
 
       {editing && <TaskEditor f={editing} setF={setEditing} onSave={saveEdit}
-        onDelete={()=>removeTask(editing)} onClose={()=>setEditing(null)} busy={busy} />}
+        onDelete={()=>removeTask(editing)} onClose={()=>setEditing(null)} busy={busy}
+        onCopy={copyToPhase}
+        copyPhases={phaseNos
+          .filter(n=>ordered.some(t=>t.generatedKey==="phase:"+n))
+          .filter(n=>{ const sum=ordered.find(t=>t.generatedKey==="phase:"+n);
+                       return !sum || editing.parentId!==sum.id; })
+          .map(n=>({n, name:(phaseMeta&&phaseMeta[n]&&phaseMeta[n].name)||("Phase "+n)}))} />}
     </div>
   );
+}
+
+/* Lay a task list out as summary-then-its-children, in the order the summaries
+   themselves appear. sortOrder alone cannot express that: generate() appended
+   every manual task after the last generated one, so a task created inside
+   Phase 1 kept parentId=Phase 1 but SAT below "Ongoing maintenance" — and then
+   could not be dragged out, because reorder is confined to a task's own parent
+   and none of its neighbours shared it. Rebuilding from the parent links puts
+   each task back under its own summary wherever it happens to sit in sortOrder.
+
+   Orphans — a parentId whose row is gone — are treated as top-level rather than
+   dropped. Losing a task quietly is worse than showing it at the wrong indent. */
+function flattenByParent(list){
+  const byId={}; list.forEach(t=>{ if(t.id!=null) byId[t.id]=t; });
+  const kids={};
+  const tops=[];
+  list.forEach(t=>{
+    const pid = (t.parentId!=null && byId[t.parentId]) ? t.parentId : null;
+    if(pid==null) tops.push(t);
+    else (kids[pid]=kids[pid]||[]).push(t);
+  });
+  const out=[];
+  tops.forEach(top=>{
+    out.push(top);
+    (kids[top.id]||[]).forEach(k=>out.push(k));
+  });
+  // anything still unvisited (a cycle, say) goes on the end rather than missing
+  const seen=new Set(out.map(t=>t.id));
+  list.forEach(t=>{ if(!seen.has(t.id)) out.push(t); });
+  return out.map((t,i)=>({...t, sortOrder:i,
+    outlineLevel: (t.parentId!=null && byId[t.parentId]) ? 2 : 1}));
 }
 
 /* WBS from position within the outline — 1, 1.1, 1.2, 2, 2.1 … */
@@ -6402,7 +6639,7 @@ const ANCHOR_HINT = {
   FNLT: "Finish is pinned to the date above; changing the Start restretches the duration.",
   MFO:  "Finish is pinned to the date above; changing the Start restretches the duration."
 };
-function TaskEditor({f, setF, onSave, onDelete, onClose, busy}){
+function TaskEditor({f, setF, onSave, onDelete, onClose, busy, copyPhases, onCopy}){
   const set=(k,v)=>setF({...f,[k]:v,_err:null});
   const dirty = f._seed!=null && editSig(f)!==f._seed;
   // Dismissing on click meant a click that BEGAN inside the card and ended on
@@ -6486,6 +6723,19 @@ function TaskEditor({f, setF, onSave, onDelete, onClose, busy}){
             <input type="checkbox" checked={!!f.isMilestone}
                    onChange={e=>set("isMilestone",e.target.checked)} disabled={f.isSummary} />
             Milestone (zero duration)</label>
+          {!f.isSummary && copyPhases && copyPhases.length>0 && (
+            <div className="copyrow">
+              <span className="lbl">Copy to</span>
+              <select value={f._copyTo||""} onChange={e=>set("_copyTo",e.target.value)}>
+                <option value="">choose a phase…</option>
+                {copyPhases.map(o=><option key={o.n} value={o.n}>{o.name}</option>)}
+              </select>
+              <button className="btn" disabled={busy||!f._copyTo}
+                      onClick={()=>onCopy(f, Number(f._copyTo))}>Copy task</button>
+              <span className="pphint" style={{flexBasis:"100%",margin:"2px 0 0"}}>
+                Name, duration, % complete and notes come across. Predecessors do not —
+                a link back into this phase would tie the two together.</span>
+            </div>)}
         </div>
         <div className="cardft">
           <button className="btn" onClick={onDelete} disabled={busy}>Delete task</button>
@@ -6671,7 +6921,8 @@ function ProjectPlan({chosen, state, planId, counts, phases, alloc, areaSqft, op
               (or the ID / WBS) to open the editor, drag to renumber.</p>
           </div>
           <TaskGrid planId={planId} chosen={chosen} alloc={alloc}
-                    phaseMeta={phaseMeta} horizon={M.N} />
+                    phaseMeta={phaseMeta} horizon={M.N}
+                    setHorizon={v=>set("horizon",Math.max(1,Math.min(15,v)))} />
         </div>
       )}
 
