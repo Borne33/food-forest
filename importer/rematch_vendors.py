@@ -87,7 +87,7 @@ def main():
             })
         seen, dedup = set(), []
         for r in rows:
-            k = (r["vendor_id"], r["plant_id"], r["form"], r["cultivar_name"], r["size"])
+            k = vi.key_of(r)
             if k not in seen:
                 seen.add(k); dedup.append(r)
         grand_new += len(newly); grand_miss += len(misses)

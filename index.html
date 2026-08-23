@@ -1103,19 +1103,67 @@
   .ppbom td:first-child{font-family:'Space Mono';font-size:11px;color:var(--faint);width:44px}
   .ppbom td:last-child{text-align:right;font-family:'Space Mono';width:34px}
   .ppbom tr:last-child td{border-bottom:0}
+  /* ---------- Score filters (Database) ---------- */
+  .sfwrap{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2;margin:0 0 14px}
+  .sfwrap.on{border-color:var(--sage-d);background:#f4f7ee}
+  .sfhead{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:9px 12px;text-align:left;color:var(--ink)}
+  .sfhead .t{font-family:'Space Mono';font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);flex:0 0 auto}
+  .sfhead .sum{flex:1 1 auto;min-width:0;font-size:13px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sfwrap.on .sfhead .sum{color:var(--sage-d)}
+  .sfhead .cx{flex:0 0 auto;color:var(--faint);font-size:12px}
+  .sfbody{border-top:1.5px solid var(--line);padding:11px 12px 12px}
+  .sfgroup{border:1px dashed var(--line);border-radius:5px;padding:8px 9px;background:#fff}
+  .sfand{font-family:'Space Mono';font-size:10px;letter-spacing:.14em;color:var(--sage-d);margin:7px 0 7px 4px}
+  /* minmax(0,…) on the name select: a plain auto track refuses to shrink below
+     the widest option text and pushes the slider off a 375px screen. */
+  .sfrow{display:grid;grid-template-columns:38px minmax(0,1.5fr) 52px 62px minmax(60px,1fr) 28px;
+    gap:6px;align-items:center;margin-bottom:6px}
+  .sfrow:last-of-type{margin-bottom:8px}
+  .sfrow select,.sfrow input.num{font-family:'Space Mono';font-size:12px;border:1.5px solid var(--line);
+    background:#fbf9f2;border-radius:4px;padding:6px 5px;color:var(--ink);min-width:0;width:100%}
+  .sfrow input.num{text-align:center}
+  .sfrow input.rng{width:100%;min-width:0;accent-color:var(--sage-d)}
+  .sfjoin{font-family:'Space Mono';font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;
+    border:1.5px solid var(--sage-d);background:#eef4e5;color:var(--sage-d);border-radius:99px;padding:4px 0;width:100%}
+  .sfjoin.ph{border:0;background:none;height:1px}
+  .sfx{border:0;background:none;color:var(--faint);font-size:13px;padding:0;line-height:1}
+  .sfx:hover{color:var(--red)}
+  .sfadd{font-family:'Space Mono';font-size:11px;border:1.5px dashed var(--line);background:#fbf9f2;
+    color:var(--ink2);border-radius:99px;padding:5px 12px}
+  .sfadd.grp{border-style:solid;border-color:var(--sage-d);color:var(--sage-d)}
+  .sfadd.clear{border-style:solid}
+  .sfacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .sfnote{font-size:12px;color:var(--faint);margin-top:9px;line-height:1.45}
+  @media(max-width:560px){
+    /* the slider is the first thing to go — the number box still sets the value */
+    .sfrow{grid-template-columns:38px minmax(0,1fr) 48px 58px 26px}
+    .sfrow input.rng{display:none}
+  }
+
   /* ---------- Harvest view ---------- */
   .hvctrls{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
   .hvchip{font-family:'Space Mono';font-size:11px;border:1.5px solid var(--line);background:#fbf9f2;border-radius:99px;padding:5px 11px;color:var(--ink2);display:inline-flex;align-items:center;gap:6px}
   .hvchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .hvchip .sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
   .hvnote{border:1.5px solid var(--line);background:#fbf9f2;border-radius:6px;padding:10px 13px;margin:0 0 12px;font-size:13.5px;line-height:1.5}
-  .hvtable{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;background:#fbf9f2}
+  /* No `overflow` on .hvtable. It used to be overflow:hidden purely to clip the
+     corners, but overflow:hidden makes the element a scrollport, and a sticky
+     child resolves against the nearest scrollport — so .hvhead stuck to a box
+     that never scrolls, i.e. not at all. Same trap as .pplhead and .gpane
+     (HANDOFF §9, §24): nothing with overflow may sit between a sticky header
+     and the element that actually scrolls, which here is the page. The corners
+     are rounded on the head and the last row instead. */
+  .hvtable{border:1.5px solid var(--line);border-radius:6px;background:#fbf9f2}
   .hvhead,.hvrow{display:grid;grid-template-columns:minmax(116px,1.4fr) repeat(12,minmax(0,1fr))}
-  .hvhead{background:var(--paper2);border-bottom:1.5px solid var(--line);font-family:'Space Mono';font-size:10px;color:var(--faint)}
+  /* the page's own header is sticky too, so park under it, not behind it */
+  .hvhead{position:sticky;top:var(--topbarh,58px);z-index:4;overflow:clip;border-radius:5px 5px 0 0;
+    background:var(--paper2);border-bottom:1.5px solid var(--line);font-family:'Space Mono';font-size:10px;color:var(--faint)}
   .hvhead .mh{padding:6px 0;text-align:center;border-left:1px solid var(--line)}
   .hvhead .mh.now{background:var(--sage);color:#fff}
   .hvhead .cn{padding:6px 8px;display:flex;align-items:center}
-  .hvlayerhead{grid-column:1/-1;background:#eef1e6;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sage-d);padding:5px 8px;border-bottom:1px solid var(--line)}
+  .hvlayerhead{position:sticky;top:calc(var(--topbarh,58px) + var(--hvheadh,26px));z-index:3;
+    grid-column:1/-1;background:#eef1e6;font-family:'Space Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sage-d);padding:5px 8px;border-bottom:1px solid var(--line)}
+  .hvrow:last-child{border-radius:0 0 5px 5px;overflow:clip}
   .hvrow{border-bottom:1px solid var(--line);cursor:pointer}
   .hvrow:last-child{border-bottom:0}
   .hvrow:hover{background:#f4efe0}
@@ -2929,6 +2977,122 @@ const CATS = [
   {key:"med", label:"Medicinal", weight:0.3, abbr:"MED"},
 ];
 
+/* ---------------------------------------------------------------------
+   Score filters — thresholds on any category, in AND-ed OR-groups.
+
+   The shape is a list of GROUPS; groups are joined by AND, and the rows inside
+   one group are joined by that group's own operator (OR by default). That is
+   enough for everything worth asking without a general expression tree:
+
+       ( Raw >= 7  OR  Cooked >= 7 )  AND  Nativity >= 8  AND  ( Eco >= 5 OR Med >= 5 )
+
+   A one-row group is just a plain AND condition, so the simple case — "show me
+   everything scoring 7 or better for eating raw" — is one row and no operators.
+
+   `nativity` and `overall` are computed live against the user's state rather
+   than stored, so they go through the same accessor as the six stored scores.
+   Only `overall` is on the 0-110 scale; everything else is 0-10.
+   --------------------------------------------------------------------- */
+const SCORE_CATS = [
+  {key:"overall",  label:"Overall score", max:110},
+  {key:"nativity", label:"Nativity",      max:10},
+  ...CATS.filter(c=>c.key!=="nativity").map(c=>({key:c.key, label:c.label, max:10})),
+];
+const SCORE_MAX = Object.fromEntries(SCORE_CATS.map(c=>[c.key,c.max]));
+
+function scoreVal(p, key, st){
+  if(key==="overall")  return overall(p, st);
+  if(key==="nativity") return nativity(p, st).v;
+  return ((p.s||{})[key] || [0])[0];
+}
+/* An empty group, or a group of rows with no threshold set, must not filter
+   anything out — otherwise adding a row before choosing a number empties the
+   list and looks broken. */
+function passScoreGroups(p, groups, st){
+  for(const g of groups||[]){
+    const rows=(g.rows||[]).filter(r=>r.min!=="" && r.min!=null);
+    if(!rows.length) continue;
+    const hit=r=>{ const v=scoreVal(p,r.cat,st); return r.op==="lte" ? v<=Number(r.min) : v>=Number(r.min); };
+    const ok = g.join==="and" ? rows.every(hit) : rows.some(hit);
+    if(!ok) return false;
+  }
+  return true;
+}
+function scoreGroupsText(groups){
+  const part=g=>{
+    const rows=(g.rows||[]).filter(r=>r.min!=="" && r.min!=null);
+    if(!rows.length) return null;
+    const inner=rows.map(r=>{
+      const lab=(SCORE_CATS.find(c=>c.key===r.cat)||{}).label||r.cat;
+      return lab+" "+(r.op==="lte"?"≤":"≥")+" "+r.min;
+    }).join(g.join==="and" ? " and " : " or ");
+    return rows.length>1 ? "("+inner+")" : inner;
+  };
+  return (groups||[]).map(part).filter(Boolean).join(" AND ");
+}
+const newScoreRow =()=>({cat:"raw", op:"gte", min:7});
+const newScoreGroup=()=>({join:"or", rows:[newScoreRow()]});
+
+function ScoreFilter({groups, onChange}){
+  const [open,setOpen]=useState(false);
+  const active=(groups||[]).some(g=>(g.rows||[]).some(r=>r.min!=="" && r.min!=null));
+  const summary=scoreGroupsText(groups);
+  const setGroup=(gi,fn)=>onChange(groups.map((g,i)=>i===gi?fn(g):g));
+  const setRow=(gi,ri,patch)=>setGroup(gi,g=>({...g, rows:g.rows.map((r,i)=>i===ri?{...r,...patch}:r)}));
+  const addRow=gi=>setGroup(gi,g=>({...g, rows:[...g.rows, newScoreRow()]}));
+  const delRow=(gi,ri)=>{
+    const g=groups[gi];
+    if(g.rows.length<=1) onChange(groups.filter((_,i)=>i!==gi));   // last row out takes the group with it
+    else setGroup(gi,gg=>({...gg, rows:gg.rows.filter((_,i)=>i!==ri)}));
+  };
+  return (
+    <div className={"sfwrap"+(active?" on":"")}>
+      <button className="sfhead" onClick={()=>setOpen(o=>!o)} aria-expanded={open}>
+        <span className="t">Score filters</span>
+        <span className="sum">{active?summary:"none — show everything"}</span>
+        <span className="cx">{open?"▾":"▸"}</span>
+      </button>
+      {open && (
+        <div className="sfbody">
+          {(groups||[]).map((g,gi)=>(
+            <React.Fragment key={gi}>
+              {gi>0 && <div className="sfand">AND</div>}
+              <div className="sfgroup">
+                {g.rows.map((r,ri)=>(
+                  <div className="sfrow" key={ri}>
+                    {ri===0
+                      ? <span className="sfjoin ph"></span>
+                      : <button className="sfjoin" title="Switch this group between any-of and all-of"
+                          onClick={()=>setGroup(gi,gg=>({...gg, join:gg.join==="and"?"or":"and"}))}>{g.join==="and"?"and":"or"}</button>}
+                    <select value={r.cat} onChange={e=>setRow(gi,ri,{cat:e.target.value, min:Math.min(Number(r.min)||0, SCORE_MAX[e.target.value])})}>
+                      {SCORE_CATS.map(c=><option key={c.key} value={c.key}>{c.label}</option>)}
+                    </select>
+                    <select className="op" value={r.op} onChange={e=>setRow(gi,ri,{op:e.target.value})}>
+                      <option value="gte">≥</option><option value="lte">≤</option>
+                    </select>
+                    <input className="num" type="number" min="0" max={SCORE_MAX[r.cat]} step={r.cat==="overall"?1:1}
+                      value={r.min} onChange={e=>setRow(gi,ri,{min:e.target.value===""?"":Number(e.target.value)})} />
+                    <input className="rng" type="range" min="0" max={SCORE_MAX[r.cat]} step="1"
+                      value={r.min===""?0:r.min} onChange={e=>setRow(gi,ri,{min:Number(e.target.value)})} />
+                    <button className="sfx" title="Remove this condition" onClick={()=>delRow(gi,ri)}>✕</button>
+                  </div>
+                ))}
+                <button className="sfadd" onClick={()=>addRow(gi)}>+ {g.join==="and"?"and":"or"} …</button>
+              </div>
+            </React.Fragment>
+          ))}
+          <div className="sfacts">
+            <button className="sfadd grp" onClick={()=>onChange([...(groups||[]), newScoreGroup()])}>
+              + AND another condition</button>
+            {(groups||[]).length>0 && <button className="sfadd clear" onClick={()=>onChange([])}>Clear score filters</button>}
+          </div>
+          <div className="sfnote">Groups are combined with <b>AND</b>; the rows inside a group with <b>{(groups||[]).some(g=>g.join==="and")?"and / or":"or"}</b> — tap the operator to flip a group. Nativity and Overall are recalculated for your state.</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* =====================================================================
    UI COMPONENTS
    ===================================================================== */
@@ -3183,6 +3347,7 @@ function Database({plants, state, setState, plans, membership, toggle, sources, 
   const [batch,setBatch]=useState("all"); // added-batch filter (by created_at cluster)
   const [planFilter,setPlanFilter]=useState([]); // selected plan ids to filter by (empty = any)
   const [foodF,setFoodF]=useState([]), [matF,setMatF]=useState([]), [lifeF,setLifeF]=useState([]); // food/material/lifecycle filters
+  const [sgroups,setSgroups]=useState([]); // score thresholds: AND-ed groups of OR-ed rows
 
   const allTypes=[...new Set(plants.map(p=>p.type))];
   // distinct batches with their add-date + count, for the "Added batch" dropdown
@@ -3216,6 +3381,8 @@ function Database({plants, state, setState, plans, membership, toggle, sources, 
       if(lifeF.length && !lifeF.includes(p.lifecycle)) return false;
       if(flags.notplan && inAnyPlan(p.id)) return false;
       if(batch!=="all" && String(p.batch)!==batch) return false;
+      // last: it is the only predicate that has to score the plant
+      if(sgroups.length && !passScoreGroups(p, sgroups, state)) return false;
       return true;
     });
     const val=p=>{
@@ -3226,7 +3393,7 @@ function Database({plants, state, setState, plans, membership, toggle, sources, 
     };
     arr.sort((a,b)=>{const va=val(a),vb=val(b); if(va<vb)return -1*dir; if(va>vb)return 1*dir; return 0;});
     return arr;
-  },[plants,q,types,flags,sortKey,dir,state,membership,batch,planFilter,foodF,matF,lifeF]);
+  },[plants,q,types,flags,sortKey,dir,state,membership,batch,planFilter,foodF,matF,lifeF,sgroups]);
 
   // pagination: cap at 100 plants per page
   const PER_PAGE=100;
@@ -3234,7 +3401,7 @@ function Database({plants, state, setState, plans, membership, toggle, sources, 
   const pageCount=Math.max(1, Math.ceil(view.length/PER_PAGE));
   const curPage=Math.min(page, pageCount);
   const pageItems=view.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
-  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch,planFilter,foodF,matF,lifeF]); // reset to page 1 on filter change
+  useEffect(()=>{ setPage(1); },[q,types,flags,sortKey,dir,state,batch,planFilter,foodF,matF,lifeF,sgroups]); // reset to page 1 on filter change
   useEffect(()=>{ setPlanFilter(pf=>pf.filter(id=>plans.some(p=>p.id===id))); },[plans]); // drop deleted plans
   const goPage=n=>{ setPage(n); window.scrollTo({top:0,behavior:"smooth"}); };
 
@@ -3283,6 +3450,8 @@ function Database({plants, state, setState, plans, membership, toggle, sources, 
         <div style={{minWidth:170,flex:"1 1 170px"}}><MultiSelect label="Material type" options={MATERIAL_TYPES} value={matF} onChange={setMatF} /></div>
         <div style={{minWidth:170,flex:"1 1 170px"}}><MultiSelect label="Lifecycle" options={LIFECYCLES} value={lifeF} onChange={setLifeF} /></div>
       </div>
+
+      <ScoreFilter groups={sgroups} onChange={setSgroups} />
 
       <div className="toggles">
         {allTypes.map(t=><button key={t} className={"chip"+(types.includes(t)?" on":"")} onClick={()=>toggleType(t)}>{t}</button>)}
@@ -4363,6 +4532,19 @@ function HarvestView({chosen, plants, state, openDetail}){
   const [showStored,setShowStored]=useState(true);
   const active=ft=> (filter.length===0 || filter.includes(ft)) && FOOD_COLOR[ft];
 
+  /* The month header sticks under the topbar; the layer bands stick under the
+     month header. Publish the header's real height so the second offset
+     follows it if the font or padding ever changes. */
+  const headRef=useRef(null), tableRef=useRef(null);
+  useEffect(()=>{
+    const el=headRef.current, tbl=tableRef.current;
+    if(!el||!tbl) return;
+    const set=()=>tbl.style.setProperty("--hvheadh", el.offsetHeight+"px");
+    set();
+    if(typeof ResizeObserver==="undefined") return;
+    const ro=new ResizeObserver(set); ro.observe(el); return ()=>ro.disconnect();
+  });
+
   const ediblePlan=chosen.filter(p=>Object.keys(p.harvestCalendar||{}).length>0);
   const presentFts=FOOD_TYPES.filter(ft=>FOOD_COLOR[ft] && ediblePlan.some(p=>(p.harvestCalendar||{})[ft]));
 
@@ -4436,8 +4618,8 @@ function HarvestView({chosen, plants, state, openDetail}){
           </div>
         : <div className="hvnote" style={{borderColor:"var(--green)",background:"#e7f0dd"}}><b>Year-round fresh harvest</b> — some part of your plan is pickable every month.</div>}
 
-      <div className="hvtable">
-        <div className="hvhead">
+      <div className="hvtable" ref={tableRef}>
+        <div className="hvhead" ref={headRef}>
           <div className="cn">Plant</div>
           {MONTH_ABBR.map((m,i)=><div key={m} className={"mh"+(i+1===nowMonth?" now":"")}>{m[0]}</div>)}
         </div>
@@ -7865,31 +8047,108 @@ function PlantEditor({p, onSave, onCancel, isNew}){
   );
 }
 
+/* Why this page paginates and debounces, when the Database page has always
+   done both and nobody thought Verify needed it:
+
+   Verify rendered `view.map(...)` over EVERY match. Unfiltered that is the
+   whole table — ~2,500 rows, each one a full PlantCard (pills, images, an
+   expandable body) plus a verify bar and a thumbnail strip. It was already the
+   heaviest page in the app at rest, and `q` was wired straight to the input, so
+   every keystroke re-rendered all ~2,500 of them synchronously.
+
+   On a phone that is a hard freeze, and it compounds: focusing the field opens
+   the keyboard, which resizes the viewport, which relayouts 2,500 cards; the
+   third tap lands while the main thread is still busy with the first two and
+   iOS stops responding. Same list, three fixes: cap the page at 25 cards,
+   debounce the query off the keystroke, and memoise the row so opening one
+   editor does not re-render the other 24. */
+const PER_PAGE_VERIFY=25;
+
+/* One verify row, memoised. `editing` is a boolean rather than the shared
+   editingId so opening one editor re-renders exactly two rows (the one closing
+   and the one opening) instead of the whole page. */
+const VerifyRow = React.memo(function VerifyRow({p, state, plans, memberOf, toggle,
+                                                 verifyToggle, removeImage, updatePlant,
+                                                 editing, onEdit}){
+  return (
+    <div>
+      <PlantCard p={p} state={state} plans={plans} memberOf={memberOf} toggle={toggle} />
+      <div className="vbar">
+        <div className="vrow">
+          <label>
+            <input type="checkbox" checked={!!p.humanVerified}
+                   onChange={e=>verifyToggle(p.id, e.target.checked)} />
+            Human Verified
+          </label>
+          <button className="editbtn" onClick={()=>onEdit(editing?null:p.id)}>
+            {editing?"Close editor":"✎ Edit data"}</button>
+          {isLowData(p) && <span className="lowflag" title="Sparse record — worth enriching/verifying">⚠ Low data: {dataGaps(p).join(" · ")}</span>}
+        </div>
+        {editing && <PlantEditor p={p} onSave={updatePlant} onCancel={()=>onEdit(null)} />}
+        {(p.images||[]).length>0 && (
+          <div className="vphotos">
+            <dt>Photos ({p.images.length}) — remove any wrong ones</dt>
+            <div className="vthumbs">
+              {p.images.map((im)=>(
+                <div className="vthumb" key={im.url} title={im.title||""}>
+                  <img src={im.url} alt={im.title||""} loading="lazy" />
+                  <button className="rm" title="Remove this photo"
+                          onClick={()=>{ if(confirm("Remove this photo (and its source) from "+p.common+"?")) removeImage(p.id, im.url); }}>✕</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="vsrc">
+          <dt>All sources ({(p.sources||[]).length})</dt>
+          {(p.sources||[]).map((s,i)=><a key={i} href={s[1]} target="_blank" rel="noreferrer">↗ {s[0]}</a>)}
+        </div>
+      </div>
+    </div>
+  );
+});
+
+const VERIFY_DEBOUNCE_MS=180;
+
 function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, removeImage, updatePlant, createPlant}){
-  const [q,setQ]=useState("");
+  const [qLive,setQLive]=useState("");   // what the field shows — updates instantly
+  const [q,setQ]=useState("");           // what the list filters on — trails by a beat
   const [filt,setFilt]=useState("all"); // all | yes | no
+  const [page,setPage]=useState(1);
   const [editingId,setEditingId]=useState(null);
+  useEffect(()=>{ const t=setTimeout(()=>setQ(qLive), VERIFY_DEBOUNCE_MS); return ()=>clearTimeout(t); },[qLive]);
   const [adding,setAdding]=useState(false);
   const [newKey,setNewKey]=useState(0);   // bump to reset the blank form
   const [added,setAdded]=useState(null);  // the plant just inserted
-  const nver=plants.filter(p=>p.humanVerified).length;
-  const nlow=plants.filter(isLowData).length;
+  /* Both scan the whole table and both feed the header, which re-renders on
+     every keystroke now that the field is uncontrolled from the filter. Memoise
+     on `plants` so typing costs nothing but the input itself. */
+  const nver=useMemo(()=>plants.filter(p=>p.humanVerified).length,[plants]);
+  const nlow=useMemo(()=>plants.filter(isLowData).length,[plants]);
   const dupe=(sci)=>plants.find(p=>(p.sci||"").trim().toLowerCase()===(sci||"").trim().toLowerCase());
   const addNew=async(_id,patch)=>{
     const d=dupe(patch.sci);
     if(d) throw new Error(`"${patch.sci}" is already in the database as "${d.common}" (id ${d.id}). Edit that plant instead.`);
     // a hand-entered plant is verified by definition — the admin just typed it in
     const row=await createPlant({...patch, human_verified:true});
-    setAdded(row); setAdding(false); setNewKey(k=>k+1); setQ(row.common);
+    setAdded(row); setAdding(false); setNewKey(k=>k+1); setQLive(row.common); setQ(row.common);
     window.scrollTo({top:0,behavior:"smooth"});
   };
-  const view=plants.filter(p=>{
-    if(filt==="yes" && !p.humanVerified) return false;
-    if(filt==="no" && p.humanVerified) return false;
-    if(filt==="low" && !isLowData(p)) return false;
-    if(q){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(q.toLowerCase())) return false; }
-    return true;
-  });
+  const view=useMemo(()=>{
+    const needle=q.trim().toLowerCase();
+    return plants.filter(p=>{
+      if(filt==="yes" && !p.humanVerified) return false;
+      if(filt==="no" && p.humanVerified) return false;
+      if(filt==="low" && !isLowData(p)) return false;
+      if(needle){ const s=(p.common+" "+p.sci).toLowerCase(); if(!s.includes(needle)) return false; }
+      return true;
+    });
+  },[plants,q,filt]);
+  const pageCount=Math.max(1, Math.ceil(view.length/PER_PAGE_VERIFY));
+  const curPage=Math.min(page, pageCount);
+  const pageItems=view.slice((curPage-1)*PER_PAGE_VERIFY, curPage*PER_PAGE_VERIFY);
+  useEffect(()=>{ setPage(1); },[q,filt]);
+  const goPage=n=>{ setPage(n); window.scrollTo({top:0,behavior:"smooth"}); };
   return (
     <div>
       <div className="pagehead">
@@ -7924,7 +8183,7 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
 
       <div className="controls">
         <div className="fld search"><label>Search name</label>
-          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="e.g. pawpaw or Asimina" /></div>
+          <input value={qLive} onChange={e=>setQLive(e.target.value)} placeholder="e.g. pawpaw or Asimina" /></div>
       </div>
       <div className="toggles">
         <button className={"chip"+(filt==="all"?" on":"")} onClick={()=>setFilt("all")}>All</button>
@@ -7932,44 +8191,17 @@ function VerifyPage({plants, state, plans, membership, toggle, verifyToggle, rem
         <button className={"chip"+(filt==="no"?" on":"")} onClick={()=>setFilt("no")}>Unverified</button>
         <button className={"chip"+(filt==="low"?" on":"")} onClick={()=>setFilt("low")}>⚠ Low data ({nlow})</button>
       </div>
-      <div className="count">{view.length} shown</div>
-      {view.map(p=>(
-        <div key={p.id}>
-          <PlantCard p={p} state={state} plans={plans} memberOf={membership[p.id]} toggle={toggle} />
-          <div className="vbar">
-            <div className="vrow">
-              <label>
-                <input type="checkbox" checked={!!p.humanVerified}
-                       onChange={e=>verifyToggle(p.id, e.target.checked)} />
-                Human Verified
-              </label>
-              <button className="editbtn" onClick={()=>setEditingId(editingId===p.id?null:p.id)}>
-                {editingId===p.id?"Close editor":"✎ Edit data"}</button>
-              {isLowData(p) && <span className="lowflag" title="Sparse record — worth enriching/verifying">⚠ Low data: {dataGaps(p).join(" · ")}</span>}
-            </div>
-            {editingId===p.id && <PlantEditor p={p} onSave={updatePlant} onCancel={()=>setEditingId(null)} />}
-            {(p.images||[]).length>0 && (
-              <div className="vphotos">
-                <dt>Photos ({p.images.length}) — remove any wrong ones</dt>
-                <div className="vthumbs">
-                  {p.images.map((im)=>(
-                    <div className="vthumb" key={im.url} title={im.title||""}>
-                      <img src={im.url} alt={im.title||""} loading="lazy" />
-                      <button className="rm" title="Remove this photo"
-                              onClick={()=>{ if(confirm("Remove this photo (and its source) from "+p.common+"?")) removeImage(p.id, im.url); }}>✕</button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="vsrc">
-              <dt>All sources ({(p.sources||[]).length})</dt>
-              {(p.sources||[]).map((s,i)=><a key={i} href={s[1]} target="_blank" rel="noreferrer">↗ {s[0]}</a>)}
-            </div>
-          </div>
-        </div>
+      <div className="count">{view.length} shown{pageCount>1?` · page ${curPage} of ${pageCount}`:""}</div>
+      <Pager page={curPage} pageCount={pageCount} go={goPage} />
+      {pageItems.map(p=>(
+        <VerifyRow key={p.id} p={p} state={state} plans={plans} memberOf={membership[p.id]}
+                   toggle={toggle} verifyToggle={verifyToggle} removeImage={removeImage}
+                   updatePlant={updatePlant}
+                   editing={editingId===p.id}
+                   onEdit={setEditingId} />
       ))}
       {view.length===0 && <div className="empty">No plants match those filters.</div>}
+      <Pager page={curPage} pageCount={pageCount} go={goPage} />
     </div>
   );
 }
@@ -9836,6 +10068,22 @@ function App(){
   const signOut=async()=>{ setMenu(false); await auth.signOut(); };
 
   // gate: wait for auth, then require sign-in
+  /* The topbar is position:sticky, so anything else that sticks to the top of
+     the page has to start below it or the two overlap. Its height changes with
+     the viewport (the 43-character accent line steps down twice under 470px),
+     so publish the measured height rather than hard-coding one.
+     NB: this has to sit ABOVE the `authReady` / `landed` early returns — a hook
+     after a conditional return changes the hook count between renders. */
+  const topbarRef=useRef(null);
+  useEffect(()=>{
+    const el=topbarRef.current;
+    if(!el){ document.documentElement.style.removeProperty("--topbarh"); return; }
+    const set=()=>document.documentElement.style.setProperty("--topbarh", el.offsetHeight+"px");
+    set();
+    if(typeof ResizeObserver==="undefined"){ window.addEventListener("resize",set); return ()=>window.removeEventListener("resize",set); }
+    const ro=new ResizeObserver(set); ro.observe(el); return ()=>ro.disconnect();
+  },[authReady,user,landed]);
+
   if(!authReady) return <div className="wrap"><div className="empty">Loading…</div></div>;
   if(!user && !landed) return (
     <Landing plantCount={plants.length} vendorCount={vendors.length}
@@ -9847,7 +10095,7 @@ function App(){
 
   return (
     <div>
-      <div className="topbar">
+      <div className="topbar" ref={topbarRef}>
         <div className="brand">
           <span className="acc">Plant and source database and planning tool</span>
           <h1>Native Food Forest Planner</h1>

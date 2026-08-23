@@ -320,14 +320,15 @@ def match_rows(env, vendor_id, rows):
             "vendor_id": vendor_id, "plant_id": pid,
             "raw_name": it.get("raw_name"), "raw_sci": it.get("raw_sci"),
             "is_cultivar": False, "cultivar_name": "",
-            "form": it.get("form") or None, "size": it.get("size") or "",
+            "form": it.get("form") or "", "size": it.get("size") or "",
             "price_cents": it.get("price_cents"), "unit": it.get("unit") or None,
             "stock": it.get("stock") or "unknown", "source": "upload",
             "confidence": "high" if why in ("sci", "sci_base", "synonym") else "medium",
         })
+    vi.norm_keys(linked)
     seen, dedup = set(), []
     for r in linked:
-        k = (r["vendor_id"], r["plant_id"], r["form"], r["cultivar_name"], r["size"])
+        k = vi.key_of(r)
         if k in seen:
             continue
         seen.add(k)

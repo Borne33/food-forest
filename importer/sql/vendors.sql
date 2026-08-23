@@ -123,9 +123,9 @@ create table if not exists public.vendor_plants (
   raw_name      text,
   raw_sci       text,
   is_cultivar   boolean default false,
-  cultivar_name text default '',
-  form          text,               -- seed | potted | plug | bare_root | tuber | scion | live_stake
-  size          text,
+  cultivar_name text not null default '',
+  form          text not null default '',   -- seed | potted | plug | bare_root | tuber | scion | live_stake ('' = unstated)
+  size          text not null default '',   -- part of the key: Ernst sells one species as several state ecotypes
   price_cents   integer,
   unit          text,
   stock         text default 'unknown',  -- in_stock | out | seasonal | unknown
@@ -136,11 +136,20 @@ create table if not exists public.vendor_plants (
   last_seen     date default current_date,
   created_at    timestamptz not null default now()
 );
--- NOT partial: PostgREST needs a plain unique index as an ON CONFLICT target
--- (a partial one raises 42P10). Rows with a NULL plant_id don't dedupe, which
--- is fine — unmatched names live in vendor_plants_unmatched instead.
+-- NOT partial and NOT an expression, so PostgREST can infer it as an ON
+-- CONFLICT target (a partial one raises 42P10). `size` is in the key on
+-- purpose: Ernst lists one species as several state ecotypes ("PA ecotype",
+-- "NY4 ecotype") at different prices and URLs, and those are real products.
+--
+-- NULLS NOT DISTINCT (PG15+) is load-bearing. Without it a row sent with
+-- form = NULL never collides with anything, so ON CONFLICT silently does not
+-- fire and every re-import inserts another copy — which is how vendor 69's PDF
+-- catalogue ended up in here twice. The key text columns are NOT NULL DEFAULT
+-- '' above; this covers plant_id, which stays nullable.
+-- See importer/sql/vendor_plants_dedupe.sql for the cleanup migration.
 create unique index if not exists vendor_plants_uniq
-  on public.vendor_plants(vendor_id, plant_id, form, cultivar_name);
+  on public.vendor_plants(vendor_id, plant_id, form, cultivar_name, size)
+  nulls not distinct;
 create index if not exists vendor_plants_plant_idx  on public.vendor_plants(plant_id);
 create index if not exists vendor_plants_vendor_idx on public.vendor_plants(vendor_id);
 

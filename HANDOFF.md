@@ -1013,3 +1013,100 @@ column. **Look at the exported image, zoomed, before believing it.**
 by the time you fetch it. Patch `HTMLCanvasElement.prototype.toBlob` to stash a
 `toDataURL()` copy first, then draw that into a scratch canvas with
 `imageSmoothingEnabled=false` and `drawImage` a crop of it to inspect detail.
+
+---
+
+## 27. Score filters, sticky Harvest header, Verify pagination, vendor dedupe (Aug 2026)
+
+### Database → Score filters
+A collapsible panel under the Food/Material/Lifecycle row. The model is a list
+of **GROUPS joined by AND**, each holding **rows joined by that group's own
+operator** (OR by default, tap the operator pill to flip a group to `and`):
+
+```
+( Edible Raw ≥ 7  or  Edible Cooked ≥ 7 )  AND  Nativity ≥ 8  AND  ( Ecology ≥ 5  or  Medicinal ≥ 5 )
+```
+
+A one-row group is a plain AND condition, so "everything scoring 7+ raw" is one
+row and no operators. `passScoreGroups` / `scoreGroupsText` / `SCORE_CATS` live
+next to `CATS`. `scoreVal` routes **overall** and **nativity** through
+`overall()` / `nativity()` — they are computed live for the user's state, not
+stored — and only `overall` is on the 0-110 scale (`SCORE_MAX`).
+
+- **Empty rows never filter.** A row with a blank threshold, and a group whose
+  rows are all blank, are skipped; otherwise adding a row before typing a number
+  empties the list and looks broken.
+- Verified against SQL over the live table, five expressions, NY as the state:
+  Raw≥7 **73** · (Raw≥7 or Cooked≥7) **182** · +Nativity≥8 **122** · +(Eco≥5 or
+  Med≥5) **111** · same with group 1 flipped to `and` **43** · Overall≥80 **100**
+  · Medicinal≤2 **2099**. Every one matched the UI count exactly.
+- `.sfrow` tracks are `minmax(0,…)`: a plain `auto` name column refuses to shrink
+  below its widest option and pushed the slider off a 375px screen. Under 560px
+  the slider is dropped and the number box carries the value.
+
+### Harvest: the sticky header, and the overflow trap for the third time
+`.hvtable` was `overflow:hidden` — purely to clip its rounded corners — and
+**overflow:hidden makes an element a scrollport**, so a sticky `.hvhead`
+resolved against a box that never moves. Same failure as `.pplhead` (§9) and
+`.gpane`/`.tpane` (§24). The overflow is gone; the corners are rounded on
+`.hvhead` and `.hvrow:last-child` instead.
+
+**Rule, now three times learned: nothing with `overflow` may sit between a
+sticky header and the element that actually scrolls.**
+
+The page's own `.topbar` is sticky too, so the harvest header parks *under* it
+rather than behind it: `App` measures the topbar with a ResizeObserver and
+publishes **`--topbarh`** on `<html>` (64px, not the 58 a hard-code would have
+guessed — and it steps with the two `.brand` breakpoints under 470px). The
+layer bands stick below that again at `--topbarh + --hvheadh`, which
+`HarvestView` measures the same way. Measured after scrolling: month header
+pins at 64, layer band at 93, no overflow ancestors.
+
+**The `--topbarh` effect must stay ABOVE `if(!authReady) return …`** — a hook
+after a conditional return changes the hook count between renders.
+
+### Verify page: why it froze on a phone
+`VerifyPage` rendered `view.map(...)` over **every** match — unfiltered, all
+~2,500 rows, each a full `PlantCard` (~58 DOM nodes + an image) plus a verify
+bar, thumbnails and a source list. ~147,000 nodes at rest. `q` was wired
+straight to the input, so **every keystroke re-rendered all of them
+synchronously**. On a phone that compounds: focusing the field opens the
+keyboard, which resizes the viewport, which relayouts the lot; the third tap
+lands while the main thread is still busy with the first two.
+
+Three fixes, same list: **25 per page** (`PER_PAGE_VERIFY`, reusing `Pager`),
+the query **debounced** 180 ms off the keystroke (`qLive` drives the field, `q`
+drives the filter), and the row extracted to a **`React.memo` `VerifyRow`** that
+takes `editing` as a boolean rather than the shared `editingId`, so opening one
+editor re-renders two rows instead of the page. `nver`/`nlow` are memoised on
+`plants`. ~1,450 nodes now instead of ~147,000.
+
+**Still needs a click-test while signed in as the admin** — the page is
+uid-gated, so none of it can be exercised from the preview.
+
+### vendor_plants: 49 duplicates, and the NULL that let them in
+`vendor_plants_uniq` already covered `(vendor_id, plant_id, form, cultivar_name,
+size)`. It still did not hold, because **Postgres treats NULL as distinct from
+NULL in a unique index** and every importer sent `"form": it.get("form") or
+None`. ON CONFLICT never fired, so vendor 69's PDF catalogue inserted a second
+complete copy — 49 rows.
+
+The other 39 groups that collide on the *four*-column key from `vendors.sql` are
+**not duplicates**: they are Ernst's per-state seed ecotypes ("PA ecotype",
+"NY4 ecotype"), separate products at separate URLs. `size` belongs in the key;
+the live index already had it and the SQL doc had drifted. Both are corrected.
+
+`importer/sql/vendor_plants_dedupe.sql`, applied: 1374 → **1325** rows, removed
+rows kept in `vendor_plants_dupe_backup` with their `kept_id`. Then
+`form`/`cultivar_name`/`size` became **NOT NULL DEFAULT ''** and the index was
+rebuilt **NULLS NOT DISTINCT** (covers `plant_id`, which stays nullable).
+
+- **Drop the index BEFORE normalising NULL → ''.** The rewrite collapses rows
+  onto each other one at a time and the old index fires mid-statement (23505)
+  long before the dedupe step gets to collapse them deliberately. Cost one run.
+- `NULLS NOT DISTINCT` is still a plain index, so PostgREST can infer it as an
+  ON CONFLICT target. **Verified through the real REST API**, not just in SQL:
+  two successive upserts of a NULL-plant_id row → one row, updated in place.
+- `vendor_inventory.norm_keys()` / `key_of()` are now the single normaliser, and
+  `vendor_import`, `vendor_fetch` and `rematch_vendors` all run rows through them
+  before upserting. `vendor_import.py` no longer sends `form: None`.

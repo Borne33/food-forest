@@ -110,6 +110,33 @@ def build_index(env, plants):
             "syn": syn, "code": by_code, "amb_code": amb_code}
 
 
+# ── the upsert key ────────────────────────────────────────────────────────
+# vendor_plants_uniq is (vendor_id, plant_id, form, cultivar_name, size).
+# Postgres treats NULL as distinct from NULL, so a row sent with form=None
+# never collides and every re-import inserts another copy — that is exactly how
+# vendor 69's PDF catalogue landed twice (49 rows; see
+# importer/sql/vendor_plants_dedupe.sql). The columns are NOT NULL DEFAULT ''
+# now, and the index is NULLS NOT DISTINCT, but keep the payload clean at the
+# source too: every writer runs its rows through this before upserting.
+KEY_TEXT_COLS = ("form", "cultivar_name", "size")
+
+
+def norm_keys(rows):
+    """Coalesce the unique-key text columns to trimmed strings, in place."""
+    for r in rows:
+        for c in KEY_TEXT_COLS:
+            r[c] = (r.get(c) or "").strip()
+    return rows
+
+
+def key_of(row):
+    """The unique key as a comparable tuple — same normalisation as norm_keys."""
+    return (row.get("vendor_id"), row.get("plant_id"),
+            (row.get("form") or "").strip(),
+            (row.get("cultivar_name") or "").strip(),
+            (row.get("size") or "").strip())
+
+
 def match(raw_sci, raw_common, idx, code=None):
     """Return (plant_id, how) or (None, reason). Strict — see D5."""
     s = norm(raw_sci)
@@ -257,9 +284,10 @@ def main():
         print("\nDry run — nothing written.")
         return
 
+    norm_keys(rows)
     seen, deduped = set(), []
     for r in rows:
-        k = (r["vendor_id"], r["plant_id"], r["form"], r["cultivar_name"], r["size"])
+        k = key_of(r)
         if k in seen:
             continue
         seen.add(k); deduped.append(r)

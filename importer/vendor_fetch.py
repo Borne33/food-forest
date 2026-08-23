@@ -48,6 +48,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from vendors_seed import load_env, supabase                      # noqa: E402
 from vendor_inventory import (build_index, load_plants, match,    # noqa: E402
+                              norm_keys, key_of as unique_key,
                               CULTIVAR, LEAD_BINOMIAL, STRIP_TAGS)
 
 # A seed MIX is not a species, and filing one against a single plant is exactly
@@ -158,8 +159,9 @@ READERS = {"woocommerce": read_woocommerce,
 
 # ── diffing ───────────────────────────────────────────────────────────────
 def key_of(row):
-    return (row.get("plant_id"), (row.get("form") or ""),
-            (row.get("cultivar_name") or ""), (row.get("size") or ""))
+    # vendor-scoped already (one vendor per feed), but reuse the shared
+    # normalisation so a None form can never reach the unique index.
+    return unique_key(row)[1:]
 
 
 def build_rows(items, vendor_id, idx, default_form, default_unit):
@@ -192,6 +194,7 @@ def build_rows(items, vendor_id, idx, default_form, default_unit):
     # feed listing the same plant twice at the same size would make PostgREST
     # refuse the whole batch: "ON CONFLICT DO UPDATE cannot affect row a second
     # time". Collapse them here, keeping the first, and say how many.
+    norm_keys(rows)
     seen, deduped, dupes = set(), [], []
     for r in rows:
         k = key_of(r)
